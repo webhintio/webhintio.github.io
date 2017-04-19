@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charSet='utf-8' />
+	<link href='{{url_for "css/main.css"}}' rel='stylesheet'>
+</head>
+
+<body>
+	<main class="container">
+		<article class="content">
+			<div class="container">
+				{{>header navs=site.data.nav}}
+				<section class="section">
+					<div class='page-content'>
+						{{{page.content}}}
+					</div>
+				</section>
+				{{>footer}}
+			</div>
+		</article>
+	</main>
+</body>
+
+</html>
