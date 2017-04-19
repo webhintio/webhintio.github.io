@@ -1,0 +1,14 @@
+- title: disallowed-headers
+  link: disallowed-headers.html
+- title: lang-attribute
+  link: lang-attribute.html
+- title: manifest-exists
+  link: manifest-exists.html
+- title: manifest-file-extension
+  link: manifest-file-extension.html
+- title: no-friendly-error-pages
+  link: no-friendly-error-pages.html
+- title: no-html-only-headers
+  link: no-html-only-headers.html
+
+
