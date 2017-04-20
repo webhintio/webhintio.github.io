@@ -1,3 +1,4 @@
+<hr>
 <footer>
     <div>
         <h3>Scanner</h3>
@@ -9,16 +10,21 @@
     <div>
         <h3>Documentation</h3>
         <ul>
-            <li>User Guide</li>
-            <li>Developer Guide</li>
+            {{#each (getDocumentItems data)}}
+            <li>
+                <a href="{{url_for link}}">{{title}}</a> 
+            </li>
+            {{/each}}
         </ul>
     </div>
     <div>
-      <h3>About</h3>
-      <ul>
-          <li>FAQ</li>
-          <li>Governance</li>
-          <li>Contributors</li>
-      </ul>
-  </div>
+        <h3>About</h3>
+        <ul>
+            {{#each (getAboutItems data)}}
+            <li>
+                <a href="{{url_for link}}">{{title}}</a> 
+            </li>
+            {{/each}}
+        </ul>
+    </div>
 </footer>

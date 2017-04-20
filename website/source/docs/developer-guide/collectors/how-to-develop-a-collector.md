@@ -1,3 +1,5 @@
+layout: developer-guide
+---
 # How to develop a collector
 
 You need to create a new test file (`name-of-your-collector.ts`) that

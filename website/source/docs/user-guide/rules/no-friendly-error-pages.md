@@ -1,5 +1,4 @@
-layout: subpage
-title: 'user-guide'
+layout: user-guide
 ---
 # Disallow small error pages (`no-friendly-error-pages`)
 

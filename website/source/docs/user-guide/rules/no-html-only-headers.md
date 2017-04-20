@@ -1,5 +1,4 @@
-layout: subpage
-title: 'user-guide'
+layout: user-guide
 ---
 # Disallow unneeded HTTP headers for non-HTML resources (`no-html-only-headers`)
 

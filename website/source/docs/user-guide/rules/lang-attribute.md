@@ -1,5 +1,4 @@
-layout: subpage
-title: 'user-guide'
+layout: user-guide
 ---
 # Require `lang` attribute on the `html` element (`lang-attribute`)
 

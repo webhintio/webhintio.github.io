@@ -22,7 +22,6 @@ nav li a {
 nav li a:hover {
     background-color: #111;
 }
-
 /*Code Block*/
 .highlight {
     background: #2d2d2d;
@@ -49,9 +48,16 @@ code {
 .keyword {
     color: #c9c;
 }
-
 /*Footer*/
-
 footer div {
     display: inline-block;
 }
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content{
+    display: none;
+};
+

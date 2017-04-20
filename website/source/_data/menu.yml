@@ -1,12 +1,18 @@
+
 - title: Scanner
+  id: scanner
   link: /scanner
 - title: Documentation
+  id: doc
   items:
   - id: developer-guide
+    link: docs/developer-guide/collectors/how-to-develop-a-collector.html
     title: Developer Guide
   - id: user-guide
+    link: docs/user-guide/rules/disallowed-headers.html
     title: User Guide
 - title: About
+  id: about
   link: /about
   items:
   - id: faq
@@ -16,4 +22,5 @@
     title: Governance
     link: /about/governance
 - title: Changlog
+  id: changelog
   link: /changelog

@@ -1,5 +1,4 @@
-layout: subpage
-title: 'user-guide'
+layout: user-guide
 ---
 # Disallow certain HTTP headers (`disallow-headers`)
 

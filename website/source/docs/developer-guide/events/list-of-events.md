@@ -1,3 +1,5 @@
+layout: developer-guide
+---
 # List of events emitted by a collector
 
 `collector`s communicate via events. The following is a list of all

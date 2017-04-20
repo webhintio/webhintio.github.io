@@ -1,5 +1,4 @@
-layout: subpage
-title: 'user-guide'
+layout: user-guide
 ---
 # Disallow non-standard file extension for the web app manifest file (`manifest-file-extension`)
 

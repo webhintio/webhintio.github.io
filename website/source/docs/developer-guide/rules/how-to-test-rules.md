@@ -1,3 +1,5 @@
+layout: developer-guide
+---
 # How to test rules
 
 Testing a new rule is really easy if you use `rule-runner.ts`. You just
