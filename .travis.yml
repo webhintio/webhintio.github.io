@@ -1,0 +1,14 @@
+# For more information about the configurations used
+# in this file, please see the Travis CI documentation.
+#
+# https://docs.travis-ci.com
+
+language: node_js
+
+node_js:
+  - node
+
+notifications:
+  email:
+    on_failure: always
+    on_success: never
