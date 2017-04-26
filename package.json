@@ -4,7 +4,7 @@
     "version": "3.3.1"
   },
   "scripts":{
-    "hexo-generate": "hexo generate",
+    "test": "hexo generate",
     "hexo-server": "hexo server",
     "start": "node server.js"
   },

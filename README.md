@@ -12,7 +12,7 @@ $ npm install
 Generate:
 
 ``` bash
-$ npm run hexo-generate
+$ npm test
 ```
 
 Run server:
