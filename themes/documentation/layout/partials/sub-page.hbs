@@ -1,0 +1,21 @@
+<section>
+	<h1>{{intro.title}}</h1>
+	<p>{{intro.description}}</p>
+</section>
+<hr>
+<section class="toc">
+	<h1>TOC section title</h1>
+	<ul>
+		{{#each pages}}
+		<li>
+			<a href="{{permalink}}">{{title}}</a>
+		</li>
+		{{/each}}
+	</ul>
+</section>
+<hr>
+<section class="section">
+	<div class='page-content'>
+		{{{page.content}}}
+	</div>
+</section>

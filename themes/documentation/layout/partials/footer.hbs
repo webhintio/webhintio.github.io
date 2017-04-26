@@ -1,0 +1,30 @@
+<hr>
+<footer>
+	<div>
+		<h3>Scanner</h3>
+		<ul>
+			<li>New Scan</li>
+			<li>Compare</li>
+		</ul>
+	</div>
+	<div>
+		<h3>Documentation</h3>
+		<ul>
+			{{#each (getDocumentItems navs)}}
+			<li>
+				<a href="{{url_for link}}">{{title}}</a>
+			</li>
+			{{/each}}
+		</ul>
+	</div>
+	<div>
+		<h3>About</h3>
+		<ul>
+			{{#each (getAboutItems navs)}}
+			<li>
+				<a href="{{url_for link}}">{{title}}</a>
+			</li>
+			{{/each}}
+		</ul>
+	</div>
+</footer>

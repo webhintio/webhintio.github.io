@@ -1,6 +1,28 @@
 {
   "private": true,
-  "scripts": {
-    "test": "echo 'TODO'"
+  "hexo": {
+    "version": "3.3.1"
+  },
+  "scripts":{
+    "hexo-generate": "hexo generate",
+    "hexo-server": "hexo server",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "fs": "0.0.1-security",
+    "handlebars": "^4.0.6",
+    "hexo": "^3.2.0",
+    "hexo-cli": "^1.0.2",
+    "hexo-generator-index": "^0.2.0",
+    "hexo-generator-tag": "^0.2.0",
+    "hexo-renderer-handlebars": "^2.0.2",
+    "hexo-renderer-marked": "^0.2.10",
+    "hexo-renderer-stylus": "^0.3.1",
+    "hexo-server": "^0.2.0",
+    "js-yaml": "^3.8.3",
+    "lodash": "^4.17.4",
+    "path": "^0.12.7"
   }
 }

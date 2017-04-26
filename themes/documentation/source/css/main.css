@@ -1,0 +1,68 @@
+/*Nav Bar*/
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #111;
+}
+/*Code Block*/
+.highlight {
+    background: #2d2d2d;
+    margin: 0 -20px;
+    padding: 15px 20px;
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 1px 0;
+    overflow: auto;
+    color: #ccc;
+    line-height: 22.400000000000002px;
+}
+
+.highlight .line {
+        height: 22.400000000000002px;
+}
+
+code {
+    background: #eee;
+    text-shadow: 0 1px #fff;
+    padding: 0 0.3em;
+}
+
+.keyword {
+    color: #c9c;
+}
+
+/*Sitescan-form*/
+.sitescan-form {
+    margin: 15px;
+}
+
+/*Footer*/
+footer div {
+    display: inline-block;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content{
+    display: none;
+};
