@@ -3,6 +3,24 @@
 #
 # https://docs.travis-ci.com
 
+after_success:
+  - |
+
+        # Automatically update the content from the `gh-pages` branch.
+
+        $(npm bin)/set-up-ssh --key "$encrypted_5473887655a8_key" \
+                              --iv "$encrypted_5473887655a8_iv" \
+                              --path-encrypted-key ".travis/github-deploy-key.enc" \
+          && $(npm bin)/update-branch --commands "npm run build" \
+                                      --commit-message "Hey server, this content is for you! [skip ci]" \
+                                      --directory "public" \
+                                      --distribution-branch "gh-pages" \
+                                      --source-branch "master"
+
+env:
+  global:
+    - secure: "hD8/KCioPgu8h+XIiY+a8KhEB+cHlQuOb/9y4eVBR6E7Xap4se52EMU3+8rqx6V5bXNMrex+bZ+YoZ3MYm79hBB+T5XJyEfVIXIao0r0g5wI0vj6w1HpUgEL3cqXzrijKya3X+YZ6I8j0kX4ogInnL7/hOWQhbWWELhvUchiES5Q4vLuzaSqPjg0ZwrSt+q9xEDh+tGbKHvN9nvDShAGqUJ8UAfGqI4W6pOtvMq6hbopAFEuxy1GX+DZY6U4uMdjp7oqt1aIzL5VFmM5nuoFFyYtF2FhBve/WRt1sNmIrC64bLaEre8Esth8Gq1Fa6q0/jSC1t2Emh0riJD111gpwNkA8GfsApfBfrBAteXLESyTTP9FGuhp9MbUL+qEGzc7Dd9sluSGGMn67f8lHDHhRvVEYpbNzBHkjTL+imHh4moW4xHyDQ1pGvVPRjxzWwCy8m4WQEI9wS7Qjh2PcME+RdYA9/VQZLBmTFTPmah5RbsOHj7VDBHDjJaG5dHGsmc+T6SvLJngS3MRWbi8bKU7iHISM6zNqwiCcLtDOef4sHDbnOlMRQe7NFo3PWJzi36hx0AXHBM/jGP9IM/aw+SGsKjsABkmCRdPOmuQbKuyBO61MXt503Ogn4ftt+EpHNG7sbe/SjngTG8f6F/vB8+qNextpJ9dTNeyqcg8WnX0RNg="
+
 language: node_js
 
 dist: trusty
