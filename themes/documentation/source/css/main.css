@@ -32,11 +32,11 @@ nav li a:hover {
     border-width: 1px 0;
     overflow: auto;
     color: #ccc;
-    line-height: 22.400000000000002px;
+    line-height: 22.4px;
 }
 
 .highlight .line {
-        height: 22.400000000000002px;
+    height: 22.4px;
 }
 
 code {

@@ -1,13 +1,4 @@
 {
-  "private": true,
-  "hexo": {
-    "version": "3.3.1"
-  },
-  "scripts":{
-    "test": "hexo generate",
-    "hexo-server": "hexo server",
-    "start": "node server.js"
-  },
   "dependencies": {
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
@@ -24,5 +15,15 @@
     "js-yaml": "^3.8.3",
     "lodash": "^4.17.4",
     "path": "^0.12.7"
+  },
+  "hexo": {
+    "version": "3.3.1"
+  },
+  "private": true,
+  "scripts":{
+    "build": "hexo generate",
+    "hexo-server": "hexo server",
+    "start": "node server.js",
+    "test": "npm run build"
   }
 }

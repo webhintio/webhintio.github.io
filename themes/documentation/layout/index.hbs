@@ -1,46 +1,40 @@
-<!DOCTYPE html>
-<html lang="en-US">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="dns-prefetch" href="https://az813057.vo.msecnd.net" />
-		<link rel="dns-prefetch" href="https://c.microsoft.com" />
-		<link rel="dns-prefetch" href="https://www.google-analytics.com" />
-		<link rel="dns-prefetch" href="https://c1.microsoft.com" />
-		<link rel="dns-prefetch" href="https://cs.microsoft.com" />
-		<link rel="dns-prefetch" href="https://c.bing.com" />
-		<script src="{{url_for "js/script.js "}}"></script>
-		<link href='{{url_for "css/main.css"}}' rel='stylesheet'>
-	</head>
-	<body>
-		<main class="container">
-			<article class="content">
-				<div class="container">
-					{{#if isScanner}}
-						{{>header navs=menuData}}
-						
-						{{{body}}}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="{{url_for "css/main.css"}}">
+    </head>
+    <body>
+        <main class="container">
+            <article class="content">
+                <div class="container">
+                    {{#if isScanner}}
+                        {{>header navs=menuData}}
 
-						{{>footer navs=menuData}}
-					{{else}}
-						{{>header navs=site.data.menu}}
+                        {{{body}}}
 
-						{{#compare page.category '===' 'developer-guide'}}
-							{{>sub-page intro=site.data.developerGuide pages=(getAllDeveloperGuidePages site.pages.data)}}
-						{{/compare}}
+                        {{>footer navs=menuData}}
+                    {{else}}
+                        {{>header navs=site.data.menu}}
 
-						{{#compare page.category '===' 'user-guide'}}
-							{{>sub-page intro=site.data.userGuide pages=(getAllUserGuidePages site.pages.data)}}
-						{{/compare}}
+                        {{#compare page.category '===' 'developer-guide'}}
+                            {{>sub-page intro=site.data.developerGuide pages=(getAllDeveloperGuidePages site.pages.data)}}
+                        {{/compare}}
 
-						{{#compare page.category '===' 'default'}}
-							{{>single-page}}
-						{{/compare}}
-						
-						{{>footer navs=site.data.menu}}
-					{{/if}}
-				</div>
-			</article>
-		</main>
-	</body>
+                        {{#compare page.category '===' 'user-guide'}}
+                            {{>sub-page intro=site.data.userGuide pages=(getAllUserGuidePages site.pages.data)}}
+                        {{/compare}}
+
+                        {{#compare page.category '===' 'default'}}
+                            {{>single-page}}
+                        {{/compare}}
+
+                        {{>footer navs=site.data.menu}}
+                    {{/if}}
+                </div>
+            </article>
+        </main>
+        <script src="{{url_for "js/script.js "}}"></script>
+    </body>
 </html>

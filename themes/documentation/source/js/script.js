@@ -9,7 +9,7 @@ window.onload = function () {
     };
     var registerEvent = function () {
         document.getElementById('doc').addEventListener('click', toggleDocDropdown, false);
-        document.getElementById('about').addEventListener('click', toggleAboutDropdown, false);        
+        document.getElementById('about').addEventListener('click', toggleAboutDropdown, false);
     };
 
     registerEvent();

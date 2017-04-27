@@ -2,22 +2,27 @@
 
 ## Getting started
 
-Install dependencies:
+Clone the project:
 
 ``` bash
 $ git clone https://github.com/MicrosoftEdge/Sonar-Website.git
+```
+
+Install dependencies:
+
+```
 $ npm install
 ```
 
-Generate:
+Build the site:
 
-``` bash
-$ npm test
+```bash
+$ npm run build
 ```
 
 Run server:
 
-``` bash
+```bash
 $ npm start
 ```
 

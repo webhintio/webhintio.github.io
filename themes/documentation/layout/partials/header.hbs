@@ -1,20 +1,18 @@
 <header role="banner" class="docs__header">
-    <h1 class="docs__site-title">
-        Sonar
-    </h1>
+    <h1 class="docs__site-title">Sonar</h1>
     <nav class="docs__nav">
         <ul class="list--links">
             {{#each navs}}
-            <li>
-                <a href="{{url_for link}}" id="{{id}}">{{title}}</a> 
-                {{#hasSubPage id}}
-                    <div id="{{id}}-dropdown-content" class="dropdown-content">
-                        {{#each items}}
-                            <a href="{{url_for link}}">{{title}}</a>
-                        {{/each}}
-                    </div>
-                {{/hasSubPage}}
-            </li>
+                <li>
+                    <a href="{{url_for link}}" id="{{id}}">{{title}}</a>
+                    {{#hasSubPage id}}
+                        <div id="{{id}}-dropdown-content" class="dropdown-content">
+                            {{#each items}}
+                                <a href="{{url_for link}}">{{title}}</a>
+                            {{/each}}
+                        </div>
+                    {{/hasSubPage}}
+                </li>
             {{/each}}
         </ul>
     </nav>
