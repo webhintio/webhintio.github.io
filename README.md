@@ -1,6 +1,6 @@
 # Sonar Website [![Build Status](https://travis-ci.com/MicrosoftEdge/Sonar-Website.svg?token=ie6AidxpTLajKCNExwqL&branch=master)](https://travis-ci.com/MicrosoftEdge/Sonar-Website)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/MicrosoftEdge/Sonar-Website.svg?token=9f60a3fd5107ea83408580ff7f32cba4ad4f44dacb763397e73bc86b81f5bf89&ts=1493307117875)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/MicrosoftEdge/sonarwhal.com.svg?token=4629854f7544e2f64b05fc679bfd111fae507c7c7e4e52594b629b582360f957&ts=1493332136115)](https://greenkeeper.io/)
 
 ## Getting started
 
