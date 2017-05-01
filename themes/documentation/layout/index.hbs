@@ -1,40 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="{{url_for "css/main.css"}}">
-    </head>
-    <body>
-        <main class="container">
-            <article class="content">
-                <div class="container">
-                    {{#if isScanner}}
-                        {{>header navs=menuData}}
 
-                        {{{body}}}
+<head>
+    <meta charset="utf-8">
+    <title>Sonar</title>
+    <meta name="description" content="sonar website">
+    <meta name="viewport" content="width=device-width">
 
-                        {{>footer navs=menuData}}
-                    {{else}}
-                        {{>header navs=site.data.menu}}
+    <link rel="stylesheet" href="{{url_for "core/css/base.css"}}">
+    <link rel="stylesheet" href="{{url_for "core/css/color.css"}}">
+    <link rel="stylesheet" href="{{url_for "core/css/layouts.css"}}">
+    <link rel="stylesheet" href="{{url_for "core/css/navigation.css"}}">
+    <link rel="stylesheet" href="{{url_for "core/css/structure.css"}}">
+    <link rel="stylesheet" href="{{url_for "core/css/type.css"}}">
+    <link rel="stylesheet" href="{{url_for "components/breadcrumb/breadcrumb.css"}}">
+    {{#if isScanner}}
+    <link rel="stylesheet" href="{{url_for "core/css/controls.css"}}">
+    <link rel="stylesheet" href="{{url_for "core/css/home.css"}}">
+    {{else}}
+    <link rel="stylesheet" href="{{url_for "core/css/code.css"}}">
+    <link rel="stylesheet" href="{{url_for "core/css/table-of-contents.css"}}">
+    {{/if}}
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
+</head>
 
-                        {{#compare page.category '===' 'developer-guide'}}
-                            {{>sub-page intro=site.data.developerGuide pages=(getAllDeveloperGuidePages site.pages.data)}}
-                        {{/compare}}
+<body>
+    {{#if isScanner}}
+        {{>header navs=menuData}}
+        {{{body}}}
+        {{>footer navs=menuData}}
+    {{else}}
+        {{>header navs=site.data.menu}}
+        {{#compare page.category '===' 'developer-guide'}}
+            {{>sub-page intro=site.data.developerGuide pages=(getSubPages site.pages.data 'developer-guide')}}
+        {{/compare}}
 
-                        {{#compare page.category '===' 'user-guide'}}
-                            {{>sub-page intro=site.data.userGuide pages=(getAllUserGuidePages site.pages.data)}}
-                        {{/compare}}
+        {{#compare page.category '===' 'user-guide'}}
+            {{>sub-page intro=site.data.userGuide pages=(getSubPages site.pages.data 'user-guide')}}
+        {{/compare}}
 
-                        {{#compare page.category '===' 'default'}}
-                            {{>single-page}}
-                        {{/compare}}
-
-                        {{>footer navs=site.data.menu}}
-                    {{/if}}
-                </div>
-            </article>
-        </main>
-        <script src="{{url_for "js/script.js "}}"></script>
-    </body>
-</html>
+        {{#compare page.category '===' 'default'}}
+            {{>single-page}}
+        {{/compare}}
+    {{/if}}
+    <script src="{{url_for "core/scripts/form-validation.js"}}"></script>
+    <script src="{{url_for "components/accordion/accordion.js"}}"></script>
+</body>

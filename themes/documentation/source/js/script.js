@@ -1,14 +1,14 @@
 window.onload = function () {
     var toggleDocDropdown = function (e) {
         e.preventDefault();
-        document.getElementById("doc-dropdown-content").classList.toggle("show");
+        document.getElementById("submenu-docs").style.display="block";
     };
     var toggleAboutDropdown = function (e) {
         e.preventDefault();
-        document.getElementById("about-dropdown-content").classList.toggle("show");
+        document.getElementById("submenu-about").style.display="block";
     };
     var registerEvent = function () {
-        document.getElementById('doc').addEventListener('click', toggleDocDropdown, false);
+        document.getElementById('docs').addEventListener('click', toggleDocDropdown, false);
         document.getElementById('about').addEventListener('click', toggleAboutDropdown, false);
     };
 

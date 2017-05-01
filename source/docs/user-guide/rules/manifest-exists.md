@@ -1,6 +1,7 @@
 category: user-guide
 title: manifest-exists
-permalink: /docs/user-guide/rules/manifest-exists.html
+toc-title: rules
+permalink: docs/user-guide/rules/manifest-exists.html
 ---
 # Require a web app manifest file (`manifest-exists`)
 

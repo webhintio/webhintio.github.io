@@ -1,0 +1,62 @@
+/*
+*	HOME PAGE
+*	=============================================
+*/
+
+body {
+    background-color: #4046dd;
+    color: #fff;
+}
+
+.top-illustration {
+    position: relative;
+    height: 15.7rem;
+    z-index: -100;
+}
+
+#iceberg1 {
+    position: relative;
+    width: 25rem;
+
+    animation: floating 4s infinite normal ease-out;
+}
+
+#iceberg2 {
+    position: absolute;
+    margin-top: 11rem;
+    margin-left: 15rem;
+    width: 15rem;
+
+    animation: floating 5s infinite 2s normal ease-out;
+}
+
+@keyframes floating {
+
+    0% {
+        top: -10px;
+    }
+
+    50% {
+        top: 0px;
+    }
+
+    100% {
+        top: -10px;
+    }
+}
+
+.home-container {
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.home-container--input {
+    margin: 0 auto;
+    width: 96rem;
+}
+
+.dark-blue {
+    background-color: rgba(24,24,109,0.9);
+    min-height: 65rem;
+    z-index: 100;
+}

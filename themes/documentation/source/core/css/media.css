@@ -1,0 +1,13 @@
+/*
+ *	MEDIA
+ *	=============================================
+ *	@Dependencies: base.css
+ */
+
+img,
+video {
+	display: inline-block;
+
+	height: auto;
+	max-width: 100%;
+}

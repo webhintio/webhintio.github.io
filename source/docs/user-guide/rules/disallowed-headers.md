@@ -1,6 +1,7 @@
 category: user-guide
 title: disallowed-headers
-permalink: /docs/user-guide/rules/disallowed-headers.html
+toc-title: rules
+permalink: docs/user-guide/rules/disallowed-headers.html
 ---
 # Disallow certain HTTP headers (`disallow-headers`)
 

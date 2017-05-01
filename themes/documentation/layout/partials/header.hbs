@@ -1,19 +1,18 @@
-<header role="banner" class="docs__header">
-    <h1 class="docs__site-title">Sonar</h1>
-    <nav class="docs__nav">
-        <ul class="list--links">
+<header class="header">
+    <nav class="container nav-bar">
+        <img src="{{url_for "images/sonar-logo.svg"}}" alt="sonar" class="header__logo" />
+        <ul class="nav__navbar">
             {{#each navs}}
-                <li>
-                    <a href="{{url_for link}}" id="{{id}}">{{title}}</a>
-                    {{#hasSubPage id}}
-                        <div id="{{id}}-dropdown-content" class="dropdown-content">
-                            {{#each items}}
-                                <a href="{{url_for link}}">{{title}}</a>
-                            {{/each}}
-                        </div>
-                    {{/hasSubPage}}
-                </li>
+            <li class="navbar_navitem">
+                <a href="{{url_for link}}" id="{{id}}">{{title}}</a>
+                {{#hasSubPage id}}
+                <ul role="group" id="submenu-{{id}}" class="navbar_submenu" hidden>
+                    {{#each items}}
+                    <li><a href="{{url_for link}}">{{title}}</a></li>
+                    {{/each}}
+                </ul>
+                {{/hasSubPage}}
+            </li>
             {{/each}}
         </ul>
-    </nav>
 </header>
