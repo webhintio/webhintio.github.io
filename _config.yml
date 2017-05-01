@@ -65,6 +65,18 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: documentation
 
+# Config markdown rendering
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: false
+  smartLists: true
+  smartypants: true
+  modifyAnchors: ''
+  autolink: true
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

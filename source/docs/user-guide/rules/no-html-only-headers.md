@@ -1,6 +1,7 @@
 category: user-guide
 title: no-html-only-headers
-permalink: /docs/user-guide/rules/no-html-only-headers.html
+toc-title: rules
+permalink: docs/user-guide/rules/no-html-only-headers.html
 ---
 # Disallow unneeded HTTP headers for non-HTML resources (`no-html-only-headers`)
 

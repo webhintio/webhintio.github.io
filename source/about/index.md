@@ -1,3 +1,4 @@
 category: default
 ---
-# You are in Section `About`
+* [FAQ](/about/faq)
+* [Governance](/about/governance)

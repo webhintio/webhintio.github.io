@@ -77,7 +77,7 @@ module.exports = function (hexo) {
             }
         },
         hasSubPage: function (id, options) {
-            var result = (id === 'doc' || id === 'about');
+            var result = (id === 'docs' || id === 'about');
             if (result) {
                 return options.fn(this);
             } else {
@@ -92,15 +92,20 @@ module.exports = function (hexo) {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
         },
-        getAllDeveloperGuidePages: function (allPages) {
-            return allPages.filter(function (page) {
-                return page.category === 'developer-guide';
-            });
-        },
-        getAllUserGuidePages: function (allPages) {
-            return allPages.filter(function (page) {
-                return page.category === 'user-guide';
-            });
+        getSubPages: function (allPages, category) {
+            return allPages.reduce(function (acc, page) {
+                 if(page.category === category) {
+                    var tocTitle = page['toc-title'];
+
+                    if (!acc[tocTitle]) {
+                        acc[tocTitle] = [page];
+                    } else {
+                        acc[tocTitle].push(page);
+                    }
+                 }
+
+                 return acc;
+            }, {});
         }
     };
 };
