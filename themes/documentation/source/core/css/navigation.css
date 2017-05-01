@@ -1,0 +1,301 @@
+/*
+*	SITE HEADER
+*	---------------------------------------------
+*/
+
+.nav-bar {
+    display: -ms-flexbox;
+    display: flex;
+
+    margin: 0 auto;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.13rem;
+}
+
+.header {
+    height: 10rem;
+    width: 100%;
+
+    background: #271f8d; /* Old browsers */
+    background: -moz-linear-gradient(top, #271f8d 0%, #4046dd 78%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #271f8d 0%,#4046dd 78%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #271f8d 0%,#4046dd 78%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#271f8d', endColorstr='#4046dd',GradientType=0 ); /* IE6-9 */
+}
+
+/* HEADER: Site logo */
+.header__logo {
+    float: left; /* for non Flexbox browsers */
+    width: 21rem;
+
+    overflow: hidden;
+    align-self: center;
+}
+
+/* HEADER: Search */
+
+.header__form-search {
+    position: absolute;
+    right: 3.4rem;
+    left: 10.8rem;
+    margin: 0 2.4rem; /* Owl poop */
+}
+
+.header__form-search input[type="search"] {
+    visibility: collapse;
+}
+
+.header__form-search .button-search {
+    font-size: 2.1rem;
+}
+
+.header__form-search .button-search:hover,
+.header__form-search .button-search:focus {
+    outline: 0;
+    background-color: hsla(0, 0%, 0%, .05);
+}
+
+.header__form-search input[type="search"].search-active {
+    visibility: visible;
+}
+
+.header__form-search input[type="search"].search-active ~ .button-search {
+    font-size: 1.7rem;
+}
+
+.header__toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    min-width: 0;
+    margin: 0;
+    border: 0;
+    padding: 1.35rem 1.15rem;
+
+    background: 0;
+
+    font-size: 2.1rem;
+    line-height: 1;
+}
+
+.header__toggle:hover,
+.header__toggle:focus {
+    outline: 0;
+    background-color: hsla(0, 0%, 0%, .05);
+}
+
+@media (min-width: 58em) {
+
+.header__form-search input[type="search"] {
+    visibility: visible;
+    width: 27.4rem;
+    margin: .7rem 1rem;
+}
+
+.header__form-search .button-search {
+    right: 1rem;
+    font-size: 1.7rem;
+}
+
+.header__form-search .button-search:hover {
+    background: 0;
+}
+
+.header__toggle {
+    display: none;
+}
+
+}
+
+/*
+*	SITE NAVIGATION
+*	---------------------------------------------
+*/
+
+.nav {
+    width: 100%; /* make sure it is full width when in mobile layout */
+    margin: 0;
+    background-color: #2f2f2f;
+}
+
+.nav--global {
+    float: left; /* for none Flexbox browsers. */
+    -ms-flex: 1;
+    flex: 1;
+    margin: 0 1.4rem;
+}
+
+.nav__navbar {
+    display: none;
+    width: 100%;
+    max-width: 144rem;
+
+    margin: 0 0 0 auto;
+    list-style-type: none;
+}
+
+/* Show menu in mobile view when button is clicked */
+@media (max-width: 57.94em) {
+
+.nav {
+    position: absolute;
+    z-index: 10;
+}
+
+.nav__navbar.show {
+    display: block;
+    padding-bottom: .8rem;
+}
+
+}
+
+@media (min-width: 58em) {
+
+.nav__navbar {
+    display: block;
+    width: auto;
+}
+
+.nav--global .nav__navbar {
+    width: 100%;
+}
+
+.nav__navbar > li {
+    float: left;
+}
+
+}
+
+
+/* Individual items in site menu */
+.navbar__navitem {
+    margin: 0;
+}
+
+.nav__navbar a {
+    display: block;
+    padding: 1.2rem 1rem;
+    color: #fff;
+}
+
+.nav-bar a {
+    display: block; /* temp until consolidate. */
+    color: #fff;
+}
+
+.header .navitem__button:hover,
+.header .navitem__button:focus {
+    text-decoration: none;
+}
+
+.navbar__navitem .edge-wordmark a:hover,
+.navbar__navitem .edge-wordmark a:focus {
+    background-color: #464646;
+}
+
+.navitem__button::after {
+    margin-left: .4rem;
+    content: "\e70d";
+    font: .4em; /* IE9-10 need em */
+}
+
+.navbar__submenu {
+    margin: 0;
+    background-color: #2f2f2f;
+    list-style-type: none;
+}
+
+.nav-bar .navbar__submenu {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+}
+
+
+.navbar__navitem a {
+    transition: background-color ease-out .5s;
+    white-space: nowrap; /* stop arrow breaking onto new line before font loads */
+}
+
+.navbar__navitem a:hover,
+.navbar__navitem a:focus {
+    outline: 0;
+    background-color: hsla(0, 0%, 0%, .4);
+    transition: none;
+    text-decoration: underline;
+}
+
+.navbar__navitem a[aria-expanded="true"],
+.navbar__navitem li {
+    margin: 0;
+    background-color:  hsla(0, 0%, 0%, .3);
+}
+
+.nav-bar .navbar__navitem li  {
+    background: none;
+}
+
+.nav-bar .navbar__navitem a:hover,
+.nav-bar .navbar__navitem a[aria-expanded="true"],
+.nav-bar .navbar__navitem li a:hover {
+    background-color: hsla(0, 0%, 0%, .05);
+}
+
+
+@media (min-width: 33.75em) {
+
+.form-search {
+    position: relative;
+    left: 0;
+    margin: 0;
+}
+
+.header__toggle {
+    position: static;
+}
+
+
+@media (min-width: 56.2em) {
+
+    .nav__navbar a {
+        padding: 3.9rem 2.25rem;
+    }
+
+    .navbar__submenu {
+        position: absolute;
+        z-index: 10;
+        min-width: 27rem;
+    }
+
+    .navbar__submenu a {
+        padding: 1.5rem 2.25rem;
+    }
+
+    .navbar__submenu li:last-of-type {
+        padding-bottom: .8rem;
+    }
+
+}
+
+@media (-ms-high-contrast: active) {
+
+    .navbar__submenu {
+        border: 1px solid;
+    }
+
+    .navbar__navitem a {
+        transition: none;
+    }
+
+    .navbar__navitem a:focus,
+    .header .navbar__navitem a[aria-expanded="true"] {
+        -ms-high-contrast-adjust: none;
+        background-color: highlight;
+        color: highlightText;
+    }
+
+}

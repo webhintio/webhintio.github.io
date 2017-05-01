@@ -1,6 +1,7 @@
 category: user-guide
 title: no-friendly-error-pages
-permalink: /docs/user-guide/rules/no-friendly-error-pages.html
+toc-title: rules
+permalink: docs/user-guide/rules/no-friendly-error-pages.html
 ---
 # Disallow small error pages (`no-friendly-error-pages`)
 

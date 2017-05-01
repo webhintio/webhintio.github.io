@@ -1,5 +1,6 @@
 category: developer-guide
-title: how-to-develop-a-collector
+title: How to develop a collector
+toc-title: collectors
 permalink: docs/developer-guide/collectors/how-to-develop-a-collector.html
 ---
 # How to develop a collector

@@ -17,10 +17,10 @@
     "path": "^0.12.7"
   },
   "hexo": {
-    "version": "3.3.1"
+    "version": "3.3.5"
   },
   "private": true,
-  "scripts":{
+  "scripts": {
     "build": "hexo generate",
     "hexo-server": "hexo server",
     "start": "node server.js",

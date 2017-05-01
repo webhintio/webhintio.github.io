@@ -1,0 +1,18 @@
+/*
+ *	badges
+ *	=============================================
+ *	@Dependencies: base.css, type.css
+ */
+
+.badge {
+	display: inline-block;
+	padding: .1rem .7rem;
+
+	background: #ffd800;
+	color: #000;
+
+	font-weight: 400;
+	font-size: 1.3rem;
+	text-transform: uppercase;
+	letter-spacing: .075em;
+}
