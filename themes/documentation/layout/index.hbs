@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="{{url_for "core/css/structure.css"}}">
     <link rel="stylesheet" href="{{url_for "core/css/type.css"}}">
     <link rel="stylesheet" href="{{url_for "components/breadcrumb/breadcrumb.css"}}">
-    {{#if isScanner}}
-    <link rel="stylesheet" href="{{url_for "core/css/controls.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/home.css"}}">
+    {{#if page.category}}
+        <link rel="stylesheet" href="{{url_for "core/css/code.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/table-of-contents.css"}}">
     {{else}}
-    <link rel="stylesheet" href="{{url_for "core/css/code.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/table-of-contents.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/home.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/controls.css"}}">
     {{/if}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
 </head>
@@ -31,17 +31,22 @@
         {{>footer navs=menuData}}
     {{else}}
         {{>header navs=site.data.menu}}
-        {{#compare page.category '===' 'developer-guide'}}
-            {{>sub-page intro=site.data.developerGuide pages=(getSubPages site.pages.data 'developer-guide')}}
-        {{/compare}}
+        {{#if page.category}}
+            {{#compare page.category '===' 'developer-guide'}}
+                {{>sub-page intro=site.data.developerGuide pages=(getSubPages site.pages.data 'developer-guide')}}
+            {{/compare}}
 
-        {{#compare page.category '===' 'user-guide'}}
-            {{>sub-page intro=site.data.userGuide pages=(getSubPages site.pages.data 'user-guide')}}
-        {{/compare}}
+            {{#compare page.category '===' 'user-guide'}}
+                {{>sub-page intro=site.data.userGuide pages=(getSubPages site.pages.data 'user-guide')}}
+            {{/compare}}
 
-        {{#compare page.category '===' 'default'}}
-            {{>single-page}}
-        {{/compare}}
+            {{#compare page.category '===' 'default'}}
+                {{>single-page}}
+            {{/compare}}
+        {{else}}
+            {{>scan-form}}
+            {{>footer navs=site.data.menu}}
+        {{/if}}
     {{/if}}
     <script src="{{url_for "core/scripts/form-validation.js"}}"></script>
     <script src="{{url_for "components/accordion/accordion.js"}}"></script>

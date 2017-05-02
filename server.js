@@ -23,6 +23,7 @@ const scannerHelper = {
     }
 };
 const helpers = _.merge(handlebars.helpers, themeHelpers(), scannerHelper); // combine helpers
+const port = process.env.PORT || 4000;
 
 app.set('views', partialsDir);
 
@@ -37,13 +38,6 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-app.get('/', (req, res) => {
-    res.render('scan-form', {
-        isScanner: true,
-        menuData
-    });
-});
-
 app.post('/scanner', (req, res) => {
     res.render('scan-result', {
         isScanner: true,
@@ -52,6 +46,6 @@ app.post('/scanner', (req, res) => {
 });
 
 app.use('/', express.static(path.join(__dirname, '/public')));
-app.listen(4000, () => {
-    console.log('Server is running at http://localhost:4000.');
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}.`);
 });
