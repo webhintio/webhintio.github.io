@@ -1,30 +1,34 @@
-<hr>
-<footer>
-    <div>
-        <h3>Scanner</h3>
-        <ul>
-            <li>New Scan</li>
-            <li>Compare</li>
-        </ul>
-    </div>
-    <div>
-        <h3>Documentation</h3>
-        <ul>
-            {{#each (getDocumentItems navs)}}
-                <li>
-                    <a href="{{url_for link}}">{{title}}</a>
-                </li>
-            {{/each}}
-        </ul>
-    </div>
-    <div>
-        <h3>About</h3>
-        <ul>
-            {{#each (getAboutItems navs)}}
-                <li>
-                    <a href="{{url_for link}}">{{title}}</a>
-                </li>
-            {{/each}}
-        </ul>
-    </div>
+<footer class="footer--home container">
+    <p class="category">Scanner</p>
+    <ul>
+        <li>
+            <a href="/">New scan</a>
+        </li>
+    </ul>
+    <p class="category">Documentation</p>
+    <ul>
+        <li>
+            <a href="/docs/user-guide/rules/disallowed-headers.html">User Guide</a>
+        </li>
+        <li>Rules</li>
+        <li>
+            <a href="/docs/developer-guide/collectors/how-to-develop-a-collector.html">Developer Guide</a>
+        </li>
+    </ul>
+    <p class="category">
+        <a href="/about">About</a>
+    </p>
+    <ul>
+        <li>
+            <a href="/about/faq">FAQ</a>
+        </li>
+        <li>
+            <a href="/about/governance">Governance</a>
+        </li>
+        <li>Contributors</li>
+        <li>Code of Conduct</li>
+    </ul>
+    <p class="category">
+        <a href="/changelog">Changelog</a>
+    </p>
 </footer>

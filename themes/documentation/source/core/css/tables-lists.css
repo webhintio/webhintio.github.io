@@ -1,0 +1,76 @@
+/*
+ *	TABLES + LISTS
+ *	=============================================
+ *	@Dependencies: base.css, type.css
+ */
+
+
+/*
+ *	TABLES
+ *	---------------------------------------------
+ */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+th,
+caption {
+	text-align: left;
+}
+
+th, td {
+	padding: 1rem 1.2rem;
+	vertical-align: top;
+}
+
+thead th {
+	vertical-align: bottom;
+
+	color: hsla(0, 0%, 0%, .6);
+}
+
+tbody tr:nth-child(odd) {
+	background-color: hsla(0, 0%, 0%, .05);
+}
+
+tbody tr:nth-child(odd) a {
+	color: #006fc6;
+}
+
+/* Parent class allows table to scroll sideways when overflowing */
+.table--overflow {
+	width: 100%;
+	overflow-x: auto;
+}
+
+* + .table--overflow {
+	margin-top: 2.4rem;
+}
+
+/* Special cells */
+
+.cell--numerical {
+	text-align: right;
+}
+
+/*
+ *	LISTS
+ *	---------------------------------------------
+ */
+
+ul, ol {
+	margin-left: 1.9rem;
+}
+
+* + li {
+	margin-top: 1.6rem;
+}
+
+nav ul,
+nav ol {
+	margin-left: 0;
+	list-style: none;
+}

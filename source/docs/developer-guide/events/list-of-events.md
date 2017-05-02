@@ -1,5 +1,6 @@
 category: developer-guide
-title: list-of-events
+title: List of events emitted by a collector
+toc-title: events
 permalink: docs/developer-guide/events/list-of-events.html
 ---
 # List of events emitted by a collector

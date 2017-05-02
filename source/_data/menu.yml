@@ -3,8 +3,8 @@
   link: /
 
 - title: Documentation
-  id: doc
-  link: /documentation
+  id: docs
+  link: /docs
   items:
   - id: developer-guide
     link: docs/developer-guide/events/list-of-events.html

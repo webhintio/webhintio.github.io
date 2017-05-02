@@ -1,5 +1,6 @@
 category: developer-guide
-title: how-to-test-rules
+title: How to test rules
+toc-title: rules
 permalink: docs/developer-guide/rules/how-to-test-rules.html
 ---
 # How to test rules

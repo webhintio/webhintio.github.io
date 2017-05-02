@@ -1,13 +1,36 @@
-<section class="section">
-    <div class='page-content'>
-        <form class="sitescan-form" action="/scanner" method="POST">
-            <fieldset>
-                <label for="sitescan-url">URL</label>
-                <input id="sitescan-url" type="url" required name="url" />
-            </fieldset>
-            <div class="actions">
-                <button class="button--primary" type="submit">Submit</button>
+<main>
+    <article>
+        <section class="container">
+            <div class="top-illustration">
+                <img src="{{url_for "images/iceberg-left.svg"}}" class="iceberg" id="iceberg1" />
+                <img src="{{url_for "images/iceberg-middle.svg"}}" class="iceberg" id="iceberg2" />
+                <img src="" class="iceberg iceberg3" />
+                <div id="narwhal">
+                    <img src="" class="narwhal" />
+                </div>
             </div>
-        </form>
-    </div>
-</section>
+        </section>
+        <section class="dark-blue">
+            <div class="container home-container">
+                <div class="home-container--input">
+                    <form action="/scanner" method="POST">
+                        <label for="home-scan">Enter your URL here</label>
+                        <input id="home-scan" type="url" placeholder="Copy your URL here" />
+                        <button type="submit">Run Scan</button>
+                    </form>
+                </div>
+                <div id="documentation">
+                    <ul>
+                        <li>
+                            <a href="/docs/user-guide/rules/disallowed-headers.html">User Guide</a>
+                        </li>
+                        <li>Rules</li>
+                        <li>
+                            <a href="/docs/developer-guide/collectors/how-to-develop-a-collector.html">Developer Guide</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>

@@ -1,6 +1,7 @@
 category: user-guide
 title: lang-attribute
-permalink: /docs/user-guide/rules/lang-attribute.html
+toc-title: rules
+permalink: docs/user-guide/rules/lang-attribute.html
 ---
 # Require `lang` attribute on the `html` element (`lang-attribute`)
 
