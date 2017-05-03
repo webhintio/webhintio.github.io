@@ -1,5 +1,5 @@
 module.exports = function () {
-	return {
+    return {
         /**
          * Handlebars Comparison Helpers
          * Copyright (c) 2013 Jon Schlinkert, Brian Woodward, contributors
@@ -28,95 +28,106 @@ module.exports = function () {
          *     The value is lower than 10
          *   {{/compare}}
          */
-		compare: function (left, operator, right, options) { // eslint-disable-line object-shorthand
-			if (arguments.length < 3) {
-				throw new Error('Handlebars Helper "compare" needs 2 parameters');
-			}
+        compare: function (left, operator, right, options) { // eslint-disable-line object-shorthand
+            if (arguments.length < 3) {
+                throw new Error('Handlebars Helper "compare" needs 2 parameters');
+            }
 
-			if (!options) {
-				/*eslint-disable no-param-reassign*/
-				options = right;
-				right = operator;
-				operator = '===';
-				/*eslint-enable no-param-reassign*/
-			}
+            /* eslint-disable no-param-reassign */
+            if (!options) {
+                options = right;
+                right = operator;
+                operator = '===';
+            }
+            /* eslint-enable no-param-reassign */
 
-			const operators = {
-				'!=': (l, r) => {
-					return l !== r;
-				},
-				'!==': (l, r) => {
-					return l !== r;
-				},
-				'<': (l, r) => {
-					return l < r;
-				},
-				'<=': (l, r) => {
-					return l <= r;
-				},
-				'==': (l, r) => {
-					return l === r;
-				},
-				'===': (l, r) => {
-					return l === r;
-				},
-				'>': (l, r) => {
-					return l > r;
-				},
-				'>=': (l, r) => {
-					return l >= r;
-				},
-				typeof: (l, r) => {
-					return typeof l === r;
-				},
-				'||': (l, r) => {
-					return l || r;
-				}
-			};
+            const operators = {
+                '!=': (l, r) => {
+                    return l !== r;
+                },
+                '!==': (l, r) => {
+                    return l !== r;
+                },
+                '<': (l, r) => {
+                    return l < r;
+                },
+                '<=': (l, r) => {
+                    return l <= r;
+                },
+                '==': (l, r) => {
+                    return l === r;
+                },
+                '===': (l, r) => {
+                    return l === r;
+                },
+                '>': (l, r) => {
+                    return l > r;
+                },
+                '>=': (l, r) => {
+                    return l >= r;
+                },
+                typeof: (l, r) => {
+                    return typeof l === r;
+                },
+                '||': (l, r) => {
+                    return l || r;
+                }
+            };
 
-			if (!operators[operator]) {
-				throw new Error(`Handlebars Helper "compare" doesn't know the operator ${operator}`);
-			}
+            if (!operators[operator]) {
+                throw new Error(`Handlebars Helper "compare" doesn't know the operator ${operator}`);
+            }
 
-			const result = operators[operator](left, right);
+            const result = operators[operator](left, right);
 
-			if (result) {
-				return options.fn(this);
-			}
+            if (result) {
+                return options.fn(this);
+            }
 
-			return options.inverse(this);
-		},
-		getAboutItems: (navs) => {
-			// `navs` is the menu data saved in `menu.yml`.
-			return navs[2].items;
-		},
-		getDocumentItems: (navs) => {
-			// `navs` is the menu data saved in `menu.yml`.
-			return navs[1].items;
-		},
-		getSubPages: function (allPages, category) { // eslint-disable-line object-shorthand
-			return allPages.reduce((acc, page) => {
-				if (page.category === category) {
-					const tocTitle = page['toc-title'];
+            return options.inverse(this);
+        },
+        getAboutItems: (navs) => {
+            // `navs` is the menu data saved in `menu.yml`.
+            return navs[2].items;
+        },
+        getDocumentItems: (navs) => {
+            // `navs` is the menu data saved in `menu.yml`.
+            return navs[1].items;
+        },
+        getSubPages: function (allPages, category) { // eslint-disable-line object-shorthand
+            return allPages.reduce((acc, page) => {
+                if (page.category === category) {
+                    const tocTitle = page['toc-title'];
 
-					if (!acc[tocTitle]) {
-						acc[tocTitle] = [page];
-					} else {
-						acc[tocTitle].push(page);
-					}
-				}
+                    if (!acc[tocTitle]) {
+                        acc[tocTitle] = [page];
+                    } else {
+                        acc[tocTitle].push(page);
+                    }
+                }
 
-				return acc;
-			}, {});
-		},
-		hasSubPage: function (id, options) { // eslint-disable-line object-shorthand
-			const result = (id === 'docs' || id === 'about');
+                return acc;
+            }, {});
+        },
+        hasSubPage: function (id, options) { // eslint-disable-line object-shorthand
+            const result = (id === 'docs' || id === 'about');
 
-			if (result) {
-				return options.fn(this);
-			}
+            if (result) {
+                return options.fn(this);
+            }
 
-			return options.inverse(this);
-		}
-	};
+            return options.inverse(this);
+        },
+        hasTocTitle: (tocTitle, options) => {
+            // Some files are placed directly under `developer-guide` or `user-guide`.
+            // These files don't contain `toc-title` entries in their front matter.
+            const result = (tocTitle !== 'undefined');
+
+            if (result) {
+                return options.fn(this);
+            }
+
+            return options.inverse(this);
+        }
+    };
 };
