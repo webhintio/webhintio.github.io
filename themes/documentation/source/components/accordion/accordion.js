@@ -1,3 +1,5 @@
+/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand */
+/* eslint-env browser */
 /*eslint-disable*/
 // Pollyfill for :scope in selectors API 2 from http://stackoverflow.com/a/17989803/414145
 (function (doc, proto) {
@@ -31,6 +33,7 @@
 
 	var animateOpen = function (parent, content) {
 		var contentHeight = content.offsetHeight;
+
 		content.style.height = contentHeight + 'px';
 	};
 
@@ -67,13 +70,16 @@
 
 	var shim = function () {
 		var accordionButtons = document.querySelectorAll('[role="group"] [role="button"]');
+
 		for (var i = 0, li = accordionButtons.length; i < li; i++) {
 			var button = accordionButtons[i];
+
 			button.setAttribute('tabindex', '0');
 			var parent = button.parentElement;
 
 			if (typeof parent.getAttribute('open') === 'string') {
 				var content = parent.querySelector('div');
+
 				content.style.height = content.offsetHeight + 'px';
 			}
 		}
@@ -111,6 +117,7 @@
 		if (element.parentElement) {
 			return findSummary(element.parentElement);
 		}
+
 		return null;
 	};
 
@@ -118,6 +125,7 @@
 		document.addEventListener('click', function (evt) {
 			var target = evt.target || evt.srcElement;
 			var source = findSummary(target);
+
 			if (source) {
 				onToggleAccordion(evt, source);
 			}
@@ -126,6 +134,7 @@
 		document.addEventListener('keydown', function (evt) {
 			var target = evt.target || evt.srcElement;
 			var source = findSummary(target);
+
 			if (source) {
 				onToggleAccordion(evt, source);
 			}
@@ -140,11 +149,13 @@
 
 	var scrollIfNeeded = function () {
 		var buttons = document.querySelectorAll('summary[data-pathname]');
+
 		if (buttons.length === 0) {
 			return;
 		}
 		var paths = window.location.pathname.split('/');
 		var path = paths.pop();
+
 		while (path === '' && paths.length > 0) {
 			path = paths.pop();
 		}
@@ -155,6 +166,7 @@
 
 		for (var i = 0; i < buttons.length; i++) {
 			var summary = buttons[i];
+
 			if (summary.parentElement.getAttribute('id').indexOf(path) === 0) {
 				/*eslint-disable no-loop-func*/
 				setImmediate(function () {
