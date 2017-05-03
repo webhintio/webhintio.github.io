@@ -1,5 +1,8 @@
+/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand */
+/* eslint-env browser */
 (function () {
 	'use strict';
+
 	var createTabControl = function (element) {
 		var tabList = [].slice.call(element.querySelectorAll('[role="tab"]'));
 		var tabPanels;
@@ -18,6 +21,7 @@
 			tab.setAttribute('aria-selected', 'true');
 			tab.focus();
 			var panel = document.getElementById(tab.getAttribute('aria-controls'));
+
 			panel.removeAttribute('hidden');
 		};
 
@@ -28,6 +32,7 @@
 
 		var selectNext = function (tab) {
 			var index = tabList.indexOf(tab);
+
 			index++;
 			if (index >= tabList.length) {
 				index = 0;
@@ -38,6 +43,7 @@
 
 		var selectPrevious = function (tab) {
 			var index = tabList.indexOf(tab);
+
 			index--;
 			if (index < 0) {
 				index = tabList.length - 1;
@@ -48,6 +54,7 @@
 
 		var keydown = function (e) {
 			var tab = e.currentTarget;
+
 			switch (e.which) {
 				case 37:
 				case 38:
@@ -66,6 +73,7 @@
 
 		tabPanels = tabList.map(function (tab, index) {
 			var tabPanel = document.querySelector('#' + tab.getAttribute('aria-controls'));
+
 			if (index === 0) {
 				tab.setAttribute('aria-selected', 'true');
 			} else {
@@ -73,6 +81,7 @@
 			}
 			tab.addEventListener('click', tabClick, false);
 			tab.addEventListener('keydown', keydown, false);
+
 			return tabPanel;
 		});
 	};
@@ -80,6 +89,7 @@
 	//KEYBOARD HANDLING !!!
 
 	var tabs = [].slice.call(document.querySelectorAll('[role="tablist"]'));
+
 	tabs.forEach(function (tab) {
 		createTabControl(tab);
 	});
