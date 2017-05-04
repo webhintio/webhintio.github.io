@@ -26,6 +26,7 @@
   "scripts": {
     "build": "hexo generate",
     "hexo-server": "hexo server",
+    "rebuild-docs": "echo ^ ^",
     "start": "node server.js",
     "test": "npm run build"
   }
