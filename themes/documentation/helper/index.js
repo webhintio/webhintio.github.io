@@ -1,12 +1,12 @@
-/* eslint-disable */
-/**
- * Handlebars Comparison Helpers
- * Copyright (c) 2013 Jon Schlinkert, Brian Woodward, contributors
- * Licensed under the MIT License (MIT).
- * Modified to fit Sonar Website
- */
 module.exports = function () {
 	return {
+        /**
+         * Handlebars Comparison Helpers
+         * Copyright (c) 2013 Jon Schlinkert, Brian Woodward, contributors
+         * Licensed under the MIT License (MIT).
+         * https://github.com/helpers/handlebars-helpers/blob/a3683bab5519882927de527077c34a98ac22067b/lib/comparison.js#L48
+         * Modified to fit Sonar Website
+         */
         /**
          * {{#compare}}...{{/compare}}
          *
@@ -28,81 +28,76 @@ module.exports = function () {
          *     The value is lower than 10
          *   {{/compare}}
          */
-		compare: function (left, operator, right, options) {
-			/*eslint-disable eqeqeq*/
-
+		compare: function (left, operator, right, options) { // eslint-disable-line object-shorthand
 			if (arguments.length < 3) {
 				throw new Error('Handlebars Helper "compare" needs 2 parameters');
 			}
 
 			if (!options) {
+				/*eslint-disable no-param-reassign*/
 				options = right;
 				right = operator;
 				operator = '===';
+				/*eslint-enable no-param-reassign*/
 			}
 
-			var operators = {
-				'==': function (l, r) {
-					return l == r;
-				},
-				'===': function (l, r) {
-					return l === r;
-				},
-				'!=': function (l, r) {
-					return l != r;
-				},
-				'!==': function (l, r) {
+			const operators = {
+				'!=': (l, r) => {
 					return l !== r;
 				},
-				'<': function (l, r) {
+				'!==': (l, r) => {
+					return l !== r;
+				},
+				'<': (l, r) => {
 					return l < r;
 				},
-				'>': function (l, r) {
-					return l > r;
-				},
-				'<=': function (l, r) {
+				'<=': (l, r) => {
 					return l <= r;
 				},
-				'>=': function (l, r) {
+				'==': (l, r) => {
+					return l === r;
+				},
+				'===': (l, r) => {
+					return l === r;
+				},
+				'>': (l, r) => {
+					return l > r;
+				},
+				'>=': (l, r) => {
 					return l >= r;
 				},
-				typeof: function (l, r) {
-					return typeof l == r;
+				typeof: (l, r) => {
+					return typeof l === r;
+				},
+				'||': (l, r) => {
+					return l || r;
 				}
 			};
 
 			if (!operators[operator]) {
-				throw new Error('Handlebars Helper "compare" doesn\'t know the operator ' + operator);
+				throw new Error(`Handlebars Helper "compare" doesn't know the operator ${operator}`);
 			}
 
-			var result = operators[operator](left, right);
+			const result = operators[operator](left, right);
 
 			if (result) {
 				return options.fn(this);
-			} else {
-				return options.inverse(this);
 			}
+
+			return options.inverse(this);
 		},
-		hasSubPage: function (id, options) {
-			var result = (id === 'docs' || id === 'about');
-			if (result) {
-				return options.fn(this);
-			} else {
-				return options.inverse(this);
-			}
-		},
-		getDocumentItems: function (navs) {
-			// `navs` is the menu data saved in `menu.yml`.
-			return navs[1].items;
-		},
-		getAboutItems: function (navs) {
+		getAboutItems: (navs) => {
 			// `navs` is the menu data saved in `menu.yml`.
 			return navs[2].items;
 		},
-		getSubPages: function (allPages, category) {
-			return allPages.reduce(function (acc, page) {
+		getDocumentItems: (navs) => {
+			// `navs` is the menu data saved in `menu.yml`.
+			return navs[1].items;
+		},
+		getSubPages: function (allPages, category) { // eslint-disable-line object-shorthand
+			return allPages.reduce((acc, page) => {
 				if (page.category === category) {
-					var tocTitle = page['toc-title'];
+					const tocTitle = page['toc-title'];
 
 					if (!acc[tocTitle]) {
 						acc[tocTitle] = [page];
@@ -113,6 +108,15 @@ module.exports = function () {
 
 				return acc;
 			}, {});
+		},
+		hasSubPage: function (id, options) { // eslint-disable-line object-shorthand
+			const result = (id === 'docs' || id === 'about');
+
+			if (result) {
+				return options.fn(this);
+			}
+
+			return options.inverse(this);
 		}
 	};
 };
