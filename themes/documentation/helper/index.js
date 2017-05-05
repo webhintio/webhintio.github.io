@@ -80,9 +80,17 @@ module.exports = function (hexo) {
             var result = (id === 'docs' || id === 'about');
             if (result) {
                 return options.fn(this);
-            } else {
-                return options.inverse(this);
             }
+            return options.inverse(this);
+        },
+        hasTocTitle: function (tocTitle, options) {
+            // Some files are placed directly under `developer-guide` or `user-guide`.
+            // These files don't contain `toc-title` entries in their front matter.
+            var result = (tocTitle !== 'undefined');
+            if (result) {
+                return options.fn(this);
+            }
+            return options.inverse(this);
         },
         getDocumentItems: function (navs) {
             // `navs` is the menu data saved in `menu.yml`.
@@ -94,7 +102,7 @@ module.exports = function (hexo) {
         },
         getSubPages: function (allPages, category) {
             return allPages.reduce(function (acc, page) {
-                 if(page.category === category) {
+                if (page.category === category) {
                     var tocTitle = page['toc-title'];
 
                     if (!acc[tocTitle]) {
@@ -102,9 +110,9 @@ module.exports = function (hexo) {
                     } else {
                         acc[tocTitle].push(page);
                     }
-                 }
+                }
 
-                 return acc;
+                return acc;
             }, {});
         }
     };
