@@ -1,16 +1,19 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
+cd "$(dirname "${BASH_SOURCE[0]}")/.." \
+    || exit 1
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Automatically update the content from the `website` branch.
+#
+# Note: The SSH key is stored on Travis CI, but will need to be
+#       added once the project is open sourced.
+#
+#       https://docs.travis-ci.com/user/private-dependencies/
 
-$(npm bin)/set-up-ssh --key "$encrypted_89e93c8b10f7_key" \
-                      --iv  "$encrypted_89e93c8b10f7_iv" \
-                      --path-encrypted-key ".travis/github-deploy-key.enc" \
-    && $(npm bin)/update-branch --commands "npm run build" \
-                                --commit-message "Hey server, this content is for you! [skip ci]" \
-                                --directory "public" \
-                                --distribution-branch "website" \
-                                --source-branch "master"
+"$(npm bin)/update-branch" --commands "npm run build" \
+                           --commit-message "Hey server, this content is for you! [skip ci]" \
+                           --directory "public" \
+                           --distribution-branch "website" \
+                           --source-branch "master"
