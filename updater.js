@@ -43,7 +43,8 @@ const addFrontMatter = async (filePath) => {
         content = data;
     }
 
-    const title = _.trim(content.match(/# (.*)\n\n/).pop().replace(/\(.*\)/, ''));
+    const title = _.trim(content.match(/# (.*)\n\n/).pop()
+                         .replace(/\(.*\)/, ''));
 
     const frontMatter = generateFrontMatterInfo(filePath, title);
 
@@ -51,8 +52,6 @@ const addFrontMatter = async (filePath) => {
 
     await fs.writeFile(filePath, newData);
 };
-
-
 
 // Iterate all the files in the dest folder and add frontmatter to each file
 klaw(directory)
@@ -69,6 +68,5 @@ klaw(directory)
 
         await Promise.all(promises);
 
-        console.log('Front Matter added to each file.')
+        console.log('Front Matter added to each file.');
     });
-

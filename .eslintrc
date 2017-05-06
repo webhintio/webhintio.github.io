@@ -220,14 +220,10 @@
         ],
         "id-length": 0,
         "id-match": 0,
-        "indent": [
-            2,
-            "tab",
-            {
-                "SwitchCase": 1,
-                "VariableDeclarator": 1
-            }
-        ],
+        "indent": ["error", 4, {
+            "SwitchCase": 1,
+            "VariableDeclarator": 1
+        }],
         "key-spacing": [
             2,
             {
