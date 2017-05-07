@@ -1,6 +1,6 @@
+toc-title: collectors
 category: developer-guide
 title: How to develop a collector
-toc-title: collectors
 permalink: docs/developer-guide/collectors/how-to-develop-a-collector.html
 ---
 # How to develop a collector
@@ -10,7 +10,7 @@ will at least use `tests/lib/collectors/_common.ts`.
 
 A minimum test for your collector will look as follows:
 
-```typescript
+```ts
 import builder from 'path/to/your/collector';
 import { testCollector } from './_common';
 

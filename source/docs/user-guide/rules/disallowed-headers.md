@@ -1,12 +1,11 @@
-category: user-guide
-title: disallowed-headers
 toc-title: rules
+category: user-guide
+title: Disallow certain HTTP headers
 permalink: docs/user-guide/rules/disallowed-headers.html
 ---
 # Disallow certain HTTP headers (`disallow-headers`)
 
 `disallow-headers` warns against responding with certain HTTP headers.
-
 
 ## Why is this important?
 
@@ -17,7 +16,6 @@ about them: their name, version number, etc.
 Sending those types of HTTP headers does not provide any value to
 users, contributes to header bloat, and just gives more information
 to any potential attackers about the technology stack being used.
-
 
 ## What does the rule check?
 
@@ -32,7 +30,7 @@ for the presence of the following headers:
 * `X-Runtime`
 * `X-Version`
 
-Examples that **trigger** the rule:
+Example that **triggers** the rule:
 
 ```text
 HTTP/1.1 200 OK
@@ -46,7 +44,7 @@ Server: Apache/2.2.27 (Unix) mod_ssl/2.2.27 OpenSSL/1.0.1e-fips mod_bwlimited/1.
 X-Powered-By: PHP/5.3.28
 ```
 
-Examples that **pass** the rule:
+Example that **passes** the rule:
 
 ```text
 HTTP/1.1 200 OK
@@ -58,14 +56,13 @@ Content-Type: text/html
 ....
 ```
 
-
 ## Can the rule be configured?
 
 Yes, you can use:
 
-  * `include` to specify additional HTTP headers that should
+* `include` to specify additional HTTP headers that should
     be disallowed
-  * `ignore` to specify which of the disallowed HTTP headers
+* `ignore` to specify which of the disallowed HTTP headers
     should be ignored
 
 E.g. The following configuration will make the rule allow responses
