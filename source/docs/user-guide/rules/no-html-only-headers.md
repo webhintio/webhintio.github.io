@@ -1,6 +1,6 @@
-category: user-guide
-title: no-html-only-headers
 toc-title: rules
+category: user-guide
+title: Disallow unneeded HTTP headers for non-HTML resources
 permalink: docs/user-guide/rules/no-html-only-headers.html
 ---
 # Disallow unneeded HTTP headers for non-HTML resources (`no-html-only-headers`)
@@ -8,13 +8,11 @@ permalink: docs/user-guide/rules/no-html-only-headers.html
 `no-html-only-headers` warns against responding with HTTP headers that
 are not needed for non-HTML resources.
 
-
 ## Why is this important?
 
 Some HTTP headers do not make sense to be send for non-HTML
 resources, as sending them does not provide any value to users,
 and just contributes to header bloat.
-
 
 ## What does the rule check?
 
@@ -33,7 +31,6 @@ Examples that **trigger** the rule:
 Response for `/test.js`:
 
 ```text
-
 HTTP/1.1 200 OK
 
 Content-Type: application/javascript
@@ -93,15 +90,14 @@ X-XSS-Protection: 1; mode=block
 ...
 ```
 
-
 ## Can the rule be configured?
 
 Yes, you can use:
 
-  * `include` to specify additional HTTP headers that should
-    be disallowed for non-HTML resources
-  * `ignore` to specify which of the disallowed HTTP headers
-    should be ignored
+* `include` to specify additional HTTP headers that should
+  be disallowed for non-HTML resources
+* `ignore` to specify which of the disallowed HTTP headers
+  should be ignored
 
 E.g. The following configuration will make the rule allow non-HTML
 resources to be served with the `Content-Security-Policy` HTTP header,

@@ -1,3 +1,5 @@
+/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand */
+/* eslint-env browser */
 (function () {
 	'use strict';
 
@@ -6,25 +8,28 @@
 	}
 
 	var active = false;
-
 	var anchorTops = document.querySelectorAll('.anchor-top');
+
 	if (anchorTops.length === 0) {
 		return;
 	}
 
 	var anchors = [];
+
 	for (var i = 0; i < anchorTops.length; i++) {
 		var height = anchorTops[i].dataset.scroll || 2;
+
 		height = parseInt(height, 10);
 		anchors.push({
-			height: height,
-			element: anchorTops[i]
+			element: anchorTops[i],
+			height: height
 		});
 	}
 
 	var queued = false;
 	var onScroll = function () {
 		var scroll = window.scrollY / window.innerHeight;
+
 		anchors.forEach(function (anchor) {
 			if (scroll >= anchor.height) {
 				anchor.element.removeAttribute('hidden');
