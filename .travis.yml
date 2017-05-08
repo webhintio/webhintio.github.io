@@ -14,7 +14,7 @@ after_success:
           && $(npm bin)/update-branch --commands "npm run build" \
                                       --commit-message "Hey server, this content is for you! [skip ci]" \
                                       --directory "public" \
-                                      --distribution-branch "gh-pages" \
+                                      --distribution-branch "website" \
                                       --source-branch "master"
 
 env:
