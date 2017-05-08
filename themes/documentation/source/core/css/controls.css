@@ -36,7 +36,7 @@ input,
 textarea,
 select {
 	width: 100%;
-	max-width: 74rem;
+	max-width: 64rem;
 	height: 6rem;
 
 	border: 1px solid hsla(0, 0%, 0%, .6);
@@ -136,7 +136,6 @@ a.button {
 
 	/* needed for .button as doesn’t always get default control behaviours */
 	display: inline-block;
-	vertical-align: middle;
 	text-align: center;
 	cursor: pointer;
 }

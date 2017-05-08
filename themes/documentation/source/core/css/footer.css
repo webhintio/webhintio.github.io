@@ -1,0 +1,41 @@
+/*
+*	FOOTER
+*	=============================================
+*/
+
+footer {
+  padding: 4.8rem 0;
+  min-height: 15rem;
+}
+
+.footer--home {
+  background-color: #0C1366;
+  border-top: 1px solid #fff;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footer-nav__item {
+  display: inline-block;
+  margin-right: 5rem;
+}
+
+.footer-nav__item .category {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.13rem;
+  text-transform: uppercase;
+}
+
+.footer-nav__item ul {
+  margin-top: 1.2rem;
+  line-height: 3rem;
+  list-style: none;
+}
+
+.github-icon {
+  margin-left: auto;
+}
