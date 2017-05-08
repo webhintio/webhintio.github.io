@@ -8,6 +8,10 @@ body {
     color: #fff;
 }
 
+main {
+  margin-bottom: 0;
+}
+
 .top-illustration {
     position: relative;
     height: 15.7rem;
@@ -55,8 +59,26 @@ body {
     width: 96rem;
 }
 
+.home-container__documentation {
+  margin-top: 4.2rem;
+  text-align: center;
+}
+
+.home-container__documentation a {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
 .dark-blue {
     background-color: rgba(24,24,109,0.9);
     min-height: 65rem;
     z-index: 100;
+}
+
+
+.icons--home {
+  display: block;
+  max-width: 10rem;
+  width: 100%;
+  margin: 2.4rem auto;
 }

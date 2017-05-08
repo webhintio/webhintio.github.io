@@ -11,7 +11,7 @@
 
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.13rem;
 }
@@ -120,7 +120,6 @@
 .nav {
     width: 100%; /* make sure it is full width when in mobile layout */
     margin: 0;
-    background-color: #2f2f2f;
 }
 
 .nav--global {

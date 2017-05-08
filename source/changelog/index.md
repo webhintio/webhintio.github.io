@@ -1,3 +1,3 @@
 category: default
 ---
-# You are in Section `Changlog`
+# You are in Section `Changelog`

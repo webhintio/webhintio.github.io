@@ -1,0 +1,32 @@
+/*
+*	FOOTER
+*	=============================================
+*/
+
+footer {
+  padding: 2.4rem 0;
+  min-height: 15rem;
+}
+
+.footer--home {
+  background-color: #0C1366;
+  border-top: 1px solid #fff;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footer-nav__item {
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+.footer-nav__item p {
+  text-transform: uppercase;
+}
+
+.footer-nav__item ul {
+  list-style: none;
+}
