@@ -29,3 +29,8 @@
 .wrap-text {
 	word-wrap: break-word;
 }
+
+/* For text that needs to be uppercase when it's style normally isn't */
+.uppercase-text {
+	text-transform: uppercase;
+}

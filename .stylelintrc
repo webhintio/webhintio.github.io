@@ -43,7 +43,6 @@
         "function-url-data-uris": "never",
         "function-url-quotes": "always",
         "function-whitespace-after": "always",
-        "indentation": "tab",
         "length-zero-no-unit": true,
         "max-empty-lines": 2,
         "media-feature-colon-space-after": "always",
