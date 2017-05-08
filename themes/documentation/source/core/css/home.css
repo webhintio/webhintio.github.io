@@ -4,8 +4,8 @@
 */
 
 body {
-    background-color: #4046dd;
-    color: #fff;
+  background-color: #4046dd;
+  color: #fff;
 }
 
 main {
@@ -13,50 +13,82 @@ main {
 }
 
 .top-illustration {
+  display: none;
+}
+
+@media (min-width: 48em) {
+
+  .top-illustration {
+    display: block;
     position: relative;
     height: 15.7rem;
     z-index: -100;
-}
+  }
 
-#iceberg1 {
+  #iceberg1 {
     position: relative;
     width: 25rem;
 
     animation: floating 4s infinite normal ease-out;
-}
+  }
 
-#iceberg2 {
+  #iceberg2 {
     position: absolute;
     margin-top: 11rem;
-    margin-left: 15rem;
+    margin-left: 4rem;
     width: 15rem;
 
-    animation: floating 5s infinite 2s normal ease-out;
-}
+    animation: floating 5s infinite normal ease-out;
+  }
 
-@keyframes floating {
+  #iceberg3 {
+    position: absolute;
+    margin-top: 7.5rem;
+    right: 0;
+    width: 23rem;
 
-    0% {
-        top: -10px;
-    }
+    animation: floating 6s infinite 1s normal ease-out;
+  }
 
-    50% {
-        top: 0px;
-    }
+  #narwhal {
+    position: absolute;
+    right: 22rem;
+    margin-top: 5rem;
+    width: 45rem;
+    z-index: 1;
 
-    100% {
-        top: -10px;
-    }
+    animation: floating 6s infinite 0.5s normal ease-out;
+  }
+
+  @keyframes floating {
+
+      0% {
+          top: -10px;
+      }
+
+      50% {
+          top: 0px;
+      }
+
+      100% {
+          top: -10px;
+      }
+  }
+
 }
 
 .home-container {
-    margin: 0 auto;
-    padding: 4rem 2rem;
+  max-width: 96rem;
+}
+
+.home-container--section {
+  margin: 0 auto;
+  padding: 4rem 2rem;
 }
 
 .home-container--input {
-    margin: 0 auto;
-    width: 96rem;
+  margin: 0 auto;
+  max-width: 96rem;
 }
 
 .home-container__documentation {
@@ -66,19 +98,55 @@ main {
 
 .home-container__documentation a {
   font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.home-container__documentation p {
+  margin: 0 auto 2.4rem auto;
+  font-weight: 500;
+  letter-spacing: 0.2rem;
 }
 
 .dark-blue {
-    background-color: rgba(24,24,109,0.9);
-    min-height: 65rem;
-    z-index: 100;
+  background-color: rgba(24,24,109,0.9);
+  z-index: 100;
+  padding-bottom: 10rem;
 }
-
 
 .icons--home {
   display: block;
   max-width: 10rem;
   width: 100%;
   margin: 2.4rem auto;
+}
+
+/* Custom Home Page Controls */
+
+input {
+	max-width: 74rem;
+  margin-right: 1rem;
+}
+
+button,
+a.button {
+  width: 100%;
+  max-width: 16rem;
+}
+
+/* Keeps input and button on same line */
+.input-fix {
+  display: flex;
+  margin-top: 0.8rem;
+}
+
+.input-fix input {
+  flex: 1;
+  width: 100%;
+}
+
+.input-fix button {
+  flex: 0;
+  white-space: nowrap;
 }
