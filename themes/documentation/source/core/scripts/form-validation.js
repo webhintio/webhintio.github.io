@@ -1,3 +1,5 @@
+/* eslint-env browser */
+/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand */
 /**
  * This script adds the attribute aria-invalid="true" to any input that has the required attribute
  * on submission instead of the default browser behavior using :invalid.

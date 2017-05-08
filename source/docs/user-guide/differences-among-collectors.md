@@ -1,3 +1,7 @@
+category: user-guide
+title: Differences among collectors
+permalink: docs/user-guide/differences-among-collectors.html
+---
 # Differences among collectors
 
 Collectors are expected to implement at least some basic functionality

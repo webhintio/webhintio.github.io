@@ -40,7 +40,7 @@ button,
 .title,
 .subtitle,
 .subtitle--alt {
-	font-family: 'Montserrat', sans-serif;
+	font-family: "Montserrat", sans-serif;
 }
 
 
@@ -58,11 +58,11 @@ h2,
 h2::before,
 .headline::before,
 .heading::before {
-	content : "";
+	content: "";
 	position: absolute;
 	left: 0;
-	top: -0.5rem;
-	height: 0.5rem;
+	top: -.5rem;
+	height: .5rem;
 	width: 5rem;
 	border-top: 4px solid #4046dd;
 }
@@ -202,24 +202,24 @@ li {
 /* Override style in subpage generated with markdown */
 
 .module--primary h1::before {
-	content : "";
+	content: "";
 	position: absolute;
 	left: 0;
-	top: -0.5rem;
-	height: 0.5rem;
+	top: -.5rem;
+	height: .5rem;
 	width: 5rem;
 	border-top: 4px solid #4046dd;
 }
 
 .module--primary h1 {
-    font-size: 3.4rem;
-    color: #000;
+	font-size: 3.4rem;
+	color: #000;
 }
 
 .module--primary h2::before {
-    border: none;
+	border: none;
 }
 
 .module--primary h2 {
-    font-size: 2.4rem;
+	font-size: 2.4rem;
 }

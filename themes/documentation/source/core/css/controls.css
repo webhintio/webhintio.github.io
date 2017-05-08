@@ -154,7 +154,7 @@ button:focus,
 .button--primary:hover,
 .button--cta:hover {
 	background-color: #006cc2;
- }
+}
 
 button:active,
 .button:active {
@@ -303,6 +303,7 @@ button.button--warning {
 
 /* CTA buttons */
 a.button--cta {
+
 	/* Create height of ~40px */
 	padding: .85rem 2.4rem;
 
@@ -501,7 +502,7 @@ input[type="file"]::-webkit-file-upload-button {
 	padding: .4rem 1.2rem;
 
 	background-color: #0078d7;
- 	color: #fff;
+	color: #fff;
 }
 
 input[type="file"]::-ms-browse {
@@ -509,7 +510,7 @@ input[type="file"]::-ms-browse {
 	border: 1px solid transparent;
 	padding: .4rem 1.2rem;
 	background-color: #0078d7;
- 	color: #fff;
+	color: #fff;
 }
 
 /* first selector needed for keyboard tab focus, second for activating button */

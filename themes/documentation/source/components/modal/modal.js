@@ -1,5 +1,8 @@
+/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand */
+/* eslint-env browser */
 (function () {
 	'use strict';
+
 	var originator = null;
 	var modal = null;
 	var focusableArray;
@@ -16,9 +19,11 @@
 
 	var toArray = function (collection) {
 		var array = [];
+
 		for (var i = 0, li = collection.length; i < li; i++) {
 			array.push(collection[i]);
 		}
+
 		return array;
 	};
 
@@ -26,16 +31,19 @@
 		focusableArray = focusableArray.sort(function (item1, item2) {
 			var x1 = parseInt(item1.tabIndex, 10);
 			var x2 = parseInt(item2.tabIndex, 10);
+
 			//elements with tabindex=0 go to the end of the array
 			if (x1 === 0 || x2 === 0) {
 				return x2 - x1;
 			}
+
 			return x1 - x2;
 		});
 	};
 
 	var showModal = function () {
 		var modalDialog;
+
 		// remember el that opened dialog so can return focus
 		/* eslint-disable no-invalid-this, consistent-this*/
 		//TODO: this "this" is probably wrong

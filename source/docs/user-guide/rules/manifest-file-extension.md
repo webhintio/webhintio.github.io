@@ -1,6 +1,6 @@
-category: user-guide
-title: manifest-file-extension
 toc-title: rules
+category: user-guide
+title: Disallow non-standard file extension for the web app manifest file
 permalink: docs/user-guide/rules/manifest-file-extension.html
 ---
 # Disallow non-standard file extension for the web app manifest file (`manifest-file-extension`)
@@ -9,18 +9,16 @@ permalink: docs/user-guide/rules/manifest-file-extension.html
 extensions for the [web app manifest](https://www.w3.org/TR/appmanifest)
 file.
 
-
 ## Why is this important?
 
 While the [`.webmanifest`](https://w3c.github.io/manifest/#media-type-registration)
 file extension is not enforced by the specification, nor is it required
 by browsers, using it makes it:
 
-  * [easier to set custom server configurations](https://github.com/w3c/manifest/issues/346)
-    for the web app manifest file
-  * possible to benefit from [existing
-    configurations](https://github.com/jshttp/mime-db/blob/67a4d013c31e73c47b5d975062f0088aea6cd5cd/src/custom-types.json#L85-L92)
-
+* [easier to set custom server configurations](https://github.com/w3c/manifest/issues/346)
+  for the web app manifest file
+* possible to benefit from [existing
+  configurations](https://github.com/jshttp/mime-db/blob/67a4d013c31e73c47b5d975062f0088aea6cd5cd/src/custom-types.json#L85-L92)
 
 ## What does the rule check?
 
@@ -38,12 +36,11 @@ Examples that **trigger** the rule:
 <link rel="manifest" href="site.manifest">
 ```
 
-Examples that **pass** the rule:
+Example that **passes** the rule:
 
 ```html
 <link rel="manifest" href="site.webmanifest">
 ```
-
 
 ## Further Reading
 
