@@ -4,7 +4,6 @@
 */
 
 body {
-<<<<<<< HEAD
   background-color: #4046dd;
   color: #fff;
 }
@@ -60,37 +59,10 @@ main {
 
     animation: floating 6s infinite 0.5s normal ease-out;
   }
-=======
-	background-color: #4046dd;
-	color: #fff;
-}
 
-.top-illustration {
-	position: relative;
-	height: 15.7rem;
-	z-index: -100;
-}
-
-#iceberg1 {
-	position: relative;
-	width: 25rem;
-
-	animation: floating 4s infinite normal ease-out;
-}
-
-#iceberg2 {
-	position: absolute;
-	margin-top: 11rem;
-	margin-left: 15rem;
-	width: 15rem;
-
-	animation: floating 5s infinite 2s normal ease-out;
-}
->>>>>>> refs/remotes/MicrosoftEdge/master
 
   @keyframes floating {
 
-<<<<<<< HEAD
       0% {
           top: -10px;
       }
