@@ -1,30 +1,34 @@
 <main>
     <article>
-        <section class="container">
+        <section class="home-container container">
             <div class="top-illustration">
-                <img src="{{url_for "images/iceberg-left.svg"}}" class="iceberg" id="iceberg1">
-                <img src="{{url_for "images/iceberg-middle.svg"}}" class="iceberg" id="iceberg2">
-                <img src="" class="iceberg iceberg3">
-                <div id="narwhal">
-                    <img src="" class="narwhal">
-                </div>
+                <img src="{{url_for "images/iceberg-left.svg"}}" id="iceberg1">
+                <img src="{{url_for "images/iceberg-middle.svg"}}" id="iceberg2">
+                <img src="/images/iceberg-right.svg" id="iceberg3">
+                <img src="/images/narwhal.svg" id="narwhal">
             </div>
         </section>
         <section class="dark-blue">
             <div class="container home-container">
                 {{>scan-form}}
-                <div id="documentation">
-                    <ul>
-                        <li>
-                            <a href="/docs/user-guide/rules/disallowed-headers.html">User Guide</a>
-                        </li>
-                        <li>Rules</li>
-                        <li>
-                            <a href="/docs/developer-guide/collectors/how-to-develop-a-collector.html">Developer Guide</a>
-                        </li>
-                    </ul>
-                </div>
+                <section class="home-container home-container--section home-container__documentation">
+                    <p class="title uppercase-text">Documentation</p>
+                    <div class="layout layout--thirds">
+                        <div class="module">
+                            <img src="images/user-guide-icon.svg" class="icons--home">
+                            <a href="/docs">User Guide</a>
+                        </div>
+                        <div class="module">
+                            <img src="images/rules-icon.svg" class="icons--home">
+                            <a href="">Rules</a>
+                        </div>
+                        <div class="module">
+                            <img src="images/dev-guide-icon.svg" class="icons--home">
+                            <a href="/docs">Developer Guide</a>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
     </article>
 </main>

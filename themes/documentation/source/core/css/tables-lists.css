@@ -1,59 +1,59 @@
 /*
- *	TABLES + LISTS
- *	=============================================
- *	@Dependencies: base.css, type.css
+ * TABLES + LISTS
+ * =============================================
+ * @Dependencies: base.css, type.css
  */
 
 
 /*
- *	TABLES
- *	---------------------------------------------
+ * TABLES
+ * ---------------------------------------------
  */
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
 }
 
 th,
 caption {
-	text-align: left;
+    text-align: left;
 }
 
 th, td {
-	padding: 1rem 1.2rem;
-	vertical-align: top;
+    padding: 1rem 1.2rem;
+    vertical-align: top;
 }
 
 thead th {
-	vertical-align: bottom;
+    vertical-align: bottom;
 
-	color: hsla(0, 0%, 0%, .6);
+    color: hsla(0, 0%, 0%, .6);
 }
 
 tbody tr:nth-child(odd) {
-	background-color: hsla(0, 0%, 0%, .05);
+    background-color: hsla(0, 0%, 0%, .05);
 }
 
 tbody tr:nth-child(odd) a {
-	color: #006fc6;
+    color: #006fc6;
 }
 
 /* Parent class allows table to scroll sideways when overflowing */
 .table--overflow {
-	width: 100%;
-	overflow-x: auto;
+    width: 100%;
+    overflow-x: auto;
 }
 
 * + .table--overflow {
-	margin-top: 2.4rem;
+    margin-top: 2.4rem;
 }
 
 /* Special cells */
 
 .cell--numerical {
-	text-align: right;
+    text-align: right;
 }
 
 /*
@@ -62,15 +62,15 @@ tbody tr:nth-child(odd) a {
  */
 
 ul, ol {
-	margin-left: 1.9rem;
+    margin-left: 1.9rem;
 }
 
 * + li {
-	margin-top: 1.6rem;
+    margin-top: 1.6rem;
 }
 
 nav ul,
 nav ol {
-	margin-left: 0;
-	list-style: none;
+    margin-left: 0;
+    list-style: none;
 }

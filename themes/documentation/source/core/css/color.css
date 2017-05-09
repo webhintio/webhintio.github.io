@@ -1,10 +1,10 @@
 /*
- *	COLOURS
- *	=============================================
+ * COLOURS
+ * =============================================
  */
 
 body {
-	color: #000;
+    color: #000;
 }
 
 /* Blue highlight colour */
@@ -15,7 +15,7 @@ a:visited,
 .button--text:active,
 .button--icon,
 .button--search:hover {
-	color: #4046dd;
+    color: #4046dd;
 }
 
 /* Current links */
@@ -23,12 +23,12 @@ a:visited,
 .link--current > a,
 .content > header .subtitle,
 .section__header .subtitle {
-	color: #767676;
+    color: #767676;
 }
 
 .note--error,
 .alert--error {
-	color: #e81123;
+    color: #e81123;
 }
 
 /* Override style in footer */
