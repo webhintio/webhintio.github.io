@@ -72,7 +72,7 @@ select:hover {
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: #0078d7;
+    border-color: #4046dd;
     background-color: #fff;
 
     /* Safe to remove focus, as very visable border on focus */
@@ -152,20 +152,10 @@ button:focus,
     border-color: hsla(0, 0%, 0%, .4);
 }
 
-.button--primary:hover,
-.button--cta:hover {
-    background-color: #006cc2;
-}
-
 button:active,
 .button:active {
     border-color: transparent;
     background-color: hsla(0, 0%, 0%, .4);
-}
-
-.button--primary:active,
-.button--cta:active {
-    background-color: #005497;
 }
 
 /* DISABLED state styles */
@@ -191,37 +181,18 @@ select:disabled {
     margin-top: 1.6rem;
 }
 
-/* shared colours for highlight coloured buttons */
-button.button--primary,
-a.button--primary,
-.button--search:focus,
-.button--search:active,
-button.button--cta,
-a.button--cta {
-    background-color: #0078d7;
-    color: #fff;
-}
-
 /* reset for text only and icon only buttons */
 .button--search,
 .button--text,
 .button--text:hover,
 .button--text:active,
-.button--text[disabled],
-.button--icon,
-.button--icon:hover,
-.button--icon:active,
-.button--icon[disabled] {
+.button--text[disabled] {
     padding: 0;
     border: 0;
     background: transparent;
 }
 
-.button--search,
-.button--icon,
-.button--icon:hover,
-.button--icon:active,
-.button--icon[disabled] {
+.button--search {
     min-width: 0;
 }
 
@@ -242,38 +213,6 @@ a.button--cta {
     text-decoration: none;
 }
 
-/* Icon-only buttons */
-.button--icon {
-    position: relative;
-
-    width: 4.4rem;
-    height: 2rem;
-
-    text-indent: 100%;
-}
-
-.button--icon::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    display: block;
-    width: 100%;
-    height: 100%;
-
-    font-size: 2rem;
-    line-height: 1;
-    text-indent: 0;
-}
-
-.button--icon:hover {
-    color: hsla(0, 0%, 0%, .6);
-}
-
-.button--icon:active {
-    color: hsla(0, 0%, 0%, .4);
-}
-
 /* Search button (used with input[type="search"]) */
 [role="search"] {
     position: relative;
@@ -291,28 +230,6 @@ a.button--cta {
     font-size: 1.6rem;
 
     color: #7f7f7f;
-}
-
-.button--search::before {
-    content: "\e721";
-}
-
-button.button--warning {
-    background-color: #e81123;
-    color: #fff;
-}
-
-/* CTA buttons */
-a.button--cta {
-
-    /* Create height of ~40px */
-    padding: .85rem 2.4rem;
-
-    border-width: 2px;
-
-    font-size: 1.3rem;
-    text-transform: uppercase;
-    letter-spacing: .1em;
 }
 
 /*
@@ -397,7 +314,7 @@ input::-ms-check {
 }
 
 input:checked::-ms-check {
-    border-color: #0078d7;
+    border-color: #4046dd;
 }
 
 /* Needs to go after checked so that doesn’t get overridden when checked */
@@ -406,7 +323,7 @@ input:hover::-ms-check {
 }
 
 input[type="checkbox"]:checked::-ms-check {
-    background-color: #0078d7;
+    background-color: #4046dd;
     color: #fff;
 }
 
@@ -491,7 +408,7 @@ input[type="file"]:hover::-ms-value {
 }
 
 input[type="file"]:focus::-ms-value {
-    border-color: #0078d7;
+    border-color: #4046dd;
     background-color: #fff;
 }
 
@@ -502,7 +419,7 @@ input[type="file"]::-webkit-file-upload-button {
     border: 1px solid transparent;
     padding: .4rem 1.2rem;
 
-    background-color: #0078d7;
+    background-color: #4046dd;
     color: #fff;
 }
 
@@ -510,7 +427,7 @@ input[type="file"]::-ms-browse {
     margin-left: .8rem;
     border: 1px solid transparent;
     padding: .4rem 1.2rem;
-    background-color: #0078d7;
+    background-color: #4046dd;
     color: #fff;
 }
 
@@ -541,44 +458,4 @@ input[type="file"]::-webkit-file-upload-button:active {
 
 input[type="file"]::-ms-browse:active {
     background-color: #005497;
-}
-
-
-/*
- * PROGRESS
- * ---------------------------------------------
- */
-
-progress {
-    display: block;
-
-    width: 100%;
-    height: .4rem;
-
-    /* @Browser: Firefox. Has border that needs removed */
-    border: 0;
-
-    /* @Browser: IE. colours progress bar */
-    color: #0078d7;
-}
-
-/* @Browser: IE, MSEdge. Remove default border from filled part of progress bar */
-progress::-ms-fill {
-    border: 0;
-}
-
-progress[value] {
-    background-color: hsla(0, 0%, 0%, .2); /* colours progress background */
-}
-
-progress::-webkit-progress-value {
-    background-color: #0078d7; /* progress bar colour */
-}
-
-progress[value]::-webkit-progress-bar {
-    background: 0; /* need to wipe this out so progress[value] shows through */
-}
-
-progress::-moz-progress-bar {
-    background-color: #0078d7; /* progress bar colour (not bg like WebKit) */
 }
