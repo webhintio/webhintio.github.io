@@ -4,20 +4,17 @@
  */
 
 .nav-bar {
-    display: -ms-flexbox;
-    display: flex;
-
     margin: 0 auto;
 
     font-family: "Montserrat", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: .13rem;
+    letter-spacing: .1rem;
 }
 
 .header {
-    height: 10rem;
+    height: 8rem;
     width: 100%;
 
     background: #271f8d; /* Old browsers */
@@ -75,18 +72,15 @@
     min-width: 0;
     margin: 0;
     border: 0;
-    padding: 1.35rem 1.15rem;
+    padding: 2.8rem 2.15rem;
 
     background: 0;
-
-    font-size: 2.1rem;
-    line-height: 1;
 }
 
 .header__toggle:hover,
 .header__toggle:focus {
     outline: 0;
-    background-color: hsla(0, 0%, 0%, .05);
+    background-color: #4046dd;
 }
 
 @media (min-width: 58em) {
@@ -122,13 +116,6 @@
     margin: 0;
 }
 
-.nav--global {
-    float: left; /* for none Flexbox browsers. */
-    -ms-flex: 1;
-    flex: 1;
-    margin: 0 1.4rem;
-}
-
 .nav__navbar {
     display: none;
     width: 100%;
@@ -136,6 +123,22 @@
 
     margin: 0 0 0 auto;
     list-style-type: none;
+}
+
+button.mobile-nav-button {
+  max-width: 5rem;
+  width: 100%;
+}
+
+.mobile-nav-button {
+    background-image: url("/images/mobile-menu-button.svg");
+    background-repeat: no-repeat;
+    background-position: 1.2rem 50%;
+    background-size: 2.5rem;
+}
+
+[aria-hidden=true] {
+    display: none;
 }
 
 /* Show menu in mobile view when button is clicked */
@@ -149,19 +152,22 @@
     .nav__navbar.show {
         display: block;
         padding-bottom: .8rem;
+        background-color: #4c51da;
     }
 
 }
 
 @media (min-width: 58em) {
 
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        align-items: center;
+    }
+
     .nav__navbar {
         display: block;
         width: auto;
-    }
-
-    .nav--global .nav__navbar {
-        width: 100%;
     }
 
     .nav__navbar > li {
@@ -182,6 +188,10 @@
     color: #fff;
 }
 
+.navbar_submenu li a {
+  padding: 1rem;
+}
+
 .nav-bar a {
     display: block; /* temp until consolidate. */
     color: #fff;
@@ -189,6 +199,7 @@
 
 .header .navitem__button:hover,
 .header .navitem__button:focus {
+    background-color: #4c51da;
     text-decoration: none;
 }
 
@@ -198,9 +209,11 @@
 }
 
 .navitem__button::after {
-    margin-left: .4rem;
-    content: "\e70d";
-    font: .4em; /* IE9-10 need em */
+    display: inline-block;
+    content: url("/images/nav-arrow.svg");
+    margin-left: .6rem;
+    width: 1.3rem;
+    vertical-align: text-bottom;
 }
 
 .navbar__submenu {
@@ -210,8 +223,7 @@
 }
 
 .nav-bar .navbar__submenu {
-    background-color: #fff;
-    border: 1px solid #e6e6e6;
+    background-color: #4c51da;
 }
 
 
@@ -244,6 +256,23 @@
     background-color: hsla(0, 0%, 0%, .05);
 }
 
+.navbar__submenu .navitem__button::after {
+	position: absolute;
+	right: 2.25rem; /* same as padding right on element. Float right cleaner but breaks in FF #1118 */
+	line-height: 2.25rem;
+
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+.navbar__submenu .navbar__submenu {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 100%;
+
+	background-image: linear-gradient(hsla(0, 0%, 0%, .05), hsla(0, 0%, 0%, .05));
+}
 
 @media (min-width: 33.75em) {
 
@@ -253,17 +282,13 @@
         margin: 0;
     }
 
-    .header__toggle {
-        position: static;
-    }
-
 }
 
 
 @media (min-width: 56.2em) {
 
     .nav__navbar a {
-        padding: 3.9rem 2.25rem;
+        padding: 2.9rem 1.9rem;
     }
 
     .navbar__submenu {
