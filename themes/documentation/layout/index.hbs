@@ -1,58 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sonar</title>
+        <meta name="description" content="sonar website">
+        <meta name="viewport" content="width=device-width">
 
-<head>
-    <meta charset="utf-8">
-    <title>Sonar</title>
-    <meta name="description" content="sonar website">
-    <meta name="viewport" content="width=device-width">
+        <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
-    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
-
-    <link rel="stylesheet" href="{{url_for "core/css/base.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/color.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/footer.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/helpers.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/layouts.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/navigation.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/structure.css"}}">
-    <link rel="stylesheet" href="{{url_for "core/css/type.css"}}">
-    <link rel="stylesheet" href="{{url_for "components/breadcrumb/breadcrumb.css"}}">
-    {{#if page.category}}
-        <link rel="stylesheet" href="{{url_for "core/css/code.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/table-of-contents.css"}}">
-    {{else}}
-        <link rel="stylesheet" href="{{url_for "core/css/controls.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/home.css"}}">
-    {{/if}}
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
-</head>
-
-<body>
-    {{#if isScanner}}
-        {{>header navs=menuData}}
-        {{{body}}}
-        {{>footer navs=menuData}}
-    {{else}}
-        {{>header navs=site.data.menu}}
+        <link rel="stylesheet" href="{{url_for "core/css/base.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/color.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/footer.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/helpers.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/layouts.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/navigation.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/structure.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/type.css"}}">
+        <link rel="stylesheet" href="{{url_for "components/breadcrumb/breadcrumb.css"}}">
         {{#if page.category}}
-            {{#compare page.category '===' 'developer-guide'}}
-                {{>sub-page intro=site.data.developerGuide pages=(getSubPages site.pages.data 'developer-guide')}}
-            {{/compare}}
-
-            {{#compare page.category '===' 'user-guide'}}
-                {{>sub-page intro=site.data.userGuide pages=(getSubPages site.pages.data 'user-guide')}}
-            {{/compare}}
-
-            {{#compare page.category '===' 'default'}}
-                {{>single-page}}
-            {{/compare}}
+            <link rel="stylesheet" href="{{url_for "core/css/code.css"}}">
+            <link rel="stylesheet" href="{{url_for "core/css/table-of-contents.css"}}">
         {{else}}
-            {{>home}}
-            {{>footer navs=site.data.menu}}
+            <link rel="stylesheet" href="{{url_for "core/css/controls.css"}}">
+            <link rel="stylesheet" href="{{url_for "core/css/home.css"}}">
         {{/if}}
-    {{/if}}
-    <script src="{{url_for "core/scripts/form-validation.js"}}"></script>
-    <script src="{{url_for "components/accordion/accordion.js"}}"></script>
-</body>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
+    </head>
+
+    <body>
+        {{#if isScanner}}
+            {{>header navs=menuData}}
+            {{{body}}}
+            {{>footer navs=menuData}}
+        {{else}}
+            {{>header navs=site.data.menu}}
+            {{#if page.category}}
+                {{#compare page.category '===' 'developer-guide'}}
+                    {{>sub-page intro=site.data.developerGuide pages=(getSubPages site.pages.data 'developer-guide')}}
+                {{/compare}}
+
+                {{#compare page.category '===' 'user-guide'}}
+                    {{>sub-page intro=site.data.userGuide pages=(getSubPages site.pages.data 'user-guide')}}
+                {{/compare}}
+
+                {{#compare page.category '===' 'default'}}
+                    {{>single-page}}
+                {{/compare}}
+            {{else}}
+                {{>home}}
+                {{>footer navs=site.data.menu}}
+            {{/if}}
+        {{/if}}
+        <script src="{{url_for "core/scripts/form-validation.js"}}"></script>
+        <script src="{{url_for "components/accordion/accordion.js"}}"></script>
+    </body>
+</html>

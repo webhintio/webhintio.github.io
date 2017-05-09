@@ -3,16 +3,17 @@
         <img src="{{url_for "images/sonar-logo.svg"}}" alt="sonar" class="header__logo">
         <ul class="nav__navbar">
             {{#each navs}}
-            <li class="navbar_navitem">
-                <a href="{{url_for link}}" id="{{id}}">{{title}}</a>
-                {{#hasSubPage id}}
-                <ul role="group" id="submenu-{{id}}" class="navbar_submenu" hidden>
-                    {{#each items}}
-                    <li><a href="{{url_for link}}">{{title}}</a></li>
-                    {{/each}}
-                </ul>
-                {{/hasSubPage}}
-            </li>
+                <li class="navbar_navitem">
+                    <a href="{{url_for link}}" id="{{id}}">{{title}}</a>
+                    {{#hasSubPage id}}
+                        <ul role="group" id="submenu-{{id}}" class="navbar_submenu" hidden>
+                            {{#each items}}
+                                <li><a href="{{url_for link}}">{{title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    {{/hasSubPage}}
+                </li>
             {{/each}}
         </ul>
+    </nav>
 </header>

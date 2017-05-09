@@ -1,19 +1,19 @@
 /*
- *	TYPOGRAPHY
- *	=============================================
+ * TYPOGRAPHY
+ * =============================================
  */
 
 /*
-	Base font size: 10px for easy rem to px conversion.
-	Use % so if user increases their default font-size, it doesn’t wipe that out
+    Base font size: 10px for easy rem to px conversion.
+    Use % so if user increases their default font-size, it doesn’t wipe that out
 */
 html {
-	font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 /* use em rather than rem due to IE9–10 rem in font shorthand bug. */
 body {
-	font: 1.8em/1.4 base, "Source Sans Pro", Verdana, sans-serif;
+    font: 1.8em/1.4 base, "Source Sans Pro", Verdana, sans-serif;
 }
 
 /*	Headings and Captions */
@@ -25,7 +25,7 @@ body {
 * + h4,
 * + h5,
 * + h6 {
-	margin-top: 4rem;
+    margin-top: 4rem;
 }
 
 h1,
@@ -40,7 +40,7 @@ button,
 .title,
 .subtitle,
 .subtitle--alt {
-	font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 
@@ -48,23 +48,23 @@ h1,
 h2,
 .headline,
 .heading {
-	letter-spacing: -.01em;
+    letter-spacing: -.01em;
 
-	position: relative;
-	max-width: 64rem;
-	z-index: 1;
+    position: relative;
+    max-width: 64rem;
+    z-index: 1;
 }
 
 h2::before,
 .headline::before,
 .heading::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: -.5rem;
-	height: .5rem;
-	width: 5rem;
-	border-top: 4px solid #4046dd;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -.5rem;
+    height: .5rem;
+    width: 5rem;
+    border-top: 4px solid #4046dd;
 }
 
 h1,
@@ -77,8 +77,8 @@ caption,
 .subheading,
 .title,
 .subcaption {
-	font-weight: 300;
-	line-height: 1.2;
+    font-weight: 300;
+    line-height: 1.2;
 }
 
 h3,
@@ -86,7 +86,7 @@ h4,
 .title,
 .subtitle,
 .subtitle--alt {
-	font-weight: 300;
+    font-weight: 300;
 }
 
 h5,
@@ -95,100 +95,100 @@ h6,
 .subcaption,
 .subcaption,
 thead th {
-	font-weight: 400;
+    font-weight: 400;
 }
 
 .headline {
-	font-size: 4.6rem;
+    font-size: 4.6rem;
 }
 
 h1,
 .heading {
-	font-size: 3.4rem;
-	color: #4046dd;
+    font-size: 3.4rem;
+    color: #4046dd;
 }
 
 h2,
 .subheading {
-	font-size: 2.6rem;
+    font-size: 2.6rem;
 }
 
 h3,
 .title {
-	font-size: 2rem;
+    font-size: 2rem;
 }
 
 h4,
 caption,
 .subtitle {
-	font-size: 1.8rem;
+    font-size: 1.8rem;
 }
 
 .subtitle--alt {
-	font-size: 1.6rem;
+    font-size: 1.6rem;
 }
 
 h5,
 .caption {
-	font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
 thead th {
-	font-size: 1.1rem;
+    font-size: 1.1rem;
 }
 
 h6,
 .subcaption {
-	font-size: 1rem;
+    font-size: 1rem;
 }
 
 @media (min-width: 48em) {
 
-	.headline {
-		font-size: 6.2rem;
-	}
+    .headline {
+        font-size: 6.2rem;
+    }
 
-	h1,
-	.heading {
-		font-size: 4.6rem;
-	}
+    h1,
+    .heading {
+        font-size: 4.6rem;
+    }
 
-	h2,
-	.subheading {
-		font-size: 3.4rem;
-	}
+    h2,
+    .subheading {
+        font-size: 3.4rem;
+    }
 
-	h3,
-	.title {
-		font-size: 2.4rem;
-	}
+    h3,
+    .title {
+        font-size: 2.4rem;
+    }
 
-	h4,
-	caption,
-	.subtitle {
-		font-size: 2rem;
-	}
+    h4,
+    caption,
+    .subtitle {
+        font-size: 2rem;
+    }
 
-	.subtitle--alt {
-		font-size: 1.8rem;
-	}
+    .subtitle--alt {
+        font-size: 1.8rem;
+    }
 
-	h5,
-	.caption {
-		font-size: 1.3rem;
-	}
+    h5,
+    .caption {
+        font-size: 1.3rem;
+    }
 
-	h6,
-	.subcaption {
-		font-size: 1.1rem;
-	}
+    h6,
+    .subcaption {
+        font-size: 1.1rem;
+    }
 
 }
 
 /* Maximum line lengths */
 p,
 li {
-	max-width: 96rem;
+    max-width: 96rem;
 }
 
 /* Override line lengths */
@@ -196,30 +196,30 @@ li {
 .header li,
 .footer p,
 .footer li {
-	max-width: none;
+    max-width: none;
 }
 
 /* Override style in subpage generated with markdown */
 
 .module--primary h1::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: -.5rem;
-	height: .5rem;
-	width: 5rem;
-	border-top: 4px solid #4046dd;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -.5rem;
+    height: .5rem;
+    width: 5rem;
+    border-top: 4px solid #4046dd;
 }
 
 .module--primary h1 {
-	font-size: 3.4rem;
-	color: #000;
+    font-size: 3.4rem;
+    color: #000;
 }
 
 .module--primary h2::before {
-	border: none;
+    border: none;
 }
 
 .module--primary h2 {
-	font-size: 2.4rem;
+    font-size: 2.4rem;
 }

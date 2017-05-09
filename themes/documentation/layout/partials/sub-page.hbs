@@ -6,11 +6,11 @@
                 <li><a href="../../">Documentation</a></li>
                 <li>
                     <a href="../../">
-                    {{#compare page.category '===' 'user-guide'}}
-                    User Guide
-                    {{else}}
-                    Developer Guide
-                    {{/compare}}
+                        {{#compare page.category '===' 'user-guide'}}
+                            User Guide
+                        {{else}}
+                            Developer Guide
+                        {{/compare}}
                     </a>
                 </li>
                 <li aria-current="page">{{page.title}}</li>
@@ -27,23 +27,23 @@
                 </div>
                 <div class="module module--secondary table-of-contents" role="navigation">
                     {{#each pages}}
-                    {{#hasTocTitle @key}}
-                    <p class="toc-section-title--active">{{@key}}</p>
-                    {{/hasTocTitle}}
-                    <ul class="toc-subsection-title">
-                        {{#each this}}
-                        <li>
-                            <a href="{{permalink}}"
-                            {{#compare ../../page.title '===' title}}
-                                class="toc-subsection-title--active"
-                            {{else}}
-                                class="toc-subsection-title"
-                            {{/compare}}>
-                               {{title}}
-                            </a>
-                        </li>
-                        {{/each}}
-                    </ul>
+                        {{#hasTocTitle @key}}
+                            <p class="toc-section-title--active">{{@key}}</p>
+                        {{/hasTocTitle}}
+                        <ul class="toc-subsection-title">
+                            {{#each this}}
+                                <li>
+                                    <a href="{{permalink}}"
+                                        {{#compare ../../page.title '===' title}}
+                                            class="toc-subsection-title--active"
+                                        {{else}}
+                                            class="toc-subsection-title"
+                                        {{/compare}}>
+                                        {{title}}
+                                    </a>
+                                </li>
+                            {{/each}}
+                        </ul>
                     {{/each}}
                 </div>
             </div>
