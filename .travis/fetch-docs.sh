@@ -34,9 +34,8 @@ chmod 600 "$SSH_FILE" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Fetch and rebuild documentation.
+# Fetch documentation.
 
 git clone git@github.com-sonar:MicrosoftEdge/Sonar.git "$TMP_DIR" \
     && rm -rf source/docs \
-    && cp -R "$TMP_DIR/docs" source \
-    && node updater.js source/docs
+    && cp -R "$TMP_DIR/docs" source

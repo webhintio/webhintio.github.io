@@ -4,7 +4,8 @@
 # https://docs.travis-ci.com
 
 after_success:
-  - npm run update-website-branch
+  - .travis/update-docs.sh
+  - .travis/update-website-branch.sh
 
 env:
   global:
