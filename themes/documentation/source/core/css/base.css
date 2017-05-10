@@ -46,8 +46,6 @@ Sets a margin on select block level elements that have a previous sibling.
 * + label,
 * + pre,
 * + blockquote,
-* + img,
-* + video,
-* + audio {
+* + img {
     margin-top: 2.4rem;
 }
