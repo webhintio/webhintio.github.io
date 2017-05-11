@@ -13,5 +13,5 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 #       https://docs.travis-ci.com/user/private-dependencies/
 
 "$(npm bin)/commit-changes" --branch "master" \
-                            --commands "npm run rebuild-docs" \
+                            --commands "npm run updater" \
                             --commit-message "Update documentation [skip ci]"
