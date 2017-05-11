@@ -208,7 +208,7 @@ button.mobile-nav-button {
     background-color: #464646;
 }
 
-.navitem__button::after {
+.nav__navbar > li:not(:first-child) > a::after {
     display: inline-block;
     content: url("/images/nav-arrow.svg");
     margin-left: .6rem;
@@ -240,7 +240,6 @@ button.mobile-nav-button {
     text-decoration: underline;
 }
 
-.navbar__navitem a[aria-expanded="true"],
 .navbar__navitem li {
     margin: 0;
     background-color: hsla(0, 0%, 0%, .3);
@@ -250,8 +249,6 @@ button.mobile-nav-button {
     background: none;
 }
 
-.nav-bar .navbar__navitem a:hover,
-.nav-bar .navbar__navitem a[aria-expanded="true"],
 .nav-bar .navbar__navitem li a:hover {
     background-color: hsla(0, 0%, 0%, .05);
 }

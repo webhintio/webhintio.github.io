@@ -5,7 +5,7 @@
             <input type="search" id="search-input" placeholder="Search...">
             <ul class="nav__navbar show">
                 {{#each navs}}
-                    <li class="navbar_navitem">
+                    <li class="navbar__navitem">
                         <a role="button" href="{{url_for link}}" id="{{id}}" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-{{id}}" class="navitem__button">{{title}}</a>
                         {{#hasSubPage id}}
                             <ul role="group" id="submenu-{{id}}" class="navbar__submenu" aria-hidden="true">
