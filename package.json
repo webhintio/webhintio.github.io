@@ -13,11 +13,14 @@
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
     "js-yaml": "^3.8.3",
+    "klaw": "^1.3.1",
     "lodash": "^4.17.4",
-    "path": "^0.12.7"
+    "pify": "^2.3.0"
   },
   "devDependencies": {
-    "@alrra/travis-scripts": "^3.0.1"
+    "@alrra/travis-scripts": "^3.0.1",
+    "eslint": "^3.19.0",
+    "stylelint": "^7.10.1"
   },
   "hexo": {
     "version": "3.3.5"
@@ -26,7 +29,15 @@
   "scripts": {
     "build": "hexo generate",
     "hexo-server": "hexo server",
+    "lint": "npm run lint-js && npm run lint-styles",
+    "lint-browser": "eslint -c .eslintrc --env browser themes/documentation/source/**/*.js",
+    "lint-js": "npm run lint-node && npm run lint-browser",
+    "lint-node": "eslint -c .eslintrc --env node *.js themes/documentation/helper/*.js",
+    "lint-styles": "stylelint themes/documentation/source/**/*.css --config .stylelintrc",
+    "rebuild-docs": ".travis/rebuild-docs.sh",
     "start": "node server.js",
-    "test": "npm run build"
+    "test": "npm run lint",
+    "update-docs": ".travis/update-docs.sh",
+    "update-website-branch": ".travis/update-website-branch.sh"
   }
 }
