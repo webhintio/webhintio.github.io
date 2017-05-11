@@ -17,11 +17,22 @@ footer {
 .footer-nav {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 0 3rem;
+}
+
+@media (min-width: 32em) {
+
+    .footer-nav {
+        flex-direction: row;
+    }
+
 }
 
 .footer-nav__item {
     display: inline-block;
-    margin-right: 5rem;
+    margin: 0 5rem 5rem 0;
 }
 
 .footer-nav__item .category {
