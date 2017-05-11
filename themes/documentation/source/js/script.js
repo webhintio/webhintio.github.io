@@ -129,9 +129,13 @@
     var navBar = document.querySelector('.nav .nav__navbar');
     var navIconMobile = document.querySelector('.header__toggle');
 
-    var mobileClickHandler = function () {
+    var mobileClickHandler = function (evt) {
+        evt.stopPropagation();
         navBar.classList.toggle('show');
     };
 
     navIconMobile.addEventListener('click', mobileClickHandler, false);
+    document.addEventListener('click', function () {
+        navBar.classList.remove('show');
+    });
 }());

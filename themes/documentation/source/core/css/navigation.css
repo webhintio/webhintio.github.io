@@ -72,7 +72,7 @@
     min-width: 0;
     margin: 0;
     border: 0;
-    padding: 2.8rem 2.15rem;
+    padding: 4rem 2.15rem;
 
     background: 0;
 }
@@ -128,6 +128,7 @@
 button.mobile-nav-button {
     max-width: 5rem;
     width: 100%;
+    z-index: 20;
 }
 
 .mobile-nav-button {
