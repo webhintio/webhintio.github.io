@@ -1,7 +1,7 @@
 /*
- *	CONTROLS
- *	=============================================
- *	@Dependencies: base.css, color.css, ../images/select-arrow.svg
+ * CONTROLS
+ * =============================================
+ * @Dependencies: base.css, color.css, ../images/select-arrow.svg
  */
 
 fieldset {
@@ -10,8 +10,8 @@ fieldset {
 
 
 /*
- *	LABELS
- *	---------------------------------------------
+ * LABELS
+ * ---------------------------------------------
  */
 
 label {
@@ -25,66 +25,67 @@ legend ~ label {
 
 
 /*
- *	TEXT FIELDS
- *	---------------------------------------------
- *	Note:
- *		Styles general `input` to avoid high specificity.
- *		Declarations that cause issues for other types are separated in own rulesets
+ * TEXT FIELDS
+ * ---------------------------------------------
+ * Note:
+ *
+ *  Styles general `input` to avoid high specificity.
+ *  Declarations that cause issues for other types are separated in own rulesets
  */
 
 input,
 textarea,
 select {
-	width: 100%;
-	max-width: 74rem;
-	height: 6rem;
+    width: 100%;
+    max-width: 64rem;
+    height: 6rem;
 
-	border: 1px solid hsla(0, 0%, 0%, .6);
+    border: 1px solid hsla(0, 0%, 0%, .6);
 
-	padding: .7rem 1rem;
+    padding: .7rem 1rem;
 
-	background-color: hsla(0, 0%, 100%, 1);
+    background-color: hsla(0, 0%, 100%, 1);
 }
 
 /* Should be able to change textarea height using rows attribute */
 textarea {
-	height: auto;
-	min-height: 3.6rem;
-	font: inherit;
-	resize: vertical;
+    height: auto;
+    min-height: 3.6rem;
+    font: inherit;
+    resize: vertical;
 }
 
 /* add margin only if not radio/check so don‘t need to re-apply default `* + * { margin-top }` */
 label + input:not([type="radio"]):not([type="checkbox"]),
 textarea,
 select {
-	margin-top: .7rem;
+    margin-top: .7rem;
 }
 
 input:hover,
 textarea:hover,
 select:hover {
-	border-color: hsla(0, 0%, 0%, .8);
-	background-color: hsla(0, 0%, 100%, .6);
+    border-color: hsla(0, 0%, 0%, .8);
+    background-color: hsla(0, 0%, 100%, .6);
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-	border-color: #0078d7;
-	background-color: #fff;
+    border-color: #4046dd;
+    background-color: #fff;
 
-	/* Safe to remove focus, as very visable border on focus */
-	outline: 0;
+    /* Safe to remove focus, as very visable border on focus */
+    outline: 0;
 }
 
 input:disabled,
 input[readonly],
 textarea:disabled,
 textarea[readonly] {
-	border-color: transparent;
-	background-color: hsla(0, 0%, 0%, .2);
-	color: hsla(0, 0%, 0%, .2);
+    border-color: transparent;
+    background-color: hsla(0, 0%, 0%, .2);
+    color: hsla(0, 0%, 0%, .2);
 }
 
 /* Undo the disabled input background applying to non-text field style controls */
@@ -92,114 +93,92 @@ input[type="checkbox"]:disabled,
 input[type="radio"]:disabled,
 input[type="range"]:disabled,
 .button--search:disabled {
-	background: 0;
+    background: 0;
 }
 
 input[aria-invalid=true],
 textarea[aria-invalid=true] {
-	border-color: #e81123;
+    border-color: #e81123;
 }
 
 /* Make space for icon at the right of fields */
 select,
 [type="search"] {
-	padding-right: 3.4rem;
+    padding-right: 3.4rem;
 }
 
 /* WebKit/Blink overrides for search input */
 [type="search"],
 [type="search"]::-webkit-search-decoration,
 [type="search"]::-webkit-search-cancel-button {
-	-webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
 
 /*
- *	BUTTONS
- *	---------------------------------------------
+ * BUTTONS
+ * ---------------------------------------------
  */
 
 button,
 a.button {
-	min-width: 16rem;
-	max-width: 100%;
-	border: 1px solid transparent;
-	padding: 1.6rem 1.2rem;
+    min-width: 16rem;
+    max-width: 100%;
+    border: 1px solid transparent;
+    padding: 1.6rem 1.2rem;
 
-	background-color: #d43e2b;
-	color: #fff;
-	text-transform: uppercase;
+    background-color: #d43e2b;
+    color: #fff;
+    text-transform: uppercase;
 
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
-	/* needed for .button as doesn’t always get default control behaviours */
-	display: inline-block;
-	vertical-align: middle;
-	text-align: center;
-	cursor: pointer;
+    /* needed for .button as doesn’t always get default control behaviours */
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
 }
 
 .button:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 button:hover,
 button:focus,
 .button:hover,
 .button:focus {
-	border-color: hsla(0, 0%, 0%, .4);
-}
-
-.button--primary:hover,
-.button--cta:hover {
-	background-color: #006cc2;
+    border-color: hsla(0, 0%, 0%, .4);
 }
 
 button:active,
 .button:active {
-	border-color: transparent;
-	background-color: hsla(0, 0%, 0%, .4);
-}
-
-.button--primary:active,
-.button--cta:active {
-	background-color: #005497;
+    border-color: transparent;
+    background-color: hsla(0, 0%, 0%, .4);
 }
 
 /* DISABLED state styles */
 button:disabled,
 select:disabled {
-	background-color: hsla(0, 0%, 0%, .2);
-	color: hsla(0, 0%, 0%, .2);
+    background-color: hsla(0, 0%, 0%, .2);
+    color: hsla(0, 0%, 0%, .2);
 
-	cursor: not-allowed;
-	pointer-events: none;
-	outline: 0;
+    cursor: not-allowed;
+    pointer-events: none;
+    outline: 0;
 }
 
 /* Actions */
 * + .actions {
-	margin-top: .8rem;
+    margin-top: .8rem;
 }
 
 /* top margin for .actions and button adds up to standard 2.4. Needs to be on button for wrapping */
 * + .actions button,
 * + .actions a.button {
-	display: inline-block;
-	margin-top: 1.6rem;
-}
-
-/* shared colours for highlight coloured buttons */
-button.button--primary,
-a.button--primary,
-.button--search:focus,
-.button--search:active,
-button.button--cta,
-a.button--cta {
-	background-color: #0078d7;
-	color: #fff;
+    display: inline-block;
+    margin-top: 1.6rem;
 }
 
 /* reset for text only and icon only buttons */
@@ -207,243 +186,181 @@ a.button--cta {
 .button--text,
 .button--text:hover,
 .button--text:active,
-.button--text[disabled],
-.button--icon,
-.button--icon:hover,
-.button--icon:active,
-.button--icon[disabled] {
-	padding: 0;
-	border: 0;
-	background: transparent;
+.button--text[disabled] {
+    padding: 0;
+    border: 0;
+    background: transparent;
 }
 
-.button--search,
-.button--icon,
-.button--icon:hover,
-.button--icon:active,
-.button--icon[disabled] {
-	min-width: 0;
+.button--search {
+    min-width: 0;
 }
 
 /* text buttons */
 .button--text {
-	text-align: inherit;
+    text-align: inherit;
 }
 
 .button--text + .button--text {
-	margin-left: 1.2rem;
+    margin-left: 1.2rem;
 }
 
 .button--text:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .button--text:active {
-	text-decoration: none;
-}
-
-/* Icon-only buttons */
-.button--icon {
-	position: relative;
-
-	width: 4.4rem;
-	height: 2rem;
-
-	text-indent: 100%;
-}
-
-.button--icon::before {
-	position: absolute;
-	top: 0;
-	left: 0;
-
-	display: block;
-	width: 100%;
-	height: 100%;
-
-	font-size: 2rem;
-	line-height: 1;
-	text-indent: 0;
-}
-
-.button--icon:hover {
-	color: hsla(0, 0%, 0%, .6);
-}
-
-.button--icon:active {
-	color: hsla(0, 0%, 0%, .4);
+    text-decoration: none;
 }
 
 /* Search button (used with input[type="search"]) */
 [role="search"] {
-	position: relative;
+    position: relative;
 }
 
 .button--search {
-	position: absolute;
+    position: absolute;
 
-	width: 3.4rem;
-	height: 100%;
+    width: 3.4rem;
+    height: 100%;
 
-	top: 0;
-	right: 0;
+    top: 0;
+    right: 0;
 
-	font-size: 1.6rem;
+    font-size: 1.6rem;
 
-	color: #7f7f7f;
-}
-
-.button--search::before {
-	content: "\e721";
-}
-
-button.button--warning {
-	background-color: #e81123;
-	color: #fff;
-}
-
-/* CTA buttons */
-a.button--cta {
-
-	/* Create height of ~40px */
-	padding: .85rem 2.4rem;
-
-	border-width: 2px;
-
-	font-size: 1.3rem;
-	text-transform: uppercase;
-	letter-spacing: .1em;
+    color: #7f7f7f;
 }
 
 /*
- *	SELECTS
- *	---------------------------------------------
+ * SELECTS
+ * ---------------------------------------------
  */
 
 select {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 
-	border-radius: 0;
-	background: url("../images/select-arrow.svg") no-repeat right 1rem center / 1.4rem .8rem;
+    border-radius: 0;
+    background: url("../images/select-arrow.svg") no-repeat right 1rem center / 1.4rem .8rem;
 
-	/* @Browser: Firefox. Extra styles needed to hide default arrow */
-	text-indent: .01px;
+    /* @Browser: Firefox. Extra styles needed to hide default arrow */
+    text-indent: .01px;
 
-	text-overflow: ellipsis;
-	overflow: hidden;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 /* @Browser: IE. Doesn't support `-webkit-appearance`, but `:-ms-expand` supported in IE 10 + 11 */
 select::-ms-expand {
-	display: none;
+    display: none;
 }
 
 select option:focus,
 select option:checked {
-	background-color: #3a96dd;
-	color: #fff;
+    background-color: #3a96dd;
+    color: #fff;
 }
 
 /*
-	@bug #71
-	Firefox needs option bg to be set to white or checked style leaks
-*/
+@bug #71
+Firefox needs option bg to be set to white or checked style leaks
+ */
 select:active,
 select option {
-	background-color: #fff;
-	color: #000;
+    background-color: #fff;
+    color: #000;
 }
 
 select option:active {
-	background-color: #767676;
-	color: #000;
+    background-color: #767676;
+    color: #000;
 }
 
 select:disabled {
-	border-color: hsla(0, 0%, 0%, .2);
-	color: hsla(0, 0%, 0%, .6);
+    border-color: hsla(0, 0%, 0%, .2);
+    color: hsla(0, 0%, 0%, .6);
 }
 
 /*
- *	COMBOBOX
- *	---------------------------------------------
+ * COMBOBOX
+ * ---------------------------------------------
  */
 
 /* @Browser Chrome. Style arrow with out custom arrow. Also applies to calendars */
 ::-webkit-calendar-picker-indicator {
-	color: transparent;
-	background: url("../images/select-arrow.svg") no-repeat right center / 1.3rem .8rem;
+    color: transparent;
+    background: url("../images/select-arrow.svg") no-repeat right center / 1.3rem .8rem;
 }
 
 
 /*
- *	RADIOS AND CHECKBOXES
- *	---------------------------------------------
+ * RADIOS AND CHECKBOXES
+ * ---------------------------------------------
  */
 
 input[type="radio"],
 input[type="checkbox"] {
-	position: absolute;
-	width: 2rem;
-	height: 2rem;
-	line-height: 2rem;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
 }
 
 input::-ms-check {
-	border: 1px solid hsla(0, 0%, 0%, .8);
-	background: 0;
+    border: 1px solid hsla(0, 0%, 0%, .8);
+    background: 0;
 }
 
 input:checked::-ms-check {
-	border-color: #0078d7;
+    border-color: #4046dd;
 }
 
 /* Needs to go after checked so that doesn’t get overridden when checked */
 input:hover::-ms-check {
-	border-color: #000;
+    border-color: #000;
 }
 
 input[type="checkbox"]:checked::-ms-check {
-	background-color: #0078d7;
-	color: #fff;
+    background-color: #4046dd;
+    color: #fff;
 }
 
 input[type="checkbox"]:active::-ms-check {
-	border-color: transparent;
-	background-color: hsla(0, 0%, 0%, .6);
+    border-color: transparent;
+    background-color: hsla(0, 0%, 0%, .6);
 }
 
 input[type="radio"]:active::-ms-check,
 input[type="radio"]:active:checked::-ms-check {
-	border-color: currentColor;
-	color: hsla(0, 0%, 0%, .6);
+    border-color: currentColor;
+    color: hsla(0, 0%, 0%, .6);
 }
 
 /* [disabled] needed to override checkbox active style */
 input[disabled]:disabled::-ms-check {
-	border-color: currentColor;
-	background: 0;
-	color: hsla(0, 0%, 0%, .2);
+    border-color: currentColor;
+    background: 0;
+    color: hsla(0, 0%, 0%, .2);
 }
 
 /* radio active are even more specific so override again */
 input[type="radio"]:disabled:checked::-ms-check {
-	color: hsla(0, 0%, 0%, .2);
+    color: hsla(0, 0%, 0%, .2);
 }
 
 /* Radio/checks need special label handling as label goes after control */
 input[type="radio"] + label,
 input[type="checkbox"] + label {
-	display: table;
-	padding-left: 3.2rem;
+    display: table;
+    padding-left: 3.2rem;
 }
 
 input[type="radio"] + label::after,
 input[type="checkbox"] + label::after {
-	content: "";
-	display: block;
+    content: "";
+    display: block;
 }
 
 /* Sets of radios/checks need tighter margins, special font-weight */
@@ -451,134 +368,94 @@ input[type="checkbox"] + label::after {
 .checkable-set input[type="checkbox"],
 .checkable-set input[type="radio"] + label,
 .checkable-set input[type="checkbox"] + label {
-	margin-top: 1.2rem;
+    margin-top: 1.2rem;
 }
 
 .checkable-set input[type="radio"] + label,
 .checkable-set input[type="checkbox"] + label {
-	font-weight: 400;
+    font-weight: 400;
 }
 
 
 /*
- *	FILE UPLOAD
- *	---------------------------------------------
+ * FILE UPLOAD
+ * ---------------------------------------------
  */
 
 input[type="file"] {
 
-	/* reset styles added by generic input selector */
-	height: auto;
-	border: 0;
+    /* reset styles added by generic input selector */
+    height: auto;
+    border: 0;
 
-	outline: 0; /* added back on file upload button */
+    outline: 0; /* added back on file upload button */
 
-	/* Prevent alignment issues. No shorthand = deeper browser support */
-	padding-right: 0;
-	padding-left: 0;
+    /* Prevent alignment issues. No shorthand = deeper browser support */
+    padding-right: 0;
+    padding-left: 0;
 
 }
 
 /* styles the part where the file name is displayed. Only possible in IE/MSEdge */
 input[type="file"]::-ms-value {
-	height: 3.2rem;
-	border: 1px solid hsla(0, 0%, 0%, .6);
-	background-color: hsla(0, 0%, 100%, .4);
+    height: 3.2rem;
+    border: 1px solid hsla(0, 0%, 0%, .6);
+    background-color: hsla(0, 0%, 100%, .4);
 }
 
 input[type="file"]:hover::-ms-value {
-	border-color: hsla(0, 0%, 0%, .8);
+    border-color: hsla(0, 0%, 0%, .8);
 }
 
 input[type="file"]:focus::-ms-value {
-	border-color: #0078d7;
-	background-color: #fff;
+    border-color: #4046dd;
+    background-color: #fff;
 }
 
 /* styles the button part of the control. Only IE/MSEdge and WebKit */
 input[type="file"]::-webkit-file-upload-button {
-	height: 3.2rem; /* can’t style text part so add height here for WebKit */
+    height: 3.2rem; /* can’t style text part so add height here for WebKit */
 
-	border: 1px solid transparent;
-	padding: .4rem 1.2rem;
+    border: 1px solid transparent;
+    padding: .4rem 1.2rem;
 
-	background-color: #0078d7;
-	color: #fff;
+    background-color: #4046dd;
+    color: #fff;
 }
 
 input[type="file"]::-ms-browse {
-	margin-left: .8rem;
-	border: 1px solid transparent;
-	padding: .4rem 1.2rem;
-	background-color: #0078d7;
-	color: #fff;
+    margin-left: .8rem;
+    border: 1px solid transparent;
+    padding: .4rem 1.2rem;
+    background-color: #4046dd;
+    color: #fff;
 }
 
 /* first selector needed for keyboard tab focus, second for activating button */
 input[type="file"]:focus::-webkit-file-upload-button,
 input[type="file"]::-webkit-file-upload-button:focus {
-	outline: 1px dashed;
+    outline: 1px dashed;
 }
 
 input[type="file"]::-ms-browse:focus {
-	outline: 1px dashed;
+    outline: 1px dashed;
 }
 
 input[type="file"]:hover::-webkit-file-upload-button,
 input[type="file"]:focus::-webkit-file-upload-button {
-	background-color: #006cc2;
+    background-color: #006cc2;
 }
 
 input[type="file"]:hover::-ms-browse,
 input[type="file"]:focus::-ms-browse {
-	background-color: #006cc2;
+    background-color: #006cc2;
 }
 
 input[type="file"]:active::-webkit-file-upload-button,
 input[type="file"]::-webkit-file-upload-button:active {
-	background-color: #005497;
+    background-color: #005497;
 }
 
 input[type="file"]::-ms-browse:active {
-	background-color: #005497;
-}
-
-
-/*
- *	PROGRESS
- *	---------------------------------------------
- */
-
-progress {
-	display: block;
-
-	width: 100%;
-	height: .4rem;
-
-	/* @Browser: Firefox. Has border that needs removed */
-	border: 0;
-
-	/* @Browser: IE. colours progress bar */
-	color: #0078d7;
-}
-
-/* @Browser: IE, MSEdge. Remove default border from filled part of progress bar */
-progress::-ms-fill {
-	border: 0;
-}
-
-progress[value] {
-	background-color: hsla(0, 0%, 0%, .2); /* colours progress background */
-}
-
-progress::-webkit-progress-value {
-	background-color: #0078d7; /* progress bar colour */
-}
-
-progress[value]::-webkit-progress-bar {
-	background: 0; /* need to wipe this out so progress[value] shows through */
-}
-
-progress::-moz-progress-bar {
-	background-color: #0078d7; /* progress bar colour (not bg like WebKit) */
+    background-color: #005497;
 }
