@@ -34,3 +34,8 @@
 .uppercase-text {
     text-transform: uppercase;
 }
+
+/* for demo purposes */
+.hide {
+    display: none;
+}
