@@ -112,6 +112,9 @@
  */
 
 .nav {
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
     width: 100%; /* make sure it is full width when in mobile layout */
     margin: 0;
 }
@@ -146,25 +149,29 @@ button.mobile-nav-button {
 @media (max-width: 57.94em) {
 
     .nav {
-        position: absolute;
         z-index: 10;
     }
 
+    .header__logo {
+        padding: 1rem;
+    }
+
+    .nav-bar {
+        padding-left: 0;
+    }
+
     .nav__navbar.show {
+        position: absolute;
         display: block;
+        top: 8rem;
         padding-bottom: .8rem;
-        background-color: #4c51da;
+        background-color: #4046dd;
+        z-index: 30;
     }
 
 }
 
 @media (min-width: 58em) {
-
-    .nav {
-        display: -ms-flexbox;
-        display: flex;
-        align-items: center;
-    }
 
     .nav__navbar {
         display: block;
