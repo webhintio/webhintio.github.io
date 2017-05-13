@@ -3,11 +3,12 @@ const _ = require('lodash');
 const path = require('path');
 const pify = require('pify');
 const util = require('hexo-util');
+const fs = pify(require('fs'));
 
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
 const filePaths = [];
 
-const fs = pify(require('fs'));
+const permaLinks = new Map(); // a collection of permalinks
 
 console.log('Updater is initiated.');
 
@@ -23,6 +24,8 @@ const generateFrontMatterInfo = (filePath, title) => {
     const permalinkFrontMatter = `permalink: ${permaLink}`;
     const divider = '---';
     const frontMatter = [categoryFrontMatter, titleFrontMatter, permalinkFrontMatter, divider];
+
+    permaLinks.set(baseName, permaLink); // populate permaLinks
 
     if (tocTitle) {
         const tocTitleFrontMatter = `toc-title: ${tocTitle}`;
@@ -86,6 +89,32 @@ const addFrontMatter = async (filePath) => {
     await fs.writeFile(filePath, newData);
 };
 
+// Update local file links to site links
+// before: 'see [how to develop a collector](../developer-guide/collectors/how-to-develop-a-collector.md)'
+// after:  'see [how to develop a collector](/docs/developer-guide/collectors/how-to-develop-a-collector.html)'
+const updateLocalLinks = async (filePath) => {
+    const fileContent = await fs.readFile(filePath, 'utf8');
+    const localLinksRegex = /\((?!http)([^(|)]+.md)\)/g; // find parenthesis-enclosed content that ends with `.md` but not start with `http`.
+    const localLinks = [];
+    let match;
+
+    while ((match = localLinksRegex.exec(fileContent)) !== null) {
+        localLinks.push(match.pop());
+    }
+
+    if (!localLinks.length) {
+        return;
+    }
+
+    const newFileContent = _.reduce(localLinks, (newContent, localLink) => {
+        const siteLink = `\\${permaLinks.get(path.basename(localLink, '.md'))}`;
+
+        return newContent.replace(localLink, siteLink);
+    }, fileContent);
+
+    await fs.writeFile(filePath, newFileContent);
+};
+
 // Iterate all the files in the dest folder and add frontmatter to each file
 klaw(directory)
     .on('data', (item) => {
@@ -97,9 +126,13 @@ klaw(directory)
         console.log(err.message, item.path);
     })
     .on('end', async () => {
-        const promises = filePaths.map(addFrontMatter);
+        const addFrontMatterPromises = filePaths.map(addFrontMatter);
 
-        await Promise.all(promises);
-
+        await Promise.all(addFrontMatterPromises);
         console.log('Front Matter added to each file.');
+
+        const updateLocalLinkPromises = filePaths.map(updateLocalLinks);
+
+        await Promise.all(updateLocalLinkPromises);
+        console.log('Links updated in each file.');
     });
