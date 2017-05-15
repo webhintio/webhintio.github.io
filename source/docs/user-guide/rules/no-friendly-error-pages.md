@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: user-guide
 title: Disallow small error pages

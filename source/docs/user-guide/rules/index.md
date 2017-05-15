@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: user-guide
 title: List of core rules

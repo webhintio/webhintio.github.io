@@ -1,3 +1,4 @@
+---
 toc-title: events
 category: developer-guide
 title: List of events emitted by a collector

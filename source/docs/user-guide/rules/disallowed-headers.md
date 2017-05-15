@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: user-guide
 title: Disallow certain HTTP headers

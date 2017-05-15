@@ -9,6 +9,7 @@ const directory = path.resolve(process.argv[2]); // path to the folder that cont
 const filePaths = [];
 
 const permaLinks = new Map(); // a collection of permalinks
+const divider = '---';
 
 console.log('Updater is initiated.');
 
@@ -22,7 +23,6 @@ const generateFrontMatterInfo = (filePath, title) => {
     const categoryFrontMatter = `category: ${category}`;
     const titleFrontMatter = `title: ${title}`;
     const permalinkFrontMatter = `permalink: ${permaLink}`;
-    const divider = '---';
     const frontMatter = [categoryFrontMatter, titleFrontMatter, permalinkFrontMatter, divider];
 
     permaLinks.set(baseName, permaLink); // populate permaLinks
@@ -32,6 +32,8 @@ const generateFrontMatterInfo = (filePath, title) => {
 
         frontMatter.unshift(tocTitleFrontMatter);
     }
+
+    frontMatter.unshift(divider);
 
     return frontMatter.join('\n');
 };
@@ -68,9 +70,9 @@ const addFrontMatter = async (filePath) => {
     let content;
     const data = await fs.readFile(filePath, 'utf8');
 
-    if (data.includes('---')) {
+    if (data.includes(divider)) {
         // front matter already exists in this file, will update it
-        [, content] = data.split('---');
+        [, content] = data.split(divider);
     } else {
         content = `\n${data}`;
     }

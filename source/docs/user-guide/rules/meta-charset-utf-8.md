@@ -1,7 +1,8 @@
+---
 toc-title: rules
 category: user-guide
 title: Require charset meta tag with the value of `utf-8`
-permalink: docs/user-guide/rules/meta-charset-utf-8.html
+permalink: docs\user-guide\rules\meta-charset-utf-8.html
 ---
 # Require charset meta tag with the value of `utf-8` (`meta-charset-utf-8`)
 

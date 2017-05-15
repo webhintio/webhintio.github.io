@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: user-guide
 title: Disallow unneeded HTTP headers for non-HTML resources
