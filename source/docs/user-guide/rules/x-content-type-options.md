@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: user-guide
 title: Require `X-Content-Type-Options` HTTP response header

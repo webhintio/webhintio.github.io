@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: user-guide
 title: Disallow non-standard file extension for the web app manifest file

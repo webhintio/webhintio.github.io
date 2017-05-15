@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: developer-guide
 title: How to interact with other services

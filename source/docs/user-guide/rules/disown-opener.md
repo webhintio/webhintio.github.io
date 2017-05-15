@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: user-guide
 title: Require external links to disown opener
