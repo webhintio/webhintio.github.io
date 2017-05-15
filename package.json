@@ -31,7 +31,6 @@
     "build": "npm run updater && hexo generate",
     "hexo-clean": "hexo clean",
     "hexo-server": "hexo server",
-    "hexo-clean": "hexo clean",
     "lint": "npm run lint-js && npm run lint-styles",
     "lint-browser": "eslint -c .eslintrc --env browser themes/documentation/source/**/*.js",
     "lint-js": "npm run lint-node && npm run lint-browser",
