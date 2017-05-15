@@ -38,6 +38,7 @@
         {{else}}
             {{>header navs=site.data.menu}}
             {{#if page.category}}
+            <main class="container">
                 {{#compare page.category '===' 'developer-guide'}}
                     {{>sub-page intro=site.data.developerGuide pages=(getSubPages site.pages.data 'developer-guide')}}
                 {{/compare}}
@@ -49,6 +50,7 @@
                 {{#compare page.category '===' 'default'}}
                     {{>single-page}}
                 {{/compare}}
+            </main>
             {{else}}
                 {{>home}}
                 {{>footer navs=site.data.menu}}
