@@ -38,7 +38,7 @@
     "lint-styles": "stylelint themes/documentation/source/**/*.css --config .stylelintrc",
     "start": "node server.js",
     "test": "npm run lint",
-    "update-docs": "./travis/fetch-docs.sh && .travis/update-docs.sh",
+    "update-docs": ".travis/fetch-docs.sh && .travis/update-docs.sh",
     "updater": "node updater.js source/docs"
   }
 }
