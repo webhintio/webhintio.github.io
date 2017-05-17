@@ -42,7 +42,7 @@ the events common to all `collector`s, with their signature, and the
   return a `Promise` because it will not wait for it to be resolved.
   If you need to perform an `async` operation you should combine it
   with `scan::end`. You can find more information in [how to interact
-  with other services](/docs/developer-guide/rules/how-to-interact-with-other-services.html).
+  with other services](../rules/how-to-interact-with-other-services.md).
 
 ## `scan::end`
 

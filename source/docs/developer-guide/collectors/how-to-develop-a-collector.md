@@ -22,4 +22,4 @@ testCollector(builder);
 // You might want to `import ava` if you decide to do so
 ```
 
-A collector needs to implement [this list of events](/docs/developer-guide/events/list-of-events.html).
+A collector needs to implement [this list of events](../events/list-of-events.md).
