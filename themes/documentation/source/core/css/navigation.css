@@ -27,41 +27,10 @@
 /* HEADER: Site logo */
 .header__logo {
     float: left; /* for non Flexbox browsers */
-    width: 21rem;
+    width: 18rem;
 
     overflow: hidden;
     align-self: center;
-}
-
-/* HEADER: Search */
-
-.header__form-search {
-    position: absolute;
-    right: 3.4rem;
-    left: 10.8rem;
-    margin: 0 2.4rem; /* Owl poop */
-}
-
-.header__form-search input[type="search"] {
-    visibility: collapse;
-}
-
-.header__form-search .button-search {
-    font-size: 2.1rem;
-}
-
-.header__form-search .button-search:hover,
-.header__form-search .button-search:focus {
-    outline: 0;
-    background-color: hsla(0, 0%, 0%, .05);
-}
-
-.header__form-search input[type="search"].search-active {
-    visibility: visible;
-}
-
-.header__form-search input[type="search"].search-active ~ .button-search {
-    font-size: 1.7rem;
 }
 
 .header__toggle {
@@ -84,21 +53,6 @@
 }
 
 @media (min-width: 58em) {
-
-    .header__form-search input[type="search"] {
-        visibility: visible;
-        width: 27.4rem;
-        margin: .7rem 1rem;
-    }
-
-    .header__form-search .button-search {
-        right: 1rem;
-        font-size: 1.7rem;
-    }
-
-    .header__form-search .button-search:hover {
-        background: 0;
-    }
 
     .header__toggle {
         display: none;
@@ -145,6 +99,15 @@ button.mobile-nav-button {
     display: none;
 }
 
+@media (max-width: 34rem) {
+
+    .header {
+        height: 15rem;
+    }
+
+}
+
+
 /* Show menu in mobile view when button is clicked */
 @media (max-width: 57.94em) {
 
@@ -153,7 +116,7 @@ button.mobile-nav-button {
     }
 
     .header__logo {
-        padding: 1rem;
+        padding: 1.9rem 1rem;
     }
 
     .nav-bar {
@@ -164,9 +127,13 @@ button.mobile-nav-button {
         position: absolute;
         display: block;
         top: 8rem;
-        padding-bottom: .8rem;
+        left: 0;
         background-color: #4046dd;
         z-index: 30;
+    }
+
+    .nav-bar .navbar__submenu > li > a {
+        padding-left: 2.3rem;
     }
 
 }
@@ -192,7 +159,7 @@ button.mobile-nav-button {
 
 .nav__navbar a {
     display: block;
-    padding: 1.2rem 1rem;
+    padding: 1.3rem 1rem;
     color: #fff;
 }
 

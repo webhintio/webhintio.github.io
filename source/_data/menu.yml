@@ -23,7 +23,6 @@
   - id: governance
     title: Governance
     link: /about/governance
-
-- title: Changelog
-  id: changelog
-  link: /changelog
+  - id: changelog
+    title: Changelog
+    link: /about/changelog
