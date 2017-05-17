@@ -14,7 +14,7 @@
 
 .algolia-autocomplete .algolia-docsearch-suggestion--highlight {
     color: #4046dd !important;
-    background: hsla(238, 66%, 58%, 0.1) !important;
+    background: hsla(238, 66%, 58%, .1) !important;
 }
 
 .algolia-autocomplete .algolia-docsearch-suggestion--content {
