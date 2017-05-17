@@ -27,7 +27,11 @@
             <div class="module module--secondary table-of-contents" role="navigation">
                 {{#each pages}}
                     {{#hasTocTitle @key}}
-                        <p class="toc-section-title--active">{{@key}}</p>
+                        <p class="toc-section-title--active">
+                            <a href="{{getToCIndexPageLink ../this}}">
+                            {{@key}}
+                            </a>
+                        </p>
                     {{/hasTocTitle}}
                     <ul class="toc-subsection-title">
                         {{#each this}}

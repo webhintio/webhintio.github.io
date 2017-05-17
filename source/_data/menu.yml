@@ -7,10 +7,10 @@
   link: /docs
   items:
   - id: developer-guide
-    link: docs/developer-guide/events/list-of-events.html
+    link: docs/developer-guide
     title: Developer Guide
   - id: user-guide
-    link: docs/user-guide/rules/disallowed-headers.html
+    link: docs/user-guide
     title: User Guide
 
 - title: About

@@ -4,6 +4,7 @@ const fs = pify(require('fs'));
 const klaw = require('klaw');
 const path = require('path');
 const util = require('hexo-util');
+const normalize = require('normalize-path');
 
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
 const filePaths = [];
@@ -18,7 +19,7 @@ const generateFrontMatterInfo = (filePath, title) => {
     const baseName = path.basename(relativePath, '.md');
 
     const [category, tocTitle] = path.dirname(relativePath).split(path.sep);
-    const permaLink = path.join('docs', path.dirname(relativePath), `${baseName}.html`);
+    const permaLink = normalize(path.join('docs', path.dirname(relativePath), `${baseName}.html`));
 
     const categoryFrontMatter = `category: ${category}`;
     const titleFrontMatter = `title: ${title}`;
@@ -72,14 +73,14 @@ const addFrontMatter = async (filePath) => {
 
     if (data.includes(divider)) {
         // front matter already exists in this file, will update it
-        [, content] = data.split(divider);
+        [, , content] = data.split(divider); // ['', '<front matter>', '<Actual content in the markdown file>']
     } else {
         content = `\n${data}`;
     }
 
     // extract the first title in markdown file and remove the abbreviation in parenthesis
     // example: '\r\n# Disallow certain HTTP headers (`disallow-headers`)\r\n\r\n' => 'Disallow certain HTTP headers'
-    const title = _.trim(content.match(/# (.*)(\n\n|\r\n\r\n)/)[1]
+    const title = _.trim(content.match(/# (.*)(\n|\r\n)/)[1]
         .replace(/\(.*\)/, ''));
 
     const frontMatter = generateFrontMatterInfo(filePath, title);
