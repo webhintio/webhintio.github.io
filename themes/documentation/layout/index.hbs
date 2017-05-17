@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="{{url_for "core/css/search-results.css"}}">
         <link rel="stylesheet" href="{{url_for "core/css/structure.css"}}">
         <link rel="stylesheet" href="{{url_for "core/css/type.css"}}">
+        <link rel="stylesheet" href="{{url_for "core/css/highlight.css"}}">
         <link rel="stylesheet" href="{{url_for "components/breadcrumb/breadcrumb.css"}}">
         {{#if page.category}}
             <link rel="stylesheet" href="{{url_for "core/css/code.css"}}">
@@ -38,6 +39,7 @@
         {{else}}
             {{>header navs=site.data.menu}}
             {{#if page.category}}
+            <main class="container">
                 {{#compare page.category '===' 'developer-guide'}}
                     {{>sub-page intro=site.data.developerGuide pages=(getSubPages site.pages.data 'developer-guide')}}
                 {{/compare}}
@@ -49,6 +51,7 @@
                 {{#compare page.category '===' 'default'}}
                     {{>single-page}}
                 {{/compare}}
+            </main>
             {{else}}
                 {{>home}}
                 {{>footer navs=site.data.menu}}

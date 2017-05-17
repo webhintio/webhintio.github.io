@@ -1,3 +1,4 @@
+---
 category: default
 permalink: docs/index.html
 ---

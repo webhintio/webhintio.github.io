@@ -1,3 +1,4 @@
+---
 category: user-guide
 title: Differences among collectors
 permalink: docs/user-guide/differences-among-collectors.html

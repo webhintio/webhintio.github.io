@@ -21,6 +21,9 @@
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
     "eslint": "^3.19.0",
+    "markdownlint": "^0.4.1",
+    "markdownlint-cli": "^0.3.1",
+    "npm-run-all": "^4.0.2",
     "stylelint": "^7.10.1"
   },
   "hexo": {
@@ -31,14 +34,15 @@
     "build": "npm run updater && hexo generate",
     "hexo-clean": "hexo clean",
     "hexo-server": "hexo server",
-    "lint": "npm run lint-js && npm run lint-styles",
-    "lint-browser": "eslint -c .eslintrc --env browser themes/documentation/source/**/*.js",
-    "lint-js": "npm run lint-node && npm run lint-browser",
-    "lint-node": "eslint -c .eslintrc --env node *.js themes/documentation/helper/*.js",
-    "lint-styles": "stylelint themes/documentation/source/**/*.css --config .stylelintrc",
+    "lint": "npm-run-all lint:*",
+    "lint:md": "markdownlint ./.github README.md source/docs",
+    "lint:browser": "eslint -c .eslintrc --env browser themes/documentation/source/**/*.js",
+    "lint:js": "npm run lint:node && npm run lint:browser",
+    "lint:node": "eslint -c .eslintrc --env node *.js themes/documentation/helper/*.js",
+    "lint:styles": "stylelint themes/documentation/source/**/*.css --config .stylelintrc",
     "start": "node server.js",
     "test": "npm run lint",
-    "update-docs": "./travis/fetch-docs.sh && .travis/update-docs.sh",
+    "update-docs": ".travis/fetch-docs.sh && .travis/update-docs.sh",
     "updater": "node updater.js source/docs"
   }
 }

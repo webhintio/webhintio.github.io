@@ -19,7 +19,7 @@
   items:
   - id: faq
     title: Faq
-    link: /about/faq
+    link: /about/faq.html
   - id: governance
     title: Governance
     link: /about/governance

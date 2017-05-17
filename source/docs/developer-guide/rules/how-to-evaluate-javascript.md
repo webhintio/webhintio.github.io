@@ -1,3 +1,4 @@
+---
 toc-title: rules
 category: developer-guide
 title: How to evaluate JavaScript

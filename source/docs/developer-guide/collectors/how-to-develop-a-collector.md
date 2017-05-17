@@ -1,3 +1,4 @@
+---
 toc-title: collectors
 category: developer-guide
 title: How to develop a collector
