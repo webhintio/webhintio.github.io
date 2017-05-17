@@ -1,4 +1,8 @@
 module.exports = function () {
+    const isIndexPage = (page, indexPageLevel) => {
+        return page.title.toLowerCase().replace(' ', '-') === page[indexPageLevel];
+    };
+
     return {
         /**
          * Handlebars Comparison Helpers
@@ -94,20 +98,8 @@ module.exports = function () {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
         },
-        getSubPages: function (allPages, category) { // eslint-disable-line object-shorthand
-            return allPages.reduce((acc, page) => {
-                if (page.category === category) {
-                    const tocTitle = page['toc-title'];
-
-                    if (!acc[tocTitle]) {
-                        acc[tocTitle] = [page];
-                    } else {
-                        acc[tocTitle].push(page);
-                    }
-                }
-
-                return acc;
-            }, {});
+        getToCIndexPageLink: (pages) => {
+            return pages.shift().permalink;
         },
         hasSubPage: function (id, options) { // eslint-disable-line object-shorthand
             const result = (id === 'docs' || id === 'about');
@@ -128,6 +120,28 @@ module.exports = function () {
             }
 
             return options.inverse(this);
+        },
+        // Sort out `Developer guide` or `User guide` pages
+        sortPagesByCategory: function (allPages, category) { // eslint-disable-line object-shorthand
+            return allPages.reduce((acc, page) => {
+                if (page.category === category) {
+                    const tocTitle = page['toc-title'];
+
+                    if (!acc[tocTitle]) {
+                        acc[tocTitle] = [];
+                    }
+
+                    if (isIndexPage(page, 'toc-title')) {
+                        acc[tocTitle].unshift(page); // always place index page as the first one
+                    }
+
+                    if (!isIndexPage(page, 'toc-title') && !isIndexPage(page, 'category')) { // non-index pages
+                        acc[tocTitle].push(page);
+                    }
+                }
+
+                return acc;
+            }, {});
         }
     };
 };

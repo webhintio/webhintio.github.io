@@ -40,11 +40,11 @@
             {{#if page.category}}
             <main class="container">
                 {{#compare page.category '===' 'developer-guide'}}
-                    {{>sub-page intro=site.data.developerGuide pages=(getSubPages site.pages.data 'developer-guide')}}
+                    {{>sub-page intro=site.data.developerGuide pages=(sortPagesByCategory site.pages.data 'developer-guide')}}
                 {{/compare}}
 
                 {{#compare page.category '===' 'user-guide'}}
-                    {{>sub-page intro=site.data.userGuide pages=(getSubPages site.pages.data 'user-guide')}}
+                    {{>sub-page intro=site.data.userGuide pages=(sortPagesByCategory site.pages.data 'user-guide')}}
                 {{/compare}}
 
                 {{#compare page.category '===' 'default'}}
