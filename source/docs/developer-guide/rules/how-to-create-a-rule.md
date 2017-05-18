@@ -67,3 +67,24 @@ If your rule doesn't apply to specific urls you use the property `ignoredUrls` i
     ".*\\.domain2\\.net/.*": ["disallowed-headers"] //Just apply to the rule disallowed-headers
 }
 ```
+
+## Ignore collectors
+
+If your rule doesn't apply or work propertly with certain collectors you can list them in `ignoreCollectors`,
+and the rule will be ignored by those collectors.
+
+```ts
+  import * from '../../utils/rule-helpers';
+  // The list of types depends on the [events](/docs/developer-guide/events/list-of-events.html) you want to capture.
+  import { IFetchEndEvent, IRule, IRuleBuilder } from '../../types'; // eslint-disable-line no-unused-vars
+  import { RuleContext } from '../../rule-context'; // eslint-disable-line no-unused-vars
+
+  const rule: IRuleBuilder = {
+      create(context: RuleContext): IRule {
+          // Your code here.
+      },
+      meta: {
+          ignoredCollectors: ['jsdom']
+      }
+  }
+```
