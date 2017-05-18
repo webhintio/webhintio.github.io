@@ -5,7 +5,7 @@
  */
 
 fieldset {
-	border: 0;
+    border: 0;
 }
 
 
@@ -15,12 +15,12 @@ fieldset {
  */
 
 label {
-	display: block;
+    display: block;
 }
 
 /* @Browser: Safari. Forces margins to be recognized */
 legend ~ label {
-	-webkit-margin-top-collapse: separate;
+    -webkit-margin-top-collapse: separate;
 }
 
 
@@ -114,6 +114,93 @@ select,
     -webkit-appearance: none;
 }
 
+/* Search bar input animation */
+input[type="search"] {
+    background-color: hsla(0, 0%, 100%, 0);
+    background-image: url("/images/search-icon.png");
+    background-position: 0 1rem;
+    background-repeat: no-repeat;
+
+    border: 1px solid transparent;
+    color: #fff;
+
+    height: 4rem;
+    width: 4rem;
+
+    padding: 1rem 1rem 1rem 3.2rem;
+
+    -webkit-transition: width .4s ease-in-out;
+    transition: width .4s ease-in-out;
+}
+
+input[type=search]:focus {
+    width: 20rem;
+    border-bottom: 1px solid #fff;
+}
+
+.nav-bar__input {
+    height: 4rem;
+}
+
+.nav-bar__input input[type=search] {
+    margin-right: 0;
+}
+
+input[type=search]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: hsla(0, 0%, 100%, .9);
+}
+
+input[type=search]::-moz-placeholder { /* Firefox 19+ */
+    color: hsla(0, 0%, 100%, .9);
+}
+
+input[type=search]::-ms-input-placeholder { /* IE 10+ */
+    color: hsla(0, 0%, 100%, .9);
+}
+
+input[type=search]::-moz-placeholder { /* Firefox 18- */
+    color: hsla(0, 0%, 100%, .9);
+}
+
+@media (max-width: 34rem) {
+
+    .nav-bar__input {
+        position: absolute;
+        top: 8rem;
+        left: 2rem;
+
+        max-width: 50rem;
+        width: 100%;
+
+        padding: 0 2.5rem 0 0;
+    }
+
+    .algolia-autocomplete {
+        width: 100%;
+    }
+
+    input[type=search] {
+        width: 100%;
+        border-bottom: 1px solid #fff;
+    }
+
+    input[type=search]:focus {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 34.1rem) and (max-width: 57.94rem) {
+
+    .nav-bar__input {
+        margin-left: auto;
+    }
+
+    .nav-bar__input input[type=search] {
+        margin-right: 4rem;
+    }
+
+}
 
 /*
  * BUTTONS
@@ -176,61 +263,61 @@ select:disabled {
 
 /* top margin for .actions and button adds up to standard 2.4. Needs to be on button for wrapping */
 * + .actions button,
-* + .actions a.button {
-    display: inline-block;
-    margin-top: 1.6rem;
-}
+    * + .actions a.button {
+        display: inline-block;
+        margin-top: 1.6rem;
+    }
 
-/* reset for text only and icon only buttons */
-.button--search,
-.button--text,
-.button--text:hover,
-.button--text:active,
-.button--text[disabled] {
-    padding: 0;
-    border: 0;
-    background: transparent;
-}
+    /* reset for text only and icon only buttons */
+    .button--search,
+    .button--text,
+    .button--text:hover,
+    .button--text:active,
+    .button--text[disabled] {
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
 
-.button--search {
-    min-width: 0;
-}
+    .button--search {
+        min-width: 0;
+    }
 
-/* text buttons */
-.button--text {
-    text-align: inherit;
-}
+    /* text buttons */
+    .button--text {
+        text-align: inherit;
+    }
 
-.button--text + .button--text {
-    margin-left: 1.2rem;
-}
+    .button--text + .button--text {
+        margin-left: 1.2rem;
+    }
 
-.button--text:hover {
-    text-decoration: underline;
-}
+    .button--text:hover {
+        text-decoration: underline;
+    }
 
-.button--text:active {
-    text-decoration: none;
-}
+    .button--text:active {
+        text-decoration: none;
+    }
 
-/* Search button (used with input[type="search"]) */
-[role="search"] {
-    position: relative;
-}
+    /* Search button (used with input[type="search"]) */
+    [role="search"] {
+        position: relative;
+    }
 
-.button--search {
-    position: absolute;
+    .button--search {
+        position: absolute;
 
-    width: 3.4rem;
-    height: 100%;
+        width: 3.4rem;
+        height: 100%;
 
-    top: 0;
-    right: 0;
+        top: 0;
+        right: 0;
 
-    font-size: 1.6rem;
+        font-size: 1.6rem;
 
-    color: #7f7f7f;
-}
+        color: #7f7f7f;
+    }
 
 /*
  * SELECTS

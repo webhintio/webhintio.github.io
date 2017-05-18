@@ -22,11 +22,7 @@
     link: /about/faq.html
   - id: governance
     title: Governance
-    link: /about/governance.html
-  - id: code-of-conduct
-    title: Code of Conduct
-    link: /about/code-of-conduct.html
-
-- title: Changelog
-  id: changelog
-  link: /changelog
+    link: /about/governance
+  - id: changelog
+    title: Changelog
+    link: /about/changelog
