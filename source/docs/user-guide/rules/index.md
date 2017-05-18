@@ -9,6 +9,7 @@ permalink: docs/user-guide/rules/index.html
 * [`axe`](axe.md)
 * [`disallowed-headers`](disallowed-headers.md)
 * [`disown-opener`](disown-opener.md)
+* [`highest-available-document-mode`](highest-available-document-mode.md)
 * [`manifest-exists`](manifest-exists.md)
 * [`manifest-file-extension`](manifest-file-extension.md)
 * [`meta-charset-utf-8`](meta-charset-utf-8.md)
