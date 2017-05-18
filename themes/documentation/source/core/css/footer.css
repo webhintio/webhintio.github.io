@@ -19,7 +19,6 @@ footer {
     align-items: flex-start;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 0 3rem;
 }
 
 @media (min-width: 32em) {
