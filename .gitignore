@@ -4,4 +4,4 @@
 Thumbs.db
 db.json
 node_modules/
-public/
+dist/

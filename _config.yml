@@ -18,8 +18,8 @@ permalink:
 permalink_defaults:
 
 # Directory
-source_dir: source
-public_dir: public
+source_dir: hexo/source
+public_dir: dist
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: documentation
+theme: ../hexo/themes/documentation
 
 # Config markdown rendering
 marked:

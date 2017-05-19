@@ -12,6 +12,7 @@ footer {
 .footer--home {
     background-color: #0c1366;
     border-top: 1px solid #fff;
+    color: #fff;
 }
 
 .footer-nav {
