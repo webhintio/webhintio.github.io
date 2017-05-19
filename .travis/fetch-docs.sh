@@ -37,5 +37,5 @@ chmod 600 "$SSH_FILE" \
 # Fetch documentation.
 
 git clone git@github.com-sonar:MicrosoftEdge/Sonar.git "$TMP_DIR" \
-    && rm -rf source/docs \
+    && rm -rf hexo/source/docs \
     && cp -R "$TMP_DIR/docs" source

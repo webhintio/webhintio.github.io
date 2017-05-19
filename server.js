@@ -6,11 +6,12 @@ const express = require('express');
 const handlebars = require('handlebars');
 const yaml = require('js-yaml');
 
-const themeDir = path.join(__dirname, 'themes/documentation');
+const hexoDir = path.join(__dirname, 'hexo');
+const themeDir = path.join(hexoDir, 'themes/documentation');
 const themeHelpers = require(path.join(themeDir, 'helper/index.js'))();
 const layoutsDir = path.join(themeDir, 'layout');
 const partialsDir = path.join(layoutsDir, 'partials');
-const menuDataDir = 'source/_data/menu.yml';
+const menuDataDir = path.join(hexoDir, 'source/_data/menu.yml');
 const app = express();
 
 const menuData = yaml.safeLoad(fs.readFileSync(menuDataDir, 'utf8')); // eslint-disable-line no-sync
@@ -54,7 +55,7 @@ app.post('/scanner/', (req, res) => {
     });
 });
 
-app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/', express.static(path.join(__dirname, 'dist')));
 app.listen(port, () => {
     console.log(`Server listening on port ${port}.`);
 });
