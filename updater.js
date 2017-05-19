@@ -3,7 +3,6 @@ const pify = require('pify');
 const fs = pify(require('fs'));
 const klaw = require('klaw');
 const path = require('path');
-const util = require('hexo-util');
 const normalize = require('normalize-path');
 
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
@@ -39,34 +38,6 @@ const generateFrontMatterInfo = (filePath, title) => {
     return frontMatter.join('\n');
 };
 
-const escape = (html, encode) => {
-    return html
-        .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-};
-
-// Update fragment identifiers to make links work in Hexo-generated pages
-const updateAnchors = (content) => {
-    // find all anchors containing links, example: '* [`scan::start`](#scanstart)\r\n'
-    const anchors = content.match(/\* \[`(.*)::(.*)`\]\(#(.*)\)(\n|\r\n)/g);
-
-    if (!anchors) {
-        return content;
-    }
-
-    // update anchor link format in markdown files
-    return _.reduce(anchors, (newContent, anchor) => { // example for an anchor: '* [`element::<element-type>`](#elementelement-type)'
-        const header = anchor.match(/\* \[`(.*)`\]/).pop(); // 'element::<element-type>'
-        const identifier = util.slugize(escape(header.trim())); // 'element-lt-element-type-gt'
-        const newAnchor = `* [\`${header}\`](#${identifier})\n`; // '* [`element::<element-type>`](#element-lt-element-type-gt)'
-
-        return newContent.replace(anchor, newAnchor);
-    }, content);
-};
-
 const addFrontMatter = async (filePath) => {
     let content;
     const data = await fs.readFile(filePath, 'utf8');
@@ -84,8 +55,6 @@ const addFrontMatter = async (filePath) => {
         .replace(/\(.*\)/, ''));
 
     const frontMatter = generateFrontMatterInfo(filePath, title);
-
-    content = updateAnchors(content);
 
     const newData = `${frontMatter}${content}`;
 

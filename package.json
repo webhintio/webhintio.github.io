@@ -9,7 +9,7 @@
     "hexo-generator-index": "^0.2.0",
     "hexo-generator-tag": "^0.2.0",
     "hexo-renderer-handlebars": "^2.0.2",
-    "hexo-renderer-marked": "^0.3.0",
+    "hexo-renderer-marked-enhanced": "0.0.1",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
     "hexo-util": "^0.6.0",
@@ -28,7 +28,7 @@
     "stylelint": "^7.10.1"
   },
   "hexo": {
-    "version": "3.3.5"
+    "version": "3.3.6"
   },
   "private": true,
   "scripts": {
