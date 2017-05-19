@@ -14,6 +14,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 
 "$(npm bin)/update-branch" --commands "npm run build" \
                            --commit-message "Hey server, this content is for you! [skip ci]" \
-                           --directory "public" \
+                           --directory "dist" \
                            --distribution-branch "website" \
                            --source-branch "master"
