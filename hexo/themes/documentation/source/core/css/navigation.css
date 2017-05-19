@@ -99,7 +99,7 @@ button.mobile-nav-button {
     display: none;
 }
 
-@media (max-width: 34rem) {
+@media (max-width: 34em) {
 
     .header {
         height: 15rem;

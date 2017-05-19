@@ -162,7 +162,24 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
     color: hsla(0, 0%, 100%, .9);
 }
 
-@media (max-width: 34rem) {
+/* Keeps input and button on same line */
+.input-fix {
+    display: flex;
+    margin-top: .8rem;
+}
+
+.input-fix input {
+    flex: 1;
+    width: 100%;
+    margin-right: 1rem;
+}
+
+.input-fix button {
+    flex: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 34em) {
 
     .nav-bar__input {
         position: absolute;
@@ -191,7 +208,7 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
 
 }
 
-@media (min-width: 34.1rem) and (max-width: 57.94rem) {
+@media (min-width: 34.1em) and (max-width: 57.94em) {
 
     .nav-bar__input {
         margin-left: auto;

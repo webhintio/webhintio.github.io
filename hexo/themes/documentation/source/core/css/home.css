@@ -97,14 +97,27 @@ main {
     text-align: center;
 }
 
-.home-container__documentation a {
+.home-container__documentation .module > a {
+    display: block;
+    padding: 1rem 0;
+    letter-spacing: .1rem;
+    transition: .3s ease-out;
+}
+
+.home-container__documentation .module > a:hover {
+    background-color: hsla(238, 66%, 58%, .3);
+    text-decoration: none;
+}
+
+
+.home-container__documentation a > p {
     font-family: "Montserrat", sans-serif;
-    font-size: 2.2rem;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: 400;
     color: #fff;
 }
 
-.home-container__documentation p {
+.home-container__documentation .title {
     margin: 0 auto 2.4rem auto;
     font-weight: 500;
     letter-spacing: .2rem;
@@ -128,7 +141,6 @@ main {
 
 input {
     max-width: 74rem;
-    margin-right: 1rem;
 }
 
 button,
@@ -137,19 +149,20 @@ a.button {
     max-width: 16rem;
 }
 
-/* Keeps input and button on same line */
-.input-fix {
-    display: flex;
-    margin-top: 0.8rem;
+/* Home footer is a different color than the rest of the site */
+.footer--home {
+    background-color: #0c1366;
+    border-top: 1px solid #fff;
 }
 
-.input-fix input {
-    flex: 1;
-    width: 100%;
+.footer--home a {
+    color: #fff;
 }
 
-.input-fix button {
-    flex: 0;
-    white-space: nowrap;
+.footer--home .footer-nav__item .category {
+    color: #fff;
 }
-/* stylelint-enable */
+
+a .github-icon-svg {
+    fill: #fff;
+}

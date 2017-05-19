@@ -8,11 +8,13 @@ footer {
     min-height: 15rem;
 }
 
-/* Home footer is a different color than the rest of the site */
-.footer--home {
-    background-color: #0c1366;
-    border-top: 1px solid #fff;
-    color: #fff;
+.footer {
+    background-color: #fff;
+    border-top: 2px solid #2d28a1;
+}
+
+.footer a {
+    color: #292f56;
 }
 
 .footer-nav {
@@ -38,6 +40,7 @@ footer {
 .footer-nav__item .category {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
+    color: #2d28a1;
     letter-spacing: .13rem;
     text-transform: uppercase;
 }
@@ -50,4 +53,13 @@ footer {
 
 .github-icon {
     margin-left: auto;
+    width: 4rem;
+}
+
+a .github-icon-svg {
+    fill: #292f56;
+}
+
+a:hover .github-icon-svg {
+    fill: #4046dd;
 }
