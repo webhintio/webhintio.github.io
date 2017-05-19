@@ -32,8 +32,8 @@ For the charset meta tag `<meta charset="utf-8">` should be used.
 `<meta charset="utf-8">`:
 
 * [Is backwards compatible and works in all known
-   browsers](https://blog.whatwg.org/the-road-to-html-5-character-encoding),
-   so it should always be used over the old
+  browsers](https://blog.whatwg.org/the-road-to-html-5-character-encoding),
+  so it should always be used over the old
   `<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">`.
 
 * The `charset` value should be `utf-8` not other values such as `utf8`.
@@ -82,6 +82,7 @@ Examples that **trigger** the rule:
   <html lang="en">
       <head>
           <meta http-equiv="content-type" content="text/html; charset=utf-8">
+          <title>example</title>
           ...
       </head>
       <body>...</body>
@@ -95,6 +96,7 @@ Examples that **trigger** the rule:
   <html lang="en">
       <head>
           <meta charset="utf8">
+          <title>example</title>
           ...
       </head>
       <body>...</body>
@@ -107,7 +109,7 @@ Examples that **trigger** the rule:
   <!doctype html>
   <html lang="en">
       <head>
-          <title></title>
+          <title>example</title>
           <meta charset="utf8">
           ...
       </head>
