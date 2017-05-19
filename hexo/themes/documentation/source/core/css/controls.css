@@ -165,7 +165,7 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
 /* Keeps input and button on same line */
 .input-fix {
     display: flex;
-    margin-top: 0.8rem;
+    margin-top: .8rem;
 }
 
 .input-fix input {
