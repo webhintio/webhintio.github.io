@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: SSL Server Test
+permalink: docs/user-guide/rules/ssllabs.html
+---
 # SSL Server Test (`ssllabs`)
 
 `ssllabs` deeply analyzes the SSL configuration of a web server using

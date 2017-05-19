@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: developer-guide
+title: How to create a rule
+permalink: docs/developer-guide/rules/how-to-create-a-rule.html
+---
 # How to create a rule
 
 To create a new rule you just need to:
@@ -9,7 +15,7 @@ To create a new rule you just need to:
 
   ```ts
   import * from '../../utils/rule-helpers';
-  // The list of types depends on the [events](../events/list-of-events.md) you want to capture.
+  // The list of types depends on the [events](/docs/developer-guide/events/list-of-events.html) you want to capture.
   import { IFetchEndEvent, IRule, IRuleBuilder } from '../../types'; // eslint-disable-line no-unused-vars
   import { RuleContext } from '../../rule-context'; // eslint-disable-line no-unused-vars
 
@@ -29,7 +35,7 @@ To create a new rule you just need to:
             'fetch::end': validateFetchEnd,
             'targetfetch::end': validateTargetFetchEnd
             // As many events as you need, you can see the
-            // list of events [here](../events/list-of-events.md).
+            // list of events [here](/docs/developer-guide/events/list-of-events.html).
         };
       },
       meta: {}
@@ -69,7 +75,7 @@ and the rule will be ignored by those collectors.
 
 ```ts
   import * from '../../utils/rule-helpers';
-  // The list of types depends on the [events](../events/list-of-events.md) you want to capture.
+  // The list of types depends on the [events](/docs/developer-guide/events/list-of-events.html) you want to capture.
   import { IFetchEndEvent, IRule, IRuleBuilder } from '../../types'; // eslint-disable-line no-unused-vars
   import { RuleContext } from '../../rule-context'; // eslint-disable-line no-unused-vars
 

@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Require external links to disown opener
+permalink: docs/user-guide/rules/disown-opener.html
+---
 # Require external links to disown opener (`disown-opener`)
 
 `disown-opener` warns against not using `rel="noopener noreferrer"`

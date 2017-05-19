@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Require a web app manifest file
+permalink: docs/user-guide/rules/manifest-exists.html
+---
 # Require a web app manifest file (`manifest-exists`)
 
 `manifest-exists` warns against not providing a

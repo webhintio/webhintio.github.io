@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Disallow small error pages
+permalink: docs/user-guide/rules/no-friendly-error-pages.html
+---
 # Disallow small error pages (`no-friendly-error-pages`)
 
 `no-friendly-error-pages` warns against using error pages that have the

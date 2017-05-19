@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Require `X-Content-Type-Options` HTTP response header
+permalink: docs/user-guide/rules/x-content-type-options.html
+---
 # Require `X-Content-Type-Options` HTTP response header (`x-content-type-options`)
 
 `x-content-type-options` warns against not serving resources with the

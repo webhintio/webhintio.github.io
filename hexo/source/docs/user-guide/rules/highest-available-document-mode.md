@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Require highest available document mode
+permalink: docs/user-guide/rules/highest-available-document-mode.html
+---
 # Require highest available document mode (`highest-available-document-mode`)
 
 `highest-available-document-mode` warns against not informing browsers

@@ -1,3 +1,9 @@
+---
+toc-title: collectors
+category: developer-guide
+title: How to develop a collector
+permalink: docs/developer-guide/collectors/how-to-develop-a-collector.html
+---
 # How to develop a collector
 
 You need to create a new test file (`name-of-your-collector.ts`) that
@@ -16,4 +22,4 @@ testCollector(builder);
 // You might want to `import ava` if you decide to do so
 ```
 
-A collector needs to implement [this list of events](../events/list-of-events.md).
+A collector needs to implement [this list of events](/docs/developer-guide/events/list-of-events.html).

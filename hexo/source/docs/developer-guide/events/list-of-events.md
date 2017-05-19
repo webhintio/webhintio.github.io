@@ -1,22 +1,28 @@
+---
+toc-title: events
+category: developer-guide
+title: List of events emitted by a collector
+permalink: docs/developer-guide/events/list-of-events.html
+---
 # List of events emitted by a collector
 
 `collector`s communicate via events. The following is a list of all
 the events common to all `collector`s, with their signature, and the
 `interface` they implement.
 
-* [`scan::start`](#scanstart)
-* [`scan::end`](#scanend)
-* [`targetfetch::start`](#targetfetchstart)
-* [`targetfetch::end`](#targetfetchend)
-* [`targetfetch::error`](#targetfetcherror)
-* [`fetch::start`](#fetchstart)
-* [`fetch::end`](#fetchend)
-* [`fetch::error`](#fetcherror)
-* [`traverse::start`](#traversestart)
-* [`traverse::end`](#traverseend)
-* [`traverse::down`](#traversedown)
-* [`traverse::up`](#traverseup)
-* [`element::<element-type>`](#elementelement-type)
+* [`scan::start`](#scan-start)
+* [`scan::end`](#scan-end)
+* [`targetfetch::start`](#targetfetch-start)
+* [`targetfetch::end`](#targetfetch-end)
+* [`targetfetch::error`](#targetfetch-error)
+* [`fetch::start`](#fetch-start)
+* [`fetch::end`](#fetch-end)
+* [`fetch::error`](#fetch-error)
+* [`traverse::start`](#traverse-start)
+* [`traverse::end`](#traverse-end)
+* [`traverse::down`](#traverse-down)
+* [`traverse::up`](#traverse-up)
+* [`element::<element-type>`](#element-lt-element-type-gt)
 
 ## `scan::start`
 
@@ -36,7 +42,7 @@ the events common to all `collector`s, with their signature, and the
   return a `Promise` because it will not wait for it to be resolved.
   If you need to perform an `async` operation you should combine it
   with `scan::end`. You can find more information in [how to interact
-  with other services](../rules/how-to-interact-with-other-services.md).
+  with other services](/docs/developer-guide/rules/how-to-interact-with-other-services.html).
 
 ## `scan::end`
 

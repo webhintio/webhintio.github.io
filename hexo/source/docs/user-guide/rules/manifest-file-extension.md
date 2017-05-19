@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Disallow non-standard file extension for the web app manifest file
+permalink: docs/user-guide/rules/manifest-file-extension.html
+---
 # Disallow non-standard file extension for the web app manifest file (`manifest-file-extension`)
 
 `manifest-file-extension` warns against using non-standard file

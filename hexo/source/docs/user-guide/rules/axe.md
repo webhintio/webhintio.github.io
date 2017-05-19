@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Accessibility assesment with aXe
+permalink: docs/user-guide/rules/axe.html
+---
 # Accessibility assesment with aXe (`axe`)
 
 `aXe` is the accessibility engine for automated testing of HTML-based

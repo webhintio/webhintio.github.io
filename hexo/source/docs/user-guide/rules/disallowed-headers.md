@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Disallow certain HTTP headers
+permalink: docs/user-guide/rules/disallowed-headers.html
+---
 # Disallow certain HTTP headers (`disallow-headers`)
 
 `disallow-headers` warns against responding with certain HTTP headers.

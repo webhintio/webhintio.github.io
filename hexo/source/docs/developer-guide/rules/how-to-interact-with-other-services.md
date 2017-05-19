@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: developer-guide
+title: How to interact with other services
+permalink: docs/developer-guide/rules/how-to-interact-with-other-services.html
+---
 # How to interact with other services
 
 You can develop a rule that integrates with other services. Sonar

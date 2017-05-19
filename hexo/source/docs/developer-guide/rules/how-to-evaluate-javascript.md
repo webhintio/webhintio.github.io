@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: developer-guide
+title: How to evaluate JavaScript
+permalink: docs/developer-guide/rules/how-to-evaluate-javascript.html
+---
 # How to evaluate JavaScript
 
 Sometimes a rule needs to evaluate some JavaScript in the context of

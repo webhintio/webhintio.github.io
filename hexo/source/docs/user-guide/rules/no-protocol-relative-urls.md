@@ -1,3 +1,9 @@
+---
+toc-title: rules
+category: user-guide
+title: Disallow protocol-relative URLs
+permalink: docs/user-guide/rules/no-protocol-relative-urls.html
+---
 # Disallow protocol-relative URLs (`no-protocol-relative-urls`)
 
 `no-protocol-relative-urls` warns against using scheme-relative URLs
