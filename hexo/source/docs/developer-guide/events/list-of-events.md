@@ -72,7 +72,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`fetch::start`](#fetch::start)
+* **Remarks:** The event is the same for [`fetch::start`](#fetchstart)
 
 ## `targetfetch::end`
 
@@ -93,7 +93,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`fetch::end`](#fetch::end).
+* **Remarks:** The event is the same for [`fetch::end`](#fetchend).
   In this case `element` will be null.
 
 ## `targetfetch::error`
@@ -113,7 +113,7 @@ the events common to all `collector`s, with their signature, and the
       error: any;
   }
   ```
-* **Remarks:** The event is the same for [`fetch::error`](#fetch::error).
+* **Remarks:** The event is the same for [`fetch::error`](#fetcherror).
   In this case `element` will be null.
 
 ## `fetch::start`
@@ -130,7 +130,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`targetfetch::start`](#targetfetch::start).
+* **Remarks:** The event is the same for [`targetfetch::start`](#targetfetchstart).
 
 ## `fetch::end`
 
@@ -152,7 +152,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`targetfetch::end`](#targetfetch::end).
+* **Remarks:** The event is the same for [`targetfetch::end`](#targetfetchend).
 
 ## `fetch::error`
 
@@ -172,7 +172,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`targetfetch::error`](#targetfetch::error).
+* **Remarks:** The event is the same for [`targetfetch::error`](#targetfetcherror).
 
 ## `traverse::start`
 
