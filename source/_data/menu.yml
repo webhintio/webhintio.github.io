@@ -7,22 +7,25 @@
   link: /docs
   items:
   - id: developer-guide
-    link: docs/developer-guide
+    link: /docs/developer-guide/
     title: Developer Guide
   - id: user-guide
-    link: docs/user-guide
+    link: /docs/user-guide/
     title: User Guide
 
 - title: About
   id: about
-  link: /about
+  link: /about/
   items:
   - id: faq
     title: Faq
-    link: /about/faq.html
+    link: /about/faq/
   - id: governance
     title: Governance
-    link: /about/governance
-  - id: changelog
-    title: Changelog
-    link: /about/changelog
+    link: /about/governance/
+  - id: contributors
+    title: Contributors
+    link: /about/contributors/
+  - id: code-of-conduct
+    title: Code of Conduct
+    link: /about/code-of-conduct/

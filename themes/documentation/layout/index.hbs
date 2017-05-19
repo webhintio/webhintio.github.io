@@ -9,24 +9,24 @@
         <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
-        <link rel="stylesheet" href="{{url_for "core/css/base.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/color.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/footer.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/helpers.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/layouts.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/navigation.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/search-results.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/structure.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/type.css"}}">
-        <link rel="stylesheet" href="{{url_for "core/css/highlight.css"}}">
-        <link rel="stylesheet" href="{{url_for "components/breadcrumb/breadcrumb.css"}}">
-        {{#if page.category}}
-            <link rel="stylesheet" href="{{url_for "core/css/code.css"}}">
-            <link rel="stylesheet" href="{{url_for "core/css/table-of-contents.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/base.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/color.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/footer.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/helpers.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/layouts.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/navigation.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/search-results.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/structure.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/type.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/highlight.css"}}">
+        <link rel="stylesheet" href="{{url_for "/components/breadcrumb/breadcrumb.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/controls.css"}}">
+        {{#compare page.category '||' isScanner}}
+            <link rel="stylesheet" href="{{url_for "/core/css/code.css"}}">
+            <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
         {{else}}
-            <link rel="stylesheet" href="{{url_for "core/css/controls.css"}}">
-            <link rel="stylesheet" href="{{url_for "core/css/home.css"}}">
-        {{/if}}
+            <link rel="stylesheet" href="{{url_for "/core/css/home.css"}}">
+        {{/compare}}
         <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
     </head>

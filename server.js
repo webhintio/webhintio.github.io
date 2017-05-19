@@ -39,7 +39,7 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-app.get('/scanner', (req, res) => {
+app.get('/scanner/', (req, res) => {
     res.render('scan', {
         intro: scannerIntro,
         isScanner: true,
@@ -47,7 +47,7 @@ app.get('/scanner', (req, res) => {
     });
 });
 
-app.post('/scanner', (req, res) => {
+app.post('/scanner/', (req, res) => {
     res.render('scan-result', {
         isScanner: true,
         menuData
