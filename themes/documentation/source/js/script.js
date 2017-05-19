@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    var sectionItems = document.querySelectorAll('.navbar__navitem .navitem__button');
+    var sectionItems = document.querySelectorAll('.navbar__navitem .navitem__button.expandable');
     var items = document.querySelectorAll('.navbar__navitem .navbar__submenu');
 
     var setAttribute = function (collection, attribute, value) {

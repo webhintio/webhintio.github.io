@@ -1,11 +1,12 @@
 <header class="header">
     <div class="nav-bar container">
         <nav class="nav">
-            <a href="/" class="clear"><img src="{{url_for "images/sonar-logo.svg"}}" alt="sonar" class="header__logo navbar__navitem"></a>
+            <a href="/" class="clear"><img src="{{url_for "/images/sonar-logo.svg"}}" alt="sonar" class="header__logo navbar__navitem"></a>
             <ul class="nav__navbar">
                 {{#each navs}}
                     <li class="navbar__navitem">
-                        <a role="button" href="{{url_for link}}" id="{{id}}" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-{{id}}" class="navitem__button">{{title}}</a>
+                        <a role="button" href="{{url_for link}}" id="{{id}}" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-{{id}}"
+                        class="navitem__button {{#hasSubPage id}}expandable{{/hasSubPage}}">{{title}}</a>
                         {{#hasSubPage id}}
                             <ul role="group" id="submenu-{{id}}" class="navbar__submenu" aria-hidden="true">
                                 {{#each items}}
