@@ -10,19 +10,19 @@ permalink: docs/developer-guide/events/list-of-events.html
 the events common to all `collector`s, with their signature, and the
 `interface` they implement.
 
-* [`scan::start`](#scan-start)
-* [`scan::end`](#scan-end)
-* [`targetfetch::start`](#targetfetch-start)
-* [`targetfetch::end`](#targetfetch-end)
-* [`targetfetch::error`](#targetfetch-error)
-* [`fetch::start`](#fetch-start)
-* [`fetch::end`](#fetch-end)
-* [`fetch::error`](#fetch-error)
-* [`traverse::start`](#traverse-start)
-* [`traverse::end`](#traverse-end)
-* [`traverse::down`](#traverse-down)
-* [`traverse::up`](#traverse-up)
-* [`element::<element-type>`](#element-lt-element-type-gt)
+* [`scan::start`](#scanstart)
+* [`scan::end`](#scanend)
+* [`targetfetch::start`](#targetfetchstart)
+* [`targetfetch::end`](#targetfetchend)
+* [`targetfetch::error`](#targetfetcherror)
+* [`fetch::start`](#fetchstart)
+* [`fetch::end`](#fetchend)
+* [`fetch::error`](#fetcherror)
+* [`traverse::start`](#traversestart)
+* [`traverse::end`](#traverseend)
+* [`traverse::down`](#traversedown)
+* [`traverse::up`](#traverseup)
+* [`element::<element-type>`](#elementelement-type)
 
 ## `scan::start`
 
@@ -72,7 +72,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`fetch::start`](#fetch::start)
+* **Remarks:** The event is the same for [`fetch::start`](#fetchstart)
 
 ## `targetfetch::end`
 
@@ -93,7 +93,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`fetch::end`](#fetch::end).
+* **Remarks:** The event is the same for [`fetch::end`](#fetchend).
   In this case `element` will be null.
 
 ## `targetfetch::error`
@@ -113,7 +113,7 @@ the events common to all `collector`s, with their signature, and the
       error: any;
   }
   ```
-* **Remarks:** The event is the same for [`fetch::error`](#fetch::error).
+* **Remarks:** The event is the same for [`fetch::error`](#fetcherror).
   In this case `element` will be null.
 
 ## `fetch::start`
@@ -130,7 +130,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`targetfetch::start`](#targetfetch::start).
+* **Remarks:** The event is the same for [`targetfetch::start`](#targetfetchstart).
 
 ## `fetch::end`
 
@@ -152,7 +152,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`targetfetch::end`](#targetfetch::end).
+* **Remarks:** The event is the same for [`targetfetch::end`](#targetfetchend).
 
 ## `fetch::error`
 
@@ -172,7 +172,7 @@ the events common to all `collector`s, with their signature, and the
   }
   ```
 
-* **Remarks:** The event is the same for [`targetfetch::error`](#targetfetch::error).
+* **Remarks:** The event is the same for [`targetfetch::error`](#targetfetcherror).
 
 ## `traverse::start`
 
