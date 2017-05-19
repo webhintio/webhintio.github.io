@@ -1,0 +1,137 @@
+/*
+ * Menu Button
+ * =============================================
+ * @Dependencies: base.css, type.css
+ * 3 levels of selectors for menu items ensure that
+ * this component is supported whether or not the
+ * browser supports button[type="menu"] (needed
+ * for IE11 support)
+ */
+
+/* Position the popup menu when not nativly supported */
+.wrap-menu-button {
+    position: relative;
+    display: inline-block;
+}
+
+/* include UL so it doesn't apply to native menu elements */
+button[type="submit"] + ul[role="menu"],
+button[type="menu"] + ul[role="menu"] {
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+}
+
+
+/*
+ *	BUTTON
+ *	---------------------------------------------
+ */
+
+/* @TODO: Consider moving reset to Controls.css (don't style button with type=menu) */
+button[type="menu"] {
+    min-width: 0;
+    border: 0;
+    padding: .8rem;
+
+    color: hsla(0, 0%, 0%, .6);
+    background: 0;
+}
+
+button[type="menu"]::after {
+    padding-left: .8rem;
+    color: #000;
+    content: "";
+}
+
+button[type="menu"]:hover {
+    color: #000;
+}
+
+button[type="menu"][disabled] {
+    color: hsla(0, 0%, 0%, .2);
+}
+
+button[type="menu"][disabled]::after {
+    opacity: .2;
+}
+
+
+/*
+ *	MENU
+ *	---------------------------------------------
+ */
+
+button[type="menu"] + menu,
+button[type="submit"] + [role="menu"],
+button[type="menu"] + [role="menu"] {
+    min-width: 29.6rem;
+    margin: 0;
+    border: 1px solid hsla(0, 0%, 0%, .1);
+
+    list-style: none;
+    background: #fff;
+}
+
+
+/*
+ *	MENU ITEMS
+ *	---------------------------------------------
+ */
+
+button[type="menu"] + menu menuitem,
+button[type="submit"] + [role="menu"] label,
+button[type="menu"] + [role="menu"] label {
+    margin: 0; /* only needed on polyfill for label */
+    padding: 1.2rem;
+    background: hsla(0, 0%, 0%, .05);
+    cursor: pointer;
+}
+
+button[type="menu"] + menu menuitem:hover,
+button[type="submit"] + [role="menu"] label:hover,
+button[type="menu"] + [role="menu"] label:hover {
+    background: hsla(0, 0%, 0%, .1);
+}
+
+button[type="menu"] + menu menuitem:active,
+button[type="submit"] + [role="menu"] label:active,
+button[type="menu"] + [role="menu"] label:active {
+    background: hsla(0, 0%, 0%, .3);
+}
+
+button[type="menu"] + menu menuitem:checked,
+button[type="submit"] + [role="menu"] :checked + label,
+button[type="menu"] + [role="menu"] :checked + label {
+    background: #0078d7;
+    color: #fff;
+}
+
+button[type="menu"] + menu menuitem[disabled],
+button[type="submit"] + [role="menu"] input[disabled] + label,
+button[type="menu"] + [role="menu"] input[disabled] + label {
+    color: hsla(0, 0%, 0%, .2);
+    background: hsla(0, 0%, 0%, .05);
+    cursor: not-allowed;
+}
+
+/* polyfill only */
+button[type="submit"] + [role="menu"] li,
+button[type="menu"] + [role="menu"] li {
+    margin: 0;
+}
+
+button[type="submit"] + [role="menu"] input,
+button[type="menu"] + [role="menu"] input {
+    opacity: 0;
+}
+
+button[type="submit"] + [role="menu"] label,
+button[type="menu"] + [role="menu"] label {
+    display: block;
+}
+
+button[type="submit"] + [role="menu"] input:focus + label,
+button[type="menu"] + [role="menu"] input:focus + label {
+    outline: 1px dashed #000;
+}

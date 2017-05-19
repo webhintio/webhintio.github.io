@@ -1,0 +1,15 @@
+/*
+ * NESTED NAV
+ * ===================================================
+ * @Dependencies: base.css, type.css, tables-lists.css
+ */
+
+.nav--nested [aria-current]:link,
+.nav--nested [aria-current]:visited {
+    color: #000;
+}
+
+/* Spacing on second level and below */
+.nav--nested li ul {
+    padding-left: 2rem;
+}

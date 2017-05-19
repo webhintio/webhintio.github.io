@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sonar</title>
+        <meta name="description" content="sonar website">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+        <link rel="stylesheet" href="/core/css/base.css">
+        <link rel="stylesheet" href="/core/css/color.css">
+        <link rel="stylesheet" href="/core/css/footer.css">
+        <link rel="stylesheet" href="/core/css/helpers.css">
+        <link rel="stylesheet" href="/core/css/layouts.css">
+        <link rel="stylesheet" href="/core/css/navigation.css">
+        <link rel="stylesheet" href="/core/css/search-results.css">
+        <link rel="stylesheet" href="/core/css/structure.css">
+        <link rel="stylesheet" href="/core/css/type.css">
+        <link rel="stylesheet" href="/core/css/highlight.css">
+        <link rel="stylesheet" href="/components/breadcrumb/breadcrumb.css">
+        <link rel="stylesheet" href="/core/css/controls.css">
+            <link rel="stylesheet" href="/core/css/code.css">
+            <link rel="stylesheet" href="/core/css/table-of-contents.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    </head>
+
+    <body>
+            <header class="header">
+                <div class="nav-bar container">
+                    <nav class="nav">
+                        <a href="/" class="clear"><img src="/images/sonar-logo.svg" alt="sonar" class="header__logo navbar__navitem"></a>
+                        <ul class="nav__navbar">
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/scanner" id="scanner" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-scanner"
+                                    class="navitem__button ">Scanner</a>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/docs" id="docs" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-docs"
+                                    class="navitem__button expandable">Documentation</a>
+                                        <ul role="group" id="submenu-docs" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/docs/developer-guide/">Developer Guide</a></li>
+                                                <li><a href="/docs/user-guide/">User Guide</a></li>
+                                        </ul>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/about/" id="about" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-about"
+                                    class="navitem__button expandable">About</a>
+                                        <ul role="group" id="submenu-about" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/about/faq/">Faq</a></li>
+                                                <li><a href="/about/governance/">Governance</a></li>
+                                                <li><a href="/about/contributors/">Contributors</a></li>
+                                                <li><a href="/about/code-of-conduct/">Code of Conduct</a></li>
+                                        </ul>
+                                </li>
+                        </ul>
+                        <div class="nav-bar__input">
+                            <input type="search" id="search-input" placeholder="Search...">
+                        </div>
+                    </nav>
+                    <button class="header__toggle mobile-nav-button" aria-label="Menu"></button>
+                </div>
+            </header>
+            <main class="container">
+
+                    <article class="content" aria-labelledby="page-heading">
+                        <nav class="container breadcrumb" aria-label="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="../../">Documentation</a></li>
+                                <li>
+                                    <a href="../../">
+                                            User Guide
+                                    </a>
+                                </li>
+                                <li aria-current="location">Disallow small error pages</li>
+                            </ul>
+                        </nav>
+                        <header class="page-intro">
+                            <h1 id="page-heading">User Guide</h1>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </header>
+                        <section class="section">
+                            <div class="layout layout--sidebar">
+                                <div class="module module--primary">
+                                    <h1 id="Disallow-small-error-pages-no-friendly-error-pages"><a href="#Disallow-small-error-pages-no-friendly-error-pages" class="headerlink" title="Disallow small error pages (no-friendly-error-pages)"></a>Disallow small error pages (<code>no-friendly-error-pages</code>)</h1><p><code>no-friendly-error-pages</code> warns against using error pages that have the
+                    size under a certain threshold.</p>
+                    <h2 id="Why-is-this-important"><a href="#Why-is-this-important" class="headerlink" title="Why is this important?"></a>Why is this important?</h2><p>By default <a href="https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/" target="_blank" rel="external"><code>Internet Explorer 5-11</code> will show its custom error
+                    pages</a>
+                    if the response body’s byte length is shorter than:</p>
+                    <ul>
+                    <li><code>256</code> bytes for responses with the status code: <code>403</code>, <code>405</code>,
+                    or <code>410</code></li>
+                    <li><code>512</code> bytes for responses with the status code: <code>400</code>, <code>404</code>,
+                    <code>406</code>, <code>408</code>, <code>409</code>, <code>500</code>, <code>501</code>, or <code>505</code></li>
+                    </ul>
+                    <p>Similar behavior existed in older versions of other browsers, such as
+                    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=36558" target="_blank" rel="external">Chrome</a>.</p>
+                    <p>While in <code>Internet Explorer</code> users can disabled the <code>Show friendly HTTP
+                    error messages</code> functionality, that is not usually the case.</p>
+                    <h2 id="What-does-the-rule-check"><a href="#What-does-the-rule-check" class="headerlink" title="What does the rule check?"></a>What does the rule check?</h2><p>The rule looks at all responses and checks if any of them have one
+                    of the status codes specified above and their body’s byte length is
+                    under the required threshold.</p>
+                    <p>Additionally, the rule will try to generate an error response (more
+                    specifically a <code>404</code> response), if one wasn’t found.</p>
+                    <ul>
+                    <li><p>Examples that <strong>trigger</strong> the rule:</p>
+                    <ul>
+                    <li><p>Response with the status code <code>403</code> and the body under 256 bytes</p>
+                    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 403 Forbidden</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>403 Forbidden<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>This page has under 256 bytes, so it will be displayed by all browsers.<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    </li>
+                    <li><p>Response with the status code <code>500</code> and the body under 512 bytes</p>
+                    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 500 Internal Server Error</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTTP 500 - Internal Server Error<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTTP 500 - Internal Server Error<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>This page has under 512 bytes, therefore, it will not be displayed by some older browsers.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    </li>
+                    </ul>
+                    </li>
+                    <li><p>Examples that <strong>pass</strong> the rule:</p>
+                    <ul>
+                    <li><p>Response with the status code <code>403</code> and the body over 256 bytes</p>
+                    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 500 Internal Server Error</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTTP 403 - Forbidden<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTTP 403 - Forbidden<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>......................................................................<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>This page has over 256 bytes, so it will be displayed by all browsers.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>......................................................................<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>......................................................................<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    </li>
+                    <li><p>Response with the status code <code>500</code> and the body over 512 bytes</p>
+                    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 500 Internal Server Error</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTTP 500 - Internal Server Error<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTTP 500 - Internal Server Error<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>......................................................................<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>This page has over 512 bytes, so it will be displayed by all browsers.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>......................................................................<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>......................................................................<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    <h2 id="Further-Reading"><a href="#Further-Reading" class="headerlink" title="Further Reading"></a>Further Reading</h2><ul>
+                    <li><a href="https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/" target="_blank" rel="external">Friendly HTTP Error Pages</a></li>
+                    </ul>
+                    
+                                </div>
+                                <div class="module module--secondary table-of-contents" role="navigation">
+                                        <ul class="toc-subsection-title">
+                                                <li>
+                                                    <a href="/docs/user-guide/differences-among-collectors.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Differences among collectors
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                            <p class="toc-section-title--active">
+                                                <a href="/docs/user-guide/rules/index.html">
+                                                rules
+                                                </a>
+                                            </p>
+                                        <ul class="toc-subsection-title">
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/disallowed-headers.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow certain HTTP headers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/manifest-file-extension.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow non-standard file extension for the web app manifest file
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/manifest-exists.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require a web app manifest file
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-html-only-headers.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow unneeded HTTP headers for non-HTML resources
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-friendly-error-pages.html"
+                                                            class="toc-subsection-title--active"
+                                                            aria-current="location"
+                    >
+                                                        Disallow small error pages
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/axe.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Accessibility assesment with aXe
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/disown-opener.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require external links to disown opener
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-protocol-relative-urls.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow protocol-relative URLs
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/x-content-type-options.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require &#x60;X-Content-Type-Options&#x60; HTTP response header
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/ssllabs.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        SSL Server Test
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/meta-charset-utf-8.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require charset meta tag with the value of &#x60;utf-8&#x60;
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/highest-available-document-mode.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require highest available document mode
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+
+            </main>
+        <script src="/js/script.js"></script>
+        <script src="/core/scripts/form-validation.js"></script>
+        <script src="/components/accordion/accordion.js"></script>
+        <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+        <script>
+            docsearch({
+                apiKey: '2ee58f908e6d720c4f72a9645ce0e857', // search-only API key, okay for frontend
+                indexName: 'sonarwhal',
+                inputSelector: '#search-input',
+                appId: '0R8E5SPAFP',
+                debug: true // set to true if need to debug css
+            });
+        </script>
+    </body>
+</html>
