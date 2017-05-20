@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sonar</title>
+        <meta name="description" content="sonar website">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+        <link rel="stylesheet" href="/core/css/base.css">
+        <link rel="stylesheet" href="/core/css/color.css">
+        <link rel="stylesheet" href="/core/css/footer.css">
+        <link rel="stylesheet" href="/core/css/helpers.css">
+        <link rel="stylesheet" href="/core/css/layouts.css">
+        <link rel="stylesheet" href="/core/css/navigation.css">
+        <link rel="stylesheet" href="/core/css/search-results.css">
+        <link rel="stylesheet" href="/core/css/structure.css">
+        <link rel="stylesheet" href="/core/css/type.css">
+        <link rel="stylesheet" href="/core/css/highlight.css">
+        <link rel="stylesheet" href="/components/breadcrumb/breadcrumb.css">
+        <link rel="stylesheet" href="/core/css/controls.css">
+            <link rel="stylesheet" href="/core/css/code.css">
+            <link rel="stylesheet" href="/core/css/table-of-contents.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    </head>
+
+    <body>
+            <header class="header">
+                <div class="nav-bar container">
+                    <nav class="nav">
+                        <a href="/" class="clear"><img src="/images/sonar-logo.svg" alt="sonar" class="header__logo navbar__navitem"></a>
+                        <ul class="nav__navbar">
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/scanner" id="scanner" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-scanner"
+                                    class="navitem__button ">Scanner</a>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/docs" id="docs" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-docs"
+                                    class="navitem__button expandable">Documentation</a>
+                                        <ul role="group" id="submenu-docs" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/docs/developer-guide/">Developer Guide</a></li>
+                                                <li><a href="/docs/user-guide/">User Guide</a></li>
+                                        </ul>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/about/" id="about" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-about"
+                                    class="navitem__button expandable">About</a>
+                                        <ul role="group" id="submenu-about" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/about/faq/">Faq</a></li>
+                                                <li><a href="/about/governance/">Governance</a></li>
+                                                <li><a href="/about/contributors/">Contributors</a></li>
+                                                <li><a href="/about/code-of-conduct/">Code of Conduct</a></li>
+                                        </ul>
+                                </li>
+                        </ul>
+                        <div class="nav-bar__input">
+                            <input type="search" id="search-input" placeholder="Search...">
+                        </div>
+                    </nav>
+                    <button class="header__toggle mobile-nav-button" aria-label="Menu"></button>
+                </div>
+            </header>
+            <main class="container">
+
+                    <article class="content" aria-labelledby="page-heading">
+                        <nav class="container breadcrumb" aria-label="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="../../">Documentation</a></li>
+                                <li>
+                                    <a href="../../">
+                                            User Guide
+                                    </a>
+                                </li>
+                                <li aria-current="location">Require a web app manifest file</li>
+                            </ul>
+                        </nav>
+                        <header class="page-intro">
+                            <h1 id="page-heading">User Guide</h1>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </header>
+                        <section class="section">
+                            <div class="layout layout--sidebar">
+                                <div class="module module--primary">
+                                    <h1 id="Require-a-web-app-manifest-file-manifest-exists"><a href="#Require-a-web-app-manifest-file-manifest-exists" class="headerlink" title="Require a web app manifest file (manifest-exists)"></a>Require a web app manifest file (<code>manifest-exists</code>)</h1><p><code>manifest-exists</code> warns against not providing a
+                    <a href="https://www.w3.org/TR/appmanifest" target="_blank" rel="external">web app manifest</a> file.</p>
+                    <h2 id="Why-is-this-important"><a href="#Why-is-this-important" class="headerlink" title="Why is this important?"></a>Why is this important?</h2><p>The web app manifest file constitutes a standard centralized place
+                    to put metadata about your site/web app, and providing it:</p>
+                    <ul>
+                    <li><p>informs browsers (and possible
+                    <a href="https://medium.com/web-on-the-edge/progressive-web-apps-on-windows-8d8eb68d524e#62d2" target="_blank" rel="external">others</a>)
+                    where to look for information about your site/web app, information
+                    that they may need in different contexts (e.g. what icon and name
+                    should they use for your site/web app when the user adds it to the
+                    homescreen)</p>
+                    </li>
+                    <li><p>is an essential piece in the context of progressive web apps,
+                    being one of the signals used by some browsers (e.g.
+                    <a href="https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/" target="_blank" rel="external">Chrome</a>,
+                    <a href="https://dev.opera.com/blog/web-app-install-banners/" target="_blank" rel="external">Opera</a>,
+                    <a href="https://medium.com/samsung-internet-dev/what-does-it-mean-to-be-an-app-ace43eb6b94d" target="_blank" rel="external">Samsung Internet</a>)
+                    in deciding if they will show the add to homescreen prompt to users</p>
+                    </li>
+                    </ul>
+                    <h2 id="What-does-the-rule-check"><a href="#What-does-the-rule-check" class="headerlink" title="What does the rule check?"></a>What does the rule check?</h2><p>This rule checks if:</p>
+                    <ol>
+                    <li><p>The web app manifest file is specified correctly in the page
+                    (i.e. the page contains a single, valid declaration such as:
+                    <code>&lt;link rel=&quot;manifest&quot; href=&quot;site.webmanifest&quot;&gt;</code>)</p>
+                    <p>Examples that <strong>trigger</strong> the rule:</p>
+                    <ul>
+                    <li><p>The web app manifest file is not specified.</p>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">       ...</div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>...<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    </li>
+                    <li><p>The location of the web app manifest file is not specified.</p>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span>&gt;</span></div><div class="line">        ...</div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>...<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></div><div class="line">        ...</div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>...<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span> <span class="attr">hrref</span>=<span class="string">"site.webmanifest"</span>&gt;</span></div><div class="line">        ...</div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>...<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    </li>
+                    <li><p>More than one web app manifest file is specified.</p>
+                    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span> <span class="attr">href</span>=<span class="string">"site.webmanifest"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span> <span class="attr">href</span>=<span class="string">"another-site.webmanifest"</span>&gt;</span></div><div class="line">        ...</div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>...<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    </li>
+                    </ul>
+                    <p>Example that <strong>passes</strong> the rule:</p>
+                     <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span> <span class="attr">href</span>=<span class="string">"site.webmanifest"</span>&gt;</span></div><div class="line">        ...</div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>...<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+                    </li>
+                    <li><p>The specified web app manifest file is accessible (i.e. requesting
+                    it doesn’t result in a <code>404</code>, <code>500</code>, etc.)</p>
+                    <p>TODO: Add information on CORS.</p>
+                    </li>
+                    </ol>
+                    <h2 id="Further-Reading"><a href="#Further-Reading" class="headerlink" title="Further Reading"></a>Further Reading</h2><ul>
+                    <li><a href="https://www.w3.org/TR/appmanifest" target="_blank" rel="external">Web App Manifest Specification</a></li>
+                    </ul>
+                    
+                                </div>
+                                <div class="module module--secondary table-of-contents" role="navigation">
+                                        <ul class="toc-subsection-title">
+                                                <li>
+                                                    <a href="/docs/user-guide/differences-among-collectors.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Differences among collectors
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                            <p class="toc-section-title--active">
+                                                <a href="/docs/user-guide/rules/index.html">
+                                                rules
+                                                </a>
+                                            </p>
+                                        <ul class="toc-subsection-title">
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/disallowed-headers.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow certain HTTP headers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/manifest-file-extension.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow non-standard file extension for the web app manifest file
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/manifest-exists.html"
+                                                            class="toc-subsection-title--active"
+                                                            aria-current="location"
+                    >
+                                                        Require a web app manifest file
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-html-only-headers.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow unneeded HTTP headers for non-HTML resources
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-friendly-error-pages.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow small error pages
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/axe.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Accessibility assesment with aXe
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/disown-opener.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require external links to disown opener
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-protocol-relative-urls.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow protocol-relative URLs
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/x-content-type-options.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require &#x60;X-Content-Type-Options&#x60; HTTP response header
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/ssllabs.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        SSL Server Test
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/meta-charset-utf-8.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require charset meta tag with the value of &#x60;utf-8&#x60;
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/highest-available-document-mode.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require highest available document mode
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+
+            </main>
+        <script src="/js/script.js"></script>
+        <script src="/core/scripts/form-validation.js"></script>
+        <script src="/components/accordion/accordion.js"></script>
+        <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+        <script>
+            docsearch({
+                apiKey: '2ee58f908e6d720c4f72a9645ce0e857', // search-only API key, okay for frontend
+                indexName: 'sonarwhal',
+                inputSelector: '#search-input',
+                appId: '0R8E5SPAFP',
+                debug: true // set to true if need to debug css
+            });
+        </script>
+    </body>
+</html>

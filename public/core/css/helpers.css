@@ -1,0 +1,41 @@
+/*
+ * HELPERS
+ * @Dependencies: base.css
+ * ============================================
+ */
+
+/* Hide only visually, but have it available for screen readers */
+.visually-hidden {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+/* Clear floated child elements */
+.clear::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+/* Remove UA visuals
+ * Right now only have styles for ul/ol
+ */
+.bare {
+    margin-left: 0;
+    list-style: none;
+}
+
+/* Apply to sections where long strings of text need to wrap */
+.wrap-text {
+    word-wrap: break-word;
+}
+
+/* For text that needs to be uppercase when it's style normally isn't */
+.uppercase-text {
+    text-transform: uppercase;
+}
+
+/* for demo purposes */
+.hide {
+    display: none;
+}

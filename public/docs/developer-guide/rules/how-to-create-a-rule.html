@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sonar</title>
+        <meta name="description" content="sonar website">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+        <link rel="stylesheet" href="/core/css/base.css">
+        <link rel="stylesheet" href="/core/css/color.css">
+        <link rel="stylesheet" href="/core/css/footer.css">
+        <link rel="stylesheet" href="/core/css/helpers.css">
+        <link rel="stylesheet" href="/core/css/layouts.css">
+        <link rel="stylesheet" href="/core/css/navigation.css">
+        <link rel="stylesheet" href="/core/css/search-results.css">
+        <link rel="stylesheet" href="/core/css/structure.css">
+        <link rel="stylesheet" href="/core/css/type.css">
+        <link rel="stylesheet" href="/core/css/highlight.css">
+        <link rel="stylesheet" href="/components/breadcrumb/breadcrumb.css">
+        <link rel="stylesheet" href="/core/css/controls.css">
+            <link rel="stylesheet" href="/core/css/code.css">
+            <link rel="stylesheet" href="/core/css/table-of-contents.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    </head>
+
+    <body>
+            <header class="header">
+                <div class="nav-bar container">
+                    <nav class="nav">
+                        <a href="/" class="clear"><img src="/images/sonar-logo.svg" alt="sonar" class="header__logo navbar__navitem"></a>
+                        <ul class="nav__navbar">
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/scanner" id="scanner" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-scanner"
+                                    class="navitem__button ">Scanner</a>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/docs" id="docs" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-docs"
+                                    class="navitem__button expandable">Documentation</a>
+                                        <ul role="group" id="submenu-docs" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/docs/developer-guide/">Developer Guide</a></li>
+                                                <li><a href="/docs/user-guide/">User Guide</a></li>
+                                        </ul>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/about/" id="about" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-about"
+                                    class="navitem__button expandable">About</a>
+                                        <ul role="group" id="submenu-about" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/about/faq/">Faq</a></li>
+                                                <li><a href="/about/governance/">Governance</a></li>
+                                                <li><a href="/about/contributors/">Contributors</a></li>
+                                                <li><a href="/about/code-of-conduct/">Code of Conduct</a></li>
+                                        </ul>
+                                </li>
+                        </ul>
+                        <div class="nav-bar__input">
+                            <input type="search" id="search-input" placeholder="Search...">
+                        </div>
+                    </nav>
+                    <button class="header__toggle mobile-nav-button" aria-label="Menu"></button>
+                </div>
+            </header>
+            <main class="container">
+                    <article class="content" aria-labelledby="page-heading">
+                        <nav class="container breadcrumb" aria-label="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="../../">Documentation</a></li>
+                                <li>
+                                    <a href="../../">
+                                            Developer Guide
+                                    </a>
+                                </li>
+                                <li aria-current="location">How to create a rule</li>
+                            </ul>
+                        </nav>
+                        <header class="page-intro">
+                            <h1 id="page-heading">Developer Guide</h1>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </header>
+                        <section class="section">
+                            <div class="layout layout--sidebar">
+                                <div class="module module--primary">
+                                    <h1 id="How-to-create-a-rule"><a href="#How-to-create-a-rule" class="headerlink" title="How to create a rule"></a>How to create a rule</h1><p>To create a new rule you just need to:</p>
+                    <ul>
+                    <li><p>Create a <code>new-rule.ts</code> file in a folder with the same name of the rule
+                    file (e.g.: <code>src/rules/new-rule/new-rule.ts</code>)</p>
+                    </li>
+                    <li><p>Have the following template:</p>
+                    <figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> * <span class="keyword">from</span> <span class="string">'../../utils/rule-helpers'</span>;</div><div class="line"><span class="comment">// The list of types depends on the [events](/docs/developer-guide/events/list-of-events.html) you want to capture.</span></div><div class="line"><span class="keyword">import</span> &#123; IFetchEndEvent, IRule, IRuleBuilder &#125; <span class="keyword">from</span> <span class="string">'../../types'</span>; <span class="comment">// eslint-disable-line no-unused-vars</span></div><div class="line"><span class="keyword">import</span> &#123; RuleContext &#125; <span class="keyword">from</span> <span class="string">'../../rule-context'</span>; <span class="comment">// eslint-disable-line no-unused-vars</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> rule: IRuleBuilder = &#123;</div><div class="line">    create(context: RuleContext): IRule &#123;</div><div class="line">        <span class="comment">// Your code here.</span></div><div class="line"></div><div class="line">        <span class="keyword">const</span> validateFetchEnd = <span class="function">(<span class="params">fetchEnd: IFetchEndEvent</span>) =&gt;</span> &#123;</div><div class="line">            <span class="comment">// Code to validate the rule on the event fetch::end.</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">const</span> validateTargetFetchEnd = <span class="function">(<span class="params">targetFetchEnd: IFetchEndEvent</span>) =&gt;</span> &#123;</div><div class="line">            <span class="comment">// Code to validate the rule on the event targetfetch::end.</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">          <span class="string">'fetch::end'</span>: validateFetchEnd,</div><div class="line">          <span class="string">'targetfetch::end'</span>: validateTargetFetchEnd</div><div class="line">          <span class="comment">// As many events as you need, you can see the</span></div><div class="line">          <span class="comment">// list of events [here](/docs/developer-guide/events/list-of-events.html).</span></div><div class="line">      &#125;;</div><div class="line">    &#125;,</div><div class="line">    meta: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    </li>
+                    </ul>
+                    <h2 id="Target-specific-browsers"><a href="#Target-specific-browsers" class="headerlink" title="Target specific browsers"></a>Target specific browsers</h2><p>If your rule only applies to specific browsers you should use
+                    <code>context.targetedBrowsers</code> and check if you need to get executed or not.</p>
+                    <figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> validateFetchEnd = <span class="function">(<span class="params">fetchEnd: IFetchEndEvent</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span>(!context.targetedBrowsers.includes(<span class="string">'Edge 14'</span>)) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Your validations</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    <h2 id="Ignore-some-urls"><a href="#Ignore-some-urls" class="headerlink" title="Ignore some urls"></a>Ignore some urls</h2><p>If your rule doesn’t apply to specific urls you use the property <code>ignoredUrls</code> in your configuration file</p>
+                    <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"ignoredUrls": &#123;</div><div class="line">    ".*\\.domain1\\.com/.*": ["*"], //Apply to all the rules, events won't be emitted for that urls</div><div class="line">    ".*\\.domain2\\.net/.*": ["disallowed-headers"] //Just apply to the rule disallowed-headers</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    <h2 id="Ignore-collectors"><a href="#Ignore-collectors" class="headerlink" title="Ignore collectors"></a>Ignore collectors</h2><p>If your rule doesn’t apply or work propertly with certain collectors you can list them in <code>ignoreCollectors</code>,
+                    and the rule will be ignored by those collectors.</p>
+                    <figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> * <span class="keyword">from</span> <span class="string">'../../utils/rule-helpers'</span>;</div><div class="line"><span class="comment">// The list of types depends on the [events](/docs/developer-guide/events/list-of-events.html) you want to capture.</span></div><div class="line"><span class="keyword">import</span> &#123; IFetchEndEvent, IRule, IRuleBuilder &#125; <span class="keyword">from</span> <span class="string">'../../types'</span>; <span class="comment">// eslint-disable-line no-unused-vars</span></div><div class="line"><span class="keyword">import</span> &#123; RuleContext &#125; <span class="keyword">from</span> <span class="string">'../../rule-context'</span>; <span class="comment">// eslint-disable-line no-unused-vars</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> rule: IRuleBuilder = &#123;</div><div class="line">    create(context: RuleContext): IRule &#123;</div><div class="line">        <span class="comment">// Your code here.</span></div><div class="line">    &#125;,</div><div class="line">    meta: &#123;</div><div class="line">        ignoredCollectors: [<span class="string">'jsdom'</span>]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    
+                                </div>
+                                <div class="module module--secondary table-of-contents" role="navigation">
+                                            <p class="toc-section-title--active">
+                                                <a href="/docs/developer-guide/collectors/index.html">
+                                                collectors
+                                                </a>
+                                            </p>
+                                        <ul class="toc-subsection-title">
+                                                <li>
+                                                    <a href="/docs/developer-guide/collectors/how-to-develop-a-collector.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        How to develop a collector
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                            <p class="toc-section-title--active">
+                                                <a href="/docs/developer-guide/rules/index.html">
+                                                rules
+                                                </a>
+                                            </p>
+                                        <ul class="toc-subsection-title">
+                                                <li>
+                                                    <a href="/docs/developer-guide/rules/how-to-test-rules.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        How to test rules
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/developer-guide/rules/how-to-evaluate-javascript.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        How to evaluate JavaScript
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/developer-guide/rules/how-to-interact-with-other-services.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        How to interact with other services
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/developer-guide/rules/how-to-create-a-rule.html"
+                                                            class="toc-subsection-title--active"
+                                                            aria-current="location"
+                    >
+                                                        How to create a rule
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                            <p class="toc-section-title--active">
+                                                <a href="/docs/developer-guide/events/index.html">
+                                                events
+                                                </a>
+                                            </p>
+                                        <ul class="toc-subsection-title">
+                                                <li>
+                                                    <a href="/docs/developer-guide/events/list-of-events.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        List of events emitted by a collector
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                        <ul class="toc-subsection-title">
+                                        </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+
+
+            </main>
+        <script src="/js/script.js"></script>
+        <script src="/core/scripts/form-validation.js"></script>
+        <script src="/components/accordion/accordion.js"></script>
+        <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+        <script>
+            docsearch({
+                apiKey: '2ee58f908e6d720c4f72a9645ce0e857', // search-only API key, okay for frontend
+                indexName: 'sonarwhal',
+                inputSelector: '#search-input',
+                appId: '0R8E5SPAFP',
+                debug: true // set to true if need to debug css
+            });
+        </script>
+    </body>
+</html>

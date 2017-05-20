@@ -1,0 +1,63 @@
+/*
+ * ACCORDIONS
+ * =============================================
+ * @Dependencies: base.css
+ */
+
+summary {
+    position: relative;
+    display: block;
+
+    border-bottom: 1px solid hsla(0, 0%, 0%, .2);
+    padding: 1.2rem 5rem 1.2rem 0;
+
+    font-size: 1.8rem;
+    line-height: 1.25;
+
+    cursor: pointer;
+}
+
+summary:hover {
+    color: hsla(0, 0%, 0%, .6);
+}
+
+/* Remove the marker. Unkown what pseudo will be for non-Webkit ATM */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Add custom marker back and animate it */
+summary::after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+
+    font-size: 1.6rem;
+
+    color: #767676;
+
+    /* Move up 1/2 height of icon to make it exactly in middle */
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    -webkit-transition: -webkit-transform 300ms ease;
+    transition: transform 300ms ease;
+}
+
+details[open] summary::after {
+    -webkit-transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Hide and show contents of accordion. Needed for browsers that don’t support natively */
+details > div {
+    display: none;
+    overflow: hidden;
+    padding: 2rem 0;
+
+    transition: height .3s linear;
+}
+
+details[open] > div {
+    display: block;
+}

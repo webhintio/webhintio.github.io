@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sonar</title>
+        <meta name="description" content="sonar website">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+        <link rel="stylesheet" href="/core/css/base.css">
+        <link rel="stylesheet" href="/core/css/color.css">
+        <link rel="stylesheet" href="/core/css/footer.css">
+        <link rel="stylesheet" href="/core/css/helpers.css">
+        <link rel="stylesheet" href="/core/css/layouts.css">
+        <link rel="stylesheet" href="/core/css/navigation.css">
+        <link rel="stylesheet" href="/core/css/search-results.css">
+        <link rel="stylesheet" href="/core/css/structure.css">
+        <link rel="stylesheet" href="/core/css/type.css">
+        <link rel="stylesheet" href="/core/css/highlight.css">
+        <link rel="stylesheet" href="/components/breadcrumb/breadcrumb.css">
+        <link rel="stylesheet" href="/core/css/controls.css">
+            <link rel="stylesheet" href="/core/css/code.css">
+            <link rel="stylesheet" href="/core/css/table-of-contents.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    </head>
+
+    <body>
+            <header class="header">
+                <div class="nav-bar container">
+                    <nav class="nav">
+                        <a href="/" class="clear"><img src="/images/sonar-logo.svg" alt="sonar" class="header__logo navbar__navitem"></a>
+                        <ul class="nav__navbar">
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/scanner" id="scanner" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-scanner"
+                                    class="navitem__button ">Scanner</a>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/docs" id="docs" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-docs"
+                                    class="navitem__button expandable">Documentation</a>
+                                        <ul role="group" id="submenu-docs" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/docs/developer-guide/">Developer Guide</a></li>
+                                                <li><a href="/docs/user-guide/">User Guide</a></li>
+                                        </ul>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/about/" id="about" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-about"
+                                    class="navitem__button expandable">About</a>
+                                        <ul role="group" id="submenu-about" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/about/faq/">Faq</a></li>
+                                                <li><a href="/about/governance/">Governance</a></li>
+                                                <li><a href="/about/contributors/">Contributors</a></li>
+                                                <li><a href="/about/code-of-conduct/">Code of Conduct</a></li>
+                                        </ul>
+                                </li>
+                        </ul>
+                        <div class="nav-bar__input">
+                            <input type="search" id="search-input" placeholder="Search...">
+                        </div>
+                    </nav>
+                    <button class="header__toggle mobile-nav-button" aria-label="Menu"></button>
+                </div>
+            </header>
+            <main class="container">
+
+
+                    <section class="section">
+                        <div class="page-content">
+                            <h1 id="You-are-in-Section-Faq"><a href="#You-are-in-Section-Faq" class="headerlink" title="You are in Section Faq"></a>You are in Section <code>Faq</code></h1>
+                        </div>
+                    </section>
+            </main>
+        <script src="/js/script.js"></script>
+        <script src="/core/scripts/form-validation.js"></script>
+        <script src="/components/accordion/accordion.js"></script>
+        <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+        <script>
+            docsearch({
+                apiKey: '2ee58f908e6d720c4f72a9645ce0e857', // search-only API key, okay for frontend
+                indexName: 'sonarwhal',
+                inputSelector: '#search-input',
+                appId: '0R8E5SPAFP',
+                debug: true // set to true if need to debug css
+            });
+        </script>
+    </body>
+</html>
