@@ -16,6 +16,12 @@ Install dependencies:
 npm install
 ```
 
+Fetch remote content (e.g. documentation)
+
+```bash
+npm run update-content
+```
+
 Build the site:
 
 ```bash
