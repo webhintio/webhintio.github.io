@@ -1,7 +1,10 @@
 *.log
-.DS_Store
 .deploy*/
-Thumbs.db
+.DS_Store
 db.json
-node_modules/
 dist/
+hexo/source/docs/
+hexo/source/changelog/
+node_modules/
+Thumbs.db
+tmp/

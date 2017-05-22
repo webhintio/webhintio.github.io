@@ -3,10 +3,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")/.." \
     || exit 1
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 declare -r SSH_FILE="$(mktemp "$HOME/.ssh/XXXXX")"
-declare -r TMP_DIR="$(mktemp -d /tmp/XXXXX)"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -31,11 +28,3 @@ chmod 600 "$SSH_FILE" \
         "  IdentityFile $SSH_FILE" \
         "  LogLevel ERROR" >> "$HOME/.ssh/config" \
     || exit 1
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Fetch documentation.
-
-git clone git@github.com-sonar:MicrosoftEdge/Sonar.git "$TMP_DIR" \
-    && rm -rf hexo/source/docs \
-    && cp -R "$TMP_DIR/docs" hexo/source

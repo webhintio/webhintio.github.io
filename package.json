@@ -25,6 +25,7 @@
     "markdownlint": "^0.4.1",
     "markdownlint-cli": "^0.3.1",
     "npm-run-all": "^4.0.2",
+    "shelljs": "^0.7.7",
     "stylelint": "^7.10.1"
   },
   "hexo": {
@@ -32,18 +33,18 @@
   },
   "private": true,
   "scripts": {
-    "build": "npm run updater && hexo generate",
+    "build": "hexo generate",
     "hexo-clean": "hexo clean",
     "hexo-server": "hexo server",
     "lint": "npm-run-all lint:*",
-    "lint:md": "markdownlint ./.github README.md hexo/source/docs",
     "lint:browser": "eslint -c .eslintrc --env browser hexo/themes/documentation/source/**/*.js",
     "lint:js": "npm run lint:node && npm run lint:browser",
+    "lint:md": "markdownlint ./.github README.md",
     "lint:node": "eslint -c .eslintrc --env node *.js hexo/themes/documentation/helper/*.js",
     "lint:styles": "stylelint hexo/themes/documentation/source/**/*.css --config .stylelintrc",
     "start": "node server.js",
     "test": "npm run lint",
-    "update-docs": ".travis/fetch-docs.sh && .travis/update-docs.sh",
-    "updater": "node updater.js hexo/source/docs"
+    "travis-update": ".travis/set-up-ssh.sh && npm run update-content && .travis/update-website-branch.sh",
+    "update-content": "node update-content.js && node updater.js hexo/source/docs"
   }
 }
