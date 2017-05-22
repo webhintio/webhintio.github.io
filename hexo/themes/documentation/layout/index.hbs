@@ -54,8 +54,8 @@
             </main>
             {{else}}
                 {{>home}}
-                {{>footer navs=site.data.menu}}
             {{/if}}
+            {{>footer navs=site.data.menu}}
         {{/if}}
         <script src="{{url_for "js/script.js"}}"></script>
         <script src="{{url_for "core/scripts/form-validation.js"}}"></script>
