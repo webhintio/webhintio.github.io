@@ -2,7 +2,7 @@ const shell = require('shelljs');
 
 const SOURCE_DIR = 'hexo/source';
 const TMP_DIR = 'tmp/sonar';
-const CLONE_URL = process.env.TRAVIS ? 'git@github.com-sonar:MicrosoftEdge/Sonar.git' : 'https://github.com/MicrosoftEdge/sonarwhal.com.git'; // eslint-disable-line no-process-env
+const CLONE_URL = process.env.TRAVIS ? 'git@github.com-sonar:MicrosoftEdge/Sonar.git' : 'https://github.com/MicrosoftEdge/Sonar.git'; // eslint-disable-line no-process-env
 
 if (shell.exec(`git clone ${CLONE_URL}  "${TMP_DIR}"`).code === 0) {
     shell.rm('-rf', `${SOURCE_DIR}/docs`);
