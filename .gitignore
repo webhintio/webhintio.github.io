@@ -1,9 +1,10 @@
 *.log
 .deploy*/
 .DS_Store
+.vscode/
 db.json
 dist/
-hexo/source/docs/
-hexo/source/changelog/
 node_modules/
+src/hexo/source/changelog/
+src/hexo/source/docs/
 Thumbs.db

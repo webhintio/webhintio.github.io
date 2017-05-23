@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="{{url_for "/core/css/highlight.css"}}">
         <link rel="stylesheet" href="{{url_for "/components/breadcrumb/breadcrumb.css"}}">
         <link rel="stylesheet" href="{{url_for "/core/css/controls.css"}}">
-        {{#compare page.category '||' isScanner}}
+        {{#compare page.category '||' isSection}}
             <link rel="stylesheet" href="{{url_for "/core/css/code.css"}}">
             <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
         {{else}}
@@ -32,7 +32,7 @@
     </head>
 
     <body>
-        {{#if isScanner}}
+        {{#if isSection}}
             {{>header navs=menuData}}
             {{{body}}}
             {{>footer navs=menuData}}

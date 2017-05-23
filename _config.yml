@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Sonar
+title: sonar
 subtitle:
 description:
 author:
@@ -18,7 +18,7 @@ permalink:
 permalink_defaults:
 
 # Directory
-source_dir: hexo/source
+source_dir: src/hexo/source
 public_dir: dist
 tag_dir: tags
 archive_dir: archives
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: ../hexo/themes/documentation
+theme: ../src/hexo/themes/documentation
 
 # Config markdown rendering
 marked:
