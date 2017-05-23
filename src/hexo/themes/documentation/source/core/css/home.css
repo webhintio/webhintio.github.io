@@ -1,0 +1,168 @@
+/*
+ * HOME PAGE
+ * =============================================
+ */
+
+body {
+    background-color: #4046dd;
+    color: #fff;
+}
+
+main {
+    margin-bottom: 0;
+}
+
+.top-illustration {
+    display: none;
+}
+
+@media (min-width: 48em) {
+
+    .top-illustration {
+        display: block;
+        position: relative;
+        height: 15.7rem;
+        z-index: -100;
+    }
+
+    #iceberg1 {
+        position: relative;
+        width: 25rem;
+
+        animation: floating 4s infinite normal ease-out;
+    }
+
+    #iceberg2 {
+        position: absolute;
+        margin-top: 11rem;
+        margin-left: 4rem;
+        width: 15rem;
+
+        animation: floating 5s infinite normal ease-out;
+    }
+
+    #iceberg3 {
+        position: absolute;
+        margin-top: 7.5rem;
+        right: 0;
+        width: 23rem;
+
+        animation: floating 6s infinite 1s normal ease-out;
+    }
+
+    #narwhal {
+        position: absolute;
+        right: 22rem;
+        margin-top: 5rem;
+        width: 45rem;
+        z-index: 1;
+
+        animation: floating 6s infinite .5s normal ease-out;
+    }
+
+
+    @keyframes floating {
+
+        0% {
+            top: -10px;
+        }
+
+        50% {
+            top: 0;
+        }
+
+        100% {
+            top: -10px;
+        }
+    }
+
+}
+
+.home-container {
+    max-width: 96rem;
+}
+
+.home-container--section {
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.home-container--input {
+    margin: 0 auto;
+    max-width: 96rem;
+}
+
+.home-container__documentation {
+    margin-top: 4.2rem;
+    text-align: center;
+}
+
+.home-container__documentation .module > a {
+    display: block;
+    padding: 1rem 0;
+    letter-spacing: .1rem;
+    transition: .3s ease-out;
+}
+
+.home-container__documentation .module > a:hover {
+    background-color: hsla(238, 66%, 58%, .3);
+    text-decoration: none;
+}
+
+
+.home-container__documentation a > p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #fff;
+}
+
+.home-container__documentation .title {
+    margin: 0 auto 2.4rem auto;
+    font-weight: 500;
+    letter-spacing: .2rem;
+}
+
+/* stylelint-disable */
+.dark-blue {
+    background-color: rgba(24,24,109,0.9);
+    z-index: 100;
+    padding-bottom: 10rem;
+}
+
+.icons--home {
+    display: block;
+    max-width: 10rem;
+    width: 100%;
+    margin: 2.4rem auto;
+}
+
+/* Custom Home Page Controls */
+
+input {
+    max-width: 74rem;
+}
+
+button,
+a.button {
+    width: 100%;
+    max-width: 16rem;
+}
+
+/* Home footer is a different color than the rest of the site */
+.footer--home {
+    background-color: #0c1366;
+    border-top: 1px solid #fff;
+}
+
+.footer--home a {
+    color: #fff;
+}
+
+.footer--home .footer-nav__item .category {
+    color: #fff;
+}
+
+a .github-icon-svg {
+    fill: #fff;
+}

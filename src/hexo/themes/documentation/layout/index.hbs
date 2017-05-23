@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sonar</title>
+        <meta name="description" content="sonar website">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+        <link rel="stylesheet" href="{{url_for "/core/css/base.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/color.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/footer.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/helpers.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/layouts.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/navigation.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/search-results.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/structure.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/type.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/highlight.css"}}">
+        <link rel="stylesheet" href="{{url_for "/components/breadcrumb/breadcrumb.css"}}">
+        <link rel="stylesheet" href="{{url_for "/core/css/controls.css"}}">
+        {{#compare page.category '||' isSection}}
+            <link rel="stylesheet" href="{{url_for "/core/css/code.css"}}">
+            <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
+        {{else}}
+            <link rel="stylesheet" href="{{url_for "/core/css/home.css"}}">
+        {{/compare}}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    </head>
+
+    <body>
+        {{#if isSection}}
+            {{>header navs=menuData}}
+            {{{body}}}
+            {{>footer navs=menuData}}
+        {{else}}
+            {{>header navs=site.data.menu}}
+            {{#if page.category}}
+            <main class="container">
+                {{#compare page.category '===' 'developer-guide'}}
+                    {{>sub-page intro=site.data.developerGuide pages=(sortPagesByCategory site.pages.data 'developer-guide')}}
+                {{/compare}}
+
+                {{#compare page.category '===' 'user-guide'}}
+                    {{>sub-page intro=site.data.userGuide pages=(sortPagesByCategory site.pages.data 'user-guide')}}
+                {{/compare}}
+
+                {{#compare page.category '===' 'default'}}
+                    {{>single-page}}
+                {{/compare}}
+            </main>
+            {{else}}
+                {{>home}}
+            {{/if}}
+            {{>footer navs=site.data.menu}}
+        {{/if}}
+        <script src="{{url_for "js/script.js"}}"></script>
+        <script src="{{url_for "core/scripts/form-validation.js"}}"></script>
+        <script src="{{url_for "components/accordion/accordion.js"}}"></script>
+        {{>docsearch}}
+    </body>
+</html>

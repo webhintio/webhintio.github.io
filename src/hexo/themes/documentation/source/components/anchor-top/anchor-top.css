@@ -1,0 +1,27 @@
+.anchor-top {
+    position: fixed;
+    right: 2.4rem;
+    bottom: 2.4rem;
+
+    width: 2em;
+    height: 2em;
+
+    padding: 1.2rem;
+
+    font: 2.4rem/1;
+    background: hsla(0, 0%, 0%, .1);
+}
+
+.anchor-top:hover, .anchor-top:focus {
+    background: hsla(0, 0%, 0%, .2);
+    text-decoration: none;
+}
+
+.anchor-top:active {
+    background: hsla(0, 0%, 0%, .3);
+}
+
+.anchor-top::before {
+    content: "";
+    color: windowText;
+}

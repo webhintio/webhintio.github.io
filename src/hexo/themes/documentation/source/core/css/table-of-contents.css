@@ -1,0 +1,50 @@
+/*
+ *  TABLE OF CONTENTS
+ *  =============================================
+ */
+
+.table-of-contents > ul {
+    margin-top: 1rem;
+}
+
+.toc-section-title,
+.toc-section-title--active {
+    font-family: "Montserrat", sans-serif;
+    margin-top: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+}
+
+.toc-subsection-title li {
+    color: #000;
+    margin: 1.6rem 0 0 2.4rem;
+    list-style: none;
+    line-height: 2rem;
+}
+
+.toc-section-title,
+.toc-section-title--active,
+.toc-section-title--active,
+.toc-subsection-title--active {
+    font-weight: 600;
+}
+
+.toc-section-title,
+.toc-subsection-title,
+.toc-section-title--active,
+.toc-subsection-title--active {
+    font-size: 1.6rem;
+}
+
+.toc-section-title--active,
+.toc-subsection-title--active {
+    color: #4046dd;
+}
+
+li a.toc-subsection-title--active::before {
+    content: url("/images/toc-current-section.svg");
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 1.5rem;
+}

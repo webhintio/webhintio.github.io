@@ -30,22 +30,22 @@
     "stylelint": "^7.10.1"
   },
   "hexo": {
-    "version": "3.3.6"
+    "version": "3.3.5"
   },
   "private": true,
   "scripts": {
     "build": "hexo generate",
-    "hexo-clean": "hexo clean",
-    "hexo-server": "hexo server",
+    "hexo:clean": "hexo clean",
+    "hexo:server": "hexo server",
     "lint": "npm-run-all lint:*",
-    "lint:browser": "eslint -c .eslintrc --env browser hexo/themes/documentation/source/**/*.js",
+    "lint:browser": "eslint -c .eslintrc --env browser src/hexo/themes/documentation/source/**/*.js",
     "lint:js": "npm run lint:node && npm run lint:browser",
     "lint:md": "markdownlint ./.github README.md",
-    "lint:node": "eslint -c .eslintrc --env node *.js hexo/themes/documentation/helper/*.js",
-    "lint:styles": "stylelint hexo/themes/documentation/source/**/*.css --config .stylelintrc",
+    "lint:node": "eslint -c .eslintrc --env node *.js src/hexo/themes/documentation/helper/*.js",
+    "lint:styles": "stylelint src/hexo/themes/documentation/source/**/*.css --config .stylelintrc",
     "start": "node server.js",
     "test": "npm run lint",
     "travis-update": ".travis/set-up-ssh.sh && npm run update-content && .travis/update-website-branch.sh",
-    "update-content": "node update-content.js && node updater.js hexo/source/docs"
+    "update-content": "node helpers/update-content.js && node helpers/updater.js src/hexo/source/docs"
   }
 }
