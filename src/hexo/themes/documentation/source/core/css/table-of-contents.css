@@ -15,6 +15,13 @@
     letter-spacing: .1rem;
 }
 
+.toc-expand-arrow {
+    background-image: url("/images/toc-arrow.svg");
+    display: inline-block;
+    width: 1.4rem;
+    height: .8rem;
+}
+
 .toc-subsection-title li {
     color: #000;
     margin: 1.6rem 0 0 .9rem;

@@ -16,8 +16,7 @@
         </ul>
     </nav>
     <header class="page-intro">
-        <h1 id="page-heading">{{intro.title}}</h1>
-        <p class="subtitle">{{intro.description}}</p>
+        <h1 id="page-heading">{{page.title}}</h1>
     </header>
     <section class="section">
         <div class="layout layout--sidebar">
@@ -26,28 +25,38 @@
             </div>
             <div class="module module--secondary table-of-contents" role="navigation">
                 {{#each pages}}
-                    {{#hasTocTitle @key}}
-                        <p class="toc-section-title--active">
-                            <a href="{{getToCIndexPageLink ../this}}">
-                            {{@key}}
-                            </a>
-                        </p>
-                    {{/hasTocTitle}}
-                    <ul class="toc-subsection-title">
-                        {{#each this}}
-                            <li>
-                                <a href="{{permalink}}"
-                                    {{#compare ../../page.title '===' title}}
-                                        class="toc-subsection-title--active"
-                                        aria-current="location"
-                                    {{else}}
-                                        class="toc-subsection-title"
-                                    {{/compare}}>
-                                    {{title}}
+                    <div>
+                        {{#hasTocTitle @key}}
+                            <p class="toc-section-title--active">
+                                <a href="{{getToCIndexPageLink ../this}}">
+                                {{@key}}
                                 </a>
-                            </li>
-                        {{/each}}
-                    </ul>
+                                {{#if (expandable ../this)}}
+                                    <span class="toc-expand-arrow">
+                                {{/if}}
+                            </p>
+                        {{/hasTocTitle}}
+                        <ul class="toc-subsection-title"
+                            {{#if (expandToC ../page this)}}
+                            aria-hidden="false"
+                            {{else}}
+                            aria-hidden="true"
+                            {{/if}}>
+                            {{#each this}}
+                                <li>
+                                    <a href="{{permalink}}"
+                                        {{#compare ../../page.title '===' title}}
+                                            class="toc-subsection-title--active"
+                                            aria-current="location"
+                                        {{else}}
+                                            class="toc-subsection-title"
+                                        {{/compare}}>
+                                        {{title}}
+                                    </a>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </div>
                 {{/each}}
             </div>
         </div>
