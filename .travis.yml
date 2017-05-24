@@ -4,10 +4,26 @@
 # https://docs.travis-ci.com
 
 after_success:
+  - |
+
+        # Run the DocSearch scraper only
+        # when the build was triggered by cron.
+        #
+        # https://docs.travis-ci.com/user/cron-jobs/
+
+        if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
+          npm run travis-docsearch-scraper
+        fi
+
   - npm run travis-update
 
 env:
   global:
+
+    # DOC_SEARCH_ID & DOC_SEARCH_KEY
+    - secure: "a32kLi5vOMUWcco/4br0JFsd5jD77YK00obaZjQW/ZZtqjDKgZ0uyLWTiBkmQKzbaHCByBf63Q7RzfKQvzZZE5dNdRA5AV6p+XZhKvUtCWSGZl1eNbDh4zuPo+XBg6M1QURBvlRHPaj0/KxkqDCISAt9O5tBkcRPLZBMuvDsDb/+OkUrdxGaLJpxcBPYazhKLCIBaMqat05omb2DkIgBZ9VDPA40wTj2Gbh/M2qgsTEGmo0TxU1BAebBkODOAgvOOf0NlqpOay3Ssl2k7nLNwu5w+2Dyan/U81CMBAcdgrrvGpTrlNKutFIetr3DFl/rjkBrJH8h647L3w7wMclvowSJvEUBW52hxF0BnuUdwLJZUm9LXXZAt9IA+QCZ5kuei0YWPC5ZRNJmZfT+LP98xcsyRFh6gR6138Dn63pW3VVbGt3zmUwkYx3W7BRppsy7kQodntVSxS+wgr0Yqa73dukYtKtxcVXoPcDiUijHMLi+WnU3xMgYR2r50fVKuaaKJfh6vI5tq3FPyVeRxDoCzv6/n90Wjve2tg0574a+OQf5advgNwanX4rXR8VTt57V7Tt1rHkZh5Zagvyc7k5VATDV7NoQTm6R20pbo4mfnAfyFFNStpHpGuDN8T/53IQnpvmjJNofhC2R0ZaFA5ApDb7ZC7Gh/d5/Ze8HQjsqpAk="
+
+    # GH_USER_EMAIL & GH_USER_NAME
     - secure: "PanSWDk8u1QmoKYVrvn6pN8NvlE0EpUE86PcwC2vhu2s6feN9NKvtDqYXlxA5SwRED85MvXDbn+HJaSYo42q4gXczrAyQHOgC+P53/uSNn87f0NEaxdpDOZ4rDY6mVMekruyIGuCXqtmOpAN9khzchVQUJTwLp2895+YhehodWAasvFEFjo1HIfnE0anc8gU+e5KWNx9oepS6oyGzowbzhTD+AdDiTS4yPD58LJBr5j5cghaanpAVs7OCR898ER3zggYiPeYKULJNEZu1KB6JSGDtpTlZR+tkiSrDkoOEmOjG8/Zr3ZOo8Jwtumodg1TMWnuvlEzmzVbslON7WerxSBDV4f8IfyPtaz7DGMF406FPONyZqJTum08luu3OrBBEoaPXHrRm8yUyJ3Wlol6ra5uPDCSS7KqM/Ll/sxGYkxFWrPBGfQQive8IkqpsYDN4JirAh0PMlEsmeOKb/k39wFfx/NhgzhRFIXW3I24R1CDIPgeiBNK7l71Uv6XxaXXFR821zHhWQ9gJilrmreJTf2uDWKxQkLJ9DuY1ba0Z07EbDtgr6qw11b2ZmaVaBw6Uw8JqAmSXIvA7IMUgpl6UVfx4DLf1o+fQ3PfbzmGIVYq8VA+rEa9Kb6dqJOuZujtA8Ir0cQXNKp9tPmmkKipjfLZmkzCz0U/zjtm9pOgQFY="
 
 language: node_js

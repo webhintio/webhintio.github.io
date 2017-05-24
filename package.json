@@ -41,10 +41,11 @@
     "lint:browser": "eslint -c .eslintrc --env browser src/hexo/themes/documentation/source/**/*.js",
     "lint:js": "npm run lint:node && npm run lint:browser",
     "lint:md": "markdownlint ./.github README.md",
-    "lint:node": "eslint -c .eslintrc --env node *.js src/hexo/themes/documentation/helper/*.js",
+    "lint:node": "eslint -c .eslintrc --env node **/*.js src/hexo/themes/documentation/helper/*.js",
     "lint:styles": "stylelint src/hexo/themes/documentation/source/**/*.css --config .stylelintrc",
     "start": "node src/server/index.js",
     "test": "npm run lint",
+    "travis-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
     "travis-update": ".travis/set-up-ssh.sh && npm run update-content && npm run build && .travis/update-website-branch.sh",
     "update-content": "node helpers/update-content.js && node helpers/updater.js src/hexo/source/docs"
   }
