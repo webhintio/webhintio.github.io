@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sonar</title>
+        <meta name="description" content="sonar website">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+        <link rel="stylesheet" href="/core/css/base.css">
+        <link rel="stylesheet" href="/core/css/color.css">
+        <link rel="stylesheet" href="/core/css/footer.css">
+        <link rel="stylesheet" href="/core/css/helpers.css">
+        <link rel="stylesheet" href="/core/css/layouts.css">
+        <link rel="stylesheet" href="/core/css/navigation.css">
+        <link rel="stylesheet" href="/core/css/search-results.css">
+        <link rel="stylesheet" href="/core/css/structure.css">
+        <link rel="stylesheet" href="/core/css/type.css">
+        <link rel="stylesheet" href="/core/css/highlight.css">
+        <link rel="stylesheet" href="/components/breadcrumb/breadcrumb.css">
+        <link rel="stylesheet" href="/core/css/controls.css">
+            <link rel="stylesheet" href="/core/css/code.css">
+            <link rel="stylesheet" href="/core/css/table-of-contents.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    </head>
+
+    <body>
+            <header class="header">
+                <div class="nav-bar container">
+                    <nav class="nav">
+                        <a href="/" class="clear"><img src="/images/sonar-logo.svg" alt="sonar" class="header__logo navbar__navitem"></a>
+                        <ul class="nav__navbar">
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/scanner" id="scanner" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-scanner"
+                                    class="navitem__button ">Scanner</a>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/docs" id="docs" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-docs"
+                                    class="navitem__button expandable">Documentation</a>
+                                        <ul role="group" id="submenu-docs" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/docs/developer-guide/">Developer Guide</a></li>
+                                                <li><a href="/docs/user-guide/">User Guide</a></li>
+                                        </ul>
+                                </li>
+                                <li class="navbar__navitem">
+                                    <a role="button" href="/about/" id="about" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-about"
+                                    class="navitem__button expandable">About</a>
+                                        <ul role="group" id="submenu-about" class="navbar__submenu" aria-hidden="true">
+                                                <li><a href="/about/faq/">Faq</a></li>
+                                                <li><a href="/about/governance/">Governance</a></li>
+                                                <li><a href="/about/contributors/">Contributors</a></li>
+                                                <li><a href="/about/code-of-conduct/">Code of Conduct</a></li>
+                                        </ul>
+                                </li>
+                        </ul>
+                        <div class="nav-bar__input">
+                            <input type="search" id="search-input" placeholder="Search...">
+                        </div>
+                    </nav>
+                    <button class="header__toggle mobile-nav-button" aria-label="Menu"></button>
+                </div>
+            </header>
+            <main class="container">
+
+                    <article class="content" aria-labelledby="page-heading">
+                        <nav class="container breadcrumb" aria-label="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="../../">Documentation</a></li>
+                                <li>
+                                    <a href="../../">
+                                            User Guide
+                                    </a>
+                                </li>
+                                <li aria-current="location">User guide</li>
+                            </ul>
+                        </nav>
+                        <header class="page-intro">
+                            <h1 id="page-heading">User Guide</h1>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </header>
+                        <section class="section">
+                            <div class="layout layout--sidebar">
+                                <div class="module module--primary">
+                                    <h1 id="Userguide"><a href="#Userguide" class="headerlink" title="User guide"></a>User guide</h1><h2 id="Gettingstarted"><a href="#Gettingstarted" class="headerlink" title="Getting started"></a>Getting started</h2><p>Getting started with <code>sonar</code>‘s CLI is really easy. First you need
+                    to install it:</p>
+                    <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">npm install -g @sonarwhal/sonar</div></pre></td></tr></table></figure>
+                    <p>You can also install it as a <code>devDependency</code> if you prefer not to
+                    have it globally.</p>
+                    <p>The next thing that <code>sonar</code> needs is a <code>.sonarrc</code> file. The fastest
+                    and easiest way to create one is by using the flag <code>--init</code>:</p>
+                    <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sonar --init</div></pre></td></tr></table></figure>
+                    <p>This command will start a wizard that will ask you a series of questions
+                    (e.g.: what collector to use, what formatter, which rules, etc.). Answer
+                    them and you will end up with something similar to the following:</p>
+                    <figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"collector"</span>: &#123;</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"collectorName"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"formatter"</span>: <span class="string">"formatterName"</span>,</div><div class="line">    <span class="attr">"rules"</span>: &#123;</div><div class="line">        <span class="attr">"rule1"</span>: <span class="string">"error"</span>,</div><div class="line">        <span class="attr">"rule2"</span>: <span class="string">"error"</span>,</div><div class="line">        <span class="attr">"rule3"</span>: <span class="string">"error"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    <h2 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h2><p>A <code>rule</code> is a test that your website needs to pass. <code>sonar</code> comes with
+                    a few <a href="./rules/">built in ones</a>, but you can easily create your own or
+                    download them from <code>npm</code>.</p>
+                    <h3 id="Ruleconfiguration"><a href="#Ruleconfiguration" class="headerlink" title="Rule configuration"></a>Rule configuration</h3><p>Rule severity can be one of the following:</p>
+                    <ul>
+                    <li><code>off</code>: The rule will not be executed. This is the same as not having
+                    the rule under the <code>rules</code> section of a <code>.sonarrc</code> file.</li>
+                    <li><code>warning</code>: The rule will be executed but it will not change the exit
+                    status code if an issue is found.</li>
+                    <li><code>error</code>: The rule will be executed and will change the exit status
+                    code to <code>1</code> if an issue is found.</li>
+                    </ul>
+                    <p>Additionally, some rules allow further customization. The configuration
+                    in that case it will be similar to the following:</p>
+                    <figure class="highlight"><table><tr><td class="code"><pre><div class="line">"rules": &#123;</div><div class="line">    "rule1": ["severity", &#123;</div><div class="line">        "customization1": "value1",</div><div class="line">        "customization2": "value2"</div><div class="line">    &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    <p>You can check which rules accept this kind of configuration by
+                    visiting the <a href="./rules/">rules documentation</a>.</p>
+                    <p>Sometimes you want to enable a rule but not for all the domains
+                    a website depends on. For example, if your website loads some external
+                    library from a CDN you might not have control over the HTTP headers
+                    sent. To disable some rules for just some specific domains you need to
+                    add a <code>ignoredUrls</code> to your <code>.sonarrc</code> file:</p>
+                    <figure class="highlight"><table><tr><td class="code"><pre><div class="line">"ignoredUrls": &#123;</div><div class="line">    ".*\\.domain1\\.com/.*": ["*"], // Apply to all the rules, events won't be emitted for that URLs.</div><div class="line">    "www.domain2.net": ["disallowed-headers"] // Just apply to the rule `disallowed-headers`.</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    <p>Properties can be:</p>
+                    <ul>
+                    <li>regular expressions, like <code>.*\\.domain1\\.com/.*</code>. This will match:<ul>
+                    <li><code>something.domain1.com/index.html</code></li>
+                    <li><code>somethingelse.domain1.com/image.png</code></li>
+                    </ul>
+                    </li>
+                    <li>some text, like <code>www.domain2.net</code>. In this case, if the resource URL
+                    contains the text, it will be a match. E.g.:<ul>
+                    <li><code>www.domain2.net/index.php</code></li>
+                    <li><code>www.domain2.net/image.png</code></li>
+                    </ul>
+                    </li>
+                    </ul>
+                    <p>The value of the property has to be an array of strings where the
+                    strings can be:</p>
+                    <ul>
+                    <li><code>*</code> if you want to ignore all rules for the given domain.</li>
+                    <li>The ID of the rule to be ignored.</li>
+                    </ul>
+                    <p>In the previous example we will:</p>
+                    <ul>
+                    <li>Ignore all rules for any resource that matches the regex <code>.*\\.domain1\\.com/.*</code>.</li>
+                    <li>Ignore the rule <code>disallowed-headers</code> for the domain <code>www.domain2.net</code>.</li>
+                    </ul>
+                    <h2 id="Collectors"><a href="#Collectors" class="headerlink" title="Collectors"></a>Collectors</h2><p>A <code>collector</code> is the interface between the <code>rule</code>s and the website
+                    you are testing. <code>sonar</code> currently supports the following <code>collector</code>s:</p>
+                    <p>To configure a collector you need to update your <code>.sonarrc</code> file to
+                    make it look like the following:</p>
+                    <figure class="highlight"><table><tr><td class="code"><pre><div class="line">"collector": &#123;</div><div class="line">    "name": "collectorName"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    <p>Where <code>collectorName</code> is the name of the collector.</p>
+                    <p><code>collector</code>s can be configured as well. Maybe you want to do request
+                    with another <code>userAgent</code>, change some of the other defaults, etc. To
+                    do that, you just have to add a property <code>options</code> to your <code>collector</code>
+                    property with the values you want to modify:</p>
+                    <figure class="highlight"><table><tr><td class="code"><pre><div class="line">"collector": &#123;</div><div class="line">    "name": "collectorName",</div><div class="line">    "options": &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+                    <p>The <a href="./collectors/"><code>collector</code>s documentation</a> has more information
+                    of what can be configured in each one.</p>
+                    <h2 id="Formatters"><a href="#Formatters" class="headerlink" title="Formatters"></a>Formatters</h2><p>A <code>formatter</code> takes the results of executing all the rules and
+                    transforms them to be consumed by the user. A <code>formatter</code> can output
+                    the results via the <code>console</code> in different formats, a <code>JSON</code> file,
+                    <code>XML</code>, etc.</p>
+                    <p>Please see <a href="./formatters/">the current list of supported <code>formatter</code>s</a>
+                    to know more.</p>
+                    
+                                </div>
+                                <div class="module module--secondary table-of-contents" role="navigation">
+                                        <ul class="toc-subsection-title">
+                                        </ul>
+                                            <p class="toc-section-title--active">
+                                                <a href="/docs/user-guide/formatters/index.html">
+                                                formatters
+                                                </a>
+                                            </p>
+                                        <ul class="toc-subsection-title">
+                                        </ul>
+                                            <p class="toc-section-title--active">
+                                                <a href="/docs/user-guide/collectors/index.html">
+                                                collectors
+                                                </a>
+                                            </p>
+                                        <ul class="toc-subsection-title">
+                                        </ul>
+                                            <p class="toc-section-title--active">
+                                                <a href="/docs/user-guide/rules/index.html">
+                                                rules
+                                                </a>
+                                            </p>
+                                        <ul class="toc-subsection-title">
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/axe.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Accessibility assesment with aXe
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/highest-available-document-mode.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require highest available document mode
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/manifest-file-extension.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow non-standard file extension for the web app manifest file
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/manifest-exists.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require a web app manifest file
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-friendly-error-pages.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow small error pages
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/meta-charset-utf-8.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require charset meta tag with the value of &#x60;utf-8&#x60;
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-html-only-headers.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow unneeded HTTP headers for non-HTML resources
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/no-protocol-relative-urls.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow protocol-relative URLs
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/ssllabs.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        SSL Server Test
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/disallowed-headers.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Disallow certain HTTP headers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/disown-opener.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require external links to disown opener
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/docs/user-guide/rules/x-content-type-options.html"
+                                                            class="toc-subsection-title"
+                                                        >
+                                                        Require &#x60;X-Content-Type-Options&#x60; HTTP response header
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+
+            </main>
+            <footer class="footer footer--home">
+                <div class="footer-nav container">
+                    <div class="footer-nav__item">
+                        <p class="category">Scanner</p>
+                        <ul>
+                            <li>
+                                <a href="/scanner">New scan</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav__item">
+                        <p class="category">Documentation</p>
+                        <ul>
+                            <li>
+                                <a href="/docs/user-guide/">User Guide</a>
+                            </li>
+                            <li>
+                                <a href="/docs/developer-guide/rules/">Rules</a>
+                            </li>
+                            <li>
+                                <a href="/docs/developer-guide/">Developer Guide</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav__item">
+                        <p class="category">
+                            About
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="/about/faq">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="/about/governance/">Governance</a>
+                            </li>
+                            <li>
+                                <a href="/about/contributors/">Contributors</a>
+                            </li>
+                            <li>
+                                <a href="/about/code-of-conduct/">Code of Conduct</a>
+                            </li>
+                            <li>
+                                <a href="/about/changelog/">Changelog</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav__item github-icon">
+                        <a href="https://github.com/sonarwhal">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path class="github-icon-svg" d="M12.5.4C5.7.4.2 5.9.2 12.7c0 5.4 3.5 10 8.4 11.7.6.1.8-.3.8-.6v-2.1C6 22.4 5.3 20 5.3 20c-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.6-1.4-5.6-6.1 0-1.3.5-2.4 1.3-3.3-.2-.4-.6-1.6 0-3.3 0 0 1-.3 3.4 1.3 1-.3 2-.4 3.1-.4 1 0 2.1.1 3.1.4C17.9 5.2 19 5.5 19 5.5c.7 1.7.2 2.9.1 3.3.8.9 1.3 2 1.3 3.3 0 4.7-2.9 5.8-5.6 6.1.4.4.8 1.1.8 2.3v3.4c0 .3.2.7.8.6 4.9-1.6 8.4-6.2 8.4-11.7C24.8 5.9 19.3.4 12.5.4"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        <script src="/js/script.js"></script>
+        <script src="/core/scripts/form-validation.js"></script>
+        <script src="/components/accordion/accordion.js"></script>
+        <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+        <script>
+            docsearch({
+                apiKey: '2ee58f908e6d720c4f72a9645ce0e857', // search-only API key, okay for frontend
+                indexName: 'sonarwhal',
+                inputSelector: '#search-input',
+                appId: '0R8E5SPAFP',
+                debug: true // set to true if need to debug css
+            });
+        </script>
+    </body>
+</html>
