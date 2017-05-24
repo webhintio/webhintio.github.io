@@ -4,8 +4,7 @@
  */
 
 footer {
-    padding: 4.8rem 0;
-    min-height: 15rem;
+    padding: 4.8rem 0 2.4rem;
 }
 
 .footer {
@@ -62,4 +61,12 @@ a .github-icon-svg {
 
 a:hover .github-icon-svg {
     fill: #4046dd;
+}
+
+@media (max-width: 57.94em) {
+
+    .github-icon {
+        margin-left: 0;
+    }
+
 }

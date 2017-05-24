@@ -1,40 +1,42 @@
-<main>
-    <article>
-        <section class="home-container container">
-            <div class="top-illustration">
-                <img src="{{url_for "images/iceberg-left.svg"}}" id="iceberg1">
-                <img src="{{url_for "images/iceberg-middle.svg"}}" id="iceberg2">
-                <img src="/images/iceberg-right.svg" id="iceberg3">
-                <img src="/images/narwhal.svg" id="narwhal">
+<div class="bg-wrap-home">
+    <main>
+        <article>
+            <section class="home-container container">
+                <div class="top-illustration">
+                    <img src="/images/iceberg-left.svg" id="iceberg1">
+                    <img src="/images/iceberg-middle.svg" id="iceberg2">
+                    <img src="/images/iceberg-right.svg" id="iceberg3">
+                    <img src="/images/narwhal.svg" id="narwhal">
+                </div>
+            </section>
+            <section class="dark-blue">
+                <div class="container home-container">
+                    {{>scan-form}}
+                    <section class="home-container home-container--section home-container__documentation">
+                        <p class="title uppercase-text">Documentation</p>
+                        <div class="layout layout--thirds">
+                            <div class="module">
+                                <a href="/docs/user-guide/">
+                                    <img src="images/user-guide-icon.svg" class="icons--home">
+                                    <p>User Guide</p>
+                                </a>
+                            </div>
+                            <div class="module">
+                                <a href="/docs/developer-guide/rules/">
+                                    <img src="images/rules-icon.svg" class="icons--home">
+                                    <p>Rules</p>
+                                </a>
+                            </div>
+                            <div class="module">
+                                <a href="/docs/developer-guide/">
+                                    <img src="images/dev-guide-icon.svg" class="icons--home">
+                                    <p>Developer Guide</p>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
-        </section>
-        <section class="dark-blue">
-            <div class="container home-container">
-                {{>scan-form}}
-                <section class="home-container home-container--section home-container__documentation">
-                    <p class="title uppercase-text">Documentation</p>
-                    <div class="layout layout--thirds">
-                        <div class="module">
-                            <a href="/docs/user-guide/">
-                                <img src="images/user-guide-icon.svg" class="icons--home">
-                                <p>User Guide</p>
-                            </a>
-                        </div>
-                        <div class="module">
-                            <a href="/docs/developer-guide/rules/">
-                                <img src="images/rules-icon.svg" class="icons--home">
-                                <p>Rules</p>
-                            </a>
-                        </div>
-                        <div class="module">
-                            <a href="/docs/developer-guide/">
-                                <img src="images/dev-guide-icon.svg" class="icons--home">
-                                <p>Developer Guide</p>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </article>
-</main>
+        </article>
+    </main>
+</div>
