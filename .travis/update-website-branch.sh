@@ -5,6 +5,20 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+remove_unneeded_files() {
+    find . \
+        -maxdepth 1 \
+        ! -name "." \
+        ! -name "dist" \
+        ! -name "node_modules" \
+        ! -name "package.json" \
+        ! -name "src" \
+        ! -name "web.config" \
+        -exec rm -rf {} +;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Automatically update the content from the `website` branch.
 #
 # Note: The SSH key is stored on Travis CI, but will need to be
@@ -12,8 +26,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 #
 #       https://docs.travis-ci.com/user/private-dependencies/
 
-"$(npm bin)/update-branch" --commands "npm run build" \
-                           --commit-message "Hey server, this content is for you! [skip ci]" \
-                           --directory "dist" \
-                           --distribution-branch "website" \
-                           --source-branch "master"
+remove_unneeded_files \
+    && "$(npm bin)/update-branch" --commands "echo" \
+                                  --commit-message "Hey server, this content is for you! [skip ci]" \
+                                  --distribution-branch "website" \
+                                  --source-branch "master"

@@ -45,7 +45,7 @@
     "lint:styles": "stylelint src/hexo/themes/documentation/source/**/*.css --config .stylelintrc",
     "start": "node src/server/index.js",
     "test": "npm run lint",
-    "travis-update": ".travis/set-up-ssh.sh && npm run update-content && .travis/update-website-branch.sh",
+    "travis-update": ".travis/set-up-ssh.sh && npm run update-content && npm run build && .travis/update-website-branch.sh",
     "update-content": "node helpers/update-content.js && node helpers/updater.js src/hexo/source/docs"
   }
 }
