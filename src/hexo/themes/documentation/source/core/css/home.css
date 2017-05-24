@@ -4,12 +4,16 @@
  */
 
 body {
-    background-color: #4046dd;
+    background-color: #0c1366;
     color: #fff;
 }
 
 main {
     margin-bottom: 0;
+}
+
+.bg-wrap-home {
+    background-color: #4046dd;
 }
 
 .top-illustration {
@@ -19,10 +23,9 @@ main {
 @media (min-width: 48em) {
 
     .top-illustration {
-        display: block;
         position: relative;
+        display: block;
         height: 15.7rem;
-        z-index: -100;
     }
 
     #iceberg1 {
@@ -115,6 +118,7 @@ main {
     font-size: 2rem;
     font-weight: 400;
     color: #fff;
+    margin-bottom: 2.4rem;
 }
 
 .home-container__documentation .title {
@@ -125,8 +129,9 @@ main {
 
 /* stylelint-disable */
 .dark-blue {
+    position: relative;
     background-color: rgba(24,24,109,0.9);
-    z-index: 100;
+    z-index: 1;
     padding-bottom: 10rem;
 }
 

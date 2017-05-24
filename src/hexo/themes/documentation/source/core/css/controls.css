@@ -117,9 +117,10 @@ select,
 /* Search bar input animation */
 input[type="search"] {
     background-color: hsla(0, 0%, 100%, 0);
-    background-image: url("/images/search-icon.png");
+    background-image: url("/images/search-icon.svg");
     background-position: 0 1rem;
     background-repeat: no-repeat;
+    background-size: 2.1rem 2.1rem;
 
     border: 1px solid transparent;
     color: #fff;
