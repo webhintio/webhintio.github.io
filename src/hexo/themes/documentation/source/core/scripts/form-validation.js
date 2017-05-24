@@ -6,36 +6,36 @@
  * It will also remove that attribute once the user writes something valid on that input and changes focus.
  */
 (function () {
-	'use strict';
+    'use strict';
 
-	var cleanUp = function (e) {
-		var input = e.target;
+    var cleanUp = function (e) {
+        var input = e.target;
 
-		if (input.validity.valid) {
-			input.removeAttribute('aria-invalid');
-			input.removeEventListener('blur', cleanUp);
-		}
-	};
+        if (input.validity.valid) {
+            input.removeAttribute('aria-invalid');
+            input.removeEventListener('blur', cleanUp);
+        }
+    };
 
-	var onSubmit = function (e) {
-		var form = e.target.form;
-		var inputs = form.querySelectorAll('input[required], textarea[required]');
+    var onSubmit = function (e) {
+        var form = e.target.form;
+        var inputs = form.querySelectorAll('input[required], textarea[required]');
 
-		for (var i = 0, l = inputs.length; i < l; i++) {
-			var input = inputs[i];
+        for (var i = 0, l = inputs.length; i < l; i++) {
+            var input = inputs[i];
 
-			if (!input.validity.valid) {
-				input.setAttribute('aria-invalid', 'true');
-				input.addEventListener('blur', cleanUp);
-			}
-		}
-	};
+            if (!input.validity.valid) {
+                input.setAttribute('aria-invalid', 'true');
+                input.addEventListener('blur', cleanUp);
+            }
+        }
+    };
 
-	var forms = document.querySelectorAll('form');
+    var forms = document.querySelectorAll('form');
 
-	for (var i = 0, l = forms.length; i < l; i++) {
-		var form = forms[i];
+    for (var i = 0, l = forms.length; i < l; i++) {
+        var form = forms[i];
 
-		form.addEventListener('invalid', onSubmit, true);
-	}
+        form.addEventListener('invalid', onSubmit, true);
+    }
 }());
