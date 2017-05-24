@@ -27,164 +27,164 @@
 
 /* global setImmediate */
 (function () {
-	'use strict';
+    'use strict';
 
-	var supportDetails = 'open' in document.createElement('details');
+    var supportDetails = 'open' in document.createElement('details');
 
-	var animateOpen = function (parent, content) {
-		var contentHeight = content.offsetHeight;
+    var animateOpen = function (parent, content) {
+        var contentHeight = content.offsetHeight;
 
-		content.style.height = contentHeight + 'px';
-	};
+        content.style.height = contentHeight + 'px';
+    };
 
-	var animateClose = function (content) {
-		content.style.height = '';
-		content.parentElement.removeAttribute('open');
-	};
+    var animateClose = function (content) {
+        content.style.height = '';
+        content.parentElement.removeAttribute('open');
+    };
 
-	var toggleDetails = function (button) {
-		var parent = button.parentElement;
-		var content = parent.querySelector(':scope > div');
+    var toggleDetails = function (button) {
+        var parent = button.parentElement;
+        var content = parent.querySelector(':scope > div');
 
-		if (typeof parent.getAttribute('open') === 'string') {
-			animateClose(content);
-		} else {
-			parent.setAttribute('open', 'open');
-			animateOpen(parent, content);
-		}
-	};
+        if (typeof parent.getAttribute('open') === 'string') {
+            animateClose(content);
+        } else {
+            parent.setAttribute('open', 'open');
+            animateOpen(parent, content);
+        }
+    };
 
-	var updateUrl = function (target) {
-		var basePath = target.getAttribute('data-pathname');
-		var path = target.parentElement.getAttribute('id');
-		var pathname = window.location.href;
+    var updateUrl = function (target) {
+        var basePath = target.getAttribute('data-pathname');
+        var path = target.parentElement.getAttribute('id');
+        var pathname = window.location.href;
 
-		if (!basePath || !path) {
-			return;
-		}
+        if (!basePath || !path) {
+            return;
+        }
 
-		var loc = pathname.substr(0, pathname.indexOf(basePath)) + basePath + path + '/';
+        var loc = pathname.substr(0, pathname.indexOf(basePath)) + basePath + path + '/';
 
-		window.history.pushState('', '', loc + location.search);
-	};
+        window.history.pushState('', '', loc + location.search);
+    };
 
-	var shim = function () {
-		var accordionButtons = document.querySelectorAll('[role="group"] [role="button"]');
+    var shim = function () {
+        var accordionButtons = document.querySelectorAll('[role="group"] [role="button"]');
 
-		for (var i = 0, li = accordionButtons.length; i < li; i++) {
-			var button = accordionButtons[i];
+        for (var i = 0, li = accordionButtons.length; i < li; i++) {
+            var button = accordionButtons[i];
 
-			button.setAttribute('tabindex', '0');
-			var parent = button.parentElement;
+            button.setAttribute('tabindex', '0');
+            var parent = button.parentElement;
 
-			if (typeof parent.getAttribute('open') === 'string') {
-				var content = parent.querySelector('div');
+            if (typeof parent.getAttribute('open') === 'string') {
+                var content = parent.querySelector('div');
 
-				content.style.height = content.offsetHeight + 'px';
-			}
-		}
-	};
+                content.style.height = content.offsetHeight + 'px';
+            }
+        }
+    };
 
-	var onToggleAccordion = function (e, target) {
-		var ariaExpanded = target.getAttribute('aria-expanded');
-		var keydown = e.type === 'keydown';
-		var key;
+    var onToggleAccordion = function (e, target) {
+        var ariaExpanded = target.getAttribute('aria-expanded');
+        var keydown = e.type === 'keydown';
+        var key;
 
-		if (keydown) {
-			key = e.which || e.keyCode;
+        if (keydown) {
+            key = e.which || e.keyCode;
 
-			if (key !== 32 && key !== 13) {
-				return;
-			}
-		}
+            if (key !== 32 && key !== 13) {
+                return;
+            }
+        }
 
-		e.preventDefault();
+        e.preventDefault();
 
-		toggleDetails(target);
+        toggleDetails(target);
 
-		if (ariaExpanded === 'false' || !ariaExpanded) {
-			target.setAttribute('aria-expanded', 'true');
-			updateUrl(target);
-		} else {
-			target.setAttribute('aria-expanded', 'false');
-		}
-	};
+        if (ariaExpanded === 'false' || !ariaExpanded) {
+            target.setAttribute('aria-expanded', 'true');
+            updateUrl(target);
+        } else {
+            target.setAttribute('aria-expanded', 'false');
+        }
+    };
 
-	var findSummary = function (element) {
-		if (element.nodeName === 'SUMMARY' && element.getAttribute('role') === 'button') {
-			return element;
-		}
-		if (element.parentElement) {
-			return findSummary(element.parentElement);
-		}
+    var findSummary = function (element) {
+        if (element.nodeName === 'SUMMARY' && element.getAttribute('role') === 'button') {
+            return element;
+        }
+        if (element.parentElement) {
+            return findSummary(element.parentElement);
+        }
 
-		return null;
-	};
+        return null;
+    };
 
-	var registerEvents = function () {
-		document.addEventListener('click', function (evt) {
-			var target = evt.target || evt.srcElement;
-			var source = findSummary(target);
+    var registerEvents = function () {
+        document.addEventListener('click', function (evt) {
+            var target = evt.target || evt.srcElement;
+            var source = findSummary(target);
 
-			if (source) {
-				onToggleAccordion(evt, source);
-			}
-		}, false);
+            if (source) {
+                onToggleAccordion(evt, source);
+            }
+        }, false);
 
-		document.addEventListener('keydown', function (evt) {
-			var target = evt.target || evt.srcElement;
-			var source = findSummary(target);
+        document.addEventListener('keydown', function (evt) {
+            var target = evt.target || evt.srcElement;
+            var source = findSummary(target);
 
-			if (source) {
-				onToggleAccordion(evt, source);
-			}
-		}, false);
-	};
+            if (source) {
+                onToggleAccordion(evt, source);
+            }
+        }, false);
+    };
 
-	var polyfillSetImmediate = function () {
-		window.setImmediate = window.setImmediate || function (func) {
-			setTimeout(func, 0);
-		};
-	};
+    var polyfillSetImmediate = function () {
+        window.setImmediate = window.setImmediate || function (func) {
+            setTimeout(func, 0);
+        };
+    };
 
-	var scrollIfNeeded = function () {
-		var buttons = document.querySelectorAll('summary[data-pathname]');
+    var scrollIfNeeded = function () {
+        var buttons = document.querySelectorAll('summary[data-pathname]');
 
-		if (buttons.length === 0) {
-			return;
-		}
-		var paths = window.location.pathname.split('/');
-		var path = paths.pop();
+        if (buttons.length === 0) {
+            return;
+        }
+        var paths = window.location.pathname.split('/');
+        var path = paths.pop();
 
-		while (path === '' && paths.length > 0) {
-			path = paths.pop();
-		}
+        while (path === '' && paths.length > 0) {
+            path = paths.pop();
+        }
 
-		if (path === '') {
-			return;
-		}
+        if (path === '') {
+            return;
+        }
 
-		for (var i = 0; i < buttons.length; i++) {
-			var summary = buttons[i];
+        for (var i = 0; i < buttons.length; i++) {
+            var summary = buttons[i];
 
-			if (summary.parentElement.getAttribute('id').indexOf(path) === 0) {
+            if (summary.parentElement.getAttribute('id').indexOf(path) === 0) {
 				/*eslint-disable no-loop-func*/
-				setImmediate(function () {
-					window.scrollTo(0, summary.offsetTop - summary.offsetHeight);
-				}, 0);
+                setImmediate(function () {
+                    window.scrollTo(0, summary.offsetTop - summary.offsetHeight);
+                }, 0);
 				/*eslint-enable no-loop-func*/
-				summary.click();
-				break;
-			}
-		}
-	};
+                summary.click();
+                break;
+            }
+        }
+    };
 
-	window.addEventListener('load', function () {
-		polyfillSetImmediate();
-		registerEvents();
-		scrollIfNeeded();
-		if (!supportDetails) {
-			shim();
-		}
-	});
+    window.addEventListener('load', function () {
+        polyfillSetImmediate();
+        registerEvents();
+        scrollIfNeeded();
+        if (!supportDetails) {
+            shim();
+        }
+    });
 }());
