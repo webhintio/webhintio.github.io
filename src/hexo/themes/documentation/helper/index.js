@@ -1,6 +1,10 @@
 module.exports = function () {
-    const isIndexPage = (page, indexPageLevel) => {
-        return page.title.toLowerCase().replace(' ', '-') === page[indexPageLevel];
+    const isIndexPage = (page) => {
+        return page.permalink.endsWith('index.html');
+    };
+
+    const isToCIndexPage = (page) => {
+        return isIndexPage(page) && page.title.toLowerCase().replace(' ', '-') !== page.category;
     };
 
     return {
@@ -93,6 +97,18 @@ module.exports = function () {
 
             return options.inverse(this);
         },
+        expandToC: (currentPage, pages) => { // Should keep the ToC expanded if a page in the list is selected.
+            for (let i = 0, l = pages.length; i < l; i++) {
+                if (pages[i].title === currentPage.title) {
+                    return true;
+                }
+            }
+
+            return false;
+        },
+        expandable: (pages) => { // Tell if a ToC title is expandable.
+            return pages.length > 0;
+        },
         getAboutItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
@@ -134,11 +150,11 @@ module.exports = function () {
                         acc[tocTitle] = [];
                     }
 
-                    if (isIndexPage(page, 'toc-title')) {
+                    if (isToCIndexPage(page)) {
                         acc[tocTitle].unshift(page); // always place index page as the first one
                     }
 
-                    if (!isIndexPage(page, 'toc-title') && !isIndexPage(page, 'category')) { // non-index pages
+                    if (!isIndexPage(page)) { // non-index pages
                         acc[tocTitle].push(page);
                     }
                 }
