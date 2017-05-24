@@ -13,6 +13,6 @@ rm('-rf', `${SOURCE_DIR}/docs/developer-guide`);
 rm('-rf', `${SOURCE_DIR}/docs/user-guide`);
 cp('-R', `${TMP_DIR}/docs/developer-guide`, `${SOURCE_DIR}/docs/developer-guide`);
 cp('-R', `${TMP_DIR}/docs/user-guide`, `${SOURCE_DIR}/docs/user-guide`);
-cp(`${TMP_DIR}/CHANGELOG.md`, `${SOURCE_DIR}/about/changelog/index.md`);
+cp(`${TMP_DIR}/about/`, `${SOURCE_DIR}/about`);
 
 rm('-rf', TMP_DIR);
