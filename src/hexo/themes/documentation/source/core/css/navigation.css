@@ -25,6 +25,10 @@
 }
 
 /* HEADER: Site logo */
+.logo--container {
+    width: 18rem;
+}
+
 .header__logo {
     float: left; /* for non Flexbox browsers */
     width: 18rem;
