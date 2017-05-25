@@ -148,12 +148,6 @@ input {
     max-width: 74rem;
 }
 
-button,
-a.button {
-    width: 100%;
-    max-width: 16rem;
-}
-
 /* Home footer is a different color than the rest of the site */
 .footer--home {
     background-color: #0c1366;

@@ -130,6 +130,8 @@ input[type="search"] {
 
     padding: 1rem 1rem 1rem 3.2rem;
 
+    cursor: pointer;
+
     -webkit-transition: width .4s ease-in-out;
     transition: width .4s ease-in-out;
 }
@@ -137,6 +139,7 @@ input[type="search"] {
 input[type=search]:focus {
     width: 20rem;
     border-bottom: 1px solid #fff;
+    cursor: text;
 }
 
 .nav-bar__input {
@@ -163,21 +166,14 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
     color: hsla(0, 0%, 100%, .9);
 }
 
-/* Keeps input and button on same line */
-.input-fix {
-    display: flex;
+.input-fix input {
     margin-top: .8rem;
 }
 
-.input-fix input {
-    flex: 1;
-    width: 100%;
-    margin-right: 1rem;
-}
-
 .input-fix button {
-    flex: 0;
-    white-space: nowrap;
+    width: 100%;
+    margin-top: .8rem;
+    max-width: 74rem;
 }
 
 @media (max-width: 34em) {
@@ -205,6 +201,27 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
     input[type=search]:focus {
         width: 100%;
         max-width: 48rem;
+    }
+
+}
+
+@media (min-width: 34.1em) {
+
+    /* Keeps input and button on same line */
+    .input-fix {
+        display: flex;
+        margin-top: .8rem;
+    }
+
+    .input-fix input {
+        flex: 1;
+        width: 100%;
+        margin-right: 1rem;
+    }
+
+    .input-fix button {
+        flex: 0;
+        white-space: nowrap;
     }
 
 }
