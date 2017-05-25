@@ -7,6 +7,10 @@ module.exports = function () {
         return isIndexPage(page) && page.title.toLowerCase().replace(' ', '-') !== page.category;
     };
 
+    const isGuideIndexPage = (page) => {
+        return isIndexPage(page) && page.title.toLowerCase().replace(' ', '-') === page.category;
+    };
+
     return {
         /**
          * Handlebars Comparison Helpers
@@ -140,8 +144,12 @@ module.exports = function () {
 
             return options.inverse(this);
         },
+        isSubPage: (page) => {
+            // returns whether or not a page is a subpage under developer guide or user-guide
+            return !isGuideIndexPage(page);
+        },
         // Sort out `Developer guide` or `User guide` pages
-        sortPagesByCategory: function (allPages, category) { // eslint-disable-line object-shorthand
+        sortPagesByCategory: (allPages, category) => {
             return allPages.reduce((acc, page) => {
                 if (page.category === category) {
                     const tocTitle = page['toc-title'];
