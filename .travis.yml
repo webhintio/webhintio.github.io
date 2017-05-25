@@ -4,6 +4,7 @@
 # https://docs.travis-ci.com
 
 after_success:
+  - npm run travis-update
   - |
 
         # Run the DocSearch scraper only
@@ -14,8 +15,6 @@ after_success:
         if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
           npm run travis-docsearch-scraper
         fi
-
-  - npm run travis-update
 
 env:
   global:
