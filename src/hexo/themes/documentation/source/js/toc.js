@@ -7,8 +7,8 @@
     var tocTitleButtons = document.querySelectorAll('.toc-expand-arrow');
 
     var toggleToC = function (evt) {
-        var expanded = evt.currentTarget.getAttribute('aria-expanded') === 'true';
         var handle = evt.currentTarget.parentElement;
+        var expanded = handle.getAttribute('aria-expanded') === 'true';
 
         if (expanded) {
             handle.parentElement.querySelector('.toc-subsection-title').setAttribute('aria-hidden', 'true');
