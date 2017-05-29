@@ -30,6 +30,7 @@
             <link rel="stylesheet" href="{{url_for "/core/css/code.css"}}">
             <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
             <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css"}}">
+            <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css"}}">
         {{else}}
             <link rel="stylesheet" href="{{url_for "/core/css/home.css"}}">
         {{/compare}}
@@ -68,9 +69,9 @@
             {{>footer navs=site.data.menu}}
         {{/if}}
         <script src="{{url_for "js/nav.js"}}"></script>
-        <script src="{{url_for "js/toc.js"}}"></script>
         <script src="{{url_for "core/scripts/form-validation.js"}}"></script>
         <script src="{{url_for "components/accordion/accordion.js"}}"></script>
+        <script src="{{url_for "components/treeview/treeview.js"}}"></script>
         {{>docsearch}}
     </body>
 </html>

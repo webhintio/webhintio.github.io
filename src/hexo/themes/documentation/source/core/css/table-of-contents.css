@@ -3,8 +3,13 @@
  *  =============================================
  */
 
-.table-of-contents > ul {
-    margin-top: 1rem;
+.table-of-contents ul {
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.table-of-contents > ul > li {
+    margin-top: 0;
 }
 
 .toc-section-title,
@@ -13,13 +18,6 @@
     margin-top: 1.6rem;
     text-transform: uppercase;
     letter-spacing: .1rem;
-}
-
-.toc-expand-arrow {
-    background-image: url("/images/toc-arrow.svg");
-    display: inline-block;
-    width: 1.4rem;
-    height: .8rem;
 }
 
 .toc-subsection-title li {

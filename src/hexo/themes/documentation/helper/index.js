@@ -101,7 +101,7 @@ module.exports = function () {
 
             return options.inverse(this);
         },
-        expandToC: (currentPage, pages) => { // Should keep the ToC expanded if a page in the list is selected.
+        expandToC: (currentPage, pages) => { // Should keep the ToC section expanded if a page in the list is selected.
             for (let i = 0, l = pages.length; i < l; i++) {
                 if (pages[i].title === currentPage.title) {
                     return true;
@@ -111,7 +111,7 @@ module.exports = function () {
             return false;
         },
         expandable: (pages) => { // Tell if a ToC title is expandable.
-            return pages.length > 0;
+            return pages.length - 1 > 0; // First page is always the landing page.
         },
         getAboutItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
@@ -121,8 +121,11 @@ module.exports = function () {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
         },
+        getSubsectionPages: (pages) => {
+            return pages.slice(1);
+        },
         getToCIndexPageLink: (pages) => {
-            return pages.shift().permalink;
+            return pages[0].permalink;
         },
         hasSubPage: function (id, options) { // eslint-disable-line object-shorthand
             const result = (id === 'docs' || id === 'about');
