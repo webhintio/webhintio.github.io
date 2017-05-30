@@ -148,6 +148,7 @@ input[type=search]:focus {
 
 .nav-bar__input input[type=search] {
     margin-right: 0;
+    margin-left: 1rem;
 }
 
 input[type=search]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -187,6 +188,10 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
         max-width: 48rem;
 
         padding: 0 1.5rem 0 0;
+    }
+
+    .nav-bar__input input[type=search] {
+        margin-left: 0;
     }
 
     .algolia-autocomplete {
