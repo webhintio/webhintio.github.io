@@ -39,7 +39,8 @@ button,
 .subheading,
 .title,
 .subtitle,
-.subtitle--alt {
+.subtitle--alt,
+.button {
     font-family: "Montserrat", sans-serif;
 }
 

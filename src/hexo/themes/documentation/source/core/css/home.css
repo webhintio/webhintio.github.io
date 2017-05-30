@@ -85,9 +85,18 @@ main {
     max-width: 96rem;
 }
 
+/* remove CSS after scanner is implemented */
+.home-container h1 {
+    color: #fff;
+    margin: 0 auto;
+}
+
 .home-container--section {
     margin: 0 auto;
     padding: 4rem 2rem;
+
+    /* remove text-align after scanner is implemented */
+    text-align: center;
 }
 
 .home-container--input {
