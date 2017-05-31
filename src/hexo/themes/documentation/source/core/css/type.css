@@ -215,6 +215,7 @@ li {
 .module--primary h1 {
     font-size: 3.4rem;
     color: #000;
+    display: none;
 }
 
 .module--primary h2::before {

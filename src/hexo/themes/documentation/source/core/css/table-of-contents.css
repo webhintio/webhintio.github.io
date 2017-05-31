@@ -21,7 +21,6 @@
 }
 
 .toc-subsection-title li {
-    color: #000;
     margin: 1.6rem 0 0 .9rem;
     list-style: none;
     line-height: 2rem;
@@ -41,12 +40,13 @@
     font-size: 1.6rem;
 }
 
+.toc-section-title,
 .toc-section-title--active,
 .toc-subsection-title--active {
     color: #4046dd;
 }
 
-li a.toc-subsection-title--active::before {
+li div.toc-subsection-title--active a::before {
     content: url("/images/toc-current-section.svg");
     display: inline-block;
     position: absolute;
