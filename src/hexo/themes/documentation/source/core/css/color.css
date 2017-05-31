@@ -11,6 +11,7 @@ body {
 /* Blue highlight colour */
 a,
 a:visited,
+li:focus,
 .button--text,
 .button--text:hover,
 .button--text:active,

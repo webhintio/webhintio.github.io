@@ -30,12 +30,21 @@ const insertFrontMatterItemIfExist = (itemName, itemValue, frontmatter) => {
 const generateFrontMatterInfo = (filePath, title) => {
     let relativePath = path.relative(directory, filePath);
     let root = '';
+    let index;
+    let baseName;
 
     if (_.startsWith(relativePath, 'docs')) {
         relativePath = path.relative('docs', relativePath);
         root = 'docs';
     }
-    const baseName = path.basename(relativePath, '.md');
+    baseName = path.basename(relativePath, '.md');
+    const indexMatch = baseName.match(/(^\d+)-/);
+
+    if (indexMatch) {
+        index = indexMatch.pop();
+
+        baseName = baseName.replace(indexMatch.pop(), '');
+    }
 
     const [category, tocTitle] = path.dirname(relativePath).split(path.sep);
     const permaLink = normalize(path.join(root, path.dirname(relativePath), `${baseName}.html`));
@@ -48,6 +57,12 @@ const generateFrontMatterInfo = (filePath, title) => {
 
     insertFrontMatterItemIfExist('toc-title', tocTitle, frontMatter);
     insertFrontMatterItemIfExist('title', title, frontMatter);
+
+    if (index) {
+        const indexFrontMatter = `index: ${index}`;
+
+        frontMatter.unshift(indexFrontMatter);
+    }
 
     frontMatter.unshift(divider);
 

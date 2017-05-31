@@ -3,12 +3,35 @@ module.exports = function () {
         return page.permalink.endsWith('index.html');
     };
 
-    const isToCIndexPage = (page) => {
+    const isGuideIndexPage = (page) => {
+        return isIndexPage(page) && page.title.toLowerCase().replace(' ', '-') === page.category;
+    };
+
+    const isSectionIndexPage = (page) => {
         return isIndexPage(page) && page.title.toLowerCase().replace(' ', '-') !== page.category;
     };
 
-    const isGuideIndexPage = (page) => {
-        return isIndexPage(page) && page.title.toLowerCase().replace(' ', '-') === page.category;
+    const sortPageByAlpha = (l, r) => {
+        if (l.title > r.title) {
+            return 1;
+        }
+
+        return -1;
+    };
+
+    const sortPageByIndex = (l, r) => {
+        const indexL = l.index;
+        const indexR = r.index;
+
+        if (isSectionIndexPage(r) || (!indexL && indexR) || (indexL > indexR)) {
+            return 1;
+        }
+
+        if ((indexL === indexR) || (!indexL && !indexR)) {
+            return sortPageByAlpha(l, r);
+        }
+
+        return -1;
     };
 
     return {
@@ -70,6 +93,13 @@ module.exports = function () {
                     return l === r;
                 },
                 '===': (l, r) => {
+                    if (typeof l === 'string' && typeof r === 'string') {
+                        /* eslint-disable no-param-reassign */
+                        l = l.toLowerCase();
+                        r = r.toLowerCase();
+                        /* eslint-enable no-param-reassign */
+                    }
+
                     return l === r;
                 },
                 '>': (l, r) => {
@@ -110,9 +140,6 @@ module.exports = function () {
 
             return false;
         },
-        expandable: (pages) => { // Tell if a ToC title is expandable.
-            return pages.length - 1 > 0; // First page is always the landing page.
-        },
         getAboutItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
@@ -120,9 +147,6 @@ module.exports = function () {
         getDocumentItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
-        },
-        getSubsectionPages: (pages) => {
-            return pages.slice(1);
         },
         getToCIndexPageLink: (pages) => {
             return pages[0].permalink;
@@ -147,31 +171,43 @@ module.exports = function () {
 
             return options.inverse(this);
         },
+        isSelected: (currentPage, treeviewItemLink) => {
+            // tell if a node item in treeview is the current page
+            return currentPage.permalink === treeviewItemLink;
+        },
         isSubPage: (page) => {
             // returns whether or not a page is a subpage under developer guide or user-guide
             return !isGuideIndexPage(page);
         },
         // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {
-            return allPages.reduce((acc, page) => {
+            const pages = allPages.reduce((acc, page) => {
                 if (page.category === category) {
-                    const tocTitle = page['toc-title'];
+                    const tocSectionTitle = page['toc-title'];
 
-                    if (!acc[tocTitle]) {
-                        acc[tocTitle] = [];
+                    if (!acc[tocSectionTitle]) {
+                        acc[tocSectionTitle] = [];
                     }
 
-                    if (isToCIndexPage(page)) {
-                        acc[tocTitle].unshift(page); // always place index page as the first one
+                    if (isSectionIndexPage(page)) {
+                        acc[tocSectionTitle].unshift(page); // always place index page as the first one
                     }
 
                     if (!isIndexPage(page)) { // non-index pages
-                        acc[tocTitle].push(page);
+                        acc[tocSectionTitle].push(page);
                     }
                 }
 
                 return acc;
             }, {});
+
+            for (const section in pages) {
+                if (pages.hasOwnProperty(section)) {
+                    pages[section] = pages[section].sort(sortPageByIndex);
+                }
+            }
+
+            return pages;
         }
     };
 };

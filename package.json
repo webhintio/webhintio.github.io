@@ -34,7 +34,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "build": "node helpers/updater.js src/hexo/source && hexo generate",
     "hexo:clean": "hexo clean",
     "hexo:server": "hexo server",
     "lint": "npm-run-all lint:*",
@@ -48,6 +48,6 @@
     "travis-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
     "travis-update": "npm run travis-update-content && .travis/update.sh",
     "travis-update-content": ".travis/is-travis.sh && .travis/set-up-ssh.sh && npm run update-content && npm run build",
-    "update-content": "node helpers/update-content.js && node helpers/updater.js src/hexo/source"
+    "update-content": "node helpers/update-content.js"
   }
 }

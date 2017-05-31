@@ -13,41 +13,50 @@
 .treeview li[aria-expanded="false"] > ul {
     max-height: 0;
     overflow-y: hidden;
-    -webkit-transition: max-height .5s ease-in-out;
-    -moz-transition: max-height .5s ease-in-out;
-    -o-transition: max-height .5s ease-in-out;
-    transition: max-height .5s ease-in-out;
+    -webkit-transition: max-height .2s ease-in-out;
+    -moz-transition: max-height .2s ease-in-out;
+    -o-transition: max-height .2s ease-in-out;
+    transition: max-height .2s ease-in-out;
 }
 
 .treeview li[aria-expanded="true"] > ul {
-    max-height: 50rem;
-    overflow-y: hidden;
-    -webkit-transition: max-height .5s ease-in-out;
-    -moz-transition: max-height .5s ease-in-out;
-    -o-transition: max-height .5s ease-in-out;
-    transition: max-height .5s ease-in-out;
+    max-height: 100rem;
+    -webkit-transition: max-height .2s ease-in-out;
+    -moz-transition: max-height .2s ease-in-out;
+    -o-transition: max-height .2s ease-in-out;
+    transition: max-height .2s ease-in-out;
 }
 
-.treeview li[aria-expanded="false"] > ul > li[aria-selected="true"] a::before {
+.treeview li[aria-expanded="false"] a::before {
     opacity: 0;
-    -webkit-transition: opacity .5s ease-in-out;
-    -moz-transition: opacity .5s ease-in-out;
-    -o-transition: opacity .5s ease-in-out;
-    transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .2s ease-in-out;
+    -moz-transition: opacity .2s ease-in-out;
+    -o-transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out;
 }
 
-.treeview li[aria-expanded="false"] > div > .icon::before {
+.treeview li > div > .icon::before {
     content: url("/images/toc-arrow.svg");
     display: inline-block;
     width: 1.4rem;
-    height: .8rem;
 }
 
 .treeview li[aria-expanded="true"] > div > .icon::before {
-    content: url("/images/toc-arrow.svg");
-    display: inline-block;
-    width: 1.4rem;
-    height: .8rem;
-    -webkit-transform: translateX(50%) translateY(70%) rotate(-90deg);
-    transform: translateX(-60%) translateY(80%) rotate(-90deg);
-};
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transition: transform .2s linear;
+}
+
+.treeview li[aria-expanded="false"] > div > .icon::before {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    transition: transform .2s linear;
+}
+
+.treeview ul[role="tree"]:focus {
+    outline: none;
+}

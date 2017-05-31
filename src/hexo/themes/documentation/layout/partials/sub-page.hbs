@@ -28,53 +28,46 @@
                 {{{page.content}}}
             </div>
             <div class="module module--secondary table-of-contents treeview" role="navigation">
-                <ul role="tree" aria-labelledby="page-heading">
+                <ul role="tree" aria-labelledby="page-heading" tabindex="0">
                 {{#each pages}}
-                    {{#if (expandable this)}}
-                        <li role="treeitem" aria-label="subsection"
-                            {{#if (expandToC ../page this)}}
-                                aria-expanded = "true"
-                            {{else}}
-                                aria-expanded="false"
-                            {{/if}}>
-
+                    {{#if this}}
+                        <li role="treeitem" aria-label="subsection" tabindex="0"
+                        {{#if (expandToC ../page this)}}
+                            aria-expanded = "true"
+                        {{else}}
+                            aria-expanded="false"
+                        {{/if}}>
                             {{#hasTocTitle @key}}
-                            <div class="toc-section-title">
-                                <a href="{{getToCIndexPageLink ../this}}">
-                                {{@key}}
-                                </a>
+                            <div {{#if (expandToC ../../page ../this)}}
+                                         class="toc-section-title--active"
+                                    {{else}}
+                                         class="toc-section-title"
+                                    {{/if}}>
+                                <span class="text">{{@key}}</span>
                                 <span class="icon"></span>
                             </div>
                             {{/hasTocTitle}}
 
                                 <ul class="toc-subsection-title" role="group">
-                                    {{#each (getSubsectionPages this)}}
-                                        <li role="treeitem" {{#compare ../../page.title '===' title}}aria-selected="true"{{/compare}}>
-                                            <label>
-                                                <a href="{{permalink}}"
-                                                    {{#compare ../../page.title '===' title}}
+                                    {{#each this}}
+                                        <li role="treeitem"
+                                        {{#if (isSelected ../../page permalink)}}
+                                            aria-selected="true"
+                                        {{/if}}>
+                                            <div {{#compare ../../page.title '===' title}}
                                                         class="toc-subsection-title--active"
                                                         aria-current="location"
                                                     {{else}}
                                                         class="toc-subsection-title"
                                                     {{/compare}}>
-                                                    {{title}}
-                                                </a>
-                                            </label>
+                                                    <a class="text" href="{{permalink}}" {{#unless (expandToC ../../page ../this)}}tabindex="-1"{{/unless}}>
+                                                        {{title}}
+                                                    </a>
+                                            </div>
                                         </li>
                                     {{/each}}
                                 </ul>
                             </li>
-                        {{else}}
-                            {{#hasTocTitle @key}}
-                             <li role="treeitem">
-                                <label class="toc-section-title--active">
-                                    <a href="{{getToCIndexPageLink ../this}}">
-                                    {{@key}}
-                                    </a>
-                                </label>
-                             </li>
-                            {{/hasTocTitle}}
                         {{/if}}
                 {{/each}}
                 </ul>
