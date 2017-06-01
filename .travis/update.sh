@@ -7,7 +7,7 @@ declare -r TMP_DIR="$(mktemp -d XXXXX)"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-prepare_dist_dir() {
+prepare_site_dist_dir() {
 
     declare -r files=(
         dist
@@ -19,6 +19,17 @@ prepare_dist_dir() {
     for file in "${files[@]}"; do
         cp -R "$file" "$TMP_DIR"
     done
+}
+
+run_docsearch_scraper() {
+
+    # Run the DocSearch scraper only is this is a cron job.
+    # https://docs.travis-ci.com/user/cron-jobs/
+
+    if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
+        npm run travis-docsearch-scraper
+    fi
+
 }
 
 update_website_branch() {
@@ -41,7 +52,9 @@ update_website_branch() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-prepare_dist_dir \
+run_docsearch_scraper
+
+prepare_site_dist_dir \
     && update_website_branch
 
 rm -rf "$TMP_DIR"

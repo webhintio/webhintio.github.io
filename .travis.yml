@@ -5,16 +5,6 @@
 
 after_success:
   - npm run travis-update
-  - |
-
-        # Run the DocSearch scraper only
-        # when the build was triggered by cron.
-        #
-        # https://docs.travis-ci.com/user/cron-jobs/
-
-        if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
-          npm run travis-docsearch-scraper
-        fi
 
 env:
   global:
