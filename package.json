@@ -4,7 +4,7 @@
     "express-handlebars": "^3.0.0",
     "fs": "0.0.2",
     "handlebars": "^4.0.6",
-    "hexo": "^3.2.0",
+    "hexo": "^3.3.7",
     "hexo-cli": "^1.0.2",
     "hexo-generator-index": "^0.2.0",
     "hexo-generator-tag": "^0.2.0",
@@ -30,7 +30,7 @@
     "stylelint": "^7.10.1"
   },
   "hexo": {
-    "version": "3.3.6"
+    "version": "3.3.7"
   },
   "private": true,
   "scripts": {
