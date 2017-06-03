@@ -1,0 +1,19 @@
+{
+  "index_name": "sonarwhal",
+  "start_urls": [
+    "https://sonarwhal.com/docs/"
+  ],
+  "stop_urls": [
+    "https://sonarwhal.com/docs/index.html"
+  ],
+  "selectors": {
+    "lvl0": ".page-intro h1",
+    "lvl1": ".module h1",
+    "lvl2": ".module h2",
+    "lvl3": ".module h3",
+    "lvl4": ".module h4",
+    "text": ".module p"
+  },
+  "min_indexed_level": 1,
+  "nb_hits": 459
+}
