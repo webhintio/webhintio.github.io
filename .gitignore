@@ -6,5 +6,6 @@ db.json
 dist/
 node_modules/
 src/hexo/source/changelog/
-src/hexo/source/docs/
+src/hexo/source/docs/developer-guide
+src/hexo/source/docs/user-guide
 Thumbs.db

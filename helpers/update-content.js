@@ -1,4 +1,4 @@
-/* global config cp exec mkdir rm */
+/* global config cp exec rm */
 
 const shell = require('shelljs/global'); // eslint-disable-line no-unused-vars
 
@@ -9,9 +9,10 @@ const TMP_DIR = require('./mktemp')();
 config.fatal = true;
 
 exec(`git clone ${CLONE_URL}  "${TMP_DIR}"`);
-rm('-rf', `${SOURCE_DIR}/docs`);
-cp('-R', `${TMP_DIR}/docs`, `${SOURCE_DIR}/docs`);
-mkdir('-p', `${SOURCE_DIR}/changelog`);
-cp(`${TMP_DIR}/CHANGELOG.md`, `${SOURCE_DIR}/changelog/index.md`);
+rm('-rf', `${SOURCE_DIR}/docs/developer-guide`);
+rm('-rf', `${SOURCE_DIR}/docs/user-guide`);
+cp('-R', `${TMP_DIR}/docs/developer-guide`, `${SOURCE_DIR}/docs/developer-guide`);
+cp('-R', `${TMP_DIR}/docs/user-guide`, `${SOURCE_DIR}/docs/user-guide`);
+cp(`${TMP_DIR}/CHANGELOG.md`, `${SOURCE_DIR}/about/changelog/index.md`);
 
 rm('-rf', TMP_DIR);

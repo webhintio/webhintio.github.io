@@ -70,6 +70,9 @@ module.exports = function () {
                 '>=': (l, r) => {
                     return l >= r;
                 },
+                belongsTo: (l, r) => {
+                    return r.includes(l);
+                },
                 typeof: (l, r) => {
                     return typeof l === r;
                 },
