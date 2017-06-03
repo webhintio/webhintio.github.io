@@ -1,5 +1,8 @@
 ---
-category: default
+title: Contributor Covenant Code of Conduct
+toc-title: code-of-conduct
+category: about
+permalink: about/code-of-conduct/index.html
 ---
 # Contributor Covenant Code of Conduct
 

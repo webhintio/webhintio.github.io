@@ -13,25 +13,35 @@ const divider = '---';
 
 console.log('Updater is initiated.');
 
+const insertFrontMatterItemIfExist = (itemName, itemValue, frontmatter) => {
+    if (itemValue) {
+        const tocTitleFrontMatter = `${itemName}: ${itemValue}`;
+
+        frontmatter.unshift(tocTitleFrontMatter);
+    }
+};
+
 const generateFrontMatterInfo = (filePath, title) => {
-    const relativePath = path.relative(directory, filePath);
+    let relativePath = path.relative(directory, filePath);
+    let root = '';
+
+    if (_.startsWith(relativePath, 'docs')) {
+        relativePath = path.relative('docs', relativePath);
+        root = 'docs';
+    }
     const baseName = path.basename(relativePath, '.md');
 
     const [category, tocTitle] = path.dirname(relativePath).split(path.sep);
-    const permaLink = normalize(path.join('docs', path.dirname(relativePath), `${baseName}.html`));
+    const permaLink = normalize(path.join(root, path.dirname(relativePath), `${baseName}.html`));
 
-    const categoryFrontMatter = `category: ${category}`;
-    const titleFrontMatter = `title: ${title}`;
+    const categoryFrontMatter = `category: ${_.trim(category, '.') ? category : 'doc-index'}`;
     const permalinkFrontMatter = `permalink: ${permaLink}`;
-    const frontMatter = [categoryFrontMatter, titleFrontMatter, permalinkFrontMatter, divider];
+    const frontMatter = [categoryFrontMatter, permalinkFrontMatter, divider];
 
     permaLinks.set(baseName, permaLink); // populate permaLinks
 
-    if (tocTitle) {
-        const tocTitleFrontMatter = `toc-title: ${tocTitle}`;
-
-        frontMatter.unshift(tocTitleFrontMatter);
-    }
+    insertFrontMatterItemIfExist('toc-title', tocTitle, frontMatter);
+    insertFrontMatterItemIfExist('title', title, frontMatter);
 
     frontMatter.unshift(divider);
 
@@ -40,6 +50,7 @@ const generateFrontMatterInfo = (filePath, title) => {
 
 const addFrontMatter = async (filePath) => {
     let content;
+    let title;
     const data = await fs.readFile(filePath, 'utf8');
 
     if (data.includes(divider)) {
@@ -51,8 +62,11 @@ const addFrontMatter = async (filePath) => {
 
     // extract the first title in markdown file and remove the abbreviation in parenthesis
     // example: '\r\n# Disallow certain HTTP headers (`disallow-headers`)\r\n\r\n' => 'Disallow certain HTTP headers'
-    const title = _.trim(content.match(/# (.*)(\n|\r\n)/)[1]
-        .replace(/\(.*\)/, ''));
+    const titleMatch = content.match(/# (.*)(\n|\r\n)/);
+
+    if (titleMatch) {
+        title = _.trim(titleMatch[1].replace(/\(.*\)/, ''));
+    }
 
     const frontMatter = generateFrontMatterInfo(filePath, title);
 
@@ -87,7 +101,7 @@ const updateLocalLinks = async (filePath) => {
     await fs.writeFile(filePath, newFileContent);
 };
 
-// Iterate all the files in the dest folder and add frontmatter to each file
+// Iterate all the markdown files and add frontmatter to each file
 klaw(directory)
     .on('data', (item) => {
         if (_.endsWith(item.path, '.md')) {

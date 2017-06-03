@@ -54,7 +54,7 @@
                     {{>sub-page intro=site.data.userGuide pages=(sortPagesByCategory site.pages.data 'user-guide')}}
                 {{/compare}}
 
-                {{#compare page.category '===' 'default'}}
+                {{#compare page.category 'belongsTo' 'about, doc-index'}}
                     {{>single-page}}
                 {{/compare}}
             </main>

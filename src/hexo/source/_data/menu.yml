@@ -16,6 +16,9 @@
   - id: faq
     title: Faq
     link: /about/faq/
+  - id: changelog
+    title: changelog
+    link: /about/changelog/
   - id: governance
     title: Governance
     link: /about/governance/
