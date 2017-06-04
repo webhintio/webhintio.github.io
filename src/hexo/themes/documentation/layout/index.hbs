@@ -57,6 +57,10 @@
                 {{#compare page.category 'belongsTo' 'about, doc-index'}}
                     {{>single-page}}
                 {{/compare}}
+
+                {{#compare page.title '===' '404'}}
+                    {{>404}}
+                {{/compare}}
             </main>
             {{else}}
                 {{>home}}
