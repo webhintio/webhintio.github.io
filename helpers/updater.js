@@ -7,12 +7,18 @@ const normalize = require('normalize-path');
 
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
 const filePaths = [];
+const ignoredFiles = ['404.md'];
 
 const permaLinks = new Map(); // a collection of permalinks
 const divider = '---';
 
 console.log('Updater is initiated.');
 
+const isIgnoredFile = (filePath) => {
+    const file = path.basename(filePath);
+
+    return _.includes(ignoredFiles, file);
+};
 const insertFrontMatterItemIfExist = (itemName, itemValue, frontmatter) => {
     if (itemValue) {
         const tocTitleFrontMatter = `${itemName}: ${itemValue}`;
@@ -104,7 +110,7 @@ const updateLocalLinks = async (filePath) => {
 // Iterate all the markdown files and add frontmatter to each file
 klaw(directory)
     .on('data', (item) => {
-        if (_.endsWith(item.path, '.md')) {
+        if (_.endsWith(item.path, '.md') && !isIgnoredFile(item.path)) {
             filePaths.push(item.path);
         }
     })
