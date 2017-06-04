@@ -187,7 +187,7 @@ button.mobile-nav-button {
     background-color: #464646;
 }
 
-.nav__navbar > li:not(:first-child) > a::after {
+.nav__navbar > li > a::after {
     display: inline-block;
     content: url("/images/nav-arrow.svg");
     margin-left: .6rem;
