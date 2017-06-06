@@ -23,11 +23,15 @@ module.exports = function () {
         const indexL = l.index;
         const indexR = r.index;
 
-        if (isSectionIndexPage(r) || (!indexL && indexR) || (indexL > indexR)) {
+        if (isSectionIndexPage(l) || (indexL && !indexR) || indexL < indexR) {
+            return -1;
+        }
+
+        if (isSectionIndexPage(r) || (!indexL && indexR) || indexL > indexR) {
             return 1;
         }
 
-        if ((indexL === indexR) || (!indexL && !indexR)) {
+        if ((!indexL && !indexR) || (indexL === indexR)) {
             return sortPageByAlpha(l, r);
         }
 
@@ -189,11 +193,7 @@ module.exports = function () {
                         acc[tocSectionTitle] = [];
                     }
 
-                    if (isSectionIndexPage(page)) {
-                        acc[tocSectionTitle].unshift(page); // always place index page as the first one
-                    }
-
-                    if (!isIndexPage(page)) { // non-index pages
+                    if (!isGuideIndexPage(page)) { // non-guide-index pages
                         acc[tocSectionTitle].push(page);
                     }
                 }
