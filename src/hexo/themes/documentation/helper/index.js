@@ -23,11 +23,24 @@ module.exports = function () {
         const indexL = l.index;
         const indexR = r.index;
 
-        if (isSectionIndexPage(l) || (indexL && !indexR) || indexL < indexR) {
+        if (isSectionIndexPage(l)) {
             return -1;
         }
 
-        if (isSectionIndexPage(r) || (!indexL && indexR) || indexL > indexR) {
+        if (isSectionIndexPage(r)) {
+            return 1;
+        }
+
+        // Check if one of the pages is the index page before proceeding to index comparison
+        // If index page checking is combined with index comparison, the following edge case will return -1 instead of 1:
+        // - indexL:01
+        // - indexR: undefined; isSectionIndexPage(r) = true
+
+        if ((indexL && !indexR) || indexL < indexR) {
+            return -1;
+        }
+
+        if ((!indexL && indexR) || indexL > indexR) {
             return 1;
         }
 
@@ -135,15 +148,6 @@ module.exports = function () {
 
             return options.inverse(this);
         },
-        expandToC: (currentPage, pages) => { // Should keep the ToC section expanded if a page in the list is selected.
-            for (let i = 0, l = pages.length; i < l; i++) {
-                if (pages[i].title === currentPage.title) {
-                    return true;
-                }
-            }
-
-            return false;
-        },
         getAboutItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
@@ -151,6 +155,12 @@ module.exports = function () {
         getDocumentItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
+        },
+        getPagesByToCTitle: (title, pages) => {
+            return pages[title];
+        },
+        getSortedToCTitles: (pages) => {
+            return Object.keys(pages).sort();
         },
         getToCIndexPageLink: (pages) => {
             return pages[0].permalink;
@@ -164,22 +174,7 @@ module.exports = function () {
 
             return options.inverse(this);
         },
-        hasTocTitle: (tocTitle, options) => {
-            // Some files are placed directly under `developer-guide` or `user-guide`.
-            // These files don't contain `toc-title` entries in their front matter.
-            const result = (tocTitle !== 'undefined');
-
-            if (result) {
-                return options.fn(this);
-            }
-
-            return options.inverse(this);
-        },
-        isSelected: (currentPage, treeviewItemLink) => {
-            // tell if a node item in treeview is the current page
-            return currentPage.permalink === treeviewItemLink;
-        },
-        isSubPage: (page) => {
+        isNotGuideIndexPage: (page) => {
             // returns whether or not a page is a subpage under developer guide or user-guide
             return !isGuideIndexPage(page);
         },
@@ -187,9 +182,9 @@ module.exports = function () {
         sortPagesByCategory: (allPages, category) => {
             const pages = allPages.reduce((acc, page) => {
                 if (page.category === category) {
-                    const tocSectionTitle = page['toc-title'];
+                    const tocSectionTitle = page.tocTitle;
 
-                    if (!acc[tocSectionTitle]) {
+                    if (tocSectionTitle && !acc[tocSectionTitle]) {
                         acc[tocSectionTitle] = [];
                     }
 
@@ -201,6 +196,7 @@ module.exports = function () {
                 return acc;
             }, {});
 
+            // Sort pages numerically first, and then alphabetically
             for (const section in pages) {
                 if (pages.hasOwnProperty(section)) {
                     pages[section] = pages[section].sort(sortPageByIndex);

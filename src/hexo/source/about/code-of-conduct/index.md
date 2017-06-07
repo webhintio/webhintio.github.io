@@ -1,6 +1,6 @@
 ---
 title: Contributor Covenant Code of Conduct
-toc-title: code-of-conduct
+tocTitle: code-of-conduct
 category: about
 permalink: about/code-of-conduct/index.html
 ---

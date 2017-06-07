@@ -3,9 +3,9 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li>
-                <a {{#if (isSubPage page)}} href="../../"{{else}}href="../"{{/if}}>Documentation</a>
+                <a {{#if (isNotGuideIndexPage page)}} href="../../"{{else}}href="../"{{/if}}>Documentation</a>
             </li>
-            {{#if (isSubPage page)}}
+            {{#if (isNotGuideIndexPage page)}}
             <li>
                 <a href="../">
                     {{#compare page.category '===' 'user-guide'}}
@@ -29,46 +29,45 @@
             </div>
             <div class="module module--secondary table-of-contents treeview" role="navigation">
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
-                {{#each pages}}
-                    {{#if this}}
-                        <li role="treeitem" aria-label="subsection" tabindex="0"
-                        {{#if (expandToC ../page this)}}
-                            aria-expanded = "true"
-                        {{else}}
-                            aria-expanded="false"
-                        {{/if}}>
-                            {{#hasTocTitle @key}}
-                            <div {{#if (expandToC ../../page ../this)}}
-                                         class="toc-section-title--active"
-                                    {{else}}
-                                         class="toc-section-title"
-                                    {{/if}}>
-                                <span class="text">{{@key}}</span>
-                                <span class="icon"></span>
-                            </div>
-                            {{/hasTocTitle}}
+                {{#each (getSortedToCTitles pages)}}
+                    <li role="treeitem" aria-label="subsection" tabindex="0"
+                    {{#compare ../page.tocTitle '===' this}}
+                        aria-expanded = "true"
+                    {{else}}
+                        aria-expanded="false"
+                    {{/compare}}>
+                        <div  {{#compare ../../page.tocTitle '===' this}}
+                                        class="toc-section-title--active"
+                                {{else}}
+                                        class="toc-section-title"
+                                {{/compare}}>
+                            <span class="text">{{this}}</span>
+                            <span class="icon"></span>
+                        </div>
 
-                                <ul class="toc-subsection-title" role="group">
-                                    {{#each this}}
-                                        <li role="treeitem"
-                                        {{#if (isSelected ../../page permalink)}}
-                                            aria-selected="true"
-                                        {{/if}}>
-                                            <div {{#compare ../../page.title '===' title}}
-                                                        class="toc-subsection-title--active"
-                                                        aria-current="location"
-                                                    {{else}}
-                                                        class="toc-subsection-title"
-                                                    {{/compare}}>
-                                                    <a class="text" href="{{permalink}}" {{#unless (expandToC ../../page ../this)}}tabindex="-1"{{/unless}}>
-                                                        {{title}}
-                                                    </a>
-                                            </div>
-                                        </li>
-                                    {{/each}}
-                                </ul>
-                            </li>
-                        {{/if}}
+                        <ul class="toc-subsection-title" role="group">
+                            {{#each (getPagesByToCTitle this ../pages)}}
+                                <li role="treeitem"
+                                {{#compare ../../page.title '===' title}}
+                                    aria-selected="true"
+                                {{/compare}}>
+                                    <div {{#compare ../../page.title '===' title}}
+                                                class="toc-subsection-title--active"
+                                                aria-current="location"
+                                            {{else}}
+                                                class="toc-subsection-title"
+                                            {{/compare}}>
+                                        <a class="text" href="{{permalink}}"
+                                            {{#compare ../../page.tocTitle '!==' ../this}}
+                                                tabindex="-1"
+                                            {{/compare}}>
+                                            {{title}}
+                                        </a>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </li>
                 {{/each}}
                 </ul>
             </div>
