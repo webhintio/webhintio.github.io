@@ -6,7 +6,7 @@
     "handlebars": "^4.0.6",
     "hexo": "^3.3.7",
     "hexo-cli": "^1.0.2",
-    "hexo-generator-index": "^0.2.0",
+    "hexo-generator-index": "^0.2.1",
     "hexo-generator-tag": "^0.2.0",
     "hexo-hrefmd": "^1.0.1",
     "hexo-renderer-handlebars": "^2.0.2",
@@ -35,7 +35,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "node helpers/updater.js src/hexo/source && hexo generate",
+    "build": "npm run hexo:clean && node helpers/updater.js src/hexo/source && hexo generate",
     "hexo:clean": "hexo clean",
     "hexo:server": "hexo server",
     "lint": "npm-run-all lint:*",
