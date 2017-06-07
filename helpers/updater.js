@@ -55,7 +55,7 @@ const generateFrontMatterInfo = (filePath, title) => {
 
     permaLinks.set(baseName, permaLink); // populate permaLinks
 
-    insertFrontMatterItemIfExist('toc-title', tocTitle, frontMatter);
+    insertFrontMatterItemIfExist('tocTitle', tocTitle, frontMatter);
     insertFrontMatterItemIfExist('title', title, frontMatter);
 
     if (index) {

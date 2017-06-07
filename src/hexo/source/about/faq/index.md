@@ -1,6 +1,6 @@
 ---
 title: You are in Section `Faq`
-toc-title: faq
+tocTitle: faq
 category: about
 permalink: about/faq/index.html
 ---

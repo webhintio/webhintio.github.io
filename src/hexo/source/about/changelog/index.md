@@ -1,6 +1,6 @@
 ---
 title: HEAD
-toc-title: changelog
+tocTitle: changelog
 category: about
 permalink: about/changelog/index.html
 ---

@@ -1,6 +1,6 @@
 ---
 title: You are in Section `Governance`
-toc-title: governance
+tocTitle: governance
 category: about
 permalink: about/governance/index.html
 ---
