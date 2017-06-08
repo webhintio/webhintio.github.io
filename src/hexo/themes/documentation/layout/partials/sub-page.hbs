@@ -36,7 +36,7 @@
                     {{else}}
                         aria-expanded="false"
                     {{/compare}}>
-                        <div  {{#compare ../../page.tocTitle '===' this}}
+                        <div  {{#compare ../page.tocTitle '===' this}}
                                         class="toc-section-title--active"
                                 {{else}}
                                         class="toc-section-title"
@@ -45,7 +45,7 @@
                             <span class="icon"></span>
                         </div>
 
-                        <ul class="toc-subsection-title" role="group">
+                        <ul role="group">
                             {{#each (getPagesByToCTitle this ../pages)}}
                                 <li role="treeitem"
                                 {{#compare ../../page.title '===' title}}

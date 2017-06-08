@@ -10,6 +10,7 @@
 
     var treeview = document.querySelector('[role="tree"]');
     var treeitems = arraify(document.querySelectorAll('[role="treeitem"]'));
+    var tocSectionTitle = arraify(document.querySelectorAll('.toc-section-title, .toc-section-title--active'));
     var findParentElementByAttribute = function (element, attrName, attrValue) {
         var currentElement = element;
 
@@ -146,17 +147,17 @@
 
     var toggleExpand = function (evt) {
         var parentTreeitem = getClosestParentTreeElement(evt.target);
-        var tocSectionTitle = parentTreeitem.firstElementChild;
+        var title = parentTreeitem.firstElementChild;
         var expanded = parentTreeitem.getAttribute('aria-expanded') === 'true';
 
         if (expanded) {
             collapseNode(parentTreeitem);
-            disableTitle(tocSectionTitle);
+            disableTitle(title);
         }
 
         if (!expanded) {
             expandNode(parentTreeitem);
-            enableTitle(tocSectionTitle);
+            enableTitle(title);
         }
     };
 
@@ -211,8 +212,10 @@
     treeview.addEventListener('focus', onTreeFocus, false); // Handle viewtree focus through tab
 
     treeitems.map(function (treeitem) {
-        treeitem.addEventListener('click', toggleExpand, false);
-
         treeitem.addEventListener('keydown', onKeydown, false);
+    });
+
+    tocSectionTitle.map(function (title) {
+        title.addEventListener('click', toggleExpand, false);
     });
 }());

@@ -10,6 +10,7 @@
 
 .table-of-contents > ul > li {
     margin-top: 0;
+    position: relative;
 }
 
 .toc-section-title,
@@ -20,7 +21,8 @@
     letter-spacing: .1rem;
 }
 
-.toc-subsection-title li {
+.toc-subsection-title,
+.toc-subsection-title--active {
     margin: 1.6rem 0 0 .9rem;
     list-style: none;
     line-height: 2rem;
