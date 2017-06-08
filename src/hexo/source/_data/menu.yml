@@ -5,6 +5,9 @@
   - id: developer-guide
     link: /docs/developer-guide/
     title: Developer Guide
+  - id: rules
+    link: /docs/developer-guide/rules/
+    title: Rules
   - id: user-guide
     link: /docs/user-guide/
     title: User Guide
@@ -14,10 +17,10 @@
   link: #
   items:
   - id: faq
-    title: Faq
+    title: FAQ
     link: /about/faq/
   - id: changelog
-    title: changelog
+    title: Changelog
     link: /about/changelog/
   - id: governance
     title: Governance
