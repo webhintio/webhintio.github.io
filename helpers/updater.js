@@ -73,8 +73,9 @@ const addFrontMatter = async (filePath) => {
     let content;
     let title;
     const data = await fs.readFile(filePath, 'utf8');
+    const frontMatterRegex = new RegExp(`^\s*${divider}`, 'gi'); // eslint-disable-line no-useless-escape
 
-    if (data.includes(divider)) {
+    if (frontMatterRegex.test(data)) {
         // front matter already exists in this file, will update it
         [, , content] = data.split(divider); // ['', '<front matter>', '<Actual content in the markdown file>']
     } else {
