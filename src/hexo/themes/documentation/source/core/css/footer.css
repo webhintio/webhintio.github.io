@@ -44,28 +44,41 @@ footer {
     text-transform: uppercase;
 }
 
+
 .footer-nav__item ul {
     margin: 1.2rem 0 0 0;
     line-height: 3rem;
     list-style: none;
 }
 
-.github-icon {
+.social-list {
     margin-left: auto;
-    width: 4rem;
 }
 
-a .github-icon-svg {
+.social-list li {
+    display: inline-block;
+    margin-left: 1.5rem;
+}
+
+.github-icon,
+.twitter-icon {
+    width: 3rem;
+}
+
+a .github-icon-svg,
+a .twitter-icon-svg {
     fill: #292f56;
 }
 
-a:hover .github-icon-svg {
+a:hover .github-icon-svg,
+a:hover .twitter-icon-svg {
     fill: #4046dd;
 }
 
 @media (max-width: 57.94em) {
 
-    .github-icon {
+    .social-list,
+    .social-list li:first-child {
         margin-left: 0;
     }
 

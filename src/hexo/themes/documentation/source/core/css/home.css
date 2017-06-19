@@ -171,6 +171,7 @@ input {
     color: #fff;
 }
 
-a .github-icon-svg {
+a .github-icon-svg,
+a .twitter-icon-svg {
     fill: #fff;
 }
