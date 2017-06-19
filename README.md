@@ -9,7 +9,7 @@
 Clone the project:
 
 ``` bash
-git clone https://github.com/MicrosoftEdge/Sonar-Website.git
+git clone https://github.com/sonarwhal/sonarwhal.com.git
 ```
 
 Install dependencies:
