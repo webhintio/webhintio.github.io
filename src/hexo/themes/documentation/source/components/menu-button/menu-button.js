@@ -10,7 +10,7 @@
     var supportDetails = testEl.type === 'menu';
 
     if (supportDetails) {
-		//No need to pollyfill the menu
+        //No need to pollyfill the menu
         return;
     }
 
@@ -188,16 +188,16 @@
         };
     };
 
-	/**Currently there aren't any browsers that support selfclosing <menuitem /> so they just keep nesting elements
-	 * <menuitem id="a" />
-	 * <menuitem id="b" />
-	 * just becomes
-	 * <menuitem id="a">
-	 * 	<menuitem id="b"></menuitem>
-	 * </menuitem>
-	 * This function fixes that by automatically adding the closing tag.
-	 * NOTE: This code only works with menus with 1 deep level
-	 */
+    /**Currently there aren't any browsers that support selfclosing <menuitem /> so they just keep nesting elements
+     * <menuitem id="a" />
+     * <menuitem id="b" />
+     * just becomes
+     * <menuitem id="a">
+     * 	<menuitem id="b"></menuitem>
+     * </menuitem>
+     * This function fixes that by automatically adding the closing tag.
+     * NOTE: This code only works with menus with 1 deep level
+     */
     var fixMenu = function (button) {
         var menu = document.getElementById(button.getAttribute('menu'));
         var innerHTML = menu.innerHTML;
@@ -257,7 +257,7 @@
         var popupNavigation = function (evt) {
             var key = evt.keyCode;
 
-			// Escape or tab closes the open menu (not handled by default)
+            // Escape or tab closes the open menu (not handled by default)
             if (isExpanded()) {
                 if (key === keyCodes.tab || key === keyCodes.escape) {
                     button.focus();
@@ -267,7 +267,7 @@
                 }
             }
 
-			// Up Arrow or Down Arrow keys cycle focus through the items in that menu (handled by default if radios)
+            // Up Arrow or Down Arrow keys cycle focus through the items in that menu (handled by default if radios)
             if (isExpanded()) {
                 if (key === keyCodes.up) {
                     evt.preventDefault();
@@ -284,7 +284,7 @@
         var buttonNavigation = function (evt) {
             var key = evt.keyCode;
 
-			// Enter, Spacebar, or the up or down arrow keys opens the menu and places focus on the first menu item
+            // Enter, Spacebar, or the up or down arrow keys opens the menu and places focus on the first menu item
             if (!isExpanded()) {
                 if (key === keyCodes.enter || key === keyCodes.space || key === keyCodes.up || key === keyCodes.down) {
                     expand();
@@ -293,7 +293,7 @@
                 }
             }
 
-			// Typing a letter (printable character) key moves focus to the next instance of a visible node whose title begins with that printable letter. (not sure we can do this easily)
+            // Typing a letter (printable character) key moves focus to the next instance of a visible node whose title begins with that printable letter. (not sure we can do this easily)
         };
 
         button.addEventListener('click', toggleVisibility, true);
@@ -313,10 +313,7 @@
     });
 }());
 (function pollyfillControl() {
-	/**
-	 * MSEdge doesn't support for control attribute for label's so we need to pollyfill it
-	 *
-	 */
+    // MSEdge doesn't support for control attribute for label's so we need to pollyfill it
 
     'use strict';
 
