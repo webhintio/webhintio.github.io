@@ -58,12 +58,12 @@
             switch (e.which) {
                 case 37:
                 case 38:
-					// left, up
+                    // left, up
                     selectPrevious(tab);
                     break;
                 case 39:
                 case 40:
-					// right, down
+                    // right, down
                     selectNext(tab);
                     break;
                 default:
@@ -86,7 +86,7 @@
         });
     };
 
-	//KEYBOARD HANDLING !!!
+    //KEYBOARD HANDLING
 
     var tabs = [].slice.call(document.querySelectorAll('[role="tablist"]'));
 

@@ -3,25 +3,25 @@
 /*eslint-disable*/
 // Pollyfill for :scope in selectors API 2 from http://stackoverflow.com/a/17989803/414145
 (function (doc, proto) {
-	try { // check if browser supports :scope natively
-		doc.querySelector(':scope body');
-	} catch (err) { // polyfill native methods if it doesn't
-		['querySelector', 'querySelectorAll'].forEach(function (method) {
-			var nativ = proto[method];
-			proto[method] = function (selectors) {
-				if (/(^|,)\s*:scope/.test(selectors)) { // only if selectors contains :scope
-					var id = this.id; // remember current element id
-					this.id = 'ID_' + Date.now(); // assign new unique id
-					selectors = selectors.replace(/((^|,)\s*):scope/g, '$1#' + this.id); // replace :scope with #ID
-					var result = doc[method](selectors);
-					this.id = id; // restore previous id
-					return result;
-				} else {
-					return nativ.call(this, selectors); // use native code for other selectors
-				}
-			}
-		});
-	}
+    try { // check if browser supports :scope natively
+        doc.querySelector(':scope body');
+    } catch (err) { // polyfill native methods if it doesn't
+        ['querySelector', 'querySelectorAll'].forEach(function (method) {
+            var nativ = proto[method];
+            proto[method] = function (selectors) {
+                if (/(^|,)\s*:scope/.test(selectors)) { // only if selectors contains :scope
+                    var id = this.id; // remember current element id
+                    this.id = 'ID_' + Date.now(); // assign new unique id
+                    selectors = selectors.replace(/((^|,)\s*):scope/g, '$1#' + this.id); // replace :scope with #ID
+                    var result = doc[method](selectors);
+                    this.id = id; // restore previous id
+                    return result;
+                } else {
+                    return nativ.call(this, selectors); // use native code for other selectors
+                }
+            }
+        });
+    }
 })(window.document, Element.prototype);
 /*eslint-enable*/
 
@@ -168,11 +168,11 @@
             var summary = buttons[i];
 
             if (summary.parentElement.getAttribute('id').indexOf(path) === 0) {
-				/*eslint-disable no-loop-func*/
+                /*eslint-disable no-loop-func*/
                 setImmediate(function () {
                     window.scrollTo(0, summary.offsetTop - summary.offsetHeight);
                 }, 0);
-				/*eslint-enable no-loop-func*/
+                /*eslint-enable no-loop-func*/
                 summary.click();
                 break;
             }
