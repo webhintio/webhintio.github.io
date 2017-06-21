@@ -20,6 +20,10 @@ main {
     display: none;
 }
 
+.sub-illustration {
+    width: 35rem;
+}
+
 @media (min-width: 48em) {
 
     .top-illustration {
@@ -121,7 +125,6 @@ main {
     text-decoration: none;
 }
 
-
 .home-container__documentation a > p {
     font-family: "Montserrat", sans-serif;
     font-size: 2rem;
@@ -149,6 +152,42 @@ main {
     max-width: 10rem;
     width: 100%;
     margin: 2.4rem auto;
+}
+
+/* Custom Code Home */
+
+
+@media (min-width: 33.75em) {
+
+    .vertical-align {
+        display: flex;
+    }
+
+    .module {
+        align-self: center;
+    }
+
+}
+
+.code-wrap {
+    font-family: "Consolas", "Menlo", monospace;
+    font-size: 90%;
+
+    background: hsla(236, 80%, 8%, 0.49);
+    max-width: 45rem;
+    margin: 1.2rem 0;
+    padding: 1.2rem 2rem;
+    border: 4px solid #061044;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.code-wrap ol {
+    list-style: none;
+}
+
+.code-wrap ol li {
+    padding: .6rem 0;
 }
 
 /* Custom Home Page Controls */
