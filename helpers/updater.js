@@ -77,7 +77,7 @@ const addFrontMatter = async (filePath) => {
 
     if (frontMatterRegex.test(data)) {
         // front matter already exists in this file, will update it
-        [, , content] = data.split(divider); // ['', '<front matter>', '<Actual content in the markdown file>']
+        [, , content] = data.split(frontMatterRegex); // ['', '<front matter>', '<Actual content in the markdown file>']
     } else {
         content = `\n${data}`;
     }
