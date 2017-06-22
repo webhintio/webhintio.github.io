@@ -47,8 +47,7 @@
     "start": "node src/server/index.js",
     "test": "npm run lint",
     "travis-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
-    "travis-update": "npm run travis-update-content && .travis/update.sh",
-    "travis-update-content": ".travis/is-travis.sh && .travis/set-up-ssh.sh && npm run update-content && npm run build",
+    "travis-update": ".travis/is-travis.sh && npm run update-content && npm run build && .travis/update-site.sh",
     "update-content": "node helpers/update-content.js"
   }
 }

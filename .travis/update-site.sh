@@ -32,6 +32,13 @@ run_docsearch_scraper() {
 
 }
 
+set_up_ssh() {
+    $(npm bin)/set-up-ssh \
+        --key "$encrypted_1b2b8f95b98b_key" \
+        --iv  "$encrypted_1b2b8f95b98b_iv" \
+        --path-encrypted-key ".travis/github-deploy-key.enc"
+}
+
 update_website_branch() {
 
     # Automatically update the content from the `website` branch.
@@ -54,7 +61,8 @@ update_website_branch() {
 
 run_docsearch_scraper
 
-prepare_site_dist_dir \
+set_up_ssh \
+    && prepare_site_dist_dir \
     && update_website_branch
 
 rm -rf "$TMP_DIR"
