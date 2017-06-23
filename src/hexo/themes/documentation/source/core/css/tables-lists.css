@@ -32,14 +32,6 @@ thead th {
     color: hsla(0, 0%, 0%, .6);
 }
 
-tbody tr:nth-child(odd) {
-    background-color: hsla(0, 0%, 0%, .05);
-}
-
-tbody tr:nth-child(odd) a {
-    color: #006fc6;
-}
-
 /* Parent class allows table to scroll sideways when overflowing */
 .table--overflow {
     width: 100%;
