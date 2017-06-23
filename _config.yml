@@ -81,3 +81,6 @@ marked:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+# Analytics
+google_analytics: UA-101540923-1
