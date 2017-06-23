@@ -16,21 +16,20 @@
 .toc-section-title,
 .toc-section-title--active {
     font-family: "Montserrat", sans-serif;
+    font-weight: 400;
     margin-top: 1.6rem;
     text-transform: uppercase;
     letter-spacing: .1rem;
+    cursor: pointer;
 }
 
 .toc-subsection-title,
 .toc-subsection-title--active {
-    margin: 1.6rem 0 0 .9rem;
+    margin: 1.6rem 0;
     list-style: none;
     line-height: 2rem;
 }
 
-.toc-section-title,
-.toc-section-title--active,
-.toc-section-title--active,
 .toc-subsection-title--active {
     font-weight: 600;
 }
@@ -42,7 +41,10 @@
     font-size: 1.6rem;
 }
 
-.toc-section-title,
+.toc-section-title {
+    color: #292f56;
+}
+
 .toc-section-title--active,
 .toc-subsection-title--active {
     color: #4046dd;

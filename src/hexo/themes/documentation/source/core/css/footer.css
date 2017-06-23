@@ -47,8 +47,11 @@ footer {
 
 .footer-nav__item ul {
     margin: 1.2rem 0 0 0;
-    line-height: 3rem;
     list-style: none;
+}
+
+.footer-nav__item ul li {
+    margin-top: .6rem;
 }
 
 .social-list {
