@@ -106,7 +106,6 @@ thead th {
 h1,
 .heading {
     font-size: 3.4rem;
-    color: #4046dd;
 }
 
 h2,
@@ -224,4 +223,8 @@ li {
 
 .module--primary h2 {
     font-size: 2.4rem;
+}
+
+.module--primary h2:nth-child(2) {
+    margin-top: 1.6rem;
 }
