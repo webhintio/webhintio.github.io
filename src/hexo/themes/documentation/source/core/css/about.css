@@ -5,23 +5,20 @@
  */
 
 /* Contributors Page */
-
-.contributors {
-    max-width: 64rem;
+.module--contributors {
+    text-align: center;
+    margin-bottom: 2.4rem;
 }
 
-table sub {
-    position: relative;
-    bottom: .5rem;
-    font-size: 1.6rem;
-    line-height: 1rem;
+.module--contributors p:nth-child(2) {
+    margin-top: 1.4rem;
 }
 
-.contributors table img {
+.module--contributors p:nth-child(3) {
+    margin-top: .5rem;
+}
+
+.module--contributors img {
     border-radius: 50px;
     border: 3px solid #2d28a1;
-}
-
-.contributors table thead th {
-    font-size: 1.6rem;
 }
