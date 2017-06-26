@@ -22,14 +22,13 @@ caption {
 }
 
 th, td {
-    padding: 1rem 1.2rem;
+    padding: 1.4rem;
+    width: 20rem;
     vertical-align: top;
 }
 
 thead th {
-    vertical-align: bottom;
-
-    color: hsla(0, 0%, 0%, .6);
+    vertical-align: top;
 }
 
 /* Parent class allows table to scroll sideways when overflowing */
