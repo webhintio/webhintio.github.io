@@ -12,7 +12,7 @@
 
 table sub {
     position: relative;
-    bottom: 0.5rem;
+    bottom: .5rem;
     font-size: 1.6rem;
     line-height: 1rem;
 }
