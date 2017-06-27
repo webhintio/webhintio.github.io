@@ -3,8 +3,6 @@
 cd "$(dirname "${BASH_SOURCE[0]}")/.." \
     || exit 1
 
-declare -r TMP_DIR="$(mktemp -d XXXXX)"
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 prepare_site_dist_dir() {
@@ -58,6 +56,21 @@ update_website_branch() {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Only execute the following if the commit:
+#
+#   * does not come from a pull request
+#   * is made to the `master` branch
+
+if [ "$TRAVIS_PULL_REQUEST" != "false" ] ||
+   [ "$TRAVIS_BRANCH" != "master" ]; then
+    exit 0
+fi
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+declare -r TMP_DIR="$(mktemp -d XXXXX)"
 
 run_docsearch_scraper
 
