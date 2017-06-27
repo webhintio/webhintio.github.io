@@ -1,0 +1,105 @@
+/*
+ * Tabs
+ * =============================================
+ * @Dependencies: base.css, type.css
+ */
+
+[role="tablist"] {
+    display: table;
+    max-width: 100%;
+
+    margin-left: 0;
+    list-style: none;
+}
+
+[role="tablist"] li {
+    display: table-cell;
+    max-width: 10em;
+    vertical-align: baseline;
+}
+
+[role="tab"] {
+    display: inline-block;
+    padding: .8rem;
+}
+
+[role="tab"][aria-selected="true"] {
+    color: inherit;
+    font-weight: 600;
+}
+
+.tabpanels {
+    margin-top: -1px;
+    border-top: 1px solid hsla(0, 0%, 0%, .2);
+}
+
+[role="tabpanel"] {
+    padding-top: 2rem;
+}
+
+@media (min-width: 48em) {
+
+    [role="tablist"],
+    [role="tab"][aria-selected="true"] {
+        font-weight: 300;
+        font-size: 2rem;
+    }
+
+    [role="tablist"] {
+        display: block;
+    }
+
+    [role="tablist"] li {
+        display: inline-block;
+    }
+
+    [role="tab"] {
+        border: 1px solid transparent;
+        padding: 2rem;
+        line-height: 1;
+    }
+
+    [role="tab"][aria-selected="true"] {
+        outline: 0;
+        border-color: hsla(0, 0%, 0%, .2);
+        border-bottom-color: transparent;
+        color: #000;
+    }
+
+    [role="tab"][aria-selected="true"]:hover {
+        text-decoration: none;
+    }
+
+    [role="tab"][aria-selected="true"] {
+        border-bottom-color: #fff;
+    }
+
+    [role="tabpanel"] {
+        padding-top: 3.2rem;
+    }
+
+}
+
+@media (-ms-high-contrast: active) {
+
+    [role="tab"] {
+        border-color: transparent;
+        color: windowFrame;
+    }
+
+    [role="tab"]:hover {
+        border-color: highlight;
+        color: highlight;
+    }
+
+    [role="tab"][aria-selected="true"],
+    [role="tab"]:focus {
+        background: highlight;
+        color: highlightText;
+    }
+
+    .tabpanels {
+        border-color: windowFrame;
+    }
+
+}

@@ -1,0 +1,1 @@
+.block-note,[class*=block-note--]{padding:1.2rem;background:#def8f3}*+.block-note,*+[class*=block-note--]{margin-top:2.4rem}.block-note--warning{background:#ffe5b6}.block-note--error{background:#ffc0c0}@media (min-width:60em){.block-note,[class*=block-note--]{padding:2rem}}

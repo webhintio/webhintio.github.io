@@ -1,0 +1,53 @@
+{
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "fs": "0.0.2",
+    "handlebars": "^4.0.6",
+    "hexo": "^3.3.7",
+    "hexo-all-minifier": "^0.1.1",
+    "hexo-cli": "^1.0.2",
+    "hexo-generator-index": "^0.2.1",
+    "hexo-generator-tag": "^0.2.0",
+    "hexo-renderer-handlebars": "^2.0.2",
+    "hexo-renderer-marked-enhanced": "0.0.1",
+    "hexo-renderer-stylus": "^0.3.1",
+    "hexo-server": "^0.2.0",
+    "hexo-util": "^0.6.0",
+    "js-yaml": "^3.8.3",
+    "klaw": "^2.0.0",
+    "lodash": "^4.17.4",
+    "normalize-path": "^2.1.1",
+    "pify": "^3.0.0"
+  },
+  "devDependencies": {
+    "@alrra/travis-scripts": "^3.0.1",
+    "eslint": "^4.0.0",
+    "markdownlint": "^0.5.0",
+    "markdownlint-cli": "^0.3.1",
+    "mktemp": "^0.4.0",
+    "npm-run-all": "^4.0.2",
+    "shelljs": "^0.7.7",
+    "stylelint": "^7.10.1"
+  },
+  "hexo": {
+    "version": "3.3.7"
+  },
+  "private": true,
+  "scripts": {
+    "build": "npm run hexo:clean && node helpers/updater.js src/hexo/source && hexo generate",
+    "hexo:clean": "hexo clean",
+    "hexo:server": "hexo server",
+    "lint": "npm-run-all lint:*",
+    "lint:browser": "eslint -c .eslintrc --env browser 'src/hexo/themes/documentation/source/**/*.js'",
+    "lint:js": "npm run lint:node && npm run lint:browser",
+    "lint:md": "markdownlint ./.github README.md ./src/hexo/source",
+    "lint:node": "eslint -c .eslintrc --env node '**/*.js' --ignore-pattern 'src/hexo/themes/documentation/source/**/*.js' --ignore-pattern 'dist/**/*.js'",
+    "lint:styles": "stylelint src/hexo/themes/documentation/source/**/*.css --config .stylelintrc",
+    "start": "node src/server/index.js",
+    "test": "npm run lint",
+    "travis-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
+    "travis-update": ".travis/is-travis.sh && npm run update-content && npm run build && .travis/update-site.sh",
+    "update-content": "node helpers/update-content.js"
+  }
+}

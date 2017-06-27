@@ -1,0 +1,14 @@
+{
+    "background_color": "#e6e6e6",
+    "icons": [
+        {
+            "src": "images/manifest-icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "name": "sonar",
+    "short_name": "sonar",
+    "start_url": "/",
+    "theme_color": "#4046dd"
+}

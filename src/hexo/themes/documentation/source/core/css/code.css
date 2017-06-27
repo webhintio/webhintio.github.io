@@ -1,0 +1,41 @@
+/*
+ * CODE + RESULT BOXES
+ * =============================================
+ * @Dependencies: base.css, color.css
+ */
+
+/*
+ * CODE BLOCKS
+ * ---------------------------------------------
+ */
+
+pre,
+.rendered-result {
+    width: 100%;
+    padding: .5rem;
+    overflow-x: auto;
+}
+
+.highlight {
+    border: 2px solid hsla(0, 0%, 0%, .03);
+    margin-top: 2.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.rendered-result {
+    border: 2px solid hsla(0, 0%, 0%, .1);
+}
+
+* + .rendered-result {
+    margin-top: 2.4rem;
+}
+
+code {
+    font-family: "Consolas", "Menlo", monospace;
+    font-size: 90%;
+    background-color: hsla(0, 0%, 90%, .6);
+    padding: .2rem .5rem;
+    border-radius: 5px;
+    -moz-tab-size: 4;
+    tab-size: 4;
+}

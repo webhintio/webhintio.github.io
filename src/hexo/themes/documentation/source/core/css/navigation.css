@@ -1,0 +1,303 @@
+/*
+ * SITE HEADER
+ * ---------------------------------------------
+ */
+
+.nav-bar {
+    margin: 0 auto;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+}
+
+.header {
+    height: 8rem;
+    width: 100%;
+
+    background: #271f8d; /* Old browsers */
+    background: -moz-linear-gradient(top, #271f8d 0%, #4046dd 78%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #271f8d 0%, #4046dd 78%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #271f8d 0%, #4046dd 78%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#271f8d", endColorstr="#4046dd", GradientType=0); /* IE6-9 */
+}
+
+/* HEADER: Site logo */
+.logo--container {
+    width: 18rem;
+}
+
+.header__logo {
+    float: left; /* for non Flexbox browsers */
+    width: 18rem;
+
+    overflow: hidden;
+    align-self: center;
+}
+
+.header__toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    min-width: 0;
+    margin: 0;
+    border: 0;
+    padding: 4rem 2.15rem;
+
+    background: 0;
+}
+
+.header__toggle:hover,
+.header__toggle:focus {
+    outline: 0;
+    background-color: #4046dd;
+}
+
+@media (min-width: 58em) {
+
+    .header__toggle {
+        display: none;
+    }
+
+}
+
+/*
+ * SITE NAVIGATION
+ * ---------------------------------------------
+ */
+
+.nav {
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    width: 100%; /* make sure it is full width when in mobile layout */
+    margin: 0;
+}
+
+.nav__navbar {
+    display: none;
+    width: 100%;
+    max-width: 144rem;
+
+    margin: 0 0 0 auto;
+    list-style-type: none;
+}
+
+button.mobile-nav-button {
+    max-width: 5rem;
+    width: 100%;
+    z-index: 20;
+}
+
+.mobile-nav-button {
+    background-image: url("/images/mobile-menu-button.svg");
+    background-repeat: no-repeat;
+    background-position: 1.2rem 50%;
+    background-size: 2.5rem;
+}
+
+[aria-hidden=true] {
+    display: none;
+}
+
+@media (max-width: 34em) {
+
+    .header {
+        height: 15rem;
+    }
+
+}
+
+
+/* Show menu in mobile view when button is clicked */
+@media (max-width: 57.94em) {
+
+    .nav {
+        z-index: 10;
+    }
+
+    .header__logo {
+        padding: 1.9rem 1rem;
+    }
+
+    .nav-bar {
+        padding-left: 0;
+    }
+
+    .nav__navbar.show {
+        position: absolute;
+        display: block;
+        top: 8rem;
+        left: 0;
+        background-color: #4046dd;
+        z-index: 30;
+    }
+
+    .nav-bar .navbar__submenu > li > a {
+        padding-left: 2.3rem;
+    }
+
+}
+
+@media (min-width: 58em) {
+
+    .nav__navbar {
+        display: block;
+        width: auto;
+    }
+
+    .nav__navbar > li {
+        float: left;
+    }
+
+}
+
+
+/* Individual items in site menu */
+.navbar__navitem {
+    margin: 0;
+}
+
+.nav__navbar a {
+    display: block;
+    padding: 1.3rem 1rem;
+    color: #fff;
+}
+
+.navbar_submenu li a {
+    padding: 1rem;
+}
+
+.nav-bar a {
+    display: block; /* temp until consolidate. */
+    color: #fff;
+}
+
+.header .navitem__button:hover,
+.header .navitem__button:focus {
+    background-color: #4c51da;
+    text-decoration: none;
+}
+
+.navbar__navitem .edge-wordmark a:hover,
+.navbar__navitem .edge-wordmark a:focus {
+    background-color: #464646;
+}
+
+.nav__navbar > li > a::after {
+    display: inline-block;
+    content: url("/images/nav-arrow.svg");
+    margin-left: .6rem;
+    width: 1.3rem;
+    vertical-align: text-bottom;
+}
+
+.navbar__submenu {
+    margin: 0;
+    background-color: #2f2f2f;
+    list-style-type: none;
+}
+
+.nav-bar .navbar__submenu {
+    background-color: #4c51da;
+}
+
+
+.navbar__navitem a {
+    transition: background-color ease-out .5s;
+    white-space: nowrap; /* stop arrow breaking onto new line before font loads */
+}
+
+.navbar__navitem a:hover,
+.navbar__navitem a:focus {
+    outline: 0;
+    background-color: hsla(0, 0%, 0%, .4);
+    transition: none;
+    text-decoration: underline;
+}
+
+.navbar__navitem li {
+    margin: 0;
+    background-color: hsla(0, 0%, 0%, .3);
+}
+
+.nav-bar .navbar__navitem li {
+    background: none;
+}
+
+.nav-bar .navbar__navitem li a:hover {
+    background-color: hsla(0, 0%, 0%, .05);
+}
+
+.navbar__submenu .navitem__button::after {
+    position: absolute;
+    right: 2.25rem; /* same as padding right on element. Float right cleaner but breaks in FF #1118 */
+    line-height: 2.25rem;
+
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.navbar__submenu .navbar__submenu {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+
+    background-image: linear-gradient(hsla(0, 0%, 0%, .05), hsla(0, 0%, 0%, .05));
+}
+
+@media (min-width: 33.75em) {
+
+    .form-search {
+        position: relative;
+        left: 0;
+        margin: 0;
+    }
+
+}
+
+
+@media (min-width: 56.2em) {
+
+    .nav__navbar a {
+        padding: 2.9rem 1.9rem;
+    }
+
+    .navbar__submenu {
+        position: absolute;
+        z-index: 10;
+        min-width: 27rem;
+    }
+
+    .navbar__submenu a {
+        padding: 1.5rem 2.25rem;
+    }
+
+    .navbar__submenu li:last-of-type {
+        padding-bottom: .8rem;
+    }
+
+}
+
+@media (-ms-high-contrast: active) {
+
+    .navbar__submenu {
+        border: 1px solid;
+    }
+
+    .navbar__navitem a {
+        transition: none;
+    }
+
+    .navbar__navitem a:focus,
+    .header .navbar__navitem a[aria-expanded="true"] {
+        -ms-high-contrast-adjust: none;
+        background-color: highlight;
+        color: highlightText;
+    }
+
+}

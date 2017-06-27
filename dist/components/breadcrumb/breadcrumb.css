@@ -1,0 +1,1 @@
+.breadcrumb{margin-top:1.2rem}.breadcrumb+header{margin-top:1.6rem}.breadcrumb ul{color:hsla(0,0%,0%,.6)}.breadcrumb li{display:inline;margin-right:.8rem;font-size:1.3rem}.breadcrumb li+li::before{margin-right:.8rem;font-size:1.5rem;content:"\\"}@media (min-width:58em){.breadcrumb+header{margin-top:2.2rem}}

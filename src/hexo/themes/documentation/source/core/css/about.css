@@ -1,0 +1,27 @@
+/*
+ * ABOUT + SUB-PAGES
+ * =============================================
+ * @Dependencies: base.css, table-lists.css, type.css
+ */
+
+/* Contributors Page */
+
+.contributors {
+    max-width: 64rem;
+}
+
+table sub {
+    position: relative;
+    bottom: .5rem;
+    font-size: 1.6rem;
+    line-height: 1rem;
+}
+
+.contributors table img {
+    border-radius: 50px;
+    border: 3px solid #2d28a1;
+}
+
+.contributors table thead th {
+    font-size: 1.6rem;
+}

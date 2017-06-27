@@ -1,0 +1,26 @@
+/*
+* SEARCH FORM RESULTS
+* ---------------------------------------------
+*/
+
+.algolia-autocomplete .algolia-docsearch-suggestion--category-header {
+    color: #4045dd !important;
+}
+
+.algolia-autocomplete .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion.suggestion-layout-simple,
+.algolia-autocomplete .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion:not(.suggestion-layout-simple) .algolia-docsearch-suggestion--content {
+    background-color: hsla(238, 69%, 55%, .1) !important;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--highlight {
+    color: #4046dd !important;
+    background: hsla(238, 66%, 58%, .1) !important;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--content {
+    width: 65% !important;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
+    width: 35% !important;
+}

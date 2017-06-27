@@ -1,0 +1,27 @@
+<header class="header">
+    <div class="nav-bar container">
+        <nav class="nav">
+            <a href="/" class="clear logo--container"><img src="{{url_for "/images/sonar-logo.svg"}}" alt="sonar" class="header__logo navbar__navitem"></a>
+            <ul class="nav__navbar">
+                {{#each navs}}
+                    <li class="navbar__navitem">
+                        <a role="button" href="{{url_for link}}" id="{{id}}" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-{{id}}"
+                        class="navitem__button {{#hasSubPage id}}expandable{{/hasSubPage}}">{{title}}</a>
+                        {{#hasSubPage id}}
+                            <ul role="group" id="submenu-{{id}}" class="navbar__submenu" aria-hidden="true">
+                                {{#each items}}
+                                    <li><a href="{{url_for link}}">{{title}}</a></li>
+                                {{/each}}
+                            </ul>
+                        {{/hasSubPage}}
+                    </li>
+                {{/each}}
+            </ul>
+            <div class="nav-bar__input">
+                <label for="search-input" class="visually-hidden">Search the documentation</label>
+                <input type="search" id="search-input" placeholder="Search…" aria-label="Search">
+            </div>
+        </nav>
+        <button class="header__toggle mobile-nav-button" aria-label="Menu"></button>
+    </div>
+</header>

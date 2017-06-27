@@ -1,0 +1,33 @@
+- title: Documentation
+  id: docs
+  link: #
+  items:
+  - id: developer-guide
+    link: /docs/developer-guide/
+    title: Developer Guide
+  - id: rules
+    link: /docs/user-guide/rules/
+    title: Rules
+  - id: user-guide
+    link: /docs/user-guide/
+    title: User Guide
+
+- title: About
+  id: about
+  link: #
+  items:
+  - id: faq
+    title: FAQ
+    link: /about/faq.html
+  - id: changelog
+    title: Changelog
+    link: /about/changelog.html
+  - id: governance
+    title: Governance
+    link: /about/governance.html
+  - id: contributors
+    title: Contributors
+    link: /about/contributors.html
+  - id: code-of-conduct
+    title: Code of Conduct
+    link: /about/code_of_conduct.html
