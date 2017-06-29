@@ -3,7 +3,7 @@
         <nav class="container breadcrumb" aria-label="breadcrumbs">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/">About</a></li>
+                <li><a href="index.html">About</a></li>
                 <li>Contributors</li>
             </ul>
         </nav>
@@ -12,78 +12,13 @@
         </header>
         <section class="section">
             <div class="layout layout--quarters">
+            {{#each devs}}
                 <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/molant?s=100" width="100" alt="Antón Molleda">
-                    <p class="subtitle">Antón Molleda</p>
-                    <p class="caption--alt">Microsoft</p>
+                    <img src="{{avatar}}?s=100" width="100" alt="Antón Molleda">
+                    <p class="subtitle">{{name}}</p>
+                    <p class="caption--alt">{{company}}</p>
                 </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/ststimac?s=100" width="100" alt="Stephanie Stimac Drescher">
-                    <p class="subtitle">Stephanie Drescher</p>
-                    <p class="caption--alt">Microsoft</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/alrra?s=100" width="100" alt="Cătălin Mariș">
-                    <p class="subtitle">Cătălin Mariș</p>
-                    <p class="caption--alt">Microsoft</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/sarvaje?s=100" width="100" alt="David García">
-                    <p class="subtitle">David García</p>
-                    <p class="caption--alt">Plain Concepts</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/qzhou1607?s=100" width="100" alt="Qing Zhou">
-                    <p class="subtitle">Qing Zhou</p>
-                    <p class="caption--alt">Plain Concepts</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/austinkelleher?s=100" width="100" alt="Austin Kelleher">
-                    <p class="subtitle">Austin Kelleher</p>
-                    <p class="caption--alt">eBay</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/kborchers?s=100" width="100" alt="Kris Borchers">
-                    <p class="subtitle">Kris Borchers</p>
-                    <p class="caption--alt">JSFoundation</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/dhritzkiv?s=100" width="100" alt="Daniel Hritzkiv">
-                    <p class="subtitle">Daniel Hritzkiv</p>
-                    <p class="caption--alt">Matter and Form</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/t-sauer?s=100" width="100" alt="Thomas Sauer">
-                    <p class="subtitle">Thomas Sauer</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/aarongustafson?s=100" width="100" alt="Aaron Gustafson">
-                    <p class="subtitle">Aaron Gustafson</p>
-                    <p class="caption--alt">Microsoft</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/alexdangelo?s=100" width="100" alt="Alex D'Angelo">
-                    <p class="subtitle">Alex D'Angelo</p>
-                    <p class="caption--alt">PayScale</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/no23reason?s=100" width="100" alt="Dan Homola">
-                    <p class="subtitle">Dan Homola</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/rachelnabors?s=100" width="100" alt="Rachel Nabors">
-                    <p class="subtitle">Rachel Nabors</p>
-                    <p class="caption--alt">Microsoft</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/kay8?s=100" width="100" alt="Kei">
-                    <p class="subtitle">Kei</p>
-                </div>
-                <div class="module module--contributors">
-                    <img src="https://avatars.githubusercontent.com/jacobrossi?s=100" width="100" alt="Jacob Rossi">
-                    <p class="subtitle">Jacob Rossi</p>
-                    <p class="caption--alt">Microsoft</p>
-                </div>
+            {{/each}}
             </div>
         </section>
     </article>

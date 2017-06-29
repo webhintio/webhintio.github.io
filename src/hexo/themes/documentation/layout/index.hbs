@@ -62,8 +62,16 @@
                 pages=(sortPagesByCategory site.pages.data 'user-guide')}}
             {{/compare}}
 
-            {{#compare page.category 'belongsTo' 'about, doc-index'}}
+            {{#compare page.category 'belongsTo' 'doc-index, about-index'}}
                 {{>single-page}}
+            {{/compare}}
+
+            {{#compare page.title 'belongsTo' 'changelog, code-of-conduct, faq, governance'}}
+                {{>single-page}}
+            {{/compare}}
+
+            {{#compare page.title '===' 'contributors'}}
+                {{>contributors devs=site.data.contributors}}
             {{/compare}}
 
             {{#compare page.title '===' '404'}}
