@@ -11,6 +11,10 @@ module.exports = function () {
         return isIndexPage(page) && page.title.toLowerCase().replace(' ', '-') !== page.category;
     };
 
+    const normalizeString = (str) => {
+        return str.toLowerCase().replace(/[^a-z0-9]/gi, '-');
+    };
+
     const sortPageByAlpha = (l, r) => {
         if (l.title > r.title) {
             return 1;
@@ -112,8 +116,8 @@ module.exports = function () {
                 '===': (l, r) => {
                     if (typeof l === 'string' && typeof r === 'string') {
                         /* eslint-disable no-param-reassign */
-                        l = l.toLowerCase();
-                        r = r.toLowerCase();
+                        l = normalizeString(l);
+                        r = normalizeString(r);
                         /* eslint-enable no-param-reassign */
                     }
 
@@ -126,7 +130,12 @@ module.exports = function () {
                     return l >= r;
                 },
                 belongsTo: (l, r) => {
-                    return r.includes(l);
+                    const normalizedL = l ? normalizeString(l) : l;
+                    const normalizedR = r.split(', ').map((element) => {
+                        return normalizeString(element);
+                    });
+
+                    return normalizedR.includes(normalizedL);
                 },
                 typeof: (l, r) => {
                     return typeof l === r;
