@@ -71,15 +71,15 @@ main {
     @keyframes floating {
 
         0% {
-            top: -10px;
+            transform: translateY(-10px);
         }
 
         50% {
-            top: 0;
+            transform: translateY(0);
         }
 
         100% {
-            top: -10px;
+            transform: translateY(-10px);
         }
     }
 
