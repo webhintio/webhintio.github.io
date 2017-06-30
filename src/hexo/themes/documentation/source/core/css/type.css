@@ -56,18 +56,6 @@ h2,
     z-index: 1;
 }
 
-h2::before,
-.headline::before,
-.heading::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: -.5rem;
-    height: .5rem;
-    width: 5rem;
-    border-top: 4px solid #4046dd;
-}
-
 h1,
 h2,
 h3,
