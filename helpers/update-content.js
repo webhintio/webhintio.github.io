@@ -18,5 +18,6 @@ cp('-R', `${TMP_DIR}/docs/developer-guide`, `${SOURCE_DIR}/docs/developer-guide`
 cp('-R', `${TMP_DIR}/docs/user-guide`, `${SOURCE_DIR}/docs/user-guide`);
 cp('-R', `${TMP_DIR}/docs/about`, `${SOURCE_DIR}`);
 cp(`${TMP_DIR}/CHANGELOG.md`, `${SOURCE_DIR}/about`);
+cp(`${TMP_DIR}/CODE_OF_CONDUCT.md`, `${SOURCE_DIR}/about`);
 
 rm('-rf', TMP_DIR);
