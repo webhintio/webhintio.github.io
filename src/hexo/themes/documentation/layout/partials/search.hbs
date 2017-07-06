@@ -8,10 +8,58 @@
         </nav>
         <header class="page-intro">
             <h1 id="page-heading">{{intro.title}}</h1>
-            <p class="subtitle">{{intro.description}}</p>
         </header>
         <section class="section">
- This is the search!
+            <div class="layout layout--sidebar--alt">
+                <div class="module module--primary">
+                    <ul class="bare">
+                        <li class="search-result wrap-text">
+                            <div class="search-result__main">
+                                <p class="search-result__guide caption">Developer or User Guide</p>
+                                <a href="/" class="subtitle search-result__title">Title with Highlighted <span class="search-result__highlighted">Search Term</span></a>
+                                <p class="search-result__description">Description goes here. Maybe just a snippet of the first few lines on the page</p>
+                            </div>
+                        </li>
+                        <li class="search-result wrap-text">
+                            <div class="search-result__main">
+                                <p class="search-result__guide caption">Developer or User Guide</p>
+                                <a href="/" class="subtitle search-result__title">Title with Highlighted <span class="search-result__highlighted">Search Term</span></a>
+                                <p class="search-result__description">Description goes here. Maybe just a snippet of the first few lines on the page</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div id="pagintion-wrapper">
+                        <nav class="pagination" aria-label="pagination" data-pattern="/">
+                            <ul>
+                                <li>
+                                    <span aria-current="page" aria-label="Current page: 1">1</span>
+                                </li>
+                                <li>
+                                    <a href="/" aria-label="Page 2">2</a>
+                                </li>
+                                <li>
+                                    <a href="/" aria-label="Page 3">3</a>
+                                </li>
+                                <li>
+                                    <a href="/" aria-label="Page 4">4</a>
+                                </li>
+                                <li>
+                                    <a href="/" aria-label="Page 5">5</a>
+                                </li>
+                                <li>...</li>
+                                <li>
+                                    <a href="/" aria-label="Page 10">10</a>
+                                </li>
+                                <li class="pagination__next">
+                                    <a rel="next" href="/" aria-label="Next page">
+                                        <span>Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </section>
     </article>
 </main>
