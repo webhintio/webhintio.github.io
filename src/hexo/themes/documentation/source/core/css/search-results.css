@@ -28,7 +28,7 @@
 @media (max-width: 34em) {
 
     .algolia-autocomplete .ds-dropdown-menu,
-    .algolia-autocomplete .ds-dropdown-menu:before {
+    .algolia-autocomplete .ds-dropdown-menu::before {
         display: none !important;
     }
 
@@ -43,18 +43,18 @@
     display: block;
     padding: 2rem 0;
     width: 100%;
-    border-top: 1px solid hsla(0,0%,0%,.2);
+    border-top: 1px solid hsla(0, 0%, 0%, .2);
 }
 
 .search-result__main {
     display: inline-block;
     margin-top: 0;
     padding-right: 2.4rem;
-    width: calc(100%-15.4rem)
+    width: calc(100% - 15.4rem);
 }
 
 .search-result__guide {
-    color: hsla(0,0%,0%,.6);
+    color: hsla(0, 0%, 0%, .6);
 }
 
 .search-result__title,
