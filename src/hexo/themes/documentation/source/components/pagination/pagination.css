@@ -45,7 +45,7 @@
 }
 
 .pagination [aria-current="page"] {
-    border: 1px solid #0078d4;
+    border: 1px solid #4046dd;
 }
 
 .pagination__prev a,
@@ -58,16 +58,17 @@
 .pagination__next a::after {
     display: inline-block;
     vertical-align: middle;
+    width: .8rem;
 }
 
 .pagination__prev a::before {
     margin-right: .8rem;
-    content: "\e76b";
+    content: url("../../images/previous-arrow.svg");
 }
 
 .pagination__next a::after {
     margin-left: .8rem;
-    content: "\e76c";
+    content: url("../../images/next-arrow.svg");
 }
 
 .pagination__prev span,
