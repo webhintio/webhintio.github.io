@@ -197,7 +197,7 @@ module.exports = function () {
                         acc[tocSectionTitle] = [];
                     }
 
-                    if (!isGuideIndexPage(page)) { // non-guide-index pages
+                    if (!isGuideIndexPage(page) && page.tocTitle) { // non-guide-index pages
                         acc[tocSectionTitle].push(page);
                     }
                 }
