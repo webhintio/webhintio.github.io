@@ -73,14 +73,17 @@ const addFrontMatter = async (filePath) => {
     let content;
     let title;
     const data = await fs.readFile(filePath, 'utf8');
-    const frontMatterRegex = new RegExp(`^\s*${divider}`, 'gi'); // eslint-disable-line no-useless-escape
+    // Match divider between line breaks.
+    const frontMatterRegex = new RegExp(`[\r\n|\n]\s*${divider}[\r\n|\n]|^\s*${divider}[\r\n|\n]`, 'gi'); // eslint-disable-line no-useless-escape
 
     if (frontMatterRegex.test(data)) {
         // front matter already exists in this file, will update it
         [, , content] = data.split(frontMatterRegex); // ['', '<front matter>', '<Actual content in the markdown file>']
     } else {
-        content = `\n${data}`;
+        content = data;
     }
+
+    content = content || ''; // Replace `undefined` with empty string.
 
     // extract the first title in markdown file and remove the abbreviation in parenthesis
     // example: '\r\n# Disallow certain HTTP headers (`disallow-headers`)\r\n\r\n' => 'Disallow certain HTTP headers'
@@ -92,7 +95,7 @@ const addFrontMatter = async (filePath) => {
 
     const frontMatter = generateFrontMatterInfo(filePath, title);
 
-    const newData = `${frontMatter}${content}`;
+    const newData = `${frontMatter}\n${content}`;
 
     await fs.writeFile(filePath, newData);
 };
