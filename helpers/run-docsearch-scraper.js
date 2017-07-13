@@ -27,8 +27,8 @@ const DOC_SEARCH_CONFIGS = JSON.stringify({
     min_indexed_level: 1,
     nb_hits: 459,
     selectors: {
-        lvl0: '.page-intro h1',
-        lvl1: '.module h1',
+        lvl0: 'nav .guide-category',
+        lvl1: '.page-intro h1',
         lvl2: '.module h2',
         lvl3: '.module h3',
         lvl4: '.module h4',
