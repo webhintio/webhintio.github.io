@@ -25,15 +25,6 @@
     width: 35% !important;
 }
 
-@media (max-width: 34em) {
-
-    .algolia-autocomplete .ds-dropdown-menu,
-    .algolia-autocomplete .ds-dropdown-menu::before {
-        display: none !important;
-    }
-
-}
-
 /*
  * SEARCH RESULTS PAGE
  * ---------------------------------------------
@@ -50,7 +41,6 @@
     display: inline-block;
     margin-top: 0;
     padding-right: 2.4rem;
-    width: calc(100% - 15.4rem);
 }
 
 .search-result__guide {
