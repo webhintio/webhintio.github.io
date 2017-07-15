@@ -6,6 +6,7 @@ const handlebars = require('handlebars');
 const yaml = require('js-yaml');
 
 const hexoDir = path.join(__dirname, '..', 'hexo');
+const rootPath = path.join(__dirname, '..', '..');
 
 const createServer = () => {
     const themeDir = path.join(hexoDir, 'themes/documentation');
@@ -38,11 +39,13 @@ const createServer = () => {
 
 const commonConfiguration = (app) => {
     // TODO: header security, etc. here
-
     const menuDataDir = path.join(hexoDir, 'source/_data/menu.yml');
+    const configDataDir = path.join(rootPath, '_config.yml');
     const menuData = yaml.safeLoad(fs.readFileSync(menuDataDir, 'utf8')); // eslint-disable-line no-sync
+    const config = yaml.safeLoad(fs.readFileSync(configDataDir, 'utf8')); // eslint-disable-line no-sync
 
     app.locals.menuData = menuData;
+    app.locals.config = config;
     app.locals.isSection = true;
 };
 
