@@ -28,7 +28,7 @@
     "mktemp": "^0.4.0",
     "npm-run-all": "^4.0.2",
     "shelljs": "^0.7.7",
-    "stylelint": "^7.10.1"
+    "stylelint": "^8.0.0"
   },
   "hexo": {
     "version": "3.3.7"
