@@ -62,11 +62,7 @@
                 pages=(sortPagesByCategory site.pages.data 'user-guide')}}
             {{/compare}}
 
-            {{#compare page.category 'belongsTo' 'doc-index, about-index'}}
-                {{>single-page}}
-            {{/compare}}
-
-            {{#compare page.title 'belongsTo' 'changelog, code-of-conduct, faq, governance'}}
+            {{#compare page.category 'belongsTo' 'doc-index, about-index, about'}}
                 {{>single-page}}
             {{/compare}}
 
