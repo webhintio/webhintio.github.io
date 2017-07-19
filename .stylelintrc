@@ -40,7 +40,6 @@
         "function-max-empty-lines": 0,
         "function-parentheses-newline-inside": "always-multi-line",
         "function-parentheses-space-inside": "never-single-line",
-        "function-url-data-uris": "never",
         "function-url-quotes": "always",
         "function-whitespace-after": "always",
         "length-zero-no-unit": true,
