@@ -56,7 +56,6 @@ h2,
     z-index: 1;
 }
 
-h2::before,
 .headline::before,
 .heading::before {
     content: "";

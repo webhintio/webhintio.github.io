@@ -95,8 +95,18 @@ main {
     margin: 0 auto;
 }
 
-.home-container--section {
+.home-container .title {
+    margin: 0 auto 2.4rem auto;
+    font-weight: 500;
+    letter-spacing: .2rem;
+}
+
+.home-container--section:nth-child(1) {
     margin: 0 auto;
+}
+
+.home-container--section {
+    margin: 4.2rem auto 0 auto;
     padding: 4rem 2rem;
 
     /* remove text-align after scanner is implemented */
@@ -106,11 +116,6 @@ main {
 .home-container--input {
     margin: 0 auto;
     max-width: 96rem;
-}
-
-.home-container__documentation {
-    margin-top: 4.2rem;
-    text-align: center;
 }
 
 .home-container__documentation .module > a {
@@ -133,11 +138,6 @@ main {
     margin-bottom: 2.4rem;
 }
 
-.home-container__documentation .title {
-    margin: 0 auto 2.4rem auto;
-    font-weight: 500;
-    letter-spacing: .2rem;
-}
 
 /* stylelint-disable */
 .dark-blue {
@@ -164,7 +164,7 @@ main {
     }
 
     .module {
-        align-self: center;
+        align-self: flex-end;
     }
 
 }
