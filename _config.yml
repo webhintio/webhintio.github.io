@@ -84,3 +84,16 @@ deploy:
 
 # Analytics
 google_analytics: UA-101540923-1
+
+# offline config passed to sw-precache.
+offline:
+  maximumFileSizeToCacheInBytes: 5242880
+  staticFileGlobs:
+  - dist/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2}
+  stripPrefix: dist
+  verbose: true
+  runtimeCaching:
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: avatars.githubusercontent.com
