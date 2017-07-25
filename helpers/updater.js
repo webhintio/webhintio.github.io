@@ -47,7 +47,7 @@ const generateFrontMatterInfo = (filePath, title) => {
     }
 
     const [category, tocTitle] = path.dirname(relativePath).split(path.sep);
-    const permaLink = normalize(path.join(root, path.dirname(relativePath), `${baseName}.html`));
+    const permaLink = normalize(path.join(root, path.dirname(relativePath), `${baseName}.html`)).toLowerCase();
 
     const categoryFrontMatter = `category: ${_.trim(category, '.') ? category : 'doc-index'}`;
     const permalinkFrontMatter = `permalink: ${permaLink}`;

@@ -1,5 +1,5 @@
 ---
 title: contributors
 category: about
-permalink: about/CONTRIBUTORS.html
+permalink: about/contributors.html
 ---
