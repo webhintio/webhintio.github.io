@@ -7,7 +7,7 @@ const normalize = require('normalize-path');
 
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
 const filePaths = [];
-const ignoredFiles = ['404.md', 'about.md'];
+const ignoredFiles = ['404.md', 'about.md', 'contributors.md'];
 
 const permaLinks = new Map(); // a collection of permalinks
 const divider = '---';
