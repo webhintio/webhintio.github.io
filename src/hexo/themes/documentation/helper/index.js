@@ -1,3 +1,5 @@
+const pagination = require('./pagination');
+
 module.exports = function () {
     const isIndexPage = (page) => {
         return page.permalink.endsWith('index.html');
@@ -187,6 +189,7 @@ module.exports = function () {
             // returns whether or not a page is a subpage under developer guide or user-guide
             return !isGuideIndexPage(page);
         },
+        pagination: pagination.generate,
         // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {
             const pages = allPages.reduce((acc, page) => {

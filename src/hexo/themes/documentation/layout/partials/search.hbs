@@ -8,10 +8,38 @@
         </nav>
         <header class="page-intro">
             <h1 id="page-heading">{{intro.title}}</h1>
-            <p class="subtitle">{{intro.description}}</p>
         </header>
         <section class="section">
- This is the search!
+            <div class="layout layout--sidebar--alt">
+                <div class="module module--primary">
+                    <ul class="bare">
+                        {{#each hits}}
+                        <li class="search-result wrap-text">
+                            <div class="search-result__main">
+                                <p class="search-result__guide caption">
+                                    {{{category}}}
+                                    <span> : </span>
+                                    {{{title}}}
+                                </p>
+                                <a href="{{url}}" class="subtitle search-result__title">
+                                    {{#if subtitle}}
+                                        {{{subtitle}}}
+                                    {{else}}
+                                        {{{title}}}
+                                    {{/if}}
+                                </a>
+                                <p class="search-result__description">{{{snippet}}}</p>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <div id="pagintion-wrapper">
+                        <nav class="pagination" aria-label="pagination" data-pattern="/">
+                            {{>pagination}}
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </section>
     </article>
 </main>
