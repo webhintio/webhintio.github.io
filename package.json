@@ -46,7 +46,7 @@
     "lint:node": "eslint -c .eslintrc --env node '**/*.js' --ignore-pattern 'src/hexo/themes/documentation/source/**/*.js' --ignore-pattern 'dist/**/*.js'",
     "lint:styles": "stylelint src/hexo/themes/documentation/source/**/*.css --config .stylelintrc",
     "start": "node src/server/index.js",
-    "test": "npm run lint",
+    "test": "npm run lint && npm run build",
     "travis-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
     "travis-update": ".travis/is-travis.sh && npm run update-content && npm run build && .travis/update-site.sh",
     "update-content": "node helpers/update-content.js"
