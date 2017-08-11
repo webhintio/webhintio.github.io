@@ -8,6 +8,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 prepare_site_dist_dir() {
 
     declare -r files=(
+        _config.yml
         dist
         package.json
         src
