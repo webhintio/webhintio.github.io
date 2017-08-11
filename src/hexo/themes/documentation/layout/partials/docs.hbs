@@ -1,0 +1,51 @@
+<main class="container">
+    <article class="content" aria-labelledby="page-heading">
+        <nav class="container breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li>Documentation</li>
+            </ul>
+        </nav>
+        <header class="page-intro">
+            <h1 id="page-heading">{{intro.title}}</h1>
+        </header>
+        <section class="section">
+            <div class="documentation-wrapper">
+                <div class="documentation-search">
+                    <p class="subtitle">Looking for something specific?<br>
+                    Search the sonar documentation</p>
+                    <div class="documentation-search__input">
+                        <form action="/search" method="GET">
+                            <label for="docs-scan" class="visually-hidden">Search the documentation</label>
+                            <div class="documentation-search__input">
+                                <input id="docs-scan" type="search" placeholder="Search sonar documentation" name="q">
+                                <button type="submit" class="button--search" value="submit" aria-label="submit"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="documentation">
+                    <p class="subtitle">Or browse the documentation by guide</p>
+                    <ul class="bare">
+                        <li class="documentation-card">
+                            <a href="/docs/user-guide/">
+                                <div class="documentation-card__main">
+                                    <img src="{{url_for "images/user-guide-icon.svg"}}" class="documentation-card__icon" alt="" role="none">
+                                    <p class="documentation-card__title">User Guide</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="documentation-card">
+                            <a href="/docs/developer-guide/">
+                                <div class="documentation-card__main">
+                                    <img src="{{url_for "images/dev-guide-icon.svg"}}" class="documentation-card__icon" alt="" role="none">
+                                    <p class="documentation-card__title">Developer Guide</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>

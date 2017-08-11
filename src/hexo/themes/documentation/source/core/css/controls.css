@@ -38,7 +38,7 @@ textarea,
 select {
     width: 100%;
     max-width: 64rem;
-    height: 6rem;
+    height: 5rem;
 
     border: 1px solid hsla(0, 0%, 0%, .6);
 
@@ -114,8 +114,8 @@ select,
     -webkit-appearance: none;
 }
 
-/* Search bar input animation */
-input[type="search"] {
+/* Header search bar input animation */
+.nav-bar__input input[type="search"] {
     background-color: hsla(0, 0%, 100%, 0);
     background-image: url("/images/search-icon.svg");
     background-position: 0 1rem;
@@ -128,6 +128,9 @@ input[type="search"] {
     height: 4rem;
     width: 4rem;
 
+    margin-right: 0;
+    margin-left: 1rem;
+
     padding: 1rem 1rem 1rem 3.2rem;
 
     cursor: pointer;
@@ -136,7 +139,7 @@ input[type="search"] {
     transition: width .4s ease-in-out;
 }
 
-input[type=search]:focus {
+.nav-bar__input input[type=search]:focus {
     width: 20rem;
     border-bottom: 1px solid #fff;
     cursor: text;
@@ -146,24 +149,36 @@ input[type=search]:focus {
     height: 4rem;
 }
 
-.nav-bar__input input[type=search] {
-    margin-right: 0;
-    margin-left: 1rem;
-}
-
 input[type=search]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: hsla(0, 0%, 100%, .9);
+    color: hsla(0, 0%, 40%, .9);
 }
 
 input[type=search]::-moz-placeholder { /* Firefox 19+ */
-    color: hsla(0, 0%, 100%, .9);
+    color: hsla(0, 0%, 40%, .9);
 }
 
 input[type=search]::-ms-input-placeholder { /* IE 10+ */
-    color: hsla(0, 0%, 100%, .9);
+    color: hsla(0, 0%, 40%, .9);
 }
 
 input[type=search]::-moz-placeholder { /* Firefox 18- */
+    color: hsla(0, 0%, 40%, .9);
+}
+
+/* header styles */
+.nav-bar__input input[type=search]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: hsla(0, 0%, 100%, .9);
+}
+
+.nav-bar__input input[type=search]::-moz-placeholder { /* Firefox 19+ */
+    color: hsla(0, 0%, 100%, .9);
+}
+
+.nav-bar__input input[type=search]::-ms-input-placeholder { /* IE 10+ */
+    color: hsla(0, 0%, 100%, .9);
+}
+
+.nav-bar__input input[type=search]::-moz-placeholder { /* Firefox 18- */
     color: hsla(0, 0%, 100%, .9);
 }
 
@@ -198,12 +213,12 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
         width: 100%;
     }
 
-    input[type=search] {
+    .nav-bar__input input[type=search] {
         width: 100%;
         border-bottom: 1px solid #fff;
     }
 
-    input[type=search]:focus {
+    .nav-bar__input input[type=search]:focus {
         width: 100%;
         max-width: 48rem;
     }
@@ -348,16 +363,19 @@ select:disabled {
 
     .button--search {
         position: absolute;
+        padding: 1rem 1.2rem;
 
-        width: 3.4rem;
+        width: 4.4rem;
         height: 100%;
 
         top: 0;
         right: 0;
 
-        font-size: 1.6rem;
+        background-color: #d43e2b;
+    }
 
-        color: #7f7f7f;
+    .button--search::before {
+        content: url("/images/search-icon.svg");
     }
 
 /*

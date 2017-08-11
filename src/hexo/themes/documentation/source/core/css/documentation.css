@@ -1,0 +1,76 @@
+/*
+ * DOCUMENTATION
+ * ---------------------------------------------
+ */
+
+.documentation-search {
+    flex: 1;
+    max-width: 64rem;
+    width: 100%;
+    margin-bottom: 2.4rem;
+}
+
+.documentation-search__input {
+    position: relative;
+    margin-top: 2.4rem;
+}
+
+.documentation {
+    flex: 0;
+    padding-left: 0;
+    max-width: 64rem;
+    width: 100%;
+}
+
+.documentation-card {
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+    border: 1px solid #18186d;
+    cursor: pointer;
+}
+
+.documentation-card:first-child {
+    margin-right: 1.2rem;
+}
+
+a > .documentation-card__main > img {
+    position: relative;
+    width: 10rem;
+    top: 5rem;
+}
+
+.documentation-card__title {
+    background-color: #18186d;
+    color: #fff;
+    padding: 6rem 0 2rem 0;
+    font-size: 2rem;
+    margin-top: .2rem;
+}
+
+@media (min-width: 48em) {
+
+    .documentation-wrapper {
+        display: flex;
+    }
+
+    .documentation {
+        flex: 1;
+        padding-left: 4.6rem;
+    }
+
+    .documentation > .bare {
+        margin-top: 4.8rem;
+    }
+
+}
+
+@media (max-width: 32em) {
+
+    .documentation-card {
+        display: block;
+        width: 100%;
+        margin-bottom: 1.2rem;
+    }
+
+}

@@ -32,14 +32,18 @@
     <link rel="stylesheet" href="{{url_for "/components/breadcrumb/breadcrumb.css "}}">
     <link rel="stylesheet" href="{{url_for "/components/pagination/pagination.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/controls.css "}}">
-    {{#compare page.category '||' isSection}}
+    {{#compare page.category 'belongsTo' 'doc-index, developer-guide, user-guide'}}
     <link rel="stylesheet" href="{{url_for "/core/css/code.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css "}}">
     <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css "}}">
-    {{else}}
-    <link rel="stylesheet" href="{{url_for "/core/css/home.css "}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/documentation.css "}}">
     {{/compare}}
+    {{#unless page.category}}
+        {{#unless isSection}}
+        <link rel="stylesheet" href="{{url_for "/core/css/home.css "}}">
+        {{/unless}}
+    {{/unless}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
 </head>
@@ -63,7 +67,11 @@
                 pages=(sortPagesByCategory site.pages.data 'user-guide')}}
             {{/compare}}
 
-            {{#compare page.category 'belongsTo' 'doc-index, about-index, about'}}
+            {{#compare page.category '===' 'doc-index'}}
+                {{>docs}}
+            {{/compare}}
+
+            {{#compare page.category 'belongsTo' 'about-index, about'}}
                 {{>single-page}}
             {{/compare}}
 
