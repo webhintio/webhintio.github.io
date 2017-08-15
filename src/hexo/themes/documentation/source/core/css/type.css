@@ -40,7 +40,14 @@ button,
 .title,
 .subtitle,
 .subtitle--alt,
-.button {
+.caption--alt,
+.button,
+.scan-heading,
+.category,
+.rule-list,
+.rule-title,
+[class*="-badge"],
+.scan-overview {
     font-family: "Montserrat", sans-serif;
 }
 
@@ -48,7 +55,8 @@ button,
 h1,
 h2,
 .headline,
-.heading {
+.heading,
+.scan-heading {
     letter-spacing: -.01em;
 
     position: relative;
@@ -57,7 +65,9 @@ h2,
 }
 
 .headline::before,
-.heading::before {
+.heading::before,
+.scan-heading::before,
+.rule-title::before {
     content: "";
     position: absolute;
     left: 0;
@@ -113,7 +123,8 @@ h2,
 }
 
 h3,
-.title {
+.title,
+.scan-heading {
     font-size: 2rem;
 }
 

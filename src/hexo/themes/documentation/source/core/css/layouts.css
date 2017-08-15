@@ -292,3 +292,56 @@ This strategy forces widths on modules, regardless of number of modules.
     }
 
 }
+
+/*
+ *	FIFTHS LAYOUT
+ *	---------------------------------------------
+ */
+
+@media (min-width: 33.75em) and (max-width: 48em) {
+
+ 	.layout--fifths .module {
+		width: 50%;
+ 	}
+
+ 	.layout--fifths .module:nth-child(-n+2) {
+	    margin-top: 0;
+	}
+
+	.layout--fifths .module:nth-child(2n+1) {
+	    clear: left;
+	}
+
+}
+
+@media (min-width: 48em) and (max-width: 64em) {
+
+	.layout--fifths .module {
+		width: 33%;
+	}
+
+	.layout--fifths .module:nth-child(-n+3) {
+		margin-top: 0;
+	}
+
+	.layout--fifths .module:nth-child(3n+1) {
+		clear: left;
+	}
+
+}
+
+@media (min-width: 64em) {
+
+	.layout--fifths .module {
+		width: 20%;
+	}
+
+	.layout--fifths .module:nth-child(-n+5) {
+		margin-top: 0;
+	}
+
+	.layout--fifths .module:nth-child(5n+1) {
+		clear: left;
+	}
+
+}
