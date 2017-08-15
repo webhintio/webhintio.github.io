@@ -269,9 +269,8 @@ a.button {
     min-width: 16rem;
     max-width: 100%;
     border: 1px solid transparent;
-    padding: 1.2rem 1.6rem;
+    padding: 1rem 1.2rem;
 
-    background-color: #d43e2b;
     color: #fff;
     letter-spacing: .1rem;
     text-transform: uppercase;
@@ -284,6 +283,14 @@ a.button {
     display: inline-block;
     text-align: center;
     cursor: pointer;
+}
+
+.button--red {
+    background-color: #d43e2b;
+}
+
+.button--purple {
+    background-color: #4046dd;
 }
 
 .button:hover {
@@ -458,7 +465,7 @@ input[type="radio"],
 input[type="checkbox"] {
     position: absolute;
     width: 2rem;
-    height: 2rem;
+    height: 2.6rem;
     line-height: 2rem;
 }
 
@@ -597,19 +604,19 @@ input[type="file"]::-ms-browse:focus {
 
 input[type="file"]:hover::-webkit-file-upload-button,
 input[type="file"]:focus::-webkit-file-upload-button {
-    background-color: #006cc2;
+    background-color: #262696;
 }
 
 input[type="file"]:hover::-ms-browse,
 input[type="file"]:focus::-ms-browse {
-    background-color: #006cc2;
+    background-color: #262696;
 }
 
 input[type="file"]:active::-webkit-file-upload-button,
 input[type="file"]::-webkit-file-upload-button:active {
-    background-color: #005497;
+    background-color: #262696;
 }
 
 input[type="file"]::-ms-browse:active {
-    background-color: #005497;
+    background-color: #262696;
 }
