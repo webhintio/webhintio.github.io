@@ -1,0 +1,66 @@
+/*
+ * SCANNER
+ * =============================================
+ * @Dependencies: base.css, structure.css
+ */
+
+.scan-config .subtitle {
+    margin-top: 4.8rem;
+}
+
+.scanner {
+    background-color: #262696;
+    color: #fff;
+    margin-bottom: -6rem;
+    padding: 4rem 0 8rem 0;
+}
+
+.rule {
+    position: relative;
+    margin-top: 3.4rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid #c1c1c1;
+}
+
+.rule:last-child {
+    border-bottom: 1px solid #c1c1c1;
+    padding-bottom: 1.8rem;
+}
+
+.rule-category input[type=checkbox]:first-child {
+    margin-top: 0;
+}
+
+.rule-category legend > label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 1.8rem;
+}
+
+.rule-category__children {
+    margin-top: 2.2rem;
+    padding-left: 3.2rem;
+}
+
+.icon--open {
+    background-image: url("/images/open-accordion.svg");
+}
+
+.icon--close {
+    background-image: url("/images/close-accordion.svg");
+}
+
+.icon--open,
+.icon--close {
+    position: absolute;
+    right: 0;
+    top: 1rem;
+
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 2rem;
+
+    min-width: 2.5rem;
+    height: 2.5rem;
+}

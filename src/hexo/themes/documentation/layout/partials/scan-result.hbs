@@ -1,5 +1,144 @@
-<section class="section">
-    <div class='page-content'>
-        <h2>This is the scanning result from express.</h2>
-    </div>
-</section>
+<main>
+    <article class="content" aria-labelledby="page-heading">
+        <nav class="container breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li>Scanner</li>
+                <li>Results</li>
+            </ul>
+        </nav>
+        <header class="page-intro container">
+            <h1 id="page-heading">{{intro.title}}</h1>
+            <p class="subtitle">{{intro.description}}</p>
+        </header>
+        <div class="section container">
+            <div class="scan-overview">
+                <div class="scan-overview__header">SCANNED URL : <a href="https://sonarwhal.com">https://sonarwhal.com</a></div>
+                <div class="scan-overview--details">
+                    <div class="scan-overview--warnings">
+                        <p class="scan-overview__subheader">warnings</p>
+                        <p class="scan-overview__body--red">2</p>
+                    </div>
+                    <div class="scan-overview--errors">
+                        <p class="scan-overview__subheader">errors</p>
+                        <p class="scan-overview__body--red">2</p>
+                    </div>
+                    <div class="scan-overview--time">
+                        <p class="scan-overview__subheader">scan time</p>
+                        <p class="scan-overview__body--purple">03:02</p>
+                    </div>
+                    <div class="scan-overview--version">
+                        <p class="scan-overview__subheader">version</p>
+                        <p class="scan-overview__body--purple">1.0</p>
+                    </div>
+                    <div class="scan-overview--permalink">
+                        <p class="scan-overview__subheader">permalink</p>
+                        <p class="scan-overview__body__permalink">https://sonarwhal.com/scan-permalink <a href="/" alt="copy permalink"><img src="/images/permalink-icon.svg" class="permalink-copy"/></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="layout layout--fifths">
+                <div class="module">
+                    <div class="rule-tile rule-tile--passed">
+                        <p class="rule-tile__category uppercase-text">Accessibility</p>
+                        <img src="images/results-a11y.svg" class="rule-icon" alt="" role="presentation" />
+                        <div class="rule-list">
+                            <p class="rule-list--passed">0 Errors</p>
+                            <p class="rule-list--passed">0 Warnings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="module">
+                    <div class="rule-tile rule-tile--failed">
+                        <p class="rule-tile__category uppercase-text">Interoperability</p>
+                        <img src="images/results-interop.svg" class="rule-icon" alt="" role="presentation" />
+                        <div class="rule-list">
+                            <p class="rule-list--failed">2 Errors</p>
+                            <p class="rule-list--failed">2 Warnings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="module">
+                    <div class="rule-tile rule-tile--passed">
+                        <p class="rule-tile__category uppercase-text">Performance</p>
+                        <img src="images/results-perf.svg" class="rule-icon" alt="" role="presentation" />
+                        <div class="rule-list">
+                            <p class="rule-list--passed">0 Errors</p>
+                            <p class="rule-list--passed">0 Warnings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="module">
+                    <div class="rule-tile rule-tile--passed">
+                        <p class="rule-tile__category">PWAs</p>
+                        <img src="images/results-pwa.svg" class="rule-icon" alt="" role="presentation" />
+                        <div class="rule-list">
+                            <p class="rule-list--passed">0 Errors</p>
+                            <p class="rule-list--passed">0 Warnings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="module">
+                    <div class="rule-tile rule-tile--passed">
+                        <p class="rule-tile__category uppercase-text">Security</p>
+                        <img src="images/results-security.svg" class="rule-icon" alt="" role="presentation" />
+                        <div class="rule-list">
+                            <p class="rule-list--passed">0 Errors</p>
+                            <p class="rule-list--passed">0 Warnings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="section container">
+                <h2>Errors &amp; Warnings</h2>
+                <div class="layout layout--sidebar--alt">
+                    <div class="module module--primary">
+                        <section class="rule-result">
+                            <h3>Interoperability</h3>
+                            <div class="rule-result--details">
+                                <div class="rule-result--details__header">
+                                    <p class="rule-title">html-checker: 1 warning</p>
+                                    <div class="rule-result__docs">
+                                        <a href="/"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a>
+                                        <button title="show warning details" class="button--details">Open Details</button>
+                                    </div>
+                                </div>
+                                <div class="rule-result--details__body">
+                                    <p class="warning-badge uppercase-text">warning</p>
+                                    <p>
+                                        <code>role="none"</code> is not yet supported in all browsers. Consider instead either
+                                        using <code>role="presentation"</code> or <code>role="none presentation"</code>
+                                    </p>
+                                    <div class="rule-result__code">
+                                        <p>https://sonarwhal.com/:1:3331</p>
+                                        <code>img src="/images/narwhal.svg" id="narwhal" alt="" role="none"</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rule-result--details">
+                                <div class="rule-result--details__header">
+                                    <p class="rule-title">no-friendly-error-pages: 1 error</p>
+                                    <div class="rule-result__docs">
+                                        <a href="/"><img src="/images/results-docs-icon.svg" alt="documentation" class="docs-icon" /></a>
+                                        <button title="show warning details" class="button--details">Open Details</button>
+                                    </div>
+                                </div>
+                                <div class="rule-result--details__body">
+                                    <p class="error-badge uppercase-text">error</p>
+                                    <p>
+                                        <code>role="none"</code> is not yet supported in all browsers. Consider instead either
+                                        using <code>role="presentation"</code> or <code>role="none presentation"</code>
+                                    </p>
+                                    <div class="rule-result__code">
+                                        <p>https://sonarwhal.com/:1:3331</p>
+                                        <code>img src="/images/narwhal.svg" id="narwhal" alt="" role="none"</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </article>
+</main>
