@@ -278,7 +278,7 @@ button.button--details {
 
 }
 
-<<<<<<< HEAD
+
 /* SCAN ANIMATION */
 
 .nellie-waiting {
@@ -345,7 +345,8 @@ button.button--details {
     100% {
         opacity: 0;
     }
-=======
+}
+
 /** Overlay page */
 .overlay {
 	opacity: 0;
@@ -364,5 +365,4 @@ button.button--details {
 	opacity: 1;
 	visibility: visible;
 	transition: opacity 0.5s;
->>>>>>> 01e4ebed1a0d513f52c3bc5f5c9214635cbb29cc
 }
