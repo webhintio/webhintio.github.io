@@ -10,6 +10,9 @@ Most of the documentation though is in the main
 
 ## Getting started
 
+_**Note:**_ Our builder uses async arrow functions as well as other ES2017
+features so please ensure you are using Node.js v8.x or higher.
+
 Clone the project:
 
 ``` bash
