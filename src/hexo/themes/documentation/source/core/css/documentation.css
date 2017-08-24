@@ -25,6 +25,7 @@
 .documentation-card {
     display: inline-block;
     width: 48%;
+    margin-top: 0;
     text-align: center;
     border: 1px solid #18186d;
     cursor: pointer;

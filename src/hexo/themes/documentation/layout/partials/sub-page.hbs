@@ -22,11 +22,8 @@
     <header class="page-intro">
         <h1 id="page-heading">{{page.title}}</h1>
     </header>
-    <section class="section">
+    <div class="section">
         <div class="layout layout--sidebar">
-            <div class="module module--primary wrap-text">
-                {{{page.content}}}
-            </div>
             <div class="module module--secondary table-of-contents treeview" role="navigation">
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
                 {{#each (getSortedToCTitles pages)}}
@@ -71,6 +68,9 @@
                 {{/each}}
                 </ul>
             </div>
+            <div class="module module--primary wrap-text">
+                {{{page.content}}}
+            </div>
         </div>
-    </section>
+    </div>
 </article>
