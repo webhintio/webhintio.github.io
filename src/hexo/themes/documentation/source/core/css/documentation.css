@@ -3,6 +3,53 @@
  * ---------------------------------------------
  */
 
+.page-intro {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.documentation-actions {
+    position: relative;
+    margin-top: 1.2rem;
+    align-self: center;
+}
+
+.documentation-actions::before {
+    content: url("/images/github.svg");
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 2rem;
+    margin-top: .3rem;
+}
+
+.documentation-actions ul {
+    margin-left: 3rem;
+}
+
+.documentation-actions li {
+    display: inline;
+    margin-right: .8rem;
+    font-size: 1.4rem;
+}
+
+.documentation-actions li + li::before {
+    margin-right: .8rem;
+    font-size: 1.4rem;
+    content: "|";
+}
+
+.headerlink::after {
+    content: url("/images/sub-section.svg");
+    display: inline-block;
+    width: 2rem;
+    margin-top: .3rem;
+    margin-left: 1.5rem;
+}
+
+/* LANDING PAGE */
+
 .documentation-search {
     flex: 1;
     max-width: 64rem;
@@ -50,6 +97,10 @@ a > .documentation-card__main > img {
 }
 
 @media (min-width: 48em) {
+
+    .documentation-actions {
+        margin-top: 0;
+    }
 
     .documentation-wrapper {
         display: flex;
