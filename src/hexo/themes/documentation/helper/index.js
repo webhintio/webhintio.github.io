@@ -1,4 +1,5 @@
 const pagination = require('./pagination');
+const url = require('url');
 
 module.exports = function () {
     const isIndexPage = (page) => {
@@ -167,8 +168,17 @@ module.exports = function () {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
         },
+        getMarkdownLink: (link) => {
+            return link.replace(/\.html$/, '.md');
+        },
         getPagesByToCTitle: (title, pages) => {
             return pages[title];
+        },
+        getSignalIssueQuery: (root, title, directory) => {
+            const issueTitle = `[docs] Issue with '${title}'`;
+            const issueContent = url.resolve(root, directory);
+
+            return `title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueContent)}`;
         },
         getSortedToCTitles: (pages) => {
             return Object.keys(pages).sort();

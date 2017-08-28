@@ -220,10 +220,6 @@ li {
     border: none;
 }
 
-.module--primary h2 {
-    font-size: 2.4rem;
-}
-
 .module--primary h2:nth-child(2) {
     margin-top: 1.6rem;
 }

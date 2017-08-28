@@ -71,6 +71,6 @@ hexo.markedRenderer = {
         }
 
         // add headerlink
-        return `<h${level} id="${id}"><a href="#${id}" class="headerlink" title="${stripHTML(text)}"></a>${text}</h${level}>`;
+        return `<h${level} id="${id}">${text}<a href="#${id}" class="headerlink" title="${stripHTML(text)}"></a></h${level}>`;
     }
 };

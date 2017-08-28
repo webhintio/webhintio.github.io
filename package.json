@@ -35,7 +35,7 @@
     "stylelint": "^8.0.0"
   },
   "hexo": {
-    "version": "3.3.7"
+    "version": "3.3.8"
   },
   "private": true,
   "scripts": {
