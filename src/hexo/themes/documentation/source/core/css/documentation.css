@@ -1,128 +1,129 @@
 /*
- * DOCUMENTATION
- * ---------------------------------------------
- */
+* DOCUMENTATION
+* ---------------------------------------------
+*/
 
 .page-intro {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .documentation-actions {
-    position: relative;
-    margin-top: 1.2rem;
-    align-self: center;
+	position: relative;
+	margin-top: 1.2rem;
+	align-self: center;
 }
 
 .documentation-actions::before {
-    content: url("/images/github.svg");
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    width: 2rem;
-    margin-top: .3rem;
+	content: url("/images/github.svg");
+	display: inline-block;
+	position: absolute;
+	left: 0;
+	width: 2rem;
+	margin-top: .3rem;
 }
 
 .documentation-actions ul {
-    margin-left: 3rem;
+	margin-left: 3rem;
 }
 
 .documentation-actions li {
-    display: inline;
-    margin-right: .8rem;
-    font-size: 1.4rem;
+	display: inline;
+	margin-right: .8rem;
+	font-size: 1.4rem;
 }
 
 .documentation-actions li + li::before {
-    margin-right: .8rem;
-    font-size: 1.4rem;
-    content: "|";
+	margin-right: .8rem;
+	font-size: 1.4rem;
+	content: "|";
 }
 
 .headerlink::after {
-    content: url("/images/sub-section.svg");
-    display: inline-block;
-    width: 2rem;
-    margin-top: .3rem;
-    margin-left: 1.5rem;
+	position: absolute;
+	content: url("/images/sub-section.svg");
+	display: inline-block;
+	width: 2rem;
+	margin-top: .3rem;
+	margin-left: 1.5rem;
 }
 
 /* LANDING PAGE */
 
 .documentation-search {
-    flex: 1;
-    max-width: 64rem;
-    width: 100%;
-    margin-bottom: 2.4rem;
+	flex: 1;
+	max-width: 64rem;
+	width: 100%;
+	margin-bottom: 2.4rem;
 }
 
 .documentation-search__input {
-    position: relative;
-    margin-top: 2.4rem;
+	position: relative;
+	margin-top: 2.4rem;
 }
 
 .documentation {
-    flex: 0;
-    padding-left: 0;
-    max-width: 64rem;
-    width: 100%;
+	flex: 0;
+	padding-left: 0;
+	max-width: 64rem;
+	width: 100%;
 }
 
 .documentation-card {
-    display: inline-block;
-    width: 48%;
-    margin-top: 0;
-    text-align: center;
-    border: 1px solid #18186d;
-    cursor: pointer;
+	display: inline-block;
+	width: 48%;
+	margin-top: 0;
+	text-align: center;
+	border: 1px solid #18186d;
+	cursor: pointer;
 }
 
 .documentation-card:first-child {
-    margin-right: 1.2rem;
+	margin-right: 1.2rem;
 }
 
 a > .documentation-card__main > img {
-    position: relative;
-    width: 10rem;
-    top: 5rem;
+	position: relative;
+	width: 10rem;
+	top: 5rem;
 }
 
 .documentation-card__title {
-    background-color: #18186d;
-    color: #fff;
-    padding: 6rem 0 2rem 0;
-    font-size: 2rem;
-    margin-top: .2rem;
+	background-color: #18186d;
+	color: #fff;
+	padding: 6rem 0 2rem 0;
+	font-size: 2rem;
+	margin-top: .2rem;
 }
 
 @media (min-width: 48em) {
 
-    .documentation-actions {
-        margin-top: 0;
-    }
+	.documentation-actions {
+		margin-top: 0;
+	}
 
-    .documentation-wrapper {
-        display: flex;
-    }
+	.documentation-wrapper {
+		display: flex;
+	}
 
-    .documentation {
-        flex: 1;
-        padding-left: 4.6rem;
-    }
+	.documentation {
+		flex: 1;
+		padding-left: 4.6rem;
+	}
 
-    .documentation > .bare {
-        margin-top: 4.8rem;
-    }
+	.documentation > .bare {
+		margin-top: 4.8rem;
+	}
 
 }
 
 @media (max-width: 32em) {
 
-    .documentation-card {
-        display: block;
-        width: 100%;
-        margin-bottom: 1.2rem;
-    }
+	.documentation-card {
+		display: block;
+		width: 100%;
+		margin-bottom: 1.2rem;
+	}
 
 }
