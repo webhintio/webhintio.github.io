@@ -1,6 +1,14 @@
 const pagination = require('./pagination');
 const url = require('url');
 
+const cutString = (string, lengthToShow) => {
+    if (!string || string.length < lengthToShow) {
+        return string;
+    }
+
+    return `${string.slice(0, lengthToShow)} ... ${string.slice(string.length - lengthToShow)}`;
+};
+
 module.exports = function () {
     const isIndexPage = (page) => {
         return page.permalink.endsWith('index.html');
@@ -160,6 +168,12 @@ module.exports = function () {
 
             return options.inverse(this);
         },
+        cutCodeString: (codeString) => {
+            return cutString(codeString, 150);
+        },
+        cutUrlString: (urlString) => {
+            return cutString(urlString, 20);
+        },
         getAboutItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
@@ -167,6 +181,9 @@ module.exports = function () {
         getDocumentItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
+        },
+        getLength: (collection) => {
+            return collection.length;
         },
         getMarkdownLink: (link) => {
             return link.replace(/\.html$/, '.md');
@@ -200,6 +217,15 @@ module.exports = function () {
             return !isGuideIndexPage(page);
         },
         pagination: pagination.generate,
+        passErrors: (statistics) => {
+            return !statistics || statistics.errors === 0;
+        },
+        passRule: (statistics) => {
+            return !statistics || (statistics.errors === 0 && statistics.warnings === 0);
+        },
+        passWarnings: (statistics) => {
+            return !statistics || statistics.warnings === 0;
+        },
         // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {
             const pages = allPages.reduce((acc, page) => {

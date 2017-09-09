@@ -132,9 +132,21 @@
     border: 1px solid #e2e2e2;
 }
 
+.rule-result h3 {
+    text-transform: capitalize;
+}
+
 .rule-result--details {
     position: relative;
     margin-top: 4.8rem;
+}
+
+.rule-result--details[aria-expanded="true"] .rule-result--details__body {
+    display: block;
+}
+
+.rule-result--details[aria-expanded="false"] .rule-result--details__body {
+    display: none;
 }
 
 .rule-result--details__header {
@@ -233,6 +245,18 @@ button.button--details {
     background-color: #f4f4f4;
     margin-top: 1.4rem;
     padding: 2.4rem;
+    /* Hanlde long urls */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 .rule-result__code p {
