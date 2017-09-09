@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "algoliasearch": "^3.24.0",
+    "body-parser": "^1.17.2",
     "cheerio": "~0.22.0",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
@@ -20,8 +21,10 @@
     "js-yaml": "^3.8.3",
     "klaw": "^2.0.0",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "normalize-path": "^2.1.1",
     "pify": "^3.0.0",
+    "request-promise": "^4.2.1",
     "xss-filters": "^1.2.7"
   },
   "devDependencies": {

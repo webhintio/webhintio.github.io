@@ -1,0 +1,34 @@
+
+- name: accessibility
+  image: results-a11y
+  rules:
+  - axe
+  - meta-charset-utf-8
+- name: interoperability
+  image: results-interop
+  rules:
+  - content-type
+  - highest-available-document-mode
+  - html-checker
+  - meta-viewport
+  - no-friendly-error-pages
+- name: performance
+  image: results-perf
+  rules:
+  - no-html-only-headers
+- name: PWA
+  image: results-pwa
+  rules:
+  - manifest-exists
+  - manifest-file-extension
+- name: security
+  image: results-security
+  rules:
+  - no-disallowed-headers
+  - disown-opener
+  - no-protocol-relative-urls
+  - ssllabs
+  - strict-transport-security
+  - x-content-type-options
+  - validate-set-cookie-header
+  - no-vulnerable-javascript-libraries
