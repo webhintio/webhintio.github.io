@@ -26,7 +26,9 @@
     <link rel="stylesheet" href="{{url_for "/core/css/media.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/navigation.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/scanner.css "}}">
+    {{#if scanResult}}
     <link rel="stylesheet" href="{{url_for "/core/css/scan-results.css "}}">
+    {{/if}}
     <link rel="stylesheet" href="{{url_for "/core/css/search-results.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/structure.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/type.css "}}">
