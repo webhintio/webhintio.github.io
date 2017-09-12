@@ -12,24 +12,24 @@
             <p class="subtitle">{{intro.description}}</p>
         </header>
         <div class="section container">
-            <div class="scan-overview">
+            <div class="scan-overview" data-id="{{id}}">
                 <div class="scan-overview__header">SCANNED URL : <a href="https://sonarwhal.com">{{url}}</a></div>
                 <div class="scan-overview--details">
                     <div class="scan-overview--warnings">
                         <p class="scan-overview__subheader">warnings</p>
-                        <p class="scan-overview__body--red">{{overallStatistics.warnings}}</p>
+                        <p class="scan-overview__body--red" id="total-warnings">{{'or' overallStatistics.warnings 0}}</p>
                     </div>
                     <div class="scan-overview--errors">
                         <p class="scan-overview__subheader">errors</p>
-                        <p class="scan-overview__body--red">{{overallStatistics.errors}}</p>
+                        <p class="scan-overview__body--red" id="total-errors">{{'or' overallStatistics.errors 0}}</p>
                     </div>
                     <div class="scan-overview--time">
                         <p class="scan-overview__subheader">scan time</p>
-                        <p class="scan-overview__body--purple">{{time}}</p>
+                        <p class="scan-overview__body--purple">{{'or' time '00:00'}}</p>
                     </div>
                     <div class="scan-overview--version">
                         <p class="scan-overview__subheader">version</p>
-                        <p class="scan-overview__body--purple">1.0</p>
+                        <p class="scan-overview__body--purple">0.6.2</p>
                     </div>
                     <div class="scan-overview--permalink">
                         <p class="scan-overview__subheader">permalink</p>
@@ -44,8 +44,8 @@
                         <p class="rule-tile__category uppercase-text">{{name}}</p>
                         <img src="/images/{{image}}.svg" class="rule-icon" alt="" role="presentation" />
                         <div class="rule-list">
-                            <p class="rule-list--{{#if (passErrors statistics)}}passed{{else}}failed{{/if}}">{{statistics.errors}} Errors</p>
-                            <p class="rule-list--{{#if (passWarnings statistics)}}passed{{else}}failed{{/if}}">{{statistics.warnings}} Warnings</p>
+                            <p class="rule-list--{{#if (passErrors statistics)}}passed{{else}}failed{{/if}} {{name}} errors">{{statistics.errors}} Errors</p>
+                            <p class="rule-list--{{#if (passWarnings statistics)}}passed{{else}}failed{{/if}} {{name}} warnings">{{statistics.warnings}} Warnings</p>
                         </div>
                     </div>
                 </div>
@@ -57,12 +57,12 @@
                     <div class="module module--primary">
                         {{#each categories}}
                             {{#if results}}
-                            <section class="rule-result">
+                            <section class="rule-result" id="{{name}}">
                                 <h3>{{name}}</h3>
                                 {{#each results}}
                                 <div class="rule-result--details" aria-expanded="false">
                                     <div class="rule-result--details__header">
-                                        <p class="rule-title">{{name}}: {{getLength messages}} {{status}}</p>
+                                        <p class="rule-title">{{name}}: {{getLength messages status}}</p>
                                         <div class="rule-result__docs">
                                             <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a>
                                             <button title="show warning details" class="button--details">Open Details</button>
@@ -93,5 +93,6 @@
                 </div>
             </section>
         </div>
+        <div class="overlay"></div>
     </article>
 </main>

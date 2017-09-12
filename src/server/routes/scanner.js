@@ -7,6 +7,7 @@ const scannerIntro = {
     title: 'Scanner'
 };
 const serviceEndpoint = 'http://localhost:3000/';
+const sonarUrl = 'http://localhost:4000/';
 const jobStatus = {
     error: 'error',
     finished: 'finished',
@@ -37,33 +38,16 @@ const sendRequest = (url) => {
     return request(options);
 };
 
-const wait = (waitFor) => {
-    return new Promise((resolve) => {
-        return setTimeout(resolve, waitFor);
-    });
-};
-
-const queryResult = async (id, maxAttempts = 1000, currentAttempt = 0) => {
+const queryResult = async (id) => {
     const requestResult = await request(`${serviceEndpoint}${id}`);
 
     if (!requestResult) {
         throw new Error(`No result found for this url. Please scan again.`);
     }
 
-    const result = JSON.parse(requestResult);
+    const response = JSON.parse(requestResult);
 
-    if ([jobStatus.error, jobStatus.finished].includes(result.status)) {
-        // final result, return the result to render
-        return result;
-    }
-
-    if (currentAttempt >= maxAttempts) {
-        throw new Error('TIMEOUT');
-    }
-
-    await wait(1000);
-
-    return queryResult(id, maxAttempts, currentAttempt + 1);
+    return response;
 };
 
 const configure = (app) => {
@@ -131,6 +115,25 @@ const configure = (app) => {
         res.render('scan', { intro: scannerIntro });
     });
 
+    app.get('/scanner/api/:id', async (req, res) => {
+        const id = req.params.id;
+        let scanResult;
+
+        try {
+            scanResult = await queryResult(id);
+        } catch (error) {
+            return res.status(404);
+        }
+
+        const { parsedResults } = processRuleResults(scanResult.rules);
+
+        return res.send({
+            result: parsedResults,
+            status: scanResult.status,
+            time: calculateTimeDifference(scanResult.started, scanResult.finished)
+        });
+    });
+
     app.get('/scanner/:id', async (req, res) => {
         const id = req.params.id;
         let scanResult;
@@ -149,7 +152,7 @@ const configure = (app) => {
         res.render('scan-result', {
             categories: parsedResults,
             overallStatistics,
-            permalink: `https://sonarwhal.com/scanner/${scanResult.id}`,
+            permalink: `${sonarUrl}scanner/${scanResult.id}`,
             scanResult: true,
             time: calculateTimeDifference(scanResult.started, scanResult.finished),
             url: scanResult.url
@@ -176,26 +179,18 @@ const configure = (app) => {
         }
 
         const id = requestResult.id;
-        let scanResult;
+        const emptyResult = _.cloneDeep(ruleCatogries);
 
-        try {
-            scanResult = await queryResult(id);
-        } catch (error) {
-            return res.render('error', {
-                details: error.message,
-                heading: 'ERROR'
-            });
-        }
+        _.forEach(emptyResult, (category) => {
+            category.statistics = { errors: 0, warnings: 0 };
+        });
 
-        const { parsedResults, overallStatistics } = processRuleResults(scanResult.rules);
-
-        res.render('scan-result', {
-            categories: parsedResults,
-            overallStatistics,
-            permalink: `https://sonarwhal.com/scanner/${scanResult.id}`,
-            scanResult: true,
-            time: calculateTimeDifference(scanResult.started, scanResult.finished),
-            url: scanResult.url
+        return res.render('scan-result', {
+            categories: emptyResult,
+            id,
+            permalink: `${sonarUrl}scanner/${id}`,
+            scan: true,
+            url: req.body.url
         });
     });
 };

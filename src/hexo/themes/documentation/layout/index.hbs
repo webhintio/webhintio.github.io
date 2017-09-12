@@ -26,9 +26,7 @@
     <link rel="stylesheet" href="{{url_for "/core/css/media.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/navigation.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/scanner.css "}}">
-    {{#if scanResult}}
     <link rel="stylesheet" href="{{url_for "/core/css/scan-results.css "}}">
-    {{/if}}
     <link rel="stylesheet" href="{{url_for "/core/css/search-results.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/structure.css "}}">
     <link rel="stylesheet" href="{{url_for "/core/css/type.css "}}">
@@ -99,10 +97,14 @@
     <script src="{{url_for "/components/treeview/treeview.js "}}"></script>
     {{/compare}}
     {{#if scanResult}}
-    <script src="{{url_for "/js/scanner-result.js "}}"></script>
+    <script src="{{url_for "/js/scanner-results.js "}}"></script>
+    {{/if}}
+    {{#if scan}}
+    <script src="{{url_for "/js/scanner.js "}}"></script>
     {{/if}}
     {{>docsearch}}
     <script>(function(G,o,O,g,l){G.GoogleAnalyticsObject=O;G[O]||(G[O]=function(){(G[O].q=G[O].q||[]).push(arguments)});G[O].l=+new Date;g=o.createElement('script'),l=o.scripts[0];g.src='https://www.google-analytics.com/analytics.js';l.parentNode.insertBefore(g,l)}(this,document,'ga'));ga('create','{{ theme.google_analytics }}');ga('send','pageview')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
 </body>
 
 </html>
