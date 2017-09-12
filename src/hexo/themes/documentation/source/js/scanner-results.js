@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* eslint-disable no-var, strict, prefer-arrow-callback, object-shorthand, no-continue, array-callback-return */
+/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand, no-continue */
 //nav menu
 (function () {
     'use strict';
@@ -8,7 +8,6 @@
         return [].slice.call(list);
     };
 
-    var detailButtons = arraify(document.querySelectorAll('.button--details'));
     var expandDetails = function (item) {
         item.setAttribute('aria-expanded', 'true');
     };
@@ -32,7 +31,13 @@
         }
     };
 
-    detailButtons.map(function (button) {
-        button.addEventListener('click', toggleExpand, false);
-    });
+    var registerToggleExpandListener = function () {
+        var detailButtons = arraify(document.querySelectorAll('.button--details'));
+
+        detailButtons.map(function (button) { //eslint-disable-line array-callback-return
+            button.addEventListener('click', toggleExpand, false);
+        });
+    };
+
+    registerToggleExpandListener();
 }());

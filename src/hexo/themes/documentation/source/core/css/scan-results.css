@@ -245,6 +245,7 @@ button.button--details {
     background-color: #f4f4f4;
     margin-top: 1.4rem;
     padding: 2.4rem;
+
     /* Hanlde long urls */
     overflow-wrap: break-word;
     word-wrap: break-word;
