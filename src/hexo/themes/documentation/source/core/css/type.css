@@ -56,7 +56,6 @@ h2,
     z-index: 1;
 }
 
-.headline::before,
 .heading::before {
     content: "";
     position: absolute;
