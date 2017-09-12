@@ -182,8 +182,10 @@ module.exports = function () {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
         },
-        getLength: (collection) => {
-            return collection.length;
+        getLength: (collection, unit) => {
+            const length = collection.length;
+
+            return length > 1 ? `${length} ${unit}s` : `${length} ${unit}`;
         },
         getMarkdownLink: (link) => {
             return link.replace(/\.html$/, '.md');
@@ -221,6 +223,9 @@ module.exports = function () {
 
             return className.toLowerCase().trim()
                 .replace(/[^a-z0-9]/gi, '-');
+        },
+        or: (l, r) => {
+            return l || r;
         },
         pagination: pagination.generate,
         passErrors: (statistics) => {
