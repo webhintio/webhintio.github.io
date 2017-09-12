@@ -1,6 +1,5 @@
 /* eslint-env browser */
 /* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand, no-continue */
-//nav menu
 (function () {
     'use strict';
 

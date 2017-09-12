@@ -130,7 +130,8 @@ const configure = (app) => {
         return res.send({
             result: parsedResults,
             status: scanResult.status,
-            time: calculateTimeDifference(scanResult.started, scanResult.finished)
+            time: calculateTimeDifference(scanResult.started, scanResult.finished),
+            version: scanResult.sonarVersion
         });
     });
 
@@ -155,7 +156,8 @@ const configure = (app) => {
             permalink: `${sonarUrl}scanner/${scanResult.id}`,
             scanResult: true,
             time: calculateTimeDifference(scanResult.started, scanResult.finished),
-            url: scanResult.url
+            url: scanResult.url,
+            version: scanResult.sonarVersion
         });
     });
 
