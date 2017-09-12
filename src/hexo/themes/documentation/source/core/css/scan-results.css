@@ -280,16 +280,24 @@ button.button--details {
 
 
 /* SCAN ANIMATION */
-
 .nellie-waiting {
-    position:   fixed;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 99;
+    transition: opacity .5s, visibility 0s .5s;
+    position: fixed;
     background: hsla(239, 100%, 84%, .55);
-    width:      100%;
-    height:     100%;
-    z-index:    10;
-    top:        0;
-    left:       0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
 
+.nellie-waiting.open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .5s;
 }
 
 .nellie-waiting__container {
@@ -345,24 +353,4 @@ button.button--details {
     100% {
         opacity: 0;
     }
-}
-
-/** Overlay page */
-.overlay {
-	opacity: 0;
-    visibility: hidden;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(153,204,51,0.9);
-    z-index: 99;
-	transition: opacity 0.5s, visibility 0s 0.5s;
-}
-
-.overlay.open {
-	opacity: 1;
-	visibility: visible;
-	transition: opacity 0.5s;
 }
