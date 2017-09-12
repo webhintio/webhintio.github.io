@@ -191,6 +191,17 @@
         });
     };
 
+<<<<<<< HEAD
+=======
+    var closeOverlay = function () {
+        document.querySelector('.overlay').classList.remove('open');
+    };
+
+    var openOverlay = function () {
+        document.querySelector('.overlay').classList.add('open');
+    };
+
+>>>>>>> 01e4ebed1a0d513f52c3bc5f5c9214635cbb29cc
     var updateUI = function (data) {
         var updates = data.updates;
         var time = data.time;
@@ -225,6 +236,11 @@
             var warningsElement = document.querySelector(warningSelector);
 
             errorsElement.innerHTML = `${errorsNumber} Errors`;
+<<<<<<< HEAD
+=======
+            errorsElement.classList.remove('rule-list--passed');
+            errorsElement.classList.add('rule-list--failed');
+>>>>>>> 01e4ebed1a0d513f52c3bc5f5c9214635cbb29cc
             warningsElement.innerHTML = `${warningsNumber} Warnings`;
 
             if (errorsNumber > 0) {
@@ -239,12 +255,15 @@
         document.querySelector('#total-errors').innerHTML = totalErrors;
         document.querySelector('#total-warnings').innerHTML = totalWarnings;
         document.querySelector('.scan-overview--time .scan-overview__body--purple').innerHTML = time;
+        closeOverlay();
 
         registerToggleExpandListener();
     };
 
     var queryAndUpdate = function () {
         console.log('Updater running...');
+        openOverlay();
+
 
         var id = document.querySelector('.scan-overview').getAttribute('data-id');
         var callback = function (err, response) {
