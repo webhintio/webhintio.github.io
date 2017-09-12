@@ -105,7 +105,7 @@ main {
 }
 
 .home-container--section {
-    padding: 4.8rem 0rem;
+    padding: 4.8rem 0;
 
     /* remove text-align after scanner is implemented */
     text-align: center;
