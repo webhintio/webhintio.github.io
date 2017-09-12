@@ -1,6 +1,6 @@
 <div class="bg-wrap-home">
     <main>
-        <div class="home-container container">
+        <div class="home-container--alt  container">
             <div class="top-illustration">
                 <img src="/images/iceberg-left.svg" id="iceberg1" alt="" role="presentation">
                 <img src="/images/iceberg-middle.svg" id="iceberg2" alt="" role="presentation">
@@ -9,16 +9,59 @@
             </div>
         </div>
         <div class="dark-blue">
-            <div class="home-container container">
-                <section class="home-container home-container--section">
-                    <h1>sonar</h1>
-                    <p class="subheading">A linting tool for the web.</p>
+            <div class="container home-container">
+                <section class="home-container--section">
+                    <h1 class="headline">sonar</h1>
+                    <p class="title">a linting tool for the web</p>
                     <div class="actions">
                         <a class="button button-cta" href="/docs/user-guide/">Getting Started</a>
                     </div>
                 </section>
-                <section class="home-container home-container--section">
-                    <h2 class="title uppercase-text">Install sonar (requires node 8)</h2>
+                <section class="home-container--section home-container__features">
+                    <h2 class="subheading subheading--home">Build better websites with sonar</h2>
+                    <div class="layout layout--quarters">
+                        <div class="module">
+                            <p class="subtitle--alt subtitle--home uppercase-text">Accessibility, security, interoperability and more!</p>
+                            <p class="feature_highlight">
+                                The web is complex. Knowing everything about web development and not making any mistakes can be challenging.
+                                sonar is meant to help developers regardless of their skill level, from the novice to the
+                                experienced one, to build websites and apps that work for everyone, are accessible, fast, secure, and
+                                take advantage of all the features the web has to offer.
+                            </p>
+                        </div>
+                        <div class="module">
+                            <p class="subtitle--alt subtitle--home uppercase-text">Guidance tailored to your needs</p>
+                            <p class="feature_highlight">
+                                An online shopping experience probably doesn't have the same requirements as an intranet website.
+                                sonar is useful no matter what you are working on, and will provide you the best guidance for
+                                your needs. See how sonar can adapt its feedback when you give it more information about the resources
+                                you <a href="/docs/user-guide/#ignoringdomains">cannot control</a>, the
+                                <a href="/docs/user-guide/#browserconfiguration">browsers your visitors use</a>,
+                                and more in the <a href="/docs/user-guide">user guide</a>.
+                            </p>
+                        </div>
+                        <div class="module">
+                            <p class="subtitle--alt subtitle--home uppercase-text">Easily create new rules</p>
+                            <p class="feature_highlight">
+                                sonar is still growing and it might not have a rule yet for something you need. You can help us
+                                by creating a new issue, or even better by submitting a Pull Request. Check our <a href="/docs/developer-guide/">developer guide</a>
+                                and learn how you can create new rules and contribute to sonar!
+                            </p>
+                        </div>
+                        <div class="module">
+                            <p class="subtitle--alt subtitle--home uppercase-text">Community driven</p>
+                            <p class="feature_highlight">
+                                sonar welcomes anyone who wants to help make the web a better place. There are many things you can do
+                                to make sonar a better tool: testing, filing issues, requesting new features, contributing code, improving the documentation,
+                                etc. Take a look at our <a href="https://github.com/sonarwhal/sonar/issues/">backlog</a>!
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="dark-blue">
+                <section class="home-container home-container--section home-container__install">
+                    <h2 class="subheading subheading--home">Install sonar</h2>
                     <div class="layout layout--halves vertical-align">
                         <div class="module">
                             <img src="images/home-nellie.svg" class="sub-illustration" alt="" role="presentation">
@@ -34,25 +77,25 @@
                         </div>
                     </div>
                 </section>
-                <section class="home-container home-container--section home-container__documentation">
-                    <h2 class="title uppercase-text">Documentation</h2>
+                <section class="home-container--alt home-container--section home-container__documentation">
+                    <h2 class="subheading subheading--home">Documentation</h2>
                     <div class="layout layout--thirds">
                         <div class="module">
                             <a href="/docs/user-guide/">
                                 <img src="images/user-guide-icon.svg" class="icons--home" alt="" role="none">
-                                <p>User Guide</p>
+                                <p class="subtitle">User Guide</p>
                             </a>
                         </div>
                         <div class="module">
                             <a href="/docs/user-guide/rules/">
                                 <img src="images/rules-icon.svg" class="icons--home" alt="" role="none">
-                                <p>Rules</p>
+                                <p class="subtitle">Rules</p>
                             </a>
                         </div>
                         <div class="module">
                             <a href="/docs/developer-guide/">
                                 <img src="images/dev-guide-icon.svg" class="icons--home" alt="" role="none">
-                                <p>Developer Guide</p>
+                                <p class="subtitle">Developer Guide</p>
                             </a>
                         </div>
                     </div>
