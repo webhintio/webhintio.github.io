@@ -231,6 +231,7 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
     .input-fix {
         display: flex;
         margin-top: .8rem;
+        align-items: center;
     }
 
     .input-fix input {
@@ -271,6 +272,7 @@ a.button {
     padding: 1.2rem 1.6rem;
 
     color: #fff;
+    letter-spacing: .1rem;
     text-transform: uppercase;
 
     overflow: hidden;
