@@ -34,6 +34,9 @@
     </header>
     <div class="section">
         <div class="layout layout--sidebar">
+            <div class="module module--primary wrap-text">
+                {{{page.content}}}
+            </div>
             <div class="module module--secondary table-of-contents treeview" role="navigation">
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
                 {{#each (getSortedToCTitles pages)}}
@@ -77,9 +80,6 @@
                     </li>
                 {{/each}}
                 </ul>
-            </div>
-            <div class="module module--primary wrap-text">
-                {{{page.content}}}
             </div>
         </div>
     </div>
