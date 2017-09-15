@@ -21,7 +21,7 @@
         </header>
         <div class="section container">
             <div class="scan-overview" data-id="{{id}}">
-                <div class="scan-overview__header">SCANNED URL : <a href="https://sonarwhal.com">{{url}}</a></div>
+                <div class="scan-overview__header">SCANNED URL : <a href="{{url}}">{{url}}</a></div>
                 <div class="scan-overview--details">
                     <div class="scan-overview--warnings">
                         <p class="scan-overview__subheader">warnings</p>
@@ -52,8 +52,16 @@
                         <p class="rule-tile__category uppercase-text">{{name}}</p>
                         <img src="/images/{{image}}.svg" class="rule-icon" alt="" role="presentation" />
                         <div class="rule-list">
-                            <p class="rule-list--{{#if (passErrors statistics)}}passed{{else}}failed{{/if}} {{name}} errors">{{statistics.errors}} Errors</p>
-                            <p class="rule-list--{{#if (passWarnings statistics)}}passed{{else}}failed{{/if}} {{name}} warnings">{{statistics.warnings}} Warnings</p>
+                            <p class="rule-list--{{#if (passErrors statistics)}}passed{{else}}failed{{/if}} {{name}} errors">
+                                {{#compare  statistics.errors ">" 0}}<a href="#{{name}}">{{/compare}}
+                                    {{statistics.errors}} Errors
+                                {{#compare  statistics.errors ">" 0}}</a>{{/compare}}
+                            </p>
+                            <p class="rule-list--{{#if (passWarnings statistics)}}passed{{else}}failed{{/if}} {{name}} warnings">
+                                {{#compare  statistics.warnings ">" 0}}<a href="#{{name}}">{{/compare}}
+                                    {{statistics.warnings}} Warnings
+                                {{#compare  statistics.warnings ">" 0}}</a>{{/compare}}
+                            </p>
                         </div>
                     </div>
                 </div>

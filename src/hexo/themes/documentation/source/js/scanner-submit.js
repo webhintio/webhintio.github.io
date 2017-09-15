@@ -268,6 +268,9 @@
         openOverlay();
 
         var id = document.querySelector('.scan-overview').getAttribute('data-id');
+
+        history.pushState({}, id, id);
+
         var callback = function (err, response) {
             console.log('query result received.');
 
