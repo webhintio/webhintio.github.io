@@ -53,7 +53,7 @@ thead th {
  */
 
 ul, ol {
-    margin-left: 2.4rem;
+    margin-left: 1.9rem;
 }
 
 * + li {
@@ -66,6 +66,7 @@ nav ol {
     list-style: none;
 }
 
-ul li > ul {
+ul li > ul,
+ol li > ul {
   margin-top: 1.2rem;
 }

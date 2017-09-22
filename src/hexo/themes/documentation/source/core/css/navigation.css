@@ -197,14 +197,12 @@ button.mobile-nav-button {
 
 .navbar__submenu {
     margin: 0;
-    background-color: #2f2f2f;
     list-style-type: none;
 }
 
 .nav-bar .navbar__submenu {
     background-color: #4c51da;
 }
-
 
 .navbar__navitem a {
     transition: background-color ease-out .5s;
