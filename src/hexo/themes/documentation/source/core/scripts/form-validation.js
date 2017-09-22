@@ -31,11 +31,32 @@
         }
     };
 
+    var checkUrl = function (field) {
+        var original = field.value;
+
+        if (!original.startsWith('http://')) {
+            field.value = 'http://' + original;
+        }
+
+        return field;
+    };
+
+    var onUrlFieldBlur = function (e) {
+        checkUrl(e.target);
+    };
+
     var forms = document.querySelectorAll('form');
+    var urlInputs = document.querySelectorAll('input[type="url"]');
 
     for (var i = 0, l = forms.length; i < l; i++) {
         var form = forms[i];
 
         form.addEventListener('invalid', onSubmit, true);
+    }
+
+    for (var j = 0, m = urlInputs.length; j < m; j++) {
+        var field = urlInputs[j];
+
+        field.addEventListener('blur', onUrlFieldBlur, true);
     }
 }());
