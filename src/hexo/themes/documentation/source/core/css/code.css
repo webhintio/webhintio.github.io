@@ -17,6 +17,7 @@ pre,
 }
 
 .highlight {
+    max-width: 64rem;
     border: 2px solid hsla(0, 0%, 0%, .03);
     margin-top: 2.4rem;
     margin-bottom: 2.4rem;

@@ -186,7 +186,7 @@ h6,
 /* Maximum line lengths */
 p,
 li {
-    max-width: 96rem;
+    max-width: 64rem;
 }
 
 /* Override line lengths */
