@@ -1,6 +1,6 @@
 /* eslint-env browser */
 /* eslint-disable no-var, strict, prefer-template, prefer-arrow-callback, object-shorthand, no-continue, no-multi-str, array-callback-return */
-/* global Handlebars */
+/* global Handlebars, hljs */
 
 (function () {
     'use strict';
@@ -28,34 +28,9 @@
         };
     }
     /* eslint-enable */
+    var id = document.querySelector('.scan-overview').getAttribute('data-id');
     /** Record of published rules. */
-    var existingResults = {};
-    var arraify = function (list) {
-        return [].slice.call(list);
-    };
-
-    var expandDetails = function (item) {
-        item.setAttribute('aria-expanded', 'true');
-    };
-
-    var collapseDetails = function (item) {
-        item.setAttribute('aria-expanded', 'false');
-    };
-
-    var toggleExpand = function (evt) {
-        var parent = evt.target.closest('.rule-result--details');
-        var expanded = parent.getAttribute('aria-expanded') === 'true';
-
-        if (expanded) {
-            collapseDetails(parent);
-            evt.target.innerHTML = 'open details';
-        }
-
-        if (!expanded) {
-            expandDetails(parent);
-            evt.target.innerHTML = 'close details';
-        }
-    };
+    var existingResults = [];
 
     var toParams = function (obj) {
         if (!obj) {
@@ -109,22 +84,17 @@
     };
     /** Generate record of what rules have been published. */
     var generateRecord = function (responseItems) {
-        var record = responseItems.reduce(function (collection, item) {
+        responseItems.forEach(function (item) {
             if (!item.results) {
-                return collection;
+                return;
             }
 
-            for (var result in item.results) {
-                if (!collection[item.name]) {
-                    collection[item.name] = [];
+            item.results.forEach(function (result) {
+                if (existingResults.indexOf(result.name) === -1) {
+                    existingResults.push(result.name);
                 }
-                collection[item.name].push(result.name);
-            }
-
-            return collection;
-        }, {});
-
-        return record;
+            });
+        });
     };
 
     /** Filter out results that are already present in the UI. */
@@ -135,48 +105,50 @@
             }
 
             responseItem.results = responseItem.results.filter(function (result) {
-                return !(existingResults[responseItem.name] && existingResults[responseItem.name].includes(result.name));
+                return existingResults.indexOf(result.name) === -1;
             });
         });
 
         return responseItems;
     };
 
-    var generateTemplate = function () {
-        var tmpl = '{{#each categories}} \
-        {{#if results}} \
-        <section class="rule-result" id="{{name}}"> \
-            <h3>{{name}}</h3> \
-            {{#each results}} \
+    var ruleItemTemplate = function () {
+        return '{{#each results}} \
             <div class="rule-result--details" aria-expanded="false"> \
-                <div class="rule-result--details__header"> \
-                    <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
-                    <div class="rule-result__docs"> \
-                        <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a> \
-                        <button title="show warning details" class="button--details">Open Details</button> \
-                    </div> \
+            <div class="rule-result--details__header"> \
+                <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
+                <div class="rule-result__docs"> \
+                    <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a> \
+                    <button title="show warning details" class="button--details">Open Details</button> \
                 </div> \
-                {{#each messages}} \
-                <div class="rule-result--details__body"> \
-                    <p class="warning-badge uppercase-text">{{../status}}</p> \
+            </div> \
+            {{#each messages}} \
+            <div class="rule-result--details__body"> \
+                <p class="warning-badge uppercase-text">{{../status}}</p> \
+                <p> \
+                    {{message}} \
+                </p> \
+                <div class="rule-result__code"> \
                     <p> \
-                        {{message}} \
+                        {{cutUrlString resource}} \
+                        {{#if location.line}}:{{location.line}}{{/if}} \
+                        {{#if location.column}}:{{location.column}}{{/if}} \
                     </p> \
-                    <div class="rule-result__code"> \
-                        <p> \
-                            {{cutUrlString resource}} \
-                            {{#if location.line}}:{{location.line}}{{/if}} \
-                            {{#if location.column}}:{{location.column}}{{/if}} \
-                        </p> \
-                        <code>{{cutCodeString sourceCode}}</code> \
-                    </div> \
+                    <code class="html">{{cutCodeString sourceCode}}</code> \
                 </div> \
-                {{/each}} \
             </div> \
             {{/each}} \
-        </section> \
-        {{/if}} \
+        </div> \
     {{/each}}';
+    };
+
+    var categoryTemplate = function () {
+        var tmpl = '{{#if results}} \
+        <section class="rule-result" id="{{name}}"> \
+            <h3>{{name}}</h3> \
+            {{> ruleItem}} \
+        </section> \
+        {{/if}}';
 
         return tmpl;
     };
@@ -189,14 +161,6 @@
         return string.slice(0, lengthToShow) + '...' + string.slice(string.length - lengthToShow);
     };
 
-    var registerToggleExpandListener = function () {
-        var detailButtons = arraify(document.querySelectorAll('.button--details'));
-
-        detailButtons.map(function (button) {
-            button.addEventListener('click', toggleExpand, false);
-        });
-    };
-
     var closeOverlay = function () {
         document.querySelector('.nellie-waiting').classList.remove('open');
     };
@@ -205,11 +169,11 @@
         document.querySelector('.nellie-waiting').classList.add('open');
     };
 
-    var updateUI = function (data) {
-        var updates = data.updates;
-        var time = data.time;
-        var version = data.version || '0.6.3'; // 'version' returns null sometimes. Set a default for now.
+    var registerHandlebarsPartials = function () {
+        Handlebars.registerPartial('ruleItem', ruleItemTemplate());
+    };
 
+    var registerHandlebarsHelpers = function () {
         Handlebars.registerHelper('getLength', function (collection, unit) {
             var length = collection.length;
             var s = length > 1 ? 's' : '';
@@ -224,14 +188,44 @@
         Handlebars.registerHelper('cutCodeString', function (urlString) {
             return cutString(urlString, 150);
         });
+    };
 
-        var source = generateTemplate();
-        var template = Handlebars.compile(source);
-        var html = template({ categories: updates });
-        var totalErrors = 0; // eslint-disable-line no-unused-vars
-        var totalWarnings = 0; // eslint-disable-line no-unused-vars
+    var updateUI = function (data) {
+        var updates = data.updates;
+        var time = data.time;
+        var version = data.version || '0.6.3'; // 'version' returns null sometimes. Set a default for now.
 
-        document.querySelector('.module.module--primary').insertAdjacentHTML('afterbegin', html);
+        updates.forEach(function (category) {
+            var categoryName = category.name;
+            var container = document.getElementById(categoryName);
+            var source;
+            var template;
+            var html;
+
+            if (!container) {
+                source = categoryTemplate();
+                template = Handlebars.compile(source);
+                html = template(category);
+
+                document.querySelector('.module.module--primary').insertAdjacentHTML('afterbegin', html);
+            } else {
+                source = ruleItemTemplate();
+                template = Handlebars.compile(source);
+                html = template(category);
+
+                container.insertAdjacentHTML('beforeend', html);
+            }
+        });
+
+        var totalErrors = 0;
+        var totalWarnings = 0;
+
+        var codeBlocks = document.querySelectorAll('code');
+
+        for (var i = 0; i < codeBlocks.length; i++) {
+            hljs.highlightBlock(codeBlocks[i]);
+        }
+
         updates.forEach((function (update) {
             var errorSelector = '.' + update.name + '.errors';
             var warningSelector = '.' + update.name + '.warnings';
@@ -259,40 +253,31 @@
         document.querySelector('.scan-overview--time .scan-overview__body--purple').innerHTML = time;
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
         closeOverlay();
+    };
 
-        registerToggleExpandListener();
+    var status = {
+        error: 'error',
+        finished: 'finished',
+        pending: 'pending',
+        started: 'started'
     };
 
     var queryAndUpdate = function () {
-        console.log('Updater running...');
-        openOverlay();
-
-        var id = document.querySelector('.scan-overview').getAttribute('data-id');
-
-        history.pushState({}, id, id);
-
         var callback = function (err, response) {
-            console.log('query result received.');
-
-            var timeoutId = setTimeout(queryAndUpdate, 2000);
-
             if (err) {
                 console.error(err);
-                clearTimeout(timeoutId);
 
                 return;
             }
 
-            if (response.status === 'error') {
+            if (response.status === status.error) {
+                // Show to the user a message about the status and the error??.
                 console.log('Scanning error.');
-                clearTimeout(timeoutId);
 
                 return;
             }
 
-            if (response.status === 'finished') {
-                clearTimeout(timeoutId);
-
+            if (response.status === status.finished || response.status === status.started) {
                 var updates = filterUpdates(response.result);
 
                 // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
@@ -302,10 +287,15 @@
                     version: response.version
                 });
 
-                existingResults = generateRecord(response.result);
+                generateRecord(response.result);
+                if (response.status === status.finished) {
+                    console.log('finished');
 
-                return;
+                    return;
+                }
             }
+
+            setTimeout(queryAndUpdate, 1000);
         };
 
         var url = 'api/' + id;
@@ -317,6 +307,19 @@
 
         xhr(options);
     };
+
+    var onPopState = function () {
+        window.location.href = window.location.href;
+    };
+
+    window.addEventListener('popstate', onPopState, false);
+
+    window.history.pushState(null, null, id);
+
+    openOverlay();
+
+    registerHandlebarsPartials();
+    registerHandlebarsHelpers();
 
     queryAndUpdate();
 }());
