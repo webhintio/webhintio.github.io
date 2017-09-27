@@ -16,6 +16,10 @@
     };
 
     var toggleExpand = function (evt) {
+        if (evt.target.className.indexOf('button--details') === -1) {
+            return;
+        }
+
         var parent = evt.target.closest('.rule-result--details');
         var expanded = parent.getAttribute('aria-expanded') === 'true';
 
@@ -30,12 +34,18 @@
         }
     };
 
-    var registerToggleExpandListener = function () {
-        var detailButtons = arraify(document.querySelectorAll('.button--details'));
+    // var registerToggleExpandListener = function () {
+    //     var detailButtons = arraify(document.querySelectorAll('.button--details'));
 
-        detailButtons.map(function (button) { //eslint-disable-line array-callback-return
-            button.addEventListener('click', toggleExpand, false);
-        });
+    //     detailButtons.map(function (button) { //eslint-disable-line array-callback-return
+    //         button.addEventListener('click', toggleExpand, false);
+    //     });
+    // };
+
+    var registerToggleExpandListener = function () {
+        var container = document.getElementById('results-container');
+
+        container.addEventListener('click', toggleExpand, false);
     };
 
     registerToggleExpandListener();

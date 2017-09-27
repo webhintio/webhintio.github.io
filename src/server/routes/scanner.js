@@ -74,7 +74,7 @@ const configure = (app) => {
         const parsedResults = _.cloneDeep(ruleCatogries);
 
         const filteredRuleResults = _.filter(ruleResults, (ruleResult) => {
-            return ruleResult.status !== 'pass';
+            return ruleResult.status !== 'pass' && ruleResult.status !== 'pending';
         });
 
         // Add category information in each rule result.
