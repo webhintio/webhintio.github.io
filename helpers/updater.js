@@ -27,6 +27,16 @@ const insertFrontMatterItemIfExist = (itemName, itemValue, frontmatter) => {
     }
 };
 
+const getLayout = (filePath) => {
+    const validLayouts = ['home', 'changelog', 'docs', '404', 'about'];
+
+    const current = validLayouts.find((template) => {
+        return filePath.toLowerCase().includes(template);
+    });
+
+    return current;
+};
+
 const generateFrontMatterInfo = (filePath, title) => {
     let relativePath = path.relative(directory, filePath);
     let root = '';
@@ -51,10 +61,12 @@ const generateFrontMatterInfo = (filePath, title) => {
 
     const categoryFrontMatter = `category: ${_.trim(category, '.') ? category : 'doc-index'}`;
     const permalinkFrontMatter = `permalink: ${permaLink}`;
+    const template = getLayout(filePath);
     const frontMatter = [categoryFrontMatter, permalinkFrontMatter, divider];
 
     permaLinks.set(baseName, permaLink); // populate permaLinks
 
+    insertFrontMatterItemIfExist('layout', template, frontMatter);
     insertFrontMatterItemIfExist('tocTitle', tocTitle, frontMatter);
     insertFrontMatterItemIfExist('title', title, frontMatter);
 
@@ -71,6 +83,7 @@ const generateFrontMatterInfo = (filePath, title) => {
 
 const addFrontMatter = async (filePath) => {
     let content;
+    let currentFromMatter;
     let title;
     const data = await fs.readFile(filePath, 'utf8');
     // Match divider between line breaks.
@@ -78,9 +91,13 @@ const addFrontMatter = async (filePath) => {
 
     if (frontMatterRegex.test(data)) {
         // front matter already exists in this file, will update it
-        [, , content] = data.split(frontMatterRegex); // ['', '<front matter>', '<Actual content in the markdown file>']
+        [, currentFromMatter, content] = data.split(frontMatterRegex); // ['', '<front matter>', '<Actual content in the markdown file>']
     } else {
         content = data;
+    }
+
+    if (currentFromMatter) {
+        return;
     }
 
     content = content || ''; // Replace `undefined` with empty string.

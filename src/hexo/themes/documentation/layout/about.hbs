@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{page.title}} | sonar</title>
+    {{>metas}}
+
+    {{> styles}}
+    <link rel="stylesheet" href="{{url_for "/core/css/code.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css"}}">
+    <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/documentation.css"}}">
+</head>
+
+<body>
+
+    {{>header navs=site.data.menu}}
+    <main class="container">
+        <section class="section">
+            <div class="page-content">
+                {{#compare page.title '===' 'contributors'}}
+                {{>contributors devs=site.data.contributors}}
+                {{else}}
+                {{{page.content}}}
+                {{/compare}}
+            </div>
+        </section>
+    </main>
+
+    {{>footer navs=site.data.menu}}
+
+    <script async src="{{url_for "/components/treeview/treeview.js "}}"></script>
+    {{>scripts}}
+</body>
+</html>
