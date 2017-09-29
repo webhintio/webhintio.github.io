@@ -39,7 +39,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "npm run hexo:clean && node helpers/updater.js src/hexo/source && hexo generate",
+    "build": "npm run hexo:clean && npm run update-content && node helpers/updater.js src/hexo/source && hexo generate",
     "hexo:clean": "hexo clean",
     "hexo:server": "hexo server",
     "lint": "npm-run-all lint:*",

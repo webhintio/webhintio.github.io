@@ -1,9 +1,25 @@
-<section class="home-container--section home-container--input">
-    <form action="/scanner/" method="POST">
-        <label for="home-scan">Enter your URL here</label>
-        <div class="input-fix">
-            <input id="home-scan" type="url" placeholder="Copy your URL here">
-            <button type="submit">Run Scan</button>
-        </div>
-    </form>
-</section>
+<main class="container">
+    <article class="content" aria-labelledby="page-heading">
+        <nav class="container breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li>Scanner</li>
+            </ul>
+        </nav>
+        <header class="page-intro">
+            <h1 id="page-heading">{{title}}</h1>
+            <p class="subtitle">{{description}}</p>
+        </header>
+        <section class="section">
+            <section class="home-container--section home-container--input">
+                <form action="/scanner/" method="POST">
+                    <label for="home-scan">Enter your URL here</label>
+                    <div class="input-fix">
+                        <input id="home-scan" type="url" placeholder="Copy your URL here">
+                        <button type="submit">Run Scan</button>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </article>
+</main>

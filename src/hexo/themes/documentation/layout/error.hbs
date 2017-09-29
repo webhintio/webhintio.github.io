@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{page.title}}</title>
+    {{>metas}}
+
+    {{> styles}}
+</head>
+
+<body>
+
+    {{>header navs=site.data.menu}}
+
+    <main class="container">
+        <section class="section container">
+            <div class="layout layout--basic">
+                <div class="module--primary">
+                    <img src="/images/404-space-narwhal.svg" alt="404 narhwal lost in space">
+                </div>
+                <div class="module--secondary">
+                    <h1 id="page-heading">404</h1>
+                    <h2>Uh oh, you seem to be lost</h2>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {{>footer navs=site.data.menu}}
+
+    {{>scripts}}
+</body>
+</html>
