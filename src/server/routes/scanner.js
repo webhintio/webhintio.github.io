@@ -2,17 +2,15 @@ const request = require('request-promise');
 const _ = require('lodash');
 const moment = require('moment');
 
-const scannerIntro = {
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    title: 'Scanner'
-};
 const serviceEndpoint = 'http://localhost:3000/';
 const sonarUrl = 'http://localhost:4000/';
+const layout = 'scan';
 const jobStatus = {
     error: 'error',
     finished: 'finished',
     pending: 'pending',
-    started: 'started'
+    started: 'started',
+    warning: 'warning'
 };
 
 const pad = (timeString) => {
@@ -51,18 +49,57 @@ const queryResult = async (id) => {
 };
 
 const configure = (app) => {
-    /** Rule categories information from config */
-    const ruleCatogries = app.locals.categoriesData;
+    const fixCategories = (rules) => {
+        rules.forEach((rule) => {
+            if (rule.category.toLowerCase() === 'pwas') {
+                rule.category = 'pwa';
+            }
 
-    /** Look up for the category name given a rule ID */
-    const lookupCategory = (ruleId) => {
-        let targetCategory;
+            if (rule.category.toLowerCase() === 'misc') {
+                rule.category = 'interoperability';
+            }
 
-        _.forEach(ruleCatogries, (category) => {
-            targetCategory = category.rules.includes(ruleId) ? category.name : targetCategory;
+            rule.category = rule.category.toLowerCase();
+        });
+    };
+
+    const parseCategories = (rules) => {
+        // TODO: Remove this after update to @sonarwhal/sonar > 0.9.0
+        fixCategories(rules);
+
+        let categories = [];
+
+        rules.forEach((rule) => {
+            let category = _.find(categories, (cat) => {
+                return cat.name === rule.category;
+            });
+
+            if (!category) {
+                category = {
+                    name: rule.category,
+                    results: null,
+                    rules: []
+                };
+
+                categories.push(category);
+            }
+
+            category.rules.push(rule);
+
+            if (rule.status !== 'pass' && rule.status !== 'pending') {
+                if (!category.results) {
+                    category.results = [];
+                }
+
+                category.results.push(rule);
+            }
         });
 
-        return targetCategory;
+        categories = _.sortBy(categories, (category) => {
+            return category.name;
+        });
+
+        return categories;
     };
 
     /** Process scanning result to add category and statistics information */
@@ -71,35 +108,20 @@ const configure = (app) => {
             errors: 0,
             warnings: 0
         };
-        const parsedResults = _.cloneDeep(ruleCatogries);
 
-        const filteredRuleResults = _.filter(ruleResults, (ruleResult) => {
-            return ruleResult.status !== 'pass' && ruleResult.status !== 'pending';
-        });
-
-        // Add category information in each rule result.
-        _.forEach(filteredRuleResults, (rule) => {
-            rule.category = lookupCategory(rule.name);
-        });
-
-        const resultsByCategory = _.groupBy(filteredRuleResults, 'category');
-
-        parsedResults.forEach((category) => {
-            // Append rule results to categories.
-            category.results = resultsByCategory[category.name];
-        });
+        const categories = parseCategories(ruleResults);
 
         // Caculate numbers of `errors` and `warnings`.
-        _.forEach(parsedResults, (category) => {
+        _.forEach(categories, (category) => {
             const statistics = _.reduce(category.results || [], (count, rule) => {
                 if (rule && rule.status === jobStatus.error) {
                     count.errors += rule.messages.length;
                     overallStatistics.errors += rule.messages.length;
                 }
 
-                if (rule && rule.status === jobStatus.warnings) {
+                if (rule && rule.status === jobStatus.warning) {
                     count.warnings += rule.messages.length;
-                    overallStatistics.warnigs += rule.messages.length;
+                    overallStatistics.warnings += rule.messages.length;
                 }
 
                 return count;
@@ -108,16 +130,15 @@ const configure = (app) => {
             category.statistics = statistics;
         });
 
-        return { overallStatistics, parsedResults };
+        return { categories, overallStatistics };
     };
 
     app.get('/scanner', (req, res) => {
-        res.render('scan', { intro: scannerIntro,
+        res.render('scan-form', {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-            title: 'Analyze your website using sonar online'
+            title: 'Scanner'
         });
     });
-
 
     app.get('/scanner/api/:id', async (req, res) => {
         const id = req.params.id;
@@ -129,10 +150,10 @@ const configure = (app) => {
             return res.status(404);
         }
 
-        const { parsedResults } = processRuleResults(scanResult.rules);
+        const { categories } = processRuleResults(scanResult.rules);
 
         return res.send({
-            result: parsedResults,
+            categories,
             status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, scanResult.finished),
             version: scanResult.sonarVersion
@@ -152,17 +173,23 @@ const configure = (app) => {
             });
         }
 
-        const { parsedResults, overallStatistics } = processRuleResults(scanResult.rules);
-
-        res.render('scan-result', {
-            categories: parsedResults,
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules);
+        const renderOptions = {
+            categories,
+            id: scanResult.id,
+            layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${scanResult.id}`,
-            scanResult: true,
             time: calculateTimeDifference(scanResult.started, scanResult.finished),
             url: scanResult.url,
             version: scanResult.sonarVersion
-        });
+        };
+
+        if (scanResult.status === 'error' || scanResult.status === 'finished') {
+            renderOptions.isFinish = true;
+        }
+
+        res.render('scan-result', renderOptions);
     });
 
     app.post('/scanner', async (req, res) => {
@@ -185,26 +212,15 @@ const configure = (app) => {
         }
 
         const id = requestResult.id;
-        let scanResult;
+        const { categories, overallStatistics } = processRuleResults(requestResult.rules);
 
-        try {
-            scanResult = await queryResult(id);
-        } catch (error) {
-            return res.render('error', {
-                details: error.message,
-                heading: 'ERROR'
-            });
-        }
-
-        const { parsedResults, overallStatistics } = processRuleResults(scanResult.rules);
-
-        res.render('scan-result', {
-            categories: parsedResults,
+        return res.render('scan-result', {
+            categories,
+            id: requestResult.id,
+            layout,
             overallStatistics,
-            permalink: `https://sonarwhal.com/scanner/${scanResult.id}`,
-            scanResult: true,
-            time: calculateTimeDifference(scanResult.started, scanResult.finished),
-            url: scanResult.url
+            permalink: `${sonarUrl}scanner/${id}`,
+            url: req.body.url
         });
     });
 };

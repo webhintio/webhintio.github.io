@@ -24,6 +24,10 @@ main {
     width: 35rem;
 }
 
+.home-container--section .headline::before {
+    border: none;
+}
+
 @media (min-width: 48em) {
 
     .top-illustration {

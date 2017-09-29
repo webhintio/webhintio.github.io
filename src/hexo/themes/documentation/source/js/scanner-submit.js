@@ -83,13 +83,13 @@
         return http;
     };
     /** Generate record of what rules have been published. */
-    var generateRecord = function (responseItems) {
-        responseItems.forEach(function (item) {
-            if (!item.results) {
+    var generateRecord = function (categories) {
+        categories.forEach(function (category) {
+            if (!category.results) {
                 return;
             }
 
-            item.results.forEach(function (result) {
+            category.results.forEach(function (result) {
                 if (existingResults.indexOf(result.name) === -1) {
                     existingResults.push(result.name);
                 }
@@ -98,23 +98,23 @@
     };
 
     /** Filter out results that are already present in the UI. */
-    var filterUpdates = function (responseItems) {
-        responseItems.forEach(function (responseItem) {
-            if (!responseItem.results) {
-                return responseItem.results;
+    var filterUpdates = function (categories) {
+        categories.forEach(function (category) {
+            if (!category.results) {
+                return category.results;
             }
 
-            responseItem.results = responseItem.results.filter(function (result) {
+            category.results = category.results.filter(function (result) {
                 return existingResults.indexOf(result.name) === -1;
             });
         });
 
-        return responseItems;
+        return categories;
     };
 
     var ruleItemTemplate = function () {
         return '{{#each results}} \
-            <div class="rule-result--details" aria-expanded="false"> \
+            <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
             <div class="rule-result--details__header"> \
                 <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
                 <div class="rule-result__docs"> \
@@ -190,63 +190,83 @@
         });
     };
 
+    var pluralize = function (text, count) {
+        return text + (count === 1 ? '' : 's');
+    };
+
+    var updateElement = function (issueElement, issues, issueText, categoryName) {
+        if (issues > 0) {
+            issueElement.classList.remove('rule-list--passed');
+            issueElement.classList.add('rule-list--failed');
+            issueElement.closest('.rule-tile').classList.remove('rule-tile--passed');
+            issueElement.closest('.rule-tile').classList.add('rule-tile--failed');
+            issueElement.innerHTML = '<a href="#' + categoryName + '">' + issues + ' ' + pluralize(issueText, issues) + '</a>';
+        } else {
+            issueElement.innerHTML = issues + ' ' + pluralize(issueText, issues);
+        }
+    };
+
+    var updateErrorItems = function (category) {
+        var container = document.getElementById(category.name);
+        var source;
+        var template;
+        var html;
+
+        if (!container) {
+            source = categoryTemplate();
+            template = Handlebars.compile(source);
+            html = template(category);
+
+            document.querySelector('.module.module--primary').insertAdjacentHTML('afterbegin', html);
+        } else {
+            source = ruleItemTemplate();
+            template = Handlebars.compile(source);
+            html = template(category);
+
+            container.insertAdjacentHTML('beforeend', html);
+        }
+    };
+
+    var updateOverallData = function (category) {
+        var errorSelector = '.' + category.name + '.errors';
+        var warningSelector = '.' + category.name + '.warnings';
+        var errorsNumber = category.statistics.errors;
+        var warningsNumber = category.statistics.warnings;
+        var errorsElement = document.querySelector(errorSelector);
+        var warningsElement = document.querySelector(warningSelector);
+
+        warningsElement.innerHTML = warningsNumber + ' Warnings';
+
+        updateElement(errorsElement, errorsNumber, 'Error', category.name);
+        updateElement(warningsElement, warningsNumber, 'Warning', category.name);
+    };
+
     var updateUI = function (data) {
         var updates = data.updates;
         var time = data.time;
-        var version = data.version || '0.6.3'; // 'version' returns null sometimes. Set a default for now.
-
-        updates.forEach(function (category) {
-            var categoryName = category.name;
-            var container = document.getElementById(categoryName);
-            var source;
-            var template;
-            var html;
-
-            if (!container) {
-                source = categoryTemplate();
-                template = Handlebars.compile(source);
-                html = template(category);
-
-                document.querySelector('.module.module--primary').insertAdjacentHTML('afterbegin', html);
-            } else {
-                source = ruleItemTemplate();
-                template = Handlebars.compile(source);
-                html = template(category);
-
-                container.insertAdjacentHTML('beforeend', html);
-            }
-        });
+        var version = data.version;
 
         var totalErrors = 0;
         var totalWarnings = 0;
+
+        updates.forEach(function (category) {
+            if (!category.results) {
+                return;
+            }
+
+            updateErrorItems(category);
+
+            updateOverallData(category);
+
+            totalErrors += category.statistics.errors;
+            totalWarnings += category.statistics.warnings;
+        });
 
         var codeBlocks = document.querySelectorAll('code');
 
         for (var i = 0; i < codeBlocks.length; i++) {
             hljs.highlightBlock(codeBlocks[i]);
         }
-
-        updates.forEach((function (update) {
-            var errorSelector = '.' + update.name + '.errors';
-            var warningSelector = '.' + update.name + '.warnings';
-            var errorsNumber = parseInt(update.statistics.errors);
-            var warningsNumber = parseInt(update.statistics.warnings);
-            var errorsElement = document.querySelector(errorSelector);
-            var warningsElement = document.querySelector(warningSelector);
-
-            errorsElement.innerHTML = errorsNumber + ' Errors';
-            errorsElement.classList.remove('rule-list--passed');
-            errorsElement.classList.add('rule-list--failed');
-            warningsElement.innerHTML = warningsNumber + ' Warnings';
-
-            if (errorsNumber > 0) {
-                errorsElement.closest('.rule-tile').classList.remove('rule-tile--passed');
-                errorsElement.closest('.rule-tile').classList.add('rule-tile--failed');
-            }
-
-            totalErrors += errorsNumber;
-            totalWarnings += warningsNumber;
-        }));
 
         document.querySelector('#total-errors').innerHTML = totalErrors;
         document.querySelector('#total-warnings').innerHTML = totalWarnings;
@@ -278,7 +298,7 @@
             }
 
             if (response.status === status.finished || response.status === status.started) {
-                var updates = filterUpdates(response.result);
+                var updates = filterUpdates(response.categories);
 
                 // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
                 updateUI({
@@ -287,7 +307,7 @@
                     version: response.version
                 });
 
-                generateRecord(response.result);
+                generateRecord(response.categories);
                 if (response.status === status.finished) {
                     console.log('finished');
 
@@ -308,13 +328,17 @@
         xhr(options);
     };
 
-    var onPopState = function () {
-        window.location.href = window.location.href;
+    var initExistingResults = function () {
+        var existing = document.querySelectorAll('.rule-result--details');
+
+        for (var i = 0; i < existing.length; i++) {
+            existingResults.push(existing[i].id);
+        }
     };
 
-    window.addEventListener('popstate', onPopState, false);
-
     window.history.pushState(null, null, id);
+
+    initExistingResults();
 
     openOverlay();
 
