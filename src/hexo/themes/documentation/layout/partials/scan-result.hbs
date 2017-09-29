@@ -11,7 +11,7 @@
         <nav class="container breadcrumb" aria-label="breadcrumbs">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li>Scanner</li>
+                <li><a href="/scanner">Scanner</a></li>
                 <li>Results</li>
             </ul>
         </nav>
@@ -50,7 +50,7 @@
                 <div class="module">
                     <div class="rule-tile rule-tile--{{#if (passRule statistics)}}passed{{else}}failed{{/if}}">
                         <p class="rule-tile__category uppercase-text">{{name}}</p>
-                        <img src="/images/{{image}}.svg" class="rule-icon" alt="" role="presentation" />
+                        <img src="/images/{{name}}.svg" class="rule-icon" alt="" role="presentation" />
                         <div class="rule-list">
                             <p class="rule-list--{{#if (passErrors statistics)}}passed{{else}}failed{{/if}} {{name}} errors">
                                 {{#compare  statistics.errors ">" 0}}<a href="#{{name}}">{{/compare}}
@@ -76,7 +76,7 @@
                             <section class="rule-result" id="{{name}}">
                                 <h3>{{name}}</h3>
                                 {{#each results}}
-                                <div class="rule-result--details" aria-expanded="false">
+                                <div class="rule-result--details" aria-expanded="false" id="{{name}}">
                                     <div class="rule-result--details__header">
                                         <p class="rule-title">{{name}}: {{getLength messages status}}</p>
                                         <div class="rule-result__docs">

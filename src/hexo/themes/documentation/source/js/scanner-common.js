@@ -3,10 +3,6 @@
 (function () {
     'use strict';
 
-    var arraify = function (list) {
-        return [].slice.call(list);
-    };
-
     var expandDetails = function (item) {
         item.setAttribute('aria-expanded', 'true');
     };
@@ -26,27 +22,33 @@
         if (expanded) {
             collapseDetails(parent);
             evt.target.innerHTML = 'open details';
-        }
-
-        if (!expanded) {
+        } else {
             expandDetails(parent);
             evt.target.innerHTML = 'close details';
         }
     };
-
-    // var registerToggleExpandListener = function () {
-    //     var detailButtons = arraify(document.querySelectorAll('.button--details'));
-
-    //     detailButtons.map(function (button) { //eslint-disable-line array-callback-return
-    //         button.addEventListener('click', toggleExpand, false);
-    //     });
-    // };
 
     var registerToggleExpandListener = function () {
         var container = document.getElementById('results-container');
 
         container.addEventListener('click', toggleExpand, false);
     };
+
+    var endsWith = function (searchStr, str) {
+        const length = str.length;
+        const searchLength = searchStr.length;
+        const position = str.indexOf(searchStr);
+
+        return (length - searchLength) === position;
+    };
+
+    var onPopState = function () {
+        if (window.location.href.indexOf('#') !== -1 || endsWith('/scanner/', window.location.href)) {
+            window.location.href = window.location.href;
+        }
+    };
+
+    window.addEventListener('popstate', onPopState, false);
 
     registerToggleExpandListener();
 }());

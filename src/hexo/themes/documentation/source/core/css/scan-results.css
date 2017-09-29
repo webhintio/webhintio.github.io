@@ -117,6 +117,10 @@
     color: #d23e2a;
 }
 
+.rule-list--failed a {
+    color: #d23e2a;
+}
+
 .rule-tile__category {
     margin-bottom: 1rem;
     font-size: 1.4rem;
