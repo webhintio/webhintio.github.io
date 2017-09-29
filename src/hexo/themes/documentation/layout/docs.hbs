@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    {{#compare page.category '===' 'doc-index'}}
+    <title>{{page.title}} | sonar </title>
+    {{else}}
+    <title>{{page.title}} | sonar documentation</title>
+    {{/compare}}
+
+    {{>metas}}
+
+    {{> styles}}
+    <link rel="stylesheet" href="{{url_for "/core/css/code.css "}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css "}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css "}}">
+    <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css "}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/documentation.css "}}">
+</head>
+
+<body>
+
+    {{>header navs=site.data.menu}}
+    <main class="container">
+        {{#compare page.category '===' 'doc-index'}}
+            {{>doc-index}}
+        {{else}}
+        {{#compare page.category '===' 'developer-guide'}}
+            {{>sub-page intro=site.data.developerGuide pages=(sortPagesByCategory
+            site.pages.data 'developer-guide')}}
+        {{else}}
+        {{#compare page.category '===' 'user-guide'}}
+            {{>sub-page intro=site.data.userGuide
+            pages=(sortPagesByCategory site.pages.data 'user-guide')}}
+        {{/compare}}
+        {{/compare}}
+        {{/compare}}
+    </main>
+
+    {{>footer navs=site.data.menu}}
+
+    <script async src="{{url_for "/components/treeview/treeview.js "}}"></script>
+    {{>scripts}}
+</body>
+</html>

@@ -3,99 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{#compare page.category '||' isSection}}{{page.title}}{{else}}sonar, a linting tool for the web{{/compare}}</title>
-    <meta name="description" content="sonar website">
-    <meta name="viewport" content="width=device-width">
+    <title>sonar, a linting tool for the web</title>
+    {{>metas}}
 
-    <meta name="theme-color" content="#4046dd">
-    <link rel="manifest" href="/site.webmanifest">
-
-    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-
-    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
-
-    {{#compare page.category '===' 'about'}}
-    <link rel="stylesheet" href="{{url_for "/core/css/about.css "}}">
-    {{/compare}}
-    <link rel="stylesheet" href="{{url_for "/core/css/base.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/color.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/footer.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/helpers.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/layouts.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/media.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/navigation.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/search-results.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/structure.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/type.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/highlight.css "}}">
-    <link rel="stylesheet" href="{{url_for "/components/breadcrumb/breadcrumb.css "}}">
-    <link rel="stylesheet" href="{{url_for "/components/pagination/pagination.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/controls.css "}}">
-    {{#compare page.category 'belongsTo' 'doc-index, developer-guide, user-guide'}}
-    <link rel="stylesheet" href="{{url_for "/core/css/code.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css "}}">
-    <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/documentation.css "}}">
-    {{/compare}}
-    {{#unless page.category}}
-        {{#unless isSection}}
-        <link rel="stylesheet" href="{{url_for "/core/css/home.css "}}">
-        {{/unless}}
-    {{/unless}}
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    {{> styles}}
+    <link rel="stylesheet" href="{{url_for "/core/css/home.css "}}">
 </head>
 
 <body>
-    {{#if isSection}}
-        {{>header navs=menuData}}
-        {{{body}}}
-        {{>footer navs=menuData}}
-    {{else}}
-        {{>header navs=site.data.menu}}
-        {{#if page.category}}
-        <main class="container">
-            {{#compare page.category '===' 'developer-guide'}}
-                {{>sub-page intro=site.data.developerGuide pages=(sortPagesByCategory
-                site.pages.data 'developer-guide')}}
-            {{/compare}}
 
-            {{#compare page.category '===' 'user-guide'}}
-                {{>sub-page intro=site.data.userGuide
-                pages=(sortPagesByCategory site.pages.data 'user-guide')}}
-            {{/compare}}
+    {{>header navs=site.data.menu}}
+    {{>home}}
+    {{>footer navs=site.data.menu}}
 
-            {{#compare page.category '===' 'doc-index'}}
-                {{>docs}}
-            {{/compare}}
-
-            {{#compare page.category 'belongsTo' 'about-index, about'}}
-                {{>single-page}}
-            {{/compare}}
-
-            {{#compare page.title '===' 'contributors'}}
-                {{>contributors devs=site.data.contributors}}
-            {{/compare}}
-
-            {{#compare page.title '===' '404'}}
-                {{>404}}
-            {{/compare}}
-        </main>
-        {{else}}
-            {{>home}}
-        {{/if}}
-        {{>footer navs=site.data.menu}}
-    {{/if}}
-    <script src="{{url_for "/js/nav.js "}}"></script>
-    <script src="{{url_for "/core/scripts/form-validation.js "}}"></script>
-    <script src="{{url_for "/components/accordion/accordion.js "}}"></script>
-    {{#compare page.category 'belongsTo' 'developer-guide, user-guide'}}
-    <script src="{{url_for "/components/treeview/treeview.js "}}"></script>
-    {{/compare}}
-    {{>docsearch}}
-    <script>(function(G,o,O,g,l){G.GoogleAnalyticsObject=O;G[O]||(G[O]=function(){(G[O].q=G[O].q||[]).push(arguments)});G[O].l=+new Date;g=o.createElement('script'),l=o.scripts[0];g.src='https://www.google-analytics.com/analytics.js';l.parentNode.insertBefore(g,l)}(this,document,'ga'));ga('create','{{ theme.google_analytics }}');ga('send','pageview')</script>
+    {{>scripts}}
 </body>
-
 </html>

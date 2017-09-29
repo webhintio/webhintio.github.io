@@ -24,7 +24,7 @@ const createServer = () => {
     app.set('views', partialsDir);
 
     const hbs = exphbs.create({
-        defaultLayout: 'index',
+        defaultLayout: 'common',
         extname: '.hbs',
         helpers,
         layoutsDir,

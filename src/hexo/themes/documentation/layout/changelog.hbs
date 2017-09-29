@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Changelog v{{page.title}} | sonar</title>
+    {{>metas}}
+
+    {{> styles}}
+    <link rel="stylesheet" href="{{url_for "/core/css/code.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css"}}">
+    <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/documentation.css"}}">
+</head>
+
+<body>
+    {{>header navs=site.data.menu}}
+
+    <main class="container">
+        <article class="content" aria-labelledby="page-heading">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="../">About</a></li>
+                    <li>Changelog</li>
+                </ul>
+            </nav>
+            <header class="page-intro">
+                <h1 id="page-heading">{{intro.title}}</h1>
+            </header>
+            <div class="section">
+                {{{page.content}}}
+
+                {{!-- <h2>{{page.title}} (September 22, 2017)</h2>
+                <div class="changelog__updates">
+                    <h3 class="bug-fixes">Bug fixes / Improvements</h3>
+                    <ul>
+                        <li>
+                            [<a href="https://github.com/sonarwhal/sonar/commit/41a56bef2ffd21b3612e3c0b637754b95629d242"
+                                target="_blank" rel="noopener noreferrer external">
+                        <code>41a56bef2f</code></a>] - Fix: Add <code>tests/helpers</code> to <code>npm</code> package (see
+                            also:
+                            <a href="https://github.com/sonarwhal/sonar/issues/532" target="_blank" rel="noopener noreferrer external"><code>#532</code></a>).
+                        </li>
+                        <li>
+                            [<a href="https://github.com/sonarwhal/sonar/commit/41a56bef2ffd21b3612e3c0b637754b95629d242"
+                                target="_blank" rel="noopener noreferrer external">
+                        <code>41a56bef2f</code></a>] - Fix: Add <code>tests/helpers</code> to <code>npm</code> package (see
+                            also:
+                            <a href="https://github.com/sonarwhal/sonar/issues/532" target="_blank" rel="noopener noreferrer external"><code>#532</code></a>).
+                        </li>
+                    </ul>
+                    <h3 class="new-features">New features</h3>
+                    <ul>
+                        <li>
+                            [<a href="https://github.com/sonarwhal/sonar/commit/41a56bef2ffd21b3612e3c0b637754b95629d242"
+                                target="_blank" rel="noopener noreferrer external">
+                        <code>41a56bef2f</code></a>] - Fix: Add <code>tests/helpers</code> to <code>npm</code> package (see
+                            also:
+                            <a href="https://github.com/sonarwhal/sonar/issues/532" target="_blank" rel="noopener noreferrer external"><code>#532</code></a>).
+                        </li>
+                    </ul>
+                </div>
+                <h2>0.8.0 (September 20, 2017)</h2>
+                <div class="changelog__updates">
+                    <h3 class="breaking-changes">Breaking changes</h3>
+                    <ul>
+                        <li>
+                            [<a href="https://github.com/sonarwhal/sonar/commit/41a56bef2ffd21b3612e3c0b637754b95629d242"
+                                target="_blank" rel="noopener noreferrer external">
+                        <code>41a56bef2f</code></a>] - Fix: Add <code>tests/helpers</code> to <code>npm</code> package (see
+                            also:
+                            <a href="https://github.com/sonarwhal/sonar/issues/532" target="_blank" rel="noopener noreferrer external"><code>#532</code></a>).
+                        </li>
+                    </ul>
+                </div> --}}
+            </div>
+        </article>
+    </main>
+    {{>footer navs=menuData}}
+</body>
+</html>
