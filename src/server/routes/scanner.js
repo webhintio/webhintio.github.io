@@ -12,6 +12,12 @@ const jobStatus = {
     started: 'started',
     warning: 'warning'
 };
+const ruleStatus = {
+    error: 'error',
+    pass: 'pass',
+    pending: 'pending',
+    warning: 'warning'
+};
 
 const pad = (timeString) => {
     return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
@@ -86,7 +92,7 @@ const configure = (app) => {
 
             category.rules.push(rule);
 
-            if (rule.status !== 'pass' && rule.status !== 'pending') {
+            if (rule.status !== ruleStatus.pass && rule.status !== ruleStatus.pending) {
                 if (!category.results) {
                     category.results = [];
                 }
@@ -114,12 +120,12 @@ const configure = (app) => {
         // Caculate numbers of `errors` and `warnings`.
         _.forEach(categories, (category) => {
             const statistics = _.reduce(category.results || [], (count, rule) => {
-                if (rule && rule.status === jobStatus.error) {
+                if (rule && rule.status === ruleStatus.error) {
                     count.errors += rule.messages.length;
                     overallStatistics.errors += rule.messages.length;
                 }
 
-                if (rule && rule.status === jobStatus.warning) {
+                if (rule && rule.status === ruleStatus.warning) {
                     count.warnings += rule.messages.length;
                     overallStatistics.warnings += rule.messages.length;
                 }
@@ -155,7 +161,7 @@ const configure = (app) => {
         return res.send({
             categories,
             status: scanResult.status,
-            time: calculateTimeDifference(scanResult.started, scanResult.finished),
+            time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
             version: scanResult.sonarVersion
         });
     });
@@ -180,12 +186,12 @@ const configure = (app) => {
             layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${scanResult.id}`,
-            time: calculateTimeDifference(scanResult.started, scanResult.finished),
+            time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
             url: scanResult.url,
             version: scanResult.sonarVersion
         };
 
-        if (scanResult.status === 'error' || scanResult.status === 'finished') {
+        if (scanResult.status === jobStatus.error || scanResult.status === jobStatus.finished) {
             renderOptions.isFinish = true;
         }
 
