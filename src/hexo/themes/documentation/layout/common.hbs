@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    {{>metas}}
+
+    {{>styles}}
+</head>
+
+<body>
+
+    {{>header navs=menuData}}
+    {{{body}}}
+    {{>footer navs=menuData}}
+
+    {{>scripts}}
+</body>
+</html>

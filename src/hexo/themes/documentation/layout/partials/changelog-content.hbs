@@ -1,0 +1,25 @@
+<main class="container">
+    <article class="content" aria-labelledby="page-heading">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="../">About</a></li>
+                <li>Changelog</li>
+            </ul>
+        </nav>
+        <header class="page-intro">
+            <h1 id="page-heading">{{intro.title}}</h1>
+        </header>
+        <div class="section">
+            {{#each site.data.changelog as |update key|}}
+            <h2>{{key}}</h2>
+            <div class="changelog__updates">
+                {{#each update as |content category|}}
+                    <h3 class="{{normalizeClassName category}}">{{category}}</h3>
+                    {{{html}}}
+                {{/each}}
+            </div>
+            {{/each}}
+        </div>
+    </article>
+</main>

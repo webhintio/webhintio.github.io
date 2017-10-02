@@ -218,6 +218,12 @@ module.exports = function () {
             // returns whether or not a page is a subpage under developer guide or user-guide
             return !isGuideIndexPage(page);
         },
+        normalizeClassName: (value) => {
+            const className = value.split('/').shift();
+
+            return className.toLowerCase().trim()
+                .replace(/[^a-z0-9]/gi, '-');
+        },
         or: (l, r) => {
             return l || r;
         },

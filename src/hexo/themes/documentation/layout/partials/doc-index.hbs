@@ -11,19 +11,7 @@
         </header>
         <div class="section">
             <div class="documentation-wrapper">
-                <div class="documentation-search">
-                    <p class="subtitle">Looking for something specific?<br>
-                    Search the sonar documentation</p>
-                    <div class="documentation-search__input">
-                        <form action="/search" method="GET">
-                            <label for="docs-scan" class="visually-hidden">Search the documentation</label>
-                            <div class="documentation-search__input">
-                                <input id="docs-scan" type="search" placeholder="Search sonar documentation" name="q">
-                                <button type="submit" class="button--search" value="submit" aria-label="submit"></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                {{>search-form}}
                 <div class="documentation">
                     <p class="subtitle">Or browse the documentation by guide</p>
                     <ul class="bare">

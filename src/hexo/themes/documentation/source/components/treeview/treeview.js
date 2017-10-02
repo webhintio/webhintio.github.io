@@ -9,6 +9,11 @@
     };
 
     var treeview = document.querySelector('[role="tree"]');
+
+    if (!treeview) {
+        return;
+    }
+
     var treeitems = arraify(document.querySelectorAll('[role="treeitem"]'));
     var tocSectionTitle = arraify(document.querySelectorAll('.toc-section-title, .toc-section-title--active'));
     var findParentElementByAttribute = function (element, attrName, attrValue) {

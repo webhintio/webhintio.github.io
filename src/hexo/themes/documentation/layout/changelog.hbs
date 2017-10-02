@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Changelog v{{page.title}} | sonar</title>
+    {{>metas}}
+
+    {{> styles}}
+    <link rel="stylesheet" href="{{url_for "/core/css/code.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css"}}">
+    <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/documentation.css"}}">
+</head>
+
+<body>
+    {{>header navs=site.data.menu}}
+    {{>changelog-content}}
+    {{>footer navs=menuData}}
+</body>
+</html>

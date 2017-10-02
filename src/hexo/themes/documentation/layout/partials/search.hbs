@@ -10,8 +10,11 @@
             <h1 id="page-heading">{{intro.title}}</h1>
         </header>
         <section class="section">
+            {{>search-form}}
+
             <div class="layout layout--sidebar--alt">
                 <div class="module module--primary">
+                    {{#if hits.length}}
                     <ul class="bare">
                         {{#each hits}}
                         <li class="search-result wrap-text">
@@ -38,6 +41,11 @@
                             {{>pagination}}
                         </nav>
                     </div>
+                    {{else}}
+                    {{#if query}}
+                    <p class="subtitle">No results found for {{query}}</p>
+                    {{/if}}
+                    {{/if}}
                 </div>
             </div>
         </section>

@@ -26,10 +26,20 @@ const configure = (app) => {
     const generatePageInfo = (currentPage, hits, query, totalPages) => {
         const pattern = `/search?q=${query}&page=pageId`;
 
+        if (hits.length === 0) {
+            return {
+                hits,
+                query,
+                title: `No results found for ${query}`
+            };
+        }
+
         return {
             currentPage,
             hits,
             pattern,
+            query,
+            title: query ? `Results for ${query}` : `Search sonar's documentation`,
             totalPages
         };
     };
@@ -50,8 +60,6 @@ const configure = (app) => {
             // https://stackoverflow.com/questions/35576307/declaration-or-statement-expected-javascript-typescript
             ({ hits, nbPages } = await index.search(searchOptions));
         } catch (err) {
-            console.error(err);
-
             return;
         }
 
@@ -72,9 +80,8 @@ const configure = (app) => {
 
     app.get('/search', async (req, res) => {
         const page = parseInt(req.query.page) || 1;
-        const searchInput = xssFilters.inUnQuotedAttr(req.query.q);
-
-        const [searchResult, totalPages] = await search(searchInput, page - 1);
+        const searchInput = req.query.q ? xssFilters.inUnQuotedAttr(req.query.q) : '';
+        const [searchResult, totalPages] = searchInput ? await search(searchInput, page - 1) : [[], 0];
 
         res.render('search', generatePageInfo(parseInt(page), searchResult, searchInput, totalPages));
     });
