@@ -43,6 +43,9 @@ Run server:
 npm start
 ```
 
+To know more about the internals of the site please read the
+[server](architecture/server.md) documentation.
+
 ## Code of Conduct
 
 This project adheres to the [JS Foundation's code of

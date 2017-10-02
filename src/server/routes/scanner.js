@@ -2,9 +2,56 @@ const request = require('request-promise');
 const _ = require('lodash');
 const moment = require('moment');
 
+<<<<<<< HEAD
 const scannerIntro = {
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
     title: 'Scanner'
+=======
+const serviceEndpoint = 'http://localhost:3000/';
+const sonarUrl = 'http://localhost:4000/';
+const layout = 'scan';
+const jobStatus = {
+    error: 'error',
+    finished: 'finished',
+    pending: 'pending',
+    started: 'started',
+    warning: 'warning'
+};
+
+const pad = (timeString) => {
+    return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
+};
+
+const calculateTimeDifference = (start, end) => {
+    const duration = moment.duration(moment(end).diff(moment(start)));
+    const minutes = pad(`${duration.get('minutes')}`);
+    const seconds = pad(`${duration.get('seconds')}`);
+
+    return `${minutes}:${seconds}`;
+};
+
+const sendRequest = (url) => {
+    const formData = { url };
+    const options = {
+        formData,
+        method: 'POST',
+        url: `${serviceEndpoint}`
+    };
+
+    return request(options);
+};
+
+const queryResult = async (id) => {
+    const requestResult = await request(`${serviceEndpoint}${id}`);
+
+    if (!requestResult) {
+        throw new Error(`No result found for this url. Please scan again.`);
+    }
+
+    const response = JSON.parse(requestResult);
+
+    return response;
+>>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
 };
 const serviceEndpoint = 'http://localhost:3000/';
 const sonarUrl = 'http://localhost:4000/';
@@ -51,6 +98,7 @@ const queryResult = async (id) => {
 };
 
 const configure = (app) => {
+<<<<<<< HEAD
     /** Rule categories information from config */
     const ruleCatogries = app.locals.categoriesData;
 
@@ -63,6 +111,59 @@ const configure = (app) => {
         });
 
         return targetCategory;
+=======
+    const fixCategories = (rules) => {
+        rules.forEach((rule) => {
+            if (rule.category.toLowerCase() === 'pwas') {
+                rule.category = 'pwa';
+            }
+
+            if (rule.category.toLowerCase() === 'misc') {
+                rule.category = 'interoperability';
+            }
+
+            rule.category = rule.category.toLowerCase();
+        });
+    };
+
+    const parseCategories = (rules) => {
+        // TODO: Remove this after update to @sonarwhal/sonar > 0.9.0
+        fixCategories(rules);
+
+        let categories = [];
+
+        rules.forEach((rule) => {
+            let category = _.find(categories, (cat) => {
+                return cat.name === rule.category;
+            });
+
+            if (!category) {
+                category = {
+                    name: rule.category,
+                    results: null,
+                    rules: []
+                };
+
+                categories.push(category);
+            }
+
+            category.rules.push(rule);
+
+            if (rule.status !== 'pass' && rule.status !== 'pending') {
+                if (!category.results) {
+                    category.results = [];
+                }
+
+                category.results.push(rule);
+            }
+        });
+
+        categories = _.sortBy(categories, (category) => {
+            return category.name;
+        });
+
+        return categories;
+>>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
     };
 
     /** Process scanning result to add category and statistics information */
@@ -71,6 +172,7 @@ const configure = (app) => {
             errors: 0,
             warnings: 0
         };
+<<<<<<< HEAD
         const parsedResults = _.cloneDeep(ruleCatogries);
 
         const filteredRuleResults = _.filter(ruleResults, (ruleResult) => {
@@ -91,15 +193,28 @@ const configure = (app) => {
 
         // Caculate numbers of `errors` and `warnings`.
         _.forEach(parsedResults, (category) => {
+=======
+
+        const categories = parseCategories(ruleResults);
+
+        // Caculate numbers of `errors` and `warnings`.
+        _.forEach(categories, (category) => {
+>>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
             const statistics = _.reduce(category.results || [], (count, rule) => {
                 if (rule && rule.status === jobStatus.error) {
                     count.errors += rule.messages.length;
                     overallStatistics.errors += rule.messages.length;
                 }
 
+<<<<<<< HEAD
                 if (rule && rule.status === jobStatus.warnings) {
                     count.warnings += rule.messages.length;
                     overallStatistics.warnigs += rule.messages.length;
+=======
+                if (rule && rule.status === jobStatus.warning) {
+                    count.warnings += rule.messages.length;
+                    overallStatistics.warnings += rule.messages.length;
+>>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
                 }
 
                 return count;
@@ -108,13 +223,73 @@ const configure = (app) => {
             category.statistics = statistics;
         });
 
+<<<<<<< HEAD
         return { overallStatistics, parsedResults };
+=======
+        return { categories, overallStatistics };
+>>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
     };
 
     app.get('/scanner', (req, res) => {
-        res.render('scan', { intro: scannerIntro });
+        res.render('scan-form', {
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+            title: 'Scanner'
+        });
     });
 
+    app.get('/scanner/api/:id', async (req, res) => {
+        const id = req.params.id;
+        let scanResult;
+
+        try {
+            scanResult = await queryResult(id);
+        } catch (error) {
+            return res.status(404);
+        }
+
+        const { categories } = processRuleResults(scanResult.rules);
+
+        return res.send({
+            categories,
+            status: scanResult.status,
+            time: calculateTimeDifference(scanResult.started, scanResult.finished),
+            version: scanResult.sonarVersion
+        });
+    });
+
+    app.get('/scanner/:id', async (req, res) => {
+        const id = req.params.id;
+        let scanResult;
+
+        try {
+            scanResult = await queryResult(id);
+        } catch (error) {
+            return res.render('error', {
+                details: error.message,
+                heading: 'ERROR'
+            });
+        }
+
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules);
+        const renderOptions = {
+            categories,
+            id: scanResult.id,
+            layout,
+            overallStatistics,
+            permalink: `${sonarUrl}scanner/${scanResult.id}`,
+            time: calculateTimeDifference(scanResult.started, scanResult.finished),
+            url: scanResult.url,
+            version: scanResult.sonarVersion
+        };
+
+        if (scanResult.status === 'error' || scanResult.status === 'finished') {
+            renderOptions.isFinish = true;
+        }
+
+        res.render('scan-result', renderOptions);
+    });
+
+<<<<<<< HEAD
     app.get('/scanner/api/:id', async (req, res) => {
         const id = req.params.id;
         let scanResult;
@@ -161,6 +336,8 @@ const configure = (app) => {
         });
     });
 
+=======
+>>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
     app.post('/scanner', async (req, res) => {
         if (!req.body || !req.body.url) {
             return res.render('error', {
@@ -181,6 +358,7 @@ const configure = (app) => {
         }
 
         const id = requestResult.id;
+<<<<<<< HEAD
         const emptyResult = _.cloneDeep(ruleCatogries);
 
         _.forEach(emptyResult, (category) => {
@@ -192,6 +370,16 @@ const configure = (app) => {
             id,
             permalink: `${sonarUrl}scanner/${id}`,
             scan: true,
+=======
+        const { categories, overallStatistics } = processRuleResults(requestResult.rules);
+
+        return res.render('scan-result', {
+            categories,
+            id: requestResult.id,
+            layout,
+            overallStatistics,
+            permalink: `${sonarUrl}scanner/${id}`,
+>>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
             url: req.body.url
         });
     });
