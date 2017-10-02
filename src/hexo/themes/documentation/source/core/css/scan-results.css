@@ -352,9 +352,10 @@ button.button--details {
     100% {
         opacity: 0;
     }
-<<<<<<< HEAD
-=======
-/** Overlay page */
+
+}
+
+/* Overlay page */
 .overlay {
 	opacity: 0;
     visibility: hidden;
@@ -372,7 +373,4 @@ button.button--details {
 	opacity: 1;
 	visibility: visible;
 	transition: opacity 0.5s;
->>>>>>> 01e4ebed1a0d513f52c3bc5f5c9214635cbb29cc
-=======
->>>>>>> 71fb8f0b2bebb4c449b3392de5a626373b411da1
 }
