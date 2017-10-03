@@ -2,11 +2,6 @@ const request = require('request-promise');
 const _ = require('lodash');
 const moment = require('moment');
 
-<<<<<<< HEAD
-const scannerIntro = {
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    title: 'Scanner'
-=======
 const serviceEndpoint = 'http://localhost:3000/';
 const sonarUrl = 'http://localhost:4000/';
 const layout = 'scan';
@@ -57,7 +52,6 @@ const queryResult = async (id) => {
     const response = JSON.parse(requestResult);
 
     return response;
->>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
 };
 const serviceEndpoint = 'http://localhost:3000/';
 const sonarUrl = 'http://localhost:4000/';
