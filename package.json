@@ -18,8 +18,11 @@
     "hexo-server": "^0.2.0",
     "hexo-util": "^0.6.0",
     "js-yaml": "^3.8.3",
+    "json2yaml": "^1.1.0",
     "klaw": "^2.0.0",
     "lodash": "^4.17.4",
+    "marked": "^0.3.6",
+    "md-2-json": "^1.0.2",
     "normalize-path": "^2.1.1",
     "pify": "^3.0.0",
     "xss-filters": "^1.2.7"
