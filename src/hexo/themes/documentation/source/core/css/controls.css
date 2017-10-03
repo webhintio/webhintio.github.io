@@ -381,7 +381,7 @@ select:disabled {
         position: absolute;
         display: inline-block;
         width: 2rem;
-        top: 0rem;
+        top: 0;
         left: 0;
         padding: 1.4rem 1.2rem;
     }
