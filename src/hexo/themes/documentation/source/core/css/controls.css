@@ -378,6 +378,12 @@ select:disabled {
 
     .button--search::before {
         content: url("/images/search-icon.svg");
+        position: absolute;
+        display: inline-block;
+        width: 2rem;
+        top: 0;
+        left: 0;
+        padding: 1.4rem 1.2rem;
     }
 
 /*
