@@ -282,6 +282,67 @@ button.button--details {
 
 }
 
+/* RULE RESULT MESSAGES */
+
+.rule-result__message--compiling {
+    color: #4046dd;
+    margin-top: -2.6rem;
+}
+
+.rule-result__message--compiling p,
+.rule-result__message--compiling__loader {
+    display: inline-block;
+}
+
+.rule-result__message--compiling p {
+    padding-left: 1.6rem;
+}
+
+.rule-result__message--compiling__loader {
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid #4046dd;
+  width: 2.5rem;
+  height: 2.5rem;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.rule-result__message--passed {
+    color: #00864b;
+    padding-left: 3.6rem;
+}
+
+.rule-result__message--passed::before {
+    content: url("/images/results-passed-icon.svg");
+    position: absolute;
+    left: 0;
+    height: .5rem;
+    width: 2.5rem;
+}
+
+.rule-result__message--failed {
+    color: #b91b06;
+    padding-left: 3.6rem;
+}
+
+.rule-result__message--failed::before {
+    content: url("/images/results-error-icon.svg");
+    position: absolute;
+    left: 0;
+    height: .5rem;
+    width: 2.5rem;
+}
 
 /* SCAN ANIMATION */
 .nellie-waiting {
