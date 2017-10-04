@@ -71,6 +71,32 @@
                 <h2>Errors &amp; Warnings</h2>
                 <div class="layout layout--sidebar--alt">
                     <div class="module module--primary">
+                        <section class="rule-result">
+                            <h3>Accessibility</h3>
+                            <div class="rule-result--details">
+                                <div class="rule-result__message--passed">
+                                    <p>No issues</p>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="rule-result">
+                            <h3>Accessibility</h3>
+                            <div class="rule-result--details">
+                                <div class="rule-result__message--failed">
+                                    <p>Scan failed</p>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="rule-result">
+                            <h3>Accessibility</h3>
+                            <div class="rule-result--details">
+                                <div class="rule-result__message--compiling">
+                                    <div class="rule-result__message--compiling__loader"></div>
+                                    <p>Compiling errors</p>
+                                </div>
+                            </div>
+                        </section>
+
                         {{#each categories}}
                             {{#if results}}
                             <section class="rule-result" id="{{name}}">

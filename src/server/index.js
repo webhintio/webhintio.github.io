@@ -41,14 +41,11 @@ const createServer = () => {
 const commonConfiguration = (app) => {
     // TODO: header security, etc. here
     const menuDataDir = path.join(hexoDir, 'source/_data/menu.yml');
-    const categoriesDataDir = path.join(hexoDir, 'source/_data/categories.yml');
     const configDataDir = path.join(rootPath, '_config.yml');
     const menuData = yaml.safeLoad(fs.readFileSync(menuDataDir, 'utf8')); // eslint-disable-line no-sync
-    const categoriesData = yaml.safeLoad(fs.readFileSync(categoriesDataDir, 'utf8')); // eslint-disable-line no-sync
     const config = yaml.safeLoad(fs.readFileSync(configDataDir, 'utf8')); // eslint-disable-line no-sync
 
     app.locals.menuData = menuData;
-    app.locals.categoriesData = categoriesData;
     app.locals.config = config;
     app.locals.isSection = true;
 

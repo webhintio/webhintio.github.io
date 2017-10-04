@@ -1,312 +1,217 @@
-/* eslint-env browser */
-/* eslint-disable no-var, strict, prefer-arrow-callback, object-shorthand, no-continue, array-callback-return */
-/* global Handlebars */
+const request = require('request-promise');
+const _ = require('lodash');
+const moment = require('moment');
 
-(function () {
-    'use strict';
+const serviceEndpoint = 'http://localhost:3000/';
+const sonarUrl = 'http://localhost:4000/';
+const layout = 'scan';
+const jobStatus = {
+    error: 'error',
+    finished: 'finished',
+    pending: 'pending',
+    started: 'started',
+    warning: 'warning'
+};
+const ruleStatus = {
+    error: 'error',
+    pass: 'pass',
+    pending: 'pending',
+    warning: 'warning'
+};
 
-    /* eslint-disable */
-    /** Polyfill for `Element.closest()` */
-    if (!Element.prototype.matches) {
-        Element.prototype.matches = Element.prototype.msMatchesSelector ||
-            Element.prototype.webkitMatchesSelector;
+const pad = (timeString) => {
+    return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
+};
+
+const calculateTimeDifference = (start, end) => {
+    const duration = moment.duration(moment(end).diff(moment(start)));
+    const minutes = pad(`${duration.get('minutes')}`);
+    const seconds = pad(`${duration.get('seconds')}`);
+
+    return `${minutes}:${seconds}`;
+};
+
+const sendRequest = (url) => {
+    const formData = { url };
+    const options = {
+        formData,
+        method: 'POST',
+        url: `${serviceEndpoint}`
+    };
+
+    return request(options);
+};
+
+const queryResult = async (id) => {
+    const requestResult = await request(`${serviceEndpoint}${id}`);
+
+    if (!requestResult) {
+        throw new Error(`No result found for this url. Please scan again.`);
     }
 
-    if (!Element.prototype.closest) {
-        Element.prototype.closest = function (s) {
-            var el = this;
-            var ancestor = this;
-            if (!document.documentElement.contains(el)) return null;
-            do {
-                if (ancestor.matches(s)) return ancestor;
-                ancestor = ancestor.parentElement;
-            } while (ancestor !== null);
-            return null;
-        };
-    }
-    /* eslint-enable */
-    /** Record of published rules. */
-    var existingResults = {};
-    var arraify = function (list) {
-        return [].slice.call(list);
-    };
+    const response = JSON.parse(requestResult);
 
-    var expandDetails = function (item) {
-        item.setAttribute('aria-expanded', 'true');
-    };
+    return response;
+};
 
-    var collapseDetails = function (item) {
-        item.setAttribute('aria-expanded', 'false');
-    };
+const configure = (app) => {
+    const parseCategories = (rules) => {
+        let categories = [];
 
-    var toggleExpand = function (evt) {
-        var parent = evt.target.closest('.rule-result--details');
-        var expanded = parent.getAttribute('aria-expanded') === 'true';
-
-        if (expanded) {
-            collapseDetails(parent);
-            evt.target.innerHTML = 'open details';
-        }
-
-        if (!expanded) {
-            expandDetails(parent);
-            evt.target.innerHTML = 'close details';
-        }
-    };
-
-    var toParams = function (obj) {
-        if (!obj) {
-            return '';
-        }
-        var keys = Object.keys(obj);
-
-        if (keys.length === 0) {
-            return '';
-        }
-        var params = keys.reduce(function (p, key, index) {
-            var value = `${(key === 'term' ? 'q' : key)}=${encodeURIComponent(obj[key])}`;
-            var prefix = index === 0 ? '' : '&';
-
-            return p + prefix + value;
-        }, '?');
-
-        return params;
-    };
-
-    var xhr = function (options) {
-        var http = new XMLHttpRequest();
-        var callback = options.callback;
-
-        var url = options.url + toParams(options.query);
-
-        http.open(options.method || 'GET', url, true);
-
-        http.onreadystatechange = function () {
-            if (http.readyState === 4) {
-                if (http.status === 200) {
-                    if (callback) {
-                        if (options.dontTransform) {
-                            return callback(null, http.responseText);
-                        }
-
-                        return callback(null, JSON.parse(http.responseText));
-                    }
-                } else if (callback) {
-                    return callback(http.status, http.responseText);
-                }
-            }
-
-            return null;
-        };
-        http.send(options.params);
-
-        return http;
-    };
-    /** Generate record of what rules have been published. */
-    var generateRecord = function (responseItems) {
-        const record = responseItems.reduce(function (collection, item) {
-            if (!item.results) {
-                return collection;
-            }
-
-            for (var result in item.results) {
-                if (!collection[item.name]) {
-                    collection[item.name] = [];
-                }
-                collection[item.name].push(result.name);
-            }
-
-            return collection;
-        }, {});
-
-        return record;
-    };
-
-    /** Filter out results that are already present in the UI. */
-    var filterUpdates = function (responseItems) {
-        responseItems.forEach(function (responseItem) {
-            if (!responseItem.results) {
-                return responseItem.results;
-            }
-
-            responseItem.results = responseItem.results.filter(function (result) {
-                return !(existingResults[responseItem.name] && existingResults[responseItem.name].includes(result.name));
+        rules.forEach((rule) => {
+            let category = _.find(categories, (cat) => {
+                return cat.name === rule.category;
             });
+
+            if (!category) {
+                category = {
+                    name: rule.category,
+                    results: null,
+                    rules: []
+                };
+
+                categories.push(category);
+            }
+
+            category.rules.push(rule);
+
+            if (rule.status !== ruleStatus.pass && rule.status !== ruleStatus.pending) {
+                if (!category.results) {
+                    category.results = [];
+                }
+
+                category.results.push(rule);
+            }
         });
 
-        return responseItems;
+        categories = _.sortBy(categories, (category) => {
+            return category.name;
+        });
+
+        return categories;
     };
 
-    var generateTemplate = function () {
-        var tmpl = `{{#each categories}}
-        {{#if results}}
-        <section class="rule-result" id="{{name}}">
-            <h3>{{name}}</h3>
-            {{#each results}}
-            <div class="rule-result--details" aria-expanded="false">
-                <div class="rule-result--details__header">
-                    <p class="rule-title">{{name}}: {{getLength messages status}}</p>
-                    <div class="rule-result__docs">
-                        <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a>
-                        <button title="show warning details" class="button--details">Close Details</button>
-                    </div>
-                </div>
-                {{#each messages}}
-                <div class="rule-result--details__body">
-                    <p class="warning-badge uppercase-text">{{../status}}</p>
-                    <p>
-                        {{message}}
-                    </p>
-                    <div class="rule-result__code">
-                        <p>
-                            {{cutUrlString resource}}
-                            {{#if location.line}}:{{location.line}}{{/if}}
-                            {{#if location.column}}:{{location.column}}{{/if}}
-                        </p>
-                        <code>{{cutCodeString sourceCode}}</code>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-            {{/each}}
-        </section>
-        {{/if}}
-    {{/each}}`;
+    /** Process scanning result to add category and statistics information */
+    const processRuleResults = (ruleResults) => {
+        const overallStatistics = {
+            errors: 0,
+            warnings: 0
+        };
 
-        return tmpl;
+        const categories = parseCategories(ruleResults);
+
+        // Caculate numbers of `errors` and `warnings`.
+        _.forEach(categories, (category) => {
+            const statistics = _.reduce(category.results || [], (count, rule) => {
+                if (rule && rule.status === ruleStatus.error) {
+                    count.errors += rule.messages.length;
+                    overallStatistics.errors += rule.messages.length;
+                }
+
+                if (rule && rule.status === ruleStatus.warning) {
+                    count.warnings += rule.messages.length;
+                    overallStatistics.warnings += rule.messages.length;
+                }
+
+                return count;
+            }, { errors: 0, warnings: 0 });
+
+            category.statistics = statistics;
+        });
+
+        return { categories, overallStatistics };
     };
-    var cutString = (string, lengthToShow) => {
-        if (!string || string.length < lengthToShow) {
-            return string;
+
+    app.get('/scanner', (req, res) => {
+        res.render('scan-form', {
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+            title: 'Scanner'
+        });
+    });
+
+    app.get('/scanner/api/:id', async (req, res) => {
+        const id = req.params.id;
+        let scanResult;
+
+        try {
+            scanResult = await queryResult(id);
+        } catch (error) {
+            return res.status(404);
         }
 
-        return `${string.slice(0, lengthToShow)} ... ${string.slice(string.length - lengthToShow)}`;
-    };
+        const { categories } = processRuleResults(scanResult.rules);
 
-    var registerToggleExpandListener = function () {
-        var detailButtons = arraify(document.querySelectorAll('.button--details'));
-
-        detailButtons.map(function (button) {
-            button.addEventListener('click', toggleExpand, false);
+        return res.send({
+            categories,
+            status: scanResult.status,
+            time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
+            version: scanResult.sonarVersion
         });
-    };
+    });
 
-<<<<<<< HEAD
-=======
-    var closeOverlay = function () {
-        document.querySelector('.overlay').classList.remove('open');
-    };
+    app.get('/scanner/:id', async (req, res) => {
+        const id = req.params.id;
+        let scanResult;
 
-    var openOverlay = function () {
-        document.querySelector('.overlay').classList.add('open');
-    };
+        try {
+            scanResult = await queryResult(id);
+        } catch (error) {
+            return res.render('error', {
+                details: error.message,
+                heading: 'ERROR'
+            });
+        }
 
->>>>>>> 01e4ebed1a0d513f52c3bc5f5c9214635cbb29cc
-    var updateUI = function (data) {
-        var updates = data.updates;
-        var time = data.time;
-
-        Handlebars.registerHelper('getLength', function (collection, unit) {
-            const length = collection.length;
-
-            return length > 1 ? `${length} ${unit}s` : `${length} ${unit}`;
-        });
-
-        Handlebars.registerHelper('cutUrlString', (urlString) => {
-            return cutString(urlString, 20);
-        });
-
-        Handlebars.registerHelper('cutCodeString', (urlString) => {
-            return cutString(urlString, 150);
-        });
-
-        var source = generateTemplate();
-        var template = Handlebars.compile(source);
-        var html = template({ categories: updates });
-        var totalErrors = 0; // eslint-disable-line no-unused-vars
-        var totalWarnings = 0; // eslint-disable-line no-unused-vars
-
-        document.querySelector('.module.module--primary').insertAdjacentHTML('afterbegin', html);
-        updates.forEach((function (update) {
-            var errorSelector = `.${update.name}.errors`;
-            var warningSelector = `.${update.name}.warnings`;
-            var errorsNumber = parseInt(update.statistics.errors);
-            var warningsNumber = parseInt(update.statistics.warnings);
-            var errorsElement = document.querySelector(errorSelector);
-            var warningsElement = document.querySelector(warningSelector);
-
-            errorsElement.innerHTML = `${errorsNumber} Errors`;
-<<<<<<< HEAD
-=======
-            errorsElement.classList.remove('rule-list--passed');
-            errorsElement.classList.add('rule-list--failed');
->>>>>>> 01e4ebed1a0d513f52c3bc5f5c9214635cbb29cc
-            warningsElement.innerHTML = `${warningsNumber} Warnings`;
-
-            if (errorsNumber > 0) {
-                errorsElement.closest('.rule-tile').classList.remove('rule-tile--passed');
-                errorsElement.closest('.rule-tile').classList.add('rule-tile--failed');
-            }
-
-            totalErrors += errorsNumber;
-            totalWarnings += warningsNumber;
-        }));
-
-        document.querySelector('#total-errors').innerHTML = totalErrors;
-        document.querySelector('#total-warnings').innerHTML = totalWarnings;
-        document.querySelector('.scan-overview--time .scan-overview__body--purple').innerHTML = time;
-        closeOverlay();
-
-        registerToggleExpandListener();
-    };
-
-    var queryAndUpdate = function () {
-        console.log('Updater running...');
-        openOverlay();
-
-
-        var id = document.querySelector('.scan-overview').getAttribute('data-id');
-        var callback = function (err, response) {
-            console.log('query result received.');
-
-            var timeoutId = setTimeout(queryAndUpdate, 2000);
-
-            if (err) {
-                console.error(err);
-                clearTimeout(timeoutId);
-
-                return;
-            }
-
-            if (response.status === 'error') {
-                console.log('Scanning error.');
-                clearTimeout(timeoutId);
-
-                return;
-            }
-
-            if (response.status === 'finished') {
-                clearTimeout(timeoutId);
-
-                var updates = filterUpdates(response.result);
-
-                updateUI({
-                    time: response.time,
-                    updates
-                });
-
-                existingResults = generateRecord(response.result);
-
-                return;
-            }
-        };
-        var options = {
-            callback,
-            url: `api/${id}`
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules);
+        const renderOptions = {
+            categories,
+            id: scanResult.id,
+            layout,
+            overallStatistics,
+            permalink: `${sonarUrl}scanner/${scanResult.id}`,
+            time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
+            url: scanResult.url,
+            version: scanResult.sonarVersion
         };
 
-        xhr(options);
-    };
+        if (scanResult.status === jobStatus.error || scanResult.status === jobStatus.finished) {
+            renderOptions.isFinish = true;
+        }
 
-    queryAndUpdate();
-}());
+        res.render('scan-result', renderOptions);
+    });
+
+    app.post('/scanner', async (req, res) => {
+        if (!req.body || !req.body.url) {
+            return res.render('error', {
+                details: 'Please provide a url.',
+                heading: ''
+            });
+        }
+
+        let requestResult;
+
+        try {
+            requestResult = JSON.parse(await sendRequest(req.body.url));
+        } catch (error) {
+            return res.render({
+                details: error.message,
+                heading: 'ERROR'
+            });
+        }
+
+        const id = requestResult.id;
+        const { categories, overallStatistics } = processRuleResults(requestResult.rules);
+
+        return res.render('scan-result', {
+            categories,
+            id: requestResult.id,
+            layout,
+            overallStatistics,
+            permalink: `${sonarUrl}scanner/${id}`,
+            url: req.body.url
+        });
+    });
+};
+
+module.exports = configure;

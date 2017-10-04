@@ -1,10 +1,6 @@
 /* eslint-env browser */
 /* eslint-disable no-var, strict, prefer-template, prefer-arrow-callback, object-shorthand, no-continue, no-multi-str, array-callback-return */
-<<<<<<< HEAD
-/* global Handlebars */
-=======
 /* global Handlebars, hljs */
->>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
 
 (function () {
     'use strict';
