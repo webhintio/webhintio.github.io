@@ -1,4 +1,4 @@
-<main class="container">
+<main>
     <article class="content" aria-labelledby="page-heading">
         <nav class="container breadcrumb" aria-label="breadcrumbs">
             <ul>
@@ -146,15 +146,15 @@
             </div>
         </div>
         <section class="section scanner">
-            <section class="container home-container--section home-container--input">
-                <form action="/scanner/" method="POST">
-                    <label for="home-scan">Enter your URL here</label>
-                    <div class="input-fix">
-                        <input id="home-scan" type="url" name="url" placeholder="Copy your URL here">
-                        <button class="button--red" type="submit">Run Scan</button>
-                    </div>
-                </form>
-            </section>
+            <div class="container">
+                    <form action="/scanner/" method="POST">
+                        <label for="home-scan">Enter your URL here</label>
+                        <div class="input-fix">
+                            <input id="home-scan" type="url" placeholder="Copy your URL here">
+                            <button class="button--red" type="submit">Run Scan</button>
+                        </div>
+                    </form>
+            </div>
         </section>
     </article>
 </main>
