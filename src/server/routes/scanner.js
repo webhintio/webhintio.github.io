@@ -55,24 +55,7 @@ const queryResult = async (id) => {
 };
 
 const configure = (app) => {
-    const fixCategories = (rules) => {
-        rules.forEach((rule) => {
-            if (rule.category.toLowerCase() === 'pwas') {
-                rule.category = 'pwa';
-            }
-
-            if (rule.category.toLowerCase() === 'misc') {
-                rule.category = 'interoperability';
-            }
-
-            rule.category = rule.category.toLowerCase();
-        });
-    };
-
     const parseCategories = (rules) => {
-        // TODO: Remove this after update to @sonarwhal/sonar > 0.9.0
-        fixCategories(rules);
-
         let categories = [];
 
         rules.forEach((rule) => {
