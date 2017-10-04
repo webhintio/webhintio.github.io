@@ -297,9 +297,9 @@ button.button--details {
 .rule-result__message--compiling__loader {
   border: 3px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 3px solid #2d2d2d;
+  border-top: 3px solid #4046dd;
   width: 2.5rem;
-  height: 2.rem;
+  height: 2.5rem;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
