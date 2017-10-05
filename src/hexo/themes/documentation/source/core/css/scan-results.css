@@ -304,6 +304,8 @@ button.button--details {
   animation: spin 2s linear infinite;
 }
 
+/* RESULTS LOADER ANIMATION */
+
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
@@ -417,9 +419,6 @@ button.button--details {
 
 }
 
-/* RESULTS LOADER ANIMATION */
-
-
 
 /* Overlay page */
 .overlay {
@@ -439,4 +438,31 @@ button.button--details {
 	opacity: 1;
 	visibility: visible;
 	transition: opacity 0.5s;
+}
+
+/* SCAN QUEUE */
+
+.scan-queue-bg-wrap {
+    background-color: #3035a6;
+    color: #fff;
+    padding-bottom: 6rem;
+}
+
+.scan-queue-bg-wrap .breadcrumb ul,
+.scan-queue-bg-wrap .breadcrumb ul a,
+.scan-queue-bg-wrap > .subtitle {
+    color: #fff;
+}
+
+.scan-queue__permalink {
+    max-width: 64rem;
+    margin: 2.4rem 0;
+    padding: 2.4rem;
+    background-color: #fff;
+    color: #000;
+}
+
+.scan-queue__illustration {
+    max-width: 64rem;
+    float: right;
 }
