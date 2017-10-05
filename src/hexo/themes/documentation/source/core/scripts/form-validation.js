@@ -34,11 +34,7 @@
     var checkUrl = function (field) {
         var original = field.value;
 
-<<<<<<< HEAD
-        if (!original.startsWith('http://')) {
-=======
         if (!original.match(/^https?:\/\//)) {
->>>>>>> b87d72133ffbc3b7cc01b64d6d8f2d47bff062d2
             field.value = 'http://' + original;
         }
 

@@ -125,9 +125,7 @@
                             <label class="subtitle" for="upload-config-file">Upload your configuration file</label>
                             <input id="upload-config-file" type="file" placeholder="Upload a configuration file">
                         </form>
-
                     </div>
-
                 </div>
                 <div class="module module--secondary scan-config">
                     <fieldset class="checkable-set">
@@ -146,15 +144,15 @@
             </div>
         </div>
         <section class="section scanner">
-            <div class="container">
-                    <form action="/scanner/" method="POST">
-                        <label for="home-scan">Enter your URL here</label>
-                        <div class="input-fix">
-                            <input id="home-scan" type="url" placeholder="Copy your URL here">
-                            <button class="button--red" type="submit">Run Scan</button>
-                        </div>
-                    </form>
-            </div>
+            <section class="container home-container--section home-container--input">
+                <form action="/scanner/" method="POST">
+                    <label for="home-scan">Enter your URL here</label>
+                    <div class="input-fix">
+                        <input id="home-scan" type="url" name="url" placeholder="Copy your URL here">
+                        <button class="button--red" type="submit">Run Scan</button>
+                    </div>
+                </form>
+            </section>
         </section>
     </article>
 </main>

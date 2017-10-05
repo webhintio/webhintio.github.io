@@ -22,3 +22,65 @@
     border-radius: 50px;
     border: 3px solid #2d28a1;
 }
+
+/* Changelog */
+
+.changelog__updates {
+    margin: 2.4rem 0;
+    padding-left: 2.4rem;
+    border-left: 3px solid #4046dd;
+}
+
+.changelog__updates ul {
+    margin-left: 3.6rem;
+}
+
+.new-features,
+.bug-fixes,
+.breaking-changes {
+    position: relative;
+    padding-left: 3.6rem;
+}
+
+.bug-fixes::before,
+.new-features::before,
+.breaking-changes::before {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.4rem;
+}
+
+.bug-fixes::before {
+    content: url("/images/bug-fixes-icon.svg");
+}
+
+.new-features::before {
+    content: url("/images/new-features-icon.svg");
+}
+
+.breaking-changes::before {
+    content: url("/images/breaking-changes-icon.svg");
+}
+
+@media (min-width: 48em) {
+
+    .changelog__updates ul {
+        margin-left: 7rem;
+    }
+
+    .new-features,
+    .bug-fixes,
+    .breaking-changes {
+        padding-left: 4.8rem;
+    }
+
+    .bug-fixes::before,
+    .new-features::before,
+    .breaking-changes::before {
+        top: -.2rem;
+        width: 3.6rem;
+    }
+
+}

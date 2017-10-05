@@ -4,15 +4,24 @@ const fs = pify(require('fs'));
 const klaw = require('klaw');
 const path = require('path');
 const normalize = require('normalize-path');
+const md2json = require('md-2-json');
+const json2yaml = require('json2yaml');
+const marked = require('marked');
+const yamlLoader = require('js-yaml');
 
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
+const configDir = path.resolve(directory, '..', '..', '..', '_config.yml');
 const filePaths = [];
 const ignoredFiles = ['404.md', 'about.md', 'contributors.md'];
+const config = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
 
 const permaLinks = new Map(); // a collection of permalinks
 const divider = '---';
 
 console.log('Updater is initiated.');
+
+// Make sure the options used here are the same as used in `hexo`.
+marked.setOptions(config.marked);
 
 const isIgnoredFile = (filePath) => {
     const file = path.basename(filePath);
@@ -115,6 +124,46 @@ const addFrontMatter = async (filePath) => {
     const newData = `${frontMatter}\n${content}`;
 
     await fs.writeFile(filePath, newData);
+
+    // Generate yaml file containing changelog data.
+    if (!filePath.toLowerCase().includes('changelog.md')) {
+        return;
+    }
+
+    const parsedChangelog = md2json.parse(data);
+
+    _.forEach(parsedChangelog, (details) => {
+        // Iterate each date.
+        _.forEach(details, (update) => {
+            // Iterate each category of update.
+
+            // Line breaks in `0.1.0` can't be ignored after being parsed in `md2json`.
+            // So `raw` needs to be processed to prevent unexpected line breaks.
+            const raw = update.raw.split(new RegExp('-\\n-|([^.])\\n-')).join('');
+            const commitRegex = /- \[\[`[a-z0-9]+`\]\(https:\/\/github.com\/sonarwhal\/sonar\/commit\/([a-z0-9]+)\)] - (.*)(?:\r?\n)*/g;
+            const associateCommitRegex = / \(see also: \[`#[0-9]+`\]\(https:\/\/github.com\/sonarwhal\/sonar\/issues\/([0-9]+)\)\)/g;
+            let matchArray;
+
+            update.html = marked(raw);
+            update.details = {}; // Changlog item details including `associatedCommitId` and `message`.
+
+            // Extract changelog item details.
+            while ((matchArray = commitRegex.exec(raw)) !== null) {
+                const message = matchArray.pop();
+                const id = matchArray.pop();
+                const associateCommit = associateCommitRegex.exec(message);
+
+                update.details[id] = {
+                    associateCommitId: associateCommit ? associateCommit.pop() : null,
+                    message: message.replace(associateCommitRegex, '')
+                };
+            }
+        });
+    });
+    const yaml = json2yaml.stringify(parsedChangelog);
+    const changelogThemePath = path.join(directory, '_data/changelog.yml');
+
+    await fs.writeFile(changelogThemePath, yaml);
 };
 
 // Iterate all the markdown files and add frontmatter to each file
