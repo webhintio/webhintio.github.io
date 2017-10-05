@@ -199,7 +199,6 @@
         document.querySelector('.overlay').classList.add('open');
     };
 
-
     var updateUI = function (data) {
         var updates = data.updates;
         var time = data.time;
@@ -258,7 +257,6 @@
     var queryAndUpdate = function () {
         console.log('Updater running...');
         openOverlay();
-
 
         var id = document.querySelector('.scan-overview').getAttribute('data-id');
         var callback = function (err, response) {
