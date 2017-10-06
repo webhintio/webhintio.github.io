@@ -191,6 +191,8 @@ const configure = (app) => {
 
         let requestResult;
 
+        // res.render('scan-queue');
+
         try {
             requestResult = JSON.parse(await sendRequest(req.body.url));
         } catch (error) {
@@ -209,6 +211,7 @@ const configure = (app) => {
             layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${id}`,
+            scanning: true,
             url: req.body.url
         });
     });
