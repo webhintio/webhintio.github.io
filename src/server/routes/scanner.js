@@ -169,6 +169,7 @@ const configure = (app) => {
             layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${scanResult.id}`,
+            status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
             url: scanResult.url,
             version: scanResult.sonarVersion
@@ -211,7 +212,7 @@ const configure = (app) => {
             layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${id}`,
-            scanning: true,
+            status: requestResult.status,
             url: req.body.url
         });
     });
