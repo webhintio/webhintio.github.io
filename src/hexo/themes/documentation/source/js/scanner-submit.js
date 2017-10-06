@@ -31,6 +31,24 @@
     var id = document.querySelector('.scan-overview').getAttribute('data-id');
     /** Record of published rules. */
     var existingResults = [];
+    /** Status variables for a job. */
+    var jobStatus = {
+        error: 'error',
+        finished: 'finished',
+        pending: 'pending',
+        started: 'started'
+    };
+    /** Status variables for a rule. */
+    var ruleStatus = {
+        error: 'error',
+        pass: 'pass',
+        pending: 'pending',
+        warning: 'warning'
+    };
+    /** Queue message block */
+    var queueBlock = document.querySelector('.scan-queue-bg-wrap');
+    /** Scan result block */
+    var resultBlock = document.querySelector('.scan-result-bg-wrap');
 
     var toParams = function (obj) {
         if (!obj) {
@@ -142,31 +160,19 @@
     {{/each}}';
     };
 
-    var categoryTemplate = function () {
-        var tmpl = '{{#if results}} \
-        <section class="rule-result" id="{{name}}"> \
-            <h3>{{name}}</h3> \
-            {{> ruleItem}} \
-        </section> \
-        {{/if}}';
-
-        return tmpl;
+    var categoryPassTemplate = function () {
+        return '<div class="rule-result--details">\
+        <div class="rule-result__message--passed">\
+            <p>No issues</p>\
+        </div>\
+    </div>';
     };
-
     var cutString = function (string, lengthToShow) {
         if (!string || string.length < lengthToShow) {
             return string;
         }
 
         return string.slice(0, lengthToShow) + '...' + string.slice(string.length - lengthToShow);
-    };
-
-    var closeOverlay = function () {
-        document.querySelector('.nellie-waiting').classList.remove('open');
-    };
-
-    var openOverlay = function () {
-        document.querySelector('.nellie-waiting').classList.add('open');
     };
 
     var registerHandlebarsPartials = function () {
@@ -206,25 +212,50 @@
         }
     };
 
+    var categoryScanComplete = function (category) {
+        return category.rules.every(function (rule) {
+            return rule.status !== jobStatus.pending;
+        });
+    };
+
+    var categoryPass = function (category) {
+        return category.rules.every(function (rule) {
+            return rule.status === ruleStatus.pass;
+        });
+    };
+
     var updateErrorItems = function (category) {
         var container = document.getElementById(category.name);
+        var loader = container.querySelector('.compiling__loader');
         var source;
         var template;
         var html;
 
-        if (!container) {
-            source = categoryTemplate();
-            template = Handlebars.compile(source);
-            html = template(category);
+        source = ruleItemTemplate();
+        template = Handlebars.compile(source);
+        html = template(category);
 
-            document.querySelector('.module.module--primary').insertAdjacentHTML('afterbegin', html);
-        } else {
-            source = ruleItemTemplate();
-            template = Handlebars.compile(source);
-            html = template(category);
+        container.querySelector('h3').insertAdjacentHTML('afterend', html);
 
-            container.insertAdjacentHTML('beforeend', html);
+        if (categoryScanComplete(category) && loader) {
+            container.removeChild(loader);
         }
+    };
+
+    var updateAsPass = function (category) {
+        var container = document.getElementById(category.name);
+        var loader = container.querySelector('.compiling__loader');
+        var passMessage = container.querySelector('.rule-result__message--passed');
+
+        if (passMessage) {
+            return;
+        }
+
+        if (loader) {
+            container.removeChild(loader);
+        }
+
+        container.insertAdjacentHTML('beforeend', categoryPassTemplate());
     };
 
     var updateOverallData = function (category) {
@@ -250,6 +281,13 @@
         var totalWarnings = 0;
 
         updates.forEach(function (category) {
+            // Still needs to update the UI even if `category.results` is equal to null.
+            if (!category.results && categoryPass(category)) {
+                updateAsPass(category);
+
+                return;
+            }
+
             if (!category.results) {
                 return;
             }
@@ -272,14 +310,16 @@
         document.querySelector('#total-warnings').innerHTML = totalWarnings;
         document.querySelector('.scan-overview--time .scan-overview__body--purple').innerHTML = time;
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
-        closeOverlay();
     };
 
-    var status = {
-        error: 'error',
-        finished: 'finished',
-        pending: 'pending',
-        started: 'started'
+    var showQueueMessage = function () {
+        queueBlock.style.display = 'block';
+        resultBlock.style.display = 'none';
+    };
+
+    var hideQueueMessage = function () {
+        queueBlock.style.display = 'none';
+        resultBlock.style.display = 'block';
     };
 
     var queryAndUpdate = function () {
@@ -290,14 +330,20 @@
                 return;
             }
 
-            if (response.status === status.error) {
+            if (response.status === jobStatus.error) {
                 // Show to the user a message about the status and the error??.
                 console.log('Scanning error.');
 
                 return;
             }
 
-            if (response.status === status.finished || response.status === status.started) {
+            if (response.status === jobStatus.pending) {
+                showQueueMessage();
+            }
+
+            if (response.status === jobStatus.finished || response.status === jobStatus.started) {
+                hideQueueMessage();
+
                 var updates = filterUpdates(response.categories);
 
                 // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
@@ -308,7 +354,7 @@
                 });
 
                 generateRecord(response.categories);
-                if (response.status === status.finished) {
+                if (response.status === jobStatus.finished) {
                     console.log('finished');
 
                     return;
@@ -339,9 +385,6 @@
     window.history.pushState(null, null, id);
 
     initExistingResults();
-
-    openOverlay();
-
     registerHandlebarsPartials();
     registerHandlebarsHelpers();
 

@@ -140,9 +140,9 @@ module.exports = function () {
                 '>=': (l, r) => {
                     return l >= r;
                 },
-                belongsTo: (l, r) => {
+                includes: (l, r) => {
                     const normalizedL = l ? normalizeString(l) : l;
-                    const normalizedR = r.split(', ').map((element) => {
+                    const normalizedR = r.split(/, */g).map((element) => {
                         return normalizeString(element);
                     });
 
