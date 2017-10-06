@@ -444,7 +444,18 @@ button.button--details {
     color: #000;
 }
 
-.scan-queue__illustration {
-    max-width: 64rem;
-    float: right;
+
+/* SCAN ERROR */
+
+.scanner-cta {
+  position: relative;
+}
+
+.scanner-cta__link::after {
+  content: url("/images/next-arrow.svg");
+  position: absolute;
+  display: inline-block;
+  left: 21rem;
+  width: .8rem;
+  margin-top: .2rem;
 }
