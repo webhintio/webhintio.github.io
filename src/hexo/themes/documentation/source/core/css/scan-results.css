@@ -79,10 +79,11 @@
 
 .rule-tile {
     padding: 1.5rem 2rem;
+    background-color: #f2f2f2;
 }
 
 .rule-tile--passed {
-    background-color: #f2f2f2;
+    background-color: #EBF5F1;
 }
 
 .rule-tile--failed {
@@ -103,6 +104,7 @@
     font-size: 1.4rem;
     font-weight: 400;
     text-transform: uppercase;
+    color: #4046dd;
 }
 
 .rule-list p {
@@ -110,7 +112,7 @@
 }
 
 .rule-list--passed {
-    color: #4046dd;
+    color: #006538;
 }
 
 .rule-list--failed {

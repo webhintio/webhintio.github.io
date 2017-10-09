@@ -200,15 +200,21 @@
         return text + (count === 1 ? '' : 's');
     };
 
-    var updateElement = function (issueElement, issues, issueText, categoryName) {
+    var updateElement = function (issueElement, issues, issueText, categoryName, final = false) {
         if (issues > 0) {
-            issueElement.classList.remove('rule-list--passed');
             issueElement.classList.add('rule-list--failed');
-            issueElement.closest('.rule-tile').classList.remove('rule-tile--passed');
-            issueElement.closest('.rule-tile').classList.add('rule-tile--failed');
             issueElement.innerHTML = '<a href="#' + categoryName + '">' + issues + ' ' + pluralize(issueText, issues) + '</a>';
+
+            if (final) {
+                issueElement.closest('.rule-tile').classList.add('rule-tile--failed');
+            }
         } else {
             issueElement.innerHTML = issues + ' ' + pluralize(issueText, issues);
+
+            if (final) {
+                issueElement.classList.add('rule-list--passed');
+                issueElement.closest('.rule-tile').classList.add('rule-tile--passed');
+            }
         }
     };
 
@@ -258,7 +264,7 @@
         container.insertAdjacentHTML('beforeend', categoryPassTemplate());
     };
 
-    var updateOverallData = function (category) {
+    var updateOverallData = function (category, final = false) {
         var errorSelector = '.' + category.name + '.errors';
         var warningSelector = '.' + category.name + '.warnings';
         var errorsNumber = category.statistics.errors;
@@ -268,11 +274,12 @@
 
         warningsElement.innerHTML = warningsNumber + ' Warnings';
 
-        updateElement(errorsElement, errorsNumber, 'Error', category.name);
-        updateElement(warningsElement, warningsNumber, 'Warning', category.name);
+        updateElement(errorsElement, errorsNumber, 'Error', category.name, final);
+        updateElement(warningsElement, warningsNumber, 'Warning', category.name, final);
     };
 
     var updateUI = function (data) {
+        // Note: `data` here is filtered, so published errors/warnings won't be included in `data`.
         var updates = data.updates;
         var time = data.time;
         var version = data.version;
@@ -293,7 +300,6 @@
             }
 
             updateErrorItems(category);
-
             updateOverallData(category);
 
             totalErrors += category.statistics.errors;
@@ -352,6 +358,13 @@
                     updates: updates,
                     version: response.version
                 });
+
+                if (response.status === jobStatus.finished) {
+                    response.categories.forEach(function(category) {
+                        // Update the final statistics
+                        updateOverallData(category, true);
+                    });
+                }
 
                 generateRecord(response.categories);
                 if (response.status === jobStatus.finished) {

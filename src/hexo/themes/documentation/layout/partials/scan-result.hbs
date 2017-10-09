@@ -42,21 +42,51 @@
                 <div class="layout layout--fifths">
                     {{#each categories}}
                     <div class="module">
-                        <div class="rule-tile rule-tile--{{#if (passRule statistics)}}passed{{else}}failed{{/if}}">
+                        <div class="rule-tile
+                            {{#compare ../status 'includes' 'finished, error'}}
+                                {{#if (passRule statistics)}}
+                                    rule-tile--passed
+                                {{else}}
+                                    rule-tile--failed
+                                {{/if}}
+                            {{/compare}}">
                             <p class="rule-tile__category uppercase-text">{{name}}</p>
                             <img src="/images/{{name}}.svg" class="rule-icon" alt="" role="presentation" />
+                            {{#compare ../status '===' 'started'}}
                             <div class="rule-list">
-                                <p class="rule-list--{{#if (passErrors statistics)}}passed{{else}}failed{{/if}} {{name}} errors">
+                                <p class="{{name}} errors"> 0 Errors</p>
+                                <p class="{{name}} warnings"> 0 warnings</p>
+                            </div>
+                            {{else}}
+                            <div class="rule-list">
+                                <p class="
+                                    {{#compare ../status 'includes' 'finished, error'}}
+                                        {{#if (passErrors statistics)}}
+                                            rule-list--passed
+                                        {{else}}
+                                            rule-list--failed
+                                        {{/if}}
+                                    {{/compare}}>
+                                {{name}} errors">
                                     {{#compare  statistics.errors ">" 0}}<a href="#{{name}}">{{/compare}}
                                         {{statistics.errors}} Errors
                                     {{#compare  statistics.errors ">" 0}}</a>{{/compare}}
                                 </p>
-                                <p class="rule-list--{{#if (passWarnings statistics)}}passed{{else}}failed{{/if}} {{name}} warnings">
+                                <p class="
+                                    {{#compare ../status 'includes' 'finished, error'}}
+                                        {{#if (passWarnings statistics)}}
+                                            rule-list--passed
+                                        {{else}}
+                                            rule-list--failed
+                                        {{/if}}
+                                    {{/compare}}>
+                                 {{name}} warnings">
                                     {{#compare  statistics.warnings ">" 0}}<a href="#{{name}}">{{/compare}}
                                         {{statistics.warnings}} Warnings
                                     {{#compare  statistics.warnings ">" 0}}</a>{{/compare}}
                                 </p>
                             </div>
+                        {{/compare}}
                         </div>
                     </div>
                     {{/each}}
@@ -68,7 +98,7 @@
                             {{#each categories}}
                                 <section class="rule-result" id="{{name}}">
                                     <h3>{{name}}</h3>
-                                    {{#compare ../status 'includes' 'pending, started'}}
+                                    {{#compare ../status '!==' 'finished'}}
                                     <div class="rule-result--details compiling__loader">
                                         <div class="rule-result__message--compiling">
                                             <div class="rule-result__message--compiling__loader"></div>
@@ -102,6 +132,12 @@
                                                 </div>
                                             </div>
                                             {{/each}}
+                                        </div>
+                                        {{else}}
+                                        <div class="rule-result--details">
+                                            <div class="rule-result__message--passed">
+                                                <p>No issues</p>
+                                            </div>
                                         </div>
                                         {{/each}}
                                     {{/compare}}

@@ -229,13 +229,13 @@ module.exports = function () {
         },
         pagination: pagination.generate,
         passErrors: (statistics) => {
-            return !statistics || statistics.errors === 0;
+            return statistics && statistics.errors === 0;
         },
         passRule: (statistics) => {
-            return !statistics || (statistics.errors === 0 && statistics.warnings === 0);
+            return statistics && (statistics.errors === 0 && statistics.warnings === 0);
         },
         passWarnings: (statistics) => {
-            return !statistics || statistics.warnings === 0;
+            return statistics && statistics.warnings === 0;
         },
         // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {
