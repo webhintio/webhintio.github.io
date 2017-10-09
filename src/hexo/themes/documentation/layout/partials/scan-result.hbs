@@ -1,5 +1,5 @@
 {{>scan-queue permalink=permalink status=status}}
-<div class="scan-result-bg-wrap" {{#compare status '===' 'pending'}}style="display:none"{{/compare}}>
+<div class="scan-result-bg-wrap" {{#compare status '===' 'pending'}}style="display:none" {{/compare}}>
     <main>
         <article class="content" aria-labelledby="page-heading">
             <nav class="container breadcrumb" aria-label="breadcrumbs">
@@ -43,105 +43,73 @@
                     {{#each categories}}
                     <div class="module">
                         <div class="rule-tile
-                            {{#compare ../status 'includes' 'finished, error'}}
+                            {{#if (isFinish ../status)}}
                                 {{#if (passRule statistics)}}
                                     rule-tile--passed
                                 {{else}}
                                     rule-tile--failed
                                 {{/if}}
-                            {{/compare}}">
+                            {{/if}}">
                             <p class="rule-tile__category uppercase-text">{{name}}</p>
                             <img src="/images/{{name}}.svg" class="rule-icon" alt="" role="presentation" />
-                            {{#compare ../status '===' 'started'}}
-                            <div class="rule-list">
-                                <p class="{{name}} errors"> 0 Errors</p>
-                                <p class="{{name}} warnings"> 0 warnings</p>
-                            </div>
-                            {{else}}
                             <div class="rule-list">
                                 <p class="
-                                    {{#compare ../status 'includes' 'finished, error'}}
+                                    {{#if (isFinish ../status)}}
                                         {{#if (passErrors statistics)}}
                                             rule-list--passed
                                         {{else}}
                                             rule-list--failed
                                         {{/if}}
-                                    {{/compare}}>
+                                    {{/if}}>
                                 {{name}} errors">
-                                    {{#compare  statistics.errors ">" 0}}<a href="#{{name}}">{{/compare}}
-                                        {{statistics.errors}} Errors
+                                    {{#compare statistics.errors ">" 0}}<a href="#{{name}}">{{/compare}}
+                                        {{statistics.errors}} {{pluralize 'Error' statistics.errors}}
                                     {{#compare  statistics.errors ">" 0}}</a>{{/compare}}
                                 </p>
                                 <p class="
-                                    {{#compare ../status 'includes' 'finished, error'}}
+                                    {{#if (isFinish ../status)}}
                                         {{#if (passWarnings statistics)}}
                                             rule-list--passed
                                         {{else}}
                                             rule-list--failed
                                         {{/if}}
-                                    {{/compare}}>
+                                    {{/if}}>
                                  {{name}} warnings">
-                                    {{#compare  statistics.warnings ">" 0}}<a href="#{{name}}">{{/compare}}
-                                        {{statistics.warnings}} Warnings
+                                    {{#compare statistics.warnings ">" 0}}<a href="#{{name}}">{{/compare}}
+                                        {{statistics.warnings}} {{pluralize 'Warning' statistics.warnings}}
                                     {{#compare  statistics.warnings ">" 0}}</a>{{/compare}}
                                 </p>
                             </div>
-                        {{/compare}}
                         </div>
                     </div>
                     {{/each}}
                 </div>
+                {{#if (isError status)}}
+                <div class="scan-error">
+                    <p>
+                        There was an error and we were only able to partially complete the scan. View the results below or
+                        <a href="https://sonarwhal.com/scanner">perform another scan</a>.
+                    <p>
+                </div>
+                {{/if}}
                 <section id="results-container" class="section container">
                     <h2>Errors &amp; Warnings</h2>
                     <div class="layout layout--sidebar--alt">
                         <div class="module module--primary">
-                            {{#each categories}}
-                                <section class="rule-result" id="{{name}}">
-                                    <h3>{{name}}</h3>
-                                    {{#compare ../status '!==' 'finished'}}
-                                    <div class="rule-result--details compiling__loader">
-                                        <div class="rule-result__message--compiling">
-                                            <div class="rule-result__message--compiling__loader"></div>
-                                            <p>Compiling errors</p>
-                                        </div>
+                            {{#each categories as |category|}}
+                            <section class="rule-result" id="{{name}}">
+                                <h3>{{name}}</h3>
+                                {{#unless (isFinish ../status)}}
+                                <div class="rule-result--details compiling__loader">
+                                    <div class="rule-result__message--compiling">
+                                        <div class="rule-result__message--compiling__loader"></div>
+                                        <p>Compiling errors</p>
                                     </div>
-                                    {{else}}
-                                        {{#each results}}
-                                        <div class="rule-result--details" aria-expanded="false" id="{{name}}">
-                                            <div class="rule-result--details__header">
-                                                <p class="rule-title">{{name}}: {{getLength messages status}}</p>
-                                                <div class="rule-result__docs">
-                                                    <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a>
-                                                    <button title="show warning details" class="button--details">Open Details</button>
-                                                </div>
-                                            </div>
-
-                                            {{#each messages}}
-                                            <div class="rule-result--details__body">
-                                                <p class="warning-badge uppercase-text">{{../status}}</p>
-                                                <p>
-                                                    {{message}}
-                                                </p>
-                                                <div class="rule-result__code">
-                                                    <p>
-                                                        {{cutUrlString resource}}
-                                                        {{#if location.line}}:{{location.line}}{{/if}}
-                                                        {{#if location.column}}:{{location.column}}{{/if}}
-                                                    </p>
-                                                    <code>{{cutCodeString sourceCode}}</code>
-                                                </div>
-                                            </div>
-                                            {{/each}}
-                                        </div>
-                                        {{else}}
-                                        <div class="rule-result--details">
-                                            <div class="rule-result__message--passed">
-                                                <p>No issues</p>
-                                            </div>
-                                        </div>
-                                        {{/each}}
-                                    {{/compare}}
-                                </section>
+                                </div>
+                                {{else}}
+                                    {{>scan-result-item results=results noIssue=(noIssue category)}}
+                                {{/unless}}
+                            </section>
                             {{/each}}
                         </div>
                     </div>

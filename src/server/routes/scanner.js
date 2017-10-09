@@ -55,8 +55,11 @@ const queryResult = async (id) => {
 };
 
 const configure = (app) => {
-    const parseCategories = (rules) => {
+    const parseCategories = (rules, includeIncompleteScan = false) => {
+        // The `includeIncompleteScan` flag enables collecting `pending` rules.
+        // So that we can show them as `scan failed` items in the front end.
         let categories = [];
+        const excludedRuleStatus = [ruleStatus.pass, ruleStatus.pending];
 
         rules.forEach((rule) => {
             let category = _.find(categories, (cat) => {
@@ -65,6 +68,7 @@ const configure = (app) => {
 
             if (!category) {
                 category = {
+                    incompleteRules: null,
                     name: rule.category,
                     results: null,
                     rules: []
@@ -75,12 +79,20 @@ const configure = (app) => {
 
             category.rules.push(rule);
 
-            if (rule.status !== ruleStatus.pass && rule.status !== ruleStatus.pending) {
+            if (!excludedRuleStatus.includes(rule.status)) {
                 if (!category.results) {
                     category.results = [];
                 }
 
                 category.results.push(rule);
+            }
+
+            if (includeIncompleteScan && rule.status === jobStatus.pending) {
+                if (!category.incompleteRules) {
+                    category.incompleteRules = [];
+                }
+
+                category.incompleteRules.push(rule);
             }
         });
 
@@ -92,13 +104,13 @@ const configure = (app) => {
     };
 
     /** Process scanning result to add category and statistics information */
-    const processRuleResults = (ruleResults) => {
+    const processRuleResults = (ruleResults, includeIncompleteScan = false) => {
         const overallStatistics = {
             errors: 0,
             warnings: 0
         };
 
-        const categories = parseCategories(ruleResults);
+        const categories = parseCategories(ruleResults, includeIncompleteScan);
 
         // Caculate numbers of `errors` and `warnings`.
         _.forEach(categories, (category) => {
@@ -162,7 +174,8 @@ const configure = (app) => {
             });
         }
 
-        const { categories, overallStatistics } = processRuleResults(scanResult.rules);
+        const includeIncompleteScan = scanResult.status === jobStatus.error;
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules, includeIncompleteScan);
         const renderOptions = {
             categories,
             id: scanResult.id,
@@ -192,18 +205,14 @@ const configure = (app) => {
 
         let requestResult;
 
-        // res.render('scan-queue');
-
         try {
             requestResult = JSON.parse(await sendRequest(req.body.url));
         } catch (error) {
-            return res.render({
-                details: error.message,
-                heading: 'ERROR'
-            });
+            return res.render('scan-error');
         }
 
         const id = requestResult.id;
+        const status = requestResult.status;
         const { categories, overallStatistics } = processRuleResults(requestResult.rules);
 
         return res.render('scan-result', {
@@ -212,7 +221,7 @@ const configure = (app) => {
             layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${id}`,
-            status: requestResult.status,
+            status,
             url: req.body.url
         });
     });

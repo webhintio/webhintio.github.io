@@ -116,7 +116,7 @@
     };
 
     /** Filter out results that are already present in the UI. */
-    var filterUpdates = function (categories) {
+    var filterNewUpdates = function (categories) {
         categories.forEach(function (category) {
             if (!category.results) {
                 return category.results;
@@ -142,7 +142,7 @@
             </div> \
             {{#each messages}} \
             <div class="rule-result--details__body"> \
-                <p class="warning-badge uppercase-text">{{../status}}</p> \
+                <p class="{{../status}}-badge uppercase-text">{{../status}}</p> \
                 <p> \
                     {{message}} \
                 </p> \
@@ -160,13 +160,34 @@
     {{/each}}';
     };
 
-    var categoryPassTemplate = function () {
+    var categoryPassMessageTemplate = function () {
         return '<div class="rule-result--details">\
         <div class="rule-result__message--passed">\
             <p>No issues</p>\
         </div>\
     </div>';
     };
+
+    var ruleFailMessageTemplate = function () {
+        return '{{#each rules}} \
+        <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
+        <div class="rule-result--details__header"> \
+            <p class="rule-title">{{name}}</p> \
+        </div> \
+        <div class="rule-result__message--failed"> \
+            <p>Scan failed</p> \
+        </div> \
+    </div> \
+{{/each}}';
+    };
+
+    var getHTML = function (templ, data) {
+        var source = templ();
+        var template = Handlebars.compile(source);
+
+        return template(data);
+    };
+
     var cutString = function (string, lengthToShow) {
         if (!string || string.length < lengthToShow) {
             return string;
@@ -200,18 +221,18 @@
         return text + (count === 1 ? '' : 's');
     };
 
-    var updateElement = function (issueElement, issues, issueText, categoryName, final = false) {
+    var updateElement = function (issueElement, issues, issueText, categoryName, isFinish = false) {
         if (issues > 0) {
             issueElement.classList.add('rule-list--failed');
             issueElement.innerHTML = '<a href="#' + categoryName + '">' + issues + ' ' + pluralize(issueText, issues) + '</a>';
 
-            if (final) {
+            if (isFinish) {
                 issueElement.closest('.rule-tile').classList.add('rule-tile--failed');
             }
         } else {
             issueElement.innerHTML = issues + ' ' + pluralize(issueText, issues);
 
-            if (final) {
+            if (isFinish) {
                 issueElement.classList.add('rule-list--passed');
                 issueElement.closest('.rule-tile').classList.add('rule-tile--passed');
             }
@@ -230,22 +251,45 @@
         });
     };
 
+    var filterIncompleteRules = function (category) {
+        return category.rules.filter(function (rule) {
+            return rule.status === jobStatus.pending;
+        });
+    };
+
     var updateErrorItems = function (category) {
+        if (!category.results || category.results.length === 0) {
+            return;
+        }
         var container = document.getElementById(category.name);
         var loader = container.querySelector('.compiling__loader');
-        var source;
-        var template;
-        var html;
+        var ruleResult = getHTML(ruleItemTemplate, category);
 
-        source = ruleItemTemplate();
-        template = Handlebars.compile(source);
-        html = template(category);
+        loader.insertAdjacentHTML('beforebegin', ruleResult);
+    };
 
-        container.querySelector('h3').insertAdjacentHTML('afterend', html);
+    var removeLoader = function (category) {
+        var container = document.getElementById(category.name);
+        var loader = container.querySelector('.compiling__loader');
 
-        if (categoryScanComplete(category) && loader) {
+        if (loader) {
             container.removeChild(loader);
         }
+    };
+
+    var updateFailedItems = function (category) {
+        var container = document.getElementById(category.name);
+        var loader = container.querySelector('.compiling__loader');
+
+        var incompleteUpdates = filterIncompleteRules(category);
+        var failedMessage = getHTML(ruleFailMessageTemplate, { rules: incompleteUpdates });
+
+        if (incompleteUpdates.length === 0) {
+            return;
+        }
+
+        loader.insertAdjacentHTML('beforebegin', failedMessage);
+        container.removeChild(loader);
     };
 
     var updateAsPass = function (category) {
@@ -261,10 +305,10 @@
             container.removeChild(loader);
         }
 
-        container.insertAdjacentHTML('beforeend', categoryPassTemplate());
+        container.insertAdjacentHTML('beforeend', categoryPassMessageTemplate());
     };
 
-    var updateOverallData = function (category, final = false) {
+    var updateOverallData = function (category, isFinish = false) {
         var errorSelector = '.' + category.name + '.errors';
         var warningSelector = '.' + category.name + '.warnings';
         var errorsNumber = category.statistics.errors;
@@ -274,11 +318,11 @@
 
         warningsElement.innerHTML = warningsNumber + ' Warnings';
 
-        updateElement(errorsElement, errorsNumber, 'Error', category.name, final);
-        updateElement(warningsElement, warningsNumber, 'Warning', category.name, final);
+        updateElement(errorsElement, errorsNumber, 'Error', category.name, isFinish);
+        updateElement(warningsElement, warningsNumber, 'Warning', category.name, isFinish);
     };
 
-    var updateUI = function (data) {
+    var updateScanResultUI = function (data) {
         // Note: `data` here is filtered, so published errors/warnings won't be included in `data`.
         var updates = data.updates;
         var time = data.time;
@@ -289,13 +333,15 @@
 
         updates.forEach(function (category) {
             // Still needs to update the UI even if `category.results` is equal to null.
-            if (!category.results && categoryPass(category)) {
+            if (categoryPass(category)) {
                 updateAsPass(category);
 
                 return;
             }
 
             if (!category.results) {
+                // Note the function shouldn't return when category.results length is 0.
+                // It's possible to have new `passed` rules, which are not included in `results`.
                 return;
             }
 
@@ -304,6 +350,10 @@
 
             totalErrors += category.statistics.errors;
             totalWarnings += category.statistics.warnings;
+
+            if (categoryScanComplete(category)) {
+                removeLoader(category);
+            }
         });
 
         var codeBlocks = document.querySelectorAll('code');
@@ -318,6 +368,18 @@
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
 
+    var updateScanFailUI = function (data) {
+        var scanErrorMessageHTML = '<div class="scan-error">\
+        <p>\
+        There was an error and we were only able to partially complete the scan. View the results below or\
+        <a href="https://sonarwhal.com/scanner">perform another scan</a>.\
+    <p>\
+    </div>';
+
+        document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
+        data.categories.forEach(updateFailedItems);
+    };
+
     var showQueueMessage = function () {
         queueBlock.style.display = 'block';
         resultBlock.style.display = 'none';
@@ -330,48 +392,55 @@
 
     var queryAndUpdate = function () {
         var callback = function (err, response) {
+            var isFinish = response.status === jobStatus.finished;
+            var isError = response.status === jobStatus.error;
+            var isPending = response.status === jobStatus.pending;
+            var isStarted = response.status === jobStatus.started;
+
             if (err) {
                 console.error(err);
 
                 return;
             }
 
-            if (response.status === jobStatus.error) {
-                // Show to the user a message about the status and the error??.
-                console.log('Scanning error.');
-
-                return;
-            }
-
-            if (response.status === jobStatus.pending) {
+            if (isPending) {
                 showQueueMessage();
             }
 
-            if (response.status === jobStatus.finished || response.status === jobStatus.started) {
+            if (!isPending) {
                 hideQueueMessage();
+            }
 
-                var updates = filterUpdates(response.categories);
+            if (isError) {
+                updateScanFailUI(response);
+
+                console.log('Scanning error.');
+            }
+
+            if (isFinish || isStarted) {
+                var updates = filterNewUpdates(response.categories);
 
                 // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
-                updateUI({
+                updateScanResultUI({
                     time: response.time,
                     updates: updates,
                     version: response.version
                 });
 
-                if (response.status === jobStatus.finished) {
-                    response.categories.forEach(function(category) {
-                        // Update the final statistics
-                        updateOverallData(category, true);
-                    });
-                }
-
                 generateRecord(response.categories);
-                if (response.status === jobStatus.finished) {
-                    console.log('finished');
 
-                    return;
+                if (isFinish) {
+                    console.log('finished');
                 }
+            }
+
+            if (isFinish || isError) {
+                response.categories.forEach(function (category) {
+                    // Update the tile/title color based on the final stat.
+                    updateOverallData(category, true);
+                });
+
+                return;
             }
 
             setTimeout(queryAndUpdate, 1000);

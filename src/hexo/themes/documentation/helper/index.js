@@ -9,6 +9,13 @@ const cutString = (string, lengthToShow) => {
     return `${string.slice(0, lengthToShow)} ... ${string.slice(string.length - lengthToShow)}`;
 };
 
+const jobStatus = {
+    error: 'error',
+    finished: 'finished',
+    pending: 'pending',
+    started: 'started'
+};
+
 module.exports = function () {
     const isIndexPage = (page) => {
         return page.permalink.endsWith('index.html');
@@ -140,13 +147,13 @@ module.exports = function () {
                 '>=': (l, r) => {
                     return l >= r;
                 },
-                includes: (l, r) => {
-                    const normalizedL = l ? normalizeString(l) : l;
-                    const normalizedR = r.split(/, */g).map((element) => {
+                includes: (collection, member) => {
+                    const normalizedR = member ? normalizeString(member) : member;
+                    const normalizedL = collection.split(/, */g).map((element) => {
                         return normalizeString(element);
                     });
 
-                    return normalizedR.includes(normalizedL);
+                    return normalizedL.includes(normalizedR);
                 },
                 typeof: (l, r) => {
                     return typeof l === r;
@@ -214,9 +221,21 @@ module.exports = function () {
 
             return options.inverse(this);
         },
+        isError: (status) => {
+            return status === jobStatus.error;
+        },
+        isFinish: (status) => {
+            return [jobStatus.finished, jobStatus.error].includes(status);
+        },
         isNotGuideIndexPage: (page) => {
             // returns whether or not a page is a subpage under developer guide or user-guide
             return !isGuideIndexPage(page);
+        },
+        isPending: (status) => {
+            return status === jobStatus.pending;
+        },
+        noIssue: (category) => {
+            return (!category.results) && (!category.incompleteRules);
         },
         normalizeClassName: (value) => {
             const className = value.split('/').shift();
@@ -236,6 +255,9 @@ module.exports = function () {
         },
         passWarnings: (statistics) => {
             return statistics && statistics.warnings === 0;
+        },
+        pluralize: (text, count) => {
+            return `${text}${count === 1 ? '' : 's'}`;
         },
         // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {

@@ -1,0 +1,46 @@
+{{#if noIssue}}
+    <div class="rule-result--details">
+        <div class="rule-result__message--passed">
+            <p>No issues</p>
+        </div>
+    </div>
+{{/if}}
+
+{{#each results}}
+    <div class="rule-result--details" aria-expanded="false" id="{{name}}">
+        <div class="rule-result--details__header">
+            <p class="rule-title">{{name}}: {{getLength messages status}}</p>
+            <div class="rule-result__docs">
+                <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a>
+                <button title="show warning details" class="button--details">Open Details</button>
+            </div>
+        </div>
+        {{#each messages}}
+        <div class="rule-result--details__body">
+            <p class="{{../status}}-badge uppercase-text">{{../status}}</p>
+            <p>
+                {{message}}
+            </p>
+            <div class="rule-result__code">
+                <p>
+                    {{cutUrlString resource}}
+                    {{#if location.line}}:{{location.line}}{{/if}}
+                    {{#if location.column}}:{{location.column}}{{/if}}
+                </p>
+                <code>{{cutCodeString sourceCode}}</code>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+{{/each}}
+
+{{#each incompleteRules}}
+    <div class="rule-result--details" aria-expanded="false" id="{{name}}">
+        <div class="rule-result--details__header">
+            <p class="rule-title">{{name}}</p>
+        </div>
+        <div class="rule-result__message--failed">
+            <p>Scan failed</p>
+        </div>
+    </div>
+{{/each}}
