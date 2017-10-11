@@ -1,6 +1,8 @@
-const request = require('request-promise');
 const _ = require('lodash');
 const moment = require('moment');
+const promisify = require('util').promisify;
+const r = require('request');
+const request = promisify(r);
 
 const serviceEndpoint = 'http://localhost:3000/';
 const sonarUrl = 'http://localhost:4000/';
@@ -43,101 +45,101 @@ const sendRequest = (url) => {
 };
 
 const queryResult = async (id) => {
-    const requestResult = await request(`${serviceEndpoint}${id}`);
+    const result = await request(`${serviceEndpoint}${id}`);
 
-    if (!requestResult) {
+    if (!result.body) {
         throw new Error(`No result found for this url. Please scan again.`);
     }
 
-    const response = JSON.parse(requestResult);
+    const response = JSON.parse(result.body);
 
     return response;
 };
 
+const parseCategories = (rules, includeIncompleteScan = false) => {
+    // The `includeIncompleteScan` flag enables collecting `pending` rules.
+    // So that we can show them as `scan failed` items in the front end.
+    let categories = [];
+
+    rules.forEach((rule) => {
+        let category = _.find(categories, (cat) => {
+            return cat.name === rule.category;
+        });
+
+        if (!category) {
+            category = {
+                incompleteRules: null,
+                name: rule.category,
+                results: null,
+                rules: []
+            };
+
+            categories.push(category);
+        }
+
+        category.rules.push(rule);
+
+        if (rule.status !== ruleStatus.pending) {
+            // Passed rules are included in the results.
+            if (!category.results) {
+                category.results = [];
+            }
+
+            category.results.push(rule);
+        }
+
+        if (includeIncompleteScan && rule.status === jobStatus.pending) {
+            if (!category.incompleteRules) {
+                category.incompleteRules = [];
+            }
+
+            category.incompleteRules.push(rule);
+        }
+    });
+
+    categories = _.sortBy(categories, (category) => {
+        return category.name;
+    });
+
+    return categories;
+};
+
+/** Process scanning result to add category and statistics information */
+const processRuleResults = (ruleResults, includeIncompleteScan = false) => {
+    const overallStatistics = {
+        errors: 0,
+        warnings: 0
+    };
+
+    const categories = parseCategories(ruleResults, includeIncompleteScan);
+
+    // Caculate numbers of `errors` and `warnings`.
+    _.forEach(categories, (category) => {
+        const statistics = _.reduce(category.results || [], (count, rule) => {
+            if (rule && rule.status === ruleStatus.error) {
+                count.errors += rule.messages.length;
+                overallStatistics.errors += rule.messages.length;
+            }
+
+            if (rule && rule.status === ruleStatus.warning) {
+                count.warnings += rule.messages.length;
+                overallStatistics.warnings += rule.messages.length;
+            }
+
+            return count;
+        }, { errors: 0, warnings: 0 });
+
+        category.statistics = statistics;
+    });
+
+    return { categories, overallStatistics };
+};
+
 const configure = (app) => {
-    const parseCategories = (rules, includeIncompleteScan = false) => {
-        // The `includeIncompleteScan` flag enables collecting `pending` rules.
-        // So that we can show them as `scan failed` items in the front end.
-        let categories = [];
-        const excludedRuleStatus = [ruleStatus.pass, ruleStatus.pending];
-
-        rules.forEach((rule) => {
-            let category = _.find(categories, (cat) => {
-                return cat.name === rule.category;
-            });
-
-            if (!category) {
-                category = {
-                    incompleteRules: null,
-                    name: rule.category,
-                    results: null,
-                    rules: []
-                };
-
-                categories.push(category);
-            }
-
-            category.rules.push(rule);
-
-            if (!excludedRuleStatus.includes(rule.status)) {
-                if (!category.results) {
-                    category.results = [];
-                }
-
-                category.results.push(rule);
-            }
-
-            if (includeIncompleteScan && rule.status === jobStatus.pending) {
-                if (!category.incompleteRules) {
-                    category.incompleteRules = [];
-                }
-
-                category.incompleteRules.push(rule);
-            }
-        });
-
-        categories = _.sortBy(categories, (category) => {
-            return category.name;
-        });
-
-        return categories;
-    };
-
-    /** Process scanning result to add category and statistics information */
-    const processRuleResults = (ruleResults, includeIncompleteScan = false) => {
-        const overallStatistics = {
-            errors: 0,
-            warnings: 0
-        };
-
-        const categories = parseCategories(ruleResults, includeIncompleteScan);
-
-        // Caculate numbers of `errors` and `warnings`.
-        _.forEach(categories, (category) => {
-            const statistics = _.reduce(category.results || [], (count, rule) => {
-                if (rule && rule.status === ruleStatus.error) {
-                    count.errors += rule.messages.length;
-                    overallStatistics.errors += rule.messages.length;
-                }
-
-                if (rule && rule.status === ruleStatus.warning) {
-                    count.warnings += rule.messages.length;
-                    overallStatistics.warnings += rule.messages.length;
-                }
-
-                return count;
-            }, { errors: 0, warnings: 0 });
-
-            category.statistics = statistics;
-        });
-
-        return { categories, overallStatistics };
-    };
-
     app.get('/scanner', (req, res) => {
         res.render('scan-form', {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-            title: 'Scanner'
+            title: 'Analyze your website using sonar online'
         });
     });
 
@@ -148,7 +150,7 @@ const configure = (app) => {
         try {
             scanResult = await queryResult(id);
         } catch (error) {
-            return res.status(404);
+            return res.status(500);
         }
 
         const { categories } = processRuleResults(scanResult.rules);
@@ -206,7 +208,9 @@ const configure = (app) => {
         let requestResult;
 
         try {
-            requestResult = JSON.parse(await sendRequest(req.body.url));
+            const result = await sendRequest(req.body.url);
+
+            requestResult = JSON.parse(result.body);
         } catch (error) {
             return res.render('scan-error');
         }

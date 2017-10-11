@@ -50,32 +50,10 @@
     /** Scan result block */
     var resultBlock = document.querySelector('.scan-result-bg-wrap');
 
-    var toParams = function (obj) {
-        if (!obj) {
-            return '';
-        }
-        var keys = Object.keys(obj);
-
-        if (keys.length === 0) {
-            return '';
-        }
-        var params = keys.reduce(function (p, key, index) {
-            var left = key === 'term' ? 'q' : key;
-            var right = encodeURIComponent(obj[key]);
-            var value = left + '=' + right;
-            var prefix = index === 0 ? '' : '&';
-
-            return p + prefix + value;
-        }, '?');
-
-        return params;
-    };
-
     var xhr = function (options) {
         var http = new XMLHttpRequest();
         var callback = options.callback;
-
-        var url = options.url + toParams(options.query);
+        var url = options.url;
 
         http.open(options.method || 'GET', url, true);
 
@@ -100,6 +78,7 @@
 
         return http;
     };
+
     /** Generate record of what rules have been published. */
     var generateRecord = function (categories) {
         categories.forEach(function (category) {
@@ -119,7 +98,7 @@
     var filterNewUpdates = function (categories) {
         categories.forEach(function (category) {
             if (!category.results) {
-                return category.results;
+                return;
             }
 
             category.results = category.results.filter(function (result) {
@@ -132,53 +111,53 @@
 
     var ruleItemTemplate = function () {
         return '{{#each results}} \
-            <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
-            <div class="rule-result--details__header"> \
-                <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
-                <div class="rule-result__docs"> \
-                    <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a> \
-                    <button title="show warning details" class="button--details">Open Details</button> \
-                </div> \
-            </div> \
-            {{#each messages}} \
-            <div class="rule-result--details__body"> \
-                <p class="{{../status}}-badge uppercase-text">{{../status}}</p> \
-                <p> \
-                    {{message}} \
-                </p> \
-                <div class="rule-result__code"> \
-                    <p> \
-                        {{cutUrlString resource}} \
-                        {{#if location.line}}:{{location.line}}{{/if}} \
-                        {{#if location.column}}:{{location.column}}{{/if}} \
-                    </p> \
-                    <code class="html">{{cutCodeString sourceCode}}</code> \
-                </div> \
-            </div> \
-            {{/each}} \
-        </div> \
-    {{/each}}';
+                        <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
+                        <div class="rule-result--details__header"> \
+                            <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
+                            <div class="rule-result__docs"> \
+                                <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html"><img src="/images/results-docs-icon.svg" alt="documentation"  class="docs-icon" /></a> \
+                                <button title="show warning details" class="button--details">Open Details</button> \
+                            </div> \
+                        </div> \
+                        {{#each messages}} \
+                        <div class="rule-result--details__body"> \
+                            <p class="{{../status}}-badge uppercase-text">{{../status}}</p> \
+                            <p> \
+                                {{message}} \
+                            </p> \
+                            <div class="rule-result__code"> \
+                                <p> \
+                                    {{cutUrlString resource}} \
+                                    {{#if location.line}}:{{location.line}}{{/if}} \
+                                    {{#if location.column}}:{{location.column}}{{/if}} \
+                                </p> \
+                                <code class="html">{{cutCodeString sourceCode}}</code> \
+                            </div> \
+                        </div> \
+                        {{/each}} \
+                    </div> \
+                {{/each}}';
     };
 
     var categoryPassMessageTemplate = function () {
         return '<div class="rule-result--details">\
-        <div class="rule-result__message--passed">\
-            <p>No issues</p>\
-        </div>\
-    </div>';
+                    <div class="rule-result__message--passed">\
+                        <p>No issues</p>\
+                    </div>\
+                </div>';
     };
 
     var ruleFailMessageTemplate = function () {
         return '{{#each rules}} \
-        <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
-        <div class="rule-result--details__header"> \
-            <p class="rule-title">{{name}}</p> \
-        </div> \
-        <div class="rule-result__message--failed"> \
-            <p>Scan failed</p> \
-        </div> \
-    </div> \
-{{/each}}';
+                    <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
+                    <div class="rule-result--details__header"> \
+                        <p class="rule-title">{{name}}</p> \
+                    </div> \
+                    <div class="rule-result__message--failed"> \
+                        <p>Scan failed</p> \
+                    </div> \
+                </div> \
+                {{/each}}';
     };
 
     var getHTML = function (templ, data) {
@@ -257,10 +236,17 @@
         });
     };
 
+    var filterErrorsAndWarnings = function (results) {
+        return results.filter(function (result) {
+            return result.status !== ruleStatus.pass;
+        });
+    };
+
     var updateErrorItems = function (category) {
         if (!category.results || category.results.length === 0) {
             return;
         }
+
         var container = document.getElementById(category.name);
         var loader = container.querySelector('.compiling__loader');
         var ruleResult = getHTML(ruleItemTemplate, category);
@@ -332,18 +318,17 @@
         var totalWarnings = 0;
 
         updates.forEach(function (category) {
-            // Still needs to update the UI even if `category.results` is equal to null.
+            if (!category.results) {
+                return;
+            }
+
             if (categoryPass(category)) {
                 updateAsPass(category);
 
                 return;
             }
 
-            if (!category.results) {
-                // Note the function shouldn't return when category.results length is 0.
-                // It's possible to have new `passed` rules, which are not included in `results`.
-                return;
-            }
+            category.results = filterErrorsAndWarnings(category.results);
 
             updateErrorItems(category);
             updateOverallData(category);
@@ -405,42 +390,34 @@
 
             if (isPending) {
                 showQueueMessage();
-            }
-
-            if (!isPending) {
+            } else {
                 hideQueueMessage();
-            }
 
-            if (isError) {
-                updateScanFailUI(response);
-
-                console.log('Scanning error.');
-            }
-
-            if (isFinish || isStarted) {
-                var updates = filterNewUpdates(response.categories);
-
-                // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
-                updateScanResultUI({
-                    time: response.time,
-                    updates: updates,
-                    version: response.version
-                });
-
-                generateRecord(response.categories);
-
-                if (isFinish) {
-                    console.log('finished');
+                if (isError) {
+                    updateScanFailUI(response);
                 }
-            }
 
-            if (isFinish || isError) {
-                response.categories.forEach(function (category) {
-                    // Update the tile/title color based on the final stat.
-                    updateOverallData(category, true);
-                });
+                if (isFinish || isStarted) {
+                    var updates = filterNewUpdates(response.categories);
 
-                return;
+                    // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
+                    updateScanResultUI({
+                        time: response.time,
+                        updates: updates,
+                        version: response.version
+                    });
+
+                    generateRecord(response.categories);
+                }
+
+                if (isFinish || isError) {
+                    response.categories.forEach(function (category) {
+                        // Update the tile/title color based on the final stat.
+                        updateOverallData(category, true);
+                    });
+
+                    return;
+                }
             }
 
             setTimeout(queryAndUpdate, 1000);

@@ -6,7 +6,7 @@ const cutString = (string, lengthToShow) => {
         return string;
     }
 
-    return `${string.slice(0, lengthToShow)} ... ${string.slice(string.length - lengthToShow)}`;
+    return `${string.slice(0, lengthToShow)} … ${string.slice(string.length - lengthToShow)}`;
 };
 
 const jobStatus = {
@@ -14,6 +14,13 @@ const jobStatus = {
     finished: 'finished',
     pending: 'pending',
     started: 'started'
+};
+
+const ruleStatus = {
+    error: 'error',
+    pass: 'pass',
+    pending: 'pending',
+    warning: 'warning'
 };
 
 module.exports = function () {
@@ -181,6 +188,15 @@ module.exports = function () {
         cutUrlString: (urlString) => {
             return cutString(urlString, 20);
         },
+        filterErrorsAndWarnings: (results) => {
+            if (!results) {
+                return results;
+            }
+
+            return results.filter((result) => {
+                return result.status !== ruleStatus.pass;
+            });
+        },
         getAboutItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
@@ -235,7 +251,12 @@ module.exports = function () {
             return status === jobStatus.pending;
         },
         noIssue: (category) => {
-            return (!category.results) && (!category.incompleteRules);
+            const noWarningsOrErrors = !category.results || category.rules.every((rule) => {
+                return rule.status === ruleStatus.pass;
+            });
+            const noImcompleteRules = !category.incompleteRules;
+
+            return noWarningsOrErrors && noImcompleteRules;
         },
         normalizeClassName: (value) => {
             const className = value.split('/').shift();

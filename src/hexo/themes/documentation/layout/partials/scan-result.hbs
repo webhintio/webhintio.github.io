@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 {{else}}
-                                    {{>scan-result-item results=results noIssue=(noIssue category)}}
+                                    {{>scan-result-item results=(filterErrorsAndWarnings results) noIssue=(noIssue category)}}
                                 {{/unless}}
                             </section>
                             {{/each}}
