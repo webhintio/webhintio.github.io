@@ -8,26 +8,6 @@
     // String interpolation is not supported by 'hexo-filter-cleanup'.
     // So use string string concatenation instead.
 
-    /* eslint-disable */
-    /** Polyfill for 'Element.closest()' */
-    if (!Element.prototype.matches) {
-        Element.prototype.matches = Element.prototype.msMatchesSelector ||
-            Element.prototype.webkitMatchesSelector;
-    }
-
-    if (!Element.prototype.closest) {
-        Element.prototype.closest = function (s) {
-            var el = this;
-            var ancestor = this;
-            if (!document.documentElement.contains(el)) return null;
-            do {
-                if (ancestor.matches(s)) return ancestor;
-                ancestor = ancestor.parentElement;
-            } while (ancestor !== null);
-            return null;
-        };
-    }
-    /* eslint-enable */
     var id = document.querySelector('.scan-overview').getAttribute('data-id');
     /** Record of published rules. */
     var existingResults = [];
@@ -111,7 +91,7 @@
 
     var ruleItemTemplate = function () {
         return '{{#each results}} \
-                        <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
+                    <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
                         <div class="rule-result--details__header"> \
                             <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
                             <div class="rule-result__docs"> \
@@ -131,10 +111,26 @@
                                     {{#if location.line}}:{{location.line}}{{/if}} \
                                     {{#if location.column}}:{{location.column}}{{/if}} \
                                 </p> \
-                                <code class="html">{{cutCodeString sourceCode}}</code> \
+                                <code>{{cutCodeString sourceCode}}</code> \
                             </div> \
                         </div> \
                         {{/each}} \
+                        {{#if thirdParty}} \
+                            <div class="rule-result--details__footer-msg"> \
+                                {{#if thirdParty.link}} \
+                                    <p>To learn more visit</p> \
+                                {{else}} \
+                                    <p>Powered by</p> \
+                                {{/if}} \
+                                {{#if thirdParty.link}} \
+                                    <a href="{{thirdParty.link}}" target="_blank"> \
+                                {{/if}} \
+                                        <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" /> \
+                                {{#if thirdParty.link}} \
+                                    </a> \
+                                {{/if}} \
+                            </div> \
+                        {{/if}} \
                     </div> \
                 {{/each}}';
     };
@@ -200,7 +196,7 @@
         return text + (count === 1 ? '' : 's');
     };
 
-    var updateElement = function (issueElement, issues, issueText, categoryName, isFinish = false) {
+    var updateElement = function (issueElement, issues, issueText, categoryName, isFinish) {
         if (issues > 0) {
             issueElement.classList.add('rule-list--failed');
             issueElement.innerHTML = '<a href="#' + categoryName + '">' + issues + ' ' + pluralize(issueText, issues) + '</a>';
@@ -294,7 +290,7 @@
         container.insertAdjacentHTML('beforeend', categoryPassMessageTemplate());
     };
 
-    var updateOverallData = function (category, isFinish = false) {
+    var updateOverallData = function (category, isFinish) {
         var errorSelector = '.' + category.name + '.errors';
         var warningSelector = '.' + category.name + '.warnings';
         var errorsNumber = category.statistics.errors;

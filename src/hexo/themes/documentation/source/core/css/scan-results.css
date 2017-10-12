@@ -147,11 +147,13 @@
     margin-top: 3.6rem;
 }
 
-.rule-result--details[aria-expanded="true"] .rule-result--details__body {
+.rule-result--details[aria-expanded="true"] .rule-result--details__body,
+.rule-result--details[aria-expanded="true"] .rule-result--details__footer-msg {
     display: block;
 }
 
-.rule-result--details[aria-expanded="false"] .rule-result--details__body {
+.rule-result--details[aria-expanded="false"] .rule-result--details__body,
+.rule-result--details[aria-expanded="false"] .rule-result--details__footer-msg {
     display: none;
 }
 

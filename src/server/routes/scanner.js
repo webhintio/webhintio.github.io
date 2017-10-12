@@ -1,11 +1,17 @@
 const _ = require('lodash');
+const fs = require('fs');
 const moment = require('moment');
+const path = require('path');
 const promisify = require('util').promisify;
 const r = require('request');
 const request = promisify(r);
+const yaml = require('js-yaml');
 
 const serviceEndpoint = 'http://localhost:3000/';
 const sonarUrl = 'http://localhost:4000/';
+const hexoDir = path.join(__dirname, '..', '..', 'hexo');
+const thirdPartyServiceConfigPath = path.join(hexoDir, 'source/_data/third-party-service-config.yml');
+const thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
 const layout = 'scan';
 const jobStatus = {
     error: 'error',
@@ -56,7 +62,17 @@ const queryResult = async (id) => {
     return response;
 };
 
-const parseCategories = (rules, includeIncompleteScan = false) => {
+const updateLink = (thirdPartyInfo, scanUrl) => {
+    if (!thirdPartyInfo.link) {
+        return thirdPartyInfo;
+    }
+
+    thirdPartyInfo.link = thirdPartyInfo.link.replace(/%URL%/, scanUrl);
+
+    return thirdPartyInfo;
+};
+
+const parseCategories = (rules, scanUrl, includeIncompleteScan) => {
     // The `includeIncompleteScan` flag enables collecting `pending` rules.
     // So that we can show them as `scan failed` items in the front end.
     let categories = [];
@@ -75,6 +91,12 @@ const parseCategories = (rules, includeIncompleteScan = false) => {
             };
 
             categories.push(category);
+        }
+
+        const thirdPartyInfo = thirdPartyServiceConfig[rule.name];
+
+        if (thirdPartyInfo) {
+            rule.thirdParty = updateLink(thirdPartyInfo, scanUrl);
         }
 
         category.rules.push(rule);
@@ -105,13 +127,13 @@ const parseCategories = (rules, includeIncompleteScan = false) => {
 };
 
 /** Process scanning result to add category and statistics information */
-const processRuleResults = (ruleResults, includeIncompleteScan = false) => {
+const processRuleResults = (ruleResults, scanUrl, includeIncompleteScan) => {
     const overallStatistics = {
         errors: 0,
         warnings: 0
     };
 
-    const categories = parseCategories(ruleResults, includeIncompleteScan);
+    const categories = parseCategories(ruleResults, scanUrl, includeIncompleteScan);
 
     // Caculate numbers of `errors` and `warnings`.
     _.forEach(categories, (category) => {
@@ -153,7 +175,7 @@ const configure = (app) => {
             return res.status(500);
         }
 
-        const { categories } = processRuleResults(scanResult.rules);
+        const { categories } = processRuleResults(scanResult.rules, scanResult.url);
 
         return res.send({
             categories,
@@ -177,7 +199,7 @@ const configure = (app) => {
         }
 
         const includeIncompleteScan = scanResult.status === jobStatus.error;
-        const { categories, overallStatistics } = processRuleResults(scanResult.rules, includeIncompleteScan);
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url, includeIncompleteScan);
         const renderOptions = {
             categories,
             id: scanResult.id,
@@ -217,7 +239,7 @@ const configure = (app) => {
 
         const id = requestResult.id;
         const status = requestResult.status;
-        const { categories, overallStatistics } = processRuleResults(requestResult.rules);
+        const { categories, overallStatistics } = processRuleResults(requestResult.rules, req.body.url);
 
         return res.render('scan-result', {
             categories,

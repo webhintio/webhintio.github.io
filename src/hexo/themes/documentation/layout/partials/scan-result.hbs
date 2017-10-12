@@ -106,26 +106,6 @@
                                         <p>Compiling errors</p>
                                     </div>
                                 </div>
-                                <div class="rule-result--details__footer-msg">
-                                    <p>Powered by</p>
-                                    <img src="images/logos/axe.png" alt="aXe" class="axe-logo" />
-                                </div>
-                                <div class="rule-result--details__footer-msg">
-                                    <p>Powered by</p>
-                                    <img src="images/logos/snyk.svg" alt="snyk" />
-                                </div>
-                                <div class="rule-result--details__footer-msg">
-                                    <p>To learn more visit</p>
-                                    <a href="#">
-                                        <img src="images/logos/cloudinary_logo_for_white_bg.svg" alt="Cloudinary" />
-                                    </a>
-                                </div>
-                                <div class="rule-result--details__footer-msg">
-                                    <p>To learn more visit</p>
-                                    <a href="#">
-                                        <img src="images/logos/qualys-ssl-labs-logo.png" alt="Qualys SSL Labs" />
-                                    </a>
-                                </div>
                                 {{else}}
                                     {{>scan-result-item results=(filterErrorsAndWarnings results) noIssue=(noIssue category)}}
                                 {{/unless}}
