@@ -356,6 +356,29 @@ button.button--details {
     width: 2.5rem;
 }
 
+/* INTEGRATION MESSAGES */
+
+.rule-result--details__footer-msg {
+    margin: 2.4rem 0;
+}
+
+.rule-result--details__footer-msg p {
+    display: inline-block;
+}
+
+.rule-result--details__footer-msg img {
+    width: 15rem;
+    margin-top: 0;
+    margin-left: 1.2rem;
+    vertical-align: middle;
+}
+
+.rule-result--details__footer-msg img.axe-logo {
+    width: 10rem;
+}
+
+
+
 /* SCAN ANIMATION */
 .nellie-waiting {
     opacity: 0;
