@@ -195,6 +195,10 @@ button.mobile-nav-button {
     vertical-align: text-bottom;
 }
 
+.nav__navbar > li > a#scanner::after {
+    display: none;
+}
+
 .navbar__submenu {
     margin: 0;
     list-style-type: none;
