@@ -5,9 +5,21 @@ const exphbs = require('express-handlebars');
 const express = require('express');
 const handlebars = require('handlebars');
 const yaml = require('js-yaml');
+const appInsights = require('applicationinsights');
 
 const hexoDir = path.join(__dirname, '..', 'hexo');
 const rootPath = path.join(__dirname, '..', '..');
+
+appInsights.setup(process.env.APP_INSIGHTS_KEY) // eslint-disable-line no-process-env
+    .setAutoDependencyCorrelation(true)
+    .setAutoCollectRequests(true)
+    .setAutoCollectPerformance(true)
+    .setAutoCollectExceptions(true)
+    .setAutoCollectDependencies(true)
+    .setAutoCollectConsole(true)
+    .setUseDiskRetryCaching(true)
+    .start();
+const appInsightsClient = appInsights.defaultClient;
 
 const createServer = () => {
     const themeDir = path.join(hexoDir, 'themes/documentation');
@@ -53,8 +65,8 @@ const commonConfiguration = (app) => {
 };
 
 const configureRoutes = (app) => {
-    require('./routes/scanner.js')(app);
-    require('./routes/search.js')(app);
+    require('./routes/scanner.js')(app, appInsightsClient);
+    require('./routes/search.js')(app, appInsightsClient);
 };
 
 const configureFallbacks = (app) => {

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "algoliasearch": "^3.24.0",
+    "applicationinsights": "^1.0.0",
     "body-parser": "^1.17.2",
     "cheerio": "~0.22.0",
     "express": "^4.15.2",

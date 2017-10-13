@@ -157,8 +157,35 @@ const processRuleResults = (ruleResults, scanUrl, includeIncompleteScan) => {
     return { categories, overallStatistics };
 };
 
-const configure = (app) => {
+const configure = (app, appInsightsClient) => {
+    const reportJobEvent = (scanResult) => {
+        if (scanResult.status === jobStatus.started || scanResult.status === jobStatus.pending) {
+            return;
+        }
+
+        appInsightsClient.trackEvent({
+            name: `scanJob${_.capitalize(scanResult.status)}`,
+            properties: {
+                id: scanResult.id,
+                url: scanResult.url
+            }
+        });
+
+        if (scanResult.status === jobStatus.finished) {
+            const start = scanResult.started;
+            const end = scanResult.finished;
+
+            appInsightsClient.trackMetric({
+                name: 'scan-duration',
+                value: moment(end).diff(moment(start))
+            });
+        }
+    };
+
     app.get('/scanner', (req, res) => {
+        if (req.method === 'GET') {
+            appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
+        }
         res.render('scan-form', {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
             title: 'Analyze your website using sonar online'
@@ -170,10 +197,17 @@ const configure = (app) => {
         let scanResult;
 
         try {
+            const start = Date.now();
+
             scanResult = await queryResult(id);
+            appInsightsClient.trackMetric({ name: 'query-result-duration', value: Date.now() - start });
         } catch (error) {
+            appInsightsClient.trackException({ exception: new Error('queryResultError') });
+
             return res.status(500);
         }
+
+        reportJobEvent(scanResult);
 
         const { categories } = processRuleResults(scanResult.rules, scanResult.url);
 
@@ -190,8 +224,13 @@ const configure = (app) => {
         let scanResult;
 
         try {
+            const start = Date.now();
+
             scanResult = await queryResult(id);
+            appInsightsClient.trackMetric({ name: 'query-result-duration', value: Date.now() - start });
         } catch (error) {
+            appInsightsClient.trackException({ exception: new Error('queryResultError') });
+
             return res.render('error', {
                 details: error.message,
                 heading: 'ERROR'
@@ -220,6 +259,10 @@ const configure = (app) => {
     });
 
     app.post('/scanner', async (req, res) => {
+        if (req.method === 'POST') {
+            appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
+        }
+
         if (!req.body || !req.body.url) {
             return res.render('error', {
                 details: 'Please provide a url.',
@@ -230,16 +273,28 @@ const configure = (app) => {
         let requestResult;
 
         try {
+            const start = Date.now();
             const result = await sendRequest(req.body.url);
 
+            appInsightsClient.trackMetric({ name: 'send-request-duration', value: Date.now() - start });
             requestResult = JSON.parse(result.body);
         } catch (error) {
+            appInsightsClient.trackException({ exception: new Error('sendRequestError') });
+
             return res.render('scan-error');
         }
 
         const id = requestResult.id;
         const status = requestResult.status;
         const { categories, overallStatistics } = processRuleResults(requestResult.rules, req.body.url);
+
+        appInsightsClient.trackEvent({
+            name: 'scanJobCreated',
+            properties: {
+                id,
+                url: req.body.url
+            }
+        });
 
         return res.render('scan-result', {
             categories,
