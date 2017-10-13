@@ -40,26 +40,26 @@
                     </div>
                 </div>
                 <div class="layout layout--fifths">
-                    {{#each categories}}
+                    {{#each categories as |category|}}
                     <div class="module">
                         <div class="rule-tile
-                            {{#if (isFinish ../status)}}
-                                {{#if (passRule statistics)}}
-                                    rule-tile--passed
-                                {{else}}
-                                    rule-tile--failed
+                            {{#if (passRule statistics)}}
+                                {{#if (noPending category)}}
+                                rule-tile--passed
                                 {{/if}}
+                            {{else}}
+                                rule-tile--failed
                             {{/if}}">
                             <p class="rule-tile__category uppercase-text">{{name}}</p>
                             <img src="/images/{{name}}.svg" class="rule-icon" alt="" role="presentation" />
                             <div class="rule-list">
                                 <p class="
-                                    {{#if (isFinish ../status)}}
-                                        {{#if (passErrors statistics)}}
-                                            rule-list--passed
-                                        {{else}}
-                                            rule-list--failed
+                                    {{#if (passErrors statistics)}}
+                                        {{#if (noPending category)}}
+                                        rule-list--passed
                                         {{/if}}
+                                    {{else}}
+                                        rule-list--failed
                                     {{/if}}>
                                 {{name}} errors">
                                     {{#compare statistics.errors ">" 0}}<a href="#{{name}}">{{/compare}}
@@ -67,12 +67,12 @@
                                     {{#compare  statistics.errors ">" 0}}</a>{{/compare}}
                                 </p>
                                 <p class="
-                                    {{#if (isFinish ../status)}}
-                                        {{#if (passWarnings statistics)}}
-                                            rule-list--passed
-                                        {{else}}
-                                            rule-list--failed
+                                    {{#if (passWarnings statistics)}}
+                                        {{#if (noPending category)}}
+                                        rule-list--passed
                                         {{/if}}
+                                    {{else}}
+                                        rule-list--failed
                                     {{/if}}>
                                  {{name}} warnings">
                                     {{#compare statistics.warnings ">" 0}}<a href="#{{name}}">{{/compare}}

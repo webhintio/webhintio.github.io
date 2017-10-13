@@ -251,12 +251,14 @@ module.exports = function () {
             return status === jobStatus.pending;
         },
         noIssue: (category) => {
-            const noWarningsOrErrors = !category.results || category.rules.every((rule) => {
+            return category.rules.every((rule) => {
                 return rule.status === ruleStatus.pass;
             });
-            const noImcompleteRules = !category.incompleteRules;
-
-            return noWarningsOrErrors && noImcompleteRules;
+        },
+        noPending: (category) => {
+            return category.rules.every((rule) => {
+                return rule.status !== ruleStatus.pending;
+            });
         },
         normalizeClassName: (value) => {
             const className = value.split('/').shift();

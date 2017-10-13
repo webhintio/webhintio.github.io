@@ -196,19 +196,21 @@
         return text + (count === 1 ? '' : 's');
     };
 
-    var updateElement = function (issueElement, issues, issueText, categoryName, isFinish) {
+    var updateElement = function (issueElement, issues, issueText, categoryName, allRulesPass, allRulesChecked) {
         if (issues > 0) {
             issueElement.classList.add('rule-list--failed');
             issueElement.innerHTML = '<a href="#' + categoryName + '">' + issues + ' ' + pluralize(issueText, issues) + '</a>';
-
-            if (isFinish) {
-                issueElement.closest('.rule-tile').classList.add('rule-tile--failed');
-            }
+            issueElement.closest('.rule-tile').classList.add('rule-tile--failed');
         } else {
             issueElement.innerHTML = issues + ' ' + pluralize(issueText, issues);
 
-            if (isFinish) {
+            if (allRulesChecked) {
+                // No pending rules, safe to update rule list class.
                 issueElement.classList.add('rule-list--passed');
+            }
+
+            if (allRulesPass) {
+                // No errors or warnings, safe to update the rule tile class.
                 issueElement.closest('.rule-tile').classList.add('rule-tile--passed');
             }
         }
@@ -290,7 +292,13 @@
         container.insertAdjacentHTML('beforeend', categoryPassMessageTemplate());
     };
 
-    var updateOverallData = function (category, isFinish) {
+    var noPendingRules = function (category) {
+        return category.rules.every(function (rule) {
+            return rule.status !== ruleStatus.pending;
+        });
+    };
+
+    var updateOverallData = function (category, allRulesPass, allRulesChecked) {
         var errorSelector = '.' + category.name + '.errors';
         var warningSelector = '.' + category.name + '.warnings';
         var errorsNumber = category.statistics.errors;
@@ -300,8 +308,8 @@
 
         warningsElement.innerHTML = warningsNumber + ' Warnings';
 
-        updateElement(errorsElement, errorsNumber, 'Error', category.name, isFinish);
-        updateElement(warningsElement, warningsNumber, 'Warning', category.name, isFinish);
+        updateElement(errorsElement, errorsNumber, 'Error', category.name, allRulesPass, allRulesChecked);
+        updateElement(warningsElement, warningsNumber, 'Warning', category.name, allRulesPass, allRulesChecked);
     };
 
     var updateScanResultUI = function (data) {
@@ -318,16 +326,18 @@
                 return;
             }
 
-            if (categoryPass(category)) {
-                updateAsPass(category);
+            var allRulesPass = categoryPass(category);
+            var allRulesChecked = noPendingRules(category);
+            // We need this flag to decide if we should update the rule list class.
 
-                return;
+            if (allRulesPass) {
+                updateAsPass(category);
             }
 
             category.results = filterErrorsAndWarnings(category.results);
 
             updateErrorItems(category);
-            updateOverallData(category);
+            updateOverallData(category, allRulesPass, allRulesChecked);
 
             totalErrors += category.statistics.errors;
             totalWarnings += category.statistics.warnings;
@@ -407,11 +417,6 @@
                 }
 
                 if (isFinish || isError) {
-                    response.categories.forEach(function (category) {
-                        // Update the tile/title color based on the final stat.
-                        updateOverallData(category, true);
-                    });
-
                     return;
                 }
             }
