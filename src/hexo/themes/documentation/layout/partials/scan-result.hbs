@@ -92,8 +92,8 @@
                     <p>
                 </div>
                 {{/if}}
-                <section id="results-container" class="section container">
-                    <h2>Errors &amp; Warnings</h2>
+                <section id="results-container" class="section container" role="main" aria-labelledby="errors-warnings" aria-live="polite">
+                    <h2 id="errors-warnings">Errors &amp; Warnings</h2>
                     <div class="layout layout--sidebar--alt">
                         <div class="module module--primary">
                             {{#each categories as |category|}}
