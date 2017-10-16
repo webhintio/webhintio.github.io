@@ -9,17 +9,28 @@ const appInsights = require('applicationinsights');
 
 const hexoDir = path.join(__dirname, '..', 'hexo');
 const rootPath = path.join(__dirname, '..', '..');
+let appInsightsClient;
 
-appInsights.setup(process.env.APP_INSIGHTS_KEY) // eslint-disable-line no-process-env
-    .setAutoDependencyCorrelation(true)
-    .setAutoCollectRequests(true)
-    .setAutoCollectPerformance(true)
-    .setAutoCollectExceptions(true)
-    .setAutoCollectDependencies(true)
-    .setAutoCollectConsole(true)
-    .setUseDiskRetryCaching(true)
-    .start();
-const appInsightsClient = appInsights.defaultClient;
+if (process.env.APP_INSIGHTS_KEY) { // eslint-disable-line no-process-env
+    appInsights.setup(process.env.APP_INSIGHTS_KEY) // eslint-disable-line no-process-env
+        .setAutoDependencyCorrelation(true)
+        .setAutoCollectRequests(true)
+        .setAutoCollectPerformance(true)
+        .setAutoCollectExceptions(true)
+        .setAutoCollectDependencies(true)
+        .setAutoCollectConsole(true)
+        .setUseDiskRetryCaching(true)
+        .start();
+
+    appInsightsClient = appInsights.defaultClient;
+} else {
+    appInsightsClient = {
+        trackEvent() { },
+        trackException() { },
+        trackMetric() { },
+        trackNodeHttpRequest() { }
+    };
+}
 
 const createServer = () => {
     const themeDir = path.join(hexoDir, 'themes/documentation');

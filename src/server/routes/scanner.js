@@ -3,12 +3,13 @@ const fs = require('fs');
 const moment = require('moment');
 const path = require('path');
 const promisify = require('util').promisify;
-const r = require('request');
+const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}` } }); // eslint-disable-line no-process-env
 const request = promisify(r);
 const yaml = require('js-yaml');
 
 const serviceEndpoint = 'http://localhost:3000/';
 const sonarUrl = 'http://localhost:4000/';
+
 const hexoDir = path.join(__dirname, '..', '..', 'hexo');
 const thirdPartyServiceConfigPath = path.join(hexoDir, 'source/_data/third-party-service-config.yml');
 const thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
