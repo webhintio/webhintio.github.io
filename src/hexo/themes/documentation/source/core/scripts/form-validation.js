@@ -45,6 +45,12 @@
         checkUrl(e.target);
     };
 
+    var onUrlFieldKeyDown = function (e) {
+        if (e.keyCode === 13) {
+            checkUrl(e.target);
+        }
+    };
+
     var forms = document.querySelectorAll('form');
     var urlInputs = document.querySelectorAll('input[type="url"]');
 
@@ -58,5 +64,6 @@
         var field = urlInputs[j];
 
         field.addEventListener('blur', onUrlFieldBlur, true);
+        field.addEventListener('keydown', onUrlFieldKeyDown, true);
     }
 }());
