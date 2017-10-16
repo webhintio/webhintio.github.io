@@ -73,7 +73,46 @@
         }
     };
 
+    var setClipboardText = function (text) {
+        var id = 'hidden-clipboard';
+        var hiddenTextArea = document.getElementById(id);
+
+        if (!hiddenTextArea) {
+            var newTextArea = document.createElement('textarea');
+
+            newTextArea.id = id;
+            newTextArea.style.position = 'fixed';
+            newTextArea.style.top = 0;
+            newTextArea.style.left = 0;
+
+            newTextArea.style.width = '1px';
+            newTextArea.style.height = '1px';
+            newTextArea.style.padding = 0;
+
+            newTextArea.style.border = 'none';
+            newTextArea.style.outline = 'none';
+            newTextArea.style.boxShadow = 'none';
+
+            newTextArea.style.background = 'transparent';
+            document.querySelector('body').appendChild(newTextArea);
+            hiddenTextArea = document.getElementById(id);
+        }
+
+        hiddenTextArea.value = text;
+        hiddenTextArea.select();
+
+        document.execCommand('copy');
+    };
+
+    var copyButton = document.querySelector('.permalink-copy');
+    var copyPermalinkToClipboard = function () {
+        var permalink = document.querySelector('.scan-overview__body__permalink').textContent;
+
+        setClipboardText(permalink.trim());
+    };
+
     window.addEventListener('popstate', onPopState, false);
+    copyButton.addEventListener('click', copyPermalinkToClipboard);
 
     registerToggleExpandListener();
 }());

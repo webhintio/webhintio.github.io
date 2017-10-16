@@ -62,6 +62,12 @@
 }
 
 .permalink-copy {
+    background-color: transparent;
+    padding: 0;
+    min-width: 2rem;
+}
+
+.permalink-copy img {
     width: 2rem;
     vertical-align: middle;
     margin-left: 1rem;
