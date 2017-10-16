@@ -6,10 +6,10 @@ const promisify = require('util').promisify;
 const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}` } }); // eslint-disable-line no-process-env
 const request = promisify(r);
 const yaml = require('js-yaml');
-
-const serviceEndpoint = 'http://localhost:3000/';
-const sonarUrl = 'http://localhost:4000/';
-
+// This variable is like this WEBSITE_AUTH_ALLOWED_AUDIENCES = domain1,domain2 when in Azure
+const urlAudiences = process.env.WEBSITE_AUTH_ALLOWED_AUDIENCES; // eslint-disable-line no-process-env
+const sonarUrl = urlAudiences ? urlAudiences.split(',')[0] : 'http://localhost:4000/';
+const serviceEndpoint = 'https://online-service.sonarwhal.com/';
 const hexoDir = path.join(__dirname, '..', '..', 'hexo');
 const thirdPartyServiceConfigPath = path.join(hexoDir, 'source/_data/third-party-service-config.yml');
 const thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync

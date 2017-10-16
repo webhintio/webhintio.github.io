@@ -34,15 +34,15 @@
         {{#if thirdParty}}
             <div class="rule-result--details__footer-msg">
                 {{#if thirdParty.link}}
-                    <p>To learn more visit</p>
+                    <p>To learn more visit </p>
                 {{else}}
-                     <p>Powered by</p>
+                     <p>With the help of </p>
                 {{/if}}
 
                 {{#if thirdParty.link}}
-                    <a href="{{thirdParty.link}}" target="_blank">
+                    <a href="{{thirdParty.link}}">
                 {{/if}}
-                        <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" />
+                    <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" />
                 {{#if thirdParty.link}}
                     </a>
                 {{/if}}

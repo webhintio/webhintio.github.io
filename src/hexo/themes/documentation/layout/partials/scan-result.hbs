@@ -15,7 +15,7 @@
             </header>
             <div class="section container">
                 <div class="scan-overview" data-id="{{id}}">
-                    <div class="scan-overview__header">SCANNED URL : <a href="{{url}}">{{url}}</a></div>
+                    <div class="scan-overview__header">SCANNED URL: <a href="{{url}}">{{url}}</a></div>
                     <div class="scan-overview--details">
                         <div class="scan-overview--warnings">
                             <p class="scan-overview__subheader">warnings</p>
@@ -50,7 +50,7 @@
                             {{else}}
                                 rule-tile--failed
                             {{/if}}">
-                            <p class="rule-tile__category uppercase-text">{{name}}</p>
+                            <p class="rule-tile__category uppercase-text"><a href="#{{name}}">{{name}}</a></p>
                             <img src="/images/{{name}}.svg" class="rule-icon" alt="" role="presentation" />
                             <div class="rule-list">
                                 <p class="
@@ -95,7 +95,7 @@
                 <section id="results-container" class="section container" role="main" aria-labelledby="errors-warnings" aria-live="polite">
                     <h2 id="errors-warnings">Errors &amp; Warnings</h2>
                     <div class="layout layout--sidebar--alt">
-                        <div class="module module--primary">
+                        <div class="module module--primary results">
                             {{#each categories as |category|}}
                             <section class="rule-result" id="{{name}}">
                                 <h3>{{name}}</h3>

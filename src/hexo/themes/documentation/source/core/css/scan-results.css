@@ -33,6 +33,10 @@
     text-transform: uppercase;
 }
 
+.module--primary.results {
+    width: 100%;
+}
+
 [class*="scan-overview__body--"] {
     font-size: 4.8rem;
     font-weight: 200;
@@ -142,6 +146,11 @@
 
 .rule-result h3 {
     text-transform: capitalize;
+}
+
+/* Exception to the capitalize above */
+#pwa h3 {
+    text-transform: uppercase;
 }
 
 .rule-result--details {

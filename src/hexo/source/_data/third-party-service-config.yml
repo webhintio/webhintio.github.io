@@ -3,6 +3,7 @@ axe:
     name: "axe"
     url: "/images/logos/axe.png"
     alt: "aXe"
+  link: "https://github.com/dequelabs/axe-core"
 ssllabs:
   logo:
     name: "ssllabs"
@@ -14,9 +15,10 @@ no-vulnerable-javascript-libraries:
     name: "snyk"
     url: "/images/logos/snyk.svg"
     alt: "snyk"
+  link: "https://snyk.io/vuln/"
 cloudinary:
   logo:
     name: "cloudinary"
     url: "/images/logos/cloudinary_logo_for_white_bg.svg"
     alt: "Cloudinary"
-  link: "https://webspeedtest.cloudinary.com/"
+  link: "https://webspeedtest.cloudinary.com"
