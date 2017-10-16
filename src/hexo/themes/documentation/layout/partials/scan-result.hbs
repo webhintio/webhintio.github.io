@@ -67,9 +67,7 @@
                                         rule-list--failed
                                     {{/if}}>
                                 {{name}} errors">
-                                    {{#compare statistics.errors ">" 0}}<a href="#{{name}}">{{/compare}}
-                                        {{statistics.errors}} {{pluralize 'Error' statistics.errors}}
-                                    {{#compare  statistics.errors ">" 0}}</a>{{/compare}}
+                                    {{statistics.errors}} {{pluralize 'Error' statistics.errors}}
                                 </p>
                                 <p class="
                                     {{#if (passWarnings statistics)}}
@@ -80,9 +78,7 @@
                                         rule-list--failed
                                     {{/if}}>
                                  {{name}} warnings">
-                                    {{#compare statistics.warnings ">" 0}}<a href="#{{name}}">{{/compare}}
-                                        {{statistics.warnings}} {{pluralize 'Warning' statistics.warnings}}
-                                    {{#compare  statistics.warnings ">" 0}}</a>{{/compare}}
+                                    {{statistics.warnings}} {{pluralize 'Warning' statistics.warnings}}
                                 </p>
                             </div>
                         </div>

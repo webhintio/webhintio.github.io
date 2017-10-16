@@ -37,19 +37,24 @@
     };
 
     var toggleExpand = function (evt) {
-        if (evt.target.className.indexOf('button--details') === -1) {
+        var element = evt.target;
+
+        if (element.className.indexOf('button--details') === -1) {
             return;
         }
 
-        var parent = evt.target.closest('.rule-result--details');
+        var parent = element.closest('.rule-result--details');
         var expanded = parent.getAttribute('aria-expanded') === 'true';
+        var name = element.getAttribute('data-rule');
 
         if (expanded) {
             collapseDetails(parent);
-            evt.target.innerHTML = 'open details';
+            element.innerHTML = 'open details';
+            element.setAttribute('title', 'show ' + name + '\'s result details');
         } else {
             expandDetails(parent);
-            evt.target.innerHTML = 'close details';
+            element.innerHTML = 'close details';
+            element.setAttribute('title', 'close ' + name + '\'s result details');
         }
     };
 
