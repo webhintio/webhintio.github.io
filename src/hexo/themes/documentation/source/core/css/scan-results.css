@@ -53,6 +53,8 @@
     font-weight: 300;
     color: #4046dd;
     margin-top: .8rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .permalink-copy {
@@ -217,6 +219,11 @@ button.button--details {
 .rule-result--details__body {
     position: relative;
     padding: 1.4rem 0;
+}
+
+.rule-result--details__body p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .rule-result--details__body p:nth-child(2) {
