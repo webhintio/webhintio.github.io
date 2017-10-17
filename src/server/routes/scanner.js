@@ -304,7 +304,7 @@ const configure = (app, appInsightsClient) => {
             layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${id}`,
-            showQueue: messagesInQueue || status === jobStatus.pending,
+            showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
             status,
             url: req.body.url
         });
