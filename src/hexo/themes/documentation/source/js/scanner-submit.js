@@ -363,7 +363,7 @@
         var scanErrorMessageHTML = '<div class="scan-error">\
         <p>\
         There was an error and we were only able to partially complete the scan. View the results below or\
-        <a href="https://sonarwhal.com/scanner">perform another scan</a>.\
+        <a href="https://sonarwhal.com/scanner/">perform another scan</a>.\
     <p>\
     </div>';
 
