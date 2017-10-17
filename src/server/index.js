@@ -69,7 +69,7 @@ const commonConfiguration = (app) => {
     const config = yaml.safeLoad(fs.readFileSync(configDataDir, 'utf8')); // eslint-disable-line no-sync
 
     app.locals.menuData = menuData;
-    app.locals.config = config;
+    app.locals.theme = config;
     app.locals.isSection = true;
 
     app.use(bodyParser.urlencoded({ extended: false }));

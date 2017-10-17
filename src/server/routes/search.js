@@ -3,16 +3,10 @@ const _ = require('lodash');
 const xssFilters = require('xss-filters');
 
 const configure = (app) => {
-    const config = app.locals.config;
+    const config = app.locals.theme;
     const client = algoliasearch(config.appId, config.apiKey);
     const index = client.initIndex('sonarwhal');
     const hitsPerPage = 5;
-
-    // need to pass the credentials to templates
-    app.locals.theme = {
-        apiKey: config.apiKey,
-        appId: config.appId
-    };
 
     const isEqual = (l, r) => {
         // hits that have the same category, title and subtitles are considered the same.
