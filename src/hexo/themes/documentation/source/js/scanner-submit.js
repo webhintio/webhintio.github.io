@@ -442,11 +442,19 @@
         }
     };
 
+    var queuePageVisible = function () {
+        return document.querySelector('.scan-queue-bg-wrap').styles.display !== 'none';
+    };
+
     window.history.pushState(null, null, id);
 
     initExistingResults();
     registerHandlebarsPartials();
     registerHandlebarsHelpers();
 
-    queryAndUpdate();
+    if (queuePageVisible) {
+        setTimeout(queryAndUpdate, 10000);
+    } else {
+        queryAndUpdate();
+    }
 }());

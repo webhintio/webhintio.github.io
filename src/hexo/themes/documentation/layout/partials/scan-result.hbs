@@ -1,5 +1,5 @@
 {{>scan-queue permalink=permalink status=status}}
-<div class="scan-result-bg-wrap" {{#compare status '===' 'pending'}}style="display:none" {{/compare}}>
+<div class="scan-result-bg-wrap" {{#if showQueue}}style="display:none" {{/if}}>
     <main>
         <article class="content" aria-labelledby="page-heading">
             <nav class="container breadcrumb" aria-label="breadcrumbs">

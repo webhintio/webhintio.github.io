@@ -1,4 +1,4 @@
-<div class="scan-queue-bg-wrap" {{#compare status '!==' 'pending'}}style="display:none"{{/compare}}>
+<div class="scan-queue-bg-wrap" {{#unless showQueue }}style="display:none"{{/unless}}>
     <main>
         <article class="container" aria-labelledby="page-heading">
             <nav class="container breadcrumb" aria-label="breadcrumbs">

@@ -287,6 +287,7 @@ const configure = (app, appInsightsClient) => {
 
         const id = requestResult.id;
         const status = requestResult.status;
+        const messagesInQueue = requestResult.messagesInQueue;
         const { categories, overallStatistics } = processRuleResults(requestResult.rules, req.body.url);
 
         appInsightsClient.trackEvent({
@@ -303,6 +304,7 @@ const configure = (app, appInsightsClient) => {
             layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${id}`,
+            showQueue: messagesInQueue || status === jobStatus.pending,
             status,
             url: req.body.url
         });
