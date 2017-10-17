@@ -26,7 +26,7 @@ const configure = (app) => {
     const generatePageInfo = (currentPage, hits, query, totalPages) => {
         const pattern = `/search?q=${query}&page=pageId`;
 
-        if (hits.length === 0) {
+        if (hits.length === 0 && query) {
             return {
                 hits,
                 query,

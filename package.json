@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "algoliasearch": "^3.24.0",
+    "applicationinsights": "^1.0.0",
+    "body-parser": "^1.17.2",
     "cheerio": "~0.22.0",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
@@ -23,8 +25,10 @@
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "md-2-json": "^1.0.2",
+    "moment": "^2.18.1",
     "normalize-path": "^2.1.1",
     "pify": "^3.0.0",
+    "request-promise": "^4.2.1",
     "xss-filters": "^1.2.7"
   },
   "devDependencies": {
@@ -44,6 +48,7 @@
   "scripts": {
     "build": "npm run hexo:clean && npm run update-content && node helpers/updater.js src/hexo/source && hexo generate",
     "hexo:clean": "hexo clean",
+    "hexo:generate": "hexo generate",
     "hexo:server": "hexo server",
     "lint": "npm-run-all lint:*",
     "lint:browser": "eslint -c .eslintrc --env browser 'src/hexo/themes/documentation/source/**/*.js'",

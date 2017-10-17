@@ -51,17 +51,7 @@
 
 /* LANDING PAGE */
 
-.documentation-search {
-	flex: 1;
-	max-width: 64rem;
-	width: 100%;
-	margin-bottom: 2.4rem;
-}
-
-.documentation-search__input {
-	position: relative;
-	margin-top: 2.4rem;
-}
+/* Search button moved to base.css */
 
 .documentation {
 	flex: 0;

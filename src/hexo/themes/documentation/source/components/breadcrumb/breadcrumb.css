@@ -4,7 +4,7 @@
  * @Dependencies: base.css, structure.css
  */
 .breadcrumb {
-    margin-top: 1.2rem;
+    padding-top: 1.2rem;
 }
 
 .breadcrumb + header {

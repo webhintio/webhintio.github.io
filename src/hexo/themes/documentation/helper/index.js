@@ -1,6 +1,28 @@
 const pagination = require('./pagination');
 const url = require('url');
 
+const cutString = (string, lengthToShow) => {
+    if (!string || string.length < lengthToShow) {
+        return string;
+    }
+
+    return `${string.slice(0, lengthToShow)} … ${string.slice(string.length - lengthToShow)}`;
+};
+
+const jobStatus = {
+    error: 'error',
+    finished: 'finished',
+    pending: 'pending',
+    started: 'started'
+};
+
+const ruleStatus = {
+    error: 'error',
+    pass: 'pass',
+    pending: 'pending',
+    warning: 'warning'
+};
+
 module.exports = function () {
     const isIndexPage = (page) => {
         return page.permalink.endsWith('index.html');
@@ -132,13 +154,13 @@ module.exports = function () {
                 '>=': (l, r) => {
                     return l >= r;
                 },
-                belongsTo: (l, r) => {
-                    const normalizedL = l ? normalizeString(l) : l;
-                    const normalizedR = r.split(', ').map((element) => {
+                includes: (collection, member) => {
+                    const normalizedR = member ? normalizeString(member) : member;
+                    const normalizedL = collection.split(/, */g).map((element) => {
                         return normalizeString(element);
                     });
 
-                    return normalizedR.includes(normalizedL);
+                    return normalizedL.includes(normalizedR);
                 },
                 typeof: (l, r) => {
                     return typeof l === r;
@@ -160,6 +182,21 @@ module.exports = function () {
 
             return options.inverse(this);
         },
+        cutCodeString: (codeString) => {
+            return cutString(codeString, 150);
+        },
+        cutUrlString: (urlString) => {
+            return cutString(urlString, 20);
+        },
+        filterErrorsAndWarnings: (results) => {
+            if (!results) {
+                return results;
+            }
+
+            return results.filter((result) => {
+                return result.status !== ruleStatus.pass;
+            });
+        },
         getAboutItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
@@ -167,6 +204,11 @@ module.exports = function () {
         getDocumentItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
+        },
+        getLength: (collection, unit) => {
+            const length = collection.length;
+
+            return length > 1 ? `${length} ${unit}s` : `${length} ${unit}`;
         },
         getMarkdownLink: (link) => {
             return link.replace(/\.html$/, '.md');
@@ -195,9 +237,28 @@ module.exports = function () {
 
             return options.inverse(this);
         },
+        isError: (status) => {
+            return status === jobStatus.error;
+        },
+        isFinish: (status) => {
+            return [jobStatus.finished, jobStatus.error].includes(status);
+        },
         isNotGuideIndexPage: (page) => {
             // returns whether or not a page is a subpage under developer guide or user-guide
             return !isGuideIndexPage(page);
+        },
+        isPending: (status) => {
+            return status === jobStatus.pending;
+        },
+        noIssue: (category) => {
+            return category.rules.every((rule) => {
+                return rule.status === ruleStatus.pass;
+            });
+        },
+        noPending: (category) => {
+            return category.rules.every((rule) => {
+                return rule.status !== ruleStatus.pending;
+            });
         },
         normalizeClassName: (value) => {
             const className = value.split('/').shift();
@@ -205,7 +266,22 @@ module.exports = function () {
             return className.toLowerCase().trim()
                 .replace(/[^a-z0-9]/gi, '-');
         },
+        or: (l, r) => {
+            return l || r;
+        },
         pagination: pagination.generate,
+        passErrors: (statistics) => {
+            return statistics && statistics.errors === 0;
+        },
+        passRule: (statistics) => {
+            return statistics && (statistics.errors === 0 && statistics.warnings === 0);
+        },
+        passWarnings: (statistics) => {
+            return statistics && statistics.warnings === 0;
+        },
+        pluralize: (text, count) => {
+            return `${text}${count === 1 ? '' : 's'}`;
+        },
         // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {
             const pages = allPages.reduce((acc, page) => {

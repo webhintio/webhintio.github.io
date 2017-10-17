@@ -34,13 +34,21 @@ h3,
 h4,
 h5,
 button,
+legend,
 .headline,
 .heading,
 .subheading,
 .title,
 .subtitle,
 .subtitle--alt,
-.button {
+.caption--alt,
+.button,
+.scan-heading,
+.category,
+.rule-list,
+.rule-title,
+[class*="-badge"],
+.scan-overview {
     font-family: "Montserrat", sans-serif;
 }
 
@@ -48,7 +56,8 @@ button,
 h1,
 h2,
 .headline,
-.heading {
+.heading,
+.scan-heading {
     letter-spacing: -.01em;
 
     position: relative;
@@ -56,7 +65,10 @@ h2,
     z-index: 1;
 }
 
-.heading::before {
+.headline::before,
+.heading::before,
+.scan-heading::before,
+.rule-title::before {
     content: "";
     position: absolute;
     left: 0;
@@ -112,7 +124,8 @@ h2,
 }
 
 h3,
-.title {
+.title,
+.scan-heading {
     font-size: 2rem;
 }
 

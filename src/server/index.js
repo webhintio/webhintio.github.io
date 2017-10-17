@@ -1,12 +1,36 @@
+const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const express = require('express');
 const handlebars = require('handlebars');
 const yaml = require('js-yaml');
+const appInsights = require('applicationinsights');
 
 const hexoDir = path.join(__dirname, '..', 'hexo');
 const rootPath = path.join(__dirname, '..', '..');
+let appInsightsClient;
+
+if (process.env.APP_INSIGHTS_KEY) { // eslint-disable-line no-process-env
+    appInsights.setup(process.env.APP_INSIGHTS_KEY) // eslint-disable-line no-process-env
+        .setAutoDependencyCorrelation(true)
+        .setAutoCollectRequests(true)
+        .setAutoCollectPerformance(true)
+        .setAutoCollectExceptions(true)
+        .setAutoCollectDependencies(true)
+        .setAutoCollectConsole(true)
+        .setUseDiskRetryCaching(true)
+        .start();
+
+    appInsightsClient = appInsights.defaultClient;
+} else {
+    appInsightsClient = {
+        trackEvent() { },
+        trackException() { },
+        trackMetric() { },
+        trackNodeHttpRequest() { }
+    };
+}
 
 const createServer = () => {
     const themeDir = path.join(hexoDir, 'themes/documentation');
@@ -47,15 +71,16 @@ const commonConfiguration = (app) => {
     app.locals.menuData = menuData;
     app.locals.config = config;
     app.locals.isSection = true;
+
+    app.use(bodyParser.urlencoded({ extended: false }));
 };
 
 const configureRoutes = (app) => {
-    require('./routes/scanner.js')(app);
-    require('./routes/search.js')(app);
+    require('./routes/scanner.js')(app, appInsightsClient);
+    require('./routes/search.js')(app, appInsightsClient);
 };
 
 const configureFallbacks = (app) => {
-    // TODO: Disable this in production
     app.use('/', express.static(path.join(process.cwd(), 'dist')));
 };
 
