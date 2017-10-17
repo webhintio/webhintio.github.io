@@ -9,6 +9,7 @@ ssllabs:
     name: "ssllabs"
     url: "/images/logos/qualys-ssl-labs-logo.png"
     alt: "Qualys SSL Labs"
+  details: true
   link: "https://www.ssllabs.com/ssltest/analyze.html?d=%URL%"
 no-vulnerable-javascript-libraries:
   logo:
@@ -21,4 +22,5 @@ cloudinary:
     name: "cloudinary"
     url: "/images/logos/cloudinary_logo_for_white_bg.svg"
     alt: "Cloudinary"
+  details: true
   link: "https://webspeedtest.cloudinary.com"

@@ -33,19 +33,15 @@
         {{/each}}
         {{#if thirdParty}}
             <div class="rule-result--details__footer-msg">
-                {{#if thirdParty.link}}
+                {{#if thirdParty.details}}
                     <p>To learn more visit </p>
                 {{else}}
                      <p>With the help of </p>
                 {{/if}}
 
-                {{#if thirdParty.link}}
-                    <a href="{{thirdParty.link}}">
-                {{/if}}
+                <a href="{{thirdParty.link}}">
                     <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" />
-                {{#if thirdParty.link}}
-                    </a>
-                {{/if}}
+                </a>
             </div>
         {{/if}}
     </div>
