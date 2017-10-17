@@ -199,7 +199,7 @@
     var updateElement = function (issueElement, issues, issueText, categoryName, allRulesPass, allRulesChecked) {
         if (issues > 0) {
             issueElement.classList.add('rule-list--failed');
-            issueElement.innerHTML = '<a href="#' + categoryName + '">' + issues + ' ' + pluralize(issueText, issues) + '</a>';
+            issueElement.innerHTML = issues + ' ' + pluralize(issueText, issues);
             issueElement.closest('.rule-tile').classList.add('rule-tile--failed');
         } else {
             issueElement.innerHTML = issues + ' ' + pluralize(issueText, issues);
