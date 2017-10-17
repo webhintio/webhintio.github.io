@@ -48,6 +48,7 @@
   "scripts": {
     "build": "npm run hexo:clean && npm run update-content && node helpers/updater.js src/hexo/source && hexo generate",
     "hexo:clean": "hexo clean",
+    "hexo:generate": "hexo generate",
     "hexo:server": "hexo server",
     "lint": "npm-run-all lint:*",
     "lint:browser": "eslint -c .eslintrc --env browser 'src/hexo/themes/documentation/source/**/*.js'",

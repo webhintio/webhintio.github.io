@@ -29,6 +29,8 @@
     var queueBlock = document.querySelector('.scan-queue-bg-wrap');
     /** Scan result block */
     var resultBlock = document.querySelector('.scan-result-bg-wrap');
+    /** Id of the timer timeout. */
+    var timer;
 
     var xhr = function (options) {
         var http = new XMLHttpRequest();
@@ -381,14 +383,39 @@
         resultBlock.style.display = 'block';
     };
 
+    var pad = function (timeString) {
+        return timeString && timeString.length === 1 ? '0' + timeString : timeString;
+    };
+
+    var updateTime = function () {
+        try {
+            var element = document.querySelector('.scan-overview--time .scan-overview__body--purple');
+            var current = element.innerHTML;
+            var parts = current.split(':');
+            var minutes = parseInt(parts[0], 10);
+            var seconds = parseInt(parts[1], 10);
+
+            seconds++;
+
+            if (seconds >= 60) {
+                minutes++;
+                seconds = 0;
+            }
+
+            element.innerHTML = pad(minutes.toString()) + ':' + pad(seconds.toString());
+        } catch (e) {
+            // Do nothing
+        }
+    };
+
     var queryAndUpdate = function () {
         var callback = function (err, response) {
             var isFinish = response.status === jobStatus.finished;
             var isError = response.status === jobStatus.error;
             var isPending = response.status === jobStatus.pending;
-            var isStarted = response.status === jobStatus.started;
 
             if (err) {
+                clearInterval(timer);
                 console.error(err);
 
                 return;
@@ -403,20 +430,20 @@
                     updateScanFailUI(response);
                 }
 
-                if (isFinish || isStarted) {
-                    var updates = filterNewUpdates(response.categories);
+                var updates = filterNewUpdates(response.categories);
 
-                    // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
-                    updateScanResultUI({
-                        time: response.time,
-                        updates: updates,
-                        version: response.version
-                    });
+                // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
+                updateScanResultUI({
+                    time: response.time,
+                    updates: updates,
+                    version: response.version
+                });
 
-                    generateRecord(response.categories);
-                }
+                generateRecord(response.categories);
 
                 if (isFinish || isError) {
+                    clearInterval(timer);
+
                     return;
                 }
             }
@@ -431,6 +458,10 @@
             url: url
         };
 
+        if (!timer) {
+            timer = setInterval(updateTime, 1000);
+        }
+
         xhr(options);
     };
 
@@ -443,7 +474,7 @@
     };
 
     var queuePageVisible = function () {
-        return document.querySelector('.scan-queue-bg-wrap').styles.display !== 'none';
+        return document.querySelector('.scan-queue-bg-wrap').style.display !== 'none';
     };
 
     window.history.pushState(null, null, id);
@@ -452,7 +483,7 @@
     registerHandlebarsPartials();
     registerHandlebarsHelpers();
 
-    if (queuePageVisible) {
+    if (queuePageVisible()) {
         setTimeout(queryAndUpdate, 10000);
     } else {
         queryAndUpdate();

@@ -243,18 +243,16 @@ const configure = (app, appInsightsClient) => {
         const renderOptions = {
             categories,
             id: scanResult.id,
+            isFinish: scanResult.status === jobStatus.error || scanResult.status === jobStatus.finished,
             layout,
             overallStatistics,
             permalink: `${sonarUrl}scanner/${scanResult.id}`,
+            showQueue: false,
             status: scanResult.status,
-            time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
+            time: calculateTimeDifference(scanResult.started, (scanResult.status === jobStatus.finished || scanResult.status === jobStatus.error) ? scanResult.finished : void 0),
             url: scanResult.url,
             version: scanResult.sonarVersion
         };
-
-        if (scanResult.status === jobStatus.error || scanResult.status === jobStatus.finished) {
-            renderOptions.isFinish = true;
-        }
 
         res.render('scan-result', renderOptions);
     });
