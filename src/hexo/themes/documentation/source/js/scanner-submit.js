@@ -421,7 +421,7 @@
                 }
             }
 
-            setTimeout(queryAndUpdate, 1000);
+            setTimeout(queryAndUpdate, 5000);
         };
 
         var url = 'api/' + id;

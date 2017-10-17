@@ -81,7 +81,6 @@ const configureRoutes = (app) => {
 };
 
 const configureFallbacks = (app) => {
-    // TODO: Disable this in production
     app.use('/', express.static(path.join(process.cwd(), 'dist')));
 };
 
