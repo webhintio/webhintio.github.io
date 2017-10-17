@@ -73,7 +73,7 @@
     };
 
     var onPopState = function () {
-        if (window.location.href.indexOf('#') !== -1 || endsWith('/scanner/', window.location.href)) {
+        if (endsWith('/scanner/', window.location.href)) {
             window.location.href = window.location.href;
         }
     };
