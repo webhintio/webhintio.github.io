@@ -65,7 +65,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: ../src/hexo/themes/documentation
+theme: ../src/hexo/themes/sonarwhal
 
 # Config markdown rendering
 marked:
