@@ -33,7 +33,7 @@ if (process.env.APP_INSIGHTS_KEY) { // eslint-disable-line no-process-env
 }
 
 const createServer = () => {
-    const themeDir = path.join(hexoDir, 'themes/documentation');
+    const themeDir = path.join(hexoDir, 'themes/sonarwhal');
     const layoutsDir = path.join(themeDir, 'layout');
     const partialsDir = path.join(layoutsDir, 'partials');
     const themeHelpers = require(path.join(themeDir, 'helper/index.js'))();

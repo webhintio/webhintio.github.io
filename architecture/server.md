@@ -5,7 +5,7 @@
 The website users [`Hexo`][hexo] to generate the static content and a
 `Node.js` backend to handle the dynamic parts. The template system is
 [`Handlebars`][handlebars] so sharing code between static and dynamic
-is easier. The template is under `/src/hexo/themes/documentation/layout/`.
+is easier. The template is under `/src/hexo/themes/sonarwhal/layout/`.
 
 If you are running the `node` backend locally (`/src/server/index.js`)
 all the requests will be handled by it, even the static ones. This is
