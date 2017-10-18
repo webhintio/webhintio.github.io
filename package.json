@@ -27,6 +27,7 @@
     "moment": "^2.18.1",
     "normalize-path": "^2.1.1",
     "pify": "^3.0.0",
+    "remove-markdown": "^0.2.2",
     "request-promise": "^4.2.1",
     "xss-filters": "^1.2.7"
   },

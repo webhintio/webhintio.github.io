@@ -1,12 +1,13 @@
 const _ = require('lodash');
 const pify = require('pify');
 const fs = pify(require('fs'));
+const json2yaml = require('json2yaml');
 const klaw = require('klaw');
 const path = require('path');
-const normalize = require('normalize-path');
-const md2json = require('md-2-json');
-const json2yaml = require('json2yaml');
 const marked = require('marked');
+const md2json = require('md-2-json');
+const normalize = require('normalize-path');
+const stripMarkdown = require('remove-markdown');
 const yamlLoader = require('js-yaml');
 
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
@@ -14,8 +15,6 @@ const configDir = path.resolve(directory, '..', '..', '..', '_config.yml');
 const filePaths = [];
 const ignoredFiles = ['404.md', 'about.md', 'contributors.md'];
 const config = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
-
-const permaLinks = new Map(); // a collection of permalinks
 const divider = '---';
 
 console.log('Updater is initiated.');
@@ -30,10 +29,26 @@ const isIgnoredFile = (filePath) => {
 };
 const insertFrontMatterItemIfExist = (itemName, itemValue, frontmatter) => {
     if (itemValue) {
-        const tocTitleFrontMatter = `${itemName}: ${itemValue}`;
+        const tocTitleFrontMatter = `${itemName}: "${itemValue}"`;
 
         frontmatter.unshift(tocTitleFrontMatter);
     }
+};
+
+const getDescription = (content) => {
+    const descriptionRegex = /## Why is this important\?([\s\S]*?)##/;
+    // Extract the content between `## Why is this important?` and the next h2 title.
+    const descriptionMatch = content.match(descriptionRegex);
+
+    if (!descriptionMatch || !descriptionMatch[1]) {
+        return '';
+    }
+
+    const processedDescription = descriptionMatch[1].replace(/\r?\n/g, '').replace(/(["])/g, '\\$1');
+    // Line breaks need to be removed first so that `stripMarkdown` works properly.
+    // Double quotes need to be escaped so that `hexo` works properly.
+
+    return stripMarkdown(processedDescription);
 };
 
 const getLayout = (filePath) => {
@@ -46,7 +61,8 @@ const getLayout = (filePath) => {
     return current;
 };
 
-const generateFrontMatterInfo = (filePath, title) => {
+const generateFrontMatterInfo = (filePath, title, description, currentFrontMatter) => {
+    const currentFrontMatterArray = currentFrontMatter ? currentFrontMatter.split(/\r?\n/g) : [];
     let relativePath = path.relative(directory, filePath);
     let root = '';
     let index;
@@ -68,16 +84,15 @@ const generateFrontMatterInfo = (filePath, title) => {
     const [category, tocTitle] = path.dirname(relativePath).split(path.sep);
     const permaLink = normalize(path.join(root, path.dirname(relativePath), `${baseName}.html`)).toLowerCase();
 
-    const categoryFrontMatter = `category: ${_.trim(category, '.') ? category : 'doc-index'}`;
-    const permalinkFrontMatter = `permalink: ${permaLink}`;
+    const categoryFrontMatter = `category: "${_.trim(category, '.') ? category : 'doc-index'}"`;
+    const permalinkFrontMatter = `permalink: "${permaLink}"`;
     const template = getLayout(filePath);
-    const frontMatter = [categoryFrontMatter, permalinkFrontMatter, divider];
-
-    permaLinks.set(baseName, permaLink); // populate permaLinks
+    let frontMatter = [categoryFrontMatter, permalinkFrontMatter, divider];
 
     insertFrontMatterItemIfExist('layout', template, frontMatter);
     insertFrontMatterItemIfExist('tocTitle', tocTitle, frontMatter);
     insertFrontMatterItemIfExist('title', title, frontMatter);
+    insertFrontMatterItemIfExist('description', description, frontMatter);
 
     if (index) {
         const indexFrontMatter = `index: ${index}`;
@@ -85,6 +100,8 @@ const generateFrontMatterInfo = (filePath, title) => {
         frontMatter.unshift(indexFrontMatter);
     }
 
+    // Merge new frontMatter with current existing frontMatter.
+    frontMatter = _.union(currentFrontMatterArray, frontMatter);
     frontMatter.unshift(divider);
 
     return frontMatter.join('\n');
@@ -92,21 +109,18 @@ const generateFrontMatterInfo = (filePath, title) => {
 
 const addFrontMatter = async (filePath) => {
     let content;
-    let currentFromMatter;
+    let currentFrontMatter;
     let title;
+    let description;
     const data = await fs.readFile(filePath, 'utf8');
     // Match divider between line breaks.
-    const frontMatterRegex = new RegExp(`[\r\n|\n]\s*${divider}[\r\n|\n]|^\s*${divider}[\r\n|\n]`, 'gi'); // eslint-disable-line no-useless-escape
+    const frontMatterRegex = new RegExp(`\r?\n\s*---\r?\n|^\s*---\r?\n`, 'gi'); // eslint-disable-line no-useless-escape
 
     if (frontMatterRegex.test(data)) {
         // front matter already exists in this file, will update it
-        [, currentFromMatter, content] = data.split(frontMatterRegex); // ['', '<front matter>', '<Actual content in the markdown file>']
+        [, currentFrontMatter, content] = data.split(frontMatterRegex); // ['', '<front matter>', '<Actual content in the markdown file>']
     } else {
         content = data;
-    }
-
-    if (currentFromMatter) {
-        return;
     }
 
     content = content || ''; // Replace `undefined` with empty string.
@@ -119,8 +133,11 @@ const addFrontMatter = async (filePath) => {
         title = _.trim(titleMatch[1].replace(/\(.*\)/, ''));
     }
 
-    const frontMatter = generateFrontMatterInfo(filePath, title);
+    if (path.dirname(filePath).endsWith('rules')) {
+        description = getDescription(content);
+    }
 
+    const frontMatter = generateFrontMatterInfo(filePath, title, description, currentFrontMatter);
     const newData = `${frontMatter}\n${content}`;
 
     await fs.writeFile(filePath, newData);
@@ -130,7 +147,7 @@ const addFrontMatter = async (filePath) => {
         return;
     }
 
-    const parsedChangelog = md2json.parse(data);
+    const parsedChangelog = md2json.parse(content);
 
     _.forEach(parsedChangelog, (details) => {
         // Iterate each date.

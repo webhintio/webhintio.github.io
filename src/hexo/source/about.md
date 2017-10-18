@@ -1,7 +1,7 @@
 ---
-title: About
-category: about-index
-permalink: about/index.html
+title: "About"
+category: "about-index"
+permalink: "about/index.html"
 ---
 * [Changelog](CHANGELOG.md)
 * [Code of Conduct](https://js.foundation/community/code-of-conduct)

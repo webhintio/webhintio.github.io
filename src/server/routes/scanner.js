@@ -187,10 +187,7 @@ const configure = (app, appInsightsClient) => {
         if (req.method === 'GET') {
             appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
         }
-        res.render('scan-form', {
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-            title: 'Analyze your website using sonar online'
-        });
+        res.render('scan-form', { page: { description: 'scan form' } });
     });
 
     app.get('/scanner/api/:id', async (req, res) => {
@@ -246,10 +243,12 @@ const configure = (app, appInsightsClient) => {
             isFinish: scanResult.status === jobStatus.error || scanResult.status === jobStatus.finished,
             layout,
             overallStatistics,
+            page: { description: `scan result of ${scanResult.url}.` },
             permalink: `${sonarUrl}scanner/${scanResult.id}`,
             showQueue: false,
             status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, (scanResult.status === jobStatus.finished || scanResult.status === jobStatus.error) ? scanResult.finished : void 0),
+            title: 'scan result',
             url: scanResult.url,
             version: scanResult.sonarVersion
         };
@@ -301,9 +300,11 @@ const configure = (app, appInsightsClient) => {
             id: requestResult.id,
             layout,
             overallStatistics,
+            page: { description: `scan result of ${req.body.url}` },
             permalink: `${sonarUrl}scanner/${id}`,
             showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
             status,
+            title: 'scan result',
             url: req.body.url
         });
     });
