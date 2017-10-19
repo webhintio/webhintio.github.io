@@ -17,7 +17,7 @@ no-vulnerable-javascript-libraries:
     url: "/images/logos/snyk.svg"
     alt: "snyk"
   link: "https://snyk.io/vuln/"
-cloudinary:
+image-optimization-cloudinary:
   logo:
     name: "cloudinary"
     url: "/images/logos/cloudinary_logo_for_white_bg.svg"
