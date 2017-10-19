@@ -408,6 +408,13 @@
         }
     };
 
+    var updateStatus = function (status) {
+        var statusElement = document.querySelector('.scan-overview__status');
+
+        statusElement.textContent = status;
+        statusElement.removeAttribute('id');
+    };
+
     var queryAndUpdate = function () {
         var callback = function (err, response) {
             var isFinish = response.status === jobStatus.finished;
@@ -443,6 +450,7 @@
 
                 if (isFinish || isError) {
                     clearInterval(timer);
+                    updateStatus(response.status);
 
                     return;
                 }
