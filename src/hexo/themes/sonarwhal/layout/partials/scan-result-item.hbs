@@ -23,9 +23,9 @@
             </p>
             <div class="rule-result__code">
                 <p>
-                    {{cutUrlString resource}}
-                    {{#if location.line}}:{{location.line}}{{/if}}
-                    {{#if location.column}}:{{location.column}}{{/if}}
+                    <a target="_blank" href="{{resource}}">
+                        {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}}
+                    </a>
                 </p>
                 <code>{{cutCodeString sourceCode}}</code>
             </div>
