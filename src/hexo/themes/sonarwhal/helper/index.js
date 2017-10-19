@@ -1,12 +1,41 @@
 const pagination = require('./pagination');
 const url = require('url');
 
-const cutString = (string, lengthToShow) => {
-    if (!string || string.length < lengthToShow) {
+const reverseString = (str) => {
+    return str.split('').reverse()
+        .join('');
+};
+
+const cutString = (string, maxLength) => {
+    const minLength = 0.8 * maxLength;
+    const preferredStopChars = /[^a-zA-Z0-9]/g;
+    let chunk;
+
+    for (let i = minLength; i < maxLength; i++) {
+        // Start looking for preferred stop characters.
+        if (preferredStopChars.test(string[i])) {
+            chunk = string.slice(0, i);
+
+            break;
+        }
+    }
+
+    chunk = chunk || string.slice(0, maxLength);
+
+    return chunk;
+};
+
+// Solution inspired by https://stackoverflow.com/a/10903003
+const shortenString = (string, maxLength) => {
+    if (!string || string.length < maxLength * 2) {
         return string;
     }
 
-    return `${string.slice(0, lengthToShow)} … ${string.slice(string.length - lengthToShow)}`;
+    const headChunk = cutString(string, maxLength);
+    const reverseTailChunk = cutString(reverseString(string), maxLength);
+    const tailChunk = reverseString(reverseTailChunk);
+
+    return `${headChunk} … ${tailChunk}`;
 };
 
 const jobStatus = {
@@ -183,10 +212,10 @@ module.exports = function () {
             return options.inverse(this);
         },
         cutCodeString: (codeString) => {
-            return cutString(codeString, 150);
+            return shortenString(codeString, 150);
         },
         cutUrlString: (urlString) => {
-            return cutString(urlString, 20);
+            return shortenString(urlString, 25);
         },
         filterErrorsAndWarnings: (results) => {
             if (!results) {
@@ -265,6 +294,13 @@ module.exports = function () {
 
             return className.toLowerCase().trim()
                 .replace(/[^a-z0-9]/gi, '-');
+        },
+        normalizePosition: (position) => {
+            if (!position || parseInt(position) === -1) {
+                return '';
+            }
+
+            return `:${position}`;
         },
         or: (l, r) => {
             return l || r;
