@@ -26,14 +26,8 @@
     text-transform: capitalize;
 }
 
-#status-analyzing {
+.scan-overview__status.analyzing {
     animation: fade 3s linear infinite;
-}
-
-@-webkit-keyframes fade {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
 }
 
 @keyframes fade {

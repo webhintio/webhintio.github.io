@@ -17,7 +17,13 @@
                 <div class="scan-overview" data-id="{{id}}">
                     <div class="scan-overview__header">
                         <p>SCANNED URL: <a href="{{url}}">{{url}}</a></p>
-                        <p class="scan-overview__status" id="status-analyzing">Analyzing</p>
+                        <p class="scan-overview__status {{#unless (isFinish status)}}analyzing{{/unless}}">
+                            {{#unless (isFinish status)}}
+                                Analyzing
+                            {{else}}
+                                {{status}}
+                            {{/unless}}
+                        </p>
                     </div>
                     <div class="scan-overview--details">
                         <div class="scan-overview--warnings">

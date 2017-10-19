@@ -412,7 +412,7 @@
         var statusElement = document.querySelector('.scan-overview__status');
 
         statusElement.textContent = status;
-        statusElement.removeAttribute('id');
+        statusElement.classList.remove('analyzing');
     };
 
     var queryAndUpdate = function () {
