@@ -47,6 +47,7 @@ legend,
 .category,
 .rule-list,
 .rule-title,
+.rule-tile__category,
 [class*="-badge"],
 .scan-overview {
     font-family: "Montserrat", sans-serif;

@@ -15,7 +15,16 @@
             </header>
             <div class="section container">
                 <div class="scan-overview" data-id="{{id}}">
-                    <div class="scan-overview__header">SCANNED URL: <a href="{{url}}">{{url}}</a></div>
+                    <div class="scan-overview__header">
+                        <p>SCANNED URL: <a href="{{url}}">{{url}}</a></p>
+                        <p class="scan-overview__status {{#unless (isFinish status)}}analyzing{{/unless}}">
+                            {{#unless (isFinish status)}}
+                                Analyzing
+                            {{else}}
+                                {{status}}
+                            {{/unless}}
+                        </p>
+                    </div>
                     <div class="scan-overview--details">
                         <div class="scan-overview--warnings">
                             <p class="scan-overview__subheader">warnings</p>
@@ -114,6 +123,10 @@
                             {{/each}}
                         </div>
                     </div>
+                </section>
+                <section class="section container">
+                    <p class="subtitle">Have an issue or problem with the scanner?</p>
+                    <p>File an issue on <a target="_blank" href="https://github.com/sonarwhal/sonar/issues/new">GitHub</a> and let us know or try and <a href="https://sonarwhal.com/scanner/">perform another scan</a>.</p>
                 </section>
             </div>
         </article>

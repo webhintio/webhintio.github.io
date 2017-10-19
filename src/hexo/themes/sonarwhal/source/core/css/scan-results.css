@@ -1,8 +1,8 @@
 /*
- * SCAN RESULTS
- * =============================================
- * @Dependencies: base.css, structure.css, type.css
- */
+* SCAN RESULTS
+* =============================================
+* @Dependencies: base.css, structure.css, type.css
+*/
 
 /* SCAN OVERVIEW */
 
@@ -14,6 +14,26 @@
 .scan-overview__header {
     background-color: #e6e6e6;
     padding: 1rem 2rem;
+}
+
+.scan-overview__header p:first-child {
+    margin-right: 5rem;
+    margin-bottom: 1rem;
+}
+
+.scan-overview__status {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.scan-overview__status.analyzing {
+    animation: fade 3s linear infinite;
+}
+
+@keyframes fade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .scan-overview__header a {
@@ -43,6 +63,8 @@
     margin-top: .2rem;
     letter-spacing: .03rem;
     text-transform: uppercase;
+    min-width: 15rem;
+    margin-right: 1rem;
 }
 
 .scan-overview__body--red {
@@ -54,12 +76,15 @@
 }
 
 .scan-overview__body__permalink {
+    display: inline;
+    font-size: 1.5rem;
     font-weight: 300;
     color: #4046dd;
     margin-top: .8rem;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
+
 
 .permalink-copy {
     background-color: transparent;
@@ -75,6 +100,17 @@
 
 @media (min-width: 33.75em) {
 
+    .scan-overview__header {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .scan-overview__header p:first-child {
+        margin-bottom: 0;
+    }
+
+
     .scan-overview--details {
         display: flex;
         flex-wrap: wrap;
@@ -83,6 +119,14 @@
 
     .scan-overview__subheader {
         margin-top: 0;
+    }
+
+}
+
+@media (min-width: 58em) {
+
+    [class*="scan-overview__body--"] {
+        font-size: 3.6rem;
     }
 
 }
@@ -174,12 +218,16 @@
     display: none;
 }
 
-.rule-result--details__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2.4rem;
-    flex-wrap: wrap;
+@media (min-width: 33.75em) {
+
+    .rule-result--details__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2.4rem;
+        flex-wrap: wrap;
+    }
+
 }
 
 .rule-title {
@@ -345,13 +393,13 @@ button.button--details {
 /* RESULTS LOADER ANIMATION */
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .rule-result__message--passed {
@@ -499,9 +547,7 @@ button.button--details {
     color: #000;
 }
 
-
 /* SCAN ERROR */
-
 .scanner-cta {
   position: relative;
 }
