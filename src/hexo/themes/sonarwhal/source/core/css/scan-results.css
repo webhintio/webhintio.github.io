@@ -16,6 +16,31 @@
     padding: 1rem 2rem;
 }
 
+.scan-overview__header p:first-child {
+    margin-right: 5rem;
+    margin-bottom: 1rem;
+}
+
+.scan-overview__status {
+    margin: 0;
+}
+
+#status-analyzing {
+    animation: fade 3s linear infinite;
+}
+
+@-webkit-keyframes fade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes fade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 .scan-overview__header a {
     letter-spacing: .05rem;
 }
@@ -26,7 +51,7 @@
 }
 
 .scan-overview__subheader {
-   font-size: 1.3rem;
+    font-size: 1.3rem;
     font-weight: 500;
     margin-top: 1.4rem;
     letter-spacing: .03rem;
@@ -43,6 +68,8 @@
     margin-top: .2rem;
     letter-spacing: .03rem;
     text-transform: uppercase;
+    min-width: 15rem;
+    margin-right: 1rem;
 }
 
 .scan-overview__body--red {
@@ -55,6 +82,7 @@
 
 .scan-overview__body__permalink {
     display: inline;
+    font-size: 1.5rem;
     font-weight: 300;
     color: #4046dd;
     margin-top: .8rem;
@@ -77,6 +105,17 @@
 
 @media (min-width: 33.75em) {
 
+    .scan-overview__header {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .scan-overview__header p:first-child {
+        margin-bottom: 0;
+    }
+
+
     .scan-overview--details {
         display: flex;
         flex-wrap: wrap;
@@ -85,6 +124,14 @@
 
     .scan-overview__subheader {
         margin-top: 0;
+    }
+
+}
+
+@media (min-width: 58em) {
+
+    [class*="scan-overview__body--"] {
+        font-size: 3.6rem;
     }
 
 }
@@ -351,13 +398,13 @@ button.button--details {
 /* RESULTS LOADER ANIMATION */
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
- 100% { -webkit-transform: rotate(360deg); }
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .rule-result__message--passed {
