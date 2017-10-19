@@ -79,13 +79,14 @@ const trimAndUnquote = (string) => {
 };
 
 /** Convert frontmatter string to object. */
-const toObeject = (frontMatter) => {
-    let match;
+const toObject = (frontMatter) => {
     const frontmatterObject = {};
     const frontMatterItemRegex = /(.*):\s*"?(.*)"?/g; // `property: "value"` or `property: value`.
+    let match = frontMatterItemRegex.exec(frontMatter);
 
-    while ((match = frontMatterItemRegex.exec(frontMatter)) !== null) {
+    while (match !== null) {
         frontmatterObject[match[1]] = trimAndUnquote(match[2]);
+        match = frontMatterItemRegex.exec(frontMatter);
     }
 
     return frontmatterObject;
@@ -107,7 +108,7 @@ const toString = (frontMatterObj) => {
 };
 
 const generateFrontMatterInfo = (filePath, title, description, currentFrontMatter) => {
-    const existingFrontMatter = toObeject(currentFrontMatter);
+    const existingFrontMatter = toObject(currentFrontMatter);
     let relativePath = path.relative(directory, filePath);
     let root = '';
     let baseName;
@@ -168,13 +169,14 @@ const updateChangelog = async (content) => {
             const raw = update.raw.split(new RegExp('-\\n-|([^.])\\n-')).join('');
             const commitRegex = /- \[\[`[a-z0-9]+`\]\(https:\/\/github.com\/sonarwhal\/sonar\/commit\/([a-z0-9]+)\)] - (.*)(?:\r?\n)*/g;
             const associateCommitRegex = / \(see also: \[`#[0-9]+`\]\(https:\/\/github.com\/sonarwhal\/sonar\/issues\/([0-9]+)\)\)/g;
-            let matchArray;
 
             update.html = marked(raw);
             update.details = {}; // Changlog item details including `associatedCommitId` and `message`.
 
             // Extract changelog item details.
-            while ((matchArray = commitRegex.exec(raw)) !== null) {
+            let matchArray = commitRegex.exec(raw);
+
+            while (matchArray !== null) {
                 const message = matchArray.pop();
                 const id = matchArray.pop();
                 const associateCommit = associateCommitRegex.exec(message);
@@ -183,6 +185,8 @@ const updateChangelog = async (content) => {
                     associateCommitId: associateCommit ? associateCommit.pop() : null,
                     message: message.replace(associateCommitRegex, '')
                 };
+
+                matchArray = commitRegex.exec(raw);
             }
         });
     });
