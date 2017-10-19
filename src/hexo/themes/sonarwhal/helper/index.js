@@ -318,6 +318,11 @@ module.exports = function () {
         pluralize: (text, count) => {
             return `${text}${count === 1 ? '' : 's'}`;
         },
+        setDefault: (...values) => {
+            return values.reduce((accumulator, value) => {
+                return accumulator || value;
+            });
+        },
         // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {
             const pages = allPages.reduce((acc, page) => {

@@ -188,8 +188,11 @@ const configure = (app, appInsightsClient) => {
             appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
         }
         res.render('scan-form', {
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-            title: 'Analyze your website using sonar online'
+            layout,
+            page: {
+                description: `Analyze any public website using sonar's online tool`,
+                title: `sonar's online scanner`
+            }
         });
     });
 
@@ -246,6 +249,10 @@ const configure = (app, appInsightsClient) => {
             isFinish: scanResult.status === jobStatus.error || scanResult.status === jobStatus.finished,
             layout,
             overallStatistics,
+            page: {
+                description: `sonar has identified ${overallStatistics.errors} errors and ${overallStatistics.warnings} warnings in ${scanResult.url}`,
+                title: `sonar report for ${scanResult.url}`
+            },
             permalink: `${sonarUrl}scanner/${scanResult.id}`,
             showQueue: false,
             status: scanResult.status,
@@ -301,6 +308,10 @@ const configure = (app, appInsightsClient) => {
             id: requestResult.id,
             layout,
             overallStatistics,
+            page: {
+                description: `scan result of ${req.body.url}`,
+                title: 'scan result'
+            },
             permalink: `${sonarUrl}scanner/${id}`,
             showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
             status,

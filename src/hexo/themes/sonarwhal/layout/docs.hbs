@@ -8,15 +8,14 @@
     {{else}}
     <title>{{page.title}} | sonar documentation</title>
     {{/compare}}
-
     {{>metas}}
 
     {{> styles}}
-    <link rel="stylesheet" href="{{url_for "/core/css/code.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css "}}">
-    <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/documentation.css "}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/code.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css"}}">
+    <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/documentation.css"}}">
 </head>
 
 <body>
@@ -40,7 +39,7 @@
 
     {{>footer navs=site.data.menu}}
 
-    <script async src="{{url_for "/components/treeview/treeview.js "}}"></script>
+    <script async src="{{url_for "/components/treeview/treeview.js"}}"></script>
     {{>scripts}}
 </body>
 </html>

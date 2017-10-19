@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{title}}</title>
+    <title>{{page.title}}</title>
     {{>metas}}
 
     {{>styles}}
-    <link rel="stylesheet" href="{{url_for "/core/css/scanner.css "}}">
-    <link rel="stylesheet" href="{{url_for "/core/css/scan-results.css "}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/scanner.css"}}">
+    <link rel="stylesheet" href="{{url_for "/core/css/scan-results.css"}}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet">
 </head>
 
@@ -21,9 +21,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
-    <script src="{{url_for "/js/scanner-common.js "}}"></script>
+    <script src="{{url_for "/js/scanner-common.js"}}"></script>
     {{#unless isFinish}}
-        <script src="{{url_for "/js/scanner-submit.js "}}"></script>
+    <script src="{{url_for "/js/scanner-submit.js"}}"></script>
     {{/unless}}
 </body>
 </html>
