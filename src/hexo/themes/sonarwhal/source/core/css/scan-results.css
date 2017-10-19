@@ -1,8 +1,8 @@
 /*
- * SCAN RESULTS
- * =============================================
- * @Dependencies: base.css, structure.css, type.css
- */
+* SCAN RESULTS
+* =============================================
+* @Dependencies: base.css, structure.css, type.css
+*/
 
 /* SCAN OVERVIEW */
 
@@ -26,7 +26,7 @@
 }
 
 .scan-overview__subheader {
-    font-size: 1.3rem;
+   font-size: 1.3rem;
     font-weight: 500;
     margin-top: 1.4rem;
     letter-spacing: .03rem;
@@ -54,12 +54,14 @@
 }
 
 .scan-overview__body__permalink {
+    display: inline;
     font-weight: 300;
     color: #4046dd;
     margin-top: .8rem;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
+
 
 .permalink-copy {
     background-color: transparent;
@@ -174,12 +176,16 @@
     display: none;
 }
 
-.rule-result--details__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2.4rem;
-    flex-wrap: wrap;
+@media (min-width: 33.75em) {
+
+    .rule-result--details__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2.4rem;
+        flex-wrap: wrap;
+    }
+
 }
 
 .rule-title {
@@ -346,7 +352,7 @@ button.button--details {
 
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+ 100% { -webkit-transform: rotate(360deg); }
 }
 
 @keyframes spin {
@@ -499,9 +505,7 @@ button.button--details {
     color: #000;
 }
 
-
 /* SCAN ERROR */
-
 .scanner-cta {
   position: relative;
 }
