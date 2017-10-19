@@ -187,7 +187,13 @@ const configure = (app, appInsightsClient) => {
         if (req.method === 'GET') {
             appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
         }
-        res.render('scan-form', { page: { description: 'scan form' } });
+        res.render('scan-form', {
+            layout,
+            page: {
+                description: `Analyze any public website using sonar's online tool`,
+                title: `sonar's online scanner`
+            }
+        });
     });
 
     app.get('/scanner/api/:id', async (req, res) => {
@@ -243,12 +249,14 @@ const configure = (app, appInsightsClient) => {
             isFinish: scanResult.status === jobStatus.error || scanResult.status === jobStatus.finished,
             layout,
             overallStatistics,
-            page: { description: `scan result of ${scanResult.url}.` },
+            page: {
+                description: `sonar has identified ${overallStatistics.errors} errors and ${overallStatistics.warnings} warnings in ${scanResult.url}`,
+                title: `sonar report for ${scanResult.url}`
+            },
             permalink: `${sonarUrl}scanner/${scanResult.id}`,
             showQueue: false,
             status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, (scanResult.status === jobStatus.finished || scanResult.status === jobStatus.error) ? scanResult.finished : void 0),
-            title: 'scan result',
             url: scanResult.url,
             version: scanResult.sonarVersion
         };
@@ -300,11 +308,13 @@ const configure = (app, appInsightsClient) => {
             id: requestResult.id,
             layout,
             overallStatistics,
-            page: { description: `scan result of ${req.body.url}` },
+            page: {
+                description: `scan result of ${req.body.url}`,
+                title: 'scan result'
+            },
             permalink: `${sonarUrl}scanner/${id}`,
             showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
             status,
-            title: 'scan result',
             url: req.body.url
         });
     });

@@ -130,3 +130,22 @@ offline:
       handler: cacheFirst
       options:
         origin: avatars.githubusercontent.com
+
+# predefined descriptions for front matter:
+descriptions:
+  changelog: Check all the changes in the different sonar versions
+  "docs/index.md": Learn how to use sonar, what things it checks, and how you can create your own rules
+  faq: Got a question? We might have an answer for you!
+  governance: Learn more about how sonar is organized internally
+  "user-guide/index.md": Anything you need to know about using sonar and configure it
+  "user-guide/connectors": List of core connectors and the different configurations they have.
+  "user-guide/formatters": List of core formatters and how they look like
+  "user-guide/rules": List of core rules shorted by category
+  "developer-guide/connectors/index.md": All the things to take into account if you are going to develop a new connector
+  "developer-guide/connectors/events.md": List of events that any core connector should support
+  "developer-guide/contributing": If you want to contribute to sonar, read this first
+  "developer-guide/formatters": All the things to take into account if you are going to develop a new formatter
+  "developer-guide/rules": All the things to take into account if you are going to develop a new rule
+  "developer-guide/development-environment": What you need to do to start developing for sonar
+  "developer-guide/index.md": Learn about the different pieces that build sonar and what each one of them does
+

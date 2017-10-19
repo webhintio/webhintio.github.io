@@ -13,7 +13,7 @@ const yamlLoader = require('js-yaml');
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
 const configDir = path.resolve(directory, '..', '..', '..', '_config.yml');
 const filePaths = [];
-const ignoredFiles = ['404.md', 'about.md', 'contributors.md'];
+const ignoredFiles = ['404.md', 'about.md', 'contributors.md', 'docs/index.md'];
 const config = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
 const divider = '---';
 
@@ -23,11 +23,30 @@ console.log('Updater is initiated.');
 marked.setOptions(config.marked);
 
 const isIgnoredFile = (filePath) => {
-    const file = path.basename(filePath);
+    return _.includes(ignoredFiles, (ignoredFile) => {
+        const file = ignoredFile.includes('/') ? filePath : path.basename(filePath);
 
-    return _.includes(ignoredFiles, file);
+        return file.includes(path.join(ignoredFile, ''));
+    });
 };
 
+/** Applies the predefined description specified in the _config.yml if the path matches. */
+const getPredefinedDescription = (filePath) => {
+    const descriptions = Object.entries(config.descriptions);
+
+    const description = descriptions.find(([name]) => {
+        // There are entries with paths, we need to normalize to the current platform and this is the shortest way
+        return filePath.toLowerCase().includes(path.join(name, ''));
+    });
+
+    if (description) {
+        return description[1];
+    }
+
+    return '';
+};
+
+/** Gets the description of a rule by extracting the first section before "Why is this important" */
 const getDescription = (content) => {
     const descriptionRegex = /#\s.*\(.*\)([\s\S]*?)## Why is this important?/;
     // Extract the content between h1 title and  `## Why is this important?`.
@@ -44,6 +63,7 @@ const getDescription = (content) => {
     return stripMarkdown(processedDescription);
 };
 
+/** Changes the layout of a page if it needs a custom one.  */
 const getLayout = (filePath) => {
     const validLayouts = ['changelog', 'docs', '404', 'about'];
 
@@ -188,7 +208,7 @@ const addFrontMatter = async (filePath) => {
 
     content = content || ''; // Replace `undefined` with empty string.
     const title = getTitle(content);
-    const description = getDescription(content);
+    const description = getPredefinedDescription(filePath) || getDescription(content);
 
     const frontMatter = generateFrontMatterInfo(filePath, title, description, currentFrontMatter);
     const newData = `${frontMatter}\n${content}`;

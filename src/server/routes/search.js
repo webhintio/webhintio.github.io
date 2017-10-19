@@ -6,7 +6,7 @@ const configure = (app) => {
     const config = app.locals.theme;
     const client = algoliasearch(config.appId, config.apiKey);
     const index = client.initIndex('sonarwhal');
-    const hitsPerPage = 5;
+    const hitsPerPage = 20;
 
     const isEqual = (l, r) => {
         // hits that have the same category, title and subtitles are considered the same.
@@ -23,17 +23,23 @@ const configure = (app) => {
         if (hits.length === 0 && query) {
             return {
                 hits,
-                query,
-                title: `No results found for ${query}`
+                page: {
+                    description: `Sorry, we couldn't find any results for ${query}`,
+                    title: `No results found for ${query}`
+                },
+                query
             };
         }
 
         return {
             currentPage,
             hits,
+            page: {
+                description: query ? `About ${totalPages * hitsPerPage} results found for ${query}` : `Search through sonar's rules, user and developer guides`,
+                title: query ? `Results for ${query} (page ${currentPage} of ${totalPages})` : `Search sonar's documentation`
+            },
             pattern,
             query,
-            title: query ? `Results for ${query}` : `Search sonar's documentation`,
             totalPages
         };
     };
