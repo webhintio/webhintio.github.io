@@ -140,7 +140,7 @@ descriptions:
   "user-guide/index.md": Anything you need to know about using sonar and configure it
   "user-guide/connectors": List of core connectors and the different configurations they have.
   "user-guide/formatters": List of core formatters and how they look like
-  "user-guide/rules": List of core rules shorted by category
+  "user-guide/rules/index.md": List of core rules shorted by category
   "developer-guide/connectors/index.md": All the things to take into account if you are going to develop a new connector
   "developer-guide/connectors/events.md": List of events that any core connector should support
   "developer-guide/contributing": If you want to contribute to sonar, read this first
