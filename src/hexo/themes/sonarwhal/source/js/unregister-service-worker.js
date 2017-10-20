@@ -3,9 +3,11 @@
 (function () {
     'use strict';
 
-    navigator.serviceWorker.getRegistrations().then(function (registrations) {
-        for (var i = 0; i < registrations.length; i++) {
-            registrations[i].unregister();
-        }
-    });
+    if ('serviceWorker' in navigator) { // In case browser doesn't support service worker.
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            for (var i = 0; i < registrations.length; i++) {
+                registrations[i].unregister();
+            }
+        });
+    }
 }());
