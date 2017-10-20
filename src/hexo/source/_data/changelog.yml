@@ -1,4 +1,27 @@
 ---
+  0.12.1 (October 20, 2017): 
+    Bug fixes / Improvements: 
+      raw: "- [[`0e141f33ce`](https://github.com/sonarwhal/sonar/commit/0e141f33ce7d159e22c7e33aa15867e03eff025a)] - Fix: Cloudinary authentication issue.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonar/commit/0e141f33ce7d159e22c7e33aa15867e03eff025a\"><code>0e141f33ce</code></a>] - Fix: Cloudinary authentication issue.</li>\n</ul>\n"
+      details: 
+        0e141f33ce7d159e22c7e33aa15867e03eff025a: 
+          associateCommitId: null
+          message: "Fix: Cloudinary authentication issue."
+  0.12.0 (October 19, 2017): 
+    Bug fixes / Improvements: 
+      raw: "- [[`92c815ca57`](https://github.com/sonarwhal/sonar/commit/92c815ca57cf791e93a36b68c602588a4f1b2cc2)] - Fix: Improve `test-server` and `debugging-protocol` requests logic (see also: [`#582`](https://github.com/sonarwhal/sonar/issues/582)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonar/commit/92c815ca57cf791e93a36b68c602588a4f1b2cc2\"><code>92c815ca57</code></a>] - Fix: Improve <code>test-server</code> and <code>debugging-protocol</code> requests logic (see also: <a href=\"https://github.com/sonarwhal/sonar/issues/582\"><code>#582</code></a>).</li>\n</ul>\n"
+      details: 
+        92c815ca57cf791e93a36b68c602588a4f1b2cc2: 
+          associateCommitId: "582"
+          message: "Fix: Improve `test-server` and `debugging-protocol` requests logic."
+    New features: 
+      raw: "- [[`8a7e1ea5f7`](https://github.com/sonarwhal/sonar/commit/8a7e1ea5f7bbe5dc21db412a79aec487354d986b)] - New: Add image optimization rule using Cloudinary's service (see also: [`#575`](https://github.com/sonarwhal/sonar/issues/575)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonar/commit/8a7e1ea5f7bbe5dc21db412a79aec487354d986b\"><code>8a7e1ea5f7</code></a>] - New: Add image optimization rule using Cloudinary’s service (see also: <a href=\"https://github.com/sonarwhal/sonar/issues/575\"><code>#575</code></a>).</li>\n</ul>\n"
+      details: 
+        8a7e1ea5f7bbe5dc21db412a79aec487354d986b: 
+          associateCommitId: "575"
+          message: "New: Add image optimization rule using Cloudinary's service."
   0.11.0 (October 19, 2017): 
     Breaking Changes: 
       raw: "- [[`f794bc8f36`](https://github.com/sonarwhal/sonar/commit/f794bc8f362c970d0cc398546e7bf614a4759661)] - Breaking: Require `text/javascript` as the media type for JavaScript files (see also: [`#568`](https://github.com/sonarwhal/sonar/issues/568)).\n\n"
