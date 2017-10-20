@@ -17,7 +17,11 @@
 }
 
 .scan-overview__header p:first-child {
+<<<<<<< HEAD
     margin-right: 0;
+=======
+    margin-right: 0rem;
+>>>>>>> 659994482cf6069d889b44f0ed72487f09979e63
     margin-bottom: 1rem;
 }
 
