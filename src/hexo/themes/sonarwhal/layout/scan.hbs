@@ -21,10 +21,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+    {{#if id}}
     <script src="{{url_for "/js/scanner-common.js"}}"></script>
-    {{#unless isFinish}}
-    <script src="{{url_for "/js/scanner-submit.js"}}"></script>
-    {{/unless}}
+        {{#unless isFinish}}
+        <script src="{{url_for "/js/scanner-submit.js"}}"></script>
+        {{/unless}}
+    {{/if}}
     <script src="{{url_for "/js/unregister-service-worker.js"}}"></script>
 </body>
 </html>
