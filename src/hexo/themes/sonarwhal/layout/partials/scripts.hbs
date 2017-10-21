@@ -27,7 +27,7 @@
         minPreviewWidth = parseInt(window.getComputedStyle(preview)['minWidth']);
 
         search.autocomplete.on('autocomplete:opened', function () {
-            if (window.innerWidth < minPreviewWidth) {
+            if (document.body.clientWidth < minPreviewWidth) {
                 // hide the preview
                 search.autocomplete.autocomplete.close();
             }
