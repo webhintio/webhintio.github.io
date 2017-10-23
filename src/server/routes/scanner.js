@@ -75,9 +75,7 @@ const updateLink = (thirdPartyInfo, scanUrl) => {
     return thirdPartyInfoCopy;
 };
 
-const parseCategories = (rules, scanUrl, includeIncompleteScan) => {
-    // The `includeIncompleteScan` flag enables collecting `pending` rules.
-    // So that we can show them as `scan failed` items in the front end.
+const parseCategories = (rules, scanUrl) => {
     let categories = [];
 
     rules.forEach((rule) => {
@@ -87,7 +85,6 @@ const parseCategories = (rules, scanUrl, includeIncompleteScan) => {
 
         if (!category) {
             category = {
-                incompleteRules: null,
                 name: rule.category,
                 results: null,
                 rules: []
@@ -112,14 +109,6 @@ const parseCategories = (rules, scanUrl, includeIncompleteScan) => {
 
             category.results.push(rule);
         }
-
-        if (includeIncompleteScan && rule.status === jobStatus.pending) {
-            if (!category.incompleteRules) {
-                category.incompleteRules = [];
-            }
-
-            category.incompleteRules.push(rule);
-        }
     });
 
     categories = _.sortBy(categories, (category) => {
@@ -130,13 +119,13 @@ const parseCategories = (rules, scanUrl, includeIncompleteScan) => {
 };
 
 /** Process scanning result to add category and statistics information */
-const processRuleResults = (ruleResults, scanUrl, includeIncompleteScan) => {
+const processRuleResults = (ruleResults, scanUrl) => {
     const overallStatistics = {
         errors: 0,
         warnings: 0
     };
 
-    const categories = parseCategories(ruleResults, scanUrl, includeIncompleteScan);
+    const categories = parseCategories(ruleResults, scanUrl);
 
     // Caculate numbers of `errors` and `warnings`.
     _.forEach(categories, (category) => {
@@ -243,8 +232,7 @@ const configure = (app, appInsightsClient) => {
             });
         }
 
-        const includeIncompleteScan = scanResult.status === jobStatus.error;
-        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url, includeIncompleteScan);
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url);
         const renderOptions = {
             categories,
             id: scanResult.id,
