@@ -113,7 +113,17 @@
                                     </div>
                                 </div>
                                 {{else}}
-                                    {{>scan-result-item results=(filterErrorsAndWarnings results) noIssue=(noIssue category)}}
+                                    {{#if (noIssue category)}}
+                                        {{>category-pass-message}}
+                                    {{/if}}
+
+                                    {{#each (filterErrorsAndWarnings results)}}
+                                        {{>scan-result-item}}
+                                    {{/each}}
+
+                                    {{#each incompleteRules}}
+                                        {{>scan-failed-message}}
+                                    {{/each}}
                                 {{/unless}}
                             </section>
                             {{/each}}

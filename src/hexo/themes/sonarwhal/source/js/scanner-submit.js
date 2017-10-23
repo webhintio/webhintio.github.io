@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* eslint-disable no-var, strict, prefer-template, prefer-arrow-callback, object-shorthand, no-continue, no-multi-str, array-callback-return */
+/* eslint-disable no-var, strict, prefer-template, prefer-arrow-callback, object-shorthand, no-continue, no-multi-str, array-callback-return, no-useless-escape */
 /* global Handlebars, hljs */
 
 (function () {
@@ -92,63 +92,56 @@
     };
 
     var ruleItemTemplate = function () {
-        return '{{#each results}} \
-                    <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
-                        <div class="rule-result--details__header"> \
-                            <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
-                            <div class="rule-result__docs"> \
-                                <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}/" title="documentation for {{name}} rule"><img src="/images/results-docs-icon.svg" alt="" class="docs-icon" /></a> \
-                                <button title="show warning details" class="button--details">Open Details</button> \
-                            </div> \
-                        </div> \
-                        {{#each messages}} \
-                        <div class="rule-result--details__body"> \
-                            <p class="{{../status}}-badge uppercase-text">{{../status}}</p> \
-                            <p> \
-                                {{message}} \
-                            </p> \
-                            {{#or resource sourceCode}} \
-                            <div class="rule-result__code"> \
-                                {{#if resource}} \
-                                <p> \
-                                    <a target="_blank" rel="noopener noreferrer" href="{{resource}}"> \
-                                        {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}} \
-                                    </a> \
-                                </p> \
-                                {{/if}} \
-                                {{#if sourceCode}} \
-                                <code>{{cutCodeString sourceCode}}</code> \
-                                {{/if}} \
-                            </div> \
-                            {{/or}} \
-                        </div> \
-                        {{/each}} \
-                        {{#if thirdParty}} \
-                            <div class="rule-result--details__footer-msg"> \
-                                {{#if thirdParty.details}} \
-                                    <p>To learn more visit</p> \
-                                {{else}} \
-                                    <p>With the help of</p> \
-                                {{/if}} \
-                                {{#if thirdParty.link}} \
-                                    <a href="{{thirdParty.link}}" target="_blank"> \
-                                {{/if}} \
-                                        <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" /> \
-                                {{#if thirdParty.link}} \
-                                    </a> \
-                                {{/if}} \
-                            </div> \
-                        {{/if}} \
-                    </div> \
-                {{/each}}';
+        return '\{{#each results}}\
+                    {{>scan-result-item}}\
+                 \{{/each}}';
     };
 
     var categoryPassMessageTemplate = function () {
-        return '<div class="rule-result--details">\
-                    <div class="rule-result__message--passed">\
-                        <p>No issues</p>\
-                    </div>\
-                </div>';
+        return '{{>category-pass-message}}';
+    };
+
+    var ruleFailMessageTemplate = function () {
+        return '\{{#each rules}}\
+                    {{>scan-failed-message}} \
+                \{{/each}}';
+    };
+
+    var reverseString = function (str) {
+        return str.split('').reverse()
+            .join('');
+    };
+
+    var cutString = function (string, maxLength) {
+        var minLength = 0.8 * maxLength;
+        var preferredStopChars = /[^a-zA-Z0-9]/g;
+        var chunk;
+
+        for (var i = minLength; i < maxLength; i++) {
+            // Start looking for preferred stop characters.
+            if (preferredStopChars.test(string[i])) {
+                chunk = string.slice(0, i);
+
+                break;
+            }
+        }
+
+        chunk = chunk || string.slice(0, maxLength);
+
+        return chunk;
+    };
+
+    // Solution inspired by https://stackoverflow.com/a/10903003
+    var shortenString = function (string, maxLength) {
+        if (!string || string.length < maxLength * 2) {
+            return string;
+        }
+
+        var headChunk = cutString(string, maxLength);
+        var reverseTailChunk = cutString(reverseString(string), maxLength);
+        var tailChunk = reverseString(reverseTailChunk);
+
+        return headChunk + '…' + tailChunk;
     };
 
     var getHTML = function (templ, data) {
@@ -156,18 +149,6 @@
         var template = Handlebars.compile(source);
 
         return template(data);
-    };
-
-    var cutString = function (string, lengthToShow) {
-        if (!string || string.length < lengthToShow) {
-            return string;
-        }
-
-        return string.slice(0, lengthToShow) + '...' + string.slice(string.length - lengthToShow);
-    };
-
-    var registerHandlebarsPartials = function () {
-        Handlebars.registerPartial('ruleItem', ruleItemTemplate());
     };
 
     var registerHandlebarsHelpers = function () {
@@ -186,11 +167,19 @@
         });
 
         Handlebars.registerHelper('cutUrlString', function (urlString) {
-            return cutString(urlString, 20);
+            return shortenString(urlString, 25);
         });
 
-        Handlebars.registerHelper('cutCodeString', function (urlString) {
-            return cutString(urlString, 150);
+        Handlebars.registerHelper('cutCodeString', function (codeString) {
+            return shortenString(codeString, 150);
+        });
+
+        Handlebars.registerHelper('normalizePosition', function (position) {
+            if (!position || parseInt(position) === -1) {
+                return '';
+            }
+
+            return ':' + position;
         });
 
         Handlebars.registerHelper('normalizePosition', function (position) {
@@ -348,13 +337,8 @@
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
 
-    var updateScanFailUI = function () {
-        var scanErrorMessageHTML = '<div class="scan-error">\
-        <p>\
-        There was an error and we were only able to partially complete the scan. View the results below or\
-        <a href="https://sonarwhal.com/scanner/">perform another scan</a>.\
-    <p>\
-    </div>';
+    var updateScanFailUI = function (data) {
+        var scanErrorMessageHTML = '{{>scan-error-message}}';
 
         document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
     };
@@ -474,7 +458,6 @@
     window.history.pushState(null, null, id);
 
     initExistingResults();
-    registerHandlebarsPartials();
     registerHandlebarsHelpers();
 
     if (queuePageVisible()) {

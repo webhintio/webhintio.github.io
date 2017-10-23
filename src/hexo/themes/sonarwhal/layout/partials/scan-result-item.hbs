@@ -1,19 +1,13 @@
-{{#if noIssue}}
-    <div class="rule-result--details">
-        <div class="rule-result__message--passed">
-            <p>No issues</p>
-        </div>
-    </div>
-{{/if}}
 
-{{#each results}}
-    <div class="rule-result--details" aria-expanded="false" id="{{name}}">
-        <div class="rule-result--details__header">
-            <p class="rule-title">{{name}}: {{getLength messages status}}</p>
-            <div class="rule-result__docs">
-                <a class="docs-button" href="https://sonarwhal.com/docs/user-guide/rules/{{name}}/" title="documentation for {{name}} rule"><img src="/images/results-docs-icon.svg" alt="" class="docs-icon" />Documentation</a>
-                <button title="show {{name}}'s result details" class="button--details" data-rule="{{name}}">Open details</button>
-            </div>
+<div class="rule-result--details" aria-expanded="false" id="{{name}}">
+    <div class="rule-result--details__header">
+        <p class="rule-title">{{name}}: {{getLength messages status}}</p>
+        <div class="rule-result__docs">
+            <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html" title="documentation for {{name}} rule">
+                <img src="/images/results-docs-icon.svg" alt="" class="docs-icon" />
+            </a>
+            <button title="show {{name}}'s result details" class="button--details" data-rule="{{name}}">Open details</button>
+        </div>
         </div>
         {{#each messages}}
         <div class="rule-result--details__body">
@@ -49,6 +43,5 @@
                     <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" />
                 </a>
             </div>
-        {{/if}}
-    </div>
-{{/each}}
+    {{/if}}
+</div>
