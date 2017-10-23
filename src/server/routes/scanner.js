@@ -68,9 +68,11 @@ const updateLink = (thirdPartyInfo, scanUrl) => {
         return thirdPartyInfo;
     }
 
-    thirdPartyInfo.link = thirdPartyInfo.link.replace(/%URL%/, scanUrl);
+    const thirdPartyInfoCopy = Object.assign({}, thirdPartyInfo);
 
-    return thirdPartyInfo;
+    thirdPartyInfoCopy.link = thirdPartyInfo.link.replace(/%URL%/, scanUrl);
+
+    return thirdPartyInfoCopy;
 };
 
 const parseCategories = (rules, scanUrl, includeIncompleteScan) => {
