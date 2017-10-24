@@ -21,16 +21,20 @@
             <p>
                 {{message}}
             </p>
-            {{#if sourceCode}}
+            {{#compare resource '||' sourceCode}}
             <div class="rule-result__code">
+                {{#if resource}}
                 <p>
                     <a target="_blank" rel="noopener noreferrer" href="{{resource}}">
                         {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}}
                     </a>
                 </p>
+                {{/if}}
+                {{#if sourceCode}}
                 <code>{{cutCodeString sourceCode}}</code>
+                {{/if}}
             </div>
-            {{/if}}
+            {{/compare}}
         </div>
         {{/each}}
         {{#if thirdParty}}

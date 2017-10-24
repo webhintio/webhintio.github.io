@@ -107,16 +107,20 @@
                             <p> \
                                 {{message}} \
                             </p> \
-                            {{#if sourceCode}} \
+                            {{#or resource sourceCode}} \
                             <div class="rule-result__code"> \
+                                {{#if resource}} \
                                 <p> \
                                     {{cutUrlString resource}} \
                                     {{#if location.line}}:{{location.line}}{{/if}} \
                                     {{#if location.column}}:{{location.column}}{{/if}} \
                                 </p> \
+                                {{/if}} \
+                                {{#if sourceCode}} \
                                 <code>{{cutCodeString sourceCode}}</code> \
+                                {{/if}} \
                             </div> \
-                            {{/if}} \
+                            {{/or}} \
                         </div> \
                         {{/each}} \
                         {{#if thirdParty}} \
@@ -167,6 +171,13 @@
     };
 
     var registerHandlebarsHelpers = function () {
+        Handlebars.registerHelper('or', function (left, right, options) {
+            if (left || right) {
+                return options.fn(this); // eslint-disable-line no-invalid-this
+            }
+
+            return options.inverse(this); // eslint-disable-line no-invalid-this
+        });
         Handlebars.registerHelper('getLength', function (collection, unit) {
             var length = collection.length;
             var s = length > 1 ? 's' : '';
