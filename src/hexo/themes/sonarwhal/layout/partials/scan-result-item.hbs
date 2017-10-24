@@ -3,45 +3,43 @@
     <div class="rule-result--details__header">
         <p class="rule-title">{{name}}: {{getLength messages status}}</p>
         <div class="rule-result__docs">
-            <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html" title="documentation for {{name}} rule">
-                <img src="/images/results-docs-icon.svg" alt="" class="docs-icon" />
-            </a>
+            <a class="docs-button" target="_blank" href="/docs/user-guide/rules/{{name}}/" title="documentation for {{name}} rule"><img src="/images/results-docs-icon.svg" alt="" class="docs-icon" />Documentation</a>
             <button title="show {{name}}'s result details" class="button--details" data-rule="{{name}}">Open details</button>
         </div>
-        </div>
-        {{#each messages}}
-        <div class="rule-result--details__body">
-            <p class="{{../status}}-badge uppercase-text">{{../status}}</p>
+    </div>
+    {{#each messages}}
+    <div class="rule-result--details__body">
+        <p class="{{../status}}-badge uppercase-text">{{../status}}</p>
+        <p>
+            {{message}}
+        </p>
+        {{#compare resource '||' sourceCode}}
+        <div class="rule-result__code">
+            {{#if resource}}
             <p>
-                {{message}}
-            </p>
-            {{#compare resource '||' sourceCode}}
-            <div class="rule-result__code">
-                {{#if resource}}
-                <p>
-                    <a target="_blank" rel="noopener noreferrer" href="{{resource}}">
-                        {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}}
-                    </a>
-                </p>
-                {{/if}}
-                {{#if sourceCode}}
-                <code>{{cutCodeString sourceCode}}</code>
-                {{/if}}
-            </div>
-            {{/compare}}
-        </div>
-        {{/each}}
-        {{#if thirdParty}}
-            <div class="rule-result--details__footer-msg">
-                {{#if thirdParty.details}}
-                    <p>To learn more visit </p>
-                {{else}}
-                     <p>With the help of </p>
-                {{/if}}
-
-                <a href="{{thirdParty.link}}">
-                    <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" />
+                <a target="_blank" rel="noopener noreferrer" href="{{resource}}">
+                    {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}}
                 </a>
-            </div>
+            </p>
+            {{/if}}
+            {{#if sourceCode}}
+            <code>{{cutCodeString sourceCode}}</code>
+            {{/if}}
+        </div>
+        {{/compare}}
+    </div>
+    {{/each}}
+    {{#if thirdParty}}
+        <div class="rule-result--details__footer-msg">
+            {{#if thirdParty.details}}
+                <p>To learn more visit </p>
+            {{else}}
+                    <p>With the help of </p>
+            {{/if}}
+
+            <a href="{{thirdParty.link}}">
+                <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" />
+            </a>
+        </div>
     {{/if}}
 </div>

@@ -1,42 +1,6 @@
+/* eslint-disable object-shorthand, prefer-template */
 const pagination = require('./pagination');
 const url = require('url');
-
-const reverseString = (str) => {
-    return str.split('').reverse()
-        .join('');
-};
-
-const cutString = (string, maxLength) => {
-    const minLength = 0.8 * maxLength;
-    const preferredStopChars = /[^a-zA-Z0-9]/g;
-    let chunk;
-
-    for (let i = minLength; i < maxLength; i++) {
-        // Start looking for preferred stop characters.
-        if (preferredStopChars.test(string[i])) {
-            chunk = string.slice(0, i);
-
-            break;
-        }
-    }
-
-    chunk = chunk || string.slice(0, maxLength);
-
-    return chunk;
-};
-
-// Solution inspired by https://stackoverflow.com/a/10903003
-const shortenString = (string, maxLength) => {
-    if (!string || string.length < maxLength * 2) {
-        return string;
-    }
-
-    const headChunk = cutString(string, maxLength);
-    const reverseTailChunk = cutString(reverseString(string), maxLength);
-    const tailChunk = reverseString(reverseTailChunk);
-
-    return `${headChunk} … ${tailChunk}`;
-};
 
 const jobStatus = {
     error: 'error',
@@ -109,7 +73,7 @@ module.exports = function () {
         return -1;
     };
 
-    return {
+    const self = {
         /* eslint-disable object-shorthand */
         capitalize: function (str) {
             const filtered = str.replace(/[^a-zA-Z0-9]/g, ' ');
@@ -159,22 +123,22 @@ module.exports = function () {
             /* eslint-enable no-param-reassign */
 
             const operators = {
-                '!=': (l, r) => {
+                '!=': function (l, r) {
                     return l !== r;
                 },
-                '!==': (l, r) => {
+                '!==': function (l, r) {
                     return l !== r;
                 },
-                '<': (l, r) => {
+                '<': function (l, r) {
                     return l < r;
                 },
-                '<=': (l, r) => {
+                '<=': function (l, r) {
                     return l <= r;
                 },
-                '==': (l, r) => {
+                '==': function (l, r) {
                     return l === r;
                 },
-                '===': (l, r) => {
+                '===': function (l, r) {
                     if (typeof l === 'string' && typeof r === 'string') {
                         /* eslint-disable no-param-reassign */
                         l = normalizeString(l);
@@ -184,13 +148,13 @@ module.exports = function () {
 
                     return l === r;
                 },
-                '>': (l, r) => {
+                '>': function (l, r) {
                     return l > r;
                 },
-                '>=': (l, r) => {
+                '>=': function (l, r) {
                     return l >= r;
                 },
-                includes: (collection, member) => {
+                includes: function (collection, member) {
                     const normalizedR = member ? normalizeString(member) : member;
                     const normalizedL = collection.split(/, */g).map((element) => {
                         return normalizeString(element);
@@ -198,10 +162,10 @@ module.exports = function () {
 
                     return normalizedL.includes(normalizedR);
                 },
-                typeof: (l, r) => {
+                typeof: function (l, r) {
                     return typeof l === r;
                 },
-                '||': (l, r) => {
+                '||': function (l, r) {
                     return l || r;
                 }
             };
@@ -218,11 +182,29 @@ module.exports = function () {
 
             return options.inverse(this);
         },
-        cutCodeString: (codeString) => {
-            return shortenString(codeString, 150);
+        cutCodeString: function (codeString) {
+            return self.shortenString(codeString, 150);
         },
-        cutUrlString: (urlString) => {
-            return shortenString(urlString, 25);
+        cutString: function (string, maxLength) {
+            const minLength = 0.8 * maxLength;
+            const preferredStopChars = /[^a-zA-Z0-9]/g;
+            let chunk;
+
+            for (let i = minLength; i < maxLength; i++) {
+                // Start looking for preferred stop characters.
+                if (preferredStopChars.test(string[i])) {
+                    chunk = string.slice(0, i);
+
+                    break;
+                }
+            }
+
+            chunk = chunk || string.slice(0, maxLength);
+
+            return chunk;
+        },
+        cutUrlString: function (urlString) {
+            return self.shortenString(urlString, 25);
         },
         filterErrorsAndWarnings: (results) => {
             if (!results) {
@@ -241,10 +223,11 @@ module.exports = function () {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
         },
-        getLength: (collection, unit) => {
-            const length = collection.length;
+        getLength: function (messages, unit) {
+            const length = messages.length;
+            const units = self.pluralize(unit, length);
 
-            return length > 1 ? `${length} ${unit}s` : `${length} ${unit}`;
+            return length + ' ' + units;
         },
         getMarkdownLink: (link) => {
             return link.replace(/\.html$/, '.md');
@@ -305,12 +288,12 @@ module.exports = function () {
             return className.toLowerCase().trim()
                 .replace(/[^a-z0-9]/gi, '-');
         },
-        normalizePosition: (position) => {
+        normalizePosition: function (position) {
             if (!position || parseInt(position) === -1) {
                 return '';
             }
 
-            return `:${position}`;
+            return ':' + position;
         },
         or: (l, r) => {
             return l || r;
@@ -325,8 +308,12 @@ module.exports = function () {
         passWarnings: (statistics) => {
             return statistics && statistics.warnings === 0;
         },
-        pluralize: (text, count) => {
-            return `${text}${count === 1 ? '' : 's'}`;
+        pluralize: function (text, count) {
+            return text + (count === 1 ? '' : 's');
+        },
+        reverseString: function (str) {
+            return str.split('').reverse()
+                .join('');
         },
         sanitize: (permalink) => {
             return permalink.replace(/\/index.html/g, '/');
@@ -336,7 +323,19 @@ module.exports = function () {
                 return accumulator || value;
             });
         },
-        // Sort out `Contributor guide` or `User guide` pages
+        // Solution inspired by https://stackoverflow.com/a/10903003
+        shortenString: function (string, maxLength) {
+            if (!string || string.length < maxLength * 2) {
+                return string;
+            }
+
+            const headChunk = self.cutString(string, maxLength);
+            const reverseTailChunk = self.cutString(self.reverseString(string), maxLength);
+            const tailChunk = self.reverseString(reverseTailChunk);
+
+            return headChunk + ' … ' + tailChunk;
+        },
+        // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {
             const pages = allPages.reduce((acc, page) => {
                 if (page.category === category) {
@@ -362,6 +361,15 @@ module.exports = function () {
             }
 
             return pages;
+        },
+        toString: (obj) => {
+            if (obj) {
+                return obj.toString().replace(/self./g, 'Handlebars.helpers.');
+            }
+
+            return '';
         }
     };
+
+    return self;
 };

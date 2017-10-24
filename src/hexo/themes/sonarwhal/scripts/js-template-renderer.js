@@ -39,7 +39,7 @@ const jsTemplateRenderer = function (data, locals) {
 
     try {
         helpers = require(helperDir)(hexo);
-        // Note: Helpers still need to be regeistered in the js file before parsing the templates to html.
+        // Note: Helpers still need to be regeistered in the client side.
         // The helpers registered here are only used when interpolating the hbs partials in the js files to templates.
     } catch (e) {
         // no additional helpers available. No problem.

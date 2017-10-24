@@ -120,10 +120,6 @@
                                     {{#each (filterErrorsAndWarnings results)}}
                                         {{>scan-result-item}}
                                     {{/each}}
-
-                                    {{#each incompleteRules}}
-                                        {{>scan-failed-message}}
-                                    {{/each}}
                                 {{/unless}}
                             </section>
                             {{/each}}

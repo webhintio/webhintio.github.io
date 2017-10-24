@@ -101,94 +101,11 @@
         return '{{>category-pass-message}}';
     };
 
-    var ruleFailMessageTemplate = function () {
-        return '\{{#each rules}}\
-                    {{>scan-failed-message}} \
-                \{{/each}}';
-    };
-
-    var reverseString = function (str) {
-        return str.split('').reverse()
-            .join('');
-    };
-
-    var cutString = function (string, maxLength) {
-        var minLength = 0.8 * maxLength;
-        var preferredStopChars = /[^a-zA-Z0-9]/g;
-        var chunk;
-
-        for (var i = minLength; i < maxLength; i++) {
-            // Start looking for preferred stop characters.
-            if (preferredStopChars.test(string[i])) {
-                chunk = string.slice(0, i);
-
-                break;
-            }
-        }
-
-        chunk = chunk || string.slice(0, maxLength);
-
-        return chunk;
-    };
-
-    // Solution inspired by https://stackoverflow.com/a/10903003
-    var shortenString = function (string, maxLength) {
-        if (!string || string.length < maxLength * 2) {
-            return string;
-        }
-
-        var headChunk = cutString(string, maxLength);
-        var reverseTailChunk = cutString(reverseString(string), maxLength);
-        var tailChunk = reverseString(reverseTailChunk);
-
-        return headChunk + '…' + tailChunk;
-    };
-
     var getHTML = function (templ, data) {
         var source = templ();
         var template = Handlebars.compile(source);
 
         return template(data);
-    };
-
-    var registerHandlebarsHelpers = function () {
-        Handlebars.registerHelper('or', function (left, right, options) {
-            if (left || right) {
-                return options.fn(this); // eslint-disable-line no-invalid-this
-            }
-
-            return options.inverse(this); // eslint-disable-line no-invalid-this
-        });
-        Handlebars.registerHelper('getLength', function (collection, unit) {
-            var length = collection.length;
-            var s = length > 1 ? 's' : '';
-
-            return length + ' ' + unit + s;
-        });
-
-        Handlebars.registerHelper('cutUrlString', function (urlString) {
-            return shortenString(urlString, 25);
-        });
-
-        Handlebars.registerHelper('cutCodeString', function (codeString) {
-            return shortenString(codeString, 150);
-        });
-
-        Handlebars.registerHelper('normalizePosition', function (position) {
-            if (!position || parseInt(position) === -1) {
-                return '';
-            }
-
-            return ':' + position;
-        });
-
-        Handlebars.registerHelper('normalizePosition', function (position) {
-            if (!position || parseInt(position) === -1) {
-                return '';
-            }
-
-            return ':' + position;
-        });
     };
 
     var pluralize = function (text, count) {
@@ -337,7 +254,7 @@
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
 
-    var updateScanFailUI = function (data) {
+    var updateScanFailUI = function () {
         var scanErrorMessageHTML = '{{>scan-error-message}}';
 
         document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
@@ -458,7 +375,6 @@
     window.history.pushState(null, null, id);
 
     initExistingResults();
-    registerHandlebarsHelpers();
 
     if (queuePageVisible()) {
         setTimeout(queryAndUpdate, 10000);

@@ -28,6 +28,9 @@ const ruleStatus = {
     warning: 'warning'
 };
 
+const helpersDir = path.join(__dirname, '..', '..', 'hexo/themes/sonarwhal/helper/index.js');
+const helpers = require(helpersDir)(); // Shared helpers between the client and server side.
+
 const pad = (timeString) => {
     return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
 };
@@ -149,6 +152,20 @@ const processRuleResults = (ruleResults, scanUrl) => {
     return { categories, overallStatistics };
 };
 
+const renderHelpers = (req, res, next) => {
+    const requiredHelpers = req.params.name.split(',');
+
+    if (requiredHelpers.length === 0) {
+        return next();
+    }
+
+    res.type('text/javascript');
+    res.render('helpers', {
+        helpers: _.pick(helpers, requiredHelpers),
+        layout: 'empty'
+    });
+};
+
 const configure = (app, appInsightsClient) => {
     const reportJobEvent = (scanResult) => {
         if (scanResult.status === jobStatus.started || scanResult.status === jobStatus.pending) {
@@ -253,6 +270,8 @@ const configure = (app, appInsightsClient) => {
 
         res.render('scan-result', renderOptions);
     });
+
+    app.get('/scanner/helpers/:name', renderHelpers);
 
     app.post('/scanner', async (req, res) => {
         if (req.method === 'POST') {
