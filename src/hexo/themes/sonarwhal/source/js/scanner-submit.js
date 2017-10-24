@@ -107,6 +107,7 @@
                             <p> \
                                 {{message}} \
                             </p> \
+                            {{#if sourceCode}} \
                             <div class="rule-result__code"> \
                                 <p> \
                                     {{cutUrlString resource}} \
@@ -115,6 +116,7 @@
                                 </p> \
                                 <code>{{cutCodeString sourceCode}}</code> \
                             </div> \
+                            {{/if}} \
                         </div> \
                         {{/each}} \
                         {{#if thirdParty}} \
@@ -143,19 +145,6 @@
                         <p>No issues</p>\
                     </div>\
                 </div>';
-    };
-
-    var ruleFailMessageTemplate = function () {
-        return '{{#each rules}} \
-                    <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
-                    <div class="rule-result--details__header"> \
-                        <p class="rule-title">{{name}}</p> \
-                    </div> \
-                    <div class="rule-result__message--failed"> \
-                        <p>Scan failed</p> \
-                    </div> \
-                </div> \
-                {{/each}}';
     };
 
     var getHTML = function (templ, data) {
@@ -230,12 +219,6 @@
         });
     };
 
-    var filterIncompleteRules = function (category) {
-        return category.rules.filter(function (rule) {
-            return rule.status === jobStatus.pending;
-        });
-    };
-
     var filterErrorsAndWarnings = function (results) {
         return results.filter(function (result) {
             return result.status !== ruleStatus.pass;
@@ -261,21 +244,6 @@
         if (loader) {
             container.removeChild(loader);
         }
-    };
-
-    var updateFailedItems = function (category) {
-        var container = document.getElementById(category.name);
-        var loader = container.querySelector('.compiling__loader');
-
-        var incompleteUpdates = filterIncompleteRules(category);
-        var failedMessage = getHTML(ruleFailMessageTemplate, { rules: incompleteUpdates });
-
-        if (incompleteUpdates.length === 0) {
-            return;
-        }
-
-        loader.insertAdjacentHTML('beforebegin', failedMessage);
-        container.removeChild(loader);
     };
 
     var updateAsPass = function (category) {
@@ -361,7 +329,7 @@
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
 
-    var updateScanFailUI = function (data) {
+    var updateScanFailUI = function () {
         var scanErrorMessageHTML = '<div class="scan-error">\
         <p>\
         There was an error and we were only able to partially complete the scan. View the results below or\
@@ -370,7 +338,6 @@
     </div>';
 
         document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
-        data.categories.forEach(updateFailedItems);
     };
 
     var showQueueMessage = function () {
@@ -434,7 +401,7 @@
                 hideQueueMessage();
 
                 if (isError) {
-                    updateScanFailUI(response);
+                    updateScanFailUI();
                 }
 
                 var updates = filterNewUpdates(response.categories);

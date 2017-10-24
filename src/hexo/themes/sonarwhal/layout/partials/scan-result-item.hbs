@@ -21,14 +21,16 @@
             <p>
                 {{message}}
             </p>
+            {{#if sourceCode}}
             <div class="rule-result__code">
                 <p>
-                    <a target="_blank" href="{{resource}}">
+                    <a target="_blank" rel="noopener noreferrer" href="{{resource}}">
                         {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}}
                     </a>
                 </p>
                 <code>{{cutCodeString sourceCode}}</code>
             </div>
+            {{/if}}
         </div>
         {{/each}}
         {{#if thirdParty}}
@@ -44,16 +46,5 @@
                 </a>
             </div>
         {{/if}}
-    </div>
-{{/each}}
-
-{{#each incompleteRules}}
-    <div class="rule-result--details" aria-expanded="false" id="{{name}}">
-        <div class="rule-result--details__header">
-            <p class="rule-title">{{name}}</p>
-        </div>
-        <div class="rule-result__message--failed">
-            <p>Scan failed</p>
-        </div>
     </div>
 {{/each}}
