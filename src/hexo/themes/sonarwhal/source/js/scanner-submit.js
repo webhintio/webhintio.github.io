@@ -111,9 +111,9 @@
                             <div class="rule-result__code"> \
                                 {{#if resource}} \
                                 <p> \
-                                    {{cutUrlString resource}} \
-                                    {{#if location.line}}:{{location.line}}{{/if}} \
-                                    {{#if location.column}}:{{location.column}}{{/if}} \
+                                    <a target="_blank" rel="noopener noreferrer" href="{{resource}}"> \
+                                        {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}} \
+                                    </a> \
                                 </p> \
                                 {{/if}} \
                                 {{#if sourceCode}} \
@@ -191,6 +191,14 @@
 
         Handlebars.registerHelper('cutCodeString', function (urlString) {
             return cutString(urlString, 150);
+        });
+
+        Handlebars.registerHelper('normalizePosition', function (position) {
+            if (!position || parseInt(position) === -1) {
+                return '';
+            }
+
+            return ':' + position;
         });
     };
 
