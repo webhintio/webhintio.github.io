@@ -23,6 +23,7 @@
 
 .scan-overview__status {
     margin: 0;
+    text-transform: capitalize;
 }
 
 .analyzing {
