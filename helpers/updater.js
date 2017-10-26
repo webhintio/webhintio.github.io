@@ -117,15 +117,12 @@ const generateFrontMatterInfo = (filePath, title, description, currentFrontMatte
         relativePath = path.relative('docs', relativePath);
         root = 'docs';
     }
-    baseName = path.basename(relativePath, '.md');
-    const indexMatch = baseName.match(/(^\d+)-/);
 
-    if (indexMatch) {
-        baseName = baseName.replace(indexMatch.pop(), '');
-    }
+    baseName = path.basename(relativePath, '.md');
+    baseName = baseName !== 'index' ? baseName : '';
 
     const [category, tocTitle] = path.dirname(relativePath).split(path.sep);
-    const permalink = normalize(path.join(root, path.dirname(relativePath), `${baseName}.html`)).toLowerCase();
+    const permalink = normalize(path.join(root, path.dirname(relativePath), baseName, 'index.html')).toLowerCase();
     const layout = getLayout(filePath);
 
     const newFrontMatter = {

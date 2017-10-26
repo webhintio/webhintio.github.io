@@ -97,7 +97,7 @@
                         <div class="rule-result--details__header"> \
                             <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
                             <div class="rule-result__docs"> \
-                                <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}.html" title="documentation for {{name}} rule"><img src="/images/results-docs-icon.svg" alt="" class="docs-icon" /></a> \
+                                <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}/" title="documentation for {{name}} rule"><img src="/images/results-docs-icon.svg" alt="" class="docs-icon" /></a> \
                                 <button title="show warning details" class="button--details">Open Details</button> \
                             </div> \
                         </div> \

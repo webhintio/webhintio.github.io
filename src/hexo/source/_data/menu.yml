@@ -22,16 +22,16 @@
   items:
   - id: faq
     title: FAQ
-    link: /about/faq.html
+    link: /about/faq/
   - id: changelog
     title: Changelog
-    link: /about/changelog.html
+    link: /about/changelog/
   - id: governance
     title: Governance
-    link: /about/governance.html
+    link: /about/governance/
   - id: contributors
     title: Contributors
-    link: /about/contributors.html
+    link: /about/contributors/
   - id: code-of-conduct
     title: Code of Conduct
     link: https://js.foundation/community/code-of-conduct
