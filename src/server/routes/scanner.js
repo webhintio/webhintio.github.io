@@ -51,14 +51,26 @@ const sendRequest = (url) => {
     return request(options);
 };
 
-const queryResult = async (id) => {
+const queryResult = async (id, tries) => {
+    let response;
+    const counts = tries || 0;
     const result = await request(`${serviceEndpoint}${id}`);
 
     if (!result.body) {
         throw new Error(`No result found for this url. Please scan again.`);
     }
 
-    const response = JSON.parse(result.body);
+    try {
+        response = JSON.parse(result.body);
+    } catch (error) {
+        if (counts === 3) {
+            // Sometimes error `Unexpected Token at <` occurs
+            // And it disappears after querying more times.
+            throw error;
+        }
+
+        return queryResult(id, counts + 1);
+    }
 
     return response;
 };
