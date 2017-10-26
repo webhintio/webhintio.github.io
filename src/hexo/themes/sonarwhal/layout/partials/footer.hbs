@@ -2,7 +2,9 @@
     <div class="footer-nav container">
         {{#each navs}}
         <div class="footer-nav__item">
-            <p class="category">{{title}}</p>
+            <p class="category">
+                <a href="{{url_for link}}">{{title}}</a>
+            </p>
             <ul>
                 {{#each items}}
                 <li>
