@@ -189,10 +189,15 @@
 }
 
 .rule-tile__category {
+    max-width: 19rem;
     margin-bottom: 1rem;
     font-size: 1.4rem;
     font-weight: 600;
     letter-spacing: .07rem;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 /* SCAN DETAILS */
@@ -233,23 +238,49 @@
 }
 
 .rule-result__docs {
+    display: flex;
     margin-top: 1.2rem;
+    flex-wrap: wrap;
+}
+
+a.docs-button {
+    font-size: 1.3rem;
+    background-color: #4046dd;
+    color: #fff;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: .6rem 1rem;
+    text-align: right;
+    letter-spacing: .1rem;
+    min-width: 15rem;
+    text-transform: uppercase;
 }
 
 .docs-icon {
-    width: 2.5rem;
+    width: 1.4rem;
     vertical-align: middle;
+    margin-top: -.2rem;
     margin-right: .5rem;
+    background-color: #fff;
 }
 
 button.button--details {
     position: relative;
     font-size: 1.3rem;
     background-color: #4046dd;
+    margin-bottom: 1rem;
     padding: .5rem 1rem;
     text-align: right;
-    letter-spacing: .04rem;
-    min-width: 14.5rem;
+    min-width: 15rem;
+}
+
+@media(min-width: 33.75em) {
+
+    button.button--details,
+    a.docs-button {
+        margin-bottom: 0;
+    }
+
 }
 
 .rule-result--details[aria-expanded="false"] .button--details::before {
@@ -353,7 +384,7 @@ button.button--details {
     padding-left: 1.4rem;
 }
 
-@media (min-width: 42.75em) {
+@media (min-width: 48.75em) {
 
     .rule-result--details__header {
         display: flex;
@@ -544,6 +575,7 @@ button.button--details {
     padding: 2.4rem;
     background-color: #fff;
     color: #000;
+    word-break: break-all;
 }
 
 /* SCAN ERROR */

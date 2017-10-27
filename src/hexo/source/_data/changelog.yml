@@ -1,4 +1,31 @@
 ---
+  0.13.0 (October 27, 2017): 
+    Breaking Changes: 
+      raw: "- [[`255bb7bc0c`](https://github.com/sonarwhal/sonar/commit/255bb7bc0c5429475619a51926cedf709e7c0c68)] - Breaking: Change definition of `ignoredUrls`.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonar/commit/255bb7bc0c5429475619a51926cedf709e7c0c68\"><code>255bb7bc0c</code></a>] - Breaking: Change definition of <code>ignoredUrls</code>.</li>\n</ul>\n"
+      details: 
+        255bb7bc0c5429475619a51926cedf709e7c0c68: 
+          associateCommitId: null
+          message: "Breaking: Change definition of `ignoredUrls`."
+  0.12.3 (October 23, 2017): 
+    Bug fixes / Improvements: 
+      raw: "- [[`3f03824695`](https://github.com/sonarwhal/sonar/commit/3f03824695d1553dfe4d5334632a9ea28e694d9c)] - Fix: Issue with Cloudinary and error handling.\n- [[`1e131ddb28`](https://github.com/sonarwhal/sonar/commit/1e131ddb2828d1718b1c2c756d3cda7c38f4ba0b)] - Docs: Fix link in `docs/about/FAQ.md` (see also: [`#592`](https://github.com/sonarwhal/sonar/issues/592)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonar/commit/3f03824695d1553dfe4d5334632a9ea28e694d9c\"><code>3f03824695</code></a>] - Fix: Issue with Cloudinary and error handling.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonar/commit/1e131ddb2828d1718b1c2c756d3cda7c38f4ba0b\"><code>1e131ddb28</code></a>] - Docs: Fix link in <code>docs/about/FAQ.md</code> (see also: <a href=\"https://github.com/sonarwhal/sonar/issues/592\"><code>#592</code></a>).</li>\n</ul>\n"
+      details: 
+        3f03824695d1553dfe4d5334632a9ea28e694d9c: 
+          associateCommitId: null
+          message: "Fix: Issue with Cloudinary and error handling."
+        1e131ddb2828d1718b1c2c756d3cda7c38f4ba0b: 
+          associateCommitId: "592"
+          message: "Docs: Fix link in `docs/about/FAQ.md`."
+  0.12.2 (October 20, 2017): 
+    Bug fixes / Improvements: 
+      raw: "- [[`4ed7cf2aa9`](https://github.com/sonarwhal/sonar/commit/4ed7cf2aa9092e15576287226271dfa9b8e82979)] - Fix: Issue in Cloudinary with invalid images.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonar/commit/4ed7cf2aa9092e15576287226271dfa9b8e82979\"><code>4ed7cf2aa9</code></a>] - Fix: Issue in Cloudinary with invalid images.</li>\n</ul>\n"
+      details: 
+        4ed7cf2aa9092e15576287226271dfa9b8e82979: 
+          associateCommitId: null
+          message: "Fix: Issue in Cloudinary with invalid images."
   0.12.1 (October 20, 2017): 
     Bug fixes / Improvements: 
       raw: "- [[`0e141f33ce`](https://github.com/sonarwhal/sonar/commit/0e141f33ce7d159e22c7e33aa15867e03eff025a)] - Fix: Cloudinary authentication issue.\n\n"

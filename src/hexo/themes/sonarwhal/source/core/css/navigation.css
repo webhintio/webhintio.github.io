@@ -192,7 +192,7 @@ button.mobile-nav-button {
     content: url("/images/nav-arrow.svg");
     margin-left: .6rem;
     width: 1.3rem;
-    vertical-align: text-bottom;
+    vertical-align: top;
 }
 
 .nav__navbar > li > a#scanner::after {
