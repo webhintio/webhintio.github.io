@@ -49,6 +49,15 @@
 	margin-left: 1.5rem;
 }
 
+@media(max-width: 33em) {
+
+    .module--primary h2,
+    .module--primary h3 {
+        max-width: 32rem;
+    }
+
+}
+
 /* LANDING PAGE */
 
 /* Search button moved to base.css */
