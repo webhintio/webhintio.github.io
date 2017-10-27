@@ -329,7 +329,7 @@ module.exports = function () {
             return `${text}${count === 1 ? '' : 's'}`;
         },
         sanitize: (permalink) => {
-            return permalink.replace(/\/index.html/g, '');
+            return permalink.replace(/\/index.html/g, '/');
         },
         setDefault: (...values) => {
             return values.reduce((accumulator, value) => {
