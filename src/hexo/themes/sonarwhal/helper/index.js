@@ -54,7 +54,7 @@ const ruleStatus = {
 
 module.exports = function () {
     const isIndexPage = (page) => {
-        return page.permalink.endsWith('index.html');
+        return page.source.endsWith('index.md');
     };
 
     const isGuideIndexPage = (page) => {
@@ -110,6 +110,13 @@ module.exports = function () {
     };
 
     return {
+        /* eslint-disable object-shorthand */
+        capitalize: function (str) {
+            const filtered = str.replace(/[^a-zA-Z0-9]/g, ' ');
+
+            return filtered.charAt(0).toUpperCase() + filtered.slice(1);
+        },
+        /* eslint-enable object-shorthand */
         /**
          * Handlebars Comparison Helpers
          * Copyright (c) 2013 Jon Schlinkert, Brian Woodward, contributors
@@ -276,6 +283,9 @@ module.exports = function () {
             // returns whether or not a page is a subpage under developer guide or user-guide
             return !isGuideIndexPage(page);
         },
+        isNotSectionIndexPage: (page) => {
+            return !isSectionIndexPage(page);
+        },
         isPending: (status) => {
             return status === jobStatus.pending;
         },
@@ -317,6 +327,9 @@ module.exports = function () {
         },
         pluralize: (text, count) => {
             return `${text}${count === 1 ? '' : 's'}`;
+        },
+        sanitize: (permalink) => {
+            return permalink.replace(/\/index.html/g, '');
         },
         setDefault: (...values) => {
             return values.reduce((accumulator, value) => {

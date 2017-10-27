@@ -5,8 +5,8 @@ layout: "about"
 permalink: "about/index.html"
 title: "About"
 ---
-* [Changelog](CHANGELOG.md)
+* [Changelog](about/CHANGELOG.md)
 * [Code of Conduct](https://js.foundation/community/code-of-conduct)
-* [Contributors](CONTRIBUTORS.md)
-* [FAQ](FAQ.md)
-* [Governance](GOVERNANCE.md)
+* [Contributors](about/CONTRIBUTORS.md)
+* [FAQ](about/FAQ.md)
+* [Governance](about/GOVERNANCE.md)

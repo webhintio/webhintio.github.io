@@ -7,12 +7,8 @@
             </li>
             {{#if (isNotGuideIndexPage page)}}
             <li>
-                <a href="../" class="guide-category">
-                    {{#compare page.category '===' 'user-guide'}}
-                        User guide
-                    {{else}}
-                        Developer guide
-                    {{/compare}}
+                <a  href="../{{#if (isNotSectionIndexPage page)}}../{{/if}}" class="guide-category">
+                    {{capitalize page.category}}
                 </a>
             </li>
             {{/if}}
@@ -67,7 +63,7 @@
                                             {{else}}
                                                 class="toc-subsection-title"
                                             {{/compare}}>
-                                        <a class="text" href="{{permalink}}"
+                                        <a class="text" href="{{sanitize permalink}}"
                                             {{#compare ../../page.tocTitle '!==' ../this}}
                                                 tabindex="-1"
                                             {{/compare}}>
