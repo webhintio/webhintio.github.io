@@ -10,11 +10,11 @@ config.fatal = true;
 
 exec(`git clone ${CLONE_URL}  "${TMP_DIR}"`);
 
-rm('-rf', `${SOURCE_DIR}/docs/developer-guide`);
+rm('-rf', `${SOURCE_DIR}/docs/contributor-guide`);
 rm('-rf', `${SOURCE_DIR}/docs/user-guide`);
 rm('-rf', `${SOURCE_DIR}/about`);
 
-cp('-R', `${TMP_DIR}/docs/developer-guide`, `${SOURCE_DIR}/docs/developer-guide`);
+cp('-R', `${TMP_DIR}/docs/contributor-guide`, `${SOURCE_DIR}/docs/contributor-guide`);
 cp('-R', `${TMP_DIR}/docs/user-guide`, `${SOURCE_DIR}/docs/user-guide`);
 cp('-R', `${TMP_DIR}/docs/about`, `${SOURCE_DIR}`);
 cp(`${TMP_DIR}/CHANGELOG.md`, `${SOURCE_DIR}/about`);

@@ -6,9 +6,9 @@
   id: docs
   link: /docs/
   items:
-  - id: developer-guide
-    link: /docs/developer-guide/
-    title: Developer Guide
+  - id: contributor-guide
+    link: /docs/contributor-guide/
+    title: Contributor Guide
   - id: rules
     link: /docs/user-guide/rules/
     title: Rules
