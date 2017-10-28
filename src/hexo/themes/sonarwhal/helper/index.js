@@ -280,7 +280,7 @@ module.exports = function () {
             return [jobStatus.finished, jobStatus.error].includes(status);
         },
         isNotGuideIndexPage: (page) => {
-            // returns whether or not a page is a subpage under developer guide or user-guide
+            // returns whether or not a page is a subpage under contributor guide or user-guide
             return !isGuideIndexPage(page);
         },
         isNotSectionIndexPage: (page) => {
@@ -336,7 +336,7 @@ module.exports = function () {
                 return accumulator || value;
             });
         },
-        // Sort out `Developer guide` or `User guide` pages
+        // Sort out `Contributor guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {
             const pages = allPages.reduce((acc, page) => {
                 if (page.category === category) {

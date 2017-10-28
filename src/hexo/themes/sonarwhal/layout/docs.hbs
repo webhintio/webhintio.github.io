@@ -25,9 +25,9 @@
         {{#compare page.category '===' 'doc-index'}}
             {{>doc-index}}
         {{else}}
-        {{#compare page.category '===' 'developer-guide'}}
+        {{#compare page.category '===' 'contributor-guide'}}
             {{>sub-page intro=site.data.developerGuide pages=(sortPagesByCategory
-            site.pages.data 'developer-guide')}}
+            site.pages.data 'contributor-guide')}}
         {{else}}
         {{#compare page.category '===' 'user-guide'}}
             {{>sub-page intro=site.data.userGuide
