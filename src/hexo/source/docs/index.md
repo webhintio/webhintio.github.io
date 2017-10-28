@@ -6,5 +6,5 @@ permalink: "docs/index.html"
 title: "Documentation"
 ---
 
-* [Developer Guide](developer-guide/)
+* [Contributor Guide](contributor-guide/)
 * [User Guide](user-guide/)
