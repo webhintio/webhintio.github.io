@@ -1,15 +1,15 @@
 {
   "dependencies": {
-    "algoliasearch": "^3.24.0",
+    "algoliasearch": "^3.24.5",
     "applicationinsights": "^1.0.0",
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.2",
     "cheerio": "~0.22.0",
-    "express": "^4.15.2",
+    "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "fs": "0.0.2",
-    "handlebars": "^4.0.6",
-    "hexo": "^3.3.8",
-    "hexo-cli": "^1.0.2",
+    "handlebars": "^4.0.11",
+    "hexo": "^3.4.0",
+    "hexo-cli": "^1.0.4",
     "hexo-filter-cleanup": "^1.0.7",
     "hexo-generator-index": "^0.2.1",
     "hexo-generator-tag": "^0.2.0",
@@ -18,31 +18,31 @@
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
     "hexo-util": "^0.6.0",
-    "js-yaml": "^3.8.3",
+    "js-yaml": "^3.10.0",
     "json2yaml": "^1.1.0",
     "klaw": "^2.0.0",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
-    "md-2-json": "^1.0.2",
-    "moment": "^2.18.1",
+    "md-2-json": "^1.0.3",
+    "moment": "^2.19.1",
     "normalize-path": "^2.1.1",
     "pify": "^3.0.0",
     "remove-markdown": "^0.2.2",
-    "request-promise": "^4.2.1",
+    "request-promise": "^4.2.2",
     "xss-filters": "^1.2.7"
   },
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
-    "eslint": "^4.0.0",
-    "markdownlint": "^0.6.0",
+    "eslint": "^4.4.1",
+    "markdownlint": "^0.6.1",
     "markdownlint-cli": "^0.3.1",
     "mktemp": "^0.4.0",
-    "npm-run-all": "^4.0.2",
+    "npm-run-all": "^4.1.1",
     "shelljs": "^0.7.7",
-    "stylelint": "^8.0.0"
+    "stylelint": "^8.2.0"
   },
   "hexo": {
-    "version": "3.3.8"
+    "version": "3.4.0"
   },
   "private": true,
   "scripts": {
