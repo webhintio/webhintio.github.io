@@ -1,5 +1,6 @@
 /* eslint-env browser */
 /* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand, no-continue */
+/* global hljs */
 (function () {
     'use strict';
 
@@ -109,6 +110,14 @@
         document.execCommand('copy');
     };
 
+    var highlightCodeBlocks = function () {
+        var codeBlocks = document.querySelectorAll('code');
+
+        for (var i = 0; i < codeBlocks.length; i++) {
+            hljs.highlightBlock(codeBlocks[i]);
+        }
+    };
+
     var copyButton = document.querySelector('.permalink-copy');
     var copyPermalinkToClipboard = function () {
         var permalink = document.querySelector('.scan-overview__body__permalink').textContent;
@@ -120,4 +129,5 @@
     copyButton.addEventListener('click', copyPermalinkToClipboard);
 
     registerToggleExpandListener();
+    highlightCodeBlocks();
 }());

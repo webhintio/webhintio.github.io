@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* eslint-disable no-var, strict, prefer-template, prefer-arrow-callback, object-shorthand, no-continue, no-multi-str, array-callback-return */
+/* eslint-disable no-var, strict, prefer-template, prefer-arrow-callback, object-shorthand, no-continue, no-multi-str, array-callback-return, no-useless-escape */
 /* global Handlebars, hljs */
 
 (function () {
@@ -92,63 +92,13 @@
     };
 
     var ruleItemTemplate = function () {
-        return '{{#each results}} \
-                    <div class="rule-result--details" aria-expanded="false" id="{{name}}"> \
-                        <div class="rule-result--details__header"> \
-                            <p class="rule-title">{{name}}: {{getLength messages status}}</p> \
-                            <div class="rule-result__docs"> \
-                                <a href="https://sonarwhal.com/docs/user-guide/rules/{{name}}/" title="documentation for {{name}} rule"><img src="/images/results-docs-icon.svg" alt="" class="docs-icon" /></a> \
-                                <button title="show warning details" class="button--details">Open Details</button> \
-                            </div> \
-                        </div> \
-                        {{#each messages}} \
-                        <div class="rule-result--details__body"> \
-                            <p class="{{../status}}-badge uppercase-text">{{../status}}</p> \
-                            <p> \
-                                {{message}} \
-                            </p> \
-                            {{#or resource sourceCode}} \
-                            <div class="rule-result__code"> \
-                                {{#if resource}} \
-                                <p> \
-                                    <a target="_blank" rel="noopener noreferrer" href="{{resource}}"> \
-                                        {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}} \
-                                    </a> \
-                                </p> \
-                                {{/if}} \
-                                {{#if sourceCode}} \
-                                <code>{{cutCodeString sourceCode}}</code> \
-                                {{/if}} \
-                            </div> \
-                            {{/or}} \
-                        </div> \
-                        {{/each}} \
-                        {{#if thirdParty}} \
-                            <div class="rule-result--details__footer-msg"> \
-                                {{#if thirdParty.details}} \
-                                    <p>To learn more visit</p> \
-                                {{else}} \
-                                    <p>With the help of</p> \
-                                {{/if}} \
-                                {{#if thirdParty.link}} \
-                                    <a href="{{thirdParty.link}}" target="_blank"> \
-                                {{/if}} \
-                                        <img src="{{thirdParty.logo.url}}" alt="{{thirdParty.logo.alt}}" class="{{thirdParty.logo.name}}-logo" /> \
-                                {{#if thirdParty.link}} \
-                                    </a> \
-                                {{/if}} \
-                            </div> \
-                        {{/if}} \
-                    </div> \
-                {{/each}}';
+        return '\{{#each results}}\
+                    {{>scan-result-item}}\
+                 \{{/each}}';
     };
 
     var categoryPassMessageTemplate = function () {
-        return '<div class="rule-result--details">\
-                    <div class="rule-result__message--passed">\
-                        <p>No issues</p>\
-                    </div>\
-                </div>';
+        return '{{>category-pass-message}}';
     };
 
     var getHTML = function (templ, data) {
@@ -156,50 +106,6 @@
         var template = Handlebars.compile(source);
 
         return template(data);
-    };
-
-    var cutString = function (string, lengthToShow) {
-        if (!string || string.length < lengthToShow) {
-            return string;
-        }
-
-        return string.slice(0, lengthToShow) + '...' + string.slice(string.length - lengthToShow);
-    };
-
-    var registerHandlebarsPartials = function () {
-        Handlebars.registerPartial('ruleItem', ruleItemTemplate());
-    };
-
-    var registerHandlebarsHelpers = function () {
-        Handlebars.registerHelper('or', function (left, right, options) {
-            if (left || right) {
-                return options.fn(this); // eslint-disable-line no-invalid-this
-            }
-
-            return options.inverse(this); // eslint-disable-line no-invalid-this
-        });
-        Handlebars.registerHelper('getLength', function (collection, unit) {
-            var length = collection.length;
-            var s = length > 1 ? 's' : '';
-
-            return length + ' ' + unit + s;
-        });
-
-        Handlebars.registerHelper('cutUrlString', function (urlString) {
-            return cutString(urlString, 20);
-        });
-
-        Handlebars.registerHelper('cutCodeString', function (urlString) {
-            return cutString(urlString, 150);
-        });
-
-        Handlebars.registerHelper('normalizePosition', function (position) {
-            if (!position || parseInt(position) === -1) {
-                return '';
-            }
-
-            return ':' + position;
-        });
     };
 
     var pluralize = function (text, count) {
@@ -349,12 +255,7 @@
     };
 
     var updateScanFailUI = function () {
-        var scanErrorMessageHTML = '<div class="scan-error">\
-        <p>\
-        There was an error and we were only able to partially complete the scan. View the results below or\
-        <a href="https://sonarwhal.com/scanner/">perform another scan</a>.\
-    <p>\
-    </div>';
+        var scanErrorMessageHTML = '{{>scan-error-message}}';
 
         document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
     };
@@ -474,8 +375,6 @@
     window.history.pushState(null, null, id);
 
     initExistingResults();
-    registerHandlebarsPartials();
-    registerHandlebarsHelpers();
 
     if (queuePageVisible()) {
         setTimeout(queryAndUpdate, 10000);

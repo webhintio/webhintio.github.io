@@ -1,0 +1,9 @@
+(function(hbs){
+	'use strict';
+	if(!hbs){
+		return console.error('Handlebars not found, can\'t add helpers');
+	}
+{{#each helpers as |helper name|}}
+	hbs.registerHelper('{{name}}', {{{toString helper}}});
+{{/each}}
+}(Handlebars));
