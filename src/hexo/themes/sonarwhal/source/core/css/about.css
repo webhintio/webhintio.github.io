@@ -4,7 +4,32 @@
  * @Dependencies: base.css, table-lists.css, type.css
  */
 
+
+/* About Landing Page */
+
+.about-card {
+	margin-top: 0;
+	text-align: center;
+	border: 1px solid #18186d;
+	cursor: pointer;
+}
+
+a > .about-card__main > img {
+	position: relative;
+	width: 10rem;
+	top: 5rem;
+}
+
+.about-card__title {
+	background-color: #18186d;
+	color: #fff;
+	padding: 6rem 0 2rem 0;
+	font-size: 2rem;
+	margin-top: .2rem;
+}
+
 /* Contributors Page */
+
 .module--contributors {
     text-align: center;
     margin-bottom: 2.4rem;
@@ -83,4 +108,14 @@
         width: 3.6rem;
     }
 
+}
+
+
+/* hides markdown generated h1 elements to display correct spacing */
+h1#faq {
+	display: none;
+}
+
+h1#governance {
+	display: none;
 }
