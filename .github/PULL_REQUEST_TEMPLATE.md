@@ -13,7 +13,7 @@ For the following items put an "x" between the square brackets
 Make sure you:
 
 - [ ] Signed the [Contributor License Agreement](https://cla.js.foundation/sonarwhal/sonar)
-- [ ] Followed the [commit message guidelines](https://sonarwhal.com/docs/contributor-guide/contributing/pull-requests.html#commitmessages)
+- [ ] Followed the [commit message guidelines](https://sonarwhal.com/docs/contributor-guide/contributing/pull-requests/#commitmessages)
 
 ## Short description of the change(s)
 
