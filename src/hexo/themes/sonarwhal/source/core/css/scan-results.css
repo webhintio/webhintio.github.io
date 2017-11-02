@@ -14,6 +14,7 @@
 .scan-overview__header {
     background-color: #e6e6e6;
     padding: 1rem 2rem;
+    word-wrap: break-word;
 }
 
 .scan-overview__header p:first-child {
