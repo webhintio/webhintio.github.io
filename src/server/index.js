@@ -45,6 +45,7 @@ const createServer = () => {
     const helpers = Object.assign(handlebars.helpers, themeHelpers, customHelpers); // combine helpers
     const app = express();
 
+    app.disable('x-powered-by');
     app.set('views', partialsDir);
 
     const hbs = exphbs.create({
