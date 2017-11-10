@@ -261,6 +261,7 @@ input {
 }
 
 a .github-icon-svg,
-a .twitter-icon-svg {
+a .twitter-icon-svg,
+a .medium-icon-svg {
     fill: #fff;
 }
