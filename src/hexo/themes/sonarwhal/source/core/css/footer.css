@@ -64,17 +64,20 @@ footer {
 }
 
 .github-icon,
-.twitter-icon {
+.twitter-icon,
+.medium-icon {
     width: 3rem;
 }
 
 a .github-icon-svg,
-a .twitter-icon-svg {
+a .twitter-icon-svg,
+a .medium-icon-svg {
     fill: #292f56;
 }
 
 a:hover .github-icon-svg,
-a:hover .twitter-icon-svg {
+a:hover .twitter-icon-svg,
+a:hover .medium-icon-svg {
     fill: #4046dd;
 }
 
