@@ -38,7 +38,7 @@ const configureRoutes = (app) => {
 
 ## Site content and search
 
-Most of the site's content comes from the [`sonar`][sonar] project and
+Most of the site's content comes from the [`sonarwhal`][sonarwhal-repo] project and
 its documentation. The markdown of that project is copied directly into
 the `/docs` folder. When the site is built, the markdown is transformed
 into `html` using a custom `hexo` template into the `/dist` folder,
@@ -47,10 +47,10 @@ among other static resources.
 The content of the live site is updated each time a change is made in the:
 
 * `sonarwhal.com` repository
-* `/docs` directory and/or to the `CHANGELOG.md` file from the `sonar`
+* `/docs` directory and/or to the `CHANGELOG.md` file from the `sonarwhal`
   repository
 
-To achieve the latter, `sonar` has the [`trigger-site-update.sh`]
+To achieve the latter, `sonarwhal` has the [`trigger-site-update.sh`]
 [trigger-update] script that triggers a build on `sonarwhal.com` if the
 previous conditions are met.
 
@@ -161,7 +161,7 @@ IIS manages the custom error page via the following entries in `web.config`:
 [letsencrypt]: https://letsencrypt.org
 [site-update]: https://github.com/sonarwhal/sonarwhal.com/blob/272a59c150a6462d4047bdc63019c339fcfaead0/.travis/update-site.sh
 [siteextenstion]: https://github.com/sjkp/letsencrypt-siteextension
-[sonar]: https://github.com/sonarwhal/sonar
 [sonarwhal]: https://sonarwhal.com
+[sonarwhal-repo]: https://github.com/sonarwhal/sonarwhal
 [travis]: https://travis-ci.org/sonarwhal/sonarwhal.com
-[trigger-update]: https://github.com/sonarwhal/sonar/blob/0cfb1bb49c847eb4d5ed54691dbb88cb796694bf/.travis/trigger-site-update.sh
+[trigger-update]: https://github.com/sonarwhal/sonarwhal/blob/0cfb1bb49c847eb4d5ed54691dbb88cb796694bf/.travis/trigger-site-update.sh

@@ -1,6 +1,6 @@
 ---
 category: "about-index"
-description: "Learn more about sonar, the project, and the team behind it?"
+description: "Learn more about sonarwhal, the project, and the team behind it?"
 layout: "about"
 permalink: "about/index.html"
 title: "About"
