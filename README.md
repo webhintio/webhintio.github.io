@@ -1,12 +1,12 @@
-# sonar website
+# sonarwhal website
 
 <!-- markdownlint-disable -->
 [![Build Status](https://travis-ci.org/sonarwhal/sonarwhal.com.svg?branch=master)](https://travis-ci.org/sonarwhal/sonarwhal.com) [![Greenkeeper badge](https://badges.greenkeeper.io/sonarwhal/sonarwhal.com.svg?ts=1493332136115)](https://greenkeeper.io/)
 <!-- markdownlint-enable -->
 
-This is the code for [sonar's website](https://sonarwhal.com).
+This is the code for [sonarwhal's website](https://sonarwhal.com).
 Most of the documentation though is in the main
-[sonar repo](https://github.com/sonarwhal/sonar/tree/master/docs).
+[sonarwhal repo](https://github.com/sonarwhal/sonarwhal/tree/master/docs).
 
 ## Getting started
 

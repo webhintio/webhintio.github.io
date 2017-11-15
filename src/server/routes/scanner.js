@@ -8,7 +8,7 @@ const request = promisify(r);
 const yaml = require('js-yaml');
 // This variable is like this WEBSITE_AUTH_ALLOWED_AUDIENCES = domain1,domain2 when in Azure
 const urlAudiences = process.env.WEBSITE_AUTH_ALLOWED_AUDIENCES; // eslint-disable-line no-process-env
-const sonarUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
+const sonarwhalUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
 const hexoDir = path.join(__dirname, '..', '..', 'hexo');
 const thirdPartyServiceConfigPath = path.join(hexoDir, 'source/_data/third-party-service-config.yml');
@@ -210,8 +210,8 @@ const configure = (app, appInsightsClient) => {
         res.render('scan-form', {
             layout,
             page: {
-                description: `Analyze any public website using sonar's online tool`,
-                title: `sonar's online scanner`
+                description: `Analyze any public website using sonarwhal's online tool`,
+                title: `sonarwhal's online scanner`
             }
         });
     });
@@ -269,10 +269,10 @@ const configure = (app, appInsightsClient) => {
             layout,
             overallStatistics,
             page: {
-                description: `sonar has identified ${overallStatistics.errors} errors and ${overallStatistics.warnings} warnings in ${scanResult.url}`,
-                title: `sonar report for ${scanResult.url}`
+                description: `sonarwhal has identified ${overallStatistics.errors} errors and ${overallStatistics.warnings} warnings in ${scanResult.url}`,
+                title: `sonarwhal report for ${scanResult.url}`
             },
-            permalink: `${sonarUrl}scanner/${scanResult.id}`,
+            permalink: `${sonarwhalUrl}scanner/${scanResult.id}`,
             showQueue: false,
             status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, (scanResult.status === jobStatus.finished || scanResult.status === jobStatus.error) ? scanResult.finished : void 0),
@@ -333,7 +333,7 @@ const configure = (app, appInsightsClient) => {
                 description: `scan result of ${req.body.url}`,
                 title: 'scan result'
             },
-            permalink: `${sonarUrl}scanner/${id}`,
+            permalink: `${sonarwhalUrl}scanner/${id}`,
             showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
             status,
             url: req.body.url
