@@ -133,19 +133,19 @@ offline:
 
 # predefined descriptions for front matter:
 descriptions:
-  changelog: Check all the changes in the different sonar versions
-  "docs/index.md": Learn how to use sonar, what things it checks, and how you can create your own rules
+  changelog: Check all the changes in the different sonarwhal versions
+  "docs/index.md": Learn how to use sonarwhal, what things it checks, and how you can create your own rules
   faq: Got a question? We might have an answer for you!
-  governance: Learn more about how sonar is organized internally
-  "user-guide/index.md": Anything you need to know about using sonar and configure it
+  governance: Learn more about how sonarwhal is organized internally
+  "user-guide/index.md": Anything you need to know about using sonawhalr and configure it
   "user-guide/connectors": List of core connectors and the different configurations they have.
   "user-guide/formatters": List of core formatters and how they look like
   "user-guide/rules/index.md": List of core rules shorted by category
   "contributor-guide/connectors/index.md": All the things to take into account if you are going to develop a new connector
   "contributor-guide/connectors/events.md": List of events that any core connector should support
-  "contributor-guide/contributing": If you want to contribute to sonar, read this first
+  "contributor-guide/contributing": If you want to contribute to sonarwhal, read this first
   "contributor-guide/formatters": All the things to take into account if you are going to develop a new formatter
   "contributor-guide/rules": All the things to take into account if you are going to develop a new rule
   "contributor-guide/development-environment": What you need to do to start developing for sonar
-  "contributor-guide/index.md": Learn about the different pieces that build sonar and what each one of them does
+  "contributor-guide/index.md": Learn about the different pieces that build sonarwhal and what each one of them does
 
