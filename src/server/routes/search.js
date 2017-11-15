@@ -35,8 +35,8 @@ const configure = (app) => {
             currentPage,
             hits,
             page: {
-                description: query ? `About ${totalPages * hitsPerPage} results found for ${query}` : `Search through sonar's rules, user and contributor guides`,
-                title: query ? `Results for ${query} (page ${currentPage} of ${totalPages})` : `Search sonar's documentation`
+                description: query ? `About ${totalPages * hitsPerPage} results found for ${query}` : `Search through sonarwhal's rules, user and contributor guides`,
+                title: query ? `Results for ${query} (page ${currentPage} of ${totalPages})` : `Search sonarwhal's documentation`
             },
             pattern,
             query,

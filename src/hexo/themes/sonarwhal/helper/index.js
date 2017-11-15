@@ -86,7 +86,7 @@ module.exports = function () {
          * Copyright (c) 2013 Jon Schlinkert, Brian Woodward, contributors
          * Licensed under the MIT License (MIT).
          * https://github.com/helpers/handlebars-helpers/blob/a3683bab5519882927de527077c34a98ac22067b/lib/comparison.js#L48
-         * Modified to fit Sonar Website
+         * Modified to fit sonarwhal Website
          */
         /**
          * {{#compare}}...{{/compare}}

@@ -2,7 +2,7 @@
 
 const shell = require('shelljs/global'); // eslint-disable-line no-unused-vars
 
-const CLONE_URL = 'https://github.com/sonarwhal/sonar.git'; // eslint-disable-line no-process-env
+const CLONE_URL = 'https://github.com/sonarwhal/sonarwhal.git'; // eslint-disable-line no-process-env
 const SOURCE_DIR = 'src/hexo/source';
 const TMP_DIR = require('./mktemp')();
 

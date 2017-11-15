@@ -16,8 +16,8 @@ url: /
 root: /
 permalink:
 permalink_defaults:
-sonarRepoRoot: https://github.com/sonarwhal/sonar
-sonarRoot: https://sonarwhal.com
+sonarwhalRepoRoot: https://github.com/sonarwhal/sonarwhal
+sonarwhalRoot: https://sonarwhal.com
 
 # Directory
 source_dir: src/hexo/source
