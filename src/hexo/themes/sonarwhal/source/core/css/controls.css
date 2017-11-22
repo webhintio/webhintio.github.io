@@ -269,6 +269,9 @@ a.button {
     min-width: 16rem;
     max-width: 100%;
     border: 1px solid transparent;
+
+    /* needed to override Chrome styles */
+    border-radius: 0;
     padding: 1.2rem 1.6rem;
 
     color: #fff;
