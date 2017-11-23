@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "algoliasearch": "^3.24.5",
+    "algoliasearch": "^3.24.6",
     "applicationinsights": "^1.0.0",
     "body-parser": "^1.18.2",
     "cheerio": "~0.22.0",
@@ -8,7 +8,7 @@
     "express-handlebars": "^3.0.0",
     "fs": "0.0.2",
     "handlebars": "^4.0.11",
-    "hexo": "^3.4.0",
+    "hexo": "^3.4.2",
     "hexo-cli": "^1.0.4",
     "hexo-filter-cleanup": "^1.0.7",
     "hexo-generator-index": "^0.2.1",
@@ -20,11 +20,11 @@
     "hexo-util": "^0.6.2",
     "js-yaml": "^3.10.0",
     "json2yaml": "^1.1.0",
-    "klaw": "^2.0.0",
+    "klaw": "^2.1.1",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "md-2-json": "^1.0.5",
-    "moment": "^2.19.1",
+    "moment": "^2.19.2",
     "normalize-path": "^2.1.1",
     "pify": "^3.0.0",
     "remove-markdown": "^0.2.2",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
     "eslint": "^4.4.1",
-    "markdownlint": "^0.6.2",
+    "markdownlint": "^0.6.3",
     "markdownlint-cli": "^0.5.0",
     "mktemp": "^0.4.0",
     "npm-run-all": "^4.1.2",
@@ -42,7 +42,7 @@
     "stylelint": "^8.2.0"
   },
   "hexo": {
-    "version": "3.4.0"
+    "version": "3.4.2"
   },
   "private": true,
   "scripts": {
