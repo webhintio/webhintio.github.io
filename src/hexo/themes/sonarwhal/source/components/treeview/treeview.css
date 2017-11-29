@@ -20,7 +20,6 @@
 }
 
 .treeview li[aria-expanded="true"] > ul {
-    max-height: 120rem;
     -webkit-transition: max-height .2s ease-in-out;
     -moz-transition: max-height .2s ease-in-out;
     -o-transition: max-height .2s ease-in-out;
