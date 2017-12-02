@@ -13,9 +13,14 @@
                 <section class="home-container--section">
                     <h1 class="headline">sonarwhal</h1>
                     <p class="title">build better web sites&mdash;lint the web forward</p>
-                    <div class="actions">
-                        <a class="button button-cta button--red" href="/docs/user-guide/">Getting Started</a>
-                        <a class="button button-cta button--red" href="/scanner/">Try it online</a>
+                    <div class="home-container--input">
+                        <form action="/scanner/" method="POST">
+                            <label for="home-scan">Enter your URL here</label>
+                            <div class="input-fix">
+                                <input id="home-scan" type="url" name="url" placeholder="Type your URL here">
+                                <button class="button--red" type="submit">Run Scan</button>
+                            </div>
+                        </form>
                     </div>
                 </section>
                 <section class="home-container--section home-container__features">
