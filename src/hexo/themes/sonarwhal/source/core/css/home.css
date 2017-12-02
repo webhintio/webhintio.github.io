@@ -110,8 +110,6 @@ main {
 
 .home-container--section {
     padding: 4.8rem 0;
-
-    /* remove text-align after scanner is implemented */
     text-align: center;
 }
 
@@ -166,6 +164,8 @@ main {
 .home-container--input {
     margin: 0 auto;
     max-width: 96rem;
+    padding: 4.8rem 0;
+    text-align: left;
 }
 
 /* stylelint-disable */
