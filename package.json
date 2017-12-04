@@ -29,6 +29,7 @@
     "pify": "^3.0.0",
     "remove-markdown": "^0.2.2",
     "request-promise": "^4.2.2",
+    "sw-precache": "^5.2.0",
     "xss-filters": "^1.2.7"
   },
   "devDependencies": {
