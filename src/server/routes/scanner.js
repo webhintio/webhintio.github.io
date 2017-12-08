@@ -283,6 +283,18 @@ const configure = (app, appInsightsClient) => {
         res.render('scan-result', renderOptions);
     });
 
+    const getJobConfig = async (req, res) => {
+        const job = await queryResult(req.params.jobId);
+
+        if (!job) {
+            return res.status(404).send('Job Not Found');
+        }
+
+        return res.send(job.config);
+    };
+
+    app.get('/scanner/config/:jobId', getJobConfig);
+
     app.get('/scanner/helpers/:name', renderHelpers);
 
     app.post('/scanner', async (req, res) => {
