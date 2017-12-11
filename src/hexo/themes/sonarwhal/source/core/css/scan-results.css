@@ -99,6 +99,17 @@
     margin-left: 1rem;
 }
 
+.scan-overview--config {
+    padding: 0 3rem 1rem 0;
+}
+
+.scan-overview__body__link {
+    display: inline-block;
+    margin-top: .3rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
 @media (min-width: 33.75em) {
 
     .scan-overview__header {
@@ -114,7 +125,7 @@
     .scan-overview--details {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     .scan-overview__subheader {
