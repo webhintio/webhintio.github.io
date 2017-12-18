@@ -1,4 +1,66 @@
 ---
+  0.20.1 (Decembe 12, 2017): 
+    Bug fixes / Improvements: 
+      raw: "- [[`559380f65e`](https://github.com/sonarwhal/sonarwhal/commit/559380f65e3edfa50d15896c66b3c8be48c7431c)] - Fix: Issue where tests of external rules couldn’t be run.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/559380f65e3edfa50d15896c66b3c8be48c7431c\"><code>559380f65e</code></a>] - Fix: Issue where tests of external rules couldn’t be run.</li>\n</ul>\n"
+      details: 
+        559380f65e3edfa50d15896c66b3c8be48c7431c: 
+          associateCommitId: null
+          message: "Fix: Issue where tests of external rules couldn’t be run."
+  0.20.0 (Decembe 12, 2017): 
+    Bug fixes / Improvements: 
+      raw: "- [[`0a9657642b`](https://github.com/sonarwhal/sonarwhal/commit/0a9657642b40321ce287bca7c0ac9e62d5f5c72b)] - Fix: Enable cache in `requester`.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/0a9657642b40321ce287bca7c0ac9e62d5f5c72b\"><code>0a9657642b</code></a>] - Fix: Enable cache in <code>requester</code>.</li>\n</ul>\n"
+      details: 
+        0a9657642b40321ce287bca7c0ac9e62d5f5c72b: 
+          associateCommitId: null
+          message: "Fix: Enable cache in `requester`."
+    New features: 
+      raw: "- [[`69f2ece8b4`](https://github.com/sonarwhal/sonarwhal/commit/69f2ece8b40fe2eec057a3c013c0b24d31efa82d)] - New: Add `http-cache` rule (see also: [`#708`](https://github.com/sonarwhal/sonarwhal/issues/708)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/69f2ece8b40fe2eec057a3c013c0b24d31efa82d\"><code>69f2ece8b4</code></a>] - New: Add <code>http-cache</code> rule (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/708\"><code>#708</code></a>).</li>\n</ul>\n"
+      details: 
+        69f2ece8b40fe2eec057a3c013c0b24d31efa82d: 
+          associateCommitId: "708"
+          message: "New: Add `http-cache` rule."
+  0.19.0 (Decembe 11, 2017): 
+    New features: 
+      raw: "- [[`d99100df54`](https://github.com/sonarwhal/sonarwhal/commit/d99100df542f1c34425ce631b00ed3a1f4d8da0a)] - New: Add better support for creating and running external rules (see also: [`#696`](https://github.com/sonarwhal/sonarwhal/issues/696)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/d99100df542f1c34425ce631b00ed3a1f4d8da0a\"><code>d99100df54</code></a>] - New: Add better support for creating and running external rules (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/696\"><code>#696</code></a>).</li>\n</ul>\n"
+      details: 
+        d99100df542f1c34425ce631b00ed3a1f4d8da0a: 
+          associateCommitId: "696"
+          message: "New: Add better support for creating and running external rules."
+  0.18.0 (Decembe 11, 2017): 
+    Breaking Changes: 
+      raw: "- [[`ff472cc53d`](https://github.com/sonarwhal/sonarwhal/commit/ff472cc53ddc76d19230f5152d1c7733f6474cc9)] - Breaking: Fix parsing of file extensions (see also: [`#698`](https://github.com/sonarwhal/sonarwhal/issues/698)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/ff472cc53ddc76d19230f5152d1c7733f6474cc9\"><code>ff472cc53d</code></a>] - Breaking: Fix parsing of file extensions (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/698\"><code>#698</code></a>).</li>\n</ul>\n"
+      details: 
+        ff472cc53ddc76d19230f5152d1c7733f6474cc9: 
+          associateCommitId: "698"
+          message: "Breaking: Fix parsing of file extensions."
+    Bug fixes / Improvements: 
+      raw: "- [[`222152093d`](https://github.com/sonarwhal/sonarwhal/commit/222152093d158f5bf6339ab2683d4f89b7172afe)] - Docs: Fix links to concepts.\n- [[`45af1045a3`](https://github.com/sonarwhal/sonarwhal/commit/45af1045a350c006da8efbbc7f1d206afd3d58d1)] - Docs: Make minor fixes and improvements.\n- [[`c7d4bada7b`](https://github.com/sonarwhal/sonarwhal/commit/c7d4bada7b3b69252e72b5a44f9e11707db9d37f)] - Docs: Reorganize `User Guide` (see also: [`#697`](https://github.com/sonarwhal/sonarwhal/issues/697)).\n- [[`3ef2793601`](https://github.com/sonarwhal/sonarwhal/commit/3ef27936011dde33953b8b9f08480eb9a37202c0)] - Docs: Fix rule name in `no-http-redirects.md` (see also: [`#686`](https://github.com/sonarwhal/sonarwhal/issues/686)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/222152093d158f5bf6339ab2683d4f89b7172afe\"><code>222152093d</code></a>] - Docs: Fix links to concepts.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/45af1045a350c006da8efbbc7f1d206afd3d58d1\"><code>45af1045a3</code></a>] - Docs: Make minor fixes and improvements.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/c7d4bada7b3b69252e72b5a44f9e11707db9d37f\"><code>c7d4bada7b</code></a>] - Docs: Reorganize <code>User Guide</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/697\"><code>#697</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/3ef27936011dde33953b8b9f08480eb9a37202c0\"><code>3ef2793601</code></a>] - Docs: Fix rule name in <code>no-http-redirects.md</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/686\"><code>#686</code></a>).</li>\n</ul>\n"
+      details: 
+        222152093d158f5bf6339ab2683d4f89b7172afe: 
+          associateCommitId: null
+          message: "Docs: Fix links to concepts."
+        45af1045a350c006da8efbbc7f1d206afd3d58d1: 
+          associateCommitId: null
+          message: "Docs: Make minor fixes and improvements."
+        c7d4bada7b3b69252e72b5a44f9e11707db9d37f: 
+          associateCommitId: "697"
+          message: "Docs: Reorganize `User Guide`."
+        3ef27936011dde33953b8b9f08480eb9a37202c0: 
+          associateCommitId: "686"
+          message: "Docs: Fix rule name in `no-http-redirects.md`."
+    New features: 
+      raw: "- [[`72b76324d0`](https://github.com/sonarwhal/sonarwhal/commit/72b76324d02ce20715077bcded245248ba97f851)] - Update: `snyk-snapshot.json`.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/72b76324d02ce20715077bcded245248ba97f851\"><code>72b76324d0</code></a>] - Update: <code>snyk-snapshot.json</code>.</li>\n</ul>\n"
+      details: 
+        72b76324d02ce20715077bcded245248ba97f851: 
+          associateCommitId: null
+          message: "Update: `snyk-snapshot.json`."
   0.17.0 (November 29, 2017): 
     Bug fixes / Improvements: 
       raw: "- [[`2a1623cbf0`](https://github.com/sonarwhal/sonarwhal/commit/2a1623cbf0dcc5cf3a8f445f43bf9a9cd0a6c13f)] - Docs: Add `edge` connector related information (see also: [`#671`](https://github.com/sonarwhal/sonarwhal/issues/671)).\n- [[`61874f64d0`](https://github.com/sonarwhal/sonarwhal/commit/61874f64d0016d9dd2f2e688a1d01096d71cbbb7)] - Docs: Mention performance aspects in `meta-viewport.md`.\n- [[`eec1298cd7`](https://github.com/sonarwhal/sonarwhal/commit/eec1298cd79e28a575bbc7912802b4f9d35c696e)] - Docs: Fix typo in `apple-touch-icons.md`.\n- [[`58e650d4c4`](https://github.com/sonarwhal/sonarwhal/commit/58e650d4c4e083b9a00ffde49ad9b3739336ea5e)] - Docs: Make minor improvements in `meta-viewport.md`.\n- [[`6ed5fb5a45`](https://github.com/sonarwhal/sonarwhal/commit/6ed5fb5a45dd99c4ea31cb26d8d31cd118cda48a)] - Docs: Rephrase `Public-Key-Pins` related information.\n- [[`b333372fc3`](https://github.com/sonarwhal/sonarwhal/commit/b333372fc375e9b1058bcbbf8f47827da1f7a85b)] - Docs: Fix rule name in `user-guide/rules/index.md`.\n- [[`c382d8771a`](https://github.com/sonarwhal/sonarwhal/commit/c382d8771adbac3afcab493b2c781ee6a26b7e45)] - Fix: Add missing `Category` import in the rule template.\n- [[`5d7203e5b0`](https://github.com/sonarwhal/sonarwhal/commit/5d7203e5b02fc26eb1947b32d041047acf24145c)] - Docs: Fix typo in `docs/user-guide/index.md`.\n\n"
