@@ -144,11 +144,11 @@ ol.layout {
 @media (min-width: 64em) {
 
     [class*="layout--sidebar"] > .module--secondary {
-        width: 28rem;
+        width: 30rem;
     }
 
     [class*="layout--sidebar"] > .module--primary {
-        width: calc(100% - 34rem);
+        width: calc(100% - 36rem);
     }
 
 }
