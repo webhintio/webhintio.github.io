@@ -198,6 +198,13 @@ h6,
 
 }
 
+blockquote {
+    border-left: 5px solid #4046dd;
+    padding-left: 2.4rem;
+    color: #6c6c6c;
+    font-size: 1.6rem;
+}
+
 /* Maximum line lengths */
 p,
 li {
