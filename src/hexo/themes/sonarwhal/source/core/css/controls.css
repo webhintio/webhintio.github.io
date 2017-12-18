@@ -116,36 +116,27 @@ select,
 
 /* Header search bar input animation */
 .nav-bar__input input[type="search"] {
-    background-color: hsla(0, 0%, 100%, 0);
-    background-image: url("/images/search-icon.svg");
-    background-position: 0 1rem;
-    background-repeat: no-repeat;
-    background-size: 2.1rem 2.1rem;
-
-    border: 1px solid transparent;
+    background-color: hsla(237, 69%, 55%, .2);
+    border: 1px solid hsla(0, 0%, 100%, .2);
     color: #fff;
 
     height: 4rem;
-    width: 4rem;
+    width: 25rem;
 
     margin-right: 0;
-    margin-left: 4rem;
+    margin-left: 1rem;
+    padding: 1rem 1rem 1rem 1.2rem;
 
-    padding: 1rem 1rem 1rem 3.2rem;
-
-    cursor: pointer;
-
-    -webkit-transition: width .4s ease-in-out;
-    transition: width .4s ease-in-out;
+    cursor: text;
 }
 
 .nav-bar__input input[type=search]:focus {
-    width: 20rem;
     border-bottom: 1px solid #fff;
     cursor: text;
 }
 
 .nav-bar__input {
+    position: relative;
     height: 4rem;
 }
 
@@ -294,6 +285,25 @@ a.button {
 
 .button--purple {
     background-color: #4046dd;
+}
+
+.button-search {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 0;
+    background-color: hsla(0, 0%, 100%, 0);
+    border: 1px solid transparent;
+    padding: 1.1rem 1.15rem;
+    line-height: 1;
+}
+
+.button-search::after {
+    display: inline-block;
+    content: url("/images/search-icon.svg");
+    background: hsla(0, 0%, 100%, 0);
+    width: 1.5rem;
+    vertical-align: top;
 }
 
 .button:hover {
