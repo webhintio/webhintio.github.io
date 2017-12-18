@@ -38,7 +38,7 @@ textarea,
 select {
     width: 100%;
     max-width: 64rem;
-    height: 5.1rem;
+    height: 5rem;
 
     border: 1px solid hsla(0, 0%, 0%, .6);
 
@@ -114,39 +114,31 @@ select,
     -webkit-appearance: none;
 }
 
-/* Header search bar input animation */
-.nav-bar__input input[type="search"] {
-    background-color: hsla(0, 0%, 100%, 0);
-    background-image: url("/images/search-icon.svg");
-    background-position: 0 1rem;
-    background-repeat: no-repeat;
-    background-size: 2.1rem 2.1rem;
+.nav-bar__input {
+    position: relative;
+    height: 4rem;
+    width: 30rem;
+}
 
-    border: 1px solid transparent;
+.nav-bar__input input[type="search"] {
+    background-color: hsla(0, 0%, 0%, .2);
+    border: 1px solid hsla(0, 0%, 100%, .2);
     color: #fff;
 
     height: 4rem;
-    width: 4rem;
+
+    /* need to define here due to inline CSS from algolia */
+    width: 30rem;
 
     margin-right: 0;
-    margin-left: 4rem;
+    padding: 1rem 1rem 1rem 1.2rem;
 
-    padding: 1rem 1rem 1rem 3.2rem;
-
-    cursor: pointer;
-
-    -webkit-transition: width .4s ease-in-out;
-    transition: width .4s ease-in-out;
-}
-
-.nav-bar__input input[type=search]:focus {
-    width: 20rem;
-    border-bottom: 1px solid #fff;
     cursor: text;
 }
 
-.nav-bar__input {
-    height: 4rem;
+.nav-bar__input input[type=search]:focus {
+    border: 1px solid #fff;
+    cursor: text;
 }
 
 input[type=search]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -192,39 +184,6 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
     max-width: 74rem;
 }
 
-@media (max-width: 34em) {
-
-    .nav-bar__input {
-        position: absolute;
-        top: 8rem;
-        left: 2rem;
-
-        width: 95%;
-        max-width: 48rem;
-
-        padding: 0 1.5rem 0 0;
-    }
-
-    .nav-bar__input input[type=search] {
-        margin-left: 0;
-    }
-
-    .algolia-autocomplete {
-        width: 100%;
-    }
-
-    .nav-bar__input input[type=search] {
-        width: 100%;
-        border-bottom: 1px solid #fff;
-    }
-
-    .nav-bar__input input[type=search]:focus {
-        width: 100%;
-        max-width: 48rem;
-    }
-
-}
-
 @media (min-width: 34.1em) {
 
     /* Keeps input and button on same line */
@@ -247,14 +206,37 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
 
 }
 
-@media (min-width: 34.1em) and (max-width: 57.94em) {
+@media (max-width: 47.94em) {
 
     .nav-bar__input {
-        margin-left: auto;
+        top: 3rem;
+
+        width: 100%;
+        max-width: 74rem;
+
+        padding: 0 0 0 1.5rem;
     }
 
     .nav-bar__input input[type=search] {
-        margin-right: 4rem;
+        width: 100%;
+        max-width: 74rem;
+        margin-left: 0;
+    }
+
+    .algolia-autocomplete {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 48em) and (max-width: 52em) {
+
+    .nav-bar__input {
+        width: 23rem;
+    }
+
+    .nav-bar__input input[type="search"] {
+        width: 23rem;
     }
 
 }
@@ -296,6 +278,25 @@ a.button {
     background-color: #4046dd;
 }
 
+.button-search {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 0;
+    background-color: hsla(0, 0%, 100%, 0);
+    border: 1px solid transparent;
+    padding: 1.1rem 1.15rem;
+    line-height: 1;
+}
+
+.button-search::after {
+    display: inline-block;
+    content: url("/images/search-icon.svg");
+    background: hsla(0, 0%, 100%, 0);
+    width: 1.5rem;
+    vertical-align: top;
+}
+
 .button:hover {
     text-decoration: none;
 }
@@ -305,6 +306,10 @@ button:focus,
 .button:hover,
 .button:focus {
     border-color: hsla(0, 0%, 0%, .4);
+}
+
+.button-search:hover {
+    border-color: hsla(0, 0%, 100%, .2);;
 }
 
 button:active,
@@ -407,7 +412,7 @@ select {
     appearance: none;
 
     border-radius: 0;
-    background: url("/images/select-arrow.svg") no-repeat right 1rem center / 1.4rem .8rem;
+    background: url("../images/select-arrow.svg") no-repeat right 1rem center / 1.4rem .8rem;
 
     /* @Browser: Firefox. Extra styles needed to hide default arrow */
     text-indent: .01px;
@@ -455,7 +460,7 @@ select:disabled {
 /* @Browser Chrome. Style arrow with out custom arrow. Also applies to calendars */
 ::-webkit-calendar-picker-indicator {
     color: transparent;
-    background: url("/images/select-arrow.svg") no-repeat right center / 1.3rem .8rem;
+    background: url("../images/select-arrow.svg") no-repeat right center / 1.3rem .8rem;
 }
 
 

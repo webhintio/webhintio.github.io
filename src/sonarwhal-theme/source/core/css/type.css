@@ -51,7 +51,8 @@ legend,
 [class*="-badge"],
 .scan-overview,
 .docs-button,
-.anchor-top {
+.anchor-top,
+.feature__cta {
     font-family: "Montserrat", sans-serif;
 }
 
