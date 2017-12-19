@@ -46,7 +46,7 @@
     "version": "3.4.3"
   },
   "private": true,
-  "scripts": {s
+  "scripts": {
     "build": "npm run hexo:clean && npm run update-content && node helpers/updater.js src/hexo/source && hexo generate",
     "hexo:clean": "hexo clean",
     "hexo:generate": "hexo generate",
