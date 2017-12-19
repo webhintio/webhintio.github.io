@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "algoliasearch": "^3.24.7",
+    "algoliasearch": "^3.24.8",
     "applicationinsights": "^1.0.1",
     "body-parser": "^1.18.2",
     "cheerio": "~0.22.0",
@@ -24,7 +24,7 @@
     "lodash": "^4.17.4",
     "marked": "^0.3.7",
     "md-2-json": "^1.0.5",
-    "moment": "^2.19.4",
+    "moment": "^2.20.1",
     "normalize-path": "^2.1.1",
     "pify": "^3.0.0",
     "remove-markdown": "^0.2.2",
@@ -40,7 +40,7 @@
     "mktemp": "^0.4.0",
     "npm-run-all": "^4.1.2",
     "shelljs": "^0.7.7",
-    "stylelint": "^8.3.1"
+    "stylelint": "^8.4.0"
   },
   "hexo": {
     "version": "3.4.3"
