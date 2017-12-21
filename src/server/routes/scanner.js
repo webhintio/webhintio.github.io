@@ -28,6 +28,7 @@ const ruleStatus = {
     warning: 'warning'
 };
 
+const noDocRules = ['optimize-image'];
 const helpersDir = path.join(__dirname, '..', '..', 'hexo/themes/sonarwhal/helper/index.js');
 const helpers = require(helpersDir)(); // Shared helpers between the client and server side.
 
@@ -113,6 +114,8 @@ const parseCategories = (rules, scanUrl) => {
         if (thirdPartyInfo) {
             rule.thirdParty = updateLink(thirdPartyInfo, scanUrl);
         }
+
+        rule.hasDoc = !noDocRules.includes(rule.name);
 
         category.rules.push(rule);
 
