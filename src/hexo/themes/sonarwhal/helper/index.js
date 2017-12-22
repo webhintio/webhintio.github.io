@@ -269,6 +269,9 @@ module.exports = function () {
         isNotSectionIndexPage: (page) => {
             return !isSectionIndexPage(page);
         },
+        isPass: (status) => {
+            return status === jobStatus.finished;
+        },
         isPending: (status) => {
             return status === jobStatus.pending;
         },

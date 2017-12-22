@@ -254,6 +254,19 @@
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
 
+    var updateFavicon = function (status) {
+        var statuses = [jobStatus.error, jobStatus.finished];
+        var favicons = ['failed', 'passed'];
+
+        if ([jobStatus.started, jobStatus.pending].includes(status) || !status) {
+            return;
+        }
+
+        var newFaviconHref = '/images/favicon_' + favicons[statuses.indexOf(status)] + '.ico';
+
+        document.querySelector('.favicon').setAttribute('href', newFaviconHref);
+    };
+
     var updateScanFailUI = function () {
         var scanErrorMessageHTML = '{{>scan-error-message}}';
 
@@ -307,6 +320,8 @@
             var isFinish = response.status === jobStatus.finished;
             var isError = response.status === jobStatus.error;
             var isPending = response.status === jobStatus.pending;
+
+            updateFavicon(response.status);
 
             if (err) {
                 clearInterval(timer);
