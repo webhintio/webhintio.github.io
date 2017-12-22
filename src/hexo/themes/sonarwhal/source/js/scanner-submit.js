@@ -31,6 +31,8 @@
     var resultBlock = document.querySelector('.scan-result-bg-wrap');
     /** Id of the timer timeout. */
     var timer;
+    /** Total number of errors and warnings. */
+    var overallStatistics;
 
     var xhr = function (options) {
         var http = new XMLHttpRequest();
@@ -213,9 +215,6 @@
         var time = data.time;
         var version = data.version;
 
-        var totalErrors = 0;
-        var totalWarnings = 0;
-
         updates.forEach(function (category) {
             if (!category.results) {
                 return;
@@ -234,9 +233,6 @@
             updateErrorItems(category);
             updateOverallData(category, allRulesPass, allRulesChecked);
 
-            totalErrors += category.statistics.errors;
-            totalWarnings += category.statistics.warnings;
-
             if (categoryScanComplete(category)) {
                 removeLoader(category);
             }
@@ -248,8 +244,8 @@
             hljs.highlightBlock(codeBlocks[i]);
         }
 
-        document.querySelector('#total-errors').innerHTML = totalErrors;
-        document.querySelector('#total-warnings').innerHTML = totalWarnings;
+        document.querySelector('#total-errors').innerHTML = overallStatistics.errors;
+        document.querySelector('#total-warnings').innerHTML = overallStatistics.warnings;
         document.querySelector('.scan-overview--time .scan-overview__body--purple').innerHTML = time;
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
@@ -302,11 +298,28 @@
         statusElement.classList.remove('analyzing');
     };
 
+    var updateFavicon = function (status, statistics) {
+        var favicons = {
+            failed: 'failed',
+            passed: 'passed'
+        };
+        var totalErrors = statistics.errors;
+        var totalWarnings = statistics.warnings;
+
+        var statisticsPass = (totalErrors === 0) && (totalWarnings === 0);
+        var newFavicon = (status !== jobStatus.error) && statisticsPass ? favicons.passed : favicons.failed;
+        var newFaviconHref = '/images/favicon_' + newFavicon + '.ico';
+
+        document.querySelector('.favicon').setAttribute('href', newFaviconHref);
+    };
+
     var queryAndUpdate = function () {
         var callback = function (err, response) {
             var isFinish = response.status === jobStatus.finished;
             var isError = response.status === jobStatus.error;
             var isPending = response.status === jobStatus.pending;
+
+            overallStatistics = response.overallStatistics;
 
             if (err) {
                 clearInterval(timer);
@@ -338,6 +351,7 @@
                 if (isFinish || isError) {
                     clearInterval(timer);
                     updateStatus(response.status);
+                    updateFavicon(response.status, overallStatistics);
 
                     return;
                 }

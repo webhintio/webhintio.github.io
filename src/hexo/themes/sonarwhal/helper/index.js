@@ -269,6 +269,11 @@ module.exports = function () {
         isNotSectionIndexPage: (page) => {
             return !isSectionIndexPage(page);
         },
+        isPass: (status, stats) => {
+            const passStats = (stats.errors === 0) && (stats.warnings === 0);
+
+            return (status !== jobStatus.error) && passStats;
+        },
         isPending: (status) => {
             return status === jobStatus.pending;
         },
