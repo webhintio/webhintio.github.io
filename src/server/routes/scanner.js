@@ -236,10 +236,11 @@ const configure = (app, appInsightsClient) => {
 
         reportJobEvent(scanResult);
 
-        const { categories } = processRuleResults(scanResult.rules, scanResult.url);
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url);
 
         return res.send({
             categories,
+            overallStatistics,
             status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
             version: scanResult.sonarVersion

@@ -11,16 +11,16 @@
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 
 {{#if status}}
-    {{#if (isPass status)}}
-        <link rel="icon" type="image/png" class="favicon" href="/images/favicon_passed.ico" sizes="32x32">
+    {{#if (isFinish status)}}
+        {{#if (isPass status overallStatistics)}}
+            <link rel="icon" class="favicon" href="/images/favicon_passed.ico">
+        {{else}}
+            <link rel="icon" class="favicon" href="/images/favicon_failed.ico">
+        {{/if}}
     {{else}}
-            {{#if (isError status)}}
-                <link rel="icon" type="image/png" class="favicon" href="/images/favicon_failed.ico" sizes="32x32">
-            {{else}}
-                <link rel="icon" type="image/png" class="favicon" href="/images/favicon_pending.ico" sizes="32x32">
-            {{/if}}
+        <link rel="icon" class="favicon" href="/images/favicon_pending.ico">
     {{/if}}
 {{else}}
-    <link rel="icon" type="image/png" class="favicon" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" class="favicon" href="/images/favicon.ico">
 {{/if}}
 
