@@ -346,8 +346,8 @@ const configure = (app, appInsightsClient) => {
             layout,
             overallStatistics,
             page: {
-                description: `scan result of ${req.body.url}`,
-                title: 'scan result'
+                description: `scan result of ${requestResult.url}`,
+                title: `sonarwhal report for ${requestResult.url}`
             },
             permalink: `${sonarwhalUrl}scanner/${id}`,
             showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
