@@ -30,10 +30,46 @@
     </header>
     <div class="section">
         <div class="layout layout--sidebar">
-            <div class="module module--primary wrap-text">
-                {{{page.content}}}
+            <div class="module module--secondary mobile-view">
+                <ul class="toc-mobile-view">
+                    <li>
+                        <p role="button" id="mobile-toc" aria-controls="mobile-toc-submenu" aria-expanded="false" aria-haspopup="true" class="toc-mobile-view__button expandable">User Guide</p>
+                        <ul role="group" class="toc-mobile-view__dropdown" id="mobile-toc-submenu" aria-hidden="true">
+                            <li class="dropdown__subitem">
+                                <a href="#" class="subitem--single">Getting Started</a>
+                            </li>
+                            <li class="dropdown__subitem">
+                                <p>Concepts</p>
+                                <ul>
+                                    <li class="subitem"><a href="#">Connectors</a></li>
+                                    <li class="subitem"><a href="#">Formatters</a></li>
+                                    <li class="subitem"><a href="#">Rules</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown__subitem">
+                                <p>Further Configuration</p>
+                                <ul>
+                                    <li class="subitem"><a href="#">.sonarwhalrc formats</a></li>
+                                    <li class="subitem"><a href="#">Browser configuration</a></li>
+                                    <li class="subitem"><a href="#">Ignoring domains</a></li>
+                                    <li class="subitem"><a href="#">Rules timeout</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown__subitem">
+                                <p>Rules</p>
+                                <ul>
+                                    <li class="subitem"><a href="#">Rule categories</a></li>
+                                    <li class="subitem"><a href="#">AMP HTML Validator</a></li>
+                                    <li class="subitem"><a href="#">Accessibility assessment with aXe</a></li>
+                                    <li class="subitem"><a href="#">Avoid HTTP redirects in requests</a></li>
+                                    <li class="subitem"><a href="#">Disallow certain HTTP headers</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="module module--secondary table-of-contents treeview" role="navigation">
+            <div class="module module--secondary table-of-contents treeview main-view" role="navigation">
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
                 {{#each (getSortedToCTitles pages)}}
                     <li role="treeitem" aria-label="subsection" tabindex="0"
@@ -76,6 +112,9 @@
                     </li>
                 {{/each}}
                 </ul>
+            </div>
+            <div class="module module--primary wrap-text">
+                {{{page.content}}}
             </div>
         </div>
     </div>
