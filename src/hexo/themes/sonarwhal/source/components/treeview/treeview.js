@@ -16,6 +16,7 @@
 
     var treeitems = arraify(document.querySelectorAll('[role="treeitem"]'));
     var tocSectionTitle = arraify(document.querySelectorAll('.toc-section-title, .toc-section-title--active'));
+    var mobileToCMenu = document.querySelector('.toc-mobile-view');
     var findParentElementByAttribute = function (element, attrName, attrValue) {
         var currentElement = element;
 
@@ -166,6 +167,17 @@
         }
     };
 
+    var toggleExpandMobileMenu = function (evt) {
+        var menu = evt.currentTarget.querySelector('#mobile-toc-submenu');
+        var isClosed = menu.getAttribute('aria-hidden') === 'true';
+
+        if (isClosed) {
+            menu.setAttribute('aria-hidden', 'false');
+        } else {
+            menu.setAttribute('aria-hidden', 'true');
+        }
+    };
+
     var onKeydown = function (evt) {
         var key = evt.which || evt.keyCode;
         var currentTreeitem = getClosestTreeElement(evt.target);
@@ -223,4 +235,6 @@
     tocSectionTitle.map(function (title) {
         title.addEventListener('click', toggleExpand, false);
     });
+
+    mobileToCMenu.addEventListener('click', toggleExpandMobileMenu, false);
 }());
