@@ -30,10 +30,35 @@
     </header>
     <div class="section">
         <div class="layout layout--sidebar">
-            <div class="module module--primary wrap-text">
-                {{{page.content}}}
+            <div class="module module--secondary mobile-view">
+                <ul class="toc-mobile-view">
+                    <li>
+                        <p role="button" id="mobile-toc" aria-controls="mobile-toc-submenu" aria-expanded="false" aria-haspopup="true" class="toc-mobile-view__button expandable">{{capitalize page.category}}</p>
+                        <ul role="group" class="toc-mobile-view__dropdown" id="mobile-toc-submenu" aria-hidden="true">
+                             {{#if (isNotGuideIndexPage page)}}
+                            <li class="dropdown__subitem">
+                                <a href="../{{#if (isNotSectionIndexPage page)}}../{{/if}}" class="subitem--single">Getting Started</a>
+                            </li>
+                            {{else}}
+                             <li class="dropdown__subitem">
+                                <a href="#" class="subitem--single">Getting Started</a>
+                            </li>
+                            {{/if}}
+                            {{#each (getSortedToCTitles pages)}}
+                            <li class="dropdown__subitem">
+                                <p>{{this}}</p>
+                                <ul>
+                                    {{#each (getPagesByToCTitle this ../pages)}}
+                                    <li class="subitem"><a href="{{sanitize permalink}}">{{title}}</a></li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="module module--secondary table-of-contents treeview" role="navigation">
+            <div class="module module--secondary table-of-contents treeview main-view" role="navigation">
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
                 {{#each (getSortedToCTitles pages)}}
                     <li role="treeitem" aria-label="subsection" tabindex="0"
@@ -76,6 +101,9 @@
                     </li>
                 {{/each}}
                 </ul>
+            </div>
+            <div class="module module--primary wrap-text">
+                {{{page.content}}}
             </div>
         </div>
     </div>
