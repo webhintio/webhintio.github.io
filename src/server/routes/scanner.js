@@ -10,6 +10,7 @@ const yaml = require('js-yaml');
 const urlAudiences = process.env.WEBSITE_AUTH_ALLOWED_AUDIENCES; // eslint-disable-line no-process-env
 const sonarwhalUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
+const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
 const hexoDir = path.join(__dirname, '..', '..', 'hexo');
 const thirdPartyServiceConfigPath = path.join(hexoDir, 'source/_data/third-party-service-config.yml');
 const thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
@@ -206,18 +207,28 @@ const configure = (app, appInsightsClient) => {
         }
     };
 
-    app.get('/scanner', (req, res) => {
-        if (req.method === 'GET') {
-            appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
-        }
-        res.render('scan-form', {
-            layout,
-            page: {
-                description: `Analyze any public website using sonarwhal's online tool`,
-                title: `sonarwhal's online scanner`
+    let scanner;
+
+    if (underConstruction && underConstruction === 'true') {
+        scanner = (req, res) => {
+            return res.render('under-construction');
+        };
+    } else {
+        scanner = (req, res) => {
+            if (req.method === 'GET') {
+                appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
             }
-        });
-    });
+            res.render('scan-form', {
+                layout,
+                page: {
+                    description: `Analyze any public website using sonarwhal's online tool`,
+                    title: `sonarwhal's online scanner`
+                }
+            });
+        };
+    }
+
+    app.get('/scanner', scanner);
 
     app.get('/scanner/api/:id', async (req, res) => {
         const id = req.params.id;
@@ -301,60 +312,70 @@ const configure = (app, appInsightsClient) => {
 
     app.get('/scanner/helpers/:name', renderHelpers);
 
-    app.post('/scanner', async (req, res) => {
-        if (req.method === 'POST') {
-            appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
-        }
+    let scannerPost;
 
-        if (!req.body || !req.body.url) {
-            return res.render('error', {
-                details: 'Please provide a url.',
-                heading: ''
-            });
-        }
-
-        let requestResult;
-
-        try {
-            const start = Date.now();
-            const result = await sendRequest(req.body.url);
-
-            appInsightsClient.trackMetric({ name: 'send-request-duration', value: Date.now() - start });
-            requestResult = JSON.parse(result.body);
-        } catch (error) {
-            appInsightsClient.trackException({ exception: new Error('sendRequestError') });
-
-            return res.render('scan-error');
-        }
-
-        const id = requestResult.id;
-        const status = requestResult.status;
-        const messagesInQueue = requestResult.messagesInQueue;
-        const { categories, overallStatistics } = processRuleResults(requestResult.rules, req.body.url);
-
-        appInsightsClient.trackEvent({
-            name: 'scanJobCreated',
-            properties: {
-                id,
-                url: req.body.url
+    if (underConstruction && underConstruction === 'true') {
+        scannerPost = (req, res) => {
+            return res.render('under-construction');
+        };
+    } else {
+        scannerPost = async (req, res) => {
+            if (req.method === 'POST') {
+                appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
             }
-        });
 
-        return res.render('scan-result', {
-            categories,
-            id: requestResult.id,
-            layout,
-            overallStatistics,
-            page: {
-                description: `scan result of ${requestResult.url}`,
-                title: `sonarwhal report for ${requestResult.url}`
-            },
-            permalink: `${sonarwhalUrl}scanner/${id}`,
-            showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
-            status,
-            url: req.body.url
-        });
-    });
+            if (!req.body || !req.body.url) {
+                return res.render('error', {
+                    details: 'Please provide a url.',
+                    heading: ''
+                });
+            }
+
+            let requestResult;
+
+            try {
+                const start = Date.now();
+                const result = await sendRequest(req.body.url);
+
+                appInsightsClient.trackMetric({ name: 'send-request-duration', value: Date.now() - start });
+                requestResult = JSON.parse(result.body);
+            } catch (error) {
+                appInsightsClient.trackException({ exception: new Error('sendRequestError') });
+
+                return res.render('scan-error');
+            }
+
+            const id = requestResult.id;
+            const status = requestResult.status;
+            const messagesInQueue = requestResult.messagesInQueue;
+            const { categories, overallStatistics } = processRuleResults(requestResult.rules, req.body.url);
+
+            appInsightsClient.trackEvent({
+                name: 'scanJobCreated',
+                properties: {
+                    id,
+                    url: req.body.url
+                }
+            });
+
+            return res.render('scan-result', {
+                categories,
+                id: requestResult.id,
+                layout,
+                overallStatistics,
+                page: {
+                    description: `scan result of ${requestResult.url}`,
+                    title: `sonarwhal report for ${requestResult.url}`
+                },
+                permalink: `${sonarwhalUrl}scanner/${id}`,
+                showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
+                status,
+                url: req.body.url
+            });
+        };
+    }
+
+    app.post('/scanner', scannerPost);
 };
 
 module.exports = configure;
