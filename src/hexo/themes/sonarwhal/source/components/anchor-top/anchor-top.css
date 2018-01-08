@@ -3,25 +3,34 @@
     right: 2.4rem;
     bottom: 2.4rem;
 
-    width: 2em;
-    height: 2em;
+    width: 5rem;
+    height: 6rem;
 
-    padding: 1.2rem;
+    padding: 3.3rem 1.2rem 1rem 1.2rem;
 
-    font: 2.4rem/1;
-    background: hsla(0, 0%, 0%, .1);
+    font-size: 1.3rem;
+    background: hsla(237, 69%, 55%, .85);
+    color: #fff;
+    text-transform: uppercase;
+
+    border-radius: .4rem;
 }
 
 .anchor-top:hover, .anchor-top:focus {
-    background: hsla(0, 0%, 0%, .2);
+    background: hsla(237, 69%, 55%, .9);
     text-decoration: none;
 }
 
 .anchor-top:active {
-    background: hsla(0, 0%, 0%, .3);
+    background: hsla(237, 69%, 55%, 1);
 }
 
 .anchor-top::before {
-    content: "";
-    color: windowText;
+    content: url("/images/back-to-top.svg");
+    display: inline-block;
+    position: absolute;
+    width: 2.5rem;
+    top: 1.4rem;
+    left: 0;
+    padding: 0 1.25rem;
 }
