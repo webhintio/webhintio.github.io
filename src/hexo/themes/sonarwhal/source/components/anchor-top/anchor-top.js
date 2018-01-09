@@ -7,7 +7,7 @@
         return;
     }
 
-    var active = false;
+    var active = true;
     var anchorTops = document.querySelectorAll('.anchor-top');
 
     if (anchorTops.length === 0) {
@@ -40,12 +40,6 @@
         queued = false;
     };
 
-    var hideAnchors = function () {
-        anchors.forEach(function (anchor) {
-            anchor.element.setAttribute('hidden', '');
-        });
-    };
-
     var queueScroll = function () {
         if (!active) {
             return;
@@ -57,24 +51,5 @@
         }
     };
 
-    var mq = window.matchMedia('(min-width: 48em)');
-
-    if (mq.matches) {
-        active = true;
-        window.addEventListener('scroll', queueScroll, false);
-    }
-
-    var onChangeSize = function (mqe) {
-        if (mqe.matches) {
-            active = true;
-            queueScroll();
-            window.addEventListener('scroll', queueScroll, false);
-        } else {
-            active = false;
-            hideAnchors();
-            window.removeEventListener('scroll', queueScroll, false);
-        }
-    };
-
-    mq.addListener(onChangeSize);
+    window.addEventListener('scroll', queueScroll, false);
 }());
