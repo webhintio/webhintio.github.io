@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: sonar
+title: sonarwhal
 subtitle:
 description:
 author:
@@ -20,7 +20,7 @@ sonarwhalRepoRoot: https://github.com/sonarwhal/sonarwhal
 sonarwhalRoot: https://sonarwhal.com
 
 # Directory
-source_dir: src/hexo/source
+source_dir: src/content
 public_dir: dist
 tag_dir: tags
 archive_dir: archives
@@ -65,7 +65,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: ../src/hexo/themes/sonarwhal
+theme: ../src/sonarwhal-theme-optimized
 
 # Config markdown rendering
 marked:
@@ -92,31 +92,31 @@ appId: 0R8E5SPAFP
 apiKey: 2ee58f908e6d720c4f72a9645ce0e857
 
 # Minifier
-html_minifier:
-  enable: true
-  ignore_error: false
-  exclude:
+# html_minifier:
+#   enable: true
+#   ignore_error: false
+#   exclude:
 
-js_minifier:
-  enable: true
-  mangle: true
-  output:
-  compress:
-  exclude:
-    - '*.min.js'
+# js_minifier:
+#   enable: true
+#   mangle: true
+#   output:
+#   compress:
+#   exclude:
+#     - '*.min.js'
 
-css_minifier:
-  enable: true
-  exclude:
-    - '*.min.css'
+# css_minifier:
+#   enable: true
+#   exclude:
+#     - '*.min.css'
 
-image_minifier:
-  enable: true
-  interlaced: false
-  multipass: false
-  optimizationLevel: 2
-  pngquant: false
-  progressive: false
+# image_minifier:
+#   enable: true
+#   interlaced: false
+#   multipass: false
+#   optimizationLevel: 2
+#   pngquant: false
+#   progressive: false
 
 # offline config passed to sw-precache.
 offline:

@@ -5,7 +5,8 @@
 db.json
 dist/
 node_modules/
-src/hexo/source/about/
-src/hexo/source/docs/contributor-guide
-src/hexo/source/docs/user-guide
+src/content/about/
+src/content/docs/contributor-guide/
+src/content/docs/user-guide/
+src/sonarwhal-theme-optimized/
 Thumbs.db

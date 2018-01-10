@@ -11,9 +11,7 @@ const urlAudiences = process.env.WEBSITE_AUTH_ALLOWED_AUDIENCES; // eslint-disab
 const sonarwhalUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
-const hexoDir = path.join(__dirname, '..', '..', 'hexo');
-const thirdPartyServiceConfigPath = path.join(hexoDir, 'source/_data/third-party-service-config.yml');
-const thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
+let thirdPartyServiceConfig; // eslint-disable-line no-sync
 const layout = 'scan';
 const jobStatus = {
     error: 'error',
@@ -30,8 +28,8 @@ const ruleStatus = {
 };
 
 const noDocRules = ['optimize-image'];
-const helpersDir = path.join(__dirname, '..', '..', 'hexo/themes/sonarwhal/helper/index.js');
-const helpers = require(helpersDir)(); // Shared helpers between the client and server side.
+
+let helpers; // Shared helpers between the client and server side.
 
 const pad = (timeString) => {
     return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
@@ -183,6 +181,11 @@ const renderHelpers = (req, res, next) => {
 };
 
 const configure = (app, appInsightsClient) => {
+    const thirdPartyServiceConfigPath = path.join(app.get('hexoDir'), 'content/_data/third-party-service-config.yml');
+
+    thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
+    helpers = require(app.get('helpersPath'))();
+
     const reportJobEvent = (scanResult) => {
         if (scanResult.status === jobStatus.started || scanResult.status === jobStatus.pending) {
             return;
