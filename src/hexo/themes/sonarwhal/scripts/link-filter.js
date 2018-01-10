@@ -5,7 +5,7 @@ hexo.extend.filter.register('before_post_render', (data) => {
     // - is enclosed in parenthesis pairs
     // - doesn't start with `http`, `https` or `ftp`
     // - endes with `.md`
-    const mdUrlRegex = /\((?!http|https|ftp)([^(|)]+\.md)[^(|)]*\)/g;
+    const mdUrlRegex = /\((?!(http|https|ftp):)([^(|)]+\.md)[^(|)]*\)/g;
     let match;
 
     while ((match = mdUrlRegex.exec(data.content)) !== null) {
