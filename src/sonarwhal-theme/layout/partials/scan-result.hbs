@@ -108,8 +108,11 @@
                         <div class="module module--primary results">
                             {{#each categories as |category|}}
                             <section class="rule-result" id="{{name}}">
-                                <h3>{{name}}</h3>
-                                {{#unless (isFinish ../status)}}
+                                <div class="rule-result--category">
+                                    <h3>{{name}}</h3>
+                                    <button title="expand" class="button-expand-all">+ Expand All</button>
+                                    {{#unless (isFinish ../status)}}
+                                </div>
                                 <div class="rule-result--details compiling__loader">
                                     <div class="rule-result__message--compiling">
                                         <div class="rule-result__message--compiling__loader"></div>

@@ -220,6 +220,22 @@
     border: 1px solid #e2e2e2;
 }
 
+.rule-result--category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-expand-all {
+    position: relative;
+    min-width: 11.4rem;
+    margin-bottom: 0;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    background-color: #f0f0f0;
+    color: #4046dd;
+}
+
 .rule-result h3 {
     text-transform: capitalize;
 }
