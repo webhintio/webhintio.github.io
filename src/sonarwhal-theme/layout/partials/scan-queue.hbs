@@ -1,0 +1,37 @@
+<div class="scan-queue-bg-wrap" {{#unless showQueue}}style="display:none"{{/unless}}>
+    <main>
+        <article class="container" aria-labelledby="page-heading">
+            <nav class="container breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/scanner/">Scanner</a></li>
+                    <li>Scan Queue</li>
+                </ul>
+            </nav>
+            <header class="page-intro container">
+                <h1 id="page-heading">Nellie's working overtime</h1>
+                <p class="subtitle">We've added your site to the queue, but it might take some time to get your results.</p>
+            </header>
+            <div class="section container">
+                <div class="layout layout--basic--offset--alt">
+                   <div class="module module--primary">
+                        <p>You can check back later using the permalink below. This is your unique scan result URL so you can return to your results page at any time.</p>
+                        <div class="scan-queue__permalink">
+                            <p class="uppercase-text">Permalink</p>
+                            <a href="{{permalink}}">{{permalink}}</a>
+                        </div>
+                        <div class="scan-queue__push-notifications" hidden>
+                            <p>You can also enable sonarwhal push notifications to alert you when the scan is complete and your results are ready for viewing.</p>
+                            <div class="actions">
+                                <button class="button--red" type="">Enable Push Notifications</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module module--secondary">
+                        <img src="/images/queue-nellie.svg" role="presentation" />
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+</div>

@@ -11,9 +11,7 @@ const urlAudiences = process.env.WEBSITE_AUTH_ALLOWED_AUDIENCES; // eslint-disab
 const sonarwhalUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
-const hexoDir = path.join(__dirname, '..', '..', 'hexo');
-const thirdPartyServiceConfigPath = path.join(hexoDir, 'source/_data/third-party-service-config.yml');
-const thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
+let thirdPartyServiceConfig; // eslint-disable-line no-sync
 const layout = 'scan';
 const jobStatus = {
     error: 'error',
@@ -30,8 +28,8 @@ const ruleStatus = {
 };
 
 const noDocRules = ['optimize-image'];
-const helpersDir = path.join(__dirname, '..', '..', 'hexo/themes/sonarwhal/helper/index.js');
-const helpers = require(helpersDir)(); // Shared helpers between the client and server side.
+
+let helpers; // Shared helpers between the client and server side.
 
 const pad = (timeString) => {
     return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
@@ -138,7 +136,7 @@ const parseCategories = (rules, scanUrl) => {
 };
 
 /** Process scanning result to add category and statistics information */
-const processRuleResults = (ruleResults, scanUrl) => {
+const processRuleResults = (ruleResults, scanUrl, images) => {
     const overallStatistics = {
         errors: 0,
         warnings: 0
@@ -163,6 +161,7 @@ const processRuleResults = (ruleResults, scanUrl) => {
         }, { errors: 0, warnings: 0 });
 
         category.statistics = statistics;
+        category.image = images[category.name];
     });
 
     return { categories, overallStatistics };
@@ -183,6 +182,12 @@ const renderHelpers = (req, res, next) => {
 };
 
 const configure = (app, appInsightsClient) => {
+    const thirdPartyServiceConfigPath = path.join(app.get('themeDir'), 'source', 'static', 'third-party-service-config.yml');
+    const categoryImages = JSON.parse(fs.readFileSync(path.join(app.get('themeDir'), 'source', 'static', 'category-images.json'))); // eslint-disable-line no-sync
+
+    thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
+    helpers = require(app.get('helpersPath'))();
+
     const reportJobEvent = (scanResult) => {
         if (scanResult.status === jobStatus.started || scanResult.status === jobStatus.pending) {
             return;
@@ -247,7 +252,7 @@ const configure = (app, appInsightsClient) => {
 
         reportJobEvent(scanResult);
 
-        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url);
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url, categoryImages);
 
         return res.send({
             categories,
@@ -276,7 +281,7 @@ const configure = (app, appInsightsClient) => {
             });
         }
 
-        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url);
+        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url, categoryImages);
         const renderOptions = {
             categories,
             id: scanResult.id,
@@ -348,7 +353,7 @@ const configure = (app, appInsightsClient) => {
             const id = requestResult.id;
             const status = requestResult.status;
             const messagesInQueue = requestResult.messagesInQueue;
-            const { categories, overallStatistics } = processRuleResults(requestResult.rules, req.body.url);
+            const { categories, overallStatistics } = processRuleResults(requestResult.rules, req.body.url, categoryImages);
 
             appInsightsClient.trackEvent({
                 name: 'scanJobCreated',
