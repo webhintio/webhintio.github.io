@@ -37,16 +37,34 @@
         item.setAttribute('aria-expanded', 'false');
     };
 
-    var toggleExpand = function (evt) {
-        var element = evt.target;
+    var childRulesExpanded = function (element) {
+        var parent = element.closest('.rule-result');
+        var details = Array.prototype.slice.apply(parent.querySelectorAll('.rule-result--details'));
 
-        if (element.className.indexOf('button--details') === -1) {
-            return;
+        return details.some(function (detail) {
+            return (detail.getAttribute('aria-expanded') === 'true');
+        });
+    };
+
+    var updateExpandAllButton = function (element, closeAll) {
+        var expanded = typeof closecloseAll !== 'undefined' ? closeAll : childRulesExpanded(element);
+
+        if (expanded) {
+            element.innerHTML = '- close all';
+            element.classList.remove('closed');
+            element.classList.add('expanded');
+        } else {
+            element.innerHTML = '+ expand all';
+            element.classList.remove('expanded');
+            element.classList.add('closed');
         }
+    };
 
+    var toggleExpandRule = function (element, closeAll) {
         var parent = element.closest('.rule-result--details');
-        var expanded = parent.getAttribute('aria-expanded') === 'true';
+        var expanded = typeof closeAll !== 'undefined' ? closeAll : parent.getAttribute('aria-expanded') === 'true';
         var name = element.getAttribute('data-rule');
+        var expandAllButton = parent.closest('.rule-result').querySelector('.button-expand-all');
 
         if (expanded) {
             collapseDetails(parent);
@@ -56,6 +74,38 @@
             expandDetails(parent);
             element.innerHTML = 'close details';
             element.setAttribute('title', 'close ' + name + '\'s result details');
+        }
+
+        updateExpandAllButton(expandAllButton);
+        // if all rules are closed, toggle button to '- open all'.
+        // if any rule is open, toggle button to '- close all'.
+    };
+
+    var toggleExpandAll = function (element) {
+        var parent = element.closest('.rule-result');
+        var detailButtons = Array.prototype.slice.apply(parent.querySelectorAll('.button--details'));
+        var expanded = element.classList.contains('expanded');
+
+        for (var i = 0; i < detailButtons.length; i++) {
+            if (expanded) {
+                toggleExpandRule(detailButtons[i], true);
+            } else {
+                toggleExpandRule(detailButtons[i], false);
+            }
+        }
+
+        updateExpandAllButton(element, !expanded);
+    };
+
+    var toggleExpand = function (evt) {
+        var element = evt.target;
+
+        if (element.className.indexOf('button--details') !== -1) {
+            toggleExpandRule(element);
+        }
+
+        if (element.className.indexOf('button-expand-all') !== -1) {
+            toggleExpandAll(element);
         }
     };
 

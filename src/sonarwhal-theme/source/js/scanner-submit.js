@@ -161,8 +161,15 @@
         }
 
         var container = document.getElementById(category.name);
+        var expandAllButton = container.querySelector('.button-expand-all');
         var loader = container.querySelector('.compiling__loader');
         var ruleResult = getHTML(ruleItemTemplate, category);
+
+        if (!expandAllButton) {
+            var buttonTemplate = '<button title="expand" class="button-expand-all closed">+ expand all</button>';
+
+            container.querySelector('.rule-result--category').insertAdjacentHTML('beforeend', buttonTemplate);
+        }
 
         loader.insertAdjacentHTML('beforebegin', ruleResult);
     };
