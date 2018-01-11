@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{url_for "/core/css/table-of-contents.css"}}">
     <link rel="stylesheet" href="{{url_for "/core/css/tables-lists.css"}}">
     <link rel="stylesheet" href="{{url_for "/components/treeview/treeview.css"}}">
+    <link rel="stylesheet" href="{{url_for "/components/anchor-top/anchor-top.css"}}">
     <link rel="stylesheet" href="{{url_for "/core/css/documentation.css"}}">
 </head>
 
@@ -40,6 +41,7 @@
     {{>footer navs=site.data.menu}}
 
     <script async src="{{url_for "/components/treeview/treeview.js"}}"></script>
+    <script async src="{{url_for "/components/anchor-top/anchor-top.js"}}"></script>
     {{>scripts}}
 </body>
 </html>
