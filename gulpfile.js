@@ -19,22 +19,19 @@ const imageExtensions = 'png,jpg,svg,ico';
 // ---------------------------------------------------------------------
 
 gulp.task('clean:before', (done) => {
-    shelljs.rm('-rf', dirs.dist);
-    shelljs.rm('-rf', dirs.tmp);
+    shelljs.rm('-rf', dirs.dist, dirs.tmp);
 
     done();
 });
 
 gulp.task('clean:after', (done) => {
-    [
+    shelljs.rm('-rf',
         `${dirs.tmp}/source/core`,
         `${dirs.tmp}/source/js`,
         `${dirs.tmp}/source/components`,
         `${dirs.tmp}/source/images`,
         `${dirs.tmp}/static`
-    ].forEach((folder) => {
-        shelljs.rm('-rf', folder);
-    });
+    );
 
     done();
 });
@@ -75,6 +72,21 @@ gulp.task('move:static', () => {
 });
 
 gulp.task('optimize:templates', (cb) => {
+    /*
+        Because we are optimizing handlebars templates and not html,
+        we can find things like `{{#if something}}true{{else}}false{{/if}}`
+        that can cause problems with `html-minifier`.
+        With this `RegExp` we try to capture all the valid handlebars blocks:
+        `{{#`, `{{`, and combinations of these inside (like
+
+        ```hbs
+        <ul>
+          {{#each items}}
+          <li aria-selected="{{#if something}}true{{else}}false{{/if}}">{{this}}</li>
+          {{/each}}
+        </ul>
+        ```
+    */
     const handlebarsRegex = [[/\{\{#[^}]+\}\}/, /\{\{\/[^}]+\}\}/], [/\{\{#[^}]+\}\}\{\{#[^}]+\}\}/, /\{\{\/[^}]+\}\}\{\{\/[^}]+\}\}/], [/\{\{\w[^}]+\}\}/, /\{\{\/\w[^}]+\}\}/]];
 
     const htmlminOptions = {
@@ -88,9 +100,16 @@ gulp.task('optimize:templates', (cb) => {
         removeOptionalTags: true
     };
 
-    const filesNotToRev = plugins.filter(['**/*', '!**/*.hbs', `!${dirs.tmp}/helper/**/*`, `!${dirs.tmp}/scripts/**/*`], { restore: true });
-    const jsToOptimize = plugins.filter([`**/static/**/*.js`], { restore: true });
-    const cssToOptimize = plugins.filter([`**/static/**/*.css`], { restore: true });
+    const cssToOptimize = plugins.filter([`**/static/**/*.css`],
+        { restore: true });
+    const jsToOptimize = plugins.filter([`**/static/**/*.js`],
+        { restore: true });
+    const filesNotToRev = plugins.filter([
+        '**/*',
+        '!**/*.hbs',
+        `!${dirs.tmp}/helper/**/*`,
+        `!${dirs.tmp}/scripts/**/*`
+    ], { restore: true });
 
     pump(
         [
