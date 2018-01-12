@@ -133,8 +133,14 @@ gulp.task('optimize:templates', (cb) => {
             gulp.dest(dirs.tmp),
             plugins.revReplace({
                 modifyReved: (revPath) => {
-                    if (imageExtensions.split(',').includes(path.extname(revPath).substr(1))) {
+                    const extension = path.extname(revPath);
+
+                    if (imageExtensions.split(',').includes(extension.substr(1))) {
                         return `static/images/${path.basename(revPath)}`;
+                    }
+                    // opensearch and webmanifest file
+                    if (extension.includes('.xml') || extension.includes('.webmanifest')) {
+                        return `static/${path.basename(revPath)}`;
                     }
 
                     return revPath;
