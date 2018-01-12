@@ -7,12 +7,14 @@ const shelljs = require('shelljs');
 
 const Hexo = require('hexo');
 
+const imageExtensions = 'png,jpg,svg,ico';
 const dirs = {
     dist: 'dist',
+    distCompreseable: 'dist/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}',
     src: 'src/sonarwhal-theme',
-    tmp: 'src/sonarwhal-theme-optimized'
+    tmp: 'src/sonarwhal-theme-optimized',
+    tmpImages: `src/sonarwhal-theme-optimized/**/*.{${imageExtensions}}`
 };
-const imageExtensions = 'png,jpg,svg,ico';
 
 // ---------------------------------------------------------------------
 // | Helper tasks                                                      |
@@ -116,7 +118,7 @@ gulp.task('optimize:templates', (cb) => {
             gulp.src(`${dirs.tmp}/**/*.*`),
             plugins.useref({
                 base: `${dirs.tmp}/source/`,
-                searchPath: './src/sonarwhal-theme-optimized/source'
+                searchPath: `${dirs.tmp}/source/`
             }),
             jsToOptimize,
             plugins.uglify(),
@@ -149,13 +151,13 @@ gulp.task('optimize:templates', (cb) => {
 });
 
 gulp.task('imagemin', () => {
-    return gulp.src(`${dirs.tmp}/**/*.{${imageExtensions}}`)
+    return gulp.src(dirs.tmpImages)
         .pipe(plugins.imagemin())
         .pipe(gulp.dest(dirs.tmp));
 });
 
 const moveImages = () => {
-    return gulp.src(`${dirs.tmp}/**/*.{${imageExtensions}}`)
+    return gulp.src(dirs.tmpImages)
         .pipe(plugins.flatten())
         .pipe(gulp.dest(`${dirs.tmp}/source/static/images`));
 };
@@ -170,7 +172,7 @@ const devHtml = (cb) => {
             gulp.src(`${dirs.tmp}/**/*.*`),
             plugins.useref({
                 base: `${dirs.tmp}/source/`,
-                searchPath: './src/sonarwhal-theme-optimized/source'
+                searchPath: `${dirs.tmp}/source/`
             }),
             gulp.dest(dirs.tmp)
         ],
@@ -182,13 +184,13 @@ const devHtml = (cb) => {
 // ---------------------------------------------------------------------
 
 gulp.task('compress:zopfli', () => {
-    return gulp.src(`${dirs.dist}/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}`)
+    return gulp.src(dirs.distCompreseable)
         .pipe(plugins.zopfli())
         .pipe(gulp.dest(dirs.dist));
 });
 
 gulp.task('compress:brotli', () => {
-    return gulp.src(`${dirs.dist}/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}`)
+    return gulp.src(dirs.distCompreseable)
         .pipe(plugins.brotli.compress())
         .pipe(gulp.dest(dirs.dist));
 });
@@ -215,11 +217,9 @@ gulp.task('watch', gulp.series('clean:before', 'copy:theme', async () => {
     await hexo.init();
     await hexo.call('clean');
 
-    const images = `${dirs.tmp}/**/*.{${imageExtensions}}`;
-
     gulp.watch(`${dirs.src}/**/*`, gulp.series('copy:theme'));
-    gulp.watch([`!${images}`], gulp.series(devHtml));
-    gulp.watch([images], gulp.series(moveImages));
+    gulp.watch([`!${dirs.tmpImages}`], gulp.series(devHtml));
+    gulp.watch([dirs.tmpImages], gulp.series(moveImages));
 
     await hexo.call('generate', { watch: true });
 
@@ -229,24 +229,4 @@ gulp.task('watch', gulp.series('clean:before', 'copy:theme', async () => {
             open: true,
             port: 4000
         }));
-
-    // gulp.watch([
-    //     `${dirs.src}/**/*.html`
-    // ], reload);
-
-    // gulp.watch([
-    //     `${dirs.src}/css/**/*.css`,
-    //     `${dirs.src}/img/**/*`,
-    //     `!${dirs.src}/css/main.css`
-    // ], ['generate:main.css']);
-
-    // gulp.watch([
-    //     `${dirs.src}/js/**/*.js`,
-    //     'gulpfile.js'
-    // ]);
 }));
-
-// gulp.task('serve:build', ['build'], () => {
-//     browserSyncOptions.server = dirs.dist;
-//     browserSync(browserSyncOptions);
-// });

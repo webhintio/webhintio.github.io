@@ -6,22 +6,22 @@
 <meta name="viewport" content="width=device-width">
 
 <meta name="theme-color" content="#4046dd">
-<link rel="manifest" href="/site.webmanifest">
+<link rel="manifest" href="/static/site.webmanifest">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link type="application/opensearchdescription+xml" rel="search" href="/opensearch.xml" title="sonarwhal">
+<link type="application/opensearchdescription+xml" rel="search" href="/static/opensearch.xml" title="sonarwhal">
 
 {{#if status}}
     {{#if (isFinish status)}}
         {{#if (isPass status overallStatistics)}}
-            <link rel="icon" class="favicon" href="/images/favicon_passed.ico">
+            <link rel="icon" href="/images/favicon_passed.ico">
         {{else}}
-            <link rel="icon" class="favicon" href="/images/favicon_failed.ico">
+            <link rel="icon" href="/images/favicon_failed.ico">
         {{/if}}
     {{else}}
-        <link rel="icon" class="favicon" href="/images/favicon_pending.ico">
+        <link rel="icon" href="/images/favicon_pending.ico">
     {{/if}}
 {{else}}
-    <link rel="icon" class="favicon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
 {{/if}}
 

@@ -310,7 +310,7 @@
         var newFavicon = (status !== jobStatus.error) && statisticsPass ? favicons.passed : favicons.failed;
         var newFaviconHref = '/images/favicon_' + newFavicon + '.ico';
 
-        document.querySelector('.favicon').setAttribute('href', newFaviconHref);
+        document.querySelector('link[rel="icon"]').setAttribute('href', newFaviconHref);
     };
 
     var queryAndUpdate = function () {
