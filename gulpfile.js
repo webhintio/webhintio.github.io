@@ -110,6 +110,7 @@ gulp.task('optimize:templates', (cb) => {
         '**/*',
         '!**/*.hbs',
         '!**/*.yml',
+        `!${dirs.tmp}/source/sw-reg.js`, // This will be in the root
         `!${dirs.tmp}/helper/**/*`,
         `!${dirs.tmp}/scripts/**/*`
     ], { restore: true });
@@ -202,6 +203,15 @@ gulp.task('compress:brotli', () => {
         .pipe(gulp.dest(dirs.dist));
 });
 
+gulp.task('generate-service-worker', (callback) => {
+    const swPrecache = require('sw-precache');
+
+    swPrecache.write(`${dirs.dist}/sonarwhal-worker.js`, {
+        staticFileGlobs: [`${dirs.dist}/**/*.{js,html,css,png,jpg,gif,ico,svg,woff}`],
+        stripPrefix: dirs.dist
+    }, callback);
+});
+
 gulp.task('build', gulp.series([
     'clean:before',
     'copy:theme',
@@ -210,6 +220,7 @@ gulp.task('build', gulp.series([
     'optimize:images',
     'clean:after',
     'build:hexo',
+    'generate-service-worker',
     'compress:zopfli',
     'compress:brotli'
 ]));
