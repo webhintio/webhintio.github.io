@@ -109,6 +109,7 @@ gulp.task('optimize:templates', (cb) => {
     const filesNotToRev = plugins.filter([
         '**/*',
         '!**/*.hbs',
+        '!**/*.yml',
         `!${dirs.tmp}/helper/**/*`,
         `!${dirs.tmp}/scripts/**/*`
     ], { restore: true });
@@ -148,7 +149,7 @@ gulp.task('optimize:templates', (cb) => {
                 modifyUnreved: (unrevedPath) => {
                     return unrevedPath.replace('source/', '');
                 },
-                replaceInExtensions: ['.hbs', '.css', '.js', '.html']
+                replaceInExtensions: ['.hbs', '.css', '.js', '.html', '.yml']
             }),
             plugins.if('*.hbs', plugins.htmlmin(htmlminOptions)),
             gulp.dest(dirs.tmp)

@@ -181,7 +181,7 @@ const renderHelpers = (req, res, next) => {
 };
 
 const configure = (app, appInsightsClient) => {
-    const thirdPartyServiceConfigPath = path.join(app.get('hexoDir'), 'content/_data/third-party-service-config.yml');
+    const thirdPartyServiceConfigPath = path.join(app.get('themeDir'), 'source', 'static', 'third-party-service-config.yml');
 
     thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
     helpers = require(app.get('helpersPath'))();
