@@ -207,7 +207,13 @@ gulp.task('generate-service-worker', (callback) => {
     const swPrecache = require('sw-precache');
 
     swPrecache.write(`${dirs.dist}/sonarwhal-worker.js`, {
-        staticFileGlobs: [`${dirs.dist}/**/*.{js,html,css,png,jpg,gif,ico,svg,woff}`],
+        clientsClaim: true,
+        maximumFileSizeToCacheInBytes: 5242880,
+        runtimeCaching: [{
+            handler: 'networkFirst',
+            urlPattern: '/*'
+        }],
+        staticFileGlobs: [`${dirs.dist}/**/*.{js,html,css,png,jpg,gif,ico,svg,woff,woff2}`],
         stripPrefix: dirs.dist
     }, callback);
 });
