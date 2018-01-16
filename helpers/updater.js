@@ -11,7 +11,7 @@ const stripMarkdown = require('remove-markdown');
 const yamlLoader = require('js-yaml');
 
 const directory = path.resolve(process.argv[2]); // path to the folder that contains md files
-const configDir = path.resolve(directory, '..', '..', '..', '_config.yml');
+const configDir = path.resolve(__dirname, '..', '_config.yml');
 const filePaths = [];
 const ignoredFiles = ['404.md', 'about.md', 'contributors.md', 'docs/index.md'];
 const config = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
