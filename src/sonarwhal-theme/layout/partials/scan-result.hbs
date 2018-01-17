@@ -1,5 +1,5 @@
 {{>scan-queue permalink=permalink status=status}}
-<div class="scan-result-bg-wrap" {{#if showQueue}}style="display:none" {{/if}}>
+<div class="scan-result-bg-wrap" {{#if showQueue}}style="display:none"{{/if}}>
     <main>
         <article class="content" aria-labelledby="page-heading">
             <nav class="container breadcrumb" aria-label="breadcrumbs">
@@ -65,7 +65,7 @@
                                 rule-tile--failed
                             {{/if}}">
                             <p class="rule-tile__category uppercase-text"><a href="#{{name}}">{{name}}</a></p>
-                            <img src="/images/{{name}}.svg" class="rule-icon" alt="" role="presentation" />
+                            <img src="{{image}}" class="rule-icon" alt="" role="presentation" />
                             <div class="rule-list">
                                 <p class="
                                     {{#if (passErrors statistics)}}

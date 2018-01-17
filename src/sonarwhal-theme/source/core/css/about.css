@@ -28,26 +28,6 @@ a > .about-card__main > img {
 	margin-top: .2rem;
 }
 
-/* Contributors Page */
-
-.module--contributors {
-    text-align: center;
-    margin-bottom: 2.4rem;
-}
-
-.module--contributors p:nth-child(2) {
-    margin-top: 1.4rem;
-}
-
-.module--contributors p:nth-child(3) {
-    margin-top: .5rem;
-}
-
-.module--contributors img {
-    border-radius: 50px;
-    border: 3px solid #2d28a1;
-}
-
 /* Changelog */
 
 .changelog__updates {

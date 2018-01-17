@@ -93,15 +93,23 @@ gulp.task('optimize:templates', (cb) => {
 
     const htmlminOptions = {
         caseSensitive: true, // need it because handlebar helpers are case sensitive
+        collapseBooleanAttributes: false,
         collapseWhitespace: true,
         customAttrAssign: handlebarsRegex,
         customAttrSurround: handlebarsRegex,
         minifyCSS: true,
         minifyJS: true,
+        preserveLineBreak: true,
+        removeAttributeQuotes: false,
         removeComments: true,
-        removeOptionalTags: true
+        removeCommentsFromCDATA: false,
+        removeEmptyAttributes: false,
+        removeOptionalTags: false,
+        removeRedundantAttributes: false
     };
 
+    const templates = plugins.filter([`**/*.hbs`],
+        { restore: true });
     const cssToOptimize = plugins.filter([`**/static/**/*.css`],
         { restore: true });
     const jsToOptimize = plugins.filter([`**/static/**/*.js`],
@@ -109,6 +117,7 @@ gulp.task('optimize:templates', (cb) => {
     const filesNotToRev = plugins.filter([
         '**/*',
         '!**/*.hbs',
+        '!**/*.json',
         '!**/*.yml',
         `!${dirs.tmp}/source/sw-reg.js`, // This will be in the root
         `!${dirs.tmp}/helper/**/*`,
@@ -118,10 +127,12 @@ gulp.task('optimize:templates', (cb) => {
     pump(
         [
             gulp.src(`${dirs.tmp}/**/*.*`),
+            templates,
             plugins.useref({
                 base: `${dirs.tmp}/source/`,
                 searchPath: `${dirs.tmp}/source/`
             }),
+            templates.restore,
             jsToOptimize,
             plugins.uglify(),
             jsToOptimize.restore,
@@ -150,7 +161,7 @@ gulp.task('optimize:templates', (cb) => {
                 modifyUnreved: (unrevedPath) => {
                     return unrevedPath.replace('source/', '');
                 },
-                replaceInExtensions: ['.hbs', '.css', '.js', '.html', '.yml']
+                replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml']
             }),
             plugins.if('*.hbs', plugins.htmlmin(htmlminOptions)),
             gulp.dest(dirs.tmp)
@@ -221,9 +232,9 @@ gulp.task('generate-service-worker', (callback) => {
 gulp.task('build', gulp.series([
     'clean:before',
     'copy:theme',
+    'optimize:images',
     'optimize:templates',
     'move:static',
-    'optimize:images',
     'clean:after',
     'build:hexo',
     'generate-service-worker',

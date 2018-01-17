@@ -37,13 +37,9 @@
             {{#compare page.category '===' 'about-index'}}
                 {{>about-index}}
             {{else}}
-                {{#compare page.title '===' 'contributors'}}
-                {{>contributors devs=site.data.contributors}}
-                {{else}}
-                    <div class="section">
-                        {{{page.content}}}
-                    </div>
-                {{/compare}}
+                <div class="section">
+                    {{{page.content}}}
+                </div>
             {{/compare}}
         </article>
     </main>

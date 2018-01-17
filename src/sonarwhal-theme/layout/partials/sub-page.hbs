@@ -1,13 +1,15 @@
 <article class="content" aria-labelledby="page-heading">
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/">Home</a></li>
             <li>
-                <a {{#if (isNotGuideIndexPage page)}} href="../../"{{else}}href="../"{{/if}}>Documentation</a>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a {{#if (isNotGuideIndexPage page)}} href="../../" {{else}}href="../" {{/if}}>Documentation</a>
             </li>
             {{#if (isNotGuideIndexPage page)}}
             <li>
-                <a  href="../{{#if (isNotSectionIndexPage page)}}../{{/if}}" class="guide-category">
+                <a href="../{{#if (isNotSectionIndexPage page)}}../{{/if}}" class="guide-category">
                     {{capitalize page.category}}
                 </a>
             </li>
@@ -40,16 +42,17 @@
                                 <a href="../{{#if (isNotSectionIndexPage page)}}../{{/if}}" class="subitem--single">Getting Started</a>
                             </li>
                             {{else}}
-                             <li class="dropdown__subitem">
+                            <li class="dropdown__subitem">
                                 <a href="#" class="subitem--single">Getting Started</a>
                             </li>
-                            {{/if}}
-                            {{#each (getSortedToCTitles pages)}}
+                            {{/if}} {{#each (getSortedToCTitles pages)}}
                             <li class="dropdown__subitem">
                                 <p>{{this}}</p>
                                 <ul>
                                     {{#each (getPagesByToCTitle this ../pages)}}
-                                    <li class="subitem"><a href="{{sanitize permalink}}">{{title}}</a></li>
+                                    <li class="subitem">
+                                        <a href="{{sanitize permalink}}">{{title}}</a>
+                                    </li>
                                     {{/each}}
                                 </ul>
                             </li>
@@ -60,46 +63,27 @@
             </div>
             <div class="module module--secondary table-of-contents treeview main-view" role="navigation">
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
-                {{#each (getSortedToCTitles pages)}}
-                    {{#compare ../page.tocTitle '===' this}}
-                    <li role="treeitem" aria-label="subsection" tabindex="0" aria-expanded="true">
-                    {{else}}
-                    <li role="treeitem" aria-label="subsection" tabindex="0" aria-expanded="false">
-                    {{/compare}}
-                        {{#compare ../page.tocTitle '===' this}}
-                        <div class="toc-section-title--active">
-                        {{else}}
-                        <div class="toc-section-title">
-                        {{/compare}}
+                    {{#each (getSortedToCTitles pages)}}
+                    <li role="treeitem" aria-label="subsection" tabindex="0" aria-expanded="{{#compare ../page.tocTitle '===' this}}true{{else}}false{{/compare}}">
+                        <div class="{{#compare ../page.tocTitle '===' this}}toc-section-title--active{{else}}toc-section-title{{/compare}}">
                             <span class="text">{{this}}</span>
                             <span class="icon"></span>
                         </div>
 
                         <ul role="group">
                             {{#each (getPagesByToCTitle this ../pages)}}
-                                {{#compare ../../page.title '===' title}}
-                                <li role="treeitem" aria-selected="true">
-                                {{else}}
-                                <li role="treeitem">
-                                {{/compare}}
-                                    {{#compare ../../page.title '===' title}}
-                                    <div class="toc-subsection-title--active" aria-current="location">
-                                    {{else}}
-                                    <div class="toc-subsection-title">
-                                    {{/compare}}
-                                        {{#compare ../../page.tocTitle '!==' ../this}}
-                                        <a class="text" href="{{sanitize permalink}}" tabindex="-1">
-                                        {{else}}
-                                        <a class="text" href="{{sanitize permalink}}">
-                                        {{/compare}}
-                                            {{title}}
-                                        </a>
-                                    </div>
-                                </li>
+                            <li role="treeitem" aria-selected="{{#compare ../../page.title '===' title}}true{{else}}false{{/compare}}">
+                                <div class="{{#compare ../../page.title '===' title}}toc-subsection-title--active{{else}}toc-subsection-title{{/compare}}"
+                                    aria-current="{{#compare ../../page.title '===' title}}location{{/compare}}">
+                                    <a class="text" href="{{sanitize permalink}}" tabindex="{{#compare ../../page.tocTitle '!==' ../this}}-1{{else}}0{{/compare}}">
+                                        {{title}}
+                                    </a>
+                                </div>
+                            </li>
                             {{/each}}
                         </ul>
                     </li>
-                {{/each}}
+                    {{/each}}
                 </ul>
             </div>
             <div class="module module--primary wrap-text">

@@ -29,9 +29,6 @@
   - id: governance
     title: Governance
     link: /about/governance/
-  - id: contributors
-    title: Contributors
-    link: /about/contributors/
   - id: code-of-conduct
     title: Code of Conduct
     link: https://js.foundation/community/code-of-conduct
