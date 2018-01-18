@@ -1,7 +1,7 @@
 {
-    "accessibility": "/static/images/accessibility.svg",
-    "interoperability": "/static/images/interoperability.svg",
-    "performance": "/static/images/performance.svg",
-    "pwa": "/static/images/pwa.svg",
-    "security": "/static/images/security.svg"
+    "accessibility": "/images/accessibility.svg",
+    "interoperability": "/images/interoperability.svg",
+    "performance": "/images/performance.svg",
+    "pwa": "/images/pwa.svg",
+    "security": "/images/security.svg"
 }

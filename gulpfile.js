@@ -120,21 +120,21 @@ gulp.task('revreplace', () => {
     return gulp.src(`${dirs.tmp}/**/*`)
         .pipe(plugins.revReplace({
             manifest,
-            modifyReved: (revPath) => {
-                const extension = path.extname(revPath);
+            // modifyReved: (revPath) => {
+            //     const extension = path.extname(revPath);
 
-                if (imageExtensions.split(',').includes(extension.substr(1))) {
-                    return `static/images/${path.basename(revPath)}`;
-                }
-                // opensearch and webmanifest file
-                if (extension.includes('.xml') || extension.includes('.webmanifest')) {
-                    return `static/${path.basename(revPath)}`;
-                }
+            //     if (imageExtensions.split(',').includes(extension.substr(1))) {
+            //         return `static/images/${path.basename(revPath)}`;
+            //     }
+            //     // opensearch and webmanifest file
+            //     if (extension.includes('.xml') || extension.includes('.webmanifest')) {
+            //         return `static/${path.basename(revPath)}`;
+            //     }
 
-                return revPath;
-            },
+            //     return revPath;
+            // },
             modifyUnreved: (unrevedPath) => {
-                return unrevedPath.replace('source/', '');
+                return unrevedPath.replace('static/images/', 'images/');
             },
             replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml']
         }))

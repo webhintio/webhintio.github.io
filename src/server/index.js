@@ -89,7 +89,11 @@ const configureRoutes = (app) => {
 };
 
 const configureFallbacks = (app) => {
-    app.use('/', express.static(path.join(hexoDir, theme, 'source')));
+    if (production) {
+        app.use('/', express.static(path.join(rootPath, 'dist')));
+    } else {
+        app.use('/', express.static(path.join(hexoDir, theme, 'source')));
+    }
 };
 
 const listen = (app) => {
