@@ -62,7 +62,9 @@
     var registerToggleExpandListener = function () {
         var container = document.getElementById('results-container');
 
-        container.addEventListener('click', toggleExpand, false);
+        if (container) {
+            container.addEventListener('click', toggleExpand, false);
+        }
     };
 
     var endsWith = function (searchStr, str) {
@@ -125,8 +127,11 @@
         setClipboardText(permalink.trim());
     };
 
+    if (copyButton) {
+        copyButton.addEventListener('click', copyPermalinkToClipboard);
+    }
+
     window.addEventListener('popstate', onPopState, false);
-    copyButton.addEventListener('click', copyPermalinkToClipboard);
 
     registerToggleExpandListener();
     highlightCodeBlocks();

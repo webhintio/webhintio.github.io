@@ -73,7 +73,65 @@ gulp.task('move:static', () => {
         .pipe(gulp.dest(`${dirs.tmp}/source/static`));
 });
 
-gulp.task('optimize:templates', (cb) => {
+gulp.task('optimize:js', () => {
+    return gulp.src(`${dirs.tmp}/source/**/*.js`)
+        .pipe(plugins.uglify())
+        .pipe(gulp.dest(dirs.tmp));
+});
+
+gulp.task('optimize:css', () => {
+    return gulp.src(`${dirs.tmp}/source/**/*.css`)
+        .pipe(plugins.cleanCss())
+        .pipe(gulp.dest(dirs.tmp));
+});
+
+gulp.task('useref', () => {
+    return gulp.src(`${dirs.tmp}/source/**/*.hbs`)
+        .pipe(plugins.useref({
+            base: `${dirs.tmp}/source/`,
+            searchPath: `${dirs.tmp}/source/`
+        }))
+        .pipe(gulp.dest(dirs.tmp));
+});
+
+gulp.task('revfiles', () => {
+    const filesToRev = [
+        `${dirs.tmp}/**/*`,
+        `!${dirs.tmp}**/*.hbs`,
+        `!${dirs.tmp}**/*.json`,
+        `!${dirs.tmp}**/*.yml`,
+        `!${dirs.tmp}/source/sw-reg.js`, // This will be in the root
+        `!${dirs.tmp}/helper/**/*`,
+        `!${dirs.tmp}/scripts/**/*`
+    ];
+
+    return gulp.src(filesToRev)
+        .pipe(plugins.rev())
+        // .pipe(plugins.revDeleteOriginal())
+        .pipe(gulp.dest(dirs.tmp))
+        .pipe(plugins.revReplace({
+            modifyReved: (revPath) => {
+                const extension = path.extname(revPath);
+
+                if (imageExtensions.split(',').includes(extension.substr(1))) {
+                    return `static/images/${path.basename(revPath)}`;
+                }
+                // opensearch and webmanifest file
+                if (extension.includes('.xml') || extension.includes('.webmanifest')) {
+                    return `static/${path.basename(revPath)}`;
+                }
+
+                return revPath;
+            },
+            modifyUnreved: (unrevedPath) => {
+                return unrevedPath.replace('source/', '');
+            },
+            replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml']
+        }))
+        .pipe(gulp.dest(dirs.tmp));
+});
+
+gulp.task('optimize:templates', () => {
     /*
         Because we are optimizing handlebars templates and not html,
         we can find things like `{{#if something}}true{{else}}false{{/if}}`
@@ -108,65 +166,9 @@ gulp.task('optimize:templates', (cb) => {
         removeRedundantAttributes: false
     };
 
-    const templates = plugins.filter([`**/*.hbs`],
-        { restore: true });
-    const cssToOptimize = plugins.filter([`**/static/**/*.css`],
-        { restore: true });
-    const jsToOptimize = plugins.filter([`**/static/**/*.js`],
-        { restore: true });
-    const filesNotToRev = plugins.filter([
-        '**/*',
-        '!**/*.hbs',
-        '!**/*.json',
-        '!**/*.yml',
-        `!${dirs.tmp}/source/sw-reg.js`, // This will be in the root
-        `!${dirs.tmp}/helper/**/*`,
-        `!${dirs.tmp}/scripts/**/*`
-    ], { restore: true });
-
-    pump(
-        [
-            gulp.src(`${dirs.tmp}/**/*.*`),
-            templates,
-            plugins.useref({
-                base: `${dirs.tmp}/source/`,
-                searchPath: `${dirs.tmp}/source/`
-            }),
-            templates.restore,
-            jsToOptimize,
-            plugins.uglify(),
-            jsToOptimize.restore,
-            cssToOptimize,
-            plugins.cleanCss(),
-            cssToOptimize.restore,
-            filesNotToRev,
-            plugins.rev(),
-            plugins.revDeleteOriginal(),
-            filesNotToRev.restore,
-            gulp.dest(dirs.tmp),
-            plugins.revReplace({
-                modifyReved: (revPath) => {
-                    const extension = path.extname(revPath);
-
-                    if (imageExtensions.split(',').includes(extension.substr(1))) {
-                        return `static/images/${path.basename(revPath)}`;
-                    }
-                    // opensearch and webmanifest file
-                    if (extension.includes('.xml') || extension.includes('.webmanifest')) {
-                        return `static/${path.basename(revPath)}`;
-                    }
-
-                    return revPath;
-                },
-                modifyUnreved: (unrevedPath) => {
-                    return unrevedPath.replace('source/', '');
-                },
-                replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml']
-            }),
-            plugins.if('*.hbs', plugins.htmlmin(htmlminOptions)),
-            gulp.dest(dirs.tmp)
-        ],
-        cb);
+    return gulp.src(`${dirs.tmp}/**/*.hbs`)
+        .pipe(plugins.htmlmin(htmlminOptions))
+        .pipe(gulp.dest(dirs.tmp));
 });
 
 gulp.task('imagemin', () => {
@@ -233,8 +235,12 @@ gulp.task('build', gulp.series([
     'clean:before',
     'copy:theme',
     'optimize:images',
+    'useref',
     'optimize:templates',
+    'optimize:js',
+    'optimize:css',
     'move:static',
+    'revfiles',
     'clean:after',
     'build:hexo',
     'generate-service-worker',

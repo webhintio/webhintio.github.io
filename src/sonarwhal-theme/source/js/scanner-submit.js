@@ -8,7 +8,12 @@
     // String interpolation is not supported by 'hexo-filter-cleanup'.
     // So use string string concatenation instead.
 
-    var id = document.querySelector('.scan-overview').getAttribute('data-id');
+    var overview = document.querySelector('.scan-overview');
+
+    if (!overview) {
+        return;
+    }
+    var id = overview.getAttribute('data-id');
     /** Record of published rules. */
     var existingResults = [];
     /** Status variables for a job. */
@@ -95,7 +100,7 @@
 
     var ruleItemTemplate = function () {
         return '\{{#each results}}\
-                    {{>scan-result-item}}\
+        {{>scan-result-item}}\
                  \{{/each}}';
     };
 
