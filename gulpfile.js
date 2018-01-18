@@ -28,10 +28,14 @@ gulp.task('clean:before', (done) => {
 
 gulp.task('clean:after', (done) => {
     shelljs.rm('-rf',
-        `${dirs.tmp}/source/core`,
-        `${dirs.tmp}/source/js`,
+        `${dirs.tmp}/components`,
+        `${dirs.tmp}/core`,
+        `${dirs.tmp}/js`,
         `${dirs.tmp}/source/components`,
+        `${dirs.tmp}/source/core`,
         `${dirs.tmp}/source/images`,
+        `${dirs.tmp}/source/js`,
+        `${dirs.tmp}/source/partials`,
         `${dirs.tmp}/static`
     );
 
@@ -86,30 +90,41 @@ gulp.task('optimize:css', () => {
 });
 
 gulp.task('useref', () => {
-    return gulp.src(`${dirs.tmp}/source/**/*.hbs`)
+    return gulp.src(`${dirs.tmp}/layout/**/*.hbs`)
         .pipe(plugins.useref({
             base: `${dirs.tmp}/source/`,
             searchPath: `${dirs.tmp}/source/`
         }))
-        .pipe(gulp.dest(dirs.tmp));
+        .pipe(plugins.if('*.hbs', gulp.dest(`${dirs.tmp}/layout`)))
+        .pipe(plugins.if('!*.hbs', gulp.dest(`${dirs.tmp}/source`)));
 });
 
 gulp.task('revfiles', () => {
-    const filesToRev = [
-        `${dirs.tmp}/**/*`,
-        `!${dirs.tmp}**/*.hbs`,
-        `!${dirs.tmp}**/*.json`,
-        `!${dirs.tmp}**/*.yml`,
-        `!${dirs.tmp}/source/sw-reg.js`, // This will be in the root
-        `!${dirs.tmp}/helper/**/*`,
-        `!${dirs.tmp}/scripts/**/*`
-    ];
-
-    return gulp.src(filesToRev)
+    return gulp.src([`${dirs.tmp}/source/**/*`, `!**/*.json`, `!**/*.yml`, `!**/sw-reg.js`])
+        .pipe(plugins.debug())
         .pipe(plugins.rev())
-        // .pipe(plugins.revDeleteOriginal())
-        .pipe(gulp.dest(dirs.tmp))
+        .pipe(plugins.revDeleteOriginal())
+        .pipe(gulp.dest(`${dirs.tmp}/source`))
+        .pipe(plugins.rev.manifest())
+        .pipe(gulp.dest(`${dirs.tmp}`));
+});
+
+gulp.task('revreplace', () => {
+    // const filesNotToRev = plugins.filter([
+    //     `${dirs.tmp}/**/*`,
+    //     `!${dirs.tmp}/**/*.hbs`,
+    //     `!${dirs.tmp}/**/*.json`,
+    //     `!${dirs.tmp}/**/*.yml`,
+    //     `!${dirs.tmp}/**/source/sw-reg.js` // This will be in the root
+    // ], { restore: true });
+
+    const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
+
+    return gulp.src(`${dirs.tmp}/**/*`)
+        // .pipe(filesNotToRev)
+        .pipe(plugins.debug())
         .pipe(plugins.revReplace({
+            manifest,
             modifyReved: (revPath) => {
                 const extension = path.extname(revPath);
 
@@ -185,7 +200,7 @@ const moveImages = () => {
 
 gulp.task('move:images', moveImages);
 
-gulp.task('optimize:images', gulp.series(['imagemin', 'move:images']));
+gulp.task('optimize:images', gulp.series('imagemin', 'move:images'));
 
 const devHtml = (cb) => {
     pump(
@@ -231,7 +246,7 @@ gulp.task('generate-service-worker', (callback) => {
     }, callback);
 });
 
-gulp.task('build', gulp.series([
+gulp.task('build', gulp.series(
     'clean:before',
     'copy:theme',
     'optimize:images',
@@ -240,15 +255,16 @@ gulp.task('build', gulp.series([
     'optimize:js',
     'optimize:css',
     'move:static',
-    'revfiles',
     'clean:after',
-    'build:hexo',
-    'generate-service-worker',
-    'compress:zopfli',
-    'compress:brotli'
-]));
+    'revfiles',
+    'revreplace',
+    // 'build:hexo',
+    // 'generate-service-worker',
+    // 'compress:zopfli',
+    // 'compress:brotli'
+));
 
-gulp.task('default', gulp.series(['build']));
+gulp.task('default', gulp.series('build'));
 
 gulp.task('watch', gulp.series('clean:before', 'copy:theme', async () => {
     const hexo = new Hexo(process.cwd(), {});
