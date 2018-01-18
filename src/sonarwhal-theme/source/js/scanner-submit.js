@@ -99,9 +99,7 @@
     };
 
     var ruleItemTemplate = function () {
-        return '\{{#each results}}\
-        {{>scan-result-item}}\
-                 \{{/each}}';
+        return '\{{#each results}}{{>scan-result-item}}\{{/each}}';
     };
 
     var categoryPassMessageTemplate = function () {

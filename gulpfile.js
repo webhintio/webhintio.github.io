@@ -73,7 +73,6 @@ gulp.task('copy:theme', () => {
 
 gulp.task('move:static', () => {
     return gulp.src(`${dirs.tmp}/static/**/*`)
-        .pipe(plugins.debug())
         .pipe(gulp.dest(`${dirs.tmp}/source/static`));
 });
 
@@ -89,6 +88,13 @@ gulp.task('optimize:css', () => {
         .pipe(gulp.dest(dirs.tmp));
 });
 
+gulp.task('interpolate', (cb) => {
+    const interporlate = require('./helpers/interpolate-hbs-js');
+
+    interporlate(dirs.tmp);
+    cb();
+});
+
 gulp.task('useref', () => {
     return gulp.src(`${dirs.tmp}/layout/**/*.hbs`)
         .pipe(plugins.useref({
@@ -101,7 +107,6 @@ gulp.task('useref', () => {
 
 gulp.task('revfiles', () => {
     return gulp.src([`${dirs.tmp}/source/**/*`, `!**/*.json`, `!**/*.yml`, `!**/sw-reg.js`])
-        .pipe(plugins.debug())
         .pipe(plugins.rev())
         .pipe(plugins.revDeleteOriginal())
         .pipe(gulp.dest(`${dirs.tmp}/source`))
@@ -110,19 +115,9 @@ gulp.task('revfiles', () => {
 });
 
 gulp.task('revreplace', () => {
-    // const filesNotToRev = plugins.filter([
-    //     `${dirs.tmp}/**/*`,
-    //     `!${dirs.tmp}/**/*.hbs`,
-    //     `!${dirs.tmp}/**/*.json`,
-    //     `!${dirs.tmp}/**/*.yml`,
-    //     `!${dirs.tmp}/**/source/sw-reg.js` // This will be in the root
-    // ], { restore: true });
-
     const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
 
     return gulp.src(`${dirs.tmp}/**/*`)
-        // .pipe(filesNotToRev)
-        .pipe(plugins.debug())
         .pipe(plugins.revReplace({
             manifest,
             modifyReved: (revPath) => {
@@ -252,16 +247,17 @@ gulp.task('build', gulp.series(
     'optimize:images',
     'useref',
     'optimize:templates',
+    'interpolate',
     'optimize:js',
     'optimize:css',
     'move:static',
     'clean:after',
     'revfiles',
     'revreplace',
-    // 'build:hexo',
-    // 'generate-service-worker',
-    // 'compress:zopfli',
-    // 'compress:brotli'
+    'build:hexo',
+    'generate-service-worker',
+    'compress:zopfli',
+    'compress:brotli'
 ));
 
 gulp.task('default', gulp.series('build'));
