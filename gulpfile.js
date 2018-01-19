@@ -1,5 +1,3 @@
-const path = require('path');
-
 const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
 const pump = require('pump');
@@ -120,19 +118,6 @@ gulp.task('revreplace', () => {
     return gulp.src(`${dirs.tmp}/**/*`)
         .pipe(plugins.revReplace({
             manifest,
-            // modifyReved: (revPath) => {
-            //     const extension = path.extname(revPath);
-
-            //     if (imageExtensions.split(',').includes(extension.substr(1))) {
-            //         return `static/images/${path.basename(revPath)}`;
-            //     }
-            //     // opensearch and webmanifest file
-            //     if (extension.includes('.xml') || extension.includes('.webmanifest')) {
-            //         return `static/${path.basename(revPath)}`;
-            //     }
-
-            //     return revPath;
-            // },
             modifyUnreved: (unrevedPath) => {
                 return unrevedPath.replace('static/images/', 'images/');
             },
@@ -264,8 +249,6 @@ gulp.task('default', gulp.series('build'));
 
 gulp.task('watch', gulp.series('clean:before', 'copy:theme', async () => {
     const hexo = new Hexo(process.cwd(), {});
-
-    console.log(`Deleting content in ${dirs.dist}`);
 
     await hexo.init();
     await hexo.call('clean');
