@@ -207,6 +207,7 @@ blockquote {
 }
 
 /* Maximum line lengths */
+details,
 p,
 li {
     max-width: 64rem;
