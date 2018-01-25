@@ -25,6 +25,11 @@ img {
     border: 0;
 }
 
+/* Needed for browsers that do not support the details element */
+details {
+    display: block;
+}
+
 /* Style focusable elements that need focus ring. Others reset and receive border styles in controls/color.css */
 a:focus,
 li:focus,
