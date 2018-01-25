@@ -16,7 +16,7 @@ const getPartials = (themeDir) => {
     }, {});
 
     return partialsByName;
-}
+};
 
 const getJS = (themeDir) => {
     const jsDir = path.resolve(path.join(themeDir, 'source'));
