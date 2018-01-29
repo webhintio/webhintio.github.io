@@ -131,7 +131,7 @@ const generateFrontMatterInfo = (filePath, title, description, currentFrontMatte
         layout,
         permalink,
         title,
-        tocTitle
+        tocTitle: tocTitle ? tocTitle.replace(/-/g, ' ') : tocTitle
     };
 
     const finalFrontMatterData = _.assign(newFrontMatter, existingFrontMatter);
