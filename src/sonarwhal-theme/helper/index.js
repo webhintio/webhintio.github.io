@@ -229,9 +229,6 @@ module.exports = function () {
 
             return length + ' ' + units;
         },
-        getMarkdownLink: (link) => {
-            return link.replace(/\.html$/, '.md');
-        },
         getPagesByToCTitle: (title, pages) => {
             return pages[title];
         },

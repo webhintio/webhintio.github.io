@@ -122,6 +122,7 @@ const generateFrontMatterInfo = (filePath, title, description, currentFrontMatte
     baseName = baseName !== 'index' ? baseName : '';
 
     const [category, tocTitle] = path.dirname(relativePath).split(path.sep);
+    const originalFile = normalize(path.join(root, relativePath)).toLowerCase();
     const permalink = normalize(path.join(root, path.dirname(relativePath), baseName, 'index.html')).toLowerCase();
     const layout = getLayout(filePath);
 
@@ -129,6 +130,7 @@ const generateFrontMatterInfo = (filePath, title, description, currentFrontMatte
         category: _.trim(category, '.') ? category : 'doc-index',
         description,
         layout,
+        originalFile,
         permalink,
         title,
         tocTitle: tocTitle ? tocTitle.replace(/-/g, ' ') : tocTitle
