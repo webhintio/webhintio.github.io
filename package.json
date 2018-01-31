@@ -57,7 +57,6 @@
     "gulp-uglify": "^3.0.0",
     "gulp-useref": "^3.1.4",
     "gulp-zopfli": "^1.0.0",
-    "markdownlint": "^0.6.4",
     "markdownlint-cli": "^0.7.0",
     "mktemp": "^0.4.0",
     "npm-run-all": "^4.1.2",
