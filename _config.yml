@@ -20,7 +20,7 @@ sonarwhalRepoRoot: https://github.com/sonarwhal/sonarwhal
 sonarwhalRoot: https://sonarwhal.com
 
 # Directory
-source_dir: src/content
+source_dir: src/content-replaced
 public_dir: dist
 tag_dir: tags
 archive_dir: archives

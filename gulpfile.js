@@ -9,8 +9,10 @@ const imageExtensions = 'png,jpg,svg,ico';
 const dirs = {
     dist: 'dist',
     distCompreseable: 'dist/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}',
+    originalContent: `src/content`,
     src: 'src/sonarwhal-theme',
     tmp: 'src/sonarwhal-theme-optimized',
+    tmpContent: 'src/content-replaced',
     tmpImages: `src/sonarwhal-theme-optimized/**/*.{${imageExtensions}}`
 };
 
@@ -112,7 +114,22 @@ gulp.task('revfiles', () => {
         .pipe(gulp.dest(`${dirs.tmp}`));
 });
 
-gulp.task('revreplace', () => {
+gulp.task('revreplace:content', () => {
+    const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
+
+    return gulp.src(`${dirs.originalContent}/**/*`)
+        .pipe(plugins.revReplace({
+            manifest,
+            modifyUnreved: (unrevedPath) => {
+                return unrevedPath.replace('static/images/', 'images/');
+            },
+            prefix: '/',
+            replaceInExtensions: ['.md']
+        }))
+        .pipe(gulp.dest(dirs.tmpContent));
+});
+
+gulp.task('revreplace:theme', () => {
     const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
 
     return gulp.src(`${dirs.tmp}/**/*`)
@@ -166,6 +183,11 @@ gulp.task('optimize:templates', () => {
         .pipe(gulp.dest(dirs.tmp));
 });
 
+gulp.task('move:docimage', () => {
+    return gulp.src(`${dirs.originalContent}/**/*.{${imageExtensions}}`)
+        .pipe(gulp.dest(dirs.tmp));
+});
+
 gulp.task('imagemin', () => {
     return gulp.src(dirs.tmpImages)
         .pipe(plugins.imagemin())
@@ -179,8 +201,7 @@ const moveImages = () => {
 };
 
 gulp.task('move:images', moveImages);
-
-gulp.task('optimize:images', gulp.series('imagemin', 'move:images'));
+gulp.task('optimize:images', gulp.series('move:docimage', 'imagemin', 'move:images'));
 
 const devHtml = (cb) => {
     pump(
@@ -238,7 +259,8 @@ gulp.task('build', gulp.series(
     'move:static',
     'clean:after',
     'revfiles',
-    'revreplace',
+    'revreplace:content',
+    'revreplace:theme',
     'build:hexo',
     'generate-service-worker',
     'compress:zopfli',
