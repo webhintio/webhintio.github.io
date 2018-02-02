@@ -1,4 +1,43 @@
 ---
+  0.24.0 (January 25, 2018):
+    Breaking Changes:
+      raw: "- [[`6a2f29b6ec`](https://github.com/sonarwhal/sonarwhal/commit/6a2f29b6ec9cce9f651cce0083cfbd934dff7997)] - Breaking: Limit `X-Content-Type-Options` usage to scripts and stylesheets (see also: [`#767`](https://github.com/sonarwhal/sonarwhal/issues/767)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/6a2f29b6ec9cce9f651cce0083cfbd934dff7997\"><code>6a2f29b6ec</code></a>] - Breaking: Limit <code>X-Content-Type-Options</code> usage to scripts and stylesheets (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/767\"><code>#767</code></a>).</li>\n</ul>\n"
+      details:
+        6a2f29b6ec9cce9f651cce0083cfbd934dff7997:
+          associateCommitId: "767"
+          message: "Breaking: Limit `X-Content-Type-Options` usage to scripts and stylesheets."
+    Bug fixes / Improvements:
+      raw: "- [[`53a5b57220`](https://github.com/sonarwhal/sonarwhal/commit/53a5b572206d6919c053a5194ff5555069b85695)] - Fix: Make `http-cache` rule ignore Data URIs (see also: [`#778`](https://github.com/sonarwhal/sonarwhal/issues/778)).\n- [[`7349b9728f`](https://github.com/sonarwhal/sonarwhal/commit/7349b9728f065ec13c2b887ae22c99c36173975d)] - Docs: Fix typo in `options.ts` (see also: [`#776`](https://github.com/sonarwhal/sonarwhal/issues/776)).\n- [[`b67ef431da`](https://github.com/sonarwhal/sonarwhal/commit/b67ef431da269daf93a7173e6051991e8478deec)] - Docs: Add examples of IIS server configurations (see also: [`#774`](https://github.com/sonarwhal/sonarwhal/issues/774)).\n- [[`cbcd924fe0`](https://github.com/sonarwhal/sonarwhal/commit/cbcd924fe04a47e5714f412493e291e5d9d5b62f)] - Fix: Make `summary` the default formatter (see also: [`#722`](https://github.com/sonarwhal/sonarwhal/issues/722)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/53a5b572206d6919c053a5194ff5555069b85695\"><code>53a5b57220</code></a>] - Fix: Make <code>http-cache</code> rule ignore Data URIs (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/778\"><code>#778</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/7349b9728f065ec13c2b887ae22c99c36173975d\"><code>7349b9728f</code></a>] - Docs: Fix typo in <code>options.ts</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/776\"><code>#776</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/b67ef431da269daf93a7173e6051991e8478deec\"><code>b67ef431da</code></a>] - Docs: Add examples of IIS server configurations (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/774\"><code>#774</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/cbcd924fe04a47e5714f412493e291e5d9d5b62f\"><code>cbcd924fe0</code></a>] - Fix: Make <code>summary</code> the default formatter (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/722\"><code>#722</code></a>).</li>\n</ul>\n"
+      details:
+        53a5b572206d6919c053a5194ff5555069b85695:
+          associateCommitId: "778"
+          message: "Fix: Make `http-cache` rule ignore Data URIs."
+        7349b9728f065ec13c2b887ae22c99c36173975d:
+          associateCommitId: "776"
+          message: "Docs: Fix typo in `options.ts`."
+        b67ef431da269daf93a7173e6051991e8478deec:
+          associateCommitId: "774"
+          message: "Docs: Add examples of IIS server configurations."
+        cbcd924fe04a47e5714f412493e291e5d9d5b62f:
+          associateCommitId: "722"
+          message: "Fix: Make `summary` the default formatter."
+    New features:
+      raw: "- [[`1d63f99035`](https://github.com/sonarwhal/sonarwhal/commit/1d63f99035b15b7529ff94df0e750e2314914c3f)] - Update: `snyk-snapshot.json`.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/1d63f99035b15b7529ff94df0e750e2314914c3f\"><code>1d63f99035</code></a>] - Update: <code>snyk-snapshot.json</code>.</li>\n</ul>\n"
+      details:
+        1d63f99035b15b7529ff94df0e750e2314914c3f:
+          associateCommitId: null
+          message: "Update: `snyk-snapshot.json`."
+  0.23.1 (January 18, 2018):
+    Bug fixes / Improvements:
+      raw: "- [[`afc468d754`](https://github.com/sonarwhal/sonarwhal/commit/afc468d7541754ff6d5992fc106514a093ce68eb)] - Docs: Add examples on how to configure Apache in order to pass the rules (see also: [`#751`](https://github.com/sonarwhal/sonarwhal/issues/751)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/afc468d7541754ff6d5992fc106514a093ce68eb\"><code>afc468d754</code></a>] - Docs: Add examples on how to configure Apache in order to pass the rules (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/751\"><code>#751</code></a>).</li>\n</ul>\n"
+      details:
+        afc468d7541754ff6d5992fc106514a093ce68eb:
+          associateCommitId: "751"
+          message: "Docs: Add examples on how to configure Apache in order to pass the rules."
   0.23.0 (January 17, 2018):
     Breaking Changes:
       raw: "- [[`2e75ac5242`](https://github.com/sonarwhal/sonarwhal/commit/2e75ac52424b55d12b70b248fa2866bb67f4341f)] - Breaking: Use `text/xml` as the media type for `XML`.\n\n"
