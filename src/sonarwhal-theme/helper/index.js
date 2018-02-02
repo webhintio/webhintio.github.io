@@ -1,4 +1,5 @@
 /* eslint-disable object-shorthand, prefer-template */
+const Handlebars = require('handlebars');
 const pagination = require('./pagination');
 const url = require('url');
 
@@ -273,6 +274,25 @@ module.exports = function () {
         },
         isPending: (status) => {
             return status === jobStatus.pending;
+        },
+        linkify: (msg) => {
+            const regex = /(https?:\/\/[a-zA-Z0-9.\\/?:@\-_=#]+\.[a-zA-Z0-9&.\\/?:@-_=#]*)\s[a-zA-Z]/g;
+            // Modified use of regular expression in https://stackoverflow.com/a/39220764
+            // Should match:
+            // jQuery@2.1.4 has 2 known vulnerabilities (1 medium, 1 low). See https://snyk.io/vuln/npm:jquery for more information.
+            // AngularJS@1.4.9 has 3 known vulnerabilities (3 high). See https://snyk.io/vuln/npm:angular for more information.
+            // Shouldn't match (shortened url):
+            // File https://www.odysys.com/ … hedule-Your-Demo-Now.png could be around 37.73kB (78%) smaller.
+            const match = regex.exec(msg);
+
+            if (!match) {
+                return msg;
+            }
+
+            const urlMatch = Handlebars.Utils.escapeExpression(match.pop());
+            const newMsg = msg.replace(urlMatch, '<a href="' + urlMatch + '">' + urlMatch + '</a>');
+
+            return new Handlebars.SafeString(newMsg);
         },
         noIssue: (category) => {
             return category.rules.every((rule) => {

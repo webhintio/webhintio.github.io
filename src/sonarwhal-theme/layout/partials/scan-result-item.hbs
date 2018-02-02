@@ -13,17 +13,14 @@
     <div class="rule-result--details__body">
         <p class="{{../status}}-badge uppercase-text">{{../status}}</p>
         <p>
-            {{message}}
+            {{{linkify message}}}
         </p>
         {{#if resource}}
-        <div class="rule-result__code">
-
-            <p>
-                <a target="_blank" rel="noopener noreferrer" href="{{resource}}">
-                    {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}}
-                </a>
-            </p>
-        </div>
+        <p>
+            <a target="_blank" rel="noopener noreferrer" href="{{resource}}">
+                {{cutUrlString resource}}{{normalizePosition location.line}}{{normalizePosition location.column}}
+            </a>
+        </p>
         {{/if}}
         {{#if sourceCode}}
         <div class="rule-result__code">
