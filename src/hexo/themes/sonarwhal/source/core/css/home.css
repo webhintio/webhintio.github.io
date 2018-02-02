@@ -135,11 +135,11 @@ main {
 }
 
 .home-container__features a:hover {
-    background-color: hsla(6, 66%, 50%, 0.1);
+    background-color: hsla(6, 66%, 50%, .1);
 }
 
 .home-container__features,
-.home-container__install h2  {
+.home-container__install h2 {
     text-align: center;
 }
 

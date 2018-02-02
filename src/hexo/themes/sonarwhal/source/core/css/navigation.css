@@ -52,7 +52,7 @@
 .header__toggle:hover,
 .header__toggle:focus {
     outline: 0;
-    background-color: hsla(0, 0%, 0%, 0.3);
+    background-color: hsla(0, 0%, 0%, .3);
 }
 
 
@@ -81,7 +81,7 @@
  */
 
 .header-social {
-    background-color: hsla(0,0%,0%,.2);
+    background-color: hsla(0, 0%, 0%, .2);
 }
 
 .header-social__container {
@@ -92,7 +92,7 @@
 
 .header-social__container > img {
     width: 100%;
-    max-width: 15rem
+    max-width: 15rem;
 }
 
 .header-social__list {

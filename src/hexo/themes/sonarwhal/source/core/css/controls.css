@@ -126,7 +126,8 @@ select,
     color: #fff;
 
     height: 4rem;
-    /*need to define here due to inline CSS from algolia */
+
+    /* need to define here due to inline CSS from algolia */
     width: 30rem;
 
     margin-right: 0;
@@ -308,7 +309,7 @@ button:focus,
 }
 
 .button-search:hover {
-        border-color: hsla(0, 0%, 100%, 0.2);;
+        border-color: hsla(0, 0%, 100%, .2);;
 }
 
 button:active,
