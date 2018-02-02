@@ -1,18 +1,9 @@
 <div class="bg-wrap-home">
     <main>
-        <div class="home-container--alt  container">
-            <div class="top-illustration">
-                <img src="/images/iceberg-left.svg" id="iceberg1" alt="" role="presentation">
-                <img src="/images/iceberg-middle.svg" id="iceberg2" alt="" role="presentation">
-                <img src="/images/iceberg-right.svg" id="iceberg3" alt="" role="presentation">
-                <img src="/images/narwhal.svg" id="narwhal" alt="" role="none">
-            </div>
-        </div>
-        <div class="dark-blue">
-            <div class="container home-container">
-                <section class="home-container--section">
-                    <h1 class="headline">sonarwhal</h1>
-                    <p class="title">build better web sites&mdash;lint the web forward</p>
+        <section class="container home-container--section">
+            <div class="layout layout--basic--alt">
+                <div class="module module--primary">
+                    <h1 class="headline">Use sonarwhal to improve your website</h1>
                     <div class="home-container--input">
                         <form action="/scanner/" method="POST">
                             <label for="home-scan" class="visually-hidden">Enter your URL here</label>
@@ -22,86 +13,117 @@
                             </div>
                         </form>
                     </div>
-                </section>
-                <section class="home-container--section home-container__features">
-                    <h2 class="subheading subheading--home">Build better websites with sonarwhal</h2>
-                    <div class="layout layout--quarters">
-                        <div class="module">
-                            <p class="subtitle--alt subtitle--home uppercase-text">Don’t burn out&hellip;</p>
-                            <p class="feature_highlight">
-                                &hellip;trying to master all the things: sonarwhal will help you with your site's accessibility, speed, security, and more, by linting your code for best practices and common errors.
-                            </p>
-                        </div>
-                        <div class="module">
-                            <p class="subtitle--alt subtitle--home uppercase-text">Fully customizable</p>
-                            <p class="feature_highlight">
-                                Every site is different. sonarwhal adapts its feedback when you give it more information:
-                                <a href="/docs/user-guide/#ignoringdomains">ignore 3rd-party code</a>,
-                                <a href="/docs/user-guide/#browserconfiguration">prioritize <em>your</em> users' browsers</a>, and <a href="/docs/user-guide/">control the
-                                results</a> with minimal setup.
-                            </p>
-                        </div>
-                        <div class="module">
-                            <p class="subtitle--alt subtitle--home uppercase-text">Create your own rules</p>
-                            <p class="feature_highlight">
-                                With the help of our <a href="/docs/contributor-guide/">developer guide</a>, you can
-                                <a href="/docs/contributor-guide/rules/index.html">create new rules</a> to suit <em>your</em> needs. You can
-                                help sonarwhal help even more people like you by contributing your rules back!
-                            </p>
-                        </div>
-                        <div class="module">
-                            <p class="subtitle--alt subtitle--home uppercase-text">Community driven</p>
-                            <p class="feature_highlight">
-                                sonarwhal welcomes anyone who wants to make the web a better place.
-                                Testing, <a href="https://github.com/sonarwhal/sonarwhal.com/issues">filing issues and feature requests</a>,
-                                <a href="/docs/developer-guide/contributing/pull-requests.html">contributing code</a>, and improving the documentation
-                                are just the start!
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                    <p class="container--section__welcome">sonarwhal is a linting tool that will help you with your site's accessibility, speed, security and more, by checking your code for best practices and common errors.</p>
+                </div>
+                <div class="module module--secondary">
+                    <img src="/images/home-hello-nellie.svg" alt="Nellie the Narwhal" class="hello-illustration" />
+                </div>
             </div>
-            <div class="dark-blue">
-                <section class="home-container home-container--section home-container__install">
-                    <h2 class="subheading subheading--home">Install sonarwhal</h2>
-                    <div class="layout layout--halves vertical-align">
-                        <div class="module">
-                            <img src="/images/home-nellie.svg" class="sub-illustration" alt="" role="presentation">
+        </section>
+        <div class="bg-wrap--white">
+            <section class="container home-container--section home-container__features">
+                <h2 class="subheading subheading--home">Why use sonarwhal?</h2>
+                <div class="layout layout--thirds">
+                    <div class="module">
+                        <img src="/images/nellie-customizable.svg" alt="" role="presentation" />
+                        <p class="subtitle subtitle--home uppercase-text">Fully customizable</p>
+                        <p class="feature__highlight">
+                            Every site is different. sonarwhal adapts its feedback when you give it more information:
+                            <a href="/docs/user-guide/#ignoringdomains">ignore 3rd-party code</a>,
+                            <a href="/docs/user-guide/#browserconfiguration">prioritize <em>your</em> users' browsers</a>, and <a href="/docs/user-guide/">control the
+                            results</a> with minimal setup.
+                        </p>
+                        <a href="/docs/user-guide/rules/">User guide</a>
+                    </div>
+                    <div class="module">
+                        <img src="/images/developer-nellie.svg" alt="" role="presentation" />
+                        <p class="subtitle subtitle--home uppercase-text">Create your own rules</p>
+                        <p class="feature__highlight">
+                            With the help of our <a href="/docs/contributor-guide/">developer guide</a>, you can
+                            <a href="/docs/contributor-guide/rules/index.html">create new rules</a> to suit <em>your</em> needs. You can
+                            help sonarwhal help even more people like you by contributing your rules back!
+                        </p>
+                        <a href="/docs/user-guide/rules/">Rule documentation</a>
+                    </div>
+                    <div class="module">
+                        <img src="/images/nellie-cookies.svg" alt="" role="presentation" />
+                        <p class="subtitle subtitle--home uppercase-text">Community driven</p>
+                        <p class="feature__highlight">
+                            sonarwhal welcomes anyone who wants to make the web a better place.
+                            Testing, <a href="https://github.com/sonarwhal/sonarwhal.com/issues">filing issues and feature requests</a>,
+                            <a href="/docs/developer-guide/contributing/pull-requests.html">contributing code</a>, and improving the documentation
+                            are just the start!
+                        </p>
+                        <a href="https://github.com/sonarwhal">sonarwhal github</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="bg-wrap--grey">
+            <section class="container home-container--section home-container__install">
+                <h2 class="subheading subheading--home">Run sonarwhal from your CLI</h2>
+                <div class="layout layout--halves vertical-align">
+                    <div class="module">
+                        <p>CLI gif goes here</p>
+                    </div>
+                    <div class="module">
+                        <p class="install__code">Description (Proposed): If you want to disable specific rules, further configure others, ignore domains, or more, run sonarwhal from your CLI.</p>
+                        <p class="install__code">Quick start guide:</p>
+                        <div class="code-wrap">
+                            <p>><code>npm install -g --engine-strict sonarwhal</code></p>
+                            <p>><code>sonarwhal --init</code></p>
+                            <p>><code>sonarwhal https://awesomesite.com</code></p>
                         </div>
-                        <div class="module">
-                            <div class="code-wrap">
-                                <ol>
-                                    <li>npm install -g --engine-strict sonarwhal</li>
-                                    <li>sonarwhal --init</li>
-                                    <li>sonarwhal https://awesomesite.com</li>
-                                </ol>
+                        <a class="docs-button" href="/docs/user-guide/">Get Started</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="bg-wrap--blue">
+            <div class="container home-container--section home-container__documentation">
+                <div class="layout layout--thirds">
+                    <div class="module">
+                        <div class="home--docs">
+                            <img src="images/user-guide-icon.svg" class="home--docs-icons" alt="" role="none">
+                            <div class="home--docs-text">
+                                <a href="/docs/user-guide/">
+                                    <p class="subtitle">User Guide</p>
+                                    <p>Get started with configuring the CLI tool on your machine</p>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </section>
-                <section class="home-container--alt home-container--section home-container__documentation">
-                    <h2 class="subheading subheading--home">Documentation</h2>
-                    <div class="layout layout--thirds">
-                        <div class="module">
-                            <a href="/docs/user-guide/">
-                                <img src="/images/user-guide-icon.svg" class="icons--home" alt="" role="none">
-                                <p class="subtitle">User Guide</p>
-                            </a>
-                        </div>
-                        <div class="module">
-                            <a href="/docs/user-guide/rules/">
-                                <img src="/images/rules-icon.svg" class="icons--home" alt="" role="none">
-                                <p class="subtitle">Rules</p>
-                            </a>
-                        </div>
-                        <div class="module">
-                            <a href="/docs/contributor-guide/">
-                                <img src="/images/dev-guide-icon.svg" class="icons--home" alt="" role="none">
-                                <p class="subtitle">Contributor Guide</p>
-                            </a>
+                    <div class="module">
+                        <div class="home--docs">
+                            <img src="images/dev-guide-icon.svg" class="home--docs-icons" alt="" role="none">
+                            <div class="home--docs-text">
+                                <a href="/docs/contributor-guide/">
+                                    <p class="subtitle">Contributor Guide</p>
+                                    <p>Find out how to make sonarwhal your tool and use it to it's full potential</p>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </section>
+                    <div class="module">
+                        <div class="home--docs">
+                            <img src="images/rules-icon.svg" class="home--docs-icons" alt="" role="none">
+                            <div class="home--docs-text">
+                                <a href="/docs/user-guide/rules/">
+                                    <p class="subtitle">Rules</p>
+                                    <p>Check out the list of rules that sonarwhal currently checks</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-container--alt container">
+                <div class="illustration">
+                    <img src="/images/iceberg-left.svg" id="iceberg1" alt="" role="presentation">
+                    <img src="/images/iceberg-middle.svg" id="iceberg2" alt="" role="presentation">
+                    <img src="/images/iceberg-right.svg" id="iceberg3" alt="" role="presentation">
+                    <img src="/images/narwhal.svg" id="narwhal" alt="" role="none">
+                </div>
             </div>
         </div>
     </main>
