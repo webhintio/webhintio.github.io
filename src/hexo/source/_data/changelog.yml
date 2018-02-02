@@ -1,4 +1,148 @@
 ---
+  0.24.0 (January 25, 2018): 
+    Breaking Changes: 
+      raw: "- [[`6a2f29b6ec`](https://github.com/sonarwhal/sonarwhal/commit/6a2f29b6ec9cce9f651cce0083cfbd934dff7997)] - Breaking: Limit `X-Content-Type-Options` usage to scripts and stylesheets (see also: [`#767`](https://github.com/sonarwhal/sonarwhal/issues/767)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/6a2f29b6ec9cce9f651cce0083cfbd934dff7997\"><code>6a2f29b6ec</code></a>] - Breaking: Limit <code>X-Content-Type-Options</code> usage to scripts and stylesheets (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/767\"><code>#767</code></a>).</li>\n</ul>\n"
+      details: 
+        6a2f29b6ec9cce9f651cce0083cfbd934dff7997: 
+          associateCommitId: "767"
+          message: "Breaking: Limit `X-Content-Type-Options` usage to scripts and stylesheets."
+    Bug fixes / Improvements: 
+      raw: "- [[`53a5b57220`](https://github.com/sonarwhal/sonarwhal/commit/53a5b572206d6919c053a5194ff5555069b85695)] - Fix: Make `http-cache` rule ignore Data URIs (see also: [`#778`](https://github.com/sonarwhal/sonarwhal/issues/778)).\n- [[`7349b9728f`](https://github.com/sonarwhal/sonarwhal/commit/7349b9728f065ec13c2b887ae22c99c36173975d)] - Docs: Fix typo in `options.ts` (see also: [`#776`](https://github.com/sonarwhal/sonarwhal/issues/776)).\n- [[`b67ef431da`](https://github.com/sonarwhal/sonarwhal/commit/b67ef431da269daf93a7173e6051991e8478deec)] - Docs: Add examples of IIS server configurations (see also: [`#774`](https://github.com/sonarwhal/sonarwhal/issues/774)).\n- [[`cbcd924fe0`](https://github.com/sonarwhal/sonarwhal/commit/cbcd924fe04a47e5714f412493e291e5d9d5b62f)] - Fix: Make `summary` the default formatter (see also: [`#722`](https://github.com/sonarwhal/sonarwhal/issues/722)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/53a5b572206d6919c053a5194ff5555069b85695\"><code>53a5b57220</code></a>] - Fix: Make <code>http-cache</code> rule ignore Data URIs (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/778\"><code>#778</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/7349b9728f065ec13c2b887ae22c99c36173975d\"><code>7349b9728f</code></a>] - Docs: Fix typo in <code>options.ts</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/776\"><code>#776</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/b67ef431da269daf93a7173e6051991e8478deec\"><code>b67ef431da</code></a>] - Docs: Add examples of IIS server configurations (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/774\"><code>#774</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/cbcd924fe04a47e5714f412493e291e5d9d5b62f\"><code>cbcd924fe0</code></a>] - Fix: Make <code>summary</code> the default formatter (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/722\"><code>#722</code></a>).</li>\n</ul>\n"
+      details: 
+        53a5b572206d6919c053a5194ff5555069b85695: 
+          associateCommitId: "778"
+          message: "Fix: Make `http-cache` rule ignore Data URIs."
+        7349b9728f065ec13c2b887ae22c99c36173975d: 
+          associateCommitId: "776"
+          message: "Docs: Fix typo in `options.ts`."
+        b67ef431da269daf93a7173e6051991e8478deec: 
+          associateCommitId: "774"
+          message: "Docs: Add examples of IIS server configurations."
+        cbcd924fe04a47e5714f412493e291e5d9d5b62f: 
+          associateCommitId: "722"
+          message: "Fix: Make `summary` the default formatter."
+    New features: 
+      raw: "- [[`1d63f99035`](https://github.com/sonarwhal/sonarwhal/commit/1d63f99035b15b7529ff94df0e750e2314914c3f)] - Update: `snyk-snapshot.json`.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/1d63f99035b15b7529ff94df0e750e2314914c3f\"><code>1d63f99035</code></a>] - Update: <code>snyk-snapshot.json</code>.</li>\n</ul>\n"
+      details: 
+        1d63f99035b15b7529ff94df0e750e2314914c3f: 
+          associateCommitId: null
+          message: "Update: `snyk-snapshot.json`."
+  0.23.1 (January 18, 2018): 
+    Bug fixes / Improvements: 
+      raw: "- [[`afc468d754`](https://github.com/sonarwhal/sonarwhal/commit/afc468d7541754ff6d5992fc106514a093ce68eb)] - Docs: Add examples on how to configure Apache in order to pass the rules (see also: [`#751`](https://github.com/sonarwhal/sonarwhal/issues/751)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/afc468d7541754ff6d5992fc106514a093ce68eb\"><code>afc468d754</code></a>] - Docs: Add examples on how to configure Apache in order to pass the rules (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/751\"><code>#751</code></a>).</li>\n</ul>\n"
+      details: 
+        afc468d7541754ff6d5992fc106514a093ce68eb: 
+          associateCommitId: "751"
+          message: "Docs: Add examples on how to configure Apache in order to pass the rules."
+  0.23.0 (January 17, 2018): 
+    Breaking Changes: 
+      raw: "- [[`2e75ac5242`](https://github.com/sonarwhal/sonarwhal/commit/2e75ac52424b55d12b70b248fa2866bb67f4341f)] - Breaking: Use `text/xml` as the media type for `XML`.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/2e75ac52424b55d12b70b248fa2866bb67f4341f\"><code>2e75ac5242</code></a>] - Breaking: Use <code>text/xml</code> as the media type for <code>XML</code>.</li>\n</ul>\n"
+      details: 
+        2e75ac52424b55d12b70b248fa2866bb67f4341f: 
+          associateCommitId: null
+          message: "Breaking: Use `text/xml` as the media type for `XML`."
+    Bug fixes / Improvements: 
+      raw: "- [[`87d2af7be5`](https://github.com/sonarwhal/sonarwhal/commit/87d2af7be54d87fc62d423323d0e789590d3d03a)] - Fix: Add new patterns for filename based revving to the `http-cache` rule (see also: [`#741`](https://github.com/sonarwhal/sonarwhal/issues/741)).\n- [[`29064a3e9b`](https://github.com/sonarwhal/sonarwhal/commit/29064a3e9b99d8067367a25cb6618ab180266713)] - Docs: Fix typo in `image-optimization-cloudinary`.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/87d2af7be54d87fc62d423323d0e789590d3d03a\"><code>87d2af7be5</code></a>] - Fix: Add new patterns for filename based revving to the <code>http-cache</code> rule (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/741\"><code>#741</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/29064a3e9b99d8067367a25cb6618ab180266713\"><code>29064a3e9b</code></a>] - Docs: Fix typo in <code>image-optimization-cloudinary</code>.</li>\n</ul>\n"
+      details: 
+        87d2af7be54d87fc62d423323d0e789590d3d03a: 
+          associateCommitId: "741"
+          message: "Fix: Add new patterns for filename based revving to the `http-cache` rule."
+        29064a3e9b99d8067367a25cb6618ab180266713: 
+          associateCommitId: null
+          message: "Docs: Fix typo in `image-optimization-cloudinary`."
+    New features: 
+      raw: "- [[`188d270f03`](https://github.com/sonarwhal/sonarwhal/commit/188d270f03aeeda4a4515072e9958feb18840829)] - New: Make `no-disallowed-headers` allow by default the `Server` HTTP header (see also: [`#747`](https://github.com/sonarwhal/sonarwhal/issues/747)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/188d270f03aeeda4a4515072e9958feb18840829\"><code>188d270f03</code></a>] - New: Make <code>no-disallowed-headers</code> allow by default the <code>Server</code> HTTP header (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/747\"><code>#747</code></a>).</li>\n</ul>\n"
+      details: 
+        188d270f03aeeda4a4515072e9958feb18840829: 
+          associateCommitId: "747"
+          message: "New: Make `no-disallowed-headers` allow by default the `Server` HTTP header."
+  0.22.1 (January 12, 2018): 
+    Bug fixes / Improvements: 
+      raw: "- [[`0bb6f817ec`](https://github.com/sonarwhal/sonarwhal/commit/0bb6f817ec2350b4e95680dd5c09ba8cce457fe2)] - Fix: Headers not being set correctly in `Requester` (see also: [`#749`](https://github.com/sonarwhal/sonarwhal/issues/749)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/0bb6f817ec2350b4e95680dd5c09ba8cce457fe2\"><code>0bb6f817ec</code></a>] - Fix: Headers not being set correctly in <code>Requester</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/749\"><code>#749</code></a>).</li>\n</ul>\n"
+      details: 
+        0bb6f817ec2350b4e95680dd5c09ba8cce457fe2: 
+          associateCommitId: "749"
+          message: "Fix: Headers not being set correctly in `Requester`."
+  0.22.0 (January 9, 2018): 
+    Bug fixes / Improvements: 
+      raw: "- [[`ec729e1545`](https://github.com/sonarwhal/sonarwhal/commit/ec729e1545014b5a4d849b9f8b133f8bb5af2513)] - Fix: Issues in `requester` and `http-compression` (see also: [`#731`](https://github.com/sonarwhal/sonarwhal/issues/731)).\n- [[`6e1a12ef42`](https://github.com/sonarwhal/sonarwhal/commit/6e1a12ef42fba1bd6007583365efacc6cbea25c4)] - Fix: Pass parsers to tests (see also: [`#740`](https://github.com/sonarwhal/sonarwhal/issues/740)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/ec729e1545014b5a4d849b9f8b133f8bb5af2513\"><code>ec729e1545</code></a>] - Fix: Issues in <code>requester</code> and <code>http-compression</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/731\"><code>#731</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/6e1a12ef42fba1bd6007583365efacc6cbea25c4\"><code>6e1a12ef42</code></a>] - Fix: Pass parsers to tests (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/740\"><code>#740</code></a>).</li>\n</ul>\n"
+      details: 
+        ec729e1545014b5a4d849b9f8b133f8bb5af2513: 
+          associateCommitId: "731"
+          message: "Fix: Issues in `requester` and `http-compression`."
+        6e1a12ef42fba1bd6007583365efacc6cbea25c4: 
+          associateCommitId: "740"
+          message: "Fix: Pass parsers to tests."
+    New features: 
+      raw: "- [[`d10583922e`](https://github.com/sonarwhal/sonarwhal/commit/d10583922e24069c979e34e80196262e1ab95ac4)] - Update: `snyk-snapshot.json`.\n- [[`e44e7cc98f`](https://github.com/sonarwhal/sonarwhal/commit/e44e7cc98f423b74ccf6c05f6d3ad5a5c1666332)] - New: Add rule to check if resources are served compressed (see also: [`#12`](https://github.com/sonarwhal/sonarwhal/issues/12) and [`#1`](https://github.com/sonarwhal/sonarwhal/issues/1)).\n- [[`b66af0c045`](https://github.com/sonarwhal/sonarwhal/commit/b66af0c0450dfb64db08891d00156c2a011cadba)] - New: Make test server allow alternative responses.\n- [[`fdeadb9669`](https://github.com/sonarwhal/sonarwhal/commit/fdeadb96691b76f4e8418f2ea3f9d075b7db65a0)] - New: Add `element` info to `traverse` events.\n- [[`a03316adc1`](https://github.com/sonarwhal/sonarwhal/commit/a03316adc193a37990b8412bffb044f2ea36c99b)] - New: Add `local` connector (see also: [`#737`](https://github.com/sonarwhal/sonarwhal/issues/737)).\n- [[`a041abcff5`](https://github.com/sonarwhal/sonarwhal/commit/a041abcff5645a0d35a284ac27e5236f8578c4f9)] - New: Upgrade `axe-core` to `v2.6` (see also: [`#736`](https://github.com/sonarwhal/sonarwhal/issues/736)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/d10583922e24069c979e34e80196262e1ab95ac4\"><code>d10583922e</code></a>] - Update: <code>snyk-snapshot.json</code>.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/e44e7cc98f423b74ccf6c05f6d3ad5a5c1666332\"><code>e44e7cc98f</code></a>] - New: Add rule to check if resources are served compressed (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/12\"><code>#12</code></a> and <a href=\"https://github.com/sonarwhal/sonarwhal/issues/1\"><code>#1</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/b66af0c0450dfb64db08891d00156c2a011cadba\"><code>b66af0c045</code></a>] - New: Make test server allow alternative responses.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/fdeadb96691b76f4e8418f2ea3f9d075b7db65a0\"><code>fdeadb9669</code></a>] - New: Add <code>element</code> info to <code>traverse</code> events.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/a03316adc193a37990b8412bffb044f2ea36c99b\"><code>a03316adc1</code></a>] - New: Add <code>local</code> connector (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/737\"><code>#737</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/a041abcff5645a0d35a284ac27e5236f8578c4f9\"><code>a041abcff5</code></a>] - New: Upgrade <code>axe-core</code> to <code>v2.6</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/736\"><code>#736</code></a>).</li>\n</ul>\n"
+      details: 
+        d10583922e24069c979e34e80196262e1ab95ac4: 
+          associateCommitId: null
+          message: "Update: `snyk-snapshot.json`."
+        e44e7cc98f423b74ccf6c05f6d3ad5a5c1666332: 
+          associateCommitId: null
+          message: "New: Add rule to check if resources are served compressed (see also: [`#12`](https://github.com/sonarwhal/sonarwhal/issues/12) and [`#1`](https://github.com/sonarwhal/sonarwhal/issues/1))."
+        b66af0c0450dfb64db08891d00156c2a011cadba: 
+          associateCommitId: null
+          message: "New: Make test server allow alternative responses."
+        fdeadb96691b76f4e8418f2ea3f9d075b7db65a0: 
+          associateCommitId: null
+          message: "New: Add `element` info to `traverse` events."
+        a03316adc193a37990b8412bffb044f2ea36c99b: 
+          associateCommitId: "737"
+          message: "New: Add `local` connector."
+        a041abcff5645a0d35a284ac27e5236f8578c4f9: 
+          associateCommitId: "736"
+          message: "New: Upgrade `axe-core` to `v2.6`."
+  0.21.0 (January 4, 2018): 
+    Bug fixes / Improvements: 
+      raw: "- [[`c482c99844`](https://github.com/sonarwhal/sonarwhal/commit/c482c998446f63e14db17092910567f225f74c22)] - Fix: Sync connector certificate config with `requester`.\n- [[`f082067fe8`](https://github.com/sonarwhal/sonarwhal/commit/f082067fe8e69cc905c4ab85e02d10d9a9a0b1a9)] - Fix: Downgrade HTTP/2 headers in `rawResponse`.\n- [[`e3e1ca02d5`](https://github.com/sonarwhal/sonarwhal/commit/e3e1ca02d5db904a645184b389bb8d1186bf2227)] - Fix: Improve error message for unhandled promises.\n- [[`80c15103a1`](https://github.com/sonarwhal/sonarwhal/commit/80c15103a17958201333a327083de9561185ee24)] - Docs: Fix typos in `strict-transport-security.md` (see also: [`#729`](https://github.com/sonarwhal/sonarwhal/issues/729)).\n- [[`bd335c2c32`](https://github.com/sonarwhal/sonarwhal/commit/bd335c2c324721376af4fe7bb7d7690e5ca189b6)] - Docs: Add information on creating external rule (see also: [`#724`](https://github.com/sonarwhal/sonarwhal/issues/724)).\n- [[`10d1881a69`](https://github.com/sonarwhal/sonarwhal/commit/10d1881a69283e32681262f250db6f830fad0cda)] - Fix: Support external rules outside `@sonarwhal` (see also: [`#713`](https://github.com/sonarwhal/sonarwhal/issues/713)).\n- [[`742c9af408`](https://github.com/sonarwhal/sonarwhal/commit/742c9af4081b1c9a9a1eac128a3b79d4db17d06c)] - Docs: Fix link in `rules/http-cache.md` (see also: [`#723`](https://github.com/sonarwhal/sonarwhal/issues/723)).\n- [[`035fd4c9e5`](https://github.com/sonarwhal/sonarwhal/commit/035fd4c9e58cf8d6af803c24095e470f4fc11689)] - Docs: Add missing link in `connectors.md`.\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/c482c998446f63e14db17092910567f225f74c22\"><code>c482c99844</code></a>] - Fix: Sync connector certificate config with <code>requester</code>.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/f082067fe8e69cc905c4ab85e02d10d9a9a0b1a9\"><code>f082067fe8</code></a>] - Fix: Downgrade HTTP/2 headers in <code>rawResponse</code>.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/e3e1ca02d5db904a645184b389bb8d1186bf2227\"><code>e3e1ca02d5</code></a>] - Fix: Improve error message for unhandled promises.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/80c15103a17958201333a327083de9561185ee24\"><code>80c15103a1</code></a>] - Docs: Fix typos in <code>strict-transport-security.md</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/729\"><code>#729</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/bd335c2c324721376af4fe7bb7d7690e5ca189b6\"><code>bd335c2c32</code></a>] - Docs: Add information on creating external rule (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/724\"><code>#724</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/10d1881a69283e32681262f250db6f830fad0cda\"><code>10d1881a69</code></a>] - Fix: Support external rules outside <code>@sonarwhal</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/713\"><code>#713</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/742c9af4081b1c9a9a1eac128a3b79d4db17d06c\"><code>742c9af408</code></a>] - Docs: Fix link in <code>rules/http-cache.md</code> (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/723\"><code>#723</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/035fd4c9e58cf8d6af803c24095e470f4fc11689\"><code>035fd4c9e5</code></a>] - Docs: Add missing link in <code>connectors.md</code>.</li>\n</ul>\n"
+      details: 
+        c482c998446f63e14db17092910567f225f74c22: 
+          associateCommitId: null
+          message: "Fix: Sync connector certificate config with `requester`."
+        f082067fe8e69cc905c4ab85e02d10d9a9a0b1a9: 
+          associateCommitId: null
+          message: "Fix: Downgrade HTTP/2 headers in `rawResponse`."
+        e3e1ca02d5db904a645184b389bb8d1186bf2227: 
+          associateCommitId: null
+          message: "Fix: Improve error message for unhandled promises."
+        80c15103a17958201333a327083de9561185ee24: 
+          associateCommitId: "729"
+          message: "Docs: Fix typos in `strict-transport-security.md`."
+        bd335c2c324721376af4fe7bb7d7690e5ca189b6: 
+          associateCommitId: "724"
+          message: "Docs: Add information on creating external rule."
+        10d1881a69283e32681262f250db6f830fad0cda: 
+          associateCommitId: "713"
+          message: "Fix: Support external rules outside `@sonarwhal`."
+        742c9af4081b1c9a9a1eac128a3b79d4db17d06c: 
+          associateCommitId: "723"
+          message: "Docs: Fix link in `rules/http-cache.md`."
+        035fd4c9e58cf8d6af803c24095e470f4fc11689: 
+          associateCommitId: null
+          message: "Docs: Add missing link in `connectors.md`."
+    New features: 
+      raw: "- [[`db6337b220`](https://github.com/sonarwhal/sonarwhal/commit/db6337b2206b710b70f93bf47c828ffc1ff3e41f)] - Update: `snyk-snapshot.json`.\n- [[`511bba9c01`](https://github.com/sonarwhal/sonarwhal/commit/511bba9c0109b0cd6ea9348ad2d403000da2c726)] - New: Add type `Parser` and JavaScript parser (see also: [`#720`](https://github.com/sonarwhal/sonarwhal/issues/720)).\n\n"
+      html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/db6337b2206b710b70f93bf47c828ffc1ff3e41f\"><code>db6337b220</code></a>] - Update: <code>snyk-snapshot.json</code>.</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/511bba9c0109b0cd6ea9348ad2d403000da2c726\"><code>511bba9c01</code></a>] - New: Add type <code>Parser</code> and JavaScript parser (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/720\"><code>#720</code></a>).</li>\n</ul>\n"
+      details: 
+        db6337b2206b710b70f93bf47c828ffc1ff3e41f: 
+          associateCommitId: null
+          message: "Update: `snyk-snapshot.json`."
+        511bba9c0109b0cd6ea9348ad2d403000da2c726: 
+          associateCommitId: "720"
+          message: "New: Add type `Parser` and JavaScript parser."
   0.20.1 (Decembe 12, 2017): 
     Bug fixes / Improvements: 
       raw: "- [[`559380f65e`](https://github.com/sonarwhal/sonarwhal/commit/559380f65e3edfa50d15896c66b3c8be48c7431c)] - Fix: Issue where tests of external rules couldn’t be run.\n\n"
@@ -650,6 +794,6 @@
       html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/98e3b2e5aa34445e7871f897071f7216f7fdd561\"><code>98e3b2e5aa3</code></a>]  Fix <code>Could not find node with given id</code> error (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/275\"><code>#275</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/48ed6e9e19ccf47e84f6e960cc37be1dd2b2a262\"><code>48ed6e9e19c</code></a>]  Refactor <code>CDP</code> related code (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/311\"><code>#311</code></a>, <a href=\"https://github.com/sonarwhal/sonarwhal/issues/330\"><code>#330</code></a>, <a href=\"https://github.com/sonarwhal/sonarwhal/issues/324\"><code>#324</code></a>, and <a href=\"https://github.com/sonarwhal/sonarwhal/issues/332\"><code>#332</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/c3803821c0619b5210f5fe0fd1a37d27fb9a1143\"><code>c3803821c06</code></a>]  Improve requester (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/260\"><code>#260</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/b613918fdde302106a3b777f70df0c9a31fcc37c\"><code>b613918fdde</code></a>]  Improve documentation.</li>\n</ul>\n"
       details: {}
     New features: 
-      raw: "- [[`3e2863b3963`](https://github.com/sonarwhal/sonarwhal/commit/3e2863b3963403406b178b46ade8b62824e432bd)] -\n- Add support for rule shorthands, and ability to specify rules as an array\n- (see also: [`#283`](https://github.com/sonarwhal/sonarwhal/issues/283)).\n- [[`b54dd55b48a`](https://github.com/sonarwhal/sonarwhal/commit/b54dd55b48aada5e2fd63df002a2d2096e1164be)] -\n- Add rule generator\n- (see also: [`#238`](https://github.com/sonarwhal/sonarwhal/issues/238)).\n- [[`70018b6b33b`](https://github.com/sonarwhal/sonarwhal/commit/70018b6b33bca821cab9de23900d47dac24b1524)] -\n- Make `disown-opener` rule use `targetedBrowsers`.\n"
+      raw: "- [[`3e2863b3963`](https://github.com/sonarwhal/sonarwhal/commit/3e2863b3963403406b178b46ade8b62824e432bd)] -\n- Add support for rule shorthands, and ability to specify rules as an array\n- (see also: [`#283`](https://github.com/sonarwhal/sonarwhal/issues/283)).\n- [[`b54dd55b48a`](https://github.com/sonarwhal/sonarwhal/commit/b54dd55b48aada5e2fd63df002a2d2096e1164be)] -\n- Add rule generator\n- (see also: [`#238`](https://github.com/sonarwhal/sonarwhal/issues/238)).\n- [[`70018b6b33b`](https://github.com/sonarwhal/sonarwhal/commit/70018b6b33bca821cab9de23900d47dac24b1524)] -\n- Make `disown-opener` rule use `targetedBrowsers`.\n\n\n"
       html: "<ul>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/3e2863b3963403406b178b46ade8b62824e432bd\"><code>3e2863b3963</code></a>]  Add support for rule shorthands, and ability to specify rules as an array (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/283\"><code>#283</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/b54dd55b48aada5e2fd63df002a2d2096e1164be\"><code>b54dd55b48a</code></a>]  Add rule generator (see also: <a href=\"https://github.com/sonarwhal/sonarwhal/issues/238\"><code>#238</code></a>).</li>\n<li>[<a href=\"https://github.com/sonarwhal/sonarwhal/commit/70018b6b33bca821cab9de23900d47dac24b1524\"><code>70018b6b33b</code></a>]  Make <code>disown-opener</code> rule use <code>targetedBrowsers</code>.</li>\n</ul>\n"
       details: {}

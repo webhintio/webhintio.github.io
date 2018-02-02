@@ -114,30 +114,30 @@ select,
     -webkit-appearance: none;
 }
 
-/* Header search bar input animation */
+.nav-bar__input {
+    position: relative;
+    height: 4rem;
+    width: 30rem;
+}
+
 .nav-bar__input input[type="search"] {
-    background-color: hsla(237, 69%, 55%, .2);
+    background-color: hsla(0, 0%, 0%, .2);
     border: 1px solid hsla(0, 0%, 100%, .2);
     color: #fff;
 
     height: 4rem;
-    width: 25rem;
+    /*need to define here due to inline CSS from algolia */
+    width: 30rem;
 
     margin-right: 0;
-    margin-left: 1rem;
     padding: 1rem 1rem 1rem 1.2rem;
 
     cursor: text;
 }
 
 .nav-bar__input input[type=search]:focus {
-    border-bottom: 1px solid #fff;
+    border: 1px solid #fff;
     cursor: text;
-}
-
-.nav-bar__input {
-    position: relative;
-    height: 4rem;
 }
 
 input[type=search]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -183,39 +183,6 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
     max-width: 74rem;
 }
 
-@media (max-width: 34em) {
-
-    .nav-bar__input {
-        position: absolute;
-        top: 8rem;
-        left: 2rem;
-
-        width: 95%;
-        max-width: 48rem;
-
-        padding: 0 1.5rem 0 0;
-    }
-
-    .nav-bar__input input[type=search] {
-        margin-left: 0;
-    }
-
-    .algolia-autocomplete {
-        width: 100%;
-    }
-
-    .nav-bar__input input[type=search] {
-        width: 100%;
-        border-bottom: 1px solid #fff;
-    }
-
-    .nav-bar__input input[type=search]:focus {
-        width: 100%;
-        max-width: 48rem;
-    }
-
-}
-
 @media (min-width: 34.1em) {
 
     /* Keeps input and button on same line */
@@ -238,14 +205,37 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
 
 }
 
-@media (min-width: 34.1em) and (max-width: 57.94em) {
+@media (max-width: 47.94em) {
 
     .nav-bar__input {
-        margin-left: auto;
+        top: 3rem;
+
+        width: 100%;
+        max-width: 74rem;
+
+        padding: 0 0 0 1.5rem;
     }
 
     .nav-bar__input input[type=search] {
-        margin-right: 4rem;
+        width: 100%;
+        max-width: 74rem;
+        margin-left: 0;
+    }
+
+    .algolia-autocomplete {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 48em) and (max-width: 52em) {
+
+    .nav-bar__input {
+        width: 23rem;
+    }
+
+    .nav-bar__input input[type="search"] {
+        width: 23rem;
     }
 
 }
@@ -315,6 +305,10 @@ button:focus,
 .button:hover,
 .button:focus {
     border-color: hsla(0, 0%, 0%, .4);
+}
+
+.button-search:hover {
+        border-color: hsla(0, 0%, 100%, 0.2);;
 }
 
 button:active,

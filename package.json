@@ -42,7 +42,7 @@
     "stylelint": "^8.2.0"
   },
   "hexo": {
-    "version": "3.3.8"
+    "version": "3.4.3"
   },
   "private": true,
   "scripts": {
