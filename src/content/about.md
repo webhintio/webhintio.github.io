@@ -2,6 +2,7 @@
 category: "about-index"
 description: "Learn more about sonarwhal, the project, and the team behind it?"
 layout: "about"
+originalFile: "about.md"
 permalink: "about/index.html"
 title: "About"
 ---
