@@ -30,6 +30,10 @@ details {
     display: block;
 }
 
+details + details {
+    margin-top: 1.6rem;
+}
+
 h2 + details,
 h3 + details,
 p + details {
