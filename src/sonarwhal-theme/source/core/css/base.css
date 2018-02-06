@@ -30,6 +30,16 @@ details {
     display: block;
 }
 
+details + details {
+    margin-top: 1.6rem;
+}
+
+h2 + details,
+h3 + details,
+p + details {
+    margin-top: 2.4rem;
+}
+
 /* Style focusable elements that need focus ring. Others reset and receive border styles in controls/color.css */
 a:focus,
 li:focus,
