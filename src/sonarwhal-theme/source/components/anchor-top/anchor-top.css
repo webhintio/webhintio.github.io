@@ -1,4 +1,4 @@
-.anchor-top {
+a.anchor-top {
     position: fixed;
     right: 2.4rem;
     bottom: 2.4rem;
@@ -16,16 +16,16 @@
     border-radius: .4rem;
 }
 
-.anchor-top:hover, .anchor-top:focus {
+a.anchor-top:hover, a.anchor-top:focus {
     background: hsla(237, 69%, 55%, .9);
     text-decoration: none;
 }
 
-.anchor-top:active {
+a.anchor-top:active {
     background: hsla(237, 69%, 55%, 1);
 }
 
-.anchor-top::before {
+a.anchor-top::before {
     content: url("/images/back-to-top.svg");
     display: inline-block;
     position: absolute;
