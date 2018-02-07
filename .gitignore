@@ -5,6 +5,7 @@
 db.json
 dist/
 node_modules/
+src/content/_data/changelog.yml
 src/content/about/
 src/content/docs/contributor-guide/
 src/content/docs/user-guide/
