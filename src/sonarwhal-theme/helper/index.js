@@ -284,13 +284,15 @@ module.exports = function () {
             // Shouldn't match (shortened url):
             // File https://www.odysys.com/ … hedule-Your-Demo-Now.png could be around 37.73kB (78%) smaller.
             const match = regex.exec(msg);
+            const escapedMsg = Handlebars.Utils.escapeExpression(msg);
 
             if (!match) {
-                return msg;
+                return escapedMsg;
             }
 
-            const urlMatch = Handlebars.Utils.escapeExpression(match.pop());
-            const newMsg = msg.replace(urlMatch, '<a href="' + urlMatch + '">' + urlMatch + '</a>');
+            const urlMatch = match.pop();
+            const escapedUrlMatch = Handlebars.Utils.escapeExpression(urlMatch);
+            const newMsg = escapedMsg.replace(escapedUrlMatch, '<a href="' + urlMatch + '">' + escapedUrlMatch + '</a>');
 
             return new Handlebars.SafeString(newMsg);
         },
