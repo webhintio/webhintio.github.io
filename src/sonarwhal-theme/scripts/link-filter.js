@@ -6,11 +6,14 @@ hexo.extend.filter.register('before_post_render', (data) => {
     // - doesn't start with `http`, `https` or `ftp`
     // - endes with `.md`
     const mdUrlRegex = /\((?!(http|https|ftp):)([^(|)]+\.md)[^(|)]*\)/g;
+    const ruleUrlRegex = /(?:..\/)*(rule-.*)\/README/i;
+    const isRulePage = data.source.includes('rules');
     let match;
 
     while ((match = mdUrlRegex.exec(data.content)) !== null) {
         const matchMdUrl = match[0];
         let matchHtmlUrl = matchMdUrl.replace(/(?:\/index)?.md/g, '/');
+
         // Examples:
         // - (../rules/how-to-interact-with-other-services.md) => (../rules/how-to-interact-with-other-services/)
         // - (../index.md#rule-configuration) => (../#rule-configuration)
@@ -22,6 +25,10 @@ hexo.extend.filter.register('before_post_render', (data) => {
             matchHtmlUrl = matchHtmlUrl.replace(/\((.*?)\)/g, '(../$1)');
         }
 
-        data.content = data.content.replace(matchMdUrl, matchHtmlUrl);
+        // ../../../../rule-axe/README/ => rule-axe
+        const matchRuleUrl = matchHtmlUrl.match(ruleUrlRegex);
+        const newUrl = isRulePage && matchRuleUrl ? `(${matchRuleUrl.pop()}/)` : matchHtmlUrl;
+
+        data.content = data.content.replace(matchMdUrl, newUrl);
     }
 });
