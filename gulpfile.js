@@ -21,7 +21,7 @@ const dirs = {
 // ---------------------------------------------------------------------
 
 gulp.task('clean:before', (done) => {
-    shelljs.rm('-rf', dirs.dist, dirs.tmp);
+    shelljs.rm('-rf', dirs.dist, dirs.tmp, dirs.tmpContent);
 
     done();
 });
