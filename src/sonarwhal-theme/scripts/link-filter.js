@@ -25,10 +25,20 @@ hexo.extend.filter.register('before_post_render', (data) => {
             matchHtmlUrl = matchHtmlUrl.replace(/\((.*?)\)/g, '(../$1)');
         }
 
-        // ../../../../rule-axe/README/ => rule-axe
+        // ../../../../rule-axe/README/ => rule-axe/
         const matchRuleUrl = matchHtmlUrl.match(ruleUrlRegex);
         const newUrl = isRulePage && matchRuleUrl ? `(${matchRuleUrl.pop()}/)` : matchHtmlUrl;
 
         data.content = data.content.replace(matchMdUrl, newUrl);
+
+        // Offset `lastIndex` due to the length change after string replacement:
+        //
+        // Before replacement: ... (../../../../rule-amp-validator/README.md)...
+        // The index to start next match (lastIndex): 619
+        //
+        // After replacement: ... (rule-amp-validator/) ...
+        // The actual index to start the next match: 619 - (before.length - after.length) = 598
+
+        mdUrlRegex.lastIndex -= matchMdUrl.length - newUrl.length;
     }
 });
