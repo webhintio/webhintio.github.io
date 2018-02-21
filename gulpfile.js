@@ -35,6 +35,7 @@ gulp.task('clean:after', (done) => {
         `${dirs.tmp}/source/core`,
         `${dirs.tmp}/source/images`,
         `${dirs.tmp}/source/js`,
+        `${dirs.tmp}/source/sw-reg.js`,
         `${dirs.tmp}/source/partials`,
         `${dirs.tmp}/static`
     );
@@ -235,7 +236,7 @@ gulp.task('compress:brotli', () => {
 gulp.task('generate-service-worker', (callback) => {
     const swPrecache = require('sw-precache');
 
-    swPrecache.write(`${dirs.dist}/sonarwhal-worker.js`, {
+    swPrecache.write(`${dirs.tmp}/sonarwhal-worker.js`, {
         clientsClaim: true,
         maximumFileSizeToCacheInBytes: 5242880,
         runtimeCaching: [{
@@ -245,6 +246,26 @@ gulp.task('generate-service-worker', (callback) => {
         staticFileGlobs: [`${dirs.dist}/**/*.{js,html,css,png,jpg,gif,ico,svg,woff,woff2}`],
         stripPrefix: dirs.dist
     }, callback);
+});
+
+gulp.task('rev:sw', () => {
+    return gulp.src([`${dirs.tmp}/*.js`])
+        .pipe(plugins.rev())
+        .pipe(plugins.revDeleteOriginal())
+        .pipe(gulp.dest(`${dirs.dist}`))
+        .pipe(plugins.rev.manifest())
+        .pipe(gulp.dest(`${dirs.tmp}`));
+});
+
+gulp.task('revreplace:sw', () => {
+    const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
+
+    return gulp.src(`${dirs.dist}/**/*`)
+        .pipe(plugins.revReplace({
+            manifest,
+            replaceInExtensions: ['.js', '.json', '.html', '.yml']
+        }))
+        .pipe(gulp.dest(dirs.dist));
 });
 
 gulp.task('build', gulp.series(
@@ -263,6 +284,8 @@ gulp.task('build', gulp.series(
     'revreplace:theme',
     'build:hexo',
     'generate-service-worker',
+    'rev:sw',
+    'revreplace:sw',
     'compress:zopfli',
     'compress:brotli'
 ));
