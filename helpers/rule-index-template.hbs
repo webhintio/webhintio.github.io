@@ -1,0 +1,14 @@
+# Rules categories
+
+{{#each categories}}
+* [{{capitalize name}}](#{{name}})
+{{/each}}
+
+{{#each categories}}
+## {{capitalize name}}
+
+{{#each rules}}
+* [`{{name}}`]({{link}})
+{{/each}}
+
+{{/each}}
