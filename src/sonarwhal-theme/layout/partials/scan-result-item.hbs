@@ -4,7 +4,7 @@
         <p class="rule-title">{{name}}: {{getLength messages status}}</p>
         <div class="rule-result__docs">
             {{#if hasDoc}}
-                <a class="docs-button" target="_blank" href="/docs/user-guide/rules/{{name}}/" title="documentation for {{name}} rule"><img src="/images/results-docs-icon.svg" alt="" class="docs-icon" />Documentation</a>
+                <a class="docs-button" target="_blank" href="/docs/user-guide/rules/rule-{{name}}/" title="documentation for {{name}} rule"><img src="/images/results-docs-icon.svg" alt="" class="docs-icon" />Documentation</a>
             {{/if}}
             <button title="show {{name}}'s result details" class="button--details" data-rule="{{name}}">Open details</button>
         </div>
