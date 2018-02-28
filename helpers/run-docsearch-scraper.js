@@ -26,6 +26,7 @@ const DOC_SEARCH_CONFIGS = JSON.stringify({
     index_name: 'sonarwhal',
     min_indexed_level: 1,
     nb_hits: 459,
+    nb_hits_max: 100000,
     selectors: {
         lvl0: 'nav .guide-category',
         lvl1: '.page-intro h1',
