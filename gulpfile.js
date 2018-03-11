@@ -5,7 +5,7 @@ const shelljs = require('shelljs');
 
 const Hexo = require('hexo');
 
-const imageExtensions = 'png,jpg,svg,ico';
+const imageExtensions = 'gif,ico,jpg,png,svg';
 const dirs = {
     dist: 'dist',
     distCompreseable: 'dist/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}',
