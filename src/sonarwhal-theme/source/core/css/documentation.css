@@ -126,3 +126,37 @@ a > .documentation-card__main > img {
 	}
 
 }
+
+/* RULES LANDING PAGE */
+
+.icon--a11y::before {
+	content: url("images/results-a11y.svg");
+}
+
+.icon--dev::before {
+	content: url("images/results-a11y.svg");
+}
+
+.icon--interop::before {
+	content: url("images/results-interop.svg");
+}
+
+.icon--perf::before {
+	content: url("images/results-perf.svg");
+}
+
+.icon--pwa::before {
+	content: url("images/results-pwa.svg");
+}
+
+.icon--security::before {
+	content: url("images/results-security.svg");
+}
+
+.icon--categories::before {
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1;
+}
