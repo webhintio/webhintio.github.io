@@ -88,7 +88,11 @@
                 </ul>
             </div>
             <div class="module module--primary wrap-text">
-                {{{page.content}}}
+                {{#compare page.title '===' 'Rules categories'}}
+                    {{>rules-index}}
+                {{else}}
+                    {{{page.content}}}
+                {{/compare}}
             </div>
         </div>
         <a href="#main" class="anchor-top" hidden aria-label="back to top">top</a>
