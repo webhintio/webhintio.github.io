@@ -5,11 +5,11 @@
                 <a href="/">Home</a>
             </li>
             <li>
-                <a {{#if (isNotGuideIndexPage page)}} href="../../" {{else}}href="../" {{/if}}>Documentation</a>
+                <a href="{{getTargetPagePath page 'docs'}}">Documentation</a>
             </li>
             {{#if (isNotGuideIndexPage page)}}
             <li>
-                <a href="../{{#if (isNotSectionIndexPage page)}}../{{/if}}" class="guide-category">
+                <a href="{{getTargetPagePath page 'category'}}" class="guide-category">
                     {{capitalize page.category}}
                 </a>
             </li>

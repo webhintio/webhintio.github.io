@@ -242,6 +242,27 @@ module.exports = function () {
         getSortedToCTitles: (pages) => {
             return Object.keys(pages).sort();
         },
+        /**
+         * Return the `href` value to link to the target page from the current one.
+         * for example when the current page is `rule-amp-validator`:
+         * page = { category: 'user-guide', permalink: 'docs/user-guide/rules/rule-amp-validator/index.html' }
+         * getTargetPagePath(page, 'docs') => '../../../'
+         * getTargetPagePath(page, 'category') => '../../'
+         */
+        getTargetPagePath: (page, target) => {
+            const { category, permalink } = page;
+            const parts = permalink.split('/');
+            const targetPage = target === 'category' ? category : target;
+            let count = parts.length - parts.indexOf(targetPage) - 2;
+            let finalPath = '';
+
+            while (count) {
+                finalPath += '../';
+                count--;
+            }
+
+            return finalPath;
+        },
         getToCIndexPageLink: (pages) => {
             return pages[0].permalink;
         },
