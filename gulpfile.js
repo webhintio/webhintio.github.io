@@ -247,6 +247,12 @@ gulp.task('generate-service-worker', (callback) => {
     }, callback);
 });
 
+gulp.task('sri', () => {
+    return gulp.src(`${dirs.dist}/**/*.html`)
+        .pipe(plugins.sriHash())
+        .pipe(gulp.dest(dirs.dist));
+});
+
 gulp.task('build', gulp.series(
     'clean:before',
     'copy:theme',
@@ -263,6 +269,7 @@ gulp.task('build', gulp.series(
     'revreplace:theme',
     'build:hexo',
     'generate-service-worker',
+    'sri',
     'compress:zopfli',
     'compress:brotli'
 ));
