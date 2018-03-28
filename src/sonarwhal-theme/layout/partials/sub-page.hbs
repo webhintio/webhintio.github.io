@@ -22,7 +22,8 @@
         <div class="documentation-actions">
             <ul>
                 <li>
-                    <a target="_blank" href="{{theme.sonarwhalRepoRoot}}/blob/master/{{page.originalFile}}">Edit</a>
+                    <a target="_blank" href="{{theme.sonarwhalRepoRoot}}/edit/master/{{getEditLink page.originalFile}}">Edit</a>
+
                 </li>
                 <li>
                     <a target="_blank" href="{{theme.sonarwhalRepoRoot}}/issues/new?{{getSignalIssueQuery theme.sonarwhalRoot page.title page.permalink}}">Signal Issue</a>

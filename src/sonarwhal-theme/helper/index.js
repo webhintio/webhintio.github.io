@@ -220,6 +220,18 @@ module.exports = function () {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
         },
+        getEditLink: (originalFile) => {
+            const ruleRegex = /.*\/rules\/(rule-.+)\.md/ig;
+            const match = ruleRegex.exec(originalFile);
+
+            if (match) {
+                const ruleName = match.pop();
+
+                return 'packages/' + ruleName + '/README.md'
+            }
+
+            return 'packages/sonarwhal/' + originalFile;
+        },
         getDocumentItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[1].items;
