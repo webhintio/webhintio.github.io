@@ -243,7 +243,9 @@ module.exports = function () {
             return length + ' ' + units;
         },
         getPagesByToCTitle: (title, pages) => {
-            return pages[title];
+            return pages[title].filter((page) => {
+                return page.contentType === 'details';
+            });
         },
         getSignalIssueQuery: (root, title, directory) => {
             const issueTitle = `[docs] Issue with '${title}'`;
@@ -286,6 +288,9 @@ module.exports = function () {
             }
 
             return options.inverse(this);
+        },
+        isActiveItem: (page, target) => {
+            return (page.tocTitle === target) && (page.contentType === 'details');
         },
         isError: (status) => {
             return status === jobStatus.error;
@@ -391,6 +396,12 @@ module.exports = function () {
             const tailChunk = self.reverseString(reverseTailChunk);
 
             return headChunk + ' … ' + tailChunk;
+        },
+        showMdContent: (page) => {
+            // If the markdown Content should be used.
+            const guildeIndexes = ['contributor guide', 'user guide'];
+
+            return page.contentType === 'details' || guildeIndexes.includes(page.title.toLowerCase());
         },
         // Sort out `Developer guide` or `User guide` pages
         sortPagesByCategory: (allPages, category) => {

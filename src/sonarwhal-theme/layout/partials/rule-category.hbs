@@ -4,8 +4,9 @@
 <div class="layout layout--thirds">
     <div class="module">
        <ul>
-            <li><a href="rule-axe/"><code>axe</code></a></li>
-            <li><a href="rule-meta-charset-utf-8/"><code>meta-charset-utf-8</code></a></li>
+            {{#each rules}}
+            <li><a href="{{link}}"><code>{{name}}</code></a></li>
+            {{/each}}
         </ul>
     </div>
 </div>

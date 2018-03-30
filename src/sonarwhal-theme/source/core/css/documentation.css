@@ -6,7 +6,8 @@
 .page-intro {
 	display: flex;
 	justify-content: space-between;
-	flex-wrap: wrap;
+    flex-wrap: wrap;
+    text-transform: capitalize;
 }
 
 .documentation-actions {
@@ -161,7 +162,8 @@ a > .documentation-card__main > img {
 
 .icon--categories {
 	position: relative;
-	padding-left: 5rem;
+    padding-left: 5rem;
+    text-transform: capitalize;
 }
 
 .icon--categories::before {
@@ -185,7 +187,7 @@ a > .documentation-card__main > img {
 	margin-top: 1.2rem;
 	padding-bottom: 1.2rem;
 	color: #4046dd;
-	border-bottom: 1px solid #e6e6e6; 	
+	border-bottom: 1px solid #e6e6e6;
 }
 
 .placement__button {
