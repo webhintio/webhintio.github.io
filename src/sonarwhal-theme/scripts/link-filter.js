@@ -9,6 +9,21 @@ hexo.extend.filter.register('before_post_render', (data) => {
     const ruleUrlRegex = /(?:..\/)*(rule-.*)\/README/i;
     const isRulePage = data.source.includes('rules');
     let match;
+    const docLinkRegex = /\/(docs\/)[^.]*(\.md)/g;
+
+    /*
+     * Replace links to other documentation files.
+     * i.e:
+     * For packages with multiple rules, we should have
+     * links to each rules in the README.md
+     * Those links will be transform:
+     * 
+     * ./docs/rule-name.md => ./rule-name
+     */
+    data.content = data.content.replace(docLinkRegex, (link, docsString, extensionString) => {
+        return link.replace(docsString, '')
+            .replace(extensionString, '');
+    });
 
     while ((match = mdUrlRegex.exec(data.content)) !== null) {
         const matchMdUrl = match[0];

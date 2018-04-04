@@ -220,6 +220,10 @@ module.exports = function () {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
         },
+        getDocumentItems: (navs) => {
+            // `navs` is the menu data saved in `menu.yml`.
+            return navs[1].items;
+        },
         getEditLink: (originalFile) => {
             const ruleRegex = /.*\/rules\/(rule-.+)\.md/ig;
             const match = ruleRegex.exec(originalFile);
@@ -227,14 +231,10 @@ module.exports = function () {
             if (match) {
                 const ruleName = match.pop();
 
-                return 'packages/' + ruleName + '/README.md'
+                return 'packages/' + ruleName + '/README.md';
             }
 
             return 'packages/sonarwhal/' + originalFile;
-        },
-        getDocumentItems: (navs) => {
-            // `navs` is the menu data saved in `menu.yml`.
-            return navs[1].items;
         },
         getLength: function (messages, unit) {
             const length = messages.length;
@@ -246,6 +246,11 @@ module.exports = function () {
             return pages[title].filter((page) => {
                 return page.contentType === 'details';
             });
+        },
+        getRulesCount: (rules) => {
+            return rules.filter((rule) => {
+                return !rule.isSummary;
+            }).length;
         },
         getSignalIssueQuery: (root, title, directory) => {
             const issueTitle = `[docs] Issue with '${title}'`;
