@@ -6,6 +6,10 @@ const os = require('os');
 const shell = require('shelljs/global'); // eslint-disable-line no-unused-vars
 const fs = require('fs');
 const path = require('path');
+const yamlLoader = require('js-yaml');
+
+const configDir = path.resolve(__dirname, '..', '_config.yml');
+const hexoConfig = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
 
 const CLONE_URL = 'https://github.com/sonarwhal/sonarwhal.git'; // eslint-disable-line no-process-env
 const DEST_DIR = 'src/content';
@@ -44,7 +48,9 @@ const processRule = (rule, isSummary) => {
  * }]
  */
 const processCategories = (cats) => {
-    const processedCategories = _.reduce(cats, (allCategories, includedRules, category) => {
+    const processedCategories = _.reduce(cats, (allCategories, category) => {
+        const includedRules = category.rules;
+
         const singleRules = includedRules.filter((ruleName) => {
             return !ruleName.includes('/');
         });
@@ -77,8 +83,9 @@ const processCategories = (cats) => {
         }, []);
 
         const processedCategory = {
-            link: `/docs/user-guide/rules/${category}/`,
-            name: category,
+            description: category.description,
+            link: `/docs/user-guide/rules/${category.name}/`,
+            name: category.name,
             rules: rules.concat(multiRulesProcessed)
         };
 
@@ -111,13 +118,8 @@ const rules = ls('-R', `${PACKAGES_TMP_DIR}/rule-*/src/!(index).ts`);
 const safeWriteFile = (dir, content) => {
     const folderPath = getDirname(dir);
 
-    return mkdirp(folderPath, (err) => {
-        if (err) {
-            console.error(`Error creating path ${folderPath}: ${err.message}.`);
-        }
-
-        fs.writeFile(dir, content);
-    });
+    mkdirp.sync(folderPath);
+    fs.writeFileSync(dir, content); // eslint-disable-line no-sync
 };
 
 // Get rule documentations.
@@ -128,7 +130,7 @@ ruleDocs.forEach((ruleDocPath) => {
     if (ruleDocPathSplitted[1] === 'docs') {
         ruleName = `${ruleDocPathSplitted[2]}/${ruleDocPathSplitted[0].replace('.md', '')}`;
 
-        mkdirp(path.join(process.cwd(), DEST_RULES_DIR, path.dirname(ruleName)));
+        mkdirp.sync(path.join(process.cwd(), DEST_RULES_DIR, path.dirname(ruleName)));
     } else {
         ruleName = ruleDocPathSplitted[1];
     }
@@ -152,9 +154,13 @@ rules.forEach((rulePath) => {
         const ruleName = `rule-${ruleNameMatch.pop()}`;
 
         if (categories[category]) {
-            categories[category].push(ruleName);
+            categories[category].rules.push(ruleName);
         } else {
-            categories[category] = [ruleName];
+            categories[category] = {
+                description: hexoConfig.categories[category],
+                name: category,
+                rules: [ruleName]
+            };
         }
     }
 });

@@ -130,22 +130,22 @@ a > .documentation-card__main > img {
 
 /* RULES LANDING PAGE */
 
-.icon--a11y::before {
+.icon--accessibility::before {
 	content: url("/images/results-a11y.svg");
 	width: 3.5rem;
 }
 
-.icon--dev::before {
+.icon--development::before {
 	content: url("/images/results-a11y.svg");
 	width: 3.5rem;
 }
 
-.icon--interop::before {
+.icon--interoperability::before {
 	content: url("/images/results-interop.svg");
 	width: 3.5rem;
 }
 
-.icon--perf::before {
+.icon--performance::before {
 	content: url("/images/results-perf.svg");
 	width: 3.5rem;
 }

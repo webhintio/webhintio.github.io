@@ -109,3 +109,10 @@ descriptions:
   "contributor-guide/development-environment": What you need to do to start developing for sonar
   "contributor-guide/index.md": Learn about the different pieces that build sonarwhal and what each one of them does
 
+categories:
+  accessibility: accessibility description.
+  development: development description.
+  interoperability: interoperability description.
+  pwa: pwa description.
+  performance: performance description.
+  security: security description.

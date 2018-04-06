@@ -1,9 +1,8 @@
 <div class="layout layout--halves">
     {{#each categories}}
     <div class="module placement">
-        <p class="title icon--categories icon--a11y">{{name}}</p>
-        <p class="placement__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor
-            sit amet lacus accumsan et viverra justo commodo.</p>
+        <p class="title icon--categories icon--{{name}}">{{name}}</p>
+        <p class="placement__body">{{description}}</p>
         <div class="placement__rules">
             <p class="subtitle--alt">{{getRulesCount rules}} Rules</p>
             <a class="button--alt placement__button" href="{{link}}">View All</a>
