@@ -136,7 +136,7 @@ a > .documentation-card__main > img {
 }
 
 .icon--development::before {
-	content: url("/images/results-a11y.svg");
+	content: url("/images/dev-icon.svg");
 	width: 3.5rem;
 }
 
