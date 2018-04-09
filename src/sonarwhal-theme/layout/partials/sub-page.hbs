@@ -66,7 +66,12 @@
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
                     {{#each (getSortedToCTitles pages)}}
                     <li role="treeitem" aria-label="subsection" tabindex="0" aria-expanded="{{#compare ../page.tocTitle '===' this}}true{{else}}false{{/compare}}">
-                        <div class="{{#compare ../page.tocTitle '===' this}}toc-section-title--active{{else}}toc-section-title{{/compare}}">
+                        <div class="
+                        {{#if (isActiveItem ../page this)}}
+                            toc-section-title--active
+                        {{else}}
+                            toc-section-title
+                        {{/if}}">
                             <span class="text">{{this}}</span>
                             <span class="icon"></span>
                         </div>
@@ -74,7 +79,12 @@
                         <ul role="group">
                             {{#each (getPagesByToCTitle this ../pages)}}
                             <li role="treeitem" aria-selected="{{#compare ../../page.title '===' title}}true{{else}}false{{/compare}}">
-                                <div class="{{#compare ../../page.title '===' title}}toc-subsection-title--active{{else}}toc-subsection-title{{/compare}}"
+                                <div class="
+                                {{#compare ../../page.title '===' title}}
+                                    toc-subsection-title--active
+                                {{else}}
+                                    toc-subsection-title
+                                {{/compare}}"
                                     aria-current="{{#compare ../../page.title '===' title}}location{{/compare}}">
                                     <a class="text" href="{{sanitize permalink}}" tabindex="{{#compare ../../page.tocTitle '!==' ../this}}-1{{else}}0{{/compare}}">
                                         {{title}}
@@ -88,7 +98,19 @@
                 </ul>
             </div>
             <div class="module module--primary wrap-text">
-                {{{page.content}}}
+                {{#if (showMdContent page)}}
+                    {{{page.content}}}
+                {{else}}
+                    {{#compare page.title '===' 'Rules categories'}}
+                        {{>rules-index site.data.categories}}
+                    {{else}}
+                        {{#each site.data.categories.categories}}
+                            {{#compare name '===' ../page.title}}
+                                {{>rule-category}}
+                            {{/compare}}
+                        {{/each}}
+                    {{/compare}}
+                {{/if}}
             </div>
         </div>
         <a href="#main" class="anchor-top" hidden aria-label="back to top">top</a>

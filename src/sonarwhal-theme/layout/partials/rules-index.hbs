@@ -1,0 +1,12 @@
+<div class="layout layout--halves">
+    {{#each categories}}
+    <div class="module placement">
+        <p class="title icon--categories icon--{{name}}">{{name}}</p>
+        <p class="placement__body">{{description}}</p>
+        <div class="placement__rules">
+            <p class="subtitle--alt">{{getRulesCount rules}} Rules</p>
+            <a class="button--alt placement__button" href="{{link}}">View All</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

@@ -5,6 +5,7 @@ layout: "docs"
 originalFile: "docs/index.md"
 permalink: "docs/index.html"
 title: "Documentation"
+contentType: "index"
 ---
 
 * [Contributor Guide](contributor-guide/)

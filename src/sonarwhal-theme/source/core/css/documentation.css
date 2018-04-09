@@ -6,7 +6,8 @@
 .page-intro {
 	display: flex;
 	justify-content: space-between;
-	flex-wrap: wrap;
+    flex-wrap: wrap;
+    text-transform: capitalize;
 }
 
 .documentation-actions {
@@ -125,4 +126,86 @@ a > .documentation-card__main > img {
 		margin-bottom: 1.2rem;
 	}
 
+}
+
+/* RULES LANDING PAGE */
+
+.icon--accessibility::before {
+	content: url("/images/results-a11y.svg");
+	width: 3.5rem;
+}
+
+.icon--development::before {
+	content: url("/images/dev-icon.svg");
+	width: 3.5rem;
+}
+
+.icon--interoperability::before {
+	content: url("/images/results-interop.svg");
+	width: 3.5rem;
+}
+
+.icon--performance::before {
+	content: url("/images/results-perf.svg");
+	width: 3.5rem;
+}
+
+.icon--pwa::before {
+	content: url("/images/results-pwa.svg");
+	width: 3.5rem;
+}
+
+.icon--security::before {
+	content: url("/images/results-security.svg");
+	width: 3.5rem;
+}
+
+.icon--categories {
+	position: relative;
+    padding-left: 5rem;
+    text-transform: capitalize;
+}
+
+.icon--categories::before {
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1;
+}
+
+.placement__body {
+	font-size: 1.6rem;
+	margin-top: 1.2rem;
+    line-height: 2.4rem;
+}
+
+.placement__rules {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	margin-top: 1.2rem;
+	padding-bottom: 1.2rem;
+	color: #4046dd;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.placement__button {
+	min-width: 3rem;
+	font-size: 1.6rem;
+}
+
+.placement__button::after {
+	display: inline-block;
+	content: url(/static/images/next-arrow.svg);
+	margin-left: .8rem;
+	margin-top: .3rem;
+	width: .7rem;
+	vertical-align: middle;
+}
+
+/* INDIVIDUAL CATEGORY PAGES */
+
+.category-description {
+	margin-bottom: 2.4rem;
 }

@@ -136,6 +136,12 @@ const generateFrontMatterInfo = (filePath, title, description, currentFrontMatte
         tocTitle: tocTitle ? tocTitle.replace(/-/g, ' ') : tocTitle
     };
 
+    if (originalFile.endsWith('index.md')) {
+        newFrontMatter.contentType = 'index';
+    } else {
+        newFrontMatter.contentType = 'details';
+    }
+
     const finalFrontMatterData = _.assign(newFrontMatter, existingFrontMatter);
     // Override frontmatter if there are existing frontmatter values.
 

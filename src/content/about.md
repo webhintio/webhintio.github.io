@@ -5,6 +5,7 @@ layout: "about"
 originalFile: "about.md"
 permalink: "about/index.html"
 title: "About"
+contentType: "details"
 ---
 * [Changelog](about/CHANGELOG.md)
 * [Code of Conduct](https://js.foundation/community/code-of-conduct)
