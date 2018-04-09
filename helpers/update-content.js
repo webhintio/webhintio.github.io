@@ -157,8 +157,8 @@ rules.forEach((rulePath) => {
             categories[category].rules.push(ruleName);
         } else {
             categories[category] = {
-                description: hexoConfig.categories[category],
-                name: category,
+                description: hexoConfig.categories[category].description,
+                name: hexoConfig.categories[category].name,
                 rules: [ruleName]
             };
         }
