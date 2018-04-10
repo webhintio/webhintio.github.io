@@ -84,8 +84,9 @@ const processCategories = (cats) => {
 
         const processedCategory = {
             description: category.description,
-            link: `/docs/user-guide/rules/${category.name}/`,
+            link: `/docs/user-guide/rules/${category.normalizedName}/`,
             name: category.name,
+            normalizedName: category.normalizedName,
             rules: rules.concat(multiRulesProcessed)
         };
 
@@ -159,6 +160,7 @@ rules.forEach((rulePath) => {
             categories[category] = {
                 description: hexoConfig.categories[category].description,
                 name: hexoConfig.categories[category].name,
+                normalizedName: category,
                 rules: [ruleName]
             };
         }
