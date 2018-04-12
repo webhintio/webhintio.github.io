@@ -110,6 +110,7 @@ cp('-R', `${PACKAGES_TMP_DIR}/sonarwhal/docs/contributor-guide`, `${DEST_DIR}/do
 cp('-R', `${PACKAGES_TMP_DIR}/sonarwhal/docs/user-guide`, `${DEST_DIR}/docs/user-guide`);
 cp('-R', `${PACKAGES_TMP_DIR}/sonarwhal/docs/about`, `${DEST_DIR}`);
 cp(`${PACKAGES_TMP_DIR}/sonarwhal/CHANGELOG.md`, `${DEST_DIR}/about`);
+cp('-R', `${PACKAGES_TMP_DIR}/rule-*/images`, `${DEST_DIR}/docs/user-guide/rules/images`);
 
 const ruleDocs = ls('-R', `${PACKAGES_TMP_DIR}/rule-*/{README.md,/docs/*.md}`);
 const rules = ls('-R', `${PACKAGES_TMP_DIR}/rule-*/src/!(index).ts`);
