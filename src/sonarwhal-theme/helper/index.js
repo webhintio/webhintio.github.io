@@ -157,11 +157,11 @@ module.exports = function () {
                 },
                 includes: function (collection, member) {
                     const normalizedR = member ? normalizeString(member) : member;
-                    const normalizedL = collection.split(/, */g).map((element) => {
+                    const normalizedL = collection.split(/, */g).map(function (element) { //eslint-disable-line prefer-arrow-callback
                         return normalizeString(element);
                     });
 
-                    return normalizedL.includes(normalizedR);
+                    return normalizedL.indexOf(normalizedR) !== -1;
                 },
                 typeof: function (l, r) {
                     return typeof l === r;
@@ -172,7 +172,7 @@ module.exports = function () {
             };
 
             if (!operators[operator]) {
-                throw new Error(`Handlebars Helper "compare" doesn't know the operator ${operator}`);
+                throw new Error('Handlebars Helper "compare" doesn\'t know the operator ' + operator);
             }
 
             const result = operators[operator](left, right);
@@ -318,7 +318,7 @@ module.exports = function () {
         isPending: (status) => {
             return status === jobStatus.pending;
         },
-        linkify: (msg) => {
+        linkify: function (msg) {
             const regex = /(https?:\/\/[a-zA-Z0-9.\\/?:@\-_=#]+\.[a-zA-Z0-9&.\\/?:@-_=#]*)\s[a-zA-Z]/g;
             // Modified use of regular expression in https://stackoverflow.com/a/39220764
             // Should match:
