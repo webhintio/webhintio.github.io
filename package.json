@@ -24,7 +24,7 @@
     "md-2-json": "^1.0.5",
     "mkdirp": "^0.5.1",
     "moment": "^2.21.0",
-    "normalize-path": "^2.1.1",
+    "normalize-path": "^3.0.0",
     "pify": "^3.0.0",
     "remarkable": "^1.7.1",
     "remove-markdown": "^0.2.2",
