@@ -97,16 +97,10 @@ Sets a margin on select block level elements that have a previous sibling.
 
 .disclaimer .close {
     color: #000;
-    border-radius: 50%;
-    border: 1px solid #000;
-    height: 23px;
+    background-color: inherit;
     line-height: 12px;
-    text-align: center;
-    width: 23px;
     min-width:23px;
     position: absolute;
     right: 15px;
-    top: 12px;
-    cursor: pointer;
     padding: 5px;
 }
