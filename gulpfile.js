@@ -1,3 +1,6 @@
+const path = require('path');
+const fs = require('fs');
+
 const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
 const pump = require('pump');
@@ -247,10 +250,41 @@ gulp.task('generate-service-worker', (callback) => {
     }, callback);
 });
 
+const transform = (jsonResult) => {
+    const result = {};
+    const entries = Object.entries(jsonResult);
+
+    for (const [key, value] of entries) {
+        result[key.replace(`${dirs.tmp}/source`, '')] = value;
+    }
+
+    return result;
+};
+
 gulp.task('sri', () => {
-    return gulp.src(`${dirs.dist}/**/*.html`)
-        .pipe(plugins.sriHash())
-        .pipe(gulp.dest(dirs.dist));
+    return gulp.src(`${dirs.tmp}/source/**/*.{js,css}`)
+        .pipe(plugins.sri({ algorithms: ['sha384'], transform }))
+        .pipe(gulp.dest(dirs.tmp));
+});
+
+let sriList;
+
+const replaceSRI = (content) => {
+    let result = content;
+
+    for (const [file, value] of Object.entries(sriList)) {
+        result = result.replace(`${file}"`, `${file}" integrity="${value}" crossorigin="anonymous"`);
+    }
+
+    return result;
+};
+
+gulp.task('add-sri', () => {
+    sriList = JSON.parse(fs.readFileSync(path.join(__dirname, dirs.tmp, 'sri.json'), 'utf8')); //eslint-disable-line no-sync
+
+    return gulp.src(`${dirs.tmp}/**/*.hbs`)
+        .pipe(plugins.transform('utf8', replaceSRI))
+        .pipe(gulp.dest(dirs.tmp));
 });
 
 gulp.task('build', gulp.series(
@@ -267,9 +301,10 @@ gulp.task('build', gulp.series(
     'revfiles',
     'revreplace:content',
     'revreplace:theme',
+    'sri',
+    'add-sri',
     'build:hexo',
     'generate-service-worker',
-    'sri',
     'compress:zopfli',
     'compress:brotli'
 ));
