@@ -69,7 +69,7 @@
     "stylelint": "^9.1.1"
   },
   "hexo": {
-    "version": "3.6.0"
+    "version": "3.7.1"
   },
   "private": true,
   "scripts": {
