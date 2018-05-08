@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="/core/css/scanner.css">
     <link rel="stylesheet" href="/core/css/scan-results.css">
     <!-- endbuild -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" integrity="sha384-zhIsEafzyQWHSoMCQ4BfT8ZlRXQyIFwAHAJn32PNdsb8n6tVysGZSLpEEIvCskw4" crossorigin="anonymous">
+    <!-- build:css /static/styles/highlight.css -->
+    <link href="/components/highlight/default.min.css" rel="stylesheet">
+    <!-- endbuild -->
 </head>
 
 <body>
@@ -22,10 +24,13 @@
     {{>footer navs=menuData}}
 
     {{>scripts}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" integrity="sha384-NTlW/s8LREnFJH5uTJpSh7Nm3WD5/5iZR4G3LH8vxz/mn+TlV9XSM/hMW4L3Xxev" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha384-ZeLYJ2PNSQjvogWP559CDAf02Qb8FE5OyQicqtz/+UhZutbrwyr87Be7NPH/RgyC" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js" integrity="sha384-GfafISHuhXlqmfO4Ro0tIojPoFnIsmgC5xIT+K5pWoT76wtSdv8BhBrBhWT7o6SC" crossorigin="anonymous"></script>
-
+    <!-- build:js /static/scripts/handlebars.js -->
+    <script src="/js/handlebars/handlebars.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js /static/scripts/highlight.js -->
+    <script src="/js/highlight/highlight.min.js"></script>
+    <script src="/js/highlight/languages/xml.min.js"></script>
+    <!-- endbuild -->
     <script src="/scanner/helpers/compare,cutCodeString,cutString,cutUrlString,getLength,normalizePosition,pluralize,reverseString,shortenString,linkify"></script>
     <!-- build:js /static/scripts/scanner.js -->
     <script src="/js/scanner-common.js"></script>

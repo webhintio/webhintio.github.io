@@ -174,6 +174,7 @@ const renderHelpers = (req, res, next) => {
         return next();
     }
 
+    res.set('Cache-Control', 'no-cache');
     res.type('text/javascript');
     res.render('helpers', {
         helpers: _.pick(helpers, requiredHelpers),
@@ -216,10 +217,14 @@ const configure = (app, appInsightsClient) => {
 
     if (underConstruction && underConstruction === 'true') {
         scanner = (req, res) => {
+            res.set('Cache-Control', 'no-cache');
+
             return res.render('under-construction');
         };
     } else {
         scanner = (req, res) => {
+            res.set('Cache-Control', 'no-cache');
+
             if (req.method === 'GET') {
                 appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
             }
@@ -300,6 +305,7 @@ const configure = (app, appInsightsClient) => {
             version: scanResult.sonarVersion
         };
 
+        res.set('Cache-Control', 'max-age=180');
         res.render('scan-result', renderOptions);
     });
 
