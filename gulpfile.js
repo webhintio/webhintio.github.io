@@ -79,6 +79,11 @@ gulp.task('move:static', () => {
         .pipe(gulp.dest(`${dirs.tmp}/source/static`));
 });
 
+gulp.task('move:helpers', () => {
+    return gulp.src(`${dirs.tmp}/source/js/helpers/*.js`)
+        .pipe(gulp.dest(`${dirs.tmp}/helper`));
+});
+
 gulp.task('optimize:js', () => {
     return gulp.src(`${dirs.tmp}/source/**/*.js`)
         .pipe(plugins.uglify())
@@ -297,6 +302,7 @@ gulp.task('build', gulp.series(
     'optimize:js',
     'optimize:css',
     'move:static',
+    'move:helpers',
     'clean:after',
     'revfiles',
     'revreplace:content',

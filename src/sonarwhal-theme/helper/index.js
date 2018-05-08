@@ -1,6 +1,16 @@
-/* eslint-disable object-shorthand, prefer-template */
-const Handlebars = require('handlebars');
+const globby = require('globby');
+const path = require('path');
+
 const pagination = require('./pagination');
+
+const basePath = path.join(__dirname, '..');
+const helpersPath = path.join(__dirname, '..');
+const files = globby.sync(['helper/*.js', '**/helpers/*.js', '!helper/index.js', '!helper/pagination.js'], { cwd: basePath }); // eslint-disable-line no-sync
+
+const helpers = files.reduce((result, file) => {
+    return Object.assign(result, require(path.join(helpersPath, file)));
+}, {});
+
 const url = require('url');
 
 const jobStatus = {
@@ -28,10 +38,6 @@ module.exports = function () {
 
     const isSectionIndexPage = (page) => {
         return isIndexPage(page) && page.title.toLowerCase().replace(' ', '-') !== page.category;
-    };
-
-    const normalizeString = (str) => {
-        return str.toLowerCase().replace(/[^a-z0-9]/gi, '-');
     };
 
     const sortPageByAlpha = (l, r) => {
@@ -75,137 +81,10 @@ module.exports = function () {
     };
 
     const self = {
-        /* eslint-disable object-shorthand */
-        capitalize: function (str) {
+        capitalize: (str) => {
             const filtered = str.replace(/[^a-zA-Z0-9]/g, ' ');
 
             return filtered.charAt(0).toUpperCase() + filtered.slice(1);
-        },
-        /* eslint-enable object-shorthand */
-        /**
-         * Handlebars Comparison Helpers
-         * Copyright (c) 2013 Jon Schlinkert, Brian Woodward, contributors
-         * Licensed under the MIT License (MIT).
-         * https://github.com/helpers/handlebars-helpers/blob/a3683bab5519882927de527077c34a98ac22067b/lib/comparison.js#L48
-         * Modified to fit sonarwhal Website
-         */
-        /**
-         * {{#compare}}...{{/compare}}
-         *
-         * @credit: OOCSS
-         * @param left value
-         * @param operator The operator, must be between quotes ">", "=", "<=", etc...
-         * @param right value
-         * @param options option object sent by handlebars
-         * @return {String} formatted html
-         *
-         * @example:
-         *   {{#compare unicorns "<" ponies}}
-         *     I knew it, unicorns are just low-quality ponies!
-         *   {{/compare}}
-         *
-         *   {{#compare value ">=" 10}}
-         *     The value is greater or equal than 10
-         *     {{else}}
-         *     The value is lower than 10
-         *   {{/compare}}
-         */
-        compare: function (left, operator, right, options) { // eslint-disable-line object-shorthand
-            if (arguments.length < 3) {
-                throw new Error('Handlebars Helper "compare" needs 2 parameters');
-            }
-
-            /* eslint-disable no-param-reassign */
-            if (!options) {
-                options = right;
-                right = operator;
-                operator = '===';
-            }
-            /* eslint-enable no-param-reassign */
-
-            const operators = {
-                '!=': function (l, r) {
-                    return l !== r;
-                },
-                '!==': function (l, r) {
-                    return l !== r;
-                },
-                '<': function (l, r) {
-                    return l < r;
-                },
-                '<=': function (l, r) {
-                    return l <= r;
-                },
-                '==': function (l, r) {
-                    return l === r;
-                },
-                '===': function (l, r) {
-                    if (typeof l === 'string' && typeof r === 'string') {
-                        /* eslint-disable no-param-reassign */
-                        l = normalizeString(l);
-                        r = normalizeString(r);
-                        /* eslint-enable no-param-reassign */
-                    }
-
-                    return l === r;
-                },
-                '>': function (l, r) {
-                    return l > r;
-                },
-                '>=': function (l, r) {
-                    return l >= r;
-                },
-                includes: function (collection, member) {
-                    const normalizedR = member ? normalizeString(member) : member;
-                    const normalizedL = collection.split(/, */g).map(function (element) { //eslint-disable-line prefer-arrow-callback
-                        return normalizeString(element);
-                    });
-
-                    return normalizedL.indexOf(normalizedR) !== -1;
-                },
-                typeof: function (l, r) {
-                    return typeof l === r;
-                },
-                '||': function (l, r) {
-                    return l || r;
-                }
-            };
-
-            if (!operators[operator]) {
-                throw new Error('Handlebars Helper "compare" doesn\'t know the operator ' + operator);
-            }
-
-            const result = operators[operator](left, right);
-
-            if (result) {
-                return options.fn(this);
-            }
-
-            return options.inverse(this);
-        },
-        cutCodeString: function (codeString) {
-            return self.shortenString(codeString, 150);
-        },
-        cutString: function (string, maxLength) {
-            const minLength = 0.8 * maxLength;
-            const preferredStopChars = /[^a-zA-Z0-9]/g;
-            let chunk;
-
-            for (let i = minLength; i < maxLength; i++) {
-                // Start looking for preferred stop characters.
-                if (preferredStopChars.test(string[i])) {
-                    chunk = string.slice(0, i);
-
-                    break;
-                }
-            }
-
-            chunk = chunk || string.slice(0, maxLength);
-
-            return chunk;
-        },
-        cutUrlString: function (urlString) {
-            return self.shortenString(urlString, 25);
         },
         filterErrorsAndWarnings: (results) => {
             if (!results) {
@@ -231,16 +110,10 @@ module.exports = function () {
             if (match) {
                 const ruleName = match.pop();
 
-                return 'packages/' + ruleName + '/README.md';
+                return `packages/${ruleName}/README.md`;
             }
 
-            return 'packages/sonarwhal/' + originalFile;
-        },
-        getLength: function (messages, unit) {
-            const length = messages.length;
-            const units = self.pluralize(unit, length);
-
-            return length + ' ' + units;
+            return `packages/sonarwhal/${originalFile}`;
         },
         getPagesByToCTitle: (title, pages) => {
             return pages[title].filter((page) => {
@@ -318,27 +191,6 @@ module.exports = function () {
         isPending: (status) => {
             return status === jobStatus.pending;
         },
-        linkify: function (msg) {
-            const regex = /(https?:\/\/[a-zA-Z0-9.\\/?:@\-_=#]+\.[a-zA-Z0-9&.\\/?:@-_=#]*)\s[a-zA-Z]/g;
-            // Modified use of regular expression in https://stackoverflow.com/a/39220764
-            // Should match:
-            // jQuery@2.1.4 has 2 known vulnerabilities (1 medium, 1 low). See https://snyk.io/vuln/npm:jquery for more information.
-            // AngularJS@1.4.9 has 3 known vulnerabilities (3 high). See https://snyk.io/vuln/npm:angular for more information.
-            // Shouldn't match (shortened url):
-            // File https://www.odysys.com/ … hedule-Your-Demo-Now.png could be around 37.73kB (78%) smaller.
-            const match = regex.exec(msg);
-            const escapedMsg = Handlebars.Utils.escapeExpression(msg);
-
-            if (!match) {
-                return escapedMsg;
-            }
-
-            const urlMatch = match.pop();
-            const escapedUrlMatch = Handlebars.Utils.escapeExpression(urlMatch);
-            const newMsg = escapedMsg.replace(escapedUrlMatch, '<a href="' + urlMatch + '">' + escapedUrlMatch + '</a>');
-
-            return new Handlebars.SafeString(newMsg);
-        },
         noIssue: (category) => {
             return category.rules.every((rule) => {
                 return rule.status === ruleStatus.pass;
@@ -355,13 +207,6 @@ module.exports = function () {
             return className.toLowerCase().trim()
                 .replace(/[^a-z0-9]/gi, '-');
         },
-        normalizePosition: function (position) {
-            if (!position || parseInt(position) === -1) {
-                return '';
-            }
-
-            return ':' + position;
-        },
         or: (l, r) => {
             return l || r;
         },
@@ -375,13 +220,6 @@ module.exports = function () {
         passWarnings: (statistics) => {
             return statistics && statistics.warnings === 0;
         },
-        pluralize: function (text, count) {
-            return text + (count === 1 ? '' : 's');
-        },
-        reverseString: function (str) {
-            return str.split('').reverse()
-                .join('');
-        },
         sanitize: (permalink) => {
             return permalink.replace(/\/index.html/g, '/');
         },
@@ -389,18 +227,6 @@ module.exports = function () {
             return values.reduce((accumulator, value) => {
                 return accumulator || value;
             });
-        },
-        // Solution inspired by https://stackoverflow.com/a/10903003
-        shortenString: function (string, maxLength) {
-            if (!string || string.length < maxLength * 2) {
-                return string;
-            }
-
-            const headChunk = self.cutString(string, maxLength);
-            const reverseTailChunk = self.cutString(self.reverseString(string), maxLength);
-            const tailChunk = self.reverseString(reverseTailChunk);
-
-            return headChunk + ' … ' + tailChunk;
         },
         showMdContent: (page) => {
             // If the markdown Content should be used.
@@ -444,5 +270,5 @@ module.exports = function () {
         }
     };
 
-    return self;
+    return Object.assign(self, helpers);
 };

@@ -38,14 +38,14 @@ const createServer = () => {
     const themeDir = path.join(hexoDir, theme);
     const layoutsDir = path.join(themeDir, 'layout');
     const partialsDir = path.join(layoutsDir, 'partials');
+
+    /* Helpers path */
     const helpersPath = path.join(themeDir, 'helper/index.js');
-    const themeHelpers = require(helpersPath)();
-    const customHelpers = {
-        url_for: (url) => { // eslint-disable-line camelcase
-            return url;
-        }
-    };
-    const helpers = Object.assign(handlebars.helpers, themeHelpers, customHelpers); // combine helpers
+
+    /* Required Helpers */
+    const miscHelpers = require(helpersPath)();
+
+    const helpers = Object.assign(handlebars.helpers, miscHelpers); // Combine helpers
     const app = express();
 
     app.disable('x-powered-by');
