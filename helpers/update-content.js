@@ -21,7 +21,7 @@ const categories = {};
 
 const processRule = (rule, isSummary) => {
     const processedRule = {
-        /* 
+        /*
          * For packages with multiple rules we have a summary
          * file with how to install and links to all the rules.
          * This property is used to not take into account in

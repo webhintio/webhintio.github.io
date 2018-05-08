@@ -1,10 +1,9 @@
 /* eslint-env browser */
-/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand, no-continue */
+/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand, no-continue, consistent-this */
 /* global hljs */
 (function () {
     'use strict';
 
-    /* eslint-disable */
     /** Polyfill for 'Element.closest()' */
     if (!Element.prototype.matches) {
         Element.prototype.matches = Element.prototype.msMatchesSelector ||
@@ -15,6 +14,7 @@
         Element.prototype.closest = function (s) {
             var el = this;
             var ancestor = this;
+
             if (!document.documentElement.contains(el)) {
                 return null;
             }
@@ -24,10 +24,10 @@
                 }
                 ancestor = ancestor.parentElement;
             } while (ancestor !== null);
+
             return null;
         };
     }
-    /* eslint-enable */
 
     var expandDetails = function (item) {
         item.setAttribute('aria-expanded', 'true');
