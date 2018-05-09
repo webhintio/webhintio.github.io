@@ -1,10 +1,6 @@
-/* eslint-env browser */
-/* eslint-disable no-var, strict, prefer-template, prefer-arrow-callback, object-shorthand, no-continue, no-multi-str, array-callback-return, no-useless-escape */
 /* global Handlebars, hljs */
 
 (function () {
-    'use strict';
-
     // String interpolation is not supported by 'hexo-filter-cleanup'.
     // So use string string concatenation instead.
 
@@ -99,7 +95,7 @@
     };
 
     var ruleItemTemplate = function () {
-        return '\{{#each results}}{{>scan-result-item}}\{{/each}}';
+        return '{{#each results}}{{>scan-result-item}}{{/each}}';
     };
 
     var categoryPassMessageTemplate = function () {

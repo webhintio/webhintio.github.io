@@ -1,9 +1,5 @@
-/* eslint-env browser */
-/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand, no-continue */
 //nav menu
 (function () {
-    'use strict';
-
     var sectionItems = document.querySelectorAll('.navbar__navitem .navitem__button.expandable');
     var items = document.querySelectorAll('.navbar__navitem .navbar__submenu');
 

@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "amd": false,
+        "mocha": false,
+        "jasmine": false,
+        "es6": false
+    },
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "impliedStrict": true,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-var": "off",
+        "object-shorthand": "off",
+        "prefer-arrow-callback": "off",
+        "prefer-template": "off"
+    }
+}
