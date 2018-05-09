@@ -1,9 +1,5 @@
-/* eslint-env browser */
-/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand, no-continue, consistent-this */
 /* global hljs */
 (function () {
-    'use strict';
-
     /** Polyfill for 'Element.closest()' */
     if (!Element.prototype.matches) {
         Element.prototype.matches = Element.prototype.msMatchesSelector ||
@@ -12,18 +8,17 @@
 
     if (!Element.prototype.closest) {
         Element.prototype.closest = function (s) {
-            var el = this;
-            var ancestor = this;
+            var el = this; // eslint-disable-line consistent-this
 
             if (!document.documentElement.contains(el)) {
                 return null;
             }
             do {
-                if (ancestor.matches(s)) {
-                    return ancestor;
+                if (el.matches(s)) {
+                    return el;
                 }
-                ancestor = ancestor.parentElement;
-            } while (ancestor !== null);
+                el = el.parentElement;
+            } while (el !== null);
 
             return null;
         };

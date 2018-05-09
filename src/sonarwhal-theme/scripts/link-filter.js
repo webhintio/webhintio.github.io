@@ -17,7 +17,7 @@ hexo.extend.filter.register('before_post_render', (data) => {
      * For packages with multiple rules, we should have
      * links to each rules in the README.md
      * Those links will be transform:
-     * 
+     *
      * ./docs/rule-name.md => ./rule-name
      */
     data.content = data.content.replace(docLinkRegex, (link, docsString, extensionString) => {

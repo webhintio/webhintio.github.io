@@ -4,11 +4,10 @@ const path = require('path');
 const pagination = require('./pagination');
 
 const basePath = path.join(__dirname, '..');
-const helpersPath = path.join(__dirname, '..');
 const files = globby.sync(['helper/*.js', '**/helpers/*.js', '!helper/index.js', '!helper/pagination.js'], { cwd: basePath }); // eslint-disable-line no-sync
 
 const helpers = files.reduce((result, file) => {
-    return Object.assign(result, require(path.join(helpersPath, file)));
+    return Object.assign(result, require(path.join(basePath, file)));
 }, {});
 
 const url = require('url');

@@ -1,5 +1,3 @@
-/* eslint-env browser */
-/* eslint-disable no-var, prefer-template, strict, prefer-arrow-callback, object-shorthand, no-continue */
 (function () {
     /** Creates a cookie. Code based on https://www.quirksmode.org/js/cookies.html */
     var createCookie = function (name, value, days) {

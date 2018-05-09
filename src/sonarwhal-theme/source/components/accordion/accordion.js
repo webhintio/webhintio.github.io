@@ -27,8 +27,6 @@
 
 /* global setImmediate */
 (function () {
-    'use strict';
-
     var supportDetails = 'open' in document.createElement('details');
 
     var animateOpen = function (parent, content) {

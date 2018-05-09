@@ -1,5 +1,3 @@
-/* eslint-env browser */
-/* eslint-disable no-var, object-shorthand, no-invalid-this, prefer-template */
 /* globals Handlebars */
 /**
  * Handlebars Comparison Helpers
@@ -103,10 +101,10 @@
         var result = operators[operator](left, right);
 
         if (result) {
-            return options.fn(this);
+            return options.fn(this); // eslint-disable-line no-invalid-this
         }
 
-        return options.inverse(this);
+        return options.inverse(this); // eslint-disable-line no-invalid-this
     };
 
     if (typeof module === 'object' && module.exports) {

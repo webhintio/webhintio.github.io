@@ -1,5 +1,3 @@
-/* eslint-env browser */
-/* eslint-disable no-var, object-shorthand, prefer-template */
 /* globals Handlebars */
 
 (function () {

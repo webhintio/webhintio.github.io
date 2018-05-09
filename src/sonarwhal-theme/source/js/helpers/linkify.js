@@ -1,6 +1,3 @@
-/* eslint-env browser */
-/* eslint-disable no-var, prefer-template, object-shorthand */
-
 var Handlebars;
 
 if (typeof module === 'object' && module.exports) {
