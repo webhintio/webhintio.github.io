@@ -44,7 +44,7 @@
     "gulp-clean-css": "^3.9.3",
     "gulp-cli": "^2.0.1",
     "gulp-concat": "^2.6.1",
-    "gulp-debug": "^3.2.0",
+    "gulp-debug": "^4.0.0",
     "gulp-filter": "^5.1.0",
     "gulp-flatten": "^0.4.0",
     "gulp-htmlmin": "^4.0.0",
