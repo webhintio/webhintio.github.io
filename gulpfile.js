@@ -96,10 +96,10 @@ gulp.task('optimize:css', () => {
         .pipe(gulp.dest(dirs.tmp));
 });
 
-gulp.task('interpolate', (cb) => {
-    const interporlate = require('./helpers/interpolate-hbs-js');
+gulp.task('precompile', (cb) => {
+    const precompile = require('./helpers/precompile-hbs');
 
-    interporlate(dirs.tmp);
+    precompile(dirs.tmp, 'source/js/partials', ['scan-result-item', 'category-pass-message', 'scan-error-message']);
     cb();
 });
 
@@ -295,10 +295,10 @@ gulp.task('add-sri', () => {
 gulp.task('build', gulp.series(
     'clean:before',
     'copy:theme',
+    'precompile',
     'optimize:images',
     'useref',
     'optimize:templates',
-    'interpolate',
     'optimize:js',
     'optimize:css',
     'move:static',

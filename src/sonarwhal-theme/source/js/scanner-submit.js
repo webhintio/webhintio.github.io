@@ -102,6 +102,10 @@
         return '{{>category-pass-message}}';
     };
 
+    var scanErrorMessageTemplate = function () {
+        return '{{>scan-error-message}}';
+    };
+
     var getHTML = function (templ, data) {
         var source = templ();
         var template = Handlebars.compile(source);
@@ -192,7 +196,9 @@
             container.removeChild(loader);
         }
 
-        container.insertAdjacentHTML('beforeend', categoryPassMessageTemplate());
+        var categoryPassMessageTemplateHtml = getHTML(categoryPassMessageTemplate, {});
+
+        container.insertAdjacentHTML('beforeend', categoryPassMessageTemplateHtml);
     };
 
     var noPendingRules = function (category) {
@@ -257,7 +263,7 @@
     };
 
     var updateScanFailUI = function () {
-        var scanErrorMessageHTML = '{{>scan-error-message}}';
+        var scanErrorMessageHTML = getHTML(scanErrorMessageTemplate, {});
 
         document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
     };
