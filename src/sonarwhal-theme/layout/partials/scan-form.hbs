@@ -10,7 +10,7 @@
             <h1 id="page-heading">Analyze your website now!</h1>
             <p class="subtitle">sonarwhal's online version is currently in preview. Results and reliability might vary. Nellie has chosen a set of rules for you, but in the future you will be able to decide which ones you want.</p>
         </header>
-        <div class="section container" hidden>
+        {{! <div class="section container" hidden>
             <div class="layout layout--sidebar">
                 <div class="module module--primary">
 
@@ -133,16 +133,16 @@
                             <input type="radio" id="recommended-config" name="scan-configuration" checked/>
                             <label for="recommended-config">Recommended (default)</label>
 
-                            {{!-- <input type="radio" id="upload-config" name="scan-configuration"/>
+                            <input type="radio" id="upload-config" name="scan-configuration"/>
                             <label for="upload-config">Upload configuration file</label>
 
                             <input type="radio" id="manual-config" name="scan-configuration"/>
-                            <label for="manual-config">Manually select rules</label> --}}
+                            <label for="manual-config">Manually select rules</label>
                     </fieldset>
                     <p class="subtitle">For greater flexibility, use the command line tool to run your scan.</p>
                 </div>
             </div>
-        </div>
+        </div> }}
         <section class="section scanner">
             <section class="container home-container--section home-container--input">
                 <form action="/scanner/" method="POST">
