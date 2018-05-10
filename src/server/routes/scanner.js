@@ -29,8 +29,6 @@ const ruleStatus = {
 
 const noDocRules = ['optimize-image'];
 
-let helpers; // Shared helpers between the client and server side.
-
 const pad = (timeString) => {
     return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
 };
@@ -167,27 +165,11 @@ const processRuleResults = (ruleResults, scanUrl, images) => {
     return { categories, overallStatistics };
 };
 
-const renderHelpers = (req, res, next) => {
-    const requiredHelpers = req.params.name.split(',');
-
-    if (requiredHelpers.length === 0) {
-        return next();
-    }
-
-    res.set('Cache-Control', 'no-cache');
-    res.type('text/javascript');
-    res.render('helpers', {
-        helpers: _.pick(helpers, requiredHelpers),
-        layout: 'empty'
-    });
-};
-
 const configure = (app, appInsightsClient) => {
     const thirdPartyServiceConfigPath = path.join(app.get('themeDir'), 'source', 'static', 'third-party-service-config.yml');
     const categoryImages = JSON.parse(fs.readFileSync(path.join(app.get('themeDir'), 'source', 'static', 'category-images.json'))); // eslint-disable-line no-sync
 
     thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
-    helpers = require(app.get('helpersPath'))();
 
     const reportJobEvent = (scanResult) => {
         if (scanResult.status === jobStatus.started || scanResult.status === jobStatus.pending) {
@@ -320,8 +302,6 @@ const configure = (app, appInsightsClient) => {
     };
 
     app.get('/scanner/config/:jobId', getJobConfig);
-
-    app.get('/scanner/helpers/:name', renderHelpers);
 
     let scannerPost;
 
