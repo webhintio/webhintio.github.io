@@ -309,15 +309,15 @@ gulp.task('build', gulp.series(
 
 gulp.task('default', gulp.series('build'));
 
-gulp.task('watch', gulp.series(['clean:before', 'copy:theme', 'precompile', 'move:docimage', 'move:images', 'useref', 'move:static', 'move:helpers', 'clean:after', 'revfiles', 'revreplace:content', 'revreplace:theme'], async () => {
+gulp.task('watch', gulp.series(['clean:before', 'copy:theme', 'precompile', 'move:docimage', 'move:images', 'useref', 'move:static', 'move:helpers', 'clean:after', 'revfiles', 'revreplace:content', 'revreplace:theme', async () => {
     const hexo = new Hexo(process.cwd(), {});
 
     await hexo.init();
     await hexo.call('clean');
 
-    gulp.watch(`${dirs.src}/**/*`, ['clean:tmp', 'copy:theme', 'precompile', 'move:docimage', 'move:images', 'useref', 'move:static', 'move:helpers', 'clean:after', 'revfiles', 'revreplace:content', 'revreplace:theme', async () => {
+    gulp.watch(`${dirs.src}/**/*`, gulp.series(['clean:tmp', 'copy:theme', 'precompile', 'move:docimage', 'move:images', 'useref', 'move:static', 'move:helpers', 'clean:after', 'revfiles', 'revreplace:content', 'revreplace:theme', async () => {
         await hexo.call('generate');
-    }, 'generate-service-worker']);
+    }, 'generate-service-worker']));
 
     await hexo.call('generate');
 
@@ -327,4 +327,4 @@ gulp.task('watch', gulp.series(['clean:before', 'copy:theme', 'precompile', 'mov
             open: true,
             port: 4000
         }));
-}, 'generate-service-worker'));
+}, 'generate-service-worker']));
