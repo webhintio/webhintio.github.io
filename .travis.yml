@@ -17,8 +17,7 @@ env:
 
 language: node_js
 
-node_js:
-  - node
+node_js: lts/*
 
 notifications:
   email:
