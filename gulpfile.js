@@ -3,7 +3,6 @@ const fs = require('fs');
 
 const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
-const pump = require('pump');
 const shelljs = require('shelljs');
 
 const Hexo = require('hexo');
@@ -25,6 +24,12 @@ const dirs = {
 
 gulp.task('clean:before', (done) => {
     shelljs.rm('-rf', dirs.dist, dirs.tmp, dirs.tmpContent);
+
+    done();
+});
+
+gulp.task('clean:tmp', (done) => {
+    shelljs.rm('-rf', dirs.tmp);
 
     done();
 });
@@ -211,19 +216,6 @@ const moveImages = () => {
 gulp.task('move:images', moveImages);
 gulp.task('optimize:images', gulp.series('move:docimage', 'imagemin', 'move:images'));
 
-const devHtml = (cb) => {
-    pump(
-        [
-            gulp.src(`${dirs.tmp}/**/*.*`),
-            plugins.useref({
-                base: `${dirs.tmp}/source/`,
-                searchPath: `${dirs.tmp}/source/`
-            }),
-            gulp.dest(dirs.tmp)
-        ],
-        cb);
-};
-
 // ---------------------------------------------------------------------
 // | Main tasks                                                        |
 // ---------------------------------------------------------------------
@@ -317,17 +309,17 @@ gulp.task('build', gulp.series(
 
 gulp.task('default', gulp.series('build'));
 
-gulp.task('watch', gulp.series('clean:before', 'copy:theme', async () => {
+gulp.task('watch', gulp.series(['clean:before', 'copy:theme', 'precompile', 'move:docimage', 'move:images', 'useref', 'move:static', 'move:helpers', 'clean:after', 'revfiles', 'revreplace:content', 'revreplace:theme', async () => {
     const hexo = new Hexo(process.cwd(), {});
 
     await hexo.init();
     await hexo.call('clean');
 
-    gulp.watch(`${dirs.src}/**/*`, gulp.series('copy:theme'));
-    gulp.watch([`!${dirs.tmpImages}`], gulp.series(devHtml));
-    gulp.watch([dirs.tmpImages], gulp.series(moveImages));
+    gulp.watch(`${dirs.src}/**/*`, gulp.series(['clean:tmp', 'copy:theme', 'precompile', 'move:docimage', 'move:images', 'useref', 'move:static', 'move:helpers', 'clean:after', 'revfiles', 'revreplace:content', 'revreplace:theme', async () => {
+        await hexo.call('generate');
+    }, 'generate-service-worker']));
 
-    await hexo.call('generate', { watch: true });
+    await hexo.call('generate');
 
     gulp.src(dirs.dist)
         .pipe(plugins.serverLivereload({
@@ -335,4 +327,4 @@ gulp.task('watch', gulp.series('clean:before', 'copy:theme', async () => {
             open: true,
             port: 4000
         }));
-}));
+}, 'generate-service-worker']));
