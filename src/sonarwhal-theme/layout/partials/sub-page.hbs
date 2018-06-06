@@ -48,7 +48,7 @@
                             </li>
                             {{/if}} {{#each (getSortedToCTitles pages)}}
                             <li class="dropdown__subitem">
-                                <p>{{this}}</p>
+                                <p>{{capitalize this}}</p>
                                 <ul>
                                     {{#each (getPagesByToCTitle this ../pages)}}
                                     <li class="subitem">
@@ -72,7 +72,7 @@
                         {{else}}
                             toc-section-title
                         {{/if}}">
-                            <span class="text">{{this}}</span>
+                            <span class="text">{{capitalize this}}</span>
                             <span class="icon"></span>
                         </div>
 
