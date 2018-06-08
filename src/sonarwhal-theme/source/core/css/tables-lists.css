@@ -29,6 +29,16 @@ th, td {
 
 thead th {
     vertical-align: top;
+    color: hsla(0, 0%, 0%, .6);
+}
+
+
+tbody tr:nth-child(odd) {
+	background-color: hsla(0, 0%, 0%, .05);
+}
+
+tbody tr:nth-child(odd) a {
+	color: #4046dd;
 }
 
 /* Parent class allows table to scroll sideways when overflowing */
