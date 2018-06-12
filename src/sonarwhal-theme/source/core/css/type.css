@@ -65,10 +65,19 @@ h2,
 .heading,
 .scan-heading {
     letter-spacing: -.01em;
-
     position: relative;
-    max-width: 64rem;
     z-index: 1;
+}
+
+h1,
+h2,
+.headline,
+.heading {
+    max-width: 96rem;
+}
+
+.scan-heading {
+    max-width: 64rem;
 }
 
 .headline::before,
