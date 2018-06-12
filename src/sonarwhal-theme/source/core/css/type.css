@@ -35,6 +35,7 @@ h4,
 h5,
 button,
 legend,
+thead th,
 .headline,
 .heading,
 .subheading,
@@ -109,8 +110,7 @@ h5,
 h6,
 .caption,
 .subcaption,
-.subcaption,
-thead th {
+.subcaption {
     font-weight: 400;
 }
 
@@ -140,6 +140,7 @@ caption,
     font-size: 1.8rem;
 }
 
+thead th,
 .subtitle--alt {
     font-size: 1.6rem;
 }
@@ -147,10 +148,6 @@ caption,
 h5,
 .caption {
     font-size: 1.2rem;
-}
-
-thead th {
-    font-size: 1.1rem;
 }
 
 h6,

@@ -14,6 +14,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
+    margin-top: 1.2rem;
 }
 
 th,
@@ -29,6 +30,18 @@ th, td {
 
 thead th {
     vertical-align: top;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+tbody tr:nth-child(odd) {
+	background-color: hsla(0, 0%, 0%, .05);
+}
+
+tbody tr:nth-child(odd) a {
+	color: #4046dd;
 }
 
 /* Parent class allows table to scroll sideways when overflowing */
