@@ -13,7 +13,7 @@ html {
 
 /* use em rather than rem due to IE9–10 rem in font shorthand bug. */
 body {
-    font: 1.8em/1.4 base, "Source Sans Pro", Verdana, sans-serif;
+    font: 1.8em/1.4 base, "Source Sans Pro", Arial, sans-serif;
 }
 
 /*	Headings and Captions */
