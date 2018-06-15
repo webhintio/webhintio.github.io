@@ -13,7 +13,7 @@ html {
 
 /* use em rather than rem due to IE9–10 rem in font shorthand bug. */
 body {
-    font: 1.8em/1.4 base, "Source Sans Pro", Verdana, sans-serif;
+    font: 1.8em/1.4 base, "Source Sans Pro", Arial, sans-serif;
 }
 
 /*	Headings and Captions */
@@ -107,9 +107,7 @@ caption,
     line-height: 1.2;
 }
 
-h3,
 h4,
-.title,
 .subtitle,
 .subtitle--alt {
     font-weight: 300;
@@ -117,10 +115,11 @@ h4,
 
 h5,
 h6,
+thead th,
 .caption,
 .subcaption,
 .subcaption {
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .headline {
