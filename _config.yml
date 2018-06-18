@@ -113,12 +113,12 @@ categories:
   accessibility:
     description: Is your site usable via the keyboard? Does your content have enough contrast to be read without issues? Everyone should enjoy your content. Let us help you!
     name: Accessibility
-  development: 
+  development:
     description: "Web developers use a wide variety of tools: bundlers, transpilers, optimizers... But sometimes there can be problems when using them together or the configuration might not be the most optimal. Let us take care of this for you!"
     name: Development
-  interoperability: 
+  interoperability:
     description: The web has been around for decades and it can be accessed from many different devices and form factors, old and new. These rules help you make your sites more interoperable so your users can have a better experience no matter how they visit you.
-    name: Interoperability 
+    name: Interoperability
   pwa:
     description: Progressive Web Apps allow your users to have a more immersive experience within your site. Make sure your PWA looks the best no matter the platform of your users.
     name: PWA
@@ -128,3 +128,6 @@ categories:
   security:
     description: Browsers are one of the main vectors for attacks. The web platform has many features that allow you to mitigate the risks. Are you doing everything you can to keep your users safe?
     name: Security
+  other:
+    description: Other miscellaneous things that degrade the user experience.
+    name: Other
