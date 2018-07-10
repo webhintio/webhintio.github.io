@@ -8,7 +8,7 @@ const request = promisify(r);
 const yaml = require('js-yaml');
 // This variable is like this WEBSITE_AUTH_ALLOWED_AUDIENCES = domain1,domain2 when in Azure
 const urlAudiences = process.env.WEBSITE_AUTH_ALLOWED_AUDIENCES; // eslint-disable-line no-process-env
-const sonarwhalUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
+const webhintUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
 let thirdPartyServiceConfig; // eslint-disable-line no-sync
@@ -20,14 +20,14 @@ const jobStatus = {
     started: 'started',
     warning: 'warning'
 };
-const ruleStatus = {
+const hintStatus = {
     error: 'error',
     pass: 'pass',
     pending: 'pending',
     warning: 'warning'
 };
 
-const noDocRules = ['optimize-image'];
+const noDocHints = ['optimize-image'];
 
 const pad = (timeString) => {
     return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
@@ -88,41 +88,41 @@ const updateLink = (thirdPartyInfo, scanUrl) => {
     return thirdPartyInfoCopy;
 };
 
-const parseCategories = (rules, scanUrl) => {
+const parseCategories = (hints, scanUrl) => {
     let categories = [];
 
-    rules.forEach((rule) => {
+    hints.forEach((hint) => {
         let category = _.find(categories, (cat) => {
-            return cat.name === rule.category;
+            return cat.name === hint.category;
         });
 
         if (!category) {
             category = {
-                name: rule.category,
-                results: null,
-                rules: []
+                hints: [],
+                name: hint.category,
+                results: null
             };
 
             categories.push(category);
         }
 
-        const thirdPartyInfo = thirdPartyServiceConfig[rule.name];
+        const thirdPartyInfo = thirdPartyServiceConfig[hint.name];
 
         if (thirdPartyInfo) {
-            rule.thirdParty = updateLink(thirdPartyInfo, scanUrl);
+            hint.thirdParty = updateLink(thirdPartyInfo, scanUrl);
         }
 
-        rule.hasDoc = !noDocRules.includes(rule.name);
+        hint.hasDoc = !noDocHints.includes(hint.name);
 
-        category.rules.push(rule);
+        category.hints.push(hint);
 
-        if (rule.status !== ruleStatus.pending) {
-            // Passed rules are included in the results.
+        if (hint.status !== hintStatus.pending) {
+            // Passed hints are included in the results.
             if (!category.results) {
                 category.results = [];
             }
 
-            category.results.push(rule);
+            category.results.push(hint);
         }
     });
 
@@ -134,25 +134,25 @@ const parseCategories = (rules, scanUrl) => {
 };
 
 /** Process scanning result to add category and statistics information */
-const processRuleResults = (ruleResults, scanUrl, images) => {
+const processHintResults = (hintResults, scanUrl, images) => {
     const overallStatistics = {
         errors: 0,
         warnings: 0
     };
 
-    const categories = parseCategories(ruleResults, scanUrl);
+    const categories = parseCategories(hintResults, scanUrl);
 
     // Caculate numbers of `errors` and `warnings`.
     _.forEach(categories, (category) => {
-        const statistics = _.reduce(category.results || [], (count, rule) => {
-            if (rule && rule.status === ruleStatus.error) {
-                count.errors += rule.messages.length;
-                overallStatistics.errors += rule.messages.length;
+        const statistics = _.reduce(category.results || [], (count, hint) => {
+            if (hint && hint.status === hintStatus.error) {
+                count.errors += hint.messages.length;
+                overallStatistics.errors += hint.messages.length;
             }
 
-            if (rule && rule.status === ruleStatus.warning) {
-                count.warnings += rule.messages.length;
-                overallStatistics.warnings += rule.messages.length;
+            if (hint && hint.status === hintStatus.warning) {
+                count.warnings += hint.messages.length;
+                overallStatistics.warnings += hint.messages.length;
             }
 
             return count;
@@ -213,8 +213,8 @@ const configure = (app, appInsightsClient) => {
             res.render('scan-form', {
                 layout,
                 page: {
-                    description: `Analyze any public website using sonarwhal's online tool`,
-                    title: `sonarwhal's online scanner`
+                    description: `Analyze any public website using webhint's online tool`,
+                    title: `webhint's online scanner`
                 }
             });
         };
@@ -239,7 +239,8 @@ const configure = (app, appInsightsClient) => {
 
         reportJobEvent(scanResult);
 
-        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url, categoryImages);
+        // TODO: change to scanResult.hints once we change the service
+        const { categories, overallStatistics } = processHintResults(scanResult.rules, scanResult.url, categoryImages);
 
         return res.send({
             categories,
@@ -268,7 +269,8 @@ const configure = (app, appInsightsClient) => {
             });
         }
 
-        const { categories, overallStatistics } = processRuleResults(scanResult.rules, scanResult.url, categoryImages);
+        // TODO: change to scanResult.hints once we change the service
+        const { categories, overallStatistics } = processHintResults(scanResult.rules, scanResult.url, categoryImages);
         const renderOptions = {
             categories,
             id: scanResult.id,
@@ -276,10 +278,10 @@ const configure = (app, appInsightsClient) => {
             layout,
             overallStatistics,
             page: {
-                description: `sonarwhal has identified ${overallStatistics.errors} errors and ${overallStatistics.warnings} warnings in ${scanResult.url}`,
-                title: `sonarwhal report for ${scanResult.url}`
+                description: `webhint has identified ${overallStatistics.errors} errors and ${overallStatistics.warnings} warnings in ${scanResult.url}`,
+                title: `webhint report for ${scanResult.url}`
             },
-            permalink: `${sonarwhalUrl}scanner/${scanResult.id}`,
+            permalink: `${webhintUrl}scanner/${scanResult.id}`,
             showQueue: false,
             status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, (scanResult.status === jobStatus.finished || scanResult.status === jobStatus.error) ? scanResult.finished : void 0),
@@ -339,7 +341,8 @@ const configure = (app, appInsightsClient) => {
             const id = requestResult.id;
             const status = requestResult.status;
             const messagesInQueue = requestResult.messagesInQueue;
-            const { categories, overallStatistics } = processRuleResults(requestResult.rules, req.body.url, categoryImages);
+            //TODO: change to requestResult.hints once we update the service
+            const { categories, overallStatistics } = processHintResults(requestResult.rules, req.body.url, categoryImages);
 
             appInsightsClient.trackEvent({
                 name: 'scanJobCreated',
@@ -356,9 +359,9 @@ const configure = (app, appInsightsClient) => {
                 overallStatistics,
                 page: {
                     description: `scan result of ${requestResult.url}`,
-                    title: `sonarwhal report for ${requestResult.url}`
+                    title: `webhint report for ${requestResult.url}`
                 },
-                permalink: `${sonarwhalUrl}scanner/${id}`,
+                permalink: `${webhintUrl}scanner/${id}`,
                 showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
                 status,
                 url: req.body.url

@@ -5,7 +5,7 @@ const xssFilters = require('xss-filters');
 const configure = (app) => {
     const config = app.locals.theme;
     const client = algoliasearch(config.appId, config.apiKey);
-    const index = client.initIndex('sonarwhal');
+    const index = client.initIndex('webhint');
     const hitsPerPage = 20;
 
     const isEqual = (l, r) => {
@@ -35,8 +35,8 @@ const configure = (app) => {
             currentPage,
             hits,
             page: {
-                description: query ? `About ${totalPages * hitsPerPage} results found for ${query}` : `Search through sonarwhal's rules, user and contributor guides`,
-                title: query ? `Results for ${query} (page ${currentPage} of ${totalPages})` : `Search sonarwhal's documentation`
+                description: query ? `About ${totalPages * hitsPerPage} results found for ${query}` : `Search through webhint's hints, user and contributor guides`,
+                title: query ? `Results for ${query} (page ${currentPage} of ${totalPages})` : `Search webhint's documentation`
             },
             pattern,
             query,

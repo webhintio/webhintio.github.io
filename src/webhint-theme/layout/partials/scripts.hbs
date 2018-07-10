@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" integrity="sha384-bpcisN7hXHzDmg5JLgtPet7fpev9Wwwqgw8zlXpOh7AkvJ+wYjwrMzHH8fVvq1Dq" crossorigin="anonymous"></script>
+<!-- build:js /static/scripts/common.js -->
+<script async src="/js/nav.js"></script>
+<script async src="/core/scripts/form-validation.js"></script>
+<script async src="/components/accordion/accordion.js"></script>
+<script async src="/js/gdpr.js"></script>
+<!-- endbuild -->
+<script>
+    (function () {
+        var minPreviewWidth;
+
+        var search = docsearch({
+            apiKey: '{{theme.apiKey}}', // search-only API key, okay for frontend
+            indexName: 'webhint',
+            inputSelector: '#search-input',
+            appId: '{{theme.appId}}',
+            debug: false, // set to true if need to debug css
+            handleSelected: function (input, event, suggestion) {
+                // override the default `handleSelected` function
+                if (window.innerWidth < minPreviewWidth) {
+                    event.target.closest('form').submit();
+                } else {
+                    window.location.href = suggestion.url;
+                }
+            }
+        });
+
+        var preview = document.querySelector('.algolia-autocomplete .ds-dropdown-menu');
+
+        minPreviewWidth = parseInt(window.getComputedStyle(preview)['minWidth']);
+
+        search.autocomplete.on('autocomplete:opened', function () {
+            if (document.body.clientWidth < minPreviewWidth) {
+                // hide the preview
+                search.autocomplete.autocomplete.close();
+            }
+        });
+    }());
+</script>
+
+{{!-- <script src="/sw-reg.js"></script> --}}
+<script>(function(G,o,O,g,l){G.GoogleAnalyticsObject=O;G[O]||(G[O]=function(){(G[O].q=G[O].q||[]).push(arguments)});G[O].l=+new Date;g=o.createElement('script'),l=o.scripts[0];g.src='https://www.google-analytics.com/analytics.js';l.parentNode.insertBefore(g,l)}(this,document,'ga'));ga('create','{{ theme.google_analytics }}');ga('send','pageview')</script>
+

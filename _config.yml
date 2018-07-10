@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: sonarwhal
+title: webhint
 subtitle:
 description:
 author:
@@ -16,8 +16,8 @@ url: /
 root: /
 permalink:
 permalink_defaults:
-sonarwhalRepoRoot: https://github.com/sonarwhal/sonarwhal
-sonarwhalRoot: https://sonarwhal.com
+webhintRepoRoot: https://github.com/webhintio/hint
+webhintRoot: https://webhint.io
 
 # Directory
 source_dir: src/content-replaced
@@ -65,7 +65,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: ../src/sonarwhal-theme-optimized
+theme: ../src/webhint-theme-optimized
 
 # Config markdown rendering
 marked:
@@ -93,21 +93,21 @@ apiKey: 2ee58f908e6d720c4f72a9645ce0e857
 
 # predefined descriptions for front matter:
 descriptions:
-  changelog: Check all the changes in the different sonarwhal versions
-  "docs/index.md": Learn how to use sonarwhal, what things it checks, and how you can create your own rules
+  changelog: Check all the changes in the different webhint versions
+  "docs/index.md": Learn how to use webhint, what things it checks, and how you can create your own hints
   faq: Got a question? We might have an answer for you!
-  governance: Learn more about how sonarwhal is organized internally
+  governance: Learn more about how webhint is organized internally
   "user-guide/index.md": Anything you need to know about using sonawhalr and configure it
   "user-guide/connectors": List of core connectors and the different configurations they have.
   "user-guide/formatters": List of core formatters and how they look like
-  "user-guide/rules/index.md": List of core rules shorted by category
+  "user-guide/hints/index.md": List of core hints shorted by category
   "contributor-guide/connectors/index.md": All the things to take into account if you are going to develop a new connector
   "contributor-guide/connectors/events.md": List of events that any core connector should support
-  "contributor-guide/contributing": If you want to contribute to sonarwhal, read this first
+  "contributor-guide/contributing": If you want to contribute to webhint, read this first
   "contributor-guide/formatters": All the things to take into account if you are going to develop a new formatter
-  "contributor-guide/rules": All the things to take into account if you are going to develop a new rule
+  "contributor-guide/hints": All the things to take into account if you are going to develop a new hint
   "contributor-guide/development-environment": What you need to do to start developing for sonar
-  "contributor-guide/index.md": Learn about the different pieces that build sonarwhal and what each one of them does
+  "contributor-guide/index.md": Learn about the different pieces that build webhint and what each one of them does
 
 categories:
   accessibility:
@@ -117,7 +117,7 @@ categories:
     description: "Web developers use a wide variety of tools: bundlers, transpilers, optimizers... But sometimes there can be problems when using them together or the configuration might not be the most optimal. Let us take care of this for you!"
     name: Development
   interoperability:
-    description: The web has been around for decades and it can be accessed from many different devices and form factors, old and new. These rules help you make your sites more interoperable so your users can have a better experience no matter how they visit you.
+    description: The web has been around for decades and it can be accessed from many different devices and form factors, old and new. These hints help you make your sites more interoperable so your users can have a better experience no matter how they visit you.
     name: Interoperability
   pwa:
     description: Progressive Web Apps allow your users to have a more immersive experience within your site. Make sure your PWA looks the best no matter the platform of your users.

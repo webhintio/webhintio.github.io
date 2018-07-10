@@ -12,10 +12,10 @@ const dirs = {
     dist: 'dist',
     distCompreseable: 'dist/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}',
     originalContent: `src/content`,
-    src: 'src/sonarwhal-theme',
-    tmp: 'src/sonarwhal-theme-optimized',
+    src: 'src/webhint-theme',
+    tmp: 'src/webhint-theme-optimized',
     tmpContent: 'src/content-replaced',
-    tmpImages: `src/sonarwhal-theme-optimized/**/*.{${imageExtensions}}`
+    tmpImages: `src/webhint-theme-optimized/**/*.{${imageExtensions}}`
 };
 
 // ---------------------------------------------------------------------
@@ -235,7 +235,7 @@ gulp.task('compress:brotli', () => {
 gulp.task('generate-service-worker', (callback) => {
     const swPrecache = require('sw-precache');
 
-    swPrecache.write(`${dirs.dist}/sonarwhal-worker.js`, {
+    swPrecache.write(`${dirs.dist}/webhint-worker.js`, {
         clientsClaim: true,
         maximumFileSizeToCacheInBytes: 5242880,
         runtimeCaching: [{
@@ -302,7 +302,7 @@ gulp.task('build', gulp.series(
     'sri',
     'add-sri',
     'build:hexo',
-    'generate-service-worker',
+    // 'generate-service-worker',
     'compress:zopfli',
     'compress:brotli'
 ));
