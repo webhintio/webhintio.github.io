@@ -1,9 +1,9 @@
 <!--
 
 This template is for bug reports or suggestions for sonar's website
-(https://sonarwhal.com).
+(https://webhint.io).
 If you have an issue with a URL when using the online scanner,
-please report it in https://github.com/sonarwhal/sonar.
+please report it in https://github.com/webhintio/hint.
 
 1. Propose a new feature/change:
 

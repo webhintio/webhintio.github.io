@@ -11,83 +11,83 @@ const yamlLoader = require('js-yaml');
 const configDir = path.resolve(__dirname, '..', '_config.yml');
 const hexoConfig = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
 
-const CLONE_URL = 'https://github.com/sonarwhal/sonarwhal.git'; // eslint-disable-line no-process-env
+const CLONE_URL = 'https://github.com/webhintio/hint.git'; // eslint-disable-line no-process-env
 const DEST_DIR = 'src/content';
-const DEST_RULES_DIR = `${DEST_DIR}/docs/user-guide/rules`;
+const DEST_HINTS_DIR = `${DEST_DIR}/docs/user-guide/hints`;
 const DATA_DIR = `${DEST_DIR}/_data`;
 const TMP_DIR = require('./mktemp')();
 const PACKAGES_TMP_DIR = `${TMP_DIR}/packages`;
 const categories = {};
 
-const processRule = (rule, isSummary) => {
-    const processedRule = {
+const processHint = (hint, isSummary) => {
+    const processedHint = {
         /*
-         * For packages with multiple rules we have a summary
-         * file with how to install and links to all the rules.
+         * For packages with multiple hints we have a summary
+         * file with how to install and links to all the hints.
          * This property is used to not take into account in
-         * the rule index page total.
+         * the hint index page total.
          */
         isSummary: isSummary === true,
-        link: `/docs/user-guide/rules/${rule}/`,
-        name: rule.replace(/^rule-/, '')
+        link: `/docs/user-guide/hints/${hint}/`,
+        name: hint.replace(/^hint-/, '')
     };
 
-    return processedRule;
+    return processedHint;
 };
 
 /**
  * Process catogories to be suitable for Handlebars templating.
- * Before: { performance: ['rule-amp-validator'] }
+ * Before: { performance: ['hint-amp-validator'] }
  * After:
  * [{
  *      name: 'performance',
- *      rules: [{
- *          link: 'rule-amp-validator/',
+ *      hints: [{
+ *          link: 'hint-amp-validator/',
  *          name: 'amp-validator'
  *      }]
  * }]
  */
 const processCategories = (cats) => {
     const processedCategories = _.reduce(cats, (allCategories, category) => {
-        const includedRules = category.rules;
+        const includedHints = category.hints;
 
-        const singleRules = includedRules.filter((ruleName) => {
-            return !ruleName.includes('/');
+        const singleHints = includedHints.filter((hintName) => {
+            return !hintName.includes('/');
         });
 
         /*
-         * Rules with id: package-name/rule-name will be
-         * considered part of a package with multiple rules
+         * Hints with id: package-name/hint-name will be
+         * considered part of a package with multiple hints
          */
-        const multiRules = includedRules.filter((ruleName) => {
-            return ruleName.includes('/');
+        const multiHints = includedHints.filter((hintName) => {
+            return hintName.includes('/');
         });
 
         /*
-         * Group rules by package name.
+         * Group hints by package name.
          */
-        const packagesName = _.groupBy(multiRules, (ruleName) => {
-            return ruleName.split('/')[0];
+        const packagesName = _.groupBy(multiHints, (hintName) => {
+            return hintName.split('/')[0];
         });
 
-        const rules = _.map(singleRules, processRule);
+        const hints = _.map(singleHints, processHint);
 
-        const multiRulesProcessed = _.reduce(packagesName, (multi, values, key) => {
-            // Add an item with the link to the package with multiple rules itself.
-            const partial = processRule(key, true);
+        const multiHintsProcessed = _.reduce(packagesName, (multi, values, key) => {
+            // Add an item with the link to the package with multiple hints itself.
+            const partial = processHint(key, true);
 
             multi.push(partial);
 
-            // Add an item for each individual rule for a package with multiple rules.
-            return multi.concat(_.map(values, processRule));
+            // Add an item for each individual hint for a package with multiple hints.
+            return multi.concat(_.map(values, processHint));
         }, []);
 
         const processedCategory = {
             description: category.description,
-            link: `/docs/user-guide/rules/${category.normalizedName}/`,
+            hints: hints.concat(multiHintsProcessed),
+            link: `/docs/user-guide/hints/${category.normalizedName}/`,
             name: category.name,
-            normalizedName: category.normalizedName,
-            rules: rules.concat(multiRulesProcessed)
+            normalizedName: category.normalizedName
         };
 
         allCategories.push(processedCategory);
@@ -106,14 +106,14 @@ rm('-rf', `${DEST_DIR}/docs/contributor-guide`);
 rm('-rf', `${DEST_DIR}/docs/user-guide`);
 rm('-rf', `${DEST_DIR}/about`);
 
-cp('-R', `${PACKAGES_TMP_DIR}/sonarwhal/docs/contributor-guide`, `${DEST_DIR}/docs/contributor-guide`);
-cp('-R', `${PACKAGES_TMP_DIR}/sonarwhal/docs/user-guide`, `${DEST_DIR}/docs/user-guide`);
-cp('-R', `${PACKAGES_TMP_DIR}/sonarwhal/docs/about`, `${DEST_DIR}`);
-cp(`${PACKAGES_TMP_DIR}/sonarwhal/CHANGELOG.md`, `${DEST_DIR}/about`);
-cp('-R', `${PACKAGES_TMP_DIR}/rule-*/images`, `${DEST_DIR}/docs/user-guide/rules/images`);
+cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/contributor-guide`, `${DEST_DIR}/docs/contributor-guide`);
+cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/user-guide`, `${DEST_DIR}/docs/user-guide`);
+cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/about`, `${DEST_DIR}`);
+cp(`${PACKAGES_TMP_DIR}/hint/CHANGELOG.md`, `${DEST_DIR}/about`);
+cp('-R', `${PACKAGES_TMP_DIR}/hint-*/images`, `${DEST_DIR}/docs/user-guide/hints/images`);
 
-const ruleDocs = ls('-R', `${PACKAGES_TMP_DIR}/rule-*/{README.md,/docs/*.md}`);
-const rules = ls('-R', `${PACKAGES_TMP_DIR}/rule-*/src/!(index).ts`);
+const hintDocs = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/{README.md,/docs/*.md}`);
+const hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/!(index).ts`);
 
 // Create folder if not exist before writing file.
 // Reference: https://stackoverflow.com/a/16317628
@@ -124,57 +124,57 @@ const safeWriteFile = (dir, content) => {
     fs.writeFileSync(dir, content); // eslint-disable-line no-sync
 };
 
-// Get rule documentations.
-ruleDocs.forEach((ruleDocPath) => {
-    const ruleDocPathSplitted = ruleDocPath.split('/').reverse();
-    let ruleName;
+// Get hint documentations.
+hintDocs.forEach((hintDocPath) => {
+    const hintDocPathSplitted = hintDocPath.split('/').reverse();
+    let hintName;
 
-    if (ruleDocPathSplitted[1] === 'docs') {
-        ruleName = `${ruleDocPathSplitted[2]}/${ruleDocPathSplitted[0].replace('.md', '')}`;
+    if (hintDocPathSplitted[1] === 'docs') {
+        hintName = `${hintDocPathSplitted[2]}/${hintDocPathSplitted[0].replace('.md', '')}`;
 
-        mkdirp.sync(path.join(process.cwd(), DEST_RULES_DIR, path.dirname(ruleName)));
+        mkdirp.sync(path.join(process.cwd(), DEST_HINTS_DIR, path.dirname(hintName)));
     } else {
-        ruleName = ruleDocPathSplitted[1];
+        hintName = hintDocPathSplitted[1];
     }
 
-    const destRuleDocPath = `${DEST_RULES_DIR}/${ruleName}.md`;
+    const destHintDocPath = `${DEST_HINTS_DIR}/${hintName}.md`;
 
-    mv(ruleDocPath, destRuleDocPath);
+    mv(hintDocPath, destHintDocPath);
 });
 
-// Get category information of rules.
-rules.forEach((rulePath) => {
-    const ruleContent = fs.readFileSync(rulePath, 'utf8'); // eslint-disable-line no-sync
-    const ruleNameRegex = /id:\s*'([^']*)'/;
-    const ruleNameMatch = ruleContent.match(ruleNameRegex);
+// Get category information of hints.
+hints.forEach((hintPath) => {
+    const hintContent = fs.readFileSync(hintPath, 'utf8'); // eslint-disable-line no-sync
+    const hintNameRegex = /id:\s*'([^']*)'/;
+    const hintNameMatch = hintContent.match(hintNameRegex);
     const categoryRegex = /category:\s*Category\.([a-z]*)/;
-    const categoryMatch = ruleContent.match(categoryRegex);
+    const categoryMatch = hintContent.match(categoryRegex);
 
-    // If we don't find the category or the name, we will assume that it is not a rule.
-    if (categoryMatch && ruleNameMatch) {
+    // If we don't find the category or the name, we will assume that it is not a hint.
+    if (categoryMatch && hintNameMatch) {
         const category = categoryMatch.pop();
-        const ruleName = `rule-${ruleNameMatch.pop()}`;
+        const hintName = `hint-${hintNameMatch.pop()}`;
 
         if (categories[category]) {
-            categories[category].rules.push(ruleName);
+            categories[category].hints.push(hintName);
         } else {
             categories[category] = {
                 description: hexoConfig.categories[category].description,
+                hints: [hintName],
                 name: hexoConfig.categories[category].name,
-                normalizedName: category,
-                rules: [ruleName]
+                normalizedName: category
             };
         }
     }
 });
 
-// Generate JSON file that contains the category-rule information.
+// Generate JSON file that contains the category-hint information.
 const processedCategories = processCategories(categories);
 
 fs.writeFileSync(`${DATA_DIR}/categories.json`, JSON.stringify(processedCategories), 'utf8'); //eslint-disable-line no-sync
 
 processedCategories.categories.forEach((category) => {
-    safeWriteFile(`${DEST_RULES_DIR}/${category.name}/index.md`, `# ${category.name}${os.EOL}`);
+    safeWriteFile(`${DEST_HINTS_DIR}/${category.name}/index.md`, `# ${category.name}${os.EOL}`);
 });
 
 rm('-rf', TMP_DIR);

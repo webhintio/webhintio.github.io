@@ -46,7 +46,7 @@ const getPredefinedDescription = (filePath) => {
     return '';
 };
 
-/** Gets the description of a rule by extracting the first section before "Why is this important" */
+/** Gets the description of a hint by extracting the first section before "Why is this important" */
 const getDescription = (content) => {
     const descriptionRegex = /#\s.*\(.*\)([\s\S]*?)## Why is this important?/;
     // Extract the content between h1 title and  `## Why is this important?`.
@@ -172,8 +172,8 @@ const updateChangelog = async (content) => {
             // Line breaks in `0.1.0` can't be ignored after being parsed in `md2json`.
             // So `raw` needs to be processed to prevent unexpected line breaks.
             const raw = update.raw.split(new RegExp('-\\n-|([^.])\\n-')).join('');
-            const commitRegex = /- \[\[`[a-z0-9]+`\]\(https:\/\/github.com\/sonarwhal\/sonarwhal\/commit\/([a-z0-9]+)\)] - (.*)(?:\r?\n)*/g;
-            const associateCommitRegex = / \(see also: \[`#[0-9]+`\]\(https:\/\/github.com\/sonarwhal\/sonarwhal\/issues\/([0-9]+)\)\)/g;
+            const commitRegex = /- \[\[`[a-z0-9]+`\]\(https:\/\/github.com\/webhintio\/hint\/commit\/([a-z0-9]+)\)] - (.*)(?:\r?\n)*/g;
+            const associateCommitRegex = / \(see also: \[`#[0-9]+`\]\(https:\/\/github.com\/webhintio\/hint\/issues\/([0-9]+)\)\)/g;
 
             update.html = marked(raw);
             update.details = {}; // Changlog item details including `associatedCommitId` and `message`.

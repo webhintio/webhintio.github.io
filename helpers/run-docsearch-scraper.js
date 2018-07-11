@@ -23,7 +23,7 @@ checkEnvVar('DOC_SEARCH_KEY');
 
 /* eslint-disable camelcase */
 const DOC_SEARCH_CONFIGS = JSON.stringify({
-    index_name: 'sonarwhal',
+    index_name: 'webhint',
     min_indexed_level: 1,
     nb_hits: 459,
     nb_hits_max: 100000,
@@ -35,8 +35,8 @@ const DOC_SEARCH_CONFIGS = JSON.stringify({
         lvl4: '.module h4',
         text: '.module p'
     },
-    start_urls: ['https://sonarwhal.com/docs/'],
-    stop_urls: ['https://sonarwhal.com/docs/index.html']
+    start_urls: ['https://webhint.io/docs/'],
+    stop_urls: ['https://webhint.io/docs/index.html']
 });
 /* eslint-enable camelcase */
 

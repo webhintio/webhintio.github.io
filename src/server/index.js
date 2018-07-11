@@ -7,7 +7,7 @@ const handlebars = require('handlebars');
 const yaml = require('js-yaml');
 const appInsights = require('applicationinsights');
 const production = process.env.NODE_ENV === 'production'; // eslint-disable-line no-process-env
-const theme = production ? 'sonarwhal-theme-optimized' : 'sonarwhal-theme';
+const theme = production ? 'webhint-theme-optimized' : 'webhint-theme';
 
 const hexoDir = path.join(__dirname, '..');
 const rootPath = path.join(__dirname, '..', '..');

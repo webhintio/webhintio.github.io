@@ -9,9 +9,9 @@
   - id: contributor-guide
     link: /docs/contributor-guide/
     title: Contributor Guide
-  - id: rules
-    link: /docs/user-guide/rules/
-    title: Rules
+  - id: hints
+    link: /docs/user-guide/hints/
+    title: Hints
   - id: user-guide
     link: /docs/user-guide/
     title: User Guide

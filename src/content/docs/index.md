@@ -1,6 +1,6 @@
 ---
 category: "doc-index"
-description: "Learn how to use sonarwhal, what things it checks, and how you can create your own rules"
+description: "Learn how to use webhint, what things it checks, and how you can create your own hints"
 layout: "docs"
 originalFile: "docs/index.md"
 permalink: "docs/index.html"

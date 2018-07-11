@@ -5,7 +5,7 @@
 The website users [`Hexo`][hexo] to generate the static content and a
 `Node.js` backend to handle the dynamic parts. The template system is
 [`Handlebars`][handlebars] so sharing code between static and dynamic
-is easier. The template is under `/src/hexo/themes/sonarwhal/layout/`.
+is easier. The template is under `/src/webhint-theme/layout/`.
 
 If you are running the `node` backend locally (`/src/server/index.js`)
 all the requests will be handled by it, even the static ones. This is
@@ -38,7 +38,7 @@ const configureRoutes = (app) => {
 
 ## Site content and search
 
-Most of the site's content comes from the [`sonarwhal`][sonarwhal-repo] project and
+Most of the site's content comes from the [`webhint`][webhint-repo] project and
 its documentation. The markdown of that project is copied directly into
 the `/docs` folder. When the site is built, the markdown is transformed
 into `html` using a custom `hexo` template into the `/dist` folder,
@@ -46,12 +46,12 @@ among other static resources.
 
 The content of the live site is updated each time a change is made in the:
 
-* `sonarwhal.com` repository
-* `/docs` directory and/or to the `CHANGELOG.md` file from the `sonarwhal`
+* `webhint.io` repository
+* `/docs` directory and/or to the `CHANGELOG.md` file from the `webhint`
   repository
 
-To achieve the latter, `sonarwhal` has the [`trigger-site-update.sh`]
-[trigger-update] script that triggers a build on `sonarwhal.com` if the
+To achieve the latter, `webhint` has the [`trigger-site-update.sh`]
+[trigger-update] script that triggers a build on `webhint.io` if the
 previous conditions are met.
 
 The search on the website uses [Algolia][algolia]. The search index is
@@ -98,7 +98,7 @@ This is configured in the `web.config` file in the rules section:
 
 ### SSL Certificate
 
-[`sonarwhal.com`][sonarwhal] uses a [Let's Encrypt][letsencrypt]
+[`webhint.io`][webhint] uses a [Let's Encrypt][letsencrypt]
 certificate installed using [Let's Encrypt site extension][siteextension].
 It gets renewed automatically before it's expiration date. The [official
 installation guide][letsencrypt install] was used to configure everything.
@@ -119,7 +119,7 @@ Otherwise you will have to disable the `https` redirect.
 
 ### HTTPS only
 
-[`sonarwhal.com`][sonarwhal] is an `https` only website. The redirects
+[`webhint.io`][webhint] is an `https` only website. The redirects
 happens in the following `web.config` rule:
 
 ```xml
@@ -159,9 +159,9 @@ IIS manages the custom error page via the following entries in `web.config`:
 [hexo]: https://hexo.io
 [letsencrypt install]: https://github.com/sjkp/letsencrypt-siteextension/wiki/How-to-install
 [letsencrypt]: https://letsencrypt.org
-[site-update]: https://github.com/sonarwhal/sonarwhal.com/blob/272a59c150a6462d4047bdc63019c339fcfaead0/.travis/update-site.sh
+[site-update]: https://github.com/webhintio/webhint.io/blob/272a59c150a6462d4047bdc63019c339fcfaead0/.travis/update-site.sh
 [siteextenstion]: https://github.com/sjkp/letsencrypt-siteextension
-[sonarwhal]: https://sonarwhal.com
-[sonarwhal-repo]: https://github.com/sonarwhal/sonarwhal
-[travis]: https://travis-ci.org/sonarwhal/sonarwhal.com
-[trigger-update]: https://github.com/sonarwhal/sonarwhal/blob/0cfb1bb49c847eb4d5ed54691dbb88cb796694bf/.travis/trigger-site-update.sh
+[webhint]: https://webhint.io
+[webhint-repo]: https://github.com/webhintio/hint
+[travis]: https://travis-ci.org/webhint/webhint.io
+[trigger-update]: https://github.com/webhintio/hint/blob/0cfb1bb49c847eb4d5ed54691dbb88cb796694bf/.travis/trigger-site-update.sh
