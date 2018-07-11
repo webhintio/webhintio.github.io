@@ -1,12 +1,12 @@
-# sonarwhal website
+# webhint's website
 
 <!-- markdownlint-disable -->
-[![Build Status](https://travis-ci.org/sonarwhal/sonarwhal.com.svg?branch=master)](https://travis-ci.org/sonarwhal/sonarwhal.com) [![Greenkeeper badge](https://badges.greenkeeper.io/sonarwhal/sonarwhal.com.svg?ts=1493332136115)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/webhintio/webhint.io.svg?branch=master)](https://travis-ci.org/webhintio/webhint.io)
 <!-- markdownlint-enable -->
 
-This is the code for [sonarwhal's website](https://sonarwhal.com).
-Most of the documentation though is in the main
-[sonarwhal repo](https://github.com/sonarwhal/sonarwhal/tree/master/docs).
+This is the code for [webhint's website](https://webhint.io).
+Most of the documentation though is in the main [webhint
+repo](https://github.com/webhintio/hint).
 
 ## Getting started
 
@@ -16,7 +16,7 @@ features so please ensure you are using Node.js v8.x or higher.
 Clone the project:
 
 ``` bash
-git clone https://github.com/sonarwhal/sonarwhal.com.git
+git clone https://github.com/webhintio/hint.git
 ```
 
 Install dependencies:
