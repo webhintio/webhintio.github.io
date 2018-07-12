@@ -15,6 +15,6 @@ please report it in https://github.com/webhintio/hint.
    Share the url, OS version, browser version and steps to reproduce.
 
 3. If you have any questions, please stop by our chatroom:
-   https://gitter.im/sonarwhal/Lobby
+   https://gitter.im/webhintio/Lobby
 
 -->
