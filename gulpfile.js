@@ -11,11 +11,13 @@ const imageExtensions = 'gif,ico,jpg,png,svg';
 const dirs = {
     dist: 'dist',
     distCompreseable: 'dist/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}',
+    hint: 'node_modules/@hint',
     originalContent: `src/content`,
     src: 'src/webhint-theme',
     tmp: 'src/webhint-theme-optimized',
     tmpContent: 'src/content-replaced',
-    tmpImages: `src/webhint-theme-optimized/**/*.{${imageExtensions}}`
+    tmpImages: `src/webhint-theme-optimized/**/*.{${imageExtensions}}`,
+    tmpScanImages: `src/webhint-theme-optimized/source/images/scan/*.*`
 };
 
 // ---------------------------------------------------------------------
@@ -23,7 +25,11 @@ const dirs = {
 // ---------------------------------------------------------------------
 
 gulp.task('clean:before', (done) => {
-    shelljs.rm('-rf', dirs.dist, dirs.tmp, dirs.tmpContent);
+    shelljs.rm('-rf',
+        dirs.dist,
+        dirs.tmp,
+        dirs.tmpContent,
+        `${dirs.src}/formatter`);
 
     done();
 });
@@ -46,6 +52,12 @@ gulp.task('clean:after', (done) => {
         `${dirs.tmp}/source/partials`,
         `${dirs.tmp}/static`
     );
+
+    done();
+});
+
+gulp.task('copy:formatter', (done) => {
+    shelljs.cp('-r', `${dirs.hint}/formatter-html`, `${dirs.src}/formatter`);
 
     done();
 });
@@ -101,25 +113,37 @@ gulp.task('optimize:css', () => {
         .pipe(gulp.dest(dirs.tmp));
 });
 
-gulp.task('precompile', (cb) => {
-    const precompile = require('./helpers/precompile-hbs');
+gulp.task('compile-utils', () => {
+    return gulp.src(`${dirs.src}/source/js/partials/utils.ts`)
+        .pipe(plugins.typescript({ lib: ['dom', 'es2015', 'es5'], module: 'commonjs', removeComments: true, target: 'es5' }))
+        .pipe(gulp.dest(`${dirs.src}/source/js/partials/`));
+});
 
-    precompile(dirs.tmp, 'source/js/partials', ['scan-result-item', 'category-pass-message', 'scan-error-message']);
+gulp.task('clean:utils-ts', (done) => {
+    shelljs.rm(`${dirs.src}/source/js/partials/utils.ts`);
+
+    done();
+});
+
+gulp.task('precompile', (cb) => {
+    const precompile = require('./helpers/precompile-ejs');
+
+    precompile(dirs.src, 'source/js/partials', ['scan-result-item', 'category-pass-message', 'scan-error-message']);
     cb();
 });
 
 gulp.task('useref', () => {
-    return gulp.src(`${dirs.tmp}/layout/**/*.hbs`)
+    return gulp.src(`${dirs.tmp}/layout/**/*.ejs`)
         .pipe(plugins.useref({
             base: `${dirs.tmp}/source/`,
             searchPath: `${dirs.tmp}/source/`
         }))
-        .pipe(plugins.if('*.hbs', gulp.dest(`${dirs.tmp}/layout`)))
-        .pipe(plugins.if('!*.hbs', gulp.dest(`${dirs.tmp}/source`)));
+        .pipe(plugins.if('*.ejs', gulp.dest(`${dirs.tmp}/layout`)))
+        .pipe(plugins.if('!*.ejs', gulp.dest(`${dirs.tmp}/source`)));
 });
 
 gulp.task('revfiles', () => {
-    return gulp.src([`${dirs.tmp}/source/**/*`, `!**/*.json`, `!**/*.yml`, `!**/sw-reg.js`, `!**/*.webmanifest`])
+    return gulp.src([`${dirs.tmp}/source/**/*`, `!${dirs.tmp}/source/**/*.json`, `!**/*.yml`, `!**/sw-reg.js`, `!**/*.webmanifest`])
         .pipe(plugins.rev())
         .pipe(plugins.revDeleteOriginal())
         .pipe(gulp.dest(`${dirs.tmp}/source`))
@@ -145,41 +169,36 @@ gulp.task('revreplace:content', () => {
 gulp.task('revreplace:theme', () => {
     const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
 
-    return gulp.src(`${dirs.tmp}/**/*`)
+    return gulp.src([`${dirs.tmp}/**/*`, `!${dirs.tmp}/template/**/*`])
         .pipe(plugins.revReplace({
             manifest,
             modifyUnreved: (unrevedPath) => {
                 return unrevedPath.replace('static/images/', 'images/');
             },
-            replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml', '.webmanifest']
+            replaceInExtensions: ['.css', '.js', '.json', '.html', '.yml', '.webmanifest', '.ejs']
         }))
         .pipe(gulp.dest(dirs.tmp));
 });
 
+gulp.task('revreplace:formatter', () => {
+    const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
+
+    return gulp.src(`${dirs.tmp}/formatter/dist/src/configs/*`)
+        .pipe(plugins.revReplace({
+            manifest,
+            modifyUnreved: (unrevedPath) => {
+                return unrevedPath.replace('static/images/', 'images/');
+            },
+            replaceInExtensions: ['.json']
+        }))
+        .pipe(gulp.dest(`${dirs.tmp}/formatter/dist/src/configs/`));
+});
+
 gulp.task('optimize:templates', () => {
-    /*
-        Because we are optimizing handlebars templates and not html,
-        we can find things like `{{#if something}}true{{else}}false{{/if}}`
-        that can cause problems with `html-minifier`.
-        With this `RegExp` we try to capture all the valid handlebars blocks:
-        `{{#`, `{{`, and combinations of these inside (like
-
-        ```hbs
-        <ul>
-          {{#each items}}
-          <li aria-selected="{{#if something}}true{{else}}false{{/if}}">{{this}}</li>
-          {{/each}}
-        </ul>
-        ```
-    */
-    const handlebarsRegex = [[/\{\{#[^}]+\}\}/, /\{\{\/[^}]+\}\}/], [/\{\{#[^}]+\}\}\{\{#[^}]+\}\}/, /\{\{\/[^}]+\}\}\{\{\/[^}]+\}\}/], [/\{\{\w[^}]+\}\}/, /\{\{\/\w[^}]+\}\}/]];
-
     const htmlminOptions = {
         caseSensitive: true, // need it because handlebar helpers are case sensitive
         collapseBooleanAttributes: false,
         collapseWhitespace: true,
-        customAttrAssign: handlebarsRegex,
-        customAttrSurround: handlebarsRegex,
         minifyCSS: true,
         minifyJS: true,
         preserveLineBreak: true,
@@ -191,7 +210,7 @@ gulp.task('optimize:templates', () => {
         removeRedundantAttributes: false
     };
 
-    return gulp.src(`${dirs.tmp}/**/*.hbs`)
+    return gulp.src([`${dirs.tmp}/**/*.ejs`, `!${dirs.tmp}/formatter/**/*`])
         .pipe(plugins.htmlmin(htmlminOptions))
         .pipe(gulp.dest(dirs.tmp));
 });
@@ -208,13 +227,19 @@ gulp.task('imagemin', () => {
 });
 
 const moveImages = () => {
-    return gulp.src(dirs.tmpImages)
+    return gulp.src([dirs.tmpImages, `!${dirs.tmpScanImages}`])
         .pipe(plugins.flatten())
         .pipe(gulp.dest(`${dirs.tmp}/source/static/images`));
 };
 
+const moveScanImages = () => {
+    return gulp.src(dirs.tmpScanImages)
+        .pipe(gulp.dest(`${dirs.tmp}/source/static/images/scan`));
+};
+
 gulp.task('move:images', moveImages);
-gulp.task('optimize:images', gulp.series('move:docimage', 'imagemin', 'move:images'));
+gulp.task('move:scanimages', moveScanImages);
+gulp.task('optimize:images', gulp.series('move:docimage', 'imagemin', 'move:images', 'move:scanimages'));
 
 gulp.task('404', (done) => {
     const lostContent = fs.readFileSync(`${dirs.dist}/404/index.html`, 'utf-8'); // eslint-disable-line no-sync
@@ -289,15 +314,18 @@ const replaceSRI = (content) => {
 gulp.task('add-sri', () => {
     sriList = JSON.parse(fs.readFileSync(path.join(__dirname, dirs.tmp, 'sri.json'), 'utf8')); //eslint-disable-line no-sync
 
-    return gulp.src(`${dirs.tmp}/**/*.hbs`)
+    return gulp.src(`${dirs.tmp}/**/*.ejs`)
         .pipe(plugins.transform('utf8', replaceSRI))
         .pipe(gulp.dest(dirs.tmp));
 });
 
 gulp.task('build', gulp.series(
     'clean:before',
-    'copy:theme',
+    'copy:formatter',
+    'compile-utils',
+    'clean:utils-ts',
     'precompile',
+    'copy:theme',
     'optimize:images',
     'useref',
     'optimize:templates',
@@ -307,6 +335,7 @@ gulp.task('build', gulp.series(
     'move:helpers',
     'clean:after',
     'revfiles',
+    'revreplace:formatter',
     'revreplace:content',
     'revreplace:theme',
     'sri',

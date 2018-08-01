@@ -1,13 +1,12 @@
 {
   "dependencies": {
+    "@hint/formatter-html": "^1.0.1",
     "algoliasearch": "^3.30.0",
     "applicationinsights": "^1.0.3",
     "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-    "handlebars": "^4.0.11",
-    "globby": "^8.0.1",
-    "js-yaml": "^3.12.0",
+    "hint": "^3.1.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "request": "^2.88.0",
@@ -16,7 +15,6 @@
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
     "cross-env": "^5.2.0",
-    "del": "^3.0.0",
     "eslint": "^5.3.0",
     "gulp": "^4.0.0",
     "gulp-brotli": "^1.2.1",
@@ -37,6 +35,7 @@
     "gulp-server-livereload": "^1.9.2",
     "gulp-sri": "^0.3.1",
     "gulp-transform": "^3.0.5",
+    "gulp-typescript": "^5.0.0-alpha.3",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "^3.1.5",
     "gulp-zopfli": "^1.0.0",
@@ -64,7 +63,8 @@
     "remove-markdown": "^0.3.0",
     "shelljs": "^0.8.2",
     "stylelint": "^9.4.0",
-    "sw-precache": "^5.2.1"
+    "sw-precache": "^5.2.1",
+    "typescript": "^3.0.1"
   },
   "hexo": {
     "version": "3.7.1"
@@ -77,11 +77,11 @@
     "gulp": "gulp",
     "hexo:clean": "hexo clean",
     "lint": "npm-run-all lint:*",
-    "lint:browser": "eslint src/webhint-theme/source/**/*.js",
-    "lint:js": "npm run lint:node && npm run lint:browser",
+    "lint:js": "npm run lint-node && npm run lint-browser",
     "lint:md": "markdownlint README.md ./src/hexo/source",
-    "lint:node": "eslint {helpers,src/**}/*.js",
-    "lint:styles": "stylelint src/webhint-theme/**/*.css --config .stylelintrc",
+    "lint:styles": "stylelint src/webhint-theme/**/*.css --config .stylelintrc --ignore-pattern src/webhint-theme/formatter/**/*",
+    "lint-browser": "eslint src/webhint-theme/source/**/*.js --ignore-pattern src/webhint-theme/source/js/partials/**/*.js --ignore-pattern src/webhint-theme/source/js/scan/**/*.js",
+    "lint-node": "eslint {helpers,src/webhint-theme/helper/**,src/webhint-theme/scripts/**,src/server/**}/*.js",
     "start": "node src/server/index.js",
     "swap": ".travis/swap.sh && .travis/update-docs.sh",
     "watch": "gulp watch",

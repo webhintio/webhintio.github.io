@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>webhint, the hinting engine for web best practices</title>
+    <%- include('partials/metas', { page }); %>
+
+    <%- include('partials/styles'); %>
+    <!-- build:css /static/styles/home.css -->
+    <link rel="stylesheet" href="/core/css/home.css">
+    <!-- endbuild -->
+</head>
+
+<body>
+    <%- include('partials/gdpr') %>
+
+    <%- include('partials/header', { navs: site.data.menu }); %>
+    <%- include('partials/home'); %>
+    <%- include('partials/footer', { navs: site.data.menu }); %>
+
+    <%- include('partials/scripts', { theme }); %>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<main class="container">
+    <article class="content" aria-labelledby="page-heading">
+        <nav class="container breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li>Search</li>
+            </ul>
+        </nav>
+        <section class="section">
+            <%- include('search-form', { query }); %>
+
+            <div class="layout layout--sidebar--alt">
+                <div class="module module--primary">
+                    <% if (hits.length) { %>
+                    <ul class="bare">
+                        <% hits.forEach((hit) => { %>
+                        <li class="search-result wrap-text">
+                            <div class="search-result__main">
+                                <p class="search-result__guide caption">
+                                    <%- hit.category %>
+                                    <span> : </span>
+                                    <%- hit.title %>
+                                </p>
+                                <a href="<%= hit.url %>" class="subtitle search-result__title">
+                                    <% if (hit.subtitle) { %>
+                                        <%- hit.subtitle %>
+                                    <% } else { %>
+                                        <%- hit.title %>
+                                    <% } %>
+                                </a>
+                                <p class="search-result__description"><%- hit.snippet %></p>
+                            </div>
+                        </li>
+                        <% }); %>
+                    </ul>
+                    <div id="pagintion-wrapper">
+                        <nav class="pagination" aria-label="pagination" data-pattern="/">
+                            <%- include('pagination', { currentPage, totalPages}); %>
+                        </nav>
+                    </div>
+                    <% } else if (query) { %>
+                        <p class="subtitle">No results found for <%= query %></p>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>

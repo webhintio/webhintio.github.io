@@ -1,0 +1,12 @@
+<div class="subtitle category-description">
+    <p class="subtitle"><%= category.description %></p>
+</div>
+<div class="layout">
+    <div class="module">
+       <ul>
+            <% category.hints.forEach((hint) => { %>
+            <li><a href="<%= hint.link %>"><code><%= hint.name %></code></a></li>
+            <% }); %>
+        </ul>
+    </div>
+</div>

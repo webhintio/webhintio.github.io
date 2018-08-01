@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Changelog v<%= page.title %> | webhint</title>
+    <%- include('partials/metas', { page }); %>
+
+    <%- include('partials/styles'); %>
+</head>
+
+<body>
+    <%- include('partials/gdpr') %>
+    <%- include('partials/header', { navs: site.data.menu }); %>
+    <%- include('partials/changelog-content', { page }); %>
+    <%- include('partials/footer', { navs: site.data.menu }); %>
+    <%- include('partials/scripts', { theme }); %>
+</body>
+</html>

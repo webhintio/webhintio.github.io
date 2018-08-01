@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <% if (page.category === 'doc-index') { %>
+        <title><%= page.title %> | webhint </title>
+    <% } else { %>
+        <title><%= page.title %> | webhint documentation</title>
+    <% } %>
+
+    <%- include('partials/metas', { page }); %>
+
+    <%- include('partials/styles'); %>
+
+    <!-- build:css /static/styles/docs.css -->
+    <link rel="stylesheet" href="/core/css/code.css">
+    <link rel="stylesheet" href="/core/css/table-of-contents.css">
+    <link rel="stylesheet" href="/core/css/tables-lists.css">
+    <link rel="stylesheet" href="/components/treeview/treeview.css">
+    <link rel="stylesheet" href="/components/anchor-top/anchor-top.css">
+    <link rel="stylesheet" href="/components/placement/placement.css">
+    <link rel="stylesheet" href="/core/css/documentation.css">
+    <!-- endbuild -->
+</head>
+
+<body>
+    <%- include('partials/gdpr') %>
+    <%- include('partials/header', { navs: site.data.menu }); %>
+    <main class="container">
+        <% if (page.category === 'doc-index') { %>
+            <%- include('partials/doc-index'); %>
+        <% } else if (page.category === 'contributor-guide') { %>
+            <%- include('partials/sub-page', { pages: utils.sortPagesByCategory(site.pages.data, 'contributor-guide') }); %>
+        <% } else if (page.category === 'user-guide') { %>
+            <%- include('partials/sub-page', { pages: utils.sortPagesByCategory(site.pages.data, 'user-guide') }); %>
+        <% } %>
+    </main>
+
+    <%- include('partials/footer', { navs: site.data.menu }); %>
+
+    <!-- build:js /static/scripts/treeview.js -->
+    <script async src="/js/details-polyfill.js"></script>
+    <script async src="/components/treeview/treeview.js"></script>
+    <script async src="/components/anchor-top/anchor-top.js"></script>
+    <!-- endbuild -->
+    <%- include('partials/scripts', { theme }); %>
+</body>
+</html>

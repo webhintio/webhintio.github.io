@@ -1,0 +1,15 @@
+<%- include('scan-queue', { result, showQueue }) %>
+<div class="scan-result-bg-wrap" <% if (showQueue) { %>style="display:none"<% } %>>
+    <main>
+        <article class="content" aria-labelledby="page-heading">
+            <nav class="container breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/scanner/">Scanner</a></li>
+                    <li>Results</li>
+                </ul>
+            </nav>
+            <%- include('scan/scan-result', { result, utils }) %>
+        </article>
+    </main>
+</div>
