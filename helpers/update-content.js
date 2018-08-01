@@ -11,8 +11,14 @@ const yamlLoader = require('js-yaml');
 const configDir = path.resolve(__dirname, '..', '_config.yml');
 const hexoConfig = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
 
-const CLONE_URL = 'https://github.com/webhintio/hint.git'; // eslint-disable-line no-process-env
+const CLONE_URL = 'https://github.com/webhintio/hint.git';
 const DEST_DIR = 'src/content';
+const SCAN_TEMPLATES = 'src/webhint-theme/layout/partials/scan';
+const SCAN_PARTIALS = 'src/webhint-theme/source/js/partials';
+const SCAN_SCRIPTS = 'src/webhint-theme/source/js/scan';
+const SCAN_IMAGES = 'src/webhint-theme/source/images/scan';
+const SCAN_STYLES = 'src/webhint-theme/source/core/css/scan';
+
 const DEST_HINTS_DIR = `${DEST_DIR}/docs/user-guide/hints`;
 const DATA_DIR = `${DEST_DIR}/_data`;
 const TMP_DIR = require('./mktemp')();
@@ -100,17 +106,28 @@ const processCategories = (cats) => {
 
 config.fatal = true;
 
-exec(`git clone ${CLONE_URL}  "${TMP_DIR}"`);
+exec(`git clone ${CLONE_URL} "${TMP_DIR}"`);
 
 rm('-rf', `${DEST_DIR}/docs/contributor-guide`);
 rm('-rf', `${DEST_DIR}/docs/user-guide`);
 rm('-rf', `${DEST_DIR}/about`);
+rm('-rf', `${SCAN_TEMPLATES}`);
+rm('-rf', `${SCAN_PARTIALS}`);
+rm('-rf', `${SCAN_IMAGES}`);
+rm('-rf', `${SCAN_STYLES}`);
+rm('-rf', `${SCAN_SCRIPTS}`);
 
 cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/contributor-guide`, `${DEST_DIR}/docs/contributor-guide`);
 cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/user-guide`, `${DEST_DIR}/docs/user-guide`);
 cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/about`, `${DEST_DIR}`);
 cp(`${PACKAGES_TMP_DIR}/hint/CHANGELOG.md`, `${DEST_DIR}/about`);
 cp('-R', `${PACKAGES_TMP_DIR}/hint-*/images`, `${DEST_DIR}/docs/user-guide/hints/images`);
+cp('-R', `${PACKAGES_TMP_DIR}/formatter-html/src/views/partials`, `${SCAN_TEMPLATES}`);
+cp('-R', `${PACKAGES_TMP_DIR}/formatter-html/src/assets/images/scan`, `${SCAN_IMAGES}`);
+cp('-R', `${PACKAGES_TMP_DIR}/formatter-html/src/assets/styles/scan`, `${SCAN_STYLES}`);
+cp('-R', `${PACKAGES_TMP_DIR}/formatter-html/src/assets/js/scan`, `${SCAN_SCRIPTS}`);
+mkdirp(SCAN_PARTIALS);
+cp(`${PACKAGES_TMP_DIR}/formatter-html/src/utils.ts`, `${SCAN_PARTIALS}/utils.ts`);
 
 const hintDocs = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/{README.md,/docs/*.md}`);
 const hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/!(index).ts`);
@@ -123,6 +140,17 @@ const safeWriteFile = (dir, content) => {
     mkdirp.sync(folderPath);
     fs.writeFileSync(dir, content); // eslint-disable-line no-sync
 };
+
+// Update references in scan-result.css
+const scanResultPath = path.join(SCAN_STYLES, 'scan-results.css');
+const cssContent = fs.readFileSync(scanResultPath, 'utf-8'); // eslint-disable-line no-sync
+const newCSSContent = cssContent.replace(/url\("([^"]*)"\)/gi, (matchString, matchGroup) => {
+    const newContent = matchGroup.substr(matchGroup.indexOf('/images'));
+
+    return matchString.replace(matchGroup, newContent);
+});
+
+safeWriteFile(scanResultPath, newCSSContent);
 
 // Get hint documentations.
 hintDocs.forEach((hintDocPath) => {

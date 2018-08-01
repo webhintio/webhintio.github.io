@@ -13,3 +13,8 @@ src/content/docs/user-guide/
 src/webhint-theme-optimized/
 src/content-replaced
 Thumbs.db
+src/webhint-theme/layout/partials/scan
+src/webhint-theme/source/js/partials
+src/webhint-theme/source/js/scan
+src/webhint-theme/source/core/css/scan
+src/webhint-theme/source/images/scan

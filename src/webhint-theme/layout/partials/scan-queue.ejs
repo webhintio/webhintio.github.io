@@ -1,4 +1,4 @@
-<div class="scan-queue-bg-wrap" {{#unless showQueue}}style="display:none"{{/unless}}>
+<div class="scan-queue-bg-wrap" <% if (!showQueue) { %>style="display:none"<% } %>>
     <main>
         <article class="container" aria-labelledby="page-heading">
             <nav class="container breadcrumb" aria-label="breadcrumbs">
@@ -18,7 +18,7 @@
                         <p>You can check back later using the permalink below. This is your unique scan result URL so you can return to your results page at any time.</p>
                         <div class="scan-queue__permalink">
                             <p class="uppercase-text">Permalink</p>
-                            <a href="{{permalink}}">{{permalink}}</a>
+                            <a href="<%= result.permalink %>"><%= result.permalink %></a>
                         </div>
                         <div class="scan-queue__push-notifications" hidden>
                             <p>You can also enable webhint push notifications to alert you when the scan is complete and your results are ready for viewing.</p>

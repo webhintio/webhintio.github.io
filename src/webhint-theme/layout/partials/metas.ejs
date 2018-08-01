@@ -1,0 +1,25 @@
+<meta property="og:image" content="<% if (page.image) { %><%= page.image %><% } else { %>/images/apple-touch-icon.png<% } %>" />
+<meta property="og:description" content="<% if (page.description) { %><%= page.description %><% } else { %>webhint, a linting tool for the web focused on best practices and flexibility for the end user<% } %>" />
+<meta property="og:title" content="{{page.title}}" />
+
+<meta name="description" content="<% if (page.description) { %><%= page.description %><% } else { %>webhint, a linting tool for the web focused on best practices and flexibility for the end user<% } %>">
+<meta name="viewport" content="width=device-width">
+
+<meta name="theme-color" content="#4046dd">
+<link rel="manifest" href="/static/site.webmanifest">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link type="application/opensearchdescription+xml" rel="search" href="/static/opensearch.xml" title="webhint">
+
+<% if (result && result.status) { %>
+    <% if (result.status === 'error' || result.errors !== 0 || result.warnings !== 0) { %>
+        <link rel="icon" href="/images/favicon_failed.ico">
+    <% } else if (result.status === 'finished') { %>
+        <link rel="icon" href="/images/favicon_passed.ico">
+    <% } else { %>
+        <link rel="icon" href="/images/favicon_pending.ico">
+    <% } %>
+<% } else { %>
+    <link rel="icon" href="/images/favicon.ico">
+<% } %>
+

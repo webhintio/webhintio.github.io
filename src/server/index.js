@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const exphbs = require('express-handlebars');
+const consolidate = require('consolidate');
 const express = require('express');
 const handlebars = require('handlebars');
 const yaml = require('js-yaml');
@@ -60,6 +61,7 @@ const createServer = () => {
     });
 
     app.engine('hbs', hbs.engine);
+    app.engine('ejs', consolidate.ejs);
     app.set('view engine', 'hbs');
     app.set('themeDir', themeDir);
 

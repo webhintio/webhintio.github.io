@@ -1,43 +1,22 @@
 const _ = require('lodash');
-const fs = require('fs');
 const moment = require('moment');
-const path = require('path');
 const promisify = require('util').promisify;
 const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}` } }); // eslint-disable-line no-process-env
 const request = promisify(r);
-const yaml = require('js-yaml');
 const urlAudiences = process.env.WEBSITE_DOMAIN; // eslint-disable-line no-process-env
+const HTMLFormatter = require('@hint/formatter-html').default;
+const formatterUtils = require('@hint/formatter-html/dist/src/utils');
+const formatter = new HTMLFormatter();
 const webhintUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
-let thirdPartyServiceConfig; // eslint-disable-line no-sync
-const layout = 'scan';
+
 const jobStatus = {
     error: 'error',
     finished: 'finished',
     pending: 'pending',
     started: 'started',
     warning: 'warning'
-};
-const hintStatus = {
-    error: 'error',
-    pass: 'pass',
-    pending: 'pending',
-    warning: 'warning'
-};
-
-const noDocHints = ['optimize-image'];
-
-const pad = (timeString) => {
-    return timeString && timeString.length === 1 ? `0${timeString}` : timeString;
-};
-
-const calculateTimeDifference = (start, end) => {
-    const duration = moment.duration(moment(end).diff(moment(start)));
-    const minutes = pad(`${duration.get('minutes')}`);
-    const seconds = pad(`${duration.get('seconds')}`);
-
-    return `${minutes}:${seconds}`;
 };
 
 const sendRequest = (url) => {
@@ -75,101 +54,55 @@ const queryResult = async (id, tries) => {
     return response;
 };
 
-const updateLink = (thirdPartyInfo, scanUrl) => {
-    if (!thirdPartyInfo.link) {
-        return thirdPartyInfo;
-    }
-
-    const thirdPartyInfoCopy = Object.assign({}, thirdPartyInfo);
-
-    thirdPartyInfoCopy.link = thirdPartyInfo.link.replace(/%URL%/, scanUrl);
-
-    return thirdPartyInfoCopy;
-};
-
-const parseCategories = (hints, scanUrl) => {
-    let categories = [];
-
-    hints.forEach((hint) => {
-        let category = _.find(categories, (cat) => {
-            return cat.name === hint.category;
-        });
-
-        if (!category) {
-            category = {
-                hints: [],
-                name: hint.category,
-                results: null
-            };
-
-            categories.push(category);
-        }
-
-        const thirdPartyInfo = thirdPartyServiceConfig[hint.name];
-
-        if (thirdPartyInfo) {
-            hint.thirdParty = updateLink(thirdPartyInfo, scanUrl);
-        }
-
-        hint.hasDoc = !noDocHints.includes(hint.name);
-
-        category.hints.push(hint);
-
-        if (hint.status !== hintStatus.pending) {
-            // Passed hints are included in the results.
-            if (!category.results) {
-                category.results = [];
-            }
-
-            category.results.push(hint);
-        }
-    });
-
-    categories = _.sortBy(categories, (category) => {
-        return category.name;
-    });
-
-    return categories;
-};
-
 /** Process scanning result to add category and statistics information */
-const processHintResults = (hintResults, scanUrl, images) => {
-    const overallStatistics = {
-        errors: 0,
-        warnings: 0
-    };
-
-    const categories = parseCategories(hintResults, scanUrl);
-
-    // Caculate numbers of `errors` and `warnings`.
-    _.forEach(categories, (category) => {
-        const statistics = _.reduce(category.results || [], (count, hint) => {
-            if (hint && hint.status === hintStatus.error) {
-                count.errors += hint.messages.length;
-                overallStatistics.errors += hint.messages.length;
+const processHintResults = async (scanResult) => {
+    const hints = scanResult.hints || scanResult.rules;
+    const messages = hints.reduce((total, hint) => {
+        return total.concat(hint.messages.map((message) => {
+            // Make it compatible with the old version.
+            if (!message.hintId) {
+                message.hintId = message.ruleId;
             }
 
-            if (hint && hint.status === hintStatus.warning) {
-                count.warnings += hint.messages.length;
-                overallStatistics.warnings += hint.messages.length;
-            }
+            message.category = hint.category;
 
-            return count;
-        }, { errors: 0, warnings: 0 });
+            return message;
+        }));
+    }, []);
 
-        category.statistics = statistics;
-        category.image = images[category.name];
+    const scanEnd = (scanResult.status === jobStatus.finished || scanResult.status === jobStatus.error) ? scanResult.finished : void 0;
+    const scanTime = moment.duration(moment(scanEnd).diff(moment(scanResult.started)));
+
+    const result = await formatter.format(messages, scanResult.url, {
+        isScanner: true,
+        noGenerateFiles: true,
+        scanTime,
+        status: scanResult.status,
+        version: scanResult.sonarVersion
     });
 
-    return { categories, overallStatistics };
+    /*
+     * Formatter always returns hint status equal to `finished`
+     * We need to assign the real status
+     */
+    hints.forEach((hint) => {
+        const resultCategory = result.getCategoryByName(hint.category);
+        let resultHint = resultCategory.getHintByName(hint.name);
+
+        if (!resultHint) {
+            resultHint = resultCategory.addHint(hint.name);
+        }
+
+        resultHint.status = hint.status;
+    });
+
+    result.id = scanResult.id;
+    result.permalink = `${webhintUrl}scanner/${scanResult.id}`;
+
+    return result;
 };
 
 const configure = (app, appInsightsClient) => {
-    const thirdPartyServiceConfigPath = path.join(app.get('themeDir'), 'source', 'static', 'third-party-service-config.yml');
-    const categoryImages = JSON.parse(fs.readFileSync(path.join(app.get('themeDir'), 'source', 'static', 'category-images.json'))); // eslint-disable-line no-sync
-
-    thirdPartyServiceConfig = yaml.safeLoad(fs.readFileSync(thirdPartyServiceConfigPath, 'utf8')); // eslint-disable-line no-sync
-
     const reportJobEvent = (scanResult) => {
         if (scanResult.status === jobStatus.started || scanResult.status === jobStatus.pending) {
             return;
@@ -209,12 +142,12 @@ const configure = (app, appInsightsClient) => {
             if (req.method === 'GET') {
                 appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
             }
-            res.render('scan-form', {
-                layout,
+            res.render('scan.ejs', {
                 page: {
                     description: `Analyze any public website using webhint's online tool`,
                     title: `webhint's online scanner`
-                }
+                },
+                result: null
             });
         };
     }
@@ -238,15 +171,9 @@ const configure = (app, appInsightsClient) => {
 
         reportJobEvent(scanResult);
 
-        const { categories, overallStatistics } = processHintResults(scanResult.hints || scanResult.rules, scanResult.url, categoryImages);
+        const result = await processHintResults(scanResult);
 
-        return res.send({
-            categories,
-            overallStatistics,
-            status: scanResult.status,
-            time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
-            version: scanResult.webhintVersion || scanResult.sonarVersion
-        });
+        return res.send({ result });
     });
 
     app.get('/scanner/:id', async (req, res) => {
@@ -267,27 +194,23 @@ const configure = (app, appInsightsClient) => {
             });
         }
 
-        const { categories, overallStatistics } = processHintResults(scanResult.hints || scanResult.rules, scanResult.url, categoryImages);
-        const renderOptions = {
-            categories,
-            id: scanResult.id,
-            isFinish: scanResult.status === jobStatus.error || scanResult.status === jobStatus.finished,
-            layout,
-            overallStatistics,
-            page: {
-                description: `webhint has identified ${overallStatistics.errors} errors and ${overallStatistics.warnings} warnings in ${scanResult.url}`,
-                title: `webhint report for ${scanResult.url}`
-            },
-            permalink: `${webhintUrl}scanner/${scanResult.id}`,
-            showQueue: false,
-            status: scanResult.status,
-            time: calculateTimeDifference(scanResult.started, (scanResult.status === jobStatus.finished || scanResult.status === jobStatus.error) ? scanResult.finished : void 0),
-            url: scanResult.url,
-            version: scanResult.webhintVersion || scanResult.sonarVersion
-        };
+        try {
+            const result = await processHintResults(scanResult);
+            const renderOptions = {
+                page: {
+                    description: `webhint has identified ${result.errors} errors and ${result.warnings} warnings in ${result.url}`,
+                    title: `webhint report for ${result.url}`
+                },
+                result,
+                showQueue: false,
+                utils: formatterUtils
+            };
 
-        res.set('Cache-Control', 'max-age=180');
-        res.render('scan-result', renderOptions);
+            res.set('Cache-Control', 'max-age=180');
+            res.render('scan.ejs', renderOptions);
+        } catch (err) {
+            res.send(err);
+        }
     });
 
     const getJobConfig = async (req, res) => {
@@ -335,32 +258,25 @@ const configure = (app, appInsightsClient) => {
                 return res.render('scan-error');
             }
 
-            const id = requestResult.id;
-            const status = requestResult.status;
             const messagesInQueue = requestResult.messagesInQueue;
-            const { categories, overallStatistics } = processHintResults(requestResult.hints || requestResult.rules, req.body.url, categoryImages);
+            const result = await processHintResults(requestResult);
 
             appInsightsClient.trackEvent({
                 name: 'scanJobCreated',
                 properties: {
-                    id,
-                    url: req.body.url
+                    id: result.id,
+                    url: result.url
                 }
             });
 
-            return res.render('scan-result', {
-                categories,
-                id: requestResult.id,
-                layout,
-                overallStatistics,
+            return res.render('scan.ejs', {
                 page: {
                     description: `scan result of ${requestResult.url}`,
                     title: `webhint report for ${requestResult.url}`
                 },
-                permalink: `${webhintUrl}scanner/${id}`,
-                showQueue: messagesInQueue || (status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
-                status,
-                url: req.body.url
+                result,
+                showQueue: messagesInQueue || (result.status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
+                utils: formatterUtils
             });
         };
     }

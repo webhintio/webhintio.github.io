@@ -1,4 +1,4 @@
-/* global Handlebars, hljs */
+/* global ejsPartials, hljs */
 
 (function () {
     // String interpolation is not supported by 'hexo-filter-cleanup'.
@@ -32,8 +32,6 @@
     var resultBlock = document.querySelector('.scan-result-bg-wrap');
     /** Id of the timer timeout. */
     var timer;
-    /** Total number of errors and warnings. */
-    var overallStatistics;
 
     var xhr = function (options) {
         var http = new XMLHttpRequest();
@@ -65,50 +63,35 @@
     };
 
     /** Generate record of what hints have been published. */
-    var generateRecord = function (categories) {
-        categories.forEach(function (category) {
-            if (!category.results) {
+    var generateRecord = function (result) {
+        result.categories.forEach(function (category) {
+            if (!category.hints) {
                 return;
             }
 
-            category.results.forEach(function (result) {
-                if (existingResults.indexOf(result.name) === -1) {
-                    existingResults.push(result.name);
+            category.hintsToUpdate.forEach(function (hint) {
+                if (existingResults.indexOf(hint.name) === -1) {
+                    existingResults.push(hint.name);
                 }
             });
         });
     };
 
     /** Filter out results that are already present in the UI. */
-    var filterNewUpdates = function (categories) {
-        categories.forEach(function (category) {
-            if (!category.results) {
+    var filterNewUpdates = function (result) {
+        result.categories.forEach(function (category) {
+            if (!category.hints) {
                 return;
             }
 
-            category.results = category.results.filter(function (result) {
-                return existingResults.indexOf(result.name) === -1;
+            category.hintsToUpdate = category.hints.filter(function (hint) {
+                return existingResults.indexOf(hint.name) === -1 && hint.status !== hintStatus.pending;
             });
         });
-
-        return categories;
-    };
-
-    var hintItemTemplate = function () {
-        return '{{#each results}}{{>scan-result-item}}{{/each}}';
-    };
-
-    var categoryPassMessageTemplate = function () {
-        return '{{>category-pass-message}}';
-    };
-
-    var scanErrorMessageTemplate = function () {
-        return '{{>scan-error-message}}';
     };
 
     var getHTML = function (templ, data) {
-        var source = templ();
-        var template = Handlebars.compile(source);
+        var template = ejsPartials[templ];
 
         return template(data);
     };
@@ -117,7 +100,7 @@
         return text + (count === 1 ? '' : 's');
     };
 
-    var updateElement = function (issueElement, issues, issueText, categoryName, allHintsPass, allHintsChecked) {
+    var updateElement = function (issueElement, issues, issueText, allHintsPass, allHintsChecked) {
         if (issues > 0) {
             issueElement.classList.add('rule-list--failed');
             issueElement.innerHTML = issues + ' ' + pluralize(issueText, issues);
@@ -149,21 +132,29 @@
         });
     };
 
-    var filterErrorsAndWarnings = function (results) {
-        return results.filter(function (result) {
-            return result.status !== hintStatus.pass;
+    var filterErrorsAndWarnings = function (hints) {
+        return hints.filter(function (hint) {
+            return hint.status !== hintStatus.pass;
         });
     };
 
     var updateErrorItems = function (category) {
-        if (!category.results || category.results.length === 0) {
+        if (!category.hintsToUpdate || category.hintsToUpdate.length === 0) {
             return;
         }
 
         var container = document.getElementById(category.name);
         var expandAllButton = container.querySelector('.button-expand-all');
         var loader = container.querySelector('.compiling__loader');
-        var hintResult = getHTML(hintItemTemplate, category);
+        var hintResult = '';
+
+        category.hintsToUpdate.forEach(function (hint) {
+            hintResult += getHTML('scan-result-item', {
+                hint: hint,
+                isScanner: category.isScanner,
+                utils: window.utils
+            });
+        });
 
         if (!expandAllButton) {
             var buttonTemplate = '<button title="expand" class="button-expand-all closed">+ expand all</button>';
@@ -196,7 +187,7 @@
             container.removeChild(loader);
         }
 
-        var categoryPassMessageTemplateHtml = getHTML(categoryPassMessageTemplate, {});
+        var categoryPassMessageTemplateHtml = getHTML('category-pass-message', {});
 
         container.insertAdjacentHTML('beforeend', categoryPassMessageTemplateHtml);
     };
@@ -210,25 +201,23 @@
     var updateOverallData = function (category, allHintsPass, allHintsChecked) {
         var errorSelector = '.' + category.name + '.errors';
         var warningSelector = '.' + category.name + '.warnings';
-        var errorsNumber = category.statistics.errors;
-        var warningsNumber = category.statistics.warnings;
+        var errorsNumber = category.errors;
+        var warningsNumber = category.warnings;
         var errorsElement = document.querySelector(errorSelector);
         var warningsElement = document.querySelector(warningSelector);
 
-        warningsElement.innerHTML = warningsNumber + ' Warnings';
-
-        updateElement(errorsElement, errorsNumber, 'Error', category.name, allHintsPass, allHintsChecked);
-        updateElement(warningsElement, warningsNumber, 'Warning', category.name, allHintsPass, allHintsChecked);
+        updateElement(errorsElement, errorsNumber, 'Error', allHintsPass, allHintsChecked);
+        updateElement(warningsElement, warningsNumber, 'Warning', allHintsPass, allHintsChecked);
     };
 
-    var updateScanResultUI = function (data) {
-        // Note: `data` here is filtered, so published errors/warnings won't be included in `data`.
-        var updates = data.updates;
-        var time = data.time;
-        var version = data.version;
+    var updateScanResultUI = function (result) {
+        // Note: `result` here is filtered, so published errors/warnings won't be included in `data`.
+        var categories = result.categories;
+        var time = result.scanTime;
+        var version = result.version;
 
-        updates.forEach(function (category) {
-            if (!category.results) {
+        categories.forEach(function (category) {
+            if (!category.hints) {
                 return;
             }
 
@@ -240,7 +229,7 @@
                 updateAsPass(category);
             }
 
-            category.results = filterErrorsAndWarnings(category.results);
+            category.hintsToUpdate = filterErrorsAndWarnings(category.hintsToUpdate);
 
             updateErrorItems(category);
             updateOverallData(category, allHintsPass, allHintsChecked);
@@ -256,14 +245,20 @@
             hljs.highlightBlock(codeBlocks[i]);
         }
 
-        document.querySelector('#total-errors').innerHTML = overallStatistics.errors;
-        document.querySelector('#total-warnings').innerHTML = overallStatistics.warnings;
+        document.querySelector('#total-errors').innerHTML = result.errors;
+        document.querySelector('#total-warnings').innerHTML = result.warnings;
         document.querySelector('.scan-overview--time .scan-overview__body--purple').innerHTML = time;
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
 
     var updateScanFailUI = function () {
-        var scanErrorMessageHTML = getHTML(scanErrorMessageTemplate, {});
+        var errorElement = document.getElementById('scan-error');
+
+        if (errorElement) {
+            return;
+        }
+
+        var scanErrorMessageHTML = getHTML('scan-error-message', {});
 
         document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
     };
@@ -310,16 +305,16 @@
         statusElement.classList.remove('analyzing');
     };
 
-    var updateFavicon = function (status, statistics) {
+    var updateFavicon = function (result) {
         var favicons = {
             failed: 'failed',
             passed: 'passed'
         };
-        var totalErrors = statistics.errors;
-        var totalWarnings = statistics.warnings;
+        var totalErrors = result.errors;
+        var totalWarnings = result.warnings;
 
         var statisticsPass = (totalErrors === 0) && (totalWarnings === 0);
-        var newFavicon = (status !== jobStatus.error) && statisticsPass ? favicons.passed : favicons.failed;
+        var newFavicon = (result.status !== jobStatus.error) && statisticsPass ? favicons.passed : favicons.failed;
         var newFaviconHref = '/static/images/favicon_' + newFavicon + '.ico';
 
         document.querySelector('link[rel="icon"]').setAttribute('href', newFaviconHref);
@@ -327,11 +322,10 @@
 
     var queryAndUpdate = function () {
         var callback = function (err, response) {
-            var isFinish = response.status === jobStatus.finished;
-            var isError = response.status === jobStatus.error;
-            var isPending = response.status === jobStatus.pending;
-
-            overallStatistics = response.overallStatistics;
+            var result = response.result;
+            var isFinish = result.status === jobStatus.finished;
+            var isError = result.status === jobStatus.error;
+            var isPending = result.status === jobStatus.pending;
 
             if (err) {
                 clearInterval(timer);
@@ -349,21 +343,17 @@
                     updateScanFailUI();
                 }
 
-                var updates = filterNewUpdates(response.categories);
+                filterNewUpdates(result);
 
                 // Declaring object literals in the ES6 way not supported by 'hexo-filter-cleanup'.
-                updateScanResultUI({
-                    time: response.time,
-                    updates: updates,
-                    version: response.version
-                });
+                updateScanResultUI(result);
 
-                generateRecord(response.categories);
+                generateRecord(result);
 
                 if (isFinish || isError) {
                     clearInterval(timer);
-                    updateStatus(response.status);
-                    updateFavicon(response.status, overallStatistics);
+                    updateStatus(result.status);
+                    updateFavicon(result);
 
                     return;
                 }
@@ -390,7 +380,11 @@
         var existing = document.querySelectorAll('.rule-result--details');
 
         for (var i = 0; i < existing.length; i++) {
-            existingResults.push(existing[i].id);
+            var ruleId = existing[i].id;
+
+            if (ruleId) {
+                existingResults.push(ruleId);
+            }
         }
     };
 

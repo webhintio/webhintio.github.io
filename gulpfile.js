@@ -101,21 +101,33 @@ gulp.task('optimize:css', () => {
         .pipe(gulp.dest(dirs.tmp));
 });
 
-gulp.task('precompile', (cb) => {
-    const precompile = require('./helpers/precompile-hbs');
+gulp.task('compile-utils', () => {
+    return gulp.src(`${dirs.src}/source/js/partials/utils.ts`)
+        .pipe(plugins.typescript({lib: ['dom', 'es2015', 'es5'], module: 'commonjs', removeComments: true, target: 'es5' }))
+        .pipe(gulp.dest(`${dirs.src}/source/js/partials/`));
+});
 
-    precompile(dirs.tmp, 'source/js/partials', ['scan-result-item', 'category-pass-message', 'scan-error-message']);
+gulp.task('clean:utils-ts', (done) => {
+    shelljs.rm(`${dirs.src}/source/js/partials/utils.ts`);
+
+    done();
+});
+
+gulp.task('precompile', (cb) => {
+    const precompile = require('./helpers/precompile-ejs');
+
+    precompile(dirs.src, 'source/js/partials', ['scan-result-item', 'category-pass-message', 'scan-error-message']);
     cb();
 });
 
 gulp.task('useref', () => {
-    return gulp.src(`${dirs.tmp}/layout/**/*.hbs`)
+    return gulp.src(`${dirs.tmp}/layout/**/*.{hbs,ejs}`)
         .pipe(plugins.useref({
             base: `${dirs.tmp}/source/`,
             searchPath: `${dirs.tmp}/source/`
         }))
-        .pipe(plugins.if('*.hbs', gulp.dest(`${dirs.tmp}/layout`)))
-        .pipe(plugins.if('!*.hbs', gulp.dest(`${dirs.tmp}/source`)));
+        .pipe(plugins.if('*.{hbs,ejs}', gulp.dest(`${dirs.tmp}/layout`)))
+        .pipe(plugins.if('!*.{hbs,ejs}', gulp.dest(`${dirs.tmp}/source`)));
 });
 
 gulp.task('revfiles', () => {
@@ -151,7 +163,7 @@ gulp.task('revreplace:theme', () => {
             modifyUnreved: (unrevedPath) => {
                 return unrevedPath.replace('static/images/', 'images/');
             },
-            replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml', '.webmanifest']
+            replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml', '.webmanifest', '.ejs']
         }))
         .pipe(gulp.dest(dirs.tmp));
 });
@@ -191,7 +203,7 @@ gulp.task('optimize:templates', () => {
         removeRedundantAttributes: false
     };
 
-    return gulp.src(`${dirs.tmp}/**/*.hbs`)
+    return gulp.src(`${dirs.tmp}/**/*.{hbs,ejs}`)
         .pipe(plugins.htmlmin(htmlminOptions))
         .pipe(gulp.dest(dirs.tmp));
 });
@@ -289,15 +301,17 @@ const replaceSRI = (content) => {
 gulp.task('add-sri', () => {
     sriList = JSON.parse(fs.readFileSync(path.join(__dirname, dirs.tmp, 'sri.json'), 'utf8')); //eslint-disable-line no-sync
 
-    return gulp.src(`${dirs.tmp}/**/*.hbs`)
+    return gulp.src(`${dirs.tmp}/**/*.{hbs, ejs}`)
         .pipe(plugins.transform('utf8', replaceSRI))
         .pipe(gulp.dest(dirs.tmp));
 });
 
 gulp.task('build', gulp.series(
     'clean:before',
-    'copy:theme',
+    'compile-utils',
+    'clean:utils-ts',
     'precompile',
+    'copy:theme',
     'optimize:images',
     'useref',
     'optimize:templates',
@@ -312,7 +326,7 @@ gulp.task('build', gulp.series(
     'sri',
     'add-sri',
     'build:hexo',
-    // 'generate-service-worker',
+    'generate-service-worker',
     'compress:zopfli',
     'compress:brotli',
     '404'

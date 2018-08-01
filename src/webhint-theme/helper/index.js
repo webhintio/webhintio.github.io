@@ -85,15 +85,6 @@ module.exports = function () {
 
             return filtered.charAt(0).toUpperCase() + filtered.slice(1);
         },
-        filterErrorsAndWarnings: (results) => {
-            if (!results) {
-                return results;
-            }
-
-            return results.filter((result) => {
-                return result.status !== hintStatus.pass;
-            });
-        },
         getAboutItems: (navs) => {
             // `navs` is the menu data saved in `menu.yml`.
             return navs[2].items;
@@ -189,16 +180,6 @@ module.exports = function () {
         },
         isPending: (status) => {
             return status === jobStatus.pending;
-        },
-        noIssue: (category) => {
-            return category.hints.every((hint) => {
-                return hint.status === hintStatus.pass;
-            });
-        },
-        noPending: (category) => {
-            return category.hints.every((hint) => {
-                return hint.status !== hintStatus.pending;
-            });
         },
         normalizeClassName: (value) => {
             const className = value.split('/').shift();
