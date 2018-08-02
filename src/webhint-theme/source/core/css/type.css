@@ -90,7 +90,7 @@ h2,
     top: -.5rem;
     height: .5rem;
     width: 5rem;
-    border-top: 4px solid #4046dd;
+    border-top: 4px solid #4700a3;
 }
 
 h1,
@@ -207,7 +207,7 @@ h6,
 }
 
 blockquote {
-    border-left: 5px solid #4046dd;
+    border-left: 5px solid #4700a3;
     padding-left: 2.4rem;
     color: #6c6c6c;
     font-size: 1.6rem;
@@ -237,7 +237,7 @@ li {
     top: -.5rem;
     height: .5rem;
     width: 5rem;
-    border-top: 4px solid #4046dd;
+    border-top: 4px solid #4700a3;
 }
 
 .module--primary h1 {

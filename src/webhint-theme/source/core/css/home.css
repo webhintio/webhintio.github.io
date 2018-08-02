@@ -4,7 +4,7 @@
  */
 
 body {
-    background-color: #4c36e8;
+    background-color: #4700a3;
     color: #fff;
 }
 
@@ -30,77 +30,8 @@ main {
     max-width: 32rem;
 }
 
-.illustration {
-    display: none;
-}
-
-.sub-illustration {
-    width: 35rem;
-}
-
 .home-container--section .h1::before {
     border: none;
-}
-
-@media (min-width: 48em) {
-
-    .illustration {
-        position: relative;
-        display: block;
-        height: 15.7rem;
-    }
-
-    #iceberg1 {
-        position: relative;
-        width: 25rem;
-
-        animation: floating 4s infinite normal ease-out;
-    }
-
-    #iceberg2 {
-        position: absolute;
-        margin-top: 11rem;
-        margin-left: 4rem;
-        width: 15rem;
-
-        animation: floating 5s infinite normal ease-out;
-    }
-
-    #iceberg3 {
-        position: absolute;
-        margin-top: 7.5rem;
-        right: 0;
-        width: 23rem;
-
-        animation: floating 6s infinite 1s normal ease-out;
-    }
-
-    #narwhal {
-        position: absolute;
-        right: 22rem;
-        margin-top: 5rem;
-        width: 45rem;
-        z-index: 1;
-
-        animation: floating 6s infinite .5s normal ease-out;
-    }
-
-
-    @keyframes floating {
-
-        0% {
-            transform: translateY(-10px);
-        }
-
-        50% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(-10px);
-        }
-    }
-
 }
 
 .home-container--alt {
@@ -118,7 +49,20 @@ main {
     padding-bottom: 4.8rem;
 }
 
-.container--section__welcome,
+
+.home--hero {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.home--hero--images {
+    max-width: 26rem;
+    margin-top: 1.2rem;
+    text-align: center;
+}
+
 .feature__highlight,
 .install__code {
     font-size: 1.6rem;
@@ -132,37 +76,35 @@ main {
 
 .feature__cta {
     font-size: 1.4rem;
-    letter-spacing: .1rem;
     font-weight: 500;
-    text-transform: uppercase;
-    margin-top: 2.4rem;
+    margin-top: 1.2rem;
 }
 
-.feature__cta::after {
+/*.feature__cta::after {
     display: inline-block;
     content: url("/images/next-arrow.svg");
     margin-left: .8rem;
     margin-top: .3rem;
     width: .7rem;
     vertical-align: middle;
+}*/
+
+.home-container__features > .feature__highlight a {
+    text-decoration: none;
 }
 
-.home-container__features a {
+.home-container__features > .feature__highlight a:hover {
     text-decoration: underline;
 }
 
-.home-container__features a:hover {
-    background-color: hsla(6, 66%, 50%, .1);
-}
-
-.home-container__features,
+.home-container__features h2,
 .home-container__install h2 {
     text-align: center;
 }
 
 .home-container__features h2,
 .home-container__install h2 {
-    color: #4c36e8;
+    color: #4700a3;
 }
 
 .home-container__features h2::after,
@@ -172,7 +114,7 @@ main {
     display: block;
     height: .5rem;
     width: 10rem;
-    border-bottom: 4px solid #4046dd;
+    border-bottom: 2px solid #4700a3;
     text-align: center;
     margin: 1.2rem auto;
 }
@@ -213,8 +155,8 @@ main {
 
 .home--docs-text .subtitle {
     font-size: 2rem;
-    margin-bottom: .6rem;
     font-weight: 400;
+    margin-bottom: .6rem;
 }
 
 .home--docs-icons {
@@ -224,18 +166,28 @@ main {
     margin: 0 2.4rem 0 0;
 }
 
-a.docs-button {
+a.docs-button,
+a.feature__cta {
     display: inline-block;
     font-size: 1.3rem;
-    background-color: #4046dd;
+    background-color: #4700a3;
     color: #fff;
+    min-width: 11rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
     padding: .6rem 1rem;
-    text-align: right;
+    border-radius: .3rem;
     letter-spacing: .1rem;
-    min-width: 12rem;
     text-transform: uppercase;
+}
+
+/* Custom Buttons */
+
+a.button {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: .6rem 1rem;
+    border-radius: .3rem;
 }
 
 
@@ -259,15 +211,15 @@ a.docs-button {
         display: flex;
     }
 
-    .module {
-        align-self: flex-end;
+    .module-center {
+        align-self: center;
     }
 
 }
 
 .code-wrap {
     font-family: "Consolas", "Menlo", monospace;
-    color: #4c36e8;
+    color: #4700a3;
 
     padding: 0 0 1.2rem 2.4rem;
 
