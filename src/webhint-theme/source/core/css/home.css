@@ -80,15 +80,6 @@ main {
     margin-top: 1.2rem;
 }
 
-/*.feature__cta::after {
-    display: inline-block;
-    content: url("/images/next-arrow.svg");
-    margin-left: .8rem;
-    margin-top: .3rem;
-    width: .7rem;
-    vertical-align: middle;
-}*/
-
 .home-container__features > .feature__highlight a {
     text-decoration: none;
 }
