@@ -17,13 +17,16 @@
 .header {
     height: 9rem;
     width: 100%;
-    background-color: #4c36e8;
+    background-color: #4700a3;
 }
 
 /* HEADER: Site logo */
 .logo--container {
-    min-width: 10rem;
-    max-width: 24rem;
+    width: 24rem;
+}
+
+.logo--container img {
+    max-width: 16rem;
 }
 
 .header__logo {
@@ -185,7 +188,7 @@ button.mobile-search-button {
         top: 9.4rem;
         left: 0;
         margin: 0;
-        background-color: #3626a3;
+        background-color: #390082;
         z-index: 30;
     }
 
@@ -204,7 +207,7 @@ button.mobile-search-button {
         width: 100%;
         height: 11rem;
         margin-left: -1rem;
-        background-color: #4c36e8;
+        background-color: #4700a3;
         z-index: 30;
     }
 
@@ -279,7 +282,7 @@ button.mobile-search-button {
 }
 
 .nav-bar .navbar__submenu {
-    background-color: #3d2bb9;
+    background-color: #390082;
 }
 
 .navbar__navitem a {
@@ -305,7 +308,7 @@ button.mobile-search-button {
 }
 
 .nav-bar .navbar__navitem li a:hover {
-    background-color: hsla(0, 0%, 0%, .1);
+    background-color: hsla(0, 0%, 0%, .2);
 }
 
 .navbar__submenu .navitem__button::after {

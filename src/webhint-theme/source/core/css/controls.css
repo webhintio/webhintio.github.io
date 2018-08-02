@@ -72,7 +72,7 @@ select:hover {
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: #4046dd;
+    border-color: #4700a3;
     background-color: #fff;
 
     /* Safe to remove focus, as very visable border on focus */
@@ -275,7 +275,7 @@ a.button {
 }
 
 .button--purple {
-    background-color: #4046dd;
+    background-color: #4700a3;
 }
 
 .button-search {
@@ -483,7 +483,7 @@ input::-ms-check {
 }
 
 input:checked::-ms-check {
-    border-color: #4046dd;
+    border-color: #4700a3;
 }
 
 /* Needs to go after checked so that doesn’t get overridden when checked */
@@ -492,7 +492,7 @@ input:hover::-ms-check {
 }
 
 input[type="checkbox"]:checked::-ms-check {
-    background-color: #4046dd;
+    background-color: #4700a3;
     color: #fff;
 }
 
@@ -577,7 +577,7 @@ input[type="file"]:hover::-ms-value {
 }
 
 input[type="file"]:focus::-ms-value {
-    border-color: #4046dd;
+    border-color: #4700a3;
     background-color: #fff;
 }
 
@@ -588,7 +588,7 @@ input[type="file"]::-webkit-file-upload-button {
     border: 1px solid transparent;
     padding: .4rem 1.2rem;
 
-    background-color: #4046dd;
+    background-color: #4700a3;
     color: #fff;
 }
 
@@ -596,7 +596,7 @@ input[type="file"]::-ms-browse {
     margin-left: .8rem;
     border: 1px solid transparent;
     padding: .4rem 1.2rem;
-    background-color: #4046dd;
+    background-color: #4700a3;
     color: #fff;
 }
 

@@ -1,22 +1,22 @@
 <div class="bg-wrap-home">
     <main>
         <section class="container home-container--section">
-            <div class="layout layout--basic--alt">
-                <div class="module module--primary">
-                    <h1 class="headline">Use webhint to improve your website</h1>
-                    <div class="home-container--input">
-                        <form action="/scanner/" method="POST">
-                            <label for="home-scan" class="visually-hidden">Enter your URL here</label>
-                            <div class="input-fix">
-                                <input id="home-scan" type="url" name="url" placeholder="Type your URL here">
-                                <button class="button--red" type="submit">Run Scan</button>
-                            </div>
-                        </form>
-                    </div>
-                    <p class="container--section__welcome">webhint is a linting tool that will help you with your site's accessibility, speed, security and more, by checking your code for best practices and common errors.</p>
+            <div class="layout layout--halves vertical-align">
+                <div class="module">
+                    <h1>Use webhint to improve your website</h1>
+                    <p class="container--section__welcome subtitle">webhint is a linting tool that will help you with your site's accessibility, speed, security and more, by checking your code for best practices and common errors. Use the online scanner or the CLI to start checking your site for errors.</p>
                 </div>
-                <div class="module module--secondary">
-                    <img src="/images/home-hello-nellie.svg" alt="Nellie the Narwhal" class="hello-illustration" />
+                <div class="module module-center">
+                    <div class="home--hero">
+                        <div class="home--hero--images">
+                            <img src="/images/home-cli.svg" alt="" role="presentation">
+                            <a class="button button--red" href="#cli-howto">Get started with the CLI</a>
+                        </div>
+                        <div class="home--hero--images">
+                            <img src="/images/home-scan-results.svg" alt="" role="presentation">
+                            <a class="button button--red" href="#scanner-input">Try the online scanner</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -59,19 +59,38 @@
                 </div>
             </section>
         </div>
+        <section class="container home-container--section" id="scanner-input">
+            <div class="layout layout--basic--offset--alt">
+                <div class="module module--primary">
+                    <h1 class="headline">Use the online scanner</h1>
+                    <p class="container--section__welcome">Not sure what you want to configure the CLI to check? Use the online scanner for a pre-configured set of rule checks to cover the basics.</p>
+                    <div class="home-container--input">
+                        <form action="/scanner/" method="POST">
+                            <label for="home-scan" class="visually-hidden">Enter your URL here</label>
+                            <div class="input-fix">
+                                <input id="home-scan" type="url" name="url" placeholder="Type your URL here">
+                                <button class="button--red" type="submit">Run Scan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="module module--secondary">
+                    <img src="/images/nellie-searching.svg" alt="" role="presentation">
+                </div>
+            </div>
+        </section>
         <div class="bg-wrap--grey">
-            <section class="container home-container--section home-container__install">
+            <section class="container home-container--section home-container__install" id="cli-howto">
                 <h2 class="subheading subheading--home">Run webhint from your CLI</h2>
-                <div class="layout layout--halves vertical-align">
+                <div class="layout layout--halves">
                     <div class="module">
-                        <img src="images/cli.gif" alt="webhint cli">
+                        <img src="images/hint.gif" alt="webhint cli">
                     </div>
                     <div class="module">
                         <p class="install__code">If you want to disable specific hints, further configure others, ignore domains, or more, run webhint from your CLI.</p>
                         <p class="install__code">Quick start guide:</p>
                         <div class="code-wrap">
-                            <p>><code>npm install -g --engine-strict webhint</code></p>
-                            <p>><code>hint https://awesomesite.com</code></p>
+                            <p>><code>npx hint https://awesomesite.com</code></p>
                         </div>
                         <a class="docs-button" href="/docs/user-guide/">Get Started</a>
                     </div>
@@ -114,14 +133,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="home-container--alt container">
-                <div class="illustration">
-                    <img src="/images/iceberg-left.svg" id="iceberg1" alt="" role="presentation">
-                    <img src="/images/iceberg-middle.svg" id="iceberg2" alt="" role="presentation">
-                    <img src="/images/iceberg-right.svg" id="iceberg3" alt="" role="presentation">
-                    <img src="/images/narwhal.svg" id="narwhal" alt="" role="none">
                 </div>
             </div>
         </div>
