@@ -74,14 +74,14 @@
 }
 
 .scan-overview__body--purple {
-    color: #4046dd;
+    color: #4700a3;
 }
 
 .scan-overview__body__permalink {
     display: inline;
     font-size: 1.5rem;
     font-weight: 300;
-    color: #4046dd;
+    color: #4700a3;
     margin-top: .8rem;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -181,7 +181,7 @@
     font-size: 1.4rem;
     font-weight: 400;
     text-transform: uppercase;
-    color: #4046dd;
+    color: #4700a3;
 }
 
 .rule-list p {
@@ -233,7 +233,7 @@
     padding: .5rem 1rem;
     font-size: 1.2rem;
     background-color: #f0f0f0;
-    color: #4046dd;
+    color: #4700a3;
 }
 
 .rule-result h3 {
@@ -273,7 +273,7 @@
 
 a.docs-button {
     font-size: 1.3rem;
-    background-color: #4046dd;
+    background-color: #4700a3;
     color: #fff;
     margin-right: 1rem;
     margin-bottom: 1rem;
@@ -295,7 +295,7 @@ a.docs-button {
 button.button--details {
     position: relative;
     font-size: 1.3rem;
-    background-color: #4046dd;
+    background-color: #4700a3;
     margin-bottom: 1rem;
     padding: .5rem 1rem;
     text-align: right;
@@ -431,7 +431,7 @@ button.button--details {
 /* RULE RESULT MESSAGES */
 
 .rule-result__message--compiling {
-    color: #4046dd;
+    color: #4700a3;
     margin-top: -2.6rem;
 }
 
@@ -447,7 +447,7 @@ button.button--details {
 .rule-result__message--compiling__loader {
   border: 3px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 3px solid #4046dd;
+  border-top: 3px solid #4700a3;
   width: 2.5rem;
   height: 2.5rem;
   animation: spin 2s linear infinite;

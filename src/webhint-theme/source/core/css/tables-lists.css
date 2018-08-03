@@ -41,7 +41,7 @@ tbody tr:nth-child(odd) {
 }
 
 tbody tr:nth-child(odd) a {
-	color: #4046dd;
+	color: #4700a3;
 }
 
 /* Parent class allows table to scroll sideways when overflowing */
