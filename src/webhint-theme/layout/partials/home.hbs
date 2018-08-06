@@ -10,11 +10,11 @@
                     <div class="home--hero">
                         <div class="home--hero--images">
                             <img src="/images/home-cli.svg" alt="" role="presentation">
-                            <a class="button button--red" href="#cli-howto">Get started with the CLI</a>
+                            <a class="button button--red" href="#cli-howto" data-ga-category="homepage" data-ga-action="cli">Get started with the CLI</a>
                         </div>
                         <div class="home--hero--images">
                             <img src="/images/home-scan-results.svg" alt="" role="presentation">
-                            <a class="button button--red" href="#scanner-input">Try the online scanner</a>
+                            <a class="button button--red" href="#scanner-input" data-ga-category="homepage" data-ga-action="scanner">Try the online scanner</a>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                             <a href="/docs/user-guide/further-configuration/browser-context/">prioritize <em>your</em> users' browsers</a>, and <a href="/docs/user-guide/">control the
                             results</a> with minimal setup.
                         </p>
-                        <a class="feature__cta" href="/docs/user-guide/hints/">User guide</a>
+                        <a class="feature__cta" href="/docs/user-guide/hints/" data-ga-category="docs" data-ga-action="user guide" data-ga-label="why">User guide</a>
                     </div>
                     <div class="module">
                         <img src="/images/developer-nellie.svg" alt="" role="presentation" />
@@ -43,7 +43,7 @@
                             <a href="/docs/contributor-guide/how-to/hint/">create new hints</a> to suit <em>your</em> needs. You can
                             help webhint help even more people like you by contributing your hints back!
                         </p>
-                        <a class="feature__cta" href="/docs/user-guide/hints/">Hint documentation</a>
+                        <a class="feature__cta" href="/docs/user-guide/hints/" data-ga-category="docs" data-ga-action="hints" data-ga-label="why">Hint documentation</a>
                     </div>
                     <div class="module">
                         <img src="/images/nellie-cookies.svg" alt="" role="presentation" />
@@ -69,7 +69,7 @@
                             <label for="home-scan" class="visually-hidden">Enter your URL here</label>
                             <div class="input-fix">
                                 <input id="home-scan" type="url" name="url" placeholder="Type your URL here">
-                                <button class="button--red" type="submit">Run Scan</button>
+                                <button class="button--red" type="submit" data-ga-category="scanner" data-ga-action="start" data-ga-label="homepage">Run Scan</button>
                             </div>
                         </form>
                     </div>
@@ -90,12 +90,12 @@
                         <p class="install__code">If you want to disable specific hints, further configure others, ignore domains, or more, run webhint from your CLI.</p>
                         <p class="install__code">To do a quick scan just run:</p>
                         <div class="code-wrap">
-                            <p>><code>npx hint https://awesomesite.com</code></p>
+                            <p>><code>npx hint https://example.com</code></p>
                         </div>
-                        <a class="docs-button" href="/docs/user-guide/">Get Started</a>
+                        <a class="docs-button" href="/docs/user-guide/" data-ga-category="docs" data-ga-action="user guide" data-ga-label="cli">Get Started</a>
                         <p class="install__code">The <a href="https://npmjs.com/package/hint"><code>hint</code></a> package has been donated by
                             <a href="https://twitter.com/nzgb">Nicolás Bevacqua</a>. While you are reading this, make sure to visit
-                            <a href="https://ponyfoo.com/?utm_source=webhint">his site</a>!
+                            <a href="https://ponyfoo.com/?utm_source=webhint.io">his site</a>!
                         </p>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                         <div class="home--docs">
                             <img src="images/user-guide-icon.svg" class="home--docs-icons" alt="" role="none">
                             <div class="home--docs-text">
-                                <a href="/docs/user-guide/">
+                                <a href="/docs/user-guide/" data-ga-category="docs" data-ga-action="user guide" data-ga-label="bottom">
                                     <p class="subtitle">User Guide</p>
                                     <p>Get started with configuring the CLI tool on your machine</p>
                                 </a>
@@ -119,7 +119,7 @@
                         <div class="home--docs">
                             <img src="images/dev-guide-icon.svg" class="home--docs-icons" alt="" role="none">
                             <div class="home--docs-text">
-                                <a href="/docs/contributor-guide/">
+                                <a href="/docs/contributor-guide/" data-ga-category="docs" data-ga-action="contributor guide" data-ga-label="bottom">
                                     <p class="subtitle">Contributor Guide</p>
                                     <p>Find out how to make webhint your tool and use it to it's full potential</p>
                                 </a>
@@ -130,7 +130,7 @@
                         <div class="home--docs">
                             <img src="images/rules-icon.svg" class="home--docs-icons" alt="" role="none">
                             <div class="home--docs-text">
-                                <a href="/docs/user-guide/hints/">
+                                <a href="/docs/user-guide/hints/" data-ga-category="docs" data-ga-action="hints" data-ga-label="bottom">
                                     <p class="subtitle">Hints</p>
                                     <p>Check out the list of hints that webhint currently checks</p>
                                 </a>
