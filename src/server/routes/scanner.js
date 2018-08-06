@@ -239,15 +239,14 @@ const configure = (app, appInsightsClient) => {
 
         reportJobEvent(scanResult);
 
-        // TODO: change to scanResult.hints once we change the service
-        const { categories, overallStatistics } = processHintResults(scanResult.rules, scanResult.url, categoryImages);
+        const { categories, overallStatistics } = processHintResults(scanResult.hints.concat(scanResult.rules), scanResult.url, categoryImages);
 
         return res.send({
             categories,
             overallStatistics,
             status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, scanResult.status === jobStatus.finished ? scanResult.finished : void 0),
-            version: scanResult.sonarVersion
+            version: scanResult.webhintVersion || scanResult.sonarVersion
         });
     });
 
@@ -269,8 +268,7 @@ const configure = (app, appInsightsClient) => {
             });
         }
 
-        // TODO: change to scanResult.hints once we change the service
-        const { categories, overallStatistics } = processHintResults(scanResult.rules, scanResult.url, categoryImages);
+        const { categories, overallStatistics } = processHintResults(scanResult.hints.concat(scanResult.rules), scanResult.url, categoryImages);
         const renderOptions = {
             categories,
             id: scanResult.id,
@@ -286,7 +284,7 @@ const configure = (app, appInsightsClient) => {
             status: scanResult.status,
             time: calculateTimeDifference(scanResult.started, (scanResult.status === jobStatus.finished || scanResult.status === jobStatus.error) ? scanResult.finished : void 0),
             url: scanResult.url,
-            version: scanResult.sonarVersion
+            version: scanResult.webhintVersion || scanResult.sonarVersion
         };
 
         res.set('Cache-Control', 'max-age=180');
@@ -341,8 +339,7 @@ const configure = (app, appInsightsClient) => {
             const id = requestResult.id;
             const status = requestResult.status;
             const messagesInQueue = requestResult.messagesInQueue;
-            //TODO: change to requestResult.hints once we update the service
-            const { categories, overallStatistics } = processHintResults(requestResult.rules, req.body.url, categoryImages);
+            const { categories, overallStatistics } = processHintResults(requestResult.hints.concat(requestResult.rules), req.body.url, categoryImages);
 
             appInsightsClient.trackEvent({
                 name: 'scanJobCreated',
