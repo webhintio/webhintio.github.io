@@ -39,6 +39,7 @@
     <script src="/js/helpers/normalizeposition.js"></script>
     <script src="/js/helpers/compare.js"></script>
     <!-- endbuild -->
+    {{#unless isFinish}}
     <!-- build:js /static/scripts/partials.js -->
     <script src="/js/partials/scan-result-item.js"></script>
     <script src="/js/partials/category-pass-message.js"></script>
@@ -48,5 +49,6 @@
     <script src="/js/scanner-common.js"></script>
     <script src="/js/scanner-submit.js"></script>
     <!-- endbuild -->
+    {{/unless}}
 </body>
 </html>
