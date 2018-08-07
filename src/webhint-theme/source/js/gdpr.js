@@ -1,3 +1,4 @@
+/* global ga:false */
 (function () {
     /** Creates a cookie. Code based on https://www.quirksmode.org/js/cookies.html */
     var createCookie = function (name, value, days) {
@@ -50,4 +51,38 @@
     }
 
     createCookie('consent', 'on', 30);
+
+    // Track events code
+
+    // Check if an element or any of its parents has the specified attribute
+    var hasAttr = function (element, attribute) {
+        if (element.hasAttribute(attribute) === true) {
+            return element;
+        } else if (element.parentNode !== document.body) {
+            return hasAttr(element.parentNode, attribute);
+        }
+
+        return;
+    };
+
+    var handleClickEvent = function (e) {
+        var target = hasAttr(e.target, 'data-ga-action');
+
+        if (target) {
+            var action = target.getAttribute('data-ga-action'); // required
+            var category = target.getAttribute('data-ga-category'); // required
+            var label = target.getAttribute('data-ga-label');
+            var value = parseInt(target.getAttribute('data-ga-value'), 10) || void 0;
+
+            if (!ga ||
+                !category ||
+                !action) {
+                return;
+            }
+
+            ga('send', 'event', category, action, label, value);
+        }
+    };
+
+    window.document.addEventListener('click', handleClickEvent, false);
 }());
