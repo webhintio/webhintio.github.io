@@ -119,7 +119,7 @@ gulp.task('useref', () => {
 });
 
 gulp.task('revfiles', () => {
-    return gulp.src([`${dirs.tmp}/source/**/*`, `!**/*.json`, `!**/*.yml`, `!**/sw-reg.js`])
+    return gulp.src([`${dirs.tmp}/source/**/*`, `!**/*.json`, `!**/*.yml`, `!**/sw-reg.js`, `!**/*.webmanifest`])
         .pipe(plugins.rev())
         .pipe(plugins.revDeleteOriginal())
         .pipe(gulp.dest(`${dirs.tmp}/source`))
