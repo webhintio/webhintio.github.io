@@ -297,10 +297,6 @@ a.button {
     vertical-align: top;
 }
 
-.button:hover {
-    text-decoration: none;
-}
-
 button:hover,
 button:focus,
 .button:hover,
