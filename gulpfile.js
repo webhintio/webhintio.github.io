@@ -151,7 +151,7 @@ gulp.task('revreplace:theme', () => {
             modifyUnreved: (unrevedPath) => {
                 return unrevedPath.replace('static/images/', 'images/');
             },
-            replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml']
+            replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml', '.webmanifest']
         }))
         .pipe(gulp.dest(dirs.tmp));
 });
