@@ -10,6 +10,10 @@
     text-transform: capitalize;
 }
 
+.page-heading {
+	margin-right: 2.4rem;
+}
+
 .documentation-actions {
 	position: relative;
 	margin-top: 1.2rem;
@@ -97,6 +101,10 @@ a > .documentation-card__main > img {
 	margin-top: .2rem;
 }
 
+li.documentation-card a:hover {
+	color: #fff;
+}
+
 @media (min-width: 48em) {
 
 	.documentation-actions {
@@ -155,6 +163,11 @@ a > .documentation-card__main > img {
 	width: 3.5rem;
 }
 
+.icon--other::before {
+	content: url("/images/results-other.svg");
+	width: 3.5rem;
+}
+
 .icon--security::before {
 	content: url("/images/results-security.svg");
 	width: 3.5rem;
@@ -197,11 +210,11 @@ a > .documentation-card__main > img {
 
 .placement__button::after {
 	display: inline-block;
-	content: url("/static/images/next-arrow.svg");
+	content: url("/images/next-arrow.svg");
 	margin-left: .8rem;
 	margin-top: .3rem;
 	width: .7rem;
-	vertical-align: middle;
+	vertical-align: baseline;
 }
 
 /* INDIVIDUAL CATEGORY PAGES */

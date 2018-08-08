@@ -120,6 +120,10 @@ main {
     color: #fff;
 }
 
+.home-container__documentation a:hover {
+    text-decoration-color: #fff;
+}
+
 /* stylelint-disable */
 .home-container__features img {
     max-width: 75%;
