@@ -216,6 +216,16 @@ const moveImages = () => {
 gulp.task('move:images', moveImages);
 gulp.task('optimize:images', gulp.series('move:docimage', 'imagemin', 'move:images'));
 
+gulp.task('404', (done) => {
+    const lostContent = fs.readFileSync(`${dirs.dist}/404/index.html`, 'utf-8'); // eslint-disable-line no-sync
+    const asp404 = `<% Response.Status = "404" %>
+${lostContent}`;
+
+    fs.writeFileSync(`${dirs.dist}/404/index.asp`, asp404, 'utf-8'); // eslint-disable-line no-sync
+
+    done();
+});
+
 // ---------------------------------------------------------------------
 // | Main tasks                                                        |
 // ---------------------------------------------------------------------
@@ -304,7 +314,8 @@ gulp.task('build', gulp.series(
     'build:hexo',
     // 'generate-service-worker',
     'compress:zopfli',
-    'compress:brotli'
+    'compress:brotli',
+    '404'
 ));
 
 gulp.task('default', gulp.series('build'));
