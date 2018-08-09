@@ -169,6 +169,11 @@ const updateChangelog = async (content) => {
         _.forEach(details, (update) => {
             // Iterate each category of update.
 
+            // First release won't have any changes.
+            if (!update.raw) {
+                return;
+            }
+
             // Line breaks in `0.1.0` can't be ignored after being parsed in `md2json`.
             // So `raw` needs to be processed to prevent unexpected line breaks.
             const raw = update.raw.split(new RegExp('-\\n-|([^.])\\n-')).join('');
