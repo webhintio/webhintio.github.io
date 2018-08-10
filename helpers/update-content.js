@@ -11,7 +11,7 @@ const yamlLoader = require('js-yaml');
 const configDir = path.resolve(__dirname, '..', '_config.yml');
 const hexoConfig = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
 
-const CLONE_URL = 'https://github.com/webhint/hint.git';
+const CLONE_URL = 'https://github.com/webhintio/hint.git';
 const DEST_DIR = 'src/content';
 const SCAN_TEMPLATES = 'src/webhint-theme/layout/partials/scan';
 const SCAN_PARTIALS = 'src/webhint-theme/source/js/partials';
