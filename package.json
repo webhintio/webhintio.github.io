@@ -63,7 +63,8 @@
     "remove-markdown": "^0.3.0",
     "shelljs": "^0.8.2",
     "stylelint": "^9.4.0",
-    "sw-precache": "^5.2.1"
+    "sw-precache": "^5.2.1",
+    "typescript": "^3.0.1"
   },
   "hexo": {
     "version": "3.7.1"

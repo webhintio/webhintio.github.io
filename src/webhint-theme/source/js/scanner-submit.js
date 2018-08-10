@@ -251,14 +251,14 @@
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
 
-    var updateScanFailUI = function () {
+    var updateScanFailUI = function (result) {
         var errorElement = document.getElementById('scan-error');
 
         if (errorElement) {
             return;
         }
 
-        var scanErrorMessageHTML = getHTML('scan-error-message', {});
+        var scanErrorMessageHTML = getHTML('scan-error-message', { result: result });
 
         document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
     };
@@ -340,7 +340,7 @@
                 hideQueueMessage();
 
                 if (isError) {
-                    updateScanFailUI();
+                    updateScanFailUI(result);
                 }
 
                 filterNewUpdates(result);

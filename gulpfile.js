@@ -121,13 +121,13 @@ gulp.task('precompile', (cb) => {
 });
 
 gulp.task('useref', () => {
-    return gulp.src(`${dirs.tmp}/layout/**/*.{hbs,ejs}`)
+    return gulp.src(`${dirs.tmp}/layout/**/*.ejs`)
         .pipe(plugins.useref({
             base: `${dirs.tmp}/source/`,
             searchPath: `${dirs.tmp}/source/`
         }))
-        .pipe(plugins.if('*.{hbs,ejs}', gulp.dest(`${dirs.tmp}/layout`)))
-        .pipe(plugins.if('!*.{hbs,ejs}', gulp.dest(`${dirs.tmp}/source`)));
+        .pipe(plugins.if('*.ejs', gulp.dest(`${dirs.tmp}/layout`)))
+        .pipe(plugins.if('!*.ejs', gulp.dest(`${dirs.tmp}/source`)));
 });
 
 gulp.task('revfiles', () => {
@@ -163,7 +163,7 @@ gulp.task('revreplace:theme', () => {
             modifyUnreved: (unrevedPath) => {
                 return unrevedPath.replace('static/images/', 'images/');
             },
-            replaceInExtensions: ['.hbs', '.css', '.js', '.json', '.html', '.yml', '.webmanifest', '.ejs']
+            replaceInExtensions: ['.css', '.js', '.json', '.html', '.yml', '.webmanifest', '.ejs']
         }))
         .pipe(gulp.dest(dirs.tmp));
 });
@@ -203,7 +203,7 @@ gulp.task('optimize:templates', () => {
         removeRedundantAttributes: false
     };
 
-    return gulp.src(`${dirs.tmp}/**/*.{hbs,ejs}`)
+    return gulp.src(`${dirs.tmp}/**/*.ejs`)
         .pipe(plugins.htmlmin(htmlminOptions))
         .pipe(gulp.dest(dirs.tmp));
 });
@@ -301,7 +301,7 @@ const replaceSRI = (content) => {
 gulp.task('add-sri', () => {
     sriList = JSON.parse(fs.readFileSync(path.join(__dirname, dirs.tmp, 'sri.json'), 'utf8')); //eslint-disable-line no-sync
 
-    return gulp.src(`${dirs.tmp}/**/*.{hbs, ejs}`)
+    return gulp.src(`${dirs.tmp}/**/*.ejs`)
         .pipe(plugins.transform('utf8', replaceSRI))
         .pipe(gulp.dest(dirs.tmp));
 });
@@ -326,7 +326,7 @@ gulp.task('build', gulp.series(
     'sri',
     'add-sri',
     'build:hexo',
-    'generate-service-worker',
+    // 'generate-service-worker',
     'compress:zopfli',
     'compress:brotli',
     '404'

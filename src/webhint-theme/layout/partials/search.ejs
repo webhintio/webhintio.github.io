@@ -7,42 +7,40 @@
             </ul>
         </nav>
         <section class="section">
-            {{>search-form}}
+            <%- include('search-form', { query }); %>
 
             <div class="layout layout--sidebar--alt">
                 <div class="module module--primary">
-                    {{#if hits.length}}
+                    <% if (hits.length) { %>
                     <ul class="bare">
-                        {{#each hits}}
+                        <% hits.forEach((hit) => { %>
                         <li class="search-result wrap-text">
                             <div class="search-result__main">
                                 <p class="search-result__guide caption">
-                                    {{{category}}}
+                                    <%- hit.category %>
                                     <span> : </span>
-                                    {{{title}}}
+                                    <%- hit.title %>
                                 </p>
-                                <a href="{{url}}" class="subtitle search-result__title">
-                                    {{#if subtitle}}
-                                        {{{subtitle}}}
-                                    {{else}}
-                                        {{{title}}}
-                                    {{/if}}
+                                <a href="<%= hit.url %>" class="subtitle search-result__title">
+                                    <% if (hit.subtitle) { %>
+                                        <%- hit.subtitle %>
+                                    <% } else { %>
+                                        <%- hit.title %>
+                                    <% } %>
                                 </a>
-                                <p class="search-result__description">{{{snippet}}}</p>
+                                <p class="search-result__description"><%- hit.snippet %></p>
                             </div>
                         </li>
-                        {{/each}}
+                        <% }); %>
                     </ul>
                     <div id="pagintion-wrapper">
                         <nav class="pagination" aria-label="pagination" data-pattern="/">
-                            {{>pagination}}
+                            <%- include('pagination', { currentPage, totalPages}); %>
                         </nav>
                     </div>
-                    {{else}}
-                    {{#if query}}
-                    <p class="subtitle">No results found for {{query}}</p>
-                    {{/if}}
-                    {{/if}}
+                    <% } else if (query) { %>
+                        <p class="subtitle">No results found for <%= query %></p>
+                    <% } %>
                 </div>
             </div>
         </section>

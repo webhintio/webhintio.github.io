@@ -1,0 +1,34 @@
+
+<% const pagination = utils.createPagination(currentPage, totalPages, pattern, ); %>
+<% if(!hidePagination) { %>
+    <ul>
+        <% if (pagination.prev) %>
+        <li class="pagination__prev">
+            <a rel="prev" href="<%= pagination.prev.url %>" aria-label="Previous page">
+                <span>Previous</span>
+            </a>
+        </li>
+        <% } %>
+        <% pagination.pages.forEach((page, pageIndex) => { %>
+            <% page.forEach((p) => { %>
+                <li>
+                    <% if (p.active) { %>
+                        <span aria-current="page" aria-label="Current page: <%= p.page %>"><%= p.page %></span>
+                    <% } else { %>
+                    <a href="<%= p.url %>" aria-label="Page <%= p.page %>"><%= p.page %></a>
+                    <% } %>
+                </li>
+            <% }); %>
+            <% if(pageIndex !== pagination.pages.length - 1) { %>
+                <li>...</li>
+            <% } %>
+        <% }); %>
+        <% if (pagination.next) { %>
+        <li class="pagination__next">
+            <a rel="next" href="<%= pagination.next.url %>" aria-label="Next page">
+                <span>Next</span>
+            </a>
+        </li>
+        <% } %>
+    </ul>
+<% } %>

@@ -1,10 +1,8 @@
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
-const exphbs = require('express-handlebars');
 const consolidate = require('consolidate');
 const express = require('express');
-const handlebars = require('handlebars');
 const yaml = require('js-yaml');
 const appInsights = require('applicationinsights');
 const production = process.env.NODE_ENV === 'production'; // eslint-disable-line no-process-env
@@ -38,31 +36,13 @@ if (process.env.APP_INSIGHTS_KEY) { // eslint-disable-line no-process-env
 const createServer = () => {
     const themeDir = path.join(hexoDir, theme);
     const layoutsDir = path.join(themeDir, 'layout');
-    const partialsDir = path.join(layoutsDir, 'partials');
-
-    /* Helpers path */
-    const helpersPath = path.join(themeDir, 'helper/index.js');
-
-    /* Required Helpers */
-    const miscHelpers = require(helpersPath)();
-
-    const helpers = Object.assign(handlebars.helpers, miscHelpers); // Combine helpers
     const app = express();
 
     app.disable('x-powered-by');
-    app.set('views', partialsDir);
+    app.set('views', layoutsDir);
 
-    const hbs = exphbs.create({
-        defaultLayout: 'common',
-        extname: '.hbs',
-        helpers,
-        layoutsDir,
-        partialsDir
-    });
-
-    app.engine('hbs', hbs.engine);
     app.engine('ejs', consolidate.ejs);
-    app.set('view engine', 'hbs');
+    app.set('view engine', 'ejs');
     app.set('themeDir', themeDir);
 
     return app;

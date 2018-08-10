@@ -8,18 +8,18 @@
             </ul>
         </nav>
         <header class="page-intro">
-            <h1 id="page-heading">{{page.title}}</h1>
+            <h1 id="page-heading"><%= page.title %></h1>
         </header>
         <div class="section">
-            {{#each site.data.changelog as |update key|}}
-            <h2>{{key}}</h2>
+            <% Object.entries(site.data.changelog).forEach(([key, update]) => { %>
+            <h2><%= key %></h2>
             <div class="changelog__updates">
-                {{#each update as |content category|}}
-                    <h3 class="{{normalizeClassName category}}">{{category}}</h3>
-                    {{{html}}}
-                {{/each}}
+                <% Object.entries(update).forEach(([category, content]) => { %>
+                    <h3 class="<%= utils.normalizeClassName(category); %>"><%= category %></h3>
+                    <%- content.html %>
+                <% }); %>
             </div>
-            {{/each}}
+            <% }); %>
         </div>
     </article>
 </main>

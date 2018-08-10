@@ -4,7 +4,7 @@
         <form action="/search" method="GET">
             <label for="docs-scan" class="visually-hidden">Search the documentation</label>
             <div class="documentation-search__input">
-                <input id="docs-scan" type="search" placeholder="Search webhint documentation" name="q" value="{{query}}">
+                <input id="docs-scan" type="search" placeholder="Search webhint documentation" name="q" value="<%= query %>">
                 <button type="submit" class="button--search" value="submit" aria-label="submit"></button>
             </div>
         </form>

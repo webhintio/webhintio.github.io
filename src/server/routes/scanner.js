@@ -4,12 +4,13 @@ const promisify = require('util').promisify;
 const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}` } }); // eslint-disable-line no-process-env
 const request = promisify(r);
 const urlAudiences = process.env.WEBSITE_DOMAIN; // eslint-disable-line no-process-env
-const HTMLFormatter = require('@hint/formatter-html').default;
-const formatterUtils = require('@hint/formatter-html/dist/src/utils');
-const formatter = new HTMLFormatter();
 const webhintUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
+
+const HTMLFormatter = require('@hint/formatter-html').default;
+const formatterUtils = require('@hint/formatter-html/dist/src/utils');
+const formatter = new HTMLFormatter();
 
 const jobStatus = {
     error: 'error',
@@ -78,8 +79,11 @@ const processHintResults = async (scanResult) => {
         noGenerateFiles: true,
         scanTime,
         status: scanResult.status,
-        version: scanResult.sonarVersion
+        version: scanResult.webhintVersion || scanResult.sonarVersion
     });
+
+    result.removeCategory('other');
+    result.removeCategory('development');
 
     /*
      * Formatter always returns hint status equal to `finished`

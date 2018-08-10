@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{page.title}} | webhint</title>
-    {{>metas}}
+    <title><%= page.title %> | webhint</title>
+    <%- include('partials/metas', { page }); %>
 
-    {{> styles}}
+    <%- include('partials/styles'); %>
     <!-- build:css /static/styles/about.css -->
     <link rel="stylesheet" href="/core/css/code.css">
     <link rel="stylesheet" href="/core/css/tables-lists.css">
@@ -14,39 +14,39 @@
 </head>
 
 <body>
-    {{>gdpr}}
-    {{>header navs=site.data.menu}}
+    <%- include('partials/gdpr') %>
+    <%- include('partials/header', { navs: site.data.menu }); %>
     <main class="container">
       <article class="content" aria-labelledby="page-heading">
         <nav class="container breadcrumb" aria-label="breadcrumbs">
-            {{#compare page.category '===' 'about-index'}}
+            <% if(page.category === 'about-index') { %>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li>About</li>
             </ul>
-            {{else}}
+            <% } else { %>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="../">About</a></li>
-                <li>{{page.title}}</li>
+                <li><%= page.title %></li>
             </ul>
-            {{/compare}}
+            <% } %>
         </nav>
         <header class="page-intro">
-          <h1 id="heading">{{page.title}}</h1>
+          <h1 id="heading"><%= page.title %></h1>
         </header>
-            {{#compare page.category '===' 'about-index'}}
-                {{>about-index}}
-            {{else}}
+            <% if (page.category === 'about-index') { %>
+                <%- include('partials/about-index'); %>
+            <% } else { %>
                 <div class="section">
-                    {{{page.content}}}
+                    <%- page.content %>
                 </div>
-            {{/compare}}
+            <% } %>
         </article>
     </main>
 
-    {{>footer navs=site.data.menu}}
+    <%- include('partials/footer', { navs: site.data.menu }); %>
 
-    {{>scripts}}
+    <%- include('partials/scripts', { theme }); %>
 </body>
 </html>

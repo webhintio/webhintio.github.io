@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{page.title}}</title>
-    {{>metas}}
+    <title><%= page.title %></title>
+    <%- include('partials/metas', { page }); %>
 
-    {{> styles}}
+    <%- include('partials/styles'); %>
 </head>
 
 <body>
-    {{>gdpr}}
-    {{>header navs=site.data.menu}}
+    <%- include('partials/gdpr') %>
+    <%- include('partials/header', { navs: site.data.menu }); %>
 
     <main class="container">
         <section class="section container">
@@ -27,8 +27,8 @@
         </section>
     </main>
 
-    {{>footer navs=site.data.menu}}
+    <%- include('partials/footer', { navs: site.data.menu }); %>
 
-    {{>scripts}}
+    <%- include('partials/scripts', { theme }); %>
 </body>
 </html>
