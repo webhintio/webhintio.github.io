@@ -169,29 +169,10 @@ gulp.task('revreplace:theme', () => {
 });
 
 gulp.task('optimize:templates', () => {
-    /*
-        Because we are optimizing handlebars templates and not html,
-        we can find things like `{{#if something}}true{{else}}false{{/if}}`
-        that can cause problems with `html-minifier`.
-        With this `RegExp` we try to capture all the valid handlebars blocks:
-        `{{#`, `{{`, and combinations of these inside (like
-
-        ```hbs
-        <ul>
-          {{#each items}}
-          <li aria-selected="{{#if something}}true{{else}}false{{/if}}">{{this}}</li>
-          {{/each}}
-        </ul>
-        ```
-    */
-    const handlebarsRegex = [[/\{\{#[^}]+\}\}/, /\{\{\/[^}]+\}\}/], [/\{\{#[^}]+\}\}\{\{#[^}]+\}\}/, /\{\{\/[^}]+\}\}\{\{\/[^}]+\}\}/], [/\{\{\w[^}]+\}\}/, /\{\{\/\w[^}]+\}\}/]];
-
     const htmlminOptions = {
         caseSensitive: true, // need it because handlebar helpers are case sensitive
         collapseBooleanAttributes: false,
         collapseWhitespace: true,
-        customAttrAssign: handlebarsRegex,
-        customAttrSurround: handlebarsRegex,
         minifyCSS: true,
         minifyJS: true,
         preserveLineBreak: true,
