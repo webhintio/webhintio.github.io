@@ -27,7 +27,7 @@
             <ul class="nav__navbar">
                 {{#each navs}}
                     <li class="navbar__navitem">
-                        <a role="button" href="{{link}}" id="{{id}}" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-{{id}}"
+                        <a role="button" href="{{link}}" id="{{id}}" aria-haspopup="true" aria-expanded="false" {{#hasSubPage id}}aria-controls="submenu-{{id}}"{{/hasSubPage}}
                         class="navitem__button {{#hasSubPage id}}expandable{{/hasSubPage}}">{{title}}</a>
                         {{#hasSubPage id}}
                             <ul role="group" id="submenu-{{id}}" class="navbar__submenu" aria-hidden="true">
