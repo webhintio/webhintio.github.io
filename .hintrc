@@ -1,0 +1,28 @@
+{
+    "extends": [
+        "web-recommended"
+    ],
+    "ignoredUrls": [
+        {
+            "domain": "^https?://cdn\\.jsdelivr\\.net/.*",
+            "hints": [
+                "*"
+            ]
+        },
+        {
+            "domain": "^https?://.*\\.google-analytics\\.com/.*",
+            "hints": [
+                "*"
+            ]
+        },
+        {
+            "domain": "^https?://fonts\\.googleapis\\.com/.*",
+            "hints": [
+                "*"
+            ]
+        }
+    ],
+    "rules": {
+        "html-checker": "off"
+    }
+}

@@ -46,6 +46,7 @@
     "hexo-renderer-handlebars": "^2.0.2",
     "hexo-server": "^0.3.2",
     "hexo-util": "^0.6.3",
+    "hint": "^3.1.0",
     "js-yaml": "^3.12.0",
     "json2yaml": "^1.1.0",
     "klaw": "^3.0.0",
@@ -82,8 +83,10 @@
     "lint:node": "eslint **/*.js --ignore-pattern src/webhint-theme/source/**/*.js --ignore-pattern src/webhint-theme-optimized/**/*.js --ignore-pattern dist/**/*.js",
     "lint:styles": "stylelint src/webhint-theme/**/*.css --config .stylelintrc",
     "start": "node src/server/index.js",
+    "swap": ".travis/swap.sh",
     "watch": "gulp watch",
     "test": "npm run lint && npm run build",
+    "test-staging": "hint https://sonarwhal-staging.azurewebsites.net",
     "travis-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
     "travis-update": ".travis/is-travis.sh && npm run build && .travis/update-site.sh",
     "update-content": "node helpers/update-content.js"

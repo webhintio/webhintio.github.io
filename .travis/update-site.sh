@@ -20,39 +20,31 @@ prepare_site_dist_dir() {
     done
 }
 
-run_docsearch_scraper() {
+update_website() {
+    # Move to temp folder
+    cd "$TMP_DIR"
 
-    # Run the DocSearch scraper only is this is a cron job.
-    # https://docs.travis-ci.com/user/cron-jobs/
-
-    if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
-        npm run travis-docsearch-scraper
-    fi
-
+    git config --global user.email "$GIT_USER_EMAIL" \
+        && git config --global user.name "$GIT_USER_NAME" \
+        && git init \
+        && git add -A \
+        && git commit --message "Hey server, this content is for you! [skip ci]" \
+        && git push --quiet --force --set-upstream "https://$GIT_USER_NAME:$GIT_PASSWORD@sonarwhal-staging.scm.azurewebsites.net:443/sonarwhal.git" master
 }
 
-set_up_ssh() {
-    $(npm bin)/set-up-ssh \
-        --key "$encrypted_1b2b8f95b98b_key" \
-        --iv  "$encrypted_1b2b8f95b98b_iv" \
-        --path-encrypted-key ".travis/github-deploy-key.enc"
-}
+remove_sensitive_information() {
 
-update_website_branch() {
+    declare -r CENSOR_TEXT="[secure]";
 
-    # Automatically update the content from the `website` branch.
-    #
-    # Note: The SSH key is stored on Travis CI, but will need to be
-    #       added once the project is open sourced.
-    #
-    #       https://docs.travis-ci.com/user/private-dependencies/
+    while IFS="" read -r line; do
 
+        for text in "$@"; do
+            line="${line//${text}/$CENSOR_TEXT}"
+        done
 
-    "$(npm bin)/update-branch" --commands "echo" \
-                               --commit-message "Hey server, this content is for you! [skip ci]" \
-                               --directory "$TMP_DIR" \
-                               --distribution-branch "website" \
-                               --source-branch "master"
+        printf "%s\n" "$line"
+
+    done
 
 }
 
@@ -71,12 +63,14 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-declare -r TMP_DIR="$(mktemp -d XXXXX)"
+main () {
+    declare -r TMP_DIR="$(mktemp -d XXXXX)"
 
-run_docsearch_scraper
+    prepare_site_dist_dir \
+        && update_website
 
-set_up_ssh \
-    && prepare_site_dist_dir \
-    && update_website_branch
+    rm -rf "$TMP_DIR"
+}
 
-rm -rf "$TMP_DIR"
+main "$@" \
+    &> >(remove_sensitive_information "$GH_USER_EMAIL" "$GIT_USER_NAME" "$GIT_PASSWORD")
