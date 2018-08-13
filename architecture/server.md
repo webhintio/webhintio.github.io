@@ -63,12 +63,12 @@ The deployment process is fully automated:
 
 1. `master` branch build is triggered in [Travis][travis] (e.g. by code
    or documentation change).
-1. build passes and executes [`.travis/update-site.sh`][site-update].
-   This script will copy the required files for the deployment to the
-   `website` branch.
-1. Azure App Service is configured for [continuous deployment][cd] from
-   a GitHub source. Once it receives the notification the content is
-   automatically downloaded and published.
+1. build passes and executes `.travis/update-site.sh`.
+   This script will copy the required files for the deployment and push
+   them into a local Git on Azure in the staging environment.
+1. The staging environment will be tested with `webhint` to make sure
+   everything is alrigh. If so, the code will get into production via
+   `.travis/swap.sh`.
 
 ## Production configuration
 
@@ -159,9 +159,9 @@ IIS manages the custom error page via the following entries in `web.config`:
 [hexo]: https://hexo.io
 [letsencrypt install]: https://github.com/sjkp/letsencrypt-siteextension/wiki/How-to-install
 [letsencrypt]: https://letsencrypt.org
-[site-update]: https://github.com/webhintio/webhint.io/blob/272a59c150a6462d4047bdc63019c339fcfaead0/.travis/update-site.sh
 [siteextenstion]: https://github.com/sjkp/letsencrypt-siteextension
 [webhint]: https://webhint.io
 [webhint-repo]: https://github.com/webhintio/hint
 [travis]: https://travis-ci.org/webhint/webhint.io
 [trigger-update]: https://github.com/webhintio/hint/blob/0cfb1bb49c847eb4d5ed54691dbb88cb796694bf/.travis/trigger-site-update.sh
+
