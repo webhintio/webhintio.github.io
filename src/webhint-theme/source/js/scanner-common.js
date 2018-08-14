@@ -122,7 +122,7 @@
 
     var onPopState = function () {
         if (endsWith('/scanner/', window.location.href)) {
-            window.location.href = window.location.href;
+            window.location.href = window.location.href; // eslint-disable-line no-self-assign
         }
     };
 
