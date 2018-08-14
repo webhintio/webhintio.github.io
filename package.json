@@ -51,7 +51,7 @@
     "json2yaml": "^1.1.0",
     "klaw": "^3.0.0",
     "markdown-toc": "^1.2.0",
-    "markdownlint-cli": "^0.12.0",
+    "markdownlint-cli": "^0.13.0",
     "marked": "^0.4.0",
     "md-2-json": "^1.0.5",
     "mkdirp": "^0.5.1",
