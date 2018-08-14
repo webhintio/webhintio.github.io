@@ -22,12 +22,8 @@ env:
 
 script:
   - npm test
-
-after_success:
   - npm run travis-update
   - npm run test-staging
-
-after_script:
   - npm run swap
 
 language: node_js
