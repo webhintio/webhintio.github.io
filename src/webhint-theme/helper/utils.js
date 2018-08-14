@@ -112,6 +112,9 @@ module.exports = {
 
         return finalPath;
     },
+    hasSubPage: function (id) { // eslint-disable-line object-shorthand
+        return (id === 'docs' || id === 'about');
+    },
     isActiveItem: (page, target) => {
         return (page.tocTitle === target) && (page.contentType === 'details');
     },
