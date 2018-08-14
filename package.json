@@ -47,7 +47,7 @@
     "hexo-renderer-handlebars": "^2.0.2",
     "hexo-server": "^0.3.2",
     "hexo-util": "^0.6.3",
-    "hint": "^3.1.0",
+    "hint": "^3.2.0",
     "json2yaml": "^1.1.0",
     "klaw": "^3.0.0",
     "markdown-toc": "^1.2.0",
