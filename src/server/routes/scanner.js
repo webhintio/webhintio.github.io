@@ -9,7 +9,6 @@ const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; 
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
 
 const HTMLFormatter = require('@hint/formatter-html').default;
-const formatterUtils = require('@hint/formatter-html/dist/src/utils');
 const formatter = new HTMLFormatter();
 
 const jobStatus = {
@@ -206,8 +205,7 @@ const configure = (app, appInsightsClient) => {
                     title: `webhint report for ${result.url}`
                 },
                 result,
-                showQueue: false,
-                utils: formatterUtils
+                showQueue: false
             };
 
             res.set('Cache-Control', 'max-age=180');
@@ -279,8 +277,7 @@ const configure = (app, appInsightsClient) => {
                     title: `webhint report for ${requestResult.url}`
                 },
                 result,
-                showQueue: messagesInQueue || (result.status === jobStatus.pending && typeof messagesInQueue === 'undefined'),
-                utils: formatterUtils
+                showQueue: messagesInQueue || (result.status === jobStatus.pending && typeof messagesInQueue === 'undefined')
             });
         };
     }

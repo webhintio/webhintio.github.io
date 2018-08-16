@@ -1,7 +1,6 @@
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
-const consolidate = require('consolidate');
 const express = require('express');
 const yaml = require('js-yaml');
 const appInsights = require('applicationinsights');
@@ -41,12 +40,18 @@ const createServer = () => {
     app.disable('x-powered-by');
     app.set('views', layoutsDir);
 
-    app.engine('ejs', consolidate.ejs);
     app.set('view engine', 'ejs');
     app.set('themeDir', themeDir);
 
     return app;
 };
+
+const getUtils = () => {
+    const utils = require('../webhint-theme/helper/utils');
+    const formatterUtils = require('@hint/formatter-html/dist/src/utils');
+
+    return Object.assign({}, utils, formatterUtils);
+}
 
 const commonConfiguration = (app) => {
     // TODO: header security, etc. here
@@ -60,6 +65,7 @@ const commonConfiguration = (app) => {
     app.locals.menuData = menuData;
     app.locals.theme = config;
     app.locals.isSection = true;
+    app.locals.utils = getUtils();
 
     app.use(bodyParser.urlencoded({ extended: false }));
 };
