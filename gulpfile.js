@@ -11,11 +11,13 @@ const imageExtensions = 'gif,ico,jpg,png,svg';
 const dirs = {
     dist: 'dist',
     distCompreseable: 'dist/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}',
+    hint: 'node_modules/@hint',
     originalContent: `src/content`,
     src: 'src/webhint-theme',
     tmp: 'src/webhint-theme-optimized',
     tmpContent: 'src/content-replaced',
-    tmpImages: `src/webhint-theme-optimized/**/*.{${imageExtensions}}`
+    tmpImages: `src/webhint-theme-optimized/**/*.{${imageExtensions}}`,
+    tmpScanImages: `src/webhint-theme-optimized/source/images/scan/*.*`
 };
 
 // ---------------------------------------------------------------------
@@ -23,7 +25,11 @@ const dirs = {
 // ---------------------------------------------------------------------
 
 gulp.task('clean:before', (done) => {
-    shelljs.rm('-rf', dirs.dist, dirs.tmp, dirs.tmpContent);
+    shelljs.rm('-rf',
+        dirs.dist,
+        dirs.tmp,
+        dirs.tmpContent,
+        `${dirs.hint}/formatter-html-copy`);
 
     done();
 });
@@ -46,6 +52,12 @@ gulp.task('clean:after', (done) => {
         `${dirs.tmp}/source/partials`,
         `${dirs.tmp}/static`
     );
+
+    done();
+});
+
+gulp.task('copy:formatter', (done) => {
+    shelljs.cp('-r', `${dirs.hint}/formatter-html`, `${dirs.hint}/formatter-html-copy`);
 
     done();
 });
@@ -103,7 +115,7 @@ gulp.task('optimize:css', () => {
 
 gulp.task('compile-utils', () => {
     return gulp.src(`${dirs.src}/source/js/partials/utils.ts`)
-        .pipe(plugins.typescript({lib: ['dom', 'es2015', 'es5'], module: 'commonjs', removeComments: true, target: 'es5' }))
+        .pipe(plugins.typescript({ lib: ['dom', 'es2015', 'es5'], module: 'commonjs', removeComments: true, target: 'es5' }))
         .pipe(gulp.dest(`${dirs.src}/source/js/partials/`));
 });
 
@@ -131,7 +143,7 @@ gulp.task('useref', () => {
 });
 
 gulp.task('revfiles', () => {
-    return gulp.src([`${dirs.tmp}/source/**/*`, `!**/*.json`, `!**/*.yml`, `!**/sw-reg.js`, `!**/*.webmanifest`])
+    return gulp.src([`${dirs.tmp}/source/**/*`, `${dirs.hint}/html-formatter-copy/dist/src/**/*`, `!${dirs.tmp}/source/**/*.json`, `!**/*.yml`, `!**/sw-reg.js`, `!**/*.webmanifest`])
         .pipe(plugins.rev())
         .pipe(plugins.revDeleteOriginal())
         .pipe(gulp.dest(`${dirs.tmp}/source`))
@@ -168,6 +180,20 @@ gulp.task('revreplace:theme', () => {
         .pipe(gulp.dest(dirs.tmp));
 });
 
+gulp.task('revreplace:formatter', () => {
+    const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
+
+    return gulp.src(`${dirs.hint}/formatter-html-copy/dist/src/configs/*`)
+        .pipe(plugins.revReplace({
+            manifest,
+            modifyUnreved: (unrevedPath) => {
+                return unrevedPath.replace('static/images/', 'images/');
+            },
+            replaceInExtensions: ['.json']
+        }))
+        .pipe(gulp.dest(`${dirs.hint}/formatter-html-copy/dist/src/configs/`));
+});
+
 gulp.task('optimize:templates', () => {
     const htmlminOptions = {
         caseSensitive: true, // need it because handlebar helpers are case sensitive
@@ -201,13 +227,19 @@ gulp.task('imagemin', () => {
 });
 
 const moveImages = () => {
-    return gulp.src(dirs.tmpImages)
+    return gulp.src([dirs.tmpImages, `!${dirs.tmpScanImages}`])
         .pipe(plugins.flatten())
         .pipe(gulp.dest(`${dirs.tmp}/source/static/images`));
 };
 
+const moveScanImages = () => {
+    return gulp.src(dirs.tmpScanImages)
+        .pipe(gulp.dest(`${dirs.tmp}/source/static/images/scan`));
+};
+
 gulp.task('move:images', moveImages);
-gulp.task('optimize:images', gulp.series('move:docimage', 'imagemin', 'move:images'));
+gulp.task('move:scanimages', moveScanImages);
+gulp.task('optimize:images', gulp.series('move:docimage', 'imagemin', 'move:images', 'move:scanimages'));
 
 gulp.task('404', (done) => {
     const lostContent = fs.readFileSync(`${dirs.dist}/404/index.html`, 'utf-8'); // eslint-disable-line no-sync
@@ -289,6 +321,7 @@ gulp.task('add-sri', () => {
 
 gulp.task('build', gulp.series(
     'clean:before',
+    'copy:formatter',
     'compile-utils',
     'clean:utils-ts',
     'precompile',
@@ -302,6 +335,7 @@ gulp.task('build', gulp.series(
     'move:helpers',
     'clean:after',
     'revfiles',
+    'revreplace:formatter',
     'revreplace:content',
     'revreplace:theme',
     'sri',

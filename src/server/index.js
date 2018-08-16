@@ -51,7 +51,7 @@ const getUtils = () => {
     const formatterUtils = require('@hint/formatter-html/dist/src/utils');
 
     return Object.assign({}, utils, formatterUtils);
-}
+};
 
 const commonConfiguration = (app) => {
     // TODO: header security, etc. here

@@ -11,7 +11,7 @@ const getPartials = (themeDir, partialList) => {
         const partialDir = path.join(partialsDir, `${partialName}.ejs`);
 
         const compiledPartial = `window.ejsPartials = window.ejsPartials || {};
-window.ejsPartials['${partialName}'] = ${ejs.compile(fs.readFileSync(partialDir, 'utf8'), { client: true, compileDebug: false }).toString()}`;
+window.ejsPartials['${partialName}'] = ${ejs.compile(fs.readFileSync(partialDir, 'utf8'), { client: true, compileDebug: false }).toString()};`;
 
         group[partialName] = compiledPartial;
 
