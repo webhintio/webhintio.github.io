@@ -2,15 +2,21 @@
     "extends": [
         "web-recommended"
     ],
+    "formatters": [
+        "stylish"
+    ],
+    "hints": {
+        "html-checker": "off"
+    },
     "ignoredUrls": [
         {
-            "domain": "^https?://cdn\\.jsdelivr\\.net/.*",
+            "domain": "^https?://.*\\.google-analytics\\.com/.*",
             "hints": [
                 "*"
             ]
         },
         {
-            "domain": "^https?://.*\\.google-analytics\\.com/.*",
+            "domain": "^https?://cdn\\.jsdelivr\\.net/.*",
             "hints": [
                 "*"
             ]
@@ -21,8 +27,5 @@
                 "*"
             ]
         }
-    ],
-    "hints": {
-        "html-checker": "off"
-    }
+    ]
 }
