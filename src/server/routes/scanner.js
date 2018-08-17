@@ -8,8 +8,9 @@ const webhintUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://loc
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
 const production = process.env.NODE_ENV === 'production'; // eslint-disable-line no-process-env
+const theme = production ? 'webhint-theme-optimized' : 'webhint-theme';
 
-const HTMLFormatter = production ? require('@hint/formatter-html-copy').default : require('@hint/formatter-html').default;
+const HTMLFormatter = require(`../../${theme}/formatter`).default;
 const formatter = new HTMLFormatter();
 
 const jobStatus = {

@@ -29,7 +29,7 @@ gulp.task('clean:before', (done) => {
         dirs.dist,
         dirs.tmp,
         dirs.tmpContent,
-        `${dirs.hint}/formatter-html-copy`);
+        `${dirs.src}/formatter`);
 
     done();
 });
@@ -57,7 +57,7 @@ gulp.task('clean:after', (done) => {
 });
 
 gulp.task('copy:formatter', (done) => {
-    shelljs.cp('-r', `${dirs.hint}/formatter-html`, `${dirs.hint}/formatter-html-copy`);
+    shelljs.cp('-r', `${dirs.hint}/formatter-html`, `${dirs.src}/formatter`);
 
     done();
 });
@@ -143,7 +143,7 @@ gulp.task('useref', () => {
 });
 
 gulp.task('revfiles', () => {
-    return gulp.src([`${dirs.tmp}/source/**/*`, `${dirs.hint}/html-formatter-copy/dist/src/**/*`, `!${dirs.tmp}/source/**/*.json`, `!**/*.yml`, `!**/sw-reg.js`, `!**/*.webmanifest`])
+    return gulp.src([`${dirs.tmp}/source/**/*`, `!${dirs.tmp}/source/**/*.json`, `!**/*.yml`, `!**/sw-reg.js`, `!**/*.webmanifest`])
         .pipe(plugins.rev())
         .pipe(plugins.revDeleteOriginal())
         .pipe(gulp.dest(`${dirs.tmp}/source`))
@@ -169,7 +169,7 @@ gulp.task('revreplace:content', () => {
 gulp.task('revreplace:theme', () => {
     const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
 
-    return gulp.src(`${dirs.tmp}/**/*`)
+    return gulp.src([`${dirs.tmp}/**/*`, `!${dirs.tmp}/template/**/*`])
         .pipe(plugins.revReplace({
             manifest,
             modifyUnreved: (unrevedPath) => {
@@ -183,7 +183,7 @@ gulp.task('revreplace:theme', () => {
 gulp.task('revreplace:formatter', () => {
     const manifest = gulp.src(`${dirs.tmp}/rev-manifest.json`);
 
-    return gulp.src(`${dirs.hint}/formatter-html-copy/dist/src/configs/*`)
+    return gulp.src(`${dirs.tmp}/formatter/dist/src/configs/*`)
         .pipe(plugins.revReplace({
             manifest,
             modifyUnreved: (unrevedPath) => {
@@ -191,7 +191,7 @@ gulp.task('revreplace:formatter', () => {
             },
             replaceInExtensions: ['.json']
         }))
-        .pipe(gulp.dest(`${dirs.hint}/formatter-html-copy/dist/src/configs/`));
+        .pipe(gulp.dest(`${dirs.tmp}/formatter/dist/src/configs/`));
 });
 
 gulp.task('optimize:templates', () => {
@@ -210,7 +210,7 @@ gulp.task('optimize:templates', () => {
         removeRedundantAttributes: false
     };
 
-    return gulp.src(`${dirs.tmp}/**/*.ejs`)
+    return gulp.src([`${dirs.tmp}/**/*.ejs`, `!${dirs.tmp}/formatter/**/*`])
         .pipe(plugins.htmlmin(htmlminOptions))
         .pipe(gulp.dest(dirs.tmp));
 });
