@@ -19,9 +19,17 @@ env:
 
 script:
   - npm test
-  - npm run travis-update
-  - npm run test-staging
-  - npm run swap
+  - |
+
+        # Don't execute the following if the build
+        # is run from a pull request.
+
+        if [ "$TRAVIS_BRANCH" == "master" ] && \
+           [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+             npm run travis-update \
+              && npm run test-staging \
+              && npm run swap
+        fi
 
 language: node_js
 
