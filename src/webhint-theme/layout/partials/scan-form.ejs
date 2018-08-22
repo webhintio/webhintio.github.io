@@ -1,0 +1,158 @@
+<main>
+    <article class="content" aria-labelledby="page-heading">
+        <nav class="container breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li>Scanner</li>
+            </ul>
+        </nav>
+        <header class="page-intro container">
+            <h1 id="page-heading">Analyze your website now!</h1>
+            <p class="subtitle">webhint's online version is currently in preview. Results and reliability might vary. Nellie has chosen a set of hints for you, but in the future you will be able to decide which ones you want.</p>
+        </header>
+        <%# <div class="section container" hidden>
+            <div class="layout layout--sidebar">
+                <div class="module module--primary">
+
+                    <!--- Recommended Configuration Checked --->
+
+                    <div id="recommended-config">
+                        <p class="subtitle">You've selected to use Nellie's recommended settings for the scan. [brief blurb about what these settings are]</p>
+                    </div>
+
+                    <!--- Manual Configuration Checked --->
+
+                    <div id="manual-config" hidden>
+                        <p class="title">hints</p>
+                        <div class="rule">
+                            <fieldset class="checkable-set rule-category">
+                                <legend>
+                                    <input type="checkbox" id="accessibility"/>
+                                    <label for="accesibility">Accessibility (a11y)</label>
+                                </legend>
+                                <div class="rule-category__children">
+                                    <input type="checkbox" id="axe"/>
+                                    <label for="axe">axe</label>
+
+                                    <input id="meta-charset-utf-8" type="checkbox"/>
+                                    <label for="meta-charset-utf-8">meta-charset-utf-8</label>
+                                </div>
+                            </fieldset>
+                            <button title="open" class="button--icon icon--open"></button>
+                        </div>
+                        <div class="rule">
+                            <fieldset class="checkable-set rule-category">
+                                <legend>
+                                    <input type="checkbox" id="interoperability"/>
+                                    <label for="interoperability">Interoperability</label>
+                                </legend>
+                                <div class="rule-category__children">
+                                    <input type="checkbox" id="content-type"/>
+                                    <label for="content-type">content-type</label>
+
+                                    <input id="highest-available-document-mode" type="checkbox"/>
+                                    <label for="highest-available-document-mode">highest-available-document-mode</label>
+
+                                    <input id="html-checker" type="checkbox"/>
+                                    <label for="html-checker">html-checker</label>
+
+                                    <input id="no-friendly-error-pages" type="checkbox"/>
+                                    <label for="no-friendly-error-pages">no-friendly-error-pages</label>
+                                </div>
+                            </fieldset>
+                            <button title="open" class="button--icon icon--open"></button>
+                        </div>
+                        <div class="rule">
+                            <fieldset class="checkable-set rule-category">
+                                <legend>
+                                    <input type="checkbox" id="performance"/>
+                                    <label for="performance">Performance</label>
+                                </legend>
+                                <div class="rule-category__children">
+                                    <input type="checkbox" id="no-html-only-headers"/>
+                                    <label for="no-html-only-headers">no-html-only-headers</label>
+                                </div>
+                            </fieldset>
+                            <button title="open" class="button--icon icon--open"></button>
+                        </div>
+                        <div class="rule">
+                            <fieldset class="checkable-set rule-category">
+                                <legend>
+                                    <input type="checkbox" id="pwas"/>
+                                    <label for="pwas">PWAs</label>
+                                </legend>
+                                <div class="rule-category__children">
+                                    <input type="checkbox" id="manifest-exists"/>
+                                    <label for="manifest-exists">manifest-exists</label>
+
+                                    <input type="checkbox" id="manifest-file-extension"/>
+                                    <label for="manifest-file-extension">manifest-file-extension</label>
+                                </div>
+                            </fieldset>
+                            <button title="open" class="button--icon icon--open"></button>
+                        </div>
+                        <div class="rule">
+                            <fieldset class="checkable-set rule-category">
+                                <legend>
+                                    <input type="checkbox" id="security"/>
+                                    <label for="security">Security</label>
+                                </legend>
+                                <div class="rule-category__children">
+                                    <input type="checkbox" id="disallowed-headers"/>
+                                    <label for="disallowed-headers">disallowed-headers</label>
+
+                                    <input type="checkbox" id="disown-opener"/>
+                                    <label for="disown-opener">disown-opener</label>
+
+                                    <input type="checkbox" id="no-protocol-relative-urls"/>
+                                    <label for="no-protocol-relative-urls">no-protocol-relative-urls</label>
+
+                                    <input type="checkbox" id="ssllabs"/>
+                                    <label for="ssllabs">ssllabs</label>
+
+                                    <input type="checkbox" id="x-content-type-options"/>
+                                    <label for="x-content-type-options">x-content-type-options</label>
+                                </div>
+                            </fieldset>
+                            <button title="open" class="button--icon icon--open"></button>
+                        </div>
+                    </div>
+
+                    <!--- Upload Configuration Checked --->
+
+                    <div id="upload-config" hidden>
+                        <form>
+                            <label class="subtitle" for="upload-config-file">Upload your configuration file</label>
+                            <input id="upload-config-file" type="file" placeholder="Upload a configuration file">
+                        </form>
+                    </div>
+                </div>
+                <div class="module module--secondary scan-config">
+                    <fieldset class="checkable-set">
+                        <legend class="scan-heading uppercase-text">Scan Configuration</legend>
+                            <input type="radio" id="recommended-config" name="scan-configuration" checked/>
+                            <label for="recommended-config">Recommended (default)</label>
+
+                            <input type="radio" id="upload-config" name="scan-configuration"/>
+                            <label for="upload-config">Upload configuration file</label>
+
+                            <input type="radio" id="manual-config" name="scan-configuration"/>
+                            <label for="manual-config">Manually select rules</label>
+                    </fieldset>
+                    <p class="subtitle">For greater flexibility, use the command line tool to run your scan.</p>
+                </div>
+            </div>
+        </div> %>
+        <section class="section scanner">
+            <section class="container">
+                <form action="/scanner/" method="POST">
+                    <label for="scanner-page-scan">Enter your URL here</label>
+                    <div class="input-fix">
+                        <input id="scanner-page-scan" type="url" name="url" placeholder="Type your URL here">
+                        <button class="button--red" type="submit" data-ga-category="scanner" data-ga-action="start" data-ga-label="scanner">Run Scan</button>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </article>
+</main>

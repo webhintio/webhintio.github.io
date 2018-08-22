@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title><%= page.title %></title>
+    <%- include('partials/metas', { page }); %>
+
+    <%- include('partials/styles'); %>
+</head>
+
+<body>
+    <%- include('partials/gdpr') %>
+    <%- include('partials/header', { navs: menuData }); %>
+    <%- body %>
+    <%- include('partials/footer', { navs: menuData }); %>
+
+    <%- include('partials/scripts', { theme }); %>
+</body>
+</html>

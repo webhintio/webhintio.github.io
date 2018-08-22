@@ -1,0 +1,117 @@
+<article class="content" aria-labelledby="page-heading">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="<%= utils.getTargetPagePath(page, 'docs'); %>">Documentation</a>
+            </li>
+            <% if (!utils.isGuideIndexPage(page)) { %>
+            <li>
+                <a href="<%= utils.getTargetPagePath(page, 'category'); %>" class="guide-category">
+                    <%= utils.capitalize(page.category); %>
+                </a>
+            </li>
+            <% } %>
+            <li aria-current="location"><%= page.title %></li>
+        </ul>
+    </nav>
+    <header class="page-intro">
+        <h1 id="page-heading"><%= page.title %></h1>
+        <div class="documentation-actions">
+            <ul>
+                <li>
+                    <a target="_blank" href="<%= `${theme.webhintRepoRoot}/edit/master/${utils.getEditLink(page.originalFile)}` %>">Edit</a>
+
+                </li>
+                <li>
+                    <a target="_blank" href="<%= `${theme.webhintRepoRoot}/issues/new?${utils.getSignalIssueQuery(theme.webhintRoot, page.title, page.permalink)}` %>">Signal Issue</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="section" id="main">
+        <div class="layout layout--sidebar">
+            <div class="module module--secondary mobile-view">
+                <ul class="toc-mobile-view">
+                    <li>
+                        <p role="button" id="mobile-toc" aria-controls="mobile-toc-submenu" aria-expanded="false" aria-haspopup="true" class="toc-mobile-view__button expandable"><%= utils.capitalize(page.category); %></p>
+                        <ul role="group" class="toc-mobile-view__dropdown" id="mobile-toc-submenu" aria-hidden="true">
+                            <% if (!utils.isGuideIndexPage(page)) { %>
+                                <li class="dropdown__subitem">
+                                    <a href="../<% if (!utils.isSectionIndexPage(page)) { %>../<% } %>" class="subitem--single">Getting Started</a>
+                                </li>
+                            <% } else { %>
+                                <li class="dropdown__subitem">
+                                    <a href="#" class="subitem--single">Getting Started</a>
+                                </li>
+                            <% } %>
+                            <% utils.getSortedToCTitles(pages).forEach((title) => { %>
+                                <li class="dropdown__subitem">
+                                    <p><%= utils.capitalize(title); %></p>
+                                    <ul>
+                                        <% utils.getPagesByToCTitle(title, pages).forEach((subpage) => { %>
+                                            <li class="subitem">
+                                                <a href="<%= utils.sanitize(subpage.permalink); %>"><%= subpage.title %></a>
+                                            </li>
+                                        <% }); %>
+                                    </ul>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="module module--secondary table-of-contents treeview main-view" role="navigation">
+                <ul role="tree" aria-labelledby="page-heading" tabindex="0">
+                    <% utils.getSortedToCTitles(pages).forEach((title) => { %>
+                        <li role="treeitem" aria-label="subsection" tabindex="0" aria-expanded="<% if (page.tocTitle === title) { %>true<% } else { %>false<% } %>">
+                            <div class="
+                            <% if (utils.isActiveItem(page, title)) { %>
+                                toc-section-title--active
+                            <% } else { %>
+                                toc-section-title
+                            <% } %>">
+                                <span class="text"><%= utils.capitalize(title); %></span>
+                                <span class="icon"></span>
+                            </div>
+
+                            <ul role="group">
+                                <% utils.getPagesByToCTitle(title, pages).forEach((subpage) => { %>
+                                    <li role="treeitem" aria-selected="<% if (page.title === subpage.title) { %>true<% } else { %>false<% } %>">
+                                        <div class="
+                                        <% if(page.title === subpage.title) { %>
+                                            toc-subsection-title--active
+                                        <% } else { %>
+                                            toc-subsection-title
+                                        <% } %>"
+                                            aria-current="<% if (page.title === subpage.title) { %>location<% } %>">
+                                            <a class="text" href="<%= utils.sanitize(subpage.permalink) %>" tabindex="<% if(page.tocTitle !== title) { %>-1<% } else { %>0<% } %>">
+                                                <%= subpage.title %>
+                                            </a>
+                                        </div>
+                                    </li>
+                                <% }); %>
+                            </ul>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+            <div class="module module--primary wrap-text">
+                <% if (utils.showMdContent(page)) { %>
+                    <%- page.content %>
+                <% } else if (page.title === 'Hints categories') { %>
+                    <%- include('rules-index', { categories: site.data.categories.categories, utils }); %>
+                <% } else { %>
+                    <% site.data.categories.categories.forEach((category) => { %>
+                        <% if (category.name === page.title) { %>
+                            <%- include('rule-category', { category }); %>
+                        <% } %>
+                    <% }); %>
+                <% } %>
+            </div>
+        </div>
+        <a href="#main" class="anchor-top" hidden aria-label="back to top">top</a>
+    </div>
+</article>
