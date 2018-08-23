@@ -63,7 +63,7 @@ gulp.task('copy:formatter', (done) => {
 });
 
 gulp.task('build:hexo', (done) => {
-    const hexo = new Hexo(process.cwd(), {});
+    const hexo = new Hexo(process.cwd(), { silent: true });
 
     hexo.init()
         .then(() => {
@@ -76,7 +76,7 @@ gulp.task('build:hexo', (done) => {
 });
 
 gulp.task('watch:hexo', (done) => {
-    const hexo = new Hexo(process.cwd(), {});
+    const hexo = new Hexo(process.cwd(), { silent: true });
 
     hexo.init()
         .then(() => {
@@ -351,7 +351,7 @@ gulp.task('build', gulp.series(
 gulp.task('default', gulp.series('build'));
 
 gulp.task('watch', gulp.series(['clean:before', 'copy:theme', 'precompile', 'move:docimage', 'move:images', 'useref', 'move:static', 'move:helpers', 'clean:after', 'revfiles', 'revreplace:content', 'revreplace:theme', async () => {
-    const hexo = new Hexo(process.cwd(), {});
+    const hexo = new Hexo(process.cwd(), { silent: true });
 
     await hexo.init();
     await hexo.call('clean');
