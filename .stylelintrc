@@ -1,5 +1,8 @@
 {
-    "ignoreFiles": ["./src/webhint-theme/source/components/highlight/default.min.css"],
+    "ignoreFiles": [
+        "./src/webhint-theme/source/components/highlight/default.min.css",
+        "src/webhint-theme/formatter/**/*"
+    ],
     "rules": {
         "at-rule-empty-line-before": ["always", {
             "except": ["blockless-after-blockless", "first-nested"],

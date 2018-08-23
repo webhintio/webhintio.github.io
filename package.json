@@ -79,7 +79,7 @@
     "lint": "npm-run-all lint:*",
     "lint:js": "npm run lint-node && npm run lint-browser",
     "lint:md": "markdownlint README.md ./src/hexo/source",
-    "lint:styles": "stylelint src/webhint-theme/**/*.css --config .stylelintrc --ignore-pattern src/webhint-theme/formatter/**/*",
+    "lint:styles": "stylelint src/webhint-theme/**/*.css",
     "lint-browser": "eslint src/webhint-theme/source/**/*.js --ignore-pattern src/webhint-theme/source/js/partials/**/*.js --ignore-pattern src/webhint-theme/source/js/scan/**/*.js",
     "lint-node": "eslint {helpers,src/webhint-theme/helper/**,src/webhint-theme/scripts/**,src/server/**}/*.js",
     "start": "node src/server/index.js",
