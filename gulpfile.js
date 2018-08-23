@@ -143,7 +143,7 @@ gulp.task('useref', () => {
 });
 
 gulp.task('revfiles', () => {
-    return gulp.src([`${dirs.tmp}/source/**/*`, `!${dirs.tmp}/source/**/*.json`, `!**/*.yml`, `!**/sw-reg.js`, `!**/*.webmanifest`])
+    return gulp.src([`${dirs.tmp}/source/**/*`, `!${dirs.tmp}/source/**/*.json`, `!**/*.yml`, `!**/sw-reg.js`])
         .pipe(plugins.rev())
         .pipe(plugins.revDeleteOriginal())
         .pipe(gulp.dest(`${dirs.tmp}/source`))
@@ -243,7 +243,8 @@ gulp.task('optimize:images', gulp.series('move:docimage', 'imagemin', 'move:imag
 
 gulp.task('404', (done) => {
     const lostContent = fs.readFileSync(`${dirs.dist}/404/index.html`, 'utf-8'); // eslint-disable-line no-sync
-    const asp404 = `<% Response.Status = "404" %>
+    const asp404 = `<%@ EnableSessionState=False %>
+<% Response.Status = "404" %>
 ${lostContent}`;
 
     fs.writeFileSync(`${dirs.dist}/404/index.asp`, asp404, 'utf-8'); // eslint-disable-line no-sync
