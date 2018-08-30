@@ -26,6 +26,12 @@
             "hints": [
                 "*"
             ]
+        },
+        {
+            "domain": "^https?://sonarwhal-staging\\.azurewebsites\\.net/static/images/favicon-.*\\.ico",
+            "hints": [
+                "*"
+            ]
         }
     ]
 }
