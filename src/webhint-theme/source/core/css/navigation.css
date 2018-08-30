@@ -109,6 +109,10 @@
     margin: .5rem 0 .5rem 1rem;
 }
 
+.header-social__list li a:focus {
+    color: #fff;
+}
+
 a .github-icon-svg-header,
 a .medium-icon-svg-header,
 a .twitter-icon-svg-header {
