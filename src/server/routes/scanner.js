@@ -58,7 +58,7 @@ const queryResult = async (id, tries) => {
 
 /** Process scanning result to add category and statistics information */
 const processHintResults = async (scanResult) => {
-    const hints = scanResult.hints || scanResult.rules;
+    const hints = (scanResult.hints && scanResult.hints.length > 0) ? scanResult.hints : scanResult.rules;
     const messages = hints.reduce((total, hint) => {
         return total.concat(hint.messages.map((message) => {
             // Make it compatible with the old version.
