@@ -138,7 +138,14 @@ const configure = (app, appInsightsClient) => {
         scanner = (req, res) => {
             res.set('Cache-Control', 'no-cache');
 
-            return res.render('under-construction');
+            return res.render('common', {
+                page: {
+                    description: `Analyze any public website using webhint's online tool`,
+                    title: `webhint's online scanner`
+                },
+                partial: 'under-construction',
+                result: null
+            });
         };
     } else {
         scanner = (req, res) => {
@@ -147,7 +154,7 @@ const configure = (app, appInsightsClient) => {
             if (req.method === 'GET') {
                 appInsightsClient.trackNodeHttpRequest({ request: req, response: res });
             }
-            res.render('scan.ejs', {
+            res.render('scan', {
                 page: {
                     description: `Analyze any public website using webhint's online tool`,
                     title: `webhint's online scanner`
@@ -195,7 +202,11 @@ const configure = (app, appInsightsClient) => {
 
             return res.render('error', {
                 details: error.message,
-                heading: 'ERROR'
+                heading: 'ERROR',
+                page: {
+                    description: `Analyze any public website using webhint's online tool`,
+                    title: `webhint's online scanner`
+                }
             });
         }
 
@@ -211,7 +222,7 @@ const configure = (app, appInsightsClient) => {
             };
 
             res.set('Cache-Control', 'max-age=180');
-            res.render('scan.ejs', renderOptions);
+            res.render('scan', renderOptions);
         } catch (err) {
             res.send(err);
         }
@@ -233,7 +244,14 @@ const configure = (app, appInsightsClient) => {
 
     if (underConstruction && underConstruction === 'true') {
         scannerPost = (req, res) => {
-            return res.render('under-construction');
+            return res.render('common', {
+                page: {
+                    description: `Analyze any public website using webhint's online tool`,
+                    title: `webhint's online scanner`
+                },
+                partial: 'under-construction',
+                result: null
+            });
         };
     } else {
         scannerPost = async (req, res) => {
@@ -244,7 +262,11 @@ const configure = (app, appInsightsClient) => {
             if (!req.body || !req.body.url) {
                 return res.render('error', {
                     details: 'Please provide a url.',
-                    heading: ''
+                    heading: '',
+                    page: {
+                        description: `Analyze any public website using webhint's online tool`,
+                        title: `webhint's online scanner`
+                    }
                 });
             }
 
@@ -259,7 +281,14 @@ const configure = (app, appInsightsClient) => {
             } catch (error) {
                 appInsightsClient.trackException({ exception: new Error('sendRequestError') });
 
-                return res.render('scan-error');
+                return res.render('common', {
+                    page: {
+                        description: `Analyze any public website using webhint's online tool`,
+                        title: `webhint's online scanner`
+                    },
+                    partial: 'scan-error',
+                    result: null
+                });
             }
 
             const messagesInQueue = requestResult.messagesInQueue;
@@ -273,7 +302,7 @@ const configure = (app, appInsightsClient) => {
                 }
             });
 
-            return res.render('scan.ejs', {
+            return res.render('scan', {
                 page: {
                     description: `scan result of ${requestResult.url}`,
                     title: `webhint report for ${requestResult.url}`
