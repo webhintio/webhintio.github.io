@@ -245,8 +245,8 @@
             hljs.highlightBlock(codeBlocks[i]);
         }
 
-        document.querySelector('#total-errors').innerHTML = result.errors;
-        document.querySelector('#total-warnings').innerHTML = result.warnings;
+        document.getElementById('total-errors').textContent = result.status !== jobStatus.error ? result.errors : '-';
+        document.getElementById('total-warnings').textContent = result.status !== jobStatus.error ? result.warnings : '-';
         document.querySelector('.scan-overview--time .scan-overview__body--purple').innerHTML = time;
         document.querySelector('.scan-overview--version .scan-overview__body--purple').innerHTML = version;
     };
@@ -259,8 +259,12 @@
         }
 
         var scanErrorMessageHTML = getHTML('scan-error-message', { result: result });
+        var resultsContainer = document.getElementById('results-container');
+        var categoriesSummaryContainer = document.getElementById('categories-summary');
 
-        document.querySelector('#results-container').insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
+        resultsContainer.insertAdjacentHTML('beforebegin', scanErrorMessageHTML);
+        resultsContainer.style.display = 'none';
+        categoriesSummaryContainer.style.display = 'none';
     };
 
     var showQueueMessage = function () {
