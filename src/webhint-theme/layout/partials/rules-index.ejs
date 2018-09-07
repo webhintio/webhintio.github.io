@@ -4,8 +4,8 @@
         <p class="title icon--categories icon--<%= category.normalizedName %>"><%= category.name %></p>
         <p class="placement__body"><%= category.description %></p>
         <div class="placement__rules">
-            <p class="subtitle--alt"><%= utils.getHintsCount(category.hints);%> Hints</p>
-            <a class="button--alt placement__button" href="<%= category.categorylink %>">View All</a>
+            <p class="subtitle--alt"><a href="<%= category.link %>"><%= utils.getHintsCount(category.hints);%> Hints</a></p>
+            <a class="button--alt placement__button" href="<%= category.link %>">View All</a>
         </div>
     </div>
     <% }); %>
