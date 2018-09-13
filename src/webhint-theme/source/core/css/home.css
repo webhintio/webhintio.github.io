@@ -95,6 +95,12 @@ a.home--hero__images-wrap:focus {
     text-align: center;
 }
 
+.module.feature {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .feature__highlight,
 .install__code {
     font-size: 1.6rem;
@@ -159,6 +165,7 @@ a.home--hero__images-wrap:focus {
 /* stylelint-disable */
 .home-container__features img {
     max-width: 75%;
+    height: 15em;
 }
 
 .home--docs {
@@ -206,6 +213,10 @@ a.feature__cta {
     border-radius: .3rem;
     letter-spacing: .1rem;
     text-transform: uppercase;
+}
+
+.scan-image {
+    height: 15em;
 }
 
 /* Custom Buttons */
