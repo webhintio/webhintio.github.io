@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title><%= page.title %></title>
+    <title><%= page.title %> | webhint</title>
     <%- include('partials/metas', { page }); %>
 
     <%- include('partials/styles'); %>
@@ -12,7 +12,7 @@
 
 <body>
     <%- include('partials/gdpr') %>
-    <%- include('partials/header', { navs: menuData }); %>
+    <%- include('partials/header', { navs: site.data.menu }); %>
 
     <main class="container">
         <section class="section container">
@@ -28,7 +28,7 @@
         </section>
     </main>
 
-    <%- include('partials/footer', { navs: menuData }); %>
+    <%- include('partials/footer', { navs: site.data.menu }); %>
 
     <%- include('partials/scripts', { theme }); %>
 </body>

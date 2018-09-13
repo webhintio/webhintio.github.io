@@ -62,7 +62,7 @@ const commonConfiguration = (app) => {
 
     app.set('hexoDir', hexoDir);
     app.set('rootPath', rootPath);
-    app.locals.menuData = menuData;
+    app.locals.site = { data: { menu: menuData } };
     app.locals.theme = config;
     app.locals.isSection = true;
     app.locals.utils = getUtils();

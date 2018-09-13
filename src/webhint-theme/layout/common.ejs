@@ -12,9 +12,9 @@
 
 <body>
     <%- include('partials/gdpr') %>
-    <%- include('partials/header', { navs: menuData }); %>
+    <%- include('partials/header', { navs: site.data.menu }); %>
     <%- include(`partials/${partial}`); %>
-    <%- include('partials/footer', { navs: menuData }); %>
+    <%- include('partials/footer', { navs: site.data.menu }); %>
 
     <%- include('partials/scripts', { theme }); %>
 </body>
