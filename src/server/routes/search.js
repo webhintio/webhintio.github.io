@@ -38,6 +38,7 @@ const configure = (app) => {
                 description: query ? `About ${totalPages * hitsPerPage} results found for ${query}` : `Search through webhint's hints, user and contributor guides`,
                 title: query ? `Results for ${query} (page ${currentPage} of ${totalPages})` : `Search webhint's documentation`
             },
+            partial: 'search',
             pattern,
             query,
             totalPages
@@ -83,7 +84,8 @@ const configure = (app) => {
         const searchInput = req.query.q ? xssFilters.inUnQuotedAttr(req.query.q) : '';
         const [searchResult, totalPages] = searchInput ? await search(searchInput, page - 1) : [[], 0];
 
-        res.render('search', generatePageInfo(parseInt(page), searchResult, searchInput, totalPages));
+        res.render('common', generatePageInfo(parseInt(page), searchResult, searchInput, totalPages)
+        );
     });
 };
 
