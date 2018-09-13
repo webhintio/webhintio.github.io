@@ -40,7 +40,7 @@ update_website() {
         && git init \
         && git add -A \
         && git commit --message "Hey server, this content is for you! [skip ci]" \
-        && git push --quiet --force --set-upstream "https://$GIT_USER_NAME:$GIT_PASSWORD@sonarwhal-staging.scm.azurewebsites.net:443/sonarwhal.git" master &> /dev/null
+        && git push --quiet --force --set-upstream "https://$GIT_USER_NAME:$GIT_PASSWORD@sonarwhal-staging.scm.azurewebsites.net:443/sonarwhal.git" master
 }
 
 remove_sensitive_information() {
