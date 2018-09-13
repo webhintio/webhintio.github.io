@@ -47,7 +47,7 @@ const createServer = () => {
 };
 
 const getUtils = () => {
-    const utils = require('../webhint-theme/helper/utils');
+    const utils = require(`../${theme}/helper/utils`);
     const formatterUtils = require('@hint/formatter-html/dist/src/utils');
 
     return Object.assign({}, utils, formatterUtils);

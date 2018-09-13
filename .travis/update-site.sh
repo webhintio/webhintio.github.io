@@ -7,6 +7,17 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 
 prepare_site_dist_dir() {
 
+    # Remove unnecesary files for the server
+    declare -r unnecessaries=(
+            src/content-replaced
+            src/webhint-theme
+        )
+
+    for unnecessary in "${unnecessaries[@]}"; do
+        rm -rf "$unnecessary"
+    done
+
+    # Move required files to a temp folder
     declare -r files=(
         _config.yml
         dist
