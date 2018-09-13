@@ -26,7 +26,7 @@ script:
 
         if [ "$TRAVIS_BRANCH" == "master" ] && \
            [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-             npm run travis-update \
+             travis_wait 30 npm run travis-update \
               && npm run test-staging \
               && npm run swap
         fi
