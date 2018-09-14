@@ -28,7 +28,7 @@
             ]
         },
         {
-            "domain": "^https?://sonarwhal-staging\\.azurewebsites\\.net/static/images/favicon-.*\\.ico",
+            "domain": "^https?://sonarwhal-staging\\.azurewebsites\\.net/static/images/.*",
             "hints": [
                 "*"
             ]
