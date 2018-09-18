@@ -1,8 +1,8 @@
 
-<% const pagination = utils.createPagination(currentPage, totalPages, pattern, ); %>
-<% if(!hidePagination) { %>
+<% const pagination = utils.pagination(currentPage, totalPages, pattern); %>
+<% if(!pagination.hidePagination) { %>
     <ul>
-        <% if (pagination.prev) %>
+        <% if (pagination.prev) { %>
         <li class="pagination__prev">
             <a rel="prev" href="<%= pagination.prev.url %>" aria-label="Previous page">
                 <span>Previous</span>

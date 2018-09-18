@@ -96,7 +96,7 @@ module.exports = {
         }
 
         if (!total || total <= 1) {
-            return options.fn(context);
+            return context;
         }
 
         context.hidePagination = false;
@@ -125,23 +125,23 @@ module.exports = {
             pages = firstItems(current, total, pattern);
             context.pages = pages;
 
-            return options.fn(context);
+            return context;
         }
 
         if (current >= total - 5) {
             pages = lastItems(current, total, pattern);
             context.pages = pages;
 
-            return options.fn(context);
+            return context;
         }
 
         if (current > 5) {
             pages = middlePage(current, total, pattern);
             context.pages = pages;
 
-            return options.fn(context);
+            return context;
         }
 
-        return options.fn(context);
+        return context;
     }
 };
