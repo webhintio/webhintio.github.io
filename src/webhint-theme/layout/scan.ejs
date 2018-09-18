@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title><%= page.title %></title>
     <%- include('partials/metas', { page }); %>
-    <%- include('partials/browser-icon', {result}); %>
+    <%- include('partials/scan/browser-icon', { result: result || { isScanner: true } }); %>
 
     <%- include('partials/styles'); %>
     <!-- build:css /static/styles/scanner.css -->
@@ -42,6 +42,9 @@
         <script src="/js/partials/scan-result-item.js"></script>
         <script src="/js/partials/category-pass-message.js"></script>
         <script src="/js/partials/scan-error-message.js"></script>
+        <script src="/js/partials/scan-expand-all.js"></script>
+        <script src="/js/partials/browser-icon.js"></script>
+        <script src="/js/partials/check-mark.js"></script>
         <script src="/js/partials/utils.js"></script>
         <!-- endbuild -->
 

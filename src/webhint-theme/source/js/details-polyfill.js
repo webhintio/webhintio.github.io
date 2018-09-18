@@ -1,80 +1,84 @@
-/**
- * Original code by Roc Sta. Cruz.
- * Distributed under the MIT License
- * https://github.com/rstacruz/details-polyfill/releases/tag/v1.1.0
- */
-/*eslint-disable*/
+/* global setImmediate */
+/* eslint-disable no-var,prefer-arrow-callback,prefer-template */
+(function () {
+    var supportDetails = 'open' in document.createElement('details');
 
-void (function (root, factory) {
-    if (typeof define === 'function' && define.amd) define(factory)
-    else if (typeof exports === 'object') module.exports = factory()
-    else factory()
-  }(this, function () {
-    var DETAILS = 'details'
-    var SUMMARY = 'summary'
+    var shim = function () {
+        var accordionButtons = document.querySelectorAll('summary');
 
-    var supported = checkSupport()
-    if (supported) return
+        for (var i = 0, li = accordionButtons.length; i < li; i++) {
+            var button = accordionButtons[i];
+            var parent = button.parentElement;
 
-    // Add a classname
-    document.documentElement.className += ' no-details'
-
-    window.addEventListener('click', clickHandler)
-
-    injectStyle('details-polyfill-style',
-      'html.no-details ' + DETAILS + ':not([open]) > :not(' + SUMMARY + ') { display: none; }\n' +
-      'html.no-details ' + DETAILS + ' > ' + SUMMARY + ':before { content: "\u25b6"; display: inline-block; font-size: .8em; width: 1.5em; }\n' +
-      'html.no-details ' + DETAILS + '[open] > ' + SUMMARY + ':before { content: "\u25bc"; }')
-
-    /*
-     * Click handler for `<summary>` tags
-     */
-
-    function clickHandler (e) {
-      if (e.target.nodeName.toLowerCase() === 'summary') {
-        var details = e.target.parentNode
-        if (!details) return
-
-        if (details.getAttribute('open')) {
-          details.open = false
-          details.removeAttribute('open')
-        } else {
-          details.open = true
-          details.setAttribute('open', 'open')
+            if (!supportDetails) {
+                button.setAttribute('tabindex', '0');
+                parent.classList.add('no-details');
+            }
+            button.setAttribute('role', 'button');
+            parent.setAttribute('role', 'group');
         }
-      }
-    }
+    };
 
-    /*
-     * Checks for support for `<details>`
-     */
+    var onToggleAccordion = function (e, target) {
+        var ariaExpanded = target.getAttribute('aria-expanded');
+        var keydown = e.type === 'keydown';
+        var key;
 
-    function checkSupport () {
-      var el = document.createElement(DETAILS)
-      if (!('open' in el)) return false
+        if (keydown) {
+            key = e.which || e.keyCode;
 
-      el.innerHTML = '<' + SUMMARY + '>a</' + SUMMARY + '>b'
-      document.body.appendChild(el)
+            if (key !== 32 && key !== 13) {
+                return;
+            }
+        }
 
-      var diff = el.offsetHeight
-      el.open = true
-      var result = (diff != el.offsetHeight)
+        e.preventDefault();
 
-      document.body.removeChild(el)
-      return result
-    }
+        if (ariaExpanded === 'false' || !ariaExpanded) {
+            target.setAttribute('aria-expanded', 'true');
+            target.parentElement.setAttribute('open', '');
+        } else {
+            target.setAttribute('aria-expanded', 'false');
+            target.parentElement.removeAttribute('open');
+        }
+    };
 
-    /*
-     * Injects styles (idempotent)
-     */
+    var findSummary = function (element) {
+        if (element.nodeName === 'SUMMARY' && element.getAttribute('role') === 'button') {
+            return element;
+        }
 
-    function injectStyle (id, style) {
-      if (document.getElementById(id)) return
+        if (element.parentElement) {
+            return findSummary(element.parentElement);
+        }
 
-      var el = document.createElement('style')
-      el.id = id
-      el.innerHTML = style
+        return null;
+    };
 
-      document.getElementsByTagName('head')[0].appendChild(el)
-    }
-  })); // eslint-disable-line semi
+    var registerEvents = function () {
+        document.addEventListener('click', function (evt) {
+            var target = evt.target || evt.srcElement;
+            var source = findSummary(target);
+
+            if (source) {
+                onToggleAccordion(evt, source);
+            }
+        }, false);
+
+        document.addEventListener('keydown', function (evt) {
+            var target = evt.target || evt.srcElement;
+            var source = findSummary(target);
+
+            if (source) {
+                onToggleAccordion(evt, source);
+            }
+        }, false);
+    };
+
+    window.addEventListener('load', function () {
+        shim();
+        if (!supportDetails) {
+            registerEvents();
+        }
+    });
+}());

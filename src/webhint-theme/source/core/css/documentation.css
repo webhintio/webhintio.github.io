@@ -222,3 +222,19 @@ li.documentation-card a:hover {
 .category-description {
 	margin-bottom: 2.4rem;
 }
+
+/* DETAILS */
+details:not([open]).no-details > :not(summary) { 
+	display: none;
+}
+
+details.no-details > summary:before { 
+	content: "▶";
+	display: inline-block;
+	font-size: .8em; 
+	width: 1.5em; 
+}
+				
+details[open].no-details > summary:before {
+	content: "▼";
+}
