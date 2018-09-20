@@ -315,17 +315,17 @@
 
     var queryAndUpdate = function () {
         var callback = function (err, response) {
-            var result = response.result;
-            var isFinish = result.status === jobStatus.finished;
-            var isError = result.status === jobStatus.error;
-            var isPending = result.status === jobStatus.pending;
-
             if (err) {
                 clearInterval(timer);
                 console.error(err);
 
                 return;
             }
+
+            var result = response.result;
+            var isFinish = result.status === jobStatus.finished;
+            var isError = result.status === jobStatus.error;
+            var isPending = result.status === jobStatus.pending;
 
             hideQueueMessage();
 
