@@ -1,7 +1,8 @@
 {
     "ignoreFiles": [
         "./src/webhint-theme/source/components/highlight/default.min.css",
-        "src/webhint-theme/formatter/**/*"
+        "src/webhint-theme/formatter/**/*",
+        "src/webhint-theme/source/core/css/scan/*"
     ],
     "rules": {
         "at-rule-empty-line-before": ["always", {

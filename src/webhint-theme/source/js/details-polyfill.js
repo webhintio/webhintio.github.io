@@ -1,4 +1,3 @@
-/* global setImmediate */
 /* eslint-disable no-var,prefer-arrow-callback,prefer-template */
 (function () {
     var supportDetails = 'open' in document.createElement('details');
