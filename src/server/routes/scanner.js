@@ -95,14 +95,23 @@ const processHintResults = async (scanResult) => {
         let resultHint = resultCategory.getHintByName(hint.name);
 
         if (!resultHint) {
-            resultHint = resultCategory.addHint(hint.name);
+            resultHint = resultCategory.addHint(hint.name, hint.status);
         }
-
-        resultHint.status = hint.status;
     });
 
     result.id = scanResult.id;
     result.permalink = `${webhintUrl}scanner/${scanResult.id}`;
+
+    const totalHints = result.categories.reduce((total, category) => {
+        total.finished += category.passed.length + category.hints.filter((hint) => {
+            return hint.status !== 'pending';
+        }).length;
+        total.total += category.passed.length + category.hints.length;
+
+        return total;
+    }, { finished: 0, total: 0 });
+
+    result.percentage = totalHints.finished / totalHints.total * 100;
 
     return result;
 };
@@ -308,7 +317,7 @@ const configure = (app, appInsightsClient) => {
                     title: `webhint report for ${requestResult.url}`
                 },
                 result,
-                showQueue: messagesInQueue || (result.status === jobStatus.pending && typeof messagesInQueue === 'undefined')
+                showQueue: typeof messagesInQueue === 'undefined' || messagesInQueue > 20
             });
         };
     }

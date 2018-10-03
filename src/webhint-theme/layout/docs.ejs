@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/components/placement/placement.css">
     <link rel="stylesheet" href="/core/css/documentation.css">
     <!-- endbuild -->
-    <%- include('partials/browser-icon', {result: null}); %>
+    <%- include('partials/scan/browser-icon', { result: { isScanner: true } }); %>
 </head>
 
 <body>
@@ -41,7 +41,6 @@
     <%- include('partials/footer', { navs: site.data.menu }); %>
 
     <!-- build:js /static/scripts/treeview.js -->
-    <script async src="/js/details-polyfill.js"></script>
     <script async src="/components/treeview/treeview.js"></script>
     <script async src="/components/anchor-top/anchor-top.js"></script>
     <!-- endbuild -->

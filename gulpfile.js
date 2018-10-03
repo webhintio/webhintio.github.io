@@ -128,7 +128,7 @@ gulp.task('clean:utils-ts', (done) => {
 gulp.task('precompile', (cb) => {
     const precompile = require('./helpers/precompile-ejs');
 
-    precompile(dirs.src, 'source/js/partials', ['scan-result-item', 'category-pass-message', 'scan-error-message']);
+    precompile(dirs.src, 'source/js/partials', ['scan-result-item', 'category-pass-message', 'scan-error-message', 'scan-expand-all', 'browser-icon', 'check-mark']);
     cb();
 });
 

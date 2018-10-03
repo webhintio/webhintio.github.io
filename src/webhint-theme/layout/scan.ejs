@@ -5,10 +5,11 @@
     <meta charset="utf-8">
     <title><%= page.title %></title>
     <%- include('partials/metas', { page }); %>
-    <%- include('partials/browser-icon', {result}); %>
+    <%- include('partials/scan/browser-icon', { result: result || { isScanner: true } }); %>
 
     <%- include('partials/styles'); %>
     <!-- build:css /static/styles/scanner.css -->
+    <link rel="stylesheet" href="/components/anchor-top/anchor-top.css">
     <link rel="stylesheet" href="/core/css/scanner.css">
     <link rel="stylesheet" href="/core/css/scan/scan-results.css">
     <!-- endbuild -->
@@ -33,15 +34,24 @@
     <%- include('partials/scripts', { theme }); %>
 
     <% if(result) { %>
+        <a href="#main" class="anchor-top" hidden aria-label="back to top">top</a>
+
         <!-- build:js /static/scripts/highlight.js -->
         <script src="/js/highlight/highlight.min.js"></script>
         <script src="/js/highlight/languages/xml.min.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js /static/scripts/anchor-top.js -->
+        <script async src="/components/anchor-top/anchor-top.js"></script>
         <!-- endbuild -->
 
         <!-- build:js /static/scripts/partials.js -->
         <script src="/js/partials/scan-result-item.js"></script>
         <script src="/js/partials/category-pass-message.js"></script>
         <script src="/js/partials/scan-error-message.js"></script>
+        <script src="/js/partials/scan-expand-all.js"></script>
+        <script src="/js/partials/browser-icon.js"></script>
+        <script src="/js/partials/check-mark.js"></script>
         <script src="/js/partials/utils.js"></script>
         <!-- endbuild -->
 
@@ -54,6 +64,7 @@
         <script src="/js/scan/scanner-common.js"></script>
         <script src="/js/scanner-submit.js"></script>
         <!-- endbuild -->
+
         <% } %>
     <% } %>
 </body>
