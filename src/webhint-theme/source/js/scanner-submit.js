@@ -313,14 +313,25 @@
         document.querySelector('link[rel="icon"]').setAttribute('href', exec[1]);
     };
 
+    var retries = 0;
+
     var queryAndUpdate = function () {
         var callback = function (err, response) {
             if (err) {
-                clearInterval(timer);
-                console.error(err);
+                retries++;
 
-                return;
+                if (retries >= 5) {
+                    // Cancel any updates if too many failed retries
+                    clearInterval(timer);
+                    console.error(err);
+
+                    return;
+                }
+
+                return setTimeout(queryAndUpdate, 5000);
             }
+
+            retries = 0;
 
             var result = response.result;
             var isFinish = result.status === jobStatus.finished;
