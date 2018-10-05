@@ -19,3 +19,11 @@ src/webhint-theme/source/images/scan
 src/webhint-theme/source/js/partials
 src/webhint-theme/source/js/scan
 Thumbs.db
+
+# Files copied in during postinstall
+src/webhint-theme/source/images/developer-nellie.svg
+src/webhint-theme/source/images/nellie-confused.svg
+src/webhint-theme/source/images/nellie-construction.svg
+src/webhint-theme/source/images/nellie-customizable.svg
+src/webhint-theme/source/images/nellie-octocat.svg
+src/webhint-theme/source/images/nellie-searching.svg
