@@ -111,7 +111,7 @@ const processHintResults = async (scanResult) => {
         return total;
     }, { finished: 0, total: 0 });
 
-    result.percentage = totalHints.finished / totalHints.total * 100;
+    result.percentage = Math.round(totalHints.finished / totalHints.total * 100);
 
     return result;
 };
