@@ -111,7 +111,7 @@ const processHintResults = async (scanResult) => {
         return total;
     }, { finished: 0, total: 0 });
 
-    result.percentage = totalHints.finished / totalHints.total * 100;
+    result.percentage = Math.round(totalHints.finished / totalHints.total * 100);
 
     return result;
 };
@@ -185,7 +185,7 @@ const configure = (app, appInsightsClient) => {
             scanResult = await queryResult(id);
             appInsightsClient.trackMetric({ name: 'query-result-duration', value: Date.now() - start });
         } catch (error) {
-            appInsightsClient.trackException({ exception: new Error('queryResultError') });
+            appInsightsClient.trackException({ exception: error });
 
             return res.status(500);
         }
@@ -207,7 +207,7 @@ const configure = (app, appInsightsClient) => {
             scanResult = await queryResult(id);
             appInsightsClient.trackMetric({ name: 'query-result-duration', value: Date.now() - start });
         } catch (error) {
-            appInsightsClient.trackException({ exception: new Error('queryResultError') });
+            appInsightsClient.trackException({ exception: error });
 
             return res.render('error', {
                 details: error.message,
@@ -288,7 +288,7 @@ const configure = (app, appInsightsClient) => {
                 appInsightsClient.trackMetric({ name: 'send-request-duration', value: Date.now() - start });
                 requestResult = JSON.parse(result.body);
             } catch (error) {
-                appInsightsClient.trackException({ exception: new Error('sendRequestError') });
+                appInsightsClient.trackException({ exception: error });
 
                 return res.render('common', {
                     page: {
