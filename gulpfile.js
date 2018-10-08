@@ -272,13 +272,19 @@ ${lostContent}`;
 // ---------------------------------------------------------------------
 
 gulp.task('compress:zopfli', () => {
-    return gulp.src(dirs.distCompreseable)
+    return gulp.src([
+        dirs.distCompreseable,
+        '!dist/robots.txt'
+    ])
         .pipe(plugins.zopfli())
         .pipe(gulp.dest(dirs.dist));
 });
 
 gulp.task('compress:brotli', () => {
-    return gulp.src(dirs.distCompreseable)
+    return gulp.src([
+        dirs.distCompreseable,
+        '!dist/robots.txt'
+    ])
         .pipe(plugins.brotli.compress())
         .pipe(gulp.dest(dirs.dist));
 });
