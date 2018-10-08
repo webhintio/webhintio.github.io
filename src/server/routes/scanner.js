@@ -80,6 +80,7 @@ const processHintResults = async (scanResult) => {
         noGenerateFiles: true,
         scanTime,
         status: scanResult.status,
+        timeStamp: scanResult.queued,
         version: scanResult.webhintVersion
     });
 
