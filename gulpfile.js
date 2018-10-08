@@ -62,6 +62,12 @@ gulp.task('copy:formatter', (done) => {
     done();
 });
 
+gulp.task('copy:robots.txt', (done) => {
+    shelljs.cp(`${dirs.src}/source/static/robots.txt`, `${dirs.dist}`);
+
+    done();
+});
+
 gulp.task('build:hexo', (done) => {
     const hexo = new Hexo(process.cwd(), { silent: true });
 
@@ -86,7 +92,10 @@ gulp.task('watch:hexo', (done) => {
 });
 
 gulp.task('copy:theme', () => {
-    return gulp.src(`${dirs.src}/**/*`)
+    return gulp.src([
+        `${dirs.src}/**/*`,
+        `!${dirs.src}/source/static/robots.txt`
+    ])
         .pipe(plugins.changed(dirs.tmp))
         .pipe(gulp.dest(dirs.tmp));
 });
@@ -143,7 +152,13 @@ gulp.task('useref', () => {
 });
 
 gulp.task('revfiles', () => {
-    return gulp.src([`${dirs.tmp}/source/**/*`, `!${dirs.tmp}/source/**/*.json`, `!**/*.yml`, `!**/sw-reg.js`])
+    return gulp.src([
+        `${dirs.tmp}/source/**/*`,
+        `!${dirs.tmp}/source/**/*.json`,
+        `!**/*.yml`,
+        `!**/robots.txt`,
+        `!**/sw-reg.js`
+    ])
         .pipe(plugins.rev())
         .pipe(plugins.revDeleteOriginal())
         .pipe(gulp.dest(`${dirs.tmp}/source`))
@@ -342,6 +357,7 @@ gulp.task('build', gulp.series(
     'sri',
     'add-sri',
     'build:hexo',
+    'copy:robots.txt',
     // 'generate-service-worker',
     'compress:zopfli',
     'compress:brotli',
