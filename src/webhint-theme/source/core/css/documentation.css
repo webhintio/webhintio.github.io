@@ -238,3 +238,7 @@ details.no-details > summary::before {
 details[open].no-details > summary::before {
 	content: "▼";
 }
+
+summary {
+	cursor: pointer;
+}
