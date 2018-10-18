@@ -76,11 +76,11 @@ const processHintResults = async (scanResult) => {
     const scanTime = moment.duration(moment(scanEnd).diff(moment(scanResult.started)));
 
     const result = await formatter.format(messages, scanResult.url, {
+        date: scanResult.queued,
         isScanner: true,
         noGenerateFiles: true,
         scanTime,
         status: scanResult.status,
-        timeStamp: scanResult.queued,
         version: scanResult.webhintVersion
     });
 
