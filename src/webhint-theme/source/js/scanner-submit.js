@@ -351,6 +351,7 @@
             updateScanResultUI(result);
 
             updatePercentage(result);
+            updateFavicon(result);
 
             /*
              * The timer can be a little bit delayed
@@ -363,7 +364,6 @@
 
             if (isFinish || isError) {
                 clearInterval(timer);
-                updateFavicon(result);
 
                 return;
             }
