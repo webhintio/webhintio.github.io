@@ -318,7 +318,7 @@ const configure = (app, appInsightsClient) => {
                     title: `webhint report for ${requestResult.url}`
                 },
                 result,
-                showQueue: typeof messagesInQueue === 'undefined' || messagesInQueue > 20
+                showQueue: requestResult.isNew && (typeof messagesInQueue === 'undefined' || messagesInQueue > 20)
             });
         };
     }
