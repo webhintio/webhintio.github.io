@@ -344,7 +344,7 @@
                 return setTimeout(queryAndUpdate, 5000);
             }
 
-            if (isError) {
+            if (result.showError) {
                 updateScanFailUI(result);
             }
 

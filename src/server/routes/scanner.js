@@ -87,6 +87,10 @@ const processHintResults = async (scanResult) => {
     result.removeCategory('other');
     result.removeCategory('development');
 
+    result.showError = hints.every((hint) => {
+        return hint.messages.length === 1 && hint.messages[0].message === 'Error in webhint analyzing this hint';
+    });
+
     /*
      * Formatter always returns hint status equal to `finished`
      * We need to assign the real status
