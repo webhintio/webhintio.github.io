@@ -77,9 +77,29 @@ module.exports = {
             return !hint.isSummary;
         }).length;
     },
+    /**
+     * Returns all the pages under a given `title` sorted alphabetically
+     * unless the file is `summary.md` in which case it will be the first
+     * one.
+     * E.g.:
+     * Server configurations:
+     *  - Examples of server configurations (`summary.md`)
+     *  - Basic server configuration for Apache (`apache.md`)
+     *  - Basic `web.config` for IIS (`iis.md`)
+     */
     getPagesByToCTitle: (title, pages) => {
         return pages[title].filter((page) => {
             return page.contentType === 'details';
+        }).sort((a, b) => {
+            if (a.originalFile.endsWith('summary.md')) {
+                return -1;
+            }
+
+            if (b.originalFile.endsWith(`summary.md`)) {
+                return 1;
+            }
+
+            return a.title > b.title;
         });
     },
     getSignalIssueQuery: (root, title, directory) => {
