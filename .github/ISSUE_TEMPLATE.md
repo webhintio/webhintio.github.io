@@ -1,6 +1,6 @@
 <!--
 
-This template is for bug reports or suggestions for sonar's website
+This template is for bug reports or suggestions for webhint's website
 (https://webhint.io).
 If you have an issue with a URL when using the online scanner,
 please report it in https://github.com/webhintio/hint.

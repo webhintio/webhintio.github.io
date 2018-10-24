@@ -106,7 +106,7 @@ descriptions:
   "contributor-guide/contributing": If you want to contribute to webhint, read this first
   "contributor-guide/formatters": All the things to take into account if you are going to develop a new formatter
   "contributor-guide/hints": All the things to take into account if you are going to develop a new hint
-  "contributor-guide/development-environment": What you need to do to start developing for sonar
+  "contributor-guide/development-environment": What you need to do to start developing for webhint
   "contributor-guide/index.md": Learn about the different pieces that build webhint and what each one of them does
 
 categories:
