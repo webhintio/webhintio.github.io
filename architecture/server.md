@@ -164,4 +164,3 @@ IIS manages the custom error page via the following entries in `web.config`:
 [webhint-repo]: https://github.com/webhintio/hint
 [travis]: https://travis-ci.org/webhint/webhint.io
 [trigger-update]: https://github.com/webhintio/hint/blob/0cfb1bb49c847eb4d5ed54691dbb88cb796694bf/.travis/trigger-site-update.sh
-

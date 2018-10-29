@@ -131,3 +131,7 @@ categories:
   other:
     description: Other miscellaneous things that degrade the user experience.
     name: Other
+
+sitemap:
+    path: sitemap.xml
+    template: ./helpers/sitemap_template.xml

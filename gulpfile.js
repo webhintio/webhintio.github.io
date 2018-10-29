@@ -161,6 +161,7 @@ gulp.task('revfiles', () => {
         `!${dirs.tmp}/source/**/*.json`,
         `!**/*.yml`,
         `!**/robots.txt`,
+        `!**/sitemap.xml`,
         `!**/sw-reg.js`
     ])
         .pipe(plugins.rev())
