@@ -44,6 +44,7 @@
     "hexo": "^3.8.0",
     "hexo-cli": "^1.1.0",
     "hexo-generator-index": "^0.2.1",
+    "hexo-generator-sitemap": "^1.2.0",
     "hexo-generator-tag": "^0.2.0",
     "hexo-renderer-handlebars": "^2.0.2",
     "hexo-server": "^0.3.2",
