@@ -17,7 +17,7 @@
     "@alrra/travis-scripts": "^3.0.1",
     "@hint/artwork": "^2.2.0",
     "cross-env": "^5.2.0",
-    "eslint": "^5.6.0",
+    "eslint": "^5.8.0",
     "gulp": "^4.0.0",
     "gulp-brotli": "^1.2.1",
     "gulp-changed": "^3.2.0",
@@ -39,7 +39,7 @@
     "gulp-transform": "^3.0.5",
     "gulp-typescript": "^5.0.0-alpha.3",
     "gulp-uglify": "^3.0.1",
-    "gulp-useref": "^3.1.5",
+    "gulp-useref": "^3.1.6",
     "gulp-zopfli": "^1.0.0",
     "hexo": "^3.8.0",
     "hexo-cli": "^1.1.0",
@@ -64,9 +64,9 @@
     "remarkable-extlink": "^1.1.0",
     "remove-markdown": "^0.3.0",
     "shelljs": "^0.8.2",
-    "stylelint": "^9.4.0",
+    "stylelint": "^9.7.0",
     "sw-precache": "^5.2.1",
-    "typescript": "^3.0.1"
+    "typescript": "^3.1.4"
   },
   "hexo": {
     "version": "3.8.0"
