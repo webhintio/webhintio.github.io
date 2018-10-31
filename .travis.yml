@@ -26,9 +26,18 @@ script:
 
         if [ "$TRAVIS_BRANCH" == "master" ] && \
            [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-             travis_wait 30 npm run travis-update \
+
+           # Test and then tell Google and Bing
+           # to update the sitemap.
+           #
+           # https://support.google.com/webmasters/answer/183668?hl=en#addsitemap
+           # https://www.bing.com/webmaster/help/how-to-submit-sitemaps-82a15bd4
+
+           travis_wait 30 npm run travis-update \
               && npm run test-staging \
-              && npm run swap
+              && npm run swap \
+              && curl https://www.google.com/ping?sitemap=https://webhint.io/sitemap.xml \
+              && curl https://www.bing.com/ping?sitemap=https://webhint.io/sitemap.xml
         fi
 
 language: node_js
