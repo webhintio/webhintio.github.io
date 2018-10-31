@@ -29,6 +29,10 @@ script:
              travis_wait 30 npm run travis-update \
               && npm run test-staging \
               && npm run swap
+              # Tell Google to update the sitemap (https://support.google.com/webmasters/answer/183668?hl=en#addsitemap)
+              && curl https://www.google.com/ping?sitemap=https://webhint.io/sitemap.xml
+              # Tell Bing to update the sitemap (https://www.bing.com/webmaster/help/how-to-submit-sitemaps-82a15bd4)
+              && curl https://www.bing.com/ping?sitemap=https://webhint.io/sitemap.xml
         fi
 
 language: node_js
