@@ -27,6 +27,7 @@ const configure = (app) => {
                     description: `Sorry, we couldn't find any results for ${query}`,
                     title: `No results found for ${query}`
                 },
+                partial: 'search',
                 query
             };
         }
