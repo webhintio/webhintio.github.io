@@ -93,12 +93,12 @@
 .header-social__container {
     display: flex;
     align-items: center;
-    height: 3rem;
+    height: 3.5rem;
 }
 
 .header-social__container > img {
     width: 100%;
-    max-width: 15rem;
+    max-width: 17.5rem;
 }
 
 .header-social__list {
@@ -107,7 +107,7 @@
 
 .header-social__list > [class*="-icon"] {
     display: inline-block;
-    width: 1.5rem;
+    width: 2.25rem;
     height: 2.5rem;
     margin: .5rem 0 .5rem 1rem;
 }
