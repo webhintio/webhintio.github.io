@@ -75,7 +75,8 @@
 
 @media (min-width: 48em) {
 
-    .nav-bar--mobile-buttons {
+    .nav-bar--mobile-buttons,
+    .navbar__navitem #github {
         display: none;
     }
 
