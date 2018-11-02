@@ -73,7 +73,7 @@
     }
 }
 
-@media (min-width: 48em) {
+@media (min-width: 63em) {
 
     .nav-bar--mobile-buttons {
         display: none;
@@ -175,7 +175,7 @@ button.mobile-search-button {
 }
 
 /* Show menu in mobile view when button is clicked */
-@media (max-width: 47.94em) {
+@media (max-width: 63em) {
 
     .nav {
         z-index: 10;
@@ -228,7 +228,7 @@ button.mobile-search-button {
 
 }
 
-@media (min-width: 48em) {
+@media (min-width: 63em) {
 
     .nav__navbar {
         display: block;
@@ -279,7 +279,8 @@ button.mobile-search-button {
     vertical-align: top;
 }
 
-.nav__navbar > li > a#scanner::after {
+.nav__navbar > li > a#scanner::after,
+.nav__navbar > li > a#github::after {
     display: none;
 }
 
