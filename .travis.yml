@@ -42,7 +42,7 @@ script:
 
 language: node_js
 
-node_js: lts/*
+node_js: 8
 
 notifications:
   email:
