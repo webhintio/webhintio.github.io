@@ -1,7 +1,7 @@
 # webhint's website
 
 <!-- markdownlint-disable -->
-[![Build Status](https://travis-ci.org/webhintio/webhint.io.svg?branch=master)](https://travis-ci.org/webhintio/webhint.io)
+[![Build Status](https://travis-ci.org/webhintio/webhint.io.svg?branch=master)](https://travis-ci.org/webhintio/webhint.io) [![Greenkeeper badge](https://badges.greenkeeper.io/webhintio/webhint.io.svg)](https://greenkeeper.io/)
 <!-- markdownlint-enable -->
 
 This is the code for [webhint's website](https://webhint.io).
