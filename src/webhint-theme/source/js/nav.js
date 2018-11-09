@@ -140,6 +140,9 @@
 
         if (target.classList.contains(searchClass)) {
             searchBar.classList.toggle('show');
+            if (searchBar.classList.contains('show')) {
+                document.getElementById('search-input').focus();
+            }
         }
     };
 

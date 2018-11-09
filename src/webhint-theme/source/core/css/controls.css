@@ -206,7 +206,7 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
 
 }
 
-@media (max-width: 47.94em) {
+@media (max-width: 63em) {
 
     .nav-bar__input {
         top: 3rem;
