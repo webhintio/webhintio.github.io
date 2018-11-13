@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@hint/formatter-html": "^1.1.1",
+    "@hint/formatter-html": "^2.0.0",
     "algoliasearch": "^3.30.0",
     "applicationinsights": "^1.0.3",
     "body-parser": "^1.18.3",
@@ -17,7 +17,7 @@
     "@alrra/travis-scripts": "^3.0.1",
     "@hint/artwork": "^2.2.0",
     "cross-env": "^5.2.0",
-    "eslint": "^5.8.0",
+    "eslint": "^5.9.0",
     "gulp": "^4.0.0",
     "gulp-brotli": "^1.2.1",
     "gulp-changed": "^3.2.0",
@@ -63,10 +63,10 @@
     "remarkable": "^1.7.1",
     "remarkable-extlink": "^1.1.0",
     "remove-markdown": "^0.3.0",
-    "shelljs": "^0.8.2",
-    "stylelint": "^9.7.0",
+    "shelljs": "^0.8.3",
+    "stylelint": "^9.8.0",
     "sw-precache": "^5.2.1",
-    "typescript": "^3.1.4"
+    "typescript": "^3.1.6"
   },
   "hexo": {
     "version": "3.8.0"
