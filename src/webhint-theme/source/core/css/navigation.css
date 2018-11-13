@@ -15,7 +15,6 @@
 }
 
 .header {
-    height: 9rem;
     width: 100%;
     background-color: #4700a3;
 }
@@ -59,7 +58,7 @@
 }
 
 
-@media (max-width: 47.94em) {
+@media (max-width: 63em) {
 
     .header {
         height: 11rem;
@@ -248,7 +247,7 @@ button.mobile-search-button {
 
 .nav__navbar a {
     display: block;
-    padding: 1.3rem 1rem;
+    padding: 2.1rem 1rem;
     color: #fff;
 }
 
@@ -351,7 +350,7 @@ button.mobile-search-button {
 @media (min-width: 48em) {
 
     .nav__navbar a {
-        padding: 2.2rem 1.4rem;
+        padding: 2.1rem 1.4rem;
     }
 
     .navbar__submenu {
