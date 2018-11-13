@@ -55,13 +55,6 @@ textarea {
     resize: vertical;
 }
 
-/* add margin only if not radio/check so don‘t need to re-apply default `* + * { margin-top }` */
-label + input:not([type="radio"]):not([type="checkbox"]),
-textarea,
-select {
-    margin-top: .7rem;
-}
-
 input:hover,
 textarea:hover,
 select:hover {
@@ -130,6 +123,7 @@ select,
     /* need to define here due to inline CSS from algolia */
     width: 30rem;
 
+    margin-top: 0;
     margin-right: 0;
     padding: 1rem 1rem 1rem 1.2rem;
 
