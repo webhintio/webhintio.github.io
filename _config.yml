@@ -97,7 +97,7 @@ descriptions:
   "docs/index.md": Learn how to use webhint, what things it checks, and how you can create your own hints
   faq: Got a question? We might have an answer for you!
   governance: Learn more about how webhint is organized internally
-  "user-guide/index.md": Anything you need to know about using sonawhalr and configure it
+  "user-guide/index.md": Anything you need to know about using webhint and configure it
   "user-guide/connectors": List of core connectors and the different configurations they have.
   "user-guide/formatters": List of core formatters and how they look like
   "user-guide/hints/index.md": List of core hints shorted by category
