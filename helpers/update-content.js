@@ -19,6 +19,7 @@ const SCAN_SCRIPTS = 'src/webhint-theme/source/js/scan';
 const SCAN_IMAGES = 'src/webhint-theme/source/images/scan';
 const SCAN_STYLES = 'src/webhint-theme/source/core/css/scan';
 
+const DEST_DOC_DIR = `${DEST_DIR}/docs/user-guide`;
 const DEST_HINTS_DIR = `${DEST_DIR}/docs/user-guide/hints`;
 const DATA_DIR = `${DEST_DIR}/_data`;
 const TMP_DIR = require('./mktemp')();
@@ -121,7 +122,24 @@ cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/contributor-guide`, `${DEST_DIR}/docs/co
 cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/user-guide`, `${DEST_DIR}/docs/user-guide`);
 cp('-R', `${PACKAGES_TMP_DIR}/hint/docs/about`, `${DEST_DIR}`);
 cp(`${PACKAGES_TMP_DIR}/hint/CHANGELOG.md`, `${DEST_DIR}/about`);
+
+/*
+ * Create the directory before copy files, just in case
+ * more than one hint contain images.
+ */
+mkdirp.sync(`${DEST_DIR}/docs/user-guide/hints/images`);
 cp('-R', `${PACKAGES_TMP_DIR}/hint-*/images`, `${DEST_DIR}/docs/user-guide/hints/images`);
+/*
+ * If another resource (formatter, connector, extension, etc.) contains
+ * images, you need to create the directory and then copy.
+ * e.g.:
+ *   mkdirp.sync(`${DEST_DIR}/docs/user-guide/connectors/images`);
+ *   cp('-R', `${PACKAGES_TMP_DIR}/connectors-* /images`, `${DEST_DIR}/docs/user-guide/connectors/images/`);
+ *
+ * NOTE: The space between * and / is intentional to not break the multiline comment.
+ */
+mkdirp.sync(`${DEST_DIR}/docs/user-guide/formatters/images`);
+cp('-R', `${PACKAGES_TMP_DIR}/formatter-*/images`, `${DEST_DIR}/docs/user-guide/formatters/images/`);
 cp('-R', `${PACKAGES_TMP_DIR}/formatter-html/src/views/partials`, `${SCAN_TEMPLATES}`);
 cp('-R', `${PACKAGES_TMP_DIR}/formatter-html/src/assets/images/scan`, `${SCAN_IMAGES}`);
 cp('-R', `${PACKAGES_TMP_DIR}/formatter-html/src/assets/styles/scan`, `${SCAN_STYLES}`);
@@ -129,7 +147,7 @@ cp('-R', `${PACKAGES_TMP_DIR}/formatter-html/src/assets/js/scan`, `${SCAN_SCRIPT
 mkdirp(SCAN_PARTIALS);
 cp(`${PACKAGES_TMP_DIR}/formatter-html/src/utils.ts`, `${SCAN_PARTIALS}/utils.ts`);
 
-const hintDocs = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/{README.md,/docs/*.md}`);
+const docs = ls('-R', `${PACKAGES_TMP_DIR}/{hint,connector,parser,formatter,extension}-*/{README.md,/docs/*.md}`);
 const hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/!(index).ts`);
 
 // Create folder if not exist before writing file.
@@ -153,21 +171,26 @@ const newCSSContent = cssContent.replace(/url\("([^"]*)"\)/gi, (matchString, mat
 safeWriteFile(scanResultPath, newCSSContent);
 
 // Get hint documentations.
-hintDocs.forEach((hintDocPath) => {
-    const hintDocPathSplitted = hintDocPath.split('/').reverse();
-    let hintName;
+docs.forEach((docPath) => {
+    const docPathSplitted = docPath.split('/').reverse();
+    let name;
 
-    if (hintDocPathSplitted[1] === 'docs') {
-        hintName = `${hintDocPathSplitted[2]}/${hintDocPathSplitted[0].replace('.md', '')}`;
-
-        mkdirp.sync(path.join(process.cwd(), DEST_HINTS_DIR, path.dirname(hintName)));
+    if (docPathSplitted[1] === 'docs') {
+        name = `${docPathSplitted[2]}/${docPathSplitted[0].replace('.md', '')}`;
     } else {
-        hintName = hintDocPathSplitted[1];
+        name = docPathSplitted[1];
     }
 
-    const destHintDocPath = `${DEST_HINTS_DIR}/${hintName}.md`;
+    const type = name.split('-')[0];
+    const dir = path.join(process.cwd(), DEST_DOC_DIR, `${type}s`);
 
-    mv(hintDocPath, destHintDocPath);
+    if (!fs.existsSync(dir)) { // eslint-disable-line no-sync
+        mkdirp.sync(dir);
+    }
+
+    const destDocPath = `${dir}/${name}.md`;
+
+    mv(docPath, destDocPath);
 });
 
 // Get category information of hints.
