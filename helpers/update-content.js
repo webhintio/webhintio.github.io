@@ -148,7 +148,14 @@ mkdirp(SCAN_PARTIALS);
 cp(`${PACKAGES_TMP_DIR}/formatter-html/src/utils.ts`, `${SCAN_PARTIALS}/utils.ts`);
 
 const docs = ls('-R', `${PACKAGES_TMP_DIR}/{hint,connector,parser,formatter,extension}-*/{README.md,/docs/*.md}`);
-const hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/!(index).ts`);
+let hints;
+
+// TODO: Remove try/catch and keep only the "try" part when https://github.com/webhintio/hint/pull/1480 is merged
+try {
+    hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/{meta/*.ts,./meta.ts}`);
+} catch (e) {
+    hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/!(index).ts`);
+}
 
 // Create folder if not exist before writing file.
 // Reference: https://stackoverflow.com/a/16317628
