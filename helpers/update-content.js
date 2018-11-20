@@ -174,11 +174,20 @@ safeWriteFile(scanResultPath, newCSSContent);
 docs.forEach((docPath) => {
     const docPathSplitted = docPath.split('/').reverse();
     let name;
+    let packageJSONPath;
 
     if (docPathSplitted[1] === 'docs') {
         name = `${docPathSplitted[2]}/${docPathSplitted[0].replace('.md', '')}`;
+        packageJSONPath = path.join(path.dirname(docPath), '..', 'package.json');
     } else {
         name = docPathSplitted[1];
+        packageJSONPath = path.join(path.dirname(docPath), 'package.json');
+    }
+
+    const docPackage = require(packageJSONPath);
+
+    if (docPackage.private) {
+        return;
     }
 
     const type = name.split('-')[0];
@@ -195,6 +204,13 @@ docs.forEach((docPath) => {
 
 // Get category information of hints.
 hints.forEach((hintPath) => {
+    const hintPackagePath = path.join(path.dirname(hintPath), '..', 'package.json');
+    const hintPackage = require(hintPackagePath);
+
+    if (hintPackage.private) {
+        return;
+    }
+
     const hintContent = fs.readFileSync(hintPath, 'utf8'); // eslint-disable-line no-sync
     const hintNameRegex = /id:\s*'([^']*)'/;
     const hintNameMatch = hintContent.match(hintNameRegex);
