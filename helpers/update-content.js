@@ -148,7 +148,14 @@ mkdirp(SCAN_PARTIALS);
 cp(`${PACKAGES_TMP_DIR}/formatter-html/src/utils.ts`, `${SCAN_PARTIALS}/utils.ts`);
 
 const docs = ls('-R', `${PACKAGES_TMP_DIR}/{hint,connector,parser,formatter,extension}-*/{README.md,/docs/*.md}`);
-const hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/!(index).ts`);
+let hints;
+
+// TODO: Remove try/catch and keep only the "try" part when https://github.com/webhintio/hint/pull/1480 is merged
+try {
+    hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/{meta/*.ts,./meta.ts}`);
+} catch (e) {
+    hints = ls('-R', `${PACKAGES_TMP_DIR}/hint-*/src/!(index).ts`);
+}
 
 // Create folder if not exist before writing file.
 // Reference: https://stackoverflow.com/a/16317628
@@ -202,12 +209,34 @@ docs.forEach((docPath) => {
     mv(docPath, destDocPath);
 });
 
+const isPrivate = (hintPath) => {
+    let hintPackagePath = '';
+
+    try {
+        hintPackagePath = path.join(path.dirname(hintPath), '..', 'package.json');
+        require.resolve(hintPackagePath);
+    } catch (e) {
+        // Packages is probably multi-hint
+        hintPackagePath = '';
+    }
+
+    if (!hintPackagePath) {
+        hintPackagePath = path.join(path.dirname(hintPath), '..', '..', 'package.json');
+    }
+    try {
+        const hintPackage = require(hintPackagePath);
+
+        return hintPackage.private;
+    } catch (e) {
+        console.error(`Couldn't load privacy option for ${hintPath}. Making it private by default.`);
+
+        return true;
+    }
+};
+
 // Get category information of hints.
 hints.forEach((hintPath) => {
-    const hintPackagePath = path.join(path.dirname(hintPath), '..', 'package.json');
-    const hintPackage = require(hintPackagePath);
-
-    if (hintPackage.private) {
+    if (isPrivate(hintPath)) {
         return;
     }
 
