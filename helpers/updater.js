@@ -206,6 +206,65 @@ const updateChangelog = async (content) => {
     await fs.writeFile(changelogThemePath, yaml);
 };
 
+/** Updates the markdown links to other parts of the documentation, i.e.: start with "./" */
+const updateMarkdownlinks = (content, filePath) => {
+    /**
+     * This regex should match the following examples:
+     * * [link label]: ./somewhere.md → \s
+     * * [link label]:./somewhere.md → :
+     * * [link](./somewhere.md)  → \(
+     *
+     * The \.? allow us to also match "../"
+     */
+    const mdLinkRegex = /(\s|:|\()\.?\.\/(\S*?)\.md/gi;
+    const isIndex = filePath.toLowerCase().endsWith('index.md');
+    let transformed = content;
+    let val;
+
+    while ((val = mdLinkRegex.exec(content)) !== null) {
+        /**
+         * Pages in the live site are `index.html` inside a folder with the name of the original page. E.g.:
+         *
+         * * `/user-guide/concepts/connectors.md` → `/user-guide/concepts/connectors/
+         *
+         * The exceptions are `index.md` and `readm.md`, which become the `index.html` of the folder where
+         * they are. These are considered "index" pages. E.g.:
+         *
+         * * `/user-guide/index.md` → `/user-guide/`
+         * * `/hint-name/readme.md` → `/hint-name/`
+         *
+         * For that reason, links that end with `index.md` or `readme.md` replace that string with an empty
+         * one, and in the opposite case replace the `.md` part with `/`.
+         *
+         * Because we are creating new folders, we need to adjust the relative paths as well for the pages that
+         * are not "index" pages. E.g.:
+         *
+         * * If `architecture.md` has a link to `./events.md`, in the live site it will be `/architecture/` and
+         *   thus the link to the events page should be `../events/`.
+         * * If it were `../events.md`, in that case we will have to navigate one more folder up: `../../events/`.
+         */
+        let replacement = val[0].toLowerCase().endsWith('index.md') || val[0].toLowerCase().endsWith('readme.md') ?
+            val[0].replace(/(index|readme)\.md/i, '') :
+            val[0].replace('.md', '/');
+
+        /**
+         * `val[1] is the first capturing group. It could be "\s", ":", or "("
+         * and it's part of the matched value so we need to add it at the beginning as well. E.g.:
+         *
+         * * `[events](./events.md)` will match `(./events.md` that needs to be transformed into `(../events/`.
+         */
+        if (replacement.startsWith(`${val[1]}./`) && !isIndex) {
+            replacement = replacement.replace(`${val[1]}./`, `${val[1]}../`);
+        } else if (replacement.startsWith(`${val[1]}../`) && !isIndex) {
+            replacement = replacement.replace(`${val[1]}../`, `${val[1]}../../`);
+        }
+
+        transformed = transformed.replace(val[0], replacement);
+    }
+
+    return transformed;
+};
+
 const addFrontMatter = async (filePath) => {
     let content;
     let currentFrontMatter;
@@ -221,6 +280,7 @@ const addFrontMatter = async (filePath) => {
     }
 
     content = content || ''; // Replace `undefined` with empty string.
+    content = updateMarkdownlinks(content, filePath);
     const title = getTitle(content);
     const description = getPredefinedDescription(filePath) || getDescription(content);
 
