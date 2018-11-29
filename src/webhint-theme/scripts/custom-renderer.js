@@ -2,7 +2,7 @@
 
 const Remarkable = require('remarkable');
 const extLink = require('remarkable-extlink');
-const toc = require('markdown-toc');
+const uslug = require('uslug');
 const { stripHTML } = require('hexo-util');
 
 const renderer = function (data) {
@@ -21,7 +21,7 @@ const renderer = function (data) {
     remarkable.use((rmkbl) => {
         rmkbl.renderer.rules.heading_open = function (tokens, idx) { //eslint-disable-line camelcase
             const content = tokens[idx + 1].content;
-            const id = toc.slugify(content);
+            const id = uslug(content);
             const level = tokens[idx].hLevel;
 
             return `<h${level} id=${id}>`;
@@ -30,7 +30,7 @@ const renderer = function (data) {
         rmkbl.renderer.rules.heading_close = function (tokens, idx) { //eslint-disable-line camelcase
             const level = tokens[idx].hLevel;
             const content = tokens[idx - 1].content;
-            const id = toc.slugify(content);
+            const id = uslug(content);
 
             return `<a href="#${id}" class="headerlink" title="${stripHTML(content)}"></a></h${level}>`;
         };
