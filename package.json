@@ -51,7 +51,6 @@
     "hexo-util": "^0.6.3",
     "json2yaml": "^1.1.0",
     "klaw": "^3.0.0",
-    "markdown-toc": "^1.2.0",
     "markdownlint-cli": "^0.13.0",
     "marked": "^0.5.0",
     "md-2-json": "^1.0.5",
@@ -66,7 +65,8 @@
     "shelljs": "^0.8.3",
     "stylelint": "^9.8.0",
     "sw-precache": "^5.2.1",
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "uslug": "^1.0.4"
   },
   "hexo": {
     "version": "3.8.0"
