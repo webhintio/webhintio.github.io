@@ -197,8 +197,14 @@ docs.forEach((docPath) => {
         return;
     }
 
-    const type = name.split('-')[0];
-    const dir = path.join(process.cwd(), DEST_DOC_DIR, `${type}s`);
+    const nameSplitted = name.split('/');
+
+    if (nameSplitted.length > 1) {
+        name = nameSplitted[nameSplitted.length - 1];
+    }
+
+    const type = nameSplitted[0].split('-')[0];
+    const dir = path.join(process.cwd(), DEST_DOC_DIR, `${type}s`, nameSplitted.slice(0, nameSplitted.length - 1).join('/'));
 
     if (!fs.existsSync(dir)) { // eslint-disable-line no-sync
         mkdirp.sync(dir);
