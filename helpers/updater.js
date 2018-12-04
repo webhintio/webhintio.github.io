@@ -248,15 +248,22 @@ const updateMarkdownlinks = (content, filePath) => {
             val[0].replace('.md', '/');
 
         /**
-         * `val[1] is the first capturing group. It could be "\s", ":", or "("
-         * and it's part of the matched value so we need to add it at the beginning as well. E.g.:
-         *
-         * * `[events](./events.md)` will match `(./events.md` that needs to be transformed into `(../events/`.
+         * If val[0] contains './docs/ then, it is part of a multi-hint hint, so
+         * we need to ignore it.
+         * Later in the the `link-filter.js`, the link will be replaced for the final one.
          */
-        if (replacement.startsWith(`${val[1]}./`) && !isIndex) {
-            replacement = replacement.replace(`${val[1]}./`, `${val[1]}../`);
-        } else if (replacement.startsWith(`${val[1]}../`) && !isIndex) {
-            replacement = replacement.replace(`${val[1]}../`, `${val[1]}../../`);
+        if (!val[0].includes('./docs/')) {
+            /**
+             * `val[1] is the first capturing group. It could be "\s", ":", or "("
+             * and it's part of the matched value so we need to add it at the beginning as well. E.g.:
+             *
+             * * `[events](./events.md)` will match `(./events.md` that needs to be transformed into `(../events/`.
+             */
+            if (replacement.startsWith(`${val[1]}./`) && !isIndex) {
+                replacement = replacement.replace(`${val[1]}./`, `${val[1]}../`);
+            } else if (replacement.startsWith(`${val[1]}../`) && !isIndex) {
+                replacement = replacement.replace(`${val[1]}../`, `${val[1]}../../`);
+            }
         }
 
         transformed = transformed.replace(val[0], replacement);

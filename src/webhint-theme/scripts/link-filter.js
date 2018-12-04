@@ -9,7 +9,7 @@ hexo.extend.filter.register('before_post_render', (data) => {
     const hintUrlRegex = /(?:..\/)*(hint-.*)\/README/i;
     const isHintPage = data.source.includes('hints');
     let match;
-    const docLinkRegex = /\/(docs\/)[^.]*(\.md)/g;
+    const docLinkRegex = /]\((.\/docs\/[^)]*)\)|(]:\s*)(\.[^\s]*\/docs\/[^\s]*)/g;
 
     /*
      * Replace links to other documentation files.
@@ -20,9 +20,9 @@ hexo.extend.filter.register('before_post_render', (data) => {
      *
      * ./docs/hint-name.md => ./hint-name
      */
-    data.content = data.content.replace(docLinkRegex, (link, docsString, extensionString) => {
-        return link.replace(docsString, '')
-            .replace(extensionString, '');
+    data.content = data.content.replace(docLinkRegex, (link) => {
+        return link.replace('docs/', '')
+            .replace('.md', '');
     });
 
     while ((match = mdUrlRegex.exec(data.content)) !== null) {
