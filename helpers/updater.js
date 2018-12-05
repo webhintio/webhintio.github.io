@@ -121,7 +121,20 @@ const generateFrontMatterInfo = (filePath, title, description, currentFrontMatte
     baseName = path.basename(relativePath, '.md');
     baseName = baseName !== 'index' ? baseName : '';
 
-    const [category, tocTitle] = path.dirname(relativePath).split(path.sep);
+    const splittedPath = path.dirname(relativePath).split(path.sep);
+    let category = splittedPath[0];
+    const tocTitle = splittedPath[1];
+
+    /**
+     * Hints documentation in a multi-hints shouldn't be indexed
+     * in the ToC, just the index.
+     * In these cases, splittedPath will have this shape:
+     *      ['user-guide', 'hints', 'hint-xxxxxx']
+     */
+    if (splittedPath.length > 2 && splittedPath[2].startsWith('hint-')) {
+        category = 'multi-hint';
+    }
+
     const originalFile = normalize(path.join(root, relativePath)).toLowerCase();
     const permalink = normalize(path.join(root, path.dirname(relativePath), baseName, 'index.html')).toLowerCase();
     const layout = getLayout(filePath);
