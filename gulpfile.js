@@ -278,7 +278,7 @@ ${lostContent}`;
 
 gulp.task('compress:zopfli', () => {
     return gulp.src([dirs.distCompreseable])
-        .pipe(plugins.zopfli())
+        .pipe(plugins.zopfliNode())
         .pipe(gulp.dest(dirs.dist));
 });
 
