@@ -247,7 +247,7 @@ li {
 
 /* 404 Error Message Page */
 
-h1.error-heading  {
+h1.error-heading {
     display: block;
     font-size: 7.4rem;
     font-weight: 300;
