@@ -618,3 +618,24 @@ input[type="file"]::-webkit-file-upload-button:active {
 input[type="file"]::-ms-browse:active {
     background-color: #262696;
 }
+
+/*
+ * CTA
+ * ---------------------------------------------
+ */
+
+ /* Note this is currently in the home.css file. This will be a part of button code cleanup */
+
+ a.feature__cta {
+    display: inline-block;
+    font-size: 1.3rem;
+    background-color: #4700a3;
+    color: #fff;
+    min-width: 11rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: .6rem 1rem;
+    border-radius: .3rem;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+}

@@ -218,14 +218,6 @@ li {
     max-width: 64rem;
 }
 
-/* Override line lengths */
-.header p,
-.header li,
-.footer p,
-.footer li {
-    max-width: none;
-}
-
 /* Override style in subpage generated with markdown */
 
 .module--primary h1::before {
@@ -251,3 +243,22 @@ li {
 .module--primary h2:nth-child(2) {
     margin-top: 1.6rem;
 }
+
+
+/* 404 Error Message Page */
+
+h1.error-heading {
+    display: block;
+    font-size: 7.4rem;
+    font-weight: 300;
+}
+
+h1.error-heading::before {
+    border-top: none;
+}
+
+h2.error-subheading {
+    margin-top: 0;
+    margin-bottom: 2.4rem;
+}
+
