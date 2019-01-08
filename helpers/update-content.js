@@ -174,6 +174,28 @@ const newCSSContent = cssContent.replace(/url\("([^"]*)"\)/gi, (matchString, mat
 
     return matchString.replace(matchGroup, newContent);
 });
+const resources = new Map([
+    ['connector', {
+        dir: '',
+        items: [],
+        title: 'Connectors'
+    }],
+    ['extension', {
+        dir: '',
+        items: [],
+        title: 'Extensions'
+    }],
+    ['formatter', {
+        dir: '',
+        items: [],
+        title: 'Formatters'
+    }],
+    ['parser', {
+        dir: '',
+        items: [],
+        title: 'Parsers'
+    }]
+]);
 
 safeWriteFile(scanResultPath, newCSSContent);
 
@@ -210,11 +232,45 @@ docs.forEach((docPath) => {
         mkdirp.sync(dir);
     }
 
+    if (type !== 'hint') {
+        const resource = resources.get(type);
+
+        resource.items.push(name);
+        resource.dir = dir;
+    }
+
     const destDocPath = `${dir}/${name}.md`;
 
     mv(docPath, destDocPath);
 });
 
+/**
+ * Create an index file for each type of resource
+ * except for hints.
+ */
+const createIndexFiles = () => {
+    resources.forEach((value) => {
+        if (value.items.length === 0) {
+            return;
+        }
+
+        const filePath = path.join(value.dir, 'index.md');
+
+        let content = `# ${value.title}${os.EOL}${os.EOL}`;
+
+        content += value.items.reduce((total, item) => {
+            return `${total}* [\`${item}\`](./${item}.md)${os.EOL}`;
+        }, '');
+
+        safeWriteFile(filePath, content);
+    });
+};
+
+createIndexFiles();
+
+/**
+ * Check if a hint is private.
+ */
 const isPrivate = (hintPath) => {
     let hintPackagePath = '';
 

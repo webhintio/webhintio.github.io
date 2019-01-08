@@ -152,9 +152,9 @@ module.exports = {
     },
     showMdContent: (page) => {
         // If the markdown Content should be used.
-        const guildeIndexes = ['contributor guide', 'user guide'];
+        const guideIndexes = ['contributor guide', 'user guide'];
 
-        return page.contentType === 'details' || guildeIndexes.includes(page.title.toLowerCase());
+        return page.contentType === 'details' || guideIndexes.includes(page.title.toLowerCase()) || (page.contentType === 'index' && page.tocTitle !== 'hints');
     },
     // Sort out `Developer guide` or `User guide` pages
     sortPagesByCategory: (allPages, category) => {
