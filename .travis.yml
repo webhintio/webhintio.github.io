@@ -10,7 +10,6 @@ addons:
     packages:
       - libsecret-1-dev
 
-
 env:
   global:
 
@@ -24,7 +23,12 @@ env:
     - secure: "OINn8LhTK6hTngwlxjum3k6Zuh08vfqSFbVhkNZnE9VlSZ+B3my1mmVSQYYBfo3lZXfEtiFuweVOIR/1Eh6FUK5r5+dGrNdg61I8eOhY4iVpNmaePTp6CdcHduVWAYolJEcbb//45FlLZAbEDXPVClg1By2fgOqg6RMHxIOZwSb4SFKCq4EXqjS3LNYhxUva+pUGhxxp1fEcX/vBz38HYar+JpSqZ/WO19RPaYOdXBfPCCLIgEYvtrEylupRVKybqL9rCzY1dZ9lipdrtm4Whs141RqHj7yxg1iyA+Qa9T9NqTOilVl349W9Bf24mt5p58iP0h3zc3HWK197Kwf8EJsSat5CnzXRRGM636FrrxlYol6QKyEa7IDolvJVryKT5mOE/2rwdPkdfteXm3IK3h49hniXR72eNO5oNFaNsrKp6w+LM4mu4q3XxXdloJr+26wc1BptRRU4XJrg4Qvdlx19ALkbu93mo1eW+aabKJeAnMj53LV7h4JSQqITP/DQWJRaKu9Zu4JHQHsZ4VnoyOqvf+OojO4fpWs/2YnyxIeOMYDB5EScBPljWPF2BDQFwqaJDN5DZegLWXx6XssZ2ObryfHPUNAlZ0spU5Jb0+O84LVvgf0RIgwIAChZww/I27/EFdcwt9woVdvRi/ViinydbZHa9vyUA9imG2NSRMo="
 
 before_install:
-  # This workaround is required to avoid libstdc++ errors
+  - echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ trusty main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+  - curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+  - sudo apt-get install apt-transport-https
+  - sudo apt-get update && sudo apt-get install azure-cli
+
+  # This workaround is required to avoid libstdc++ errors with zopfli
   - wget -q -O libstdc++6 http://security.ubuntu.com/ubuntu/pool/main/g/gcc-5/libstdc++6_5.4.0-6ubuntu1~16.04.10_amd64.deb
   - sudo dpkg --force-all -i libstdc++6
 
