@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
-    "@hint/artwork": "^2.2.0",
+    "@hint/artwork": "^2.2.1",
     "cross-env": "^5.2.0",
     "eslint": "^5.11.1",
     "gulp": "^4.0.0",
