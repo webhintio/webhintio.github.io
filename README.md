@@ -2,6 +2,7 @@
 
 <!-- markdownlint-disable -->
 [![Build Status](https://travis-ci.org/webhintio/webhint.io.svg?branch=master)](https://travis-ci.org/webhintio/webhint.io) [![Greenkeeper badge](https://badges.greenkeeper.io/webhintio/webhint.io.svg)](https://greenkeeper.io/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io?ref=badge_shield)
 <!-- markdownlint-enable -->
 
 This is the code for [webhint's website](https://webhint.io).
@@ -56,3 +57,6 @@ By participating in this project you agree to abide by its terms.
 ## License
 
 The code is available under the [Apache 2.0 license](LICENSE.txt).
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io?ref=badge_large)
