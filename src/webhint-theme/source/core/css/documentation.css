@@ -148,8 +148,8 @@ li.documentation-card a:hover {
 	width: 3.5rem;
 }
 
-.icon--interoperability::before {
-	content: url("/images/results-interop.svg");
+.icon--compatibility::before {
+	content: url("/images/results-compat.svg");
 	width: 3.5rem;
 }
 

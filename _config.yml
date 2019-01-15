@@ -116,8 +116,11 @@ categories:
   development:
     description: "Web developers use a wide variety of tools: bundlers, transpilers, optimizers... But sometimes there can be problems when using them together or the configuration might not be the most optimal. Let us take care of this for you!"
     name: Development
+  compatibility:
+    description: The web has been around for decades and it can be accessed from many different devices and form factors, old and new. These hints help you make your sites more compatible so your users can have a better experience no matter how they visit you.
+    name: Compatibility
   interoperability:
-    description: The web has been around for decades and it can be accessed from many different devices and form factors, old and new. These hints help you make your sites more interoperable so your users can have a better experience no matter how they visit you.
+    description: This category has been deprecated
     name: Interoperability
   pwa:
     description: Progressive Web Apps allow your users to have a more immersive experience within your site. Make sure your PWA looks the best no matter the platform of your users.
