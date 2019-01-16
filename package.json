@@ -74,6 +74,8 @@
   "private": true,
   "scripts": {
     "build": "npm run hexo:clean && npm run update-content && node helpers/updater.js src/content && gulp",
+    "ci-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
+    "ci-update": ".travis/is-travis.sh && .travis/update-site.sh",
     "dev": "npm run build -- watch",
     "express:prod": "cross-env NODE_ENV=production npm run start",
     "gulp": "gulp",
@@ -89,8 +91,6 @@
     "watch": "gulp watch",
     "test": "npm run lint && npm run build",
     "test-staging": "hint https://sonarwhal-staging.azurewebsites.net --tracking=on",
-    "travis-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
-    "travis-update": ".travis/is-travis.sh && .travis/update-site.sh",
     "update-content": "node helpers/update-content.js",
     "postinstall": "node helpers/postinstall.js"
   }
