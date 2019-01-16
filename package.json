@@ -63,7 +63,7 @@
     "remarkable-extlink": "^1.1.0",
     "remove-markdown": "^0.3.0",
     "shelljs": "^0.8.3",
-    "stylelint": "^9.9.0",
+    "stylelint": "^9.10.0",
     "sw-precache": "^5.2.1",
     "typescript": "^3.2.2",
     "uslug": "^1.0.4"
