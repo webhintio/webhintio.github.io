@@ -39,7 +39,7 @@ update_website() {
         && git config --global user.name "$GIT_USER_NAME" \
         && git init \
         && git add -A \
-        && git commit --message "Hey server, this content is for you! [skip ci]" \
+        && git commit --message "Hey server, this content is for you! ***NO_CI***" \
         && git push --quiet --force --set-upstream "https://$GIT_USER_NAME:$GIT_PASSWORD@sonarwhal-staging.scm.azurewebsites.net:443/sonarwhal.git" master
 }
 

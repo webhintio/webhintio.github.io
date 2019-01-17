@@ -14,7 +14,6 @@
     "xss-filters": "^1.2.7"
   },
   "devDependencies": {
-    "@alrra/travis-scripts": "^3.0.1",
     "@hint/artwork": "^2.2.1",
     "cross-env": "^5.2.0",
     "eslint": "^5.12.0",
@@ -74,6 +73,7 @@
   "private": true,
   "scripts": {
     "build": "npm run hexo:clean && npm run update-content && node helpers/updater.js src/content && gulp",
+    "ci-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
     "dev": "npm run build -- watch",
     "express:prod": "cross-env NODE_ENV=production npm run start",
     "gulp": "gulp",
@@ -85,12 +85,9 @@
     "lint-browser": "eslint src/webhint-theme/source/**/*.js --ignore-pattern src/webhint-theme/source/js/partials/**/*.js --ignore-pattern src/webhint-theme/source/js/scan/**/*.js",
     "lint-node": "eslint {helpers,src/webhint-theme/helper/**,src/webhint-theme/scripts/**,src/server/**}/*.js",
     "start": "node src/server/index.js",
-    "swap": ".travis/swap.sh && .travis/update-docs.sh",
     "watch": "gulp watch",
     "test": "npm run lint && npm run build",
     "test-staging": "hint https://sonarwhal-staging.azurewebsites.net --tracking=on",
-    "travis-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
-    "travis-update": ".travis/is-travis.sh && .travis/update-site.sh",
     "update-content": "node helpers/update-content.js",
     "postinstall": "node helpers/postinstall.js"
   }

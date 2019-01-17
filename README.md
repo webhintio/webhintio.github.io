@@ -1,8 +1,7 @@
 # webhint's website
 
 <!-- markdownlint-disable -->
-[![Build Status](https://dev.azure.com/webhint/webhint/_apis/build/status/webhintio.webhint.io?branchName=master)](https://dev.azure.com/webhint/webhint/_build/latest?definitionId=2?branchName=master)
-[![Build Status](https://travis-ci.org/webhintio/webhint.io.svg?branch=master)](https://travis-ci.org/webhintio/webhint.io) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io?ref=badge_shield)
+[![Build Status](https://dev.azure.com/webhint/webhint/_apis/build/status/webhintio.webhint.io?branchName=master)](https://dev.azure.com/webhint/webhint/_build/latest?definitionId=2?branchName=master) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io?ref=badge_shield)
 <!-- markdownlint-enable -->
 
 This is the code for [webhint's website](https://webhint.io).

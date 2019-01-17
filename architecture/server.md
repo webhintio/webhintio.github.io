@@ -50,9 +50,8 @@ The content of the live site is updated each time a change is made in the:
 * `/docs` directory and/or to the `CHANGELOG.md` file from the `webhint`
   repository
 
-To achieve the latter, `webhint` has the [`trigger-site-update.sh`]
-[trigger-update] script that triggers a build on `webhint.io` if the
-previous conditions are met.
+To achieve the latter, `webhint` gets built everytime a build finishes successfully
+in the `hint` repository.
 
 The search on the website uses [Algolia][algolia]. The search index is
 updated each time there is a deployment.
@@ -61,14 +60,14 @@ updated each time there is a deployment.
 
 The deployment process is fully automated:
 
-1. `master` branch build is triggered in [Travis][travis] (e.g. by code
+1. `master` branch build is triggered in [Azure Pipelines][ap] (e.g. by code
    or documentation change).
-1. build passes and executes `.travis/update-site.sh`.
+1. build passes and executes `helpers/update-site.sh`.
    This script will copy the required files for the deployment and push
    them into a local Git on Azure in the staging environment.
 1. The staging environment will be tested with `webhint` to make sure
-   everything is alrigh. If so, the code will get into production via
-   `.travis/swap.sh`.
+   everything is alrigh. If so, the code will get into production after
+   swapping slots in the Azure WebApp.
 
 ## Production configuration
 
@@ -154,6 +153,7 @@ IIS manages the custom error page via the following entries in `web.config`:
 ```
 
 [algolia]: https://www.algolia.com
+[ap]: https://dev.azure.com/webhint/webhint/_build?definitionId=2&_a=summary
 [cd]: https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment
 [handlebars]: https://handlebarsjs.com
 [hexo]: https://hexo.io
@@ -162,5 +162,4 @@ IIS manages the custom error page via the following entries in `web.config`:
 [siteextenstion]: https://github.com/sjkp/letsencrypt-siteextension
 [webhint]: https://webhint.io
 [webhint-repo]: https://github.com/webhintio/hint
-[travis]: https://travis-ci.org/webhint/webhint.io
 [trigger-update]: https://github.com/webhintio/hint/blob/0cfb1bb49c847eb4d5ed54691dbb88cb796694bf/.travis/trigger-site-update.sh
