@@ -271,19 +271,6 @@
     flex-wrap: wrap;
 }
 
-a.docs-button {
-    font-size: 1.3rem;
-    background-color: #4700a3;
-    color: #fff;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-    padding: .6rem 1rem;
-    text-align: right;
-    letter-spacing: .1rem;
-    min-width: 15rem;
-    text-transform: uppercase;
-}
-
 .docs-icon {
     width: 1.4rem;
     vertical-align: middle;
