@@ -67,20 +67,6 @@ Sets a margin on select block level elements that have a previous sibling.
     margin-top: 2.4rem;
 }
 
-/* The following should probably be in another file */
-
-.documentation-search {
-    flex: 1;
-    max-width: 64rem;
-    width: 100%;
-    margin-bottom: 2.4rem;
-}
-
-.documentation-search__input {
-    position: relative;
-    margin-top: 2.4rem;
-}
-
 /* GDPR banner styles */
 
 .disclaimer {

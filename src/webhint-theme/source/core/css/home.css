@@ -26,10 +26,6 @@ main {
     background-color: #18186d;
 }
 
-.hello-illustration {
-    max-width: 32rem;
-}
-
 .home-container--section .h1::before {
     border: none;
 }
@@ -57,7 +53,7 @@ main {
 }
 
 .home--hero__images {
-    max-width: 26rem;
+    max-width: 27rem;
     margin-top: 1.2rem;
     text-align: center;
 }
@@ -78,6 +74,7 @@ a.home--hero__images-wrap:focus {
 .home--hero__cta {
     display: inline-block;
     font-size: 1.3rem;
+    font-weight: 500;
 
     max-width: 100%;
     margin-top: .6rem;
@@ -92,7 +89,6 @@ a.home--hero__images-wrap:focus {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    text-align: center;
 }
 
 .module.feature {
@@ -112,12 +108,6 @@ a.home--hero__images-wrap:focus {
     margin: 1.2rem 0;
 }
 
-.feature__cta {
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-top: 1.2rem;
-}
-
 .home-container__features > .feature__highlight a {
     text-decoration: none;
 }
@@ -129,11 +119,8 @@ a.home--hero__images-wrap:focus {
 .home-container__features h2,
 .home-container__install h2 {
     text-align: center;
-}
-
-.home-container__features h2,
-.home-container__install h2 {
     color: #4700a3;
+    margin: 0 auto 4.8rem auto;
 }
 
 .home-container__features h2::after,
@@ -146,11 +133,6 @@ a.home--hero__images-wrap:focus {
     border-bottom: 2px solid #4700a3;
     text-align: center;
     margin: 1.2rem auto;
-}
-
-.home-container__features h2,
-.home-container__install h2 {
-    margin: 0 auto 4.8rem auto;
 }
 
 .home-container__documentation a > p {
@@ -200,34 +182,9 @@ a.home--hero__images-wrap:focus {
     margin: 0 2.4rem 0 0;
 }
 
-a.docs-button,
-a.feature__cta {
-    display: inline-block;
-    font-size: 1.3rem;
-    background-color: #4700a3;
-    color: #fff;
-    min-width: 11rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-    padding: .6rem 1rem;
-    border-radius: .3rem;
-    letter-spacing: .1rem;
-    text-transform: uppercase;
-}
-
 .scan-image {
     height: 15em;
 }
-
-/* Custom Buttons */
-
-a.button {
-    font-size: 1.3rem;
-    font-weight: 500;
-    padding: .6rem 1rem;
-    border-radius: .3rem;
-}
-
 
 /* Custom Type Home */
 
