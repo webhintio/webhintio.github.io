@@ -20,19 +20,19 @@ jobs:
     displayName: 'Test'
   - script: ./helpers/update-site.sh
     displayName: 'Deploy'
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     env:
       GIT_USER_EMAIL: $(GIT_USER_EMAIL)
       GIT_USER_NAME: $(GIT_USER_NAME)
       GIT_PASSWORD: $(GIT_PASSWORD)
   - script: npm run test-staging
     displayName: 'Analyze staging with webhint'
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   - bash: |
       az login --service-principal -u $AZURE_SERVICE_PRINCIPAL -p $AZURE_SERVICE_PRINCIPAL_PASSWORD --tenant $AZURE_TENANT
       az webapp deployment slot swap -g sonarwhal -n sonarwhal --slot staging
     displayName: 'Swap into production'
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     env:
       AZURE_SERVICE_PRINCIPAL: $(AZURE_SERVICE_PRINCIPAL)
       AZURE_SERVICE_PRINCIPAL_PASSWORD: $(AZURE_SERVICE_PRINCIPAL_PASSWORD)
@@ -41,7 +41,7 @@ jobs:
       curl https://www.google.com/ping?sitemap=https://webhint.io/sitemap.xml
       curl https://www.bing.com/ping?sitemap=https://webhint.io/sitemap.xml
     displayName: 'Update sitemaps'
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - job: 'Algolia'
   pool:
