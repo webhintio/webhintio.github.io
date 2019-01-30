@@ -2,7 +2,7 @@
   "dependencies": {
     "@hint/formatter-html": "^3.0.1",
     "algoliasearch": "^3.32.0",
-    "applicationinsights": "^1.0.8",
+    "applicationinsights": "^1.1.0",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
