@@ -1,5 +1,5 @@
 ---
-category: "about-index"
+section: "about-index"
 description: "Learn more about webhint, the project, and the team behind it"
 layout: "about"
 originalFile: "about.md"

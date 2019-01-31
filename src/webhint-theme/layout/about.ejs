@@ -20,7 +20,7 @@
     <main class="container">
       <article class="content" aria-labelledby="page-heading">
         <nav class="container breadcrumb" aria-label="breadcrumbs">
-            <% if(page.category === 'about-index') { %>
+            <% if(page.section === 'about-index') { %>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li>About</li>
@@ -36,7 +36,7 @@
         <header class="page-intro">
           <h1 id="heading"><%= page.title %></h1>
         </header>
-            <% if (page.category === 'about-index') { %>
+            <% if (page.section === 'about-index') { %>
                 <%- include('partials/about-index'); %>
             <% } else { %>
                 <div class="section">

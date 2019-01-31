@@ -1,5 +1,5 @@
 ---
-category: "doc-index"
+section: "doc-index"
 description: "Learn how to use webhint, what things it checks, and how you can create your own hints"
 layout: "docs"
 originalFile: "docs/index.md"

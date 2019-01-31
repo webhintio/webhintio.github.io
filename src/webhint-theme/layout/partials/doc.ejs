@@ -1,3 +1,9 @@
+<%# 
+    Global variables:
+      - page: contain the current page that Hexo is processing.
+      - pages: contain all the pages pass as a paremeter from docs.ejs
+%>
+<% const toCItems = utils.getToCItems(pages); %>
 <article class="content" aria-labelledby="page-heading">
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
@@ -9,8 +15,8 @@
             </li>
             <% if (!utils.isGuideIndexPage(page)) { %>
             <li>
-                <a href="<%= utils.getTargetPagePath(page, 'category'); %>" class="guide-category">
-                    <%= utils.capitalize(page.category); %>
+                <a href="<%= utils.getTargetPagePath(page, 'section'); %>" class="guide-category">
+                    <%= utils.capitalize(page.section); %>
                 </a>
             </li>
             <% } %>
@@ -36,7 +42,7 @@
             <div class="module module--secondary mobile-view">
                 <ul class="toc-mobile-view">
                     <li>
-                        <p role="button" id="mobile-toc" aria-controls="mobile-toc-submenu" aria-expanded="false" aria-haspopup="true" class="toc-mobile-view__button expandable"><%= utils.capitalize(page.category); %></p>
+                        <p role="button" id="mobile-toc" aria-controls="mobile-toc-submenu" aria-expanded="false" aria-haspopup="true" class="toc-mobile-view__button expandable"><%= utils.capitalize(page.section); %></p>
                         <ul role="group" class="toc-mobile-view__dropdown" id="mobile-toc-submenu" aria-hidden="true">
                             <% if (!utils.isGuideIndexPage(page)) { %>
                                 <li class="dropdown__subitem">
@@ -47,11 +53,13 @@
                                     <a href="#" class="subitem--single">Getting Started</a>
                                 </li>
                             <% } %>
-                            <% utils.getSortedToCTitles(pages).forEach((title) => { %>
+                            <%# Using subpages as variable name because pages is global %>
+                            <% toCItems.forEach(({title, pages: subpages}) => { %>
                                 <li class="dropdown__subitem">
                                     <p><%= utils.capitalize(title); %></p>
                                     <ul>
-                                        <% utils.getPagesByToCTitle(title, pages).forEach((subpage) => { %>
+                                        <%# Using subpage as variable name because page is global %>
+                                        <% subpages.forEach((subpage) => { %>
                                             <li class="subitem">
                                                 <a href="<%= utils.sanitize(subpage.permalink); %>"><%= subpage.title %></a>
                                             </li>
@@ -65,7 +73,7 @@
             </div>
             <div class="module module--secondary table-of-contents treeview main-view" role="navigation">
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
-                    <% utils.getSortedToCTitles(pages).forEach((title) => { %>
+                    <% toCItems.forEach(({title, pages: subpages}) => { %>
                         <li role="treeitem" aria-label="subsection" tabindex="0" aria-expanded="<% if (page.tocTitle === title) { %>true<% } else { %>false<% } %>">
                             <div class="
                             <% if (utils.isActiveItem(page, title)) { %>
@@ -78,7 +86,7 @@
                             </div>
 
                             <ul role="group">
-                                <% utils.getPagesByToCTitle(title, pages).forEach((subpage) => { %>
+                                <% subpages.forEach((subpage) => { %>
                                     <li role="treeitem" aria-selected="<% if (page.title === subpage.title) { %>true<% } else { %>false<% } %>">
                                         <div class="
                                         <% if(page.title === subpage.title) { %>
@@ -99,14 +107,21 @@
                 </ul>
             </div>
             <div class="module module--primary wrap-text">
+                <%#
+                    Here is where the document content is injected in Hexo.
+                    There is three options right now:
+                       - The real content of the md file. (utils.showMdContent(page))
+                       - Categories index. (page.contentType === 'hints-index')
+                       - Hints index for a category. (page.contentType === 'hints-category')
+                %>
                 <% if (utils.showMdContent(page)) { %>
                     <%- page.content %>
-                <% } else if (page.title === 'Hints categories') { %>
-                    <%- include('rules-index', { categories: site.data.categories.categories, utils }); %>
-                <% } else { %>
+                <% } else if (page.contentType === 'hints-index') { %>
+                    <%- include('hints-index', { categories: site.data.categories.categories, utils }); %>
+                <% } else if (page.contentType === 'hints-category') { %>
                     <% site.data.categories.categories.forEach((category) => { %>
                         <% if (category.name === page.title) { %>
-                            <%- include('rule-category', { category }); %>
+                            <%- include('hints-category', { category }); %>
                         <% } %>
                     <% }); %>
                 <% } %>
