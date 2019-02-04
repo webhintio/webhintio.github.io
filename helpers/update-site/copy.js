@@ -3,56 +3,56 @@ const fs = require('fs');
 const shell = require('shelljs');
 const mkdirp = require('mkdirp');
 
-const constans = require('./constants');
+const constants = require('./constants');
 const { safeWriteFile, setShellJSDefaultConfig } = require('./common');
 
-const FORMATTER_SRC = `${constans.dirs.HINT_PACKAGES}/formatter-html/src`;
+const FORMATTER_SRC = `${constants.dirs.HINT_PACKAGES}/formatter-html/src`;
 
 setShellJSDefaultConfig(shell);
 
 const hintDocumentationPaths = new Set([
     {
-        dest: constans.dirs.CONTRIBUTOR_GUIDE,
+        dest: constants.dirs.CONTRIBUTOR_GUIDE,
         options: '-R',
-        orig: `${constans.dirs.HINT_PACKAGES}/hint/docs/contributor-guide`
+        orig: `${constants.dirs.HINT_PACKAGES}/hint/docs/contributor-guide`
     },
     {
-        dest: constans.dirs.USER_GUIDE,
+        dest: constants.dirs.USER_GUIDE,
         options: '-R',
-        orig: `${constans.dirs.HINT_PACKAGES}/hint/docs/user-guide`
+        orig: `${constants.dirs.HINT_PACKAGES}/hint/docs/user-guide`
     },
     {
-        dest: constans.dirs.CONTENT,
+        dest: constants.dirs.CONTENT,
         options: '-R',
-        orig: `${constans.dirs.HINT_PACKAGES}/hint/docs/about`
+        orig: `${constants.dirs.HINT_PACKAGES}/hint/docs/about`
     },
     {
-        dest: constans.dirs.ABOUT,
+        dest: constants.dirs.ABOUT,
         options: null,
-        orig: `${constans.dirs.HINT_PACKAGES}/hint/CHANGELOG.md`
+        orig: `${constants.dirs.HINT_PACKAGES}/hint/CHANGELOG.md`
     }
 ]);
 
 const htmlFormatterPaths = new Set([
     {
-        dest: constans.dirs.SCAN_TEMPLATES,
+        dest: constants.dirs.SCAN_TEMPLATES,
         options: '-R',
         orig: `${FORMATTER_SRC}/views/partials`
     }, {
-        dest: constans.dirs.SCAN_IMAGES,
+        dest: constants.dirs.SCAN_IMAGES,
         options: '-R',
         orig: `${FORMATTER_SRC}/assets/images/scan`
     }, {
-        dest: constans.dirs.SCAN_STYLES,
+        dest: constants.dirs.SCAN_STYLES,
         options: '-R',
         orig: `${FORMATTER_SRC}/assets/styles/scan`
     }, {
-        dest: constans.dirs.SCAN_SCRIPTS,
+        dest: constants.dirs.SCAN_SCRIPTS,
         options: '-R',
         orig: `${FORMATTER_SRC}/assets/js/scan`
     }, {
         // This file will be compiled during the building process.
-        dest: `${constans.dirs.SCAN_PARTIALS}/utils.ts`,
+        dest: `${constants.dirs.SCAN_PARTIALS}/utils.ts`,
         options: null,
         orig: `${FORMATTER_SRC}/utils.ts`
     }
@@ -89,11 +89,11 @@ const copyHintDocumentation = () => {
  * @param {string} resource - Type of resource (hint, formatter, conector, etc.)
  */
 const copyResourceImages = (resource) => {
-    const destDirectory = `${constans.dirs.USER_GUIDE}/${resource}s/images`;
+    const destDirectory = `${constants.dirs.USER_GUIDE}/${resource}s/images`;
 
     mkdirp.sync(destDirectory);
 
-    copy(`${constans.dirs.HINT_PACKAGES}/${resource}-*/images`, destDirectory, '-R');
+    copy(`${constants.dirs.HINT_PACKAGES}/${resource}-*/images`, destDirectory, '-R');
 };
 
 /**
@@ -101,7 +101,7 @@ const copyResourceImages = (resource) => {
  * to their directory.
  */
 const copyHTMLFormatter = () => {
-    mkdirp.sync(constans.dirs.SCAN_PARTIALS);
+    mkdirp.sync(constants.dirs.SCAN_PARTIALS);
     htmlFormatterPaths.forEach((path) => {
         copy(path.orig, path.dest, path.options);
     });
@@ -113,7 +113,7 @@ const copyHTMLFormatter = () => {
      *
      * background-image: url('./images/scan/sub-section.svg') => background-image: url('/images/scan/sub-section.svg').
      */
-    const cssPath = `${constans.dirs.SCAN_STYLES}/scan-results.css`;
+    const cssPath = `${constants.dirs.SCAN_STYLES}/scan-results.css`;
     const cssContent = fs.readFileSync(cssPath, 'utf-8'); // eslint-disable-line no-sync
     const newCSSContent = cssContent.replace(/url\("([^"]*)"\)/gi, (matchString, matchGroup) => {
         const newContent = matchGroup.substr(matchGroup.indexOf('/images'));

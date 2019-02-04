@@ -7,7 +7,7 @@ const os = require('os');
 const shell = require('shelljs');
 const yamlLoader = require('js-yaml');
 
-const constans = require('./constants');
+const constants = require('./constants');
 const { safeWriteFile, setShellJSDefaultConfig } = require('./common');
 
 setShellJSDefaultConfig(shell);
@@ -61,7 +61,7 @@ const getDocumentation = () => {
             title: 'Parsers'
         }]
     ]);
-    const docs = shell.ls('-R', `${constans.dirs.HINT_PACKAGES}/{hint,connector,parser,formatter,extension}-*/{README.md,/docs/*.md}`);
+    const docs = shell.ls('-R', `${constants.dirs.HINT_PACKAGES}/{hint,connector,parser,formatter,extension}-*/{README.md,/docs/*.md}`);
 
     docs.forEach((docPath) => {
         const docPathSplitted = docPath.split('/').reverse();
@@ -110,7 +110,7 @@ const getDocumentation = () => {
         }
 
         const type = nameSplitted[0].split('-')[0];
-        const dir = path.join(process.cwd(), constans.dirs.USER_GUIDE, `${type}s`, nameSplitted.slice(0, nameSplitted.length - 1).join('/'));
+        const dir = path.join(process.cwd(), constants.dirs.USER_GUIDE, `${type}s`, nameSplitted.slice(0, nameSplitted.length - 1).join('/'));
 
         if (!fs.existsSync(dir)) { // eslint-disable-line no-sync
             mkdirp.sync(dir);
@@ -263,7 +263,7 @@ const generateHintCategoryDocAndInfo = () => {
      *      const meta = require('@hint/hint-axe').default.meta;
      * https://github.com/webhintio/webhint.io/issues/575
      */
-    const hints = shell.ls('-R', `${constans.dirs.HINT_PACKAGES}/hint-*/src/{meta/*.ts,./meta.ts}`);
+    const hints = shell.ls('-R', `${constants.dirs.HINT_PACKAGES}/hint-*/src/{meta/*.ts,./meta.ts}`);
 
     // Get category information of hints.
     const categories = hints.reduce((acc, hintPath) => {
@@ -300,7 +300,7 @@ const generateHintCategoryDocAndInfo = () => {
     const processedCategories = processCategories(categories);
 
     // Create category info file.
-    fs.writeFileSync(`${constans.dirs.DATA}/categories.json`, JSON.stringify(processedCategories), 'utf8'); //eslint-disable-line no-sync
+    fs.writeFileSync(`${constants.dirs.DATA}/categories.json`, JSON.stringify(processedCategories), 'utf8'); //eslint-disable-line no-sync
 
     /*
      * Create an index for md file for each category.
@@ -308,7 +308,7 @@ const generateHintCategoryDocAndInfo = () => {
      * These files only contain a title. The final content will be filled by Hexo.
      */
     processedCategories.categories.forEach((category) => {
-        safeWriteFile(`${constans.dirs.HINTS_DOC}/${category.name}/index.md`, `# ${category.name}${os.EOL}`);
+        safeWriteFile(`${constants.dirs.HINTS_DOC}/${category.name}/index.md`, `# ${category.name}${os.EOL}`);
     });
 };
 

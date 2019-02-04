@@ -1,19 +1,19 @@
 const shell = require('shelljs');
 
-const constans = require('./constants');
+const constants = require('./constants');
 const common = require('./common');
 
 common.setShellJSDefaultConfig(shell);
 
 const workingSpaceDirectories = new Set([
-    constans.dirs.ABOUT,
-    constans.dirs.CONTRIBUTOR_GUIDE,
-    constans.dirs.USER_GUIDE,
-    constans.dirs.SCAN_IMAGES,
-    constans.dirs.SCAN_PARTIALS,
-    constans.dirs.SCAN_SCRIPTS,
-    constans.dirs.SCAN_STYLES,
-    constans.dirs.SCAN_TEMPLATES
+    constants.dirs.ABOUT,
+    constants.dirs.CONTRIBUTOR_GUIDE,
+    constants.dirs.USER_GUIDE,
+    constants.dirs.SCAN_IMAGES,
+    constants.dirs.SCAN_PARTIALS,
+    constants.dirs.SCAN_SCRIPTS,
+    constants.dirs.SCAN_STYLES,
+    constants.dirs.SCAN_TEMPLATES
 ]);
 
 /**
