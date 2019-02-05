@@ -6,8 +6,10 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
+    "globby": "^9.0.0",
     "hint": "^4.3.1",
     "js-yaml": "^3.12.1",
+    "klaw": "^3.0.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "request": "^2.88.0",
@@ -49,7 +51,6 @@
     "hexo-server": "^0.3.2",
     "hexo-util": "^0.6.3",
     "json2yaml": "^1.1.0",
-    "klaw": "^3.0.0",
     "markdownlint-cli": "^0.13.0",
     "marked": "^0.6.0",
     "md-2-json": "^1.0.5",
@@ -57,7 +58,6 @@
     "mktemp": "^0.4.0",
     "normalize-path": "^3.0.0",
     "npm-run-all": "^4.1.3",
-    "pify": "^4.0.1",
     "remarkable": "^1.7.1",
     "remarkable-extlink": "^1.1.0",
     "remove-markdown": "^0.3.0",
@@ -72,7 +72,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "npm run hexo:clean && npm run update-content && node helpers/updater.js src/content && gulp",
+    "build": "npm run hexo:clean && npm run update-site && gulp",
     "ci-docsearch-scraper": "node helpers/run-docsearch-scraper.js",
     "dev": "npm run build -- watch",
     "express:prod": "cross-env NODE_ENV=production npm run start",
@@ -88,7 +88,7 @@
     "watch": "gulp watch",
     "test": "npm run lint && npm run build",
     "test-staging": "hint https://sonarwhal-staging.azurewebsites.net --tracking=on",
-    "update-content": "node helpers/update-content.js",
+    "update-site": "node helpers/update-site.js",
     "postinstall": "node helpers/postinstall.js"
   }
 }

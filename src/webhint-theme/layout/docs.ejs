@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <% if (page.category === 'doc-index') { %>
+    <% if (page.type === 'doc-index') { %>
         <title><%= page.title %> | webhint </title>
     <% } else { %>
         <title><%= page.title %> | webhint documentation</title>
@@ -29,12 +29,10 @@
     <%- include('partials/gdpr') %>
     <%- include('partials/header', { navs: site.data.menu }); %>
     <main class="container">
-        <% if (page.category === 'doc-index') { %>
+        <% if (page.section === 'doc-index') { %>
             <%- include('partials/doc-index'); %>
-        <% } else if (page.category === 'contributor-guide') { %>
-            <%- include('partials/sub-page', { pages: utils.sortPagesByCategory(site.pages.data, 'contributor-guide') }); %>
-        <% } else if (page.category === 'user-guide') { %>
-            <%- include('partials/sub-page', { pages: utils.sortPagesByCategory(site.pages.data, 'user-guide') }); %>
+        <% } else { %>
+            <%- include('partials/doc', { pages: utils.getPagesBySection(site.pages.data, page.section) }); %>
         <% } %>
     </main>
 
