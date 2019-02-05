@@ -61,19 +61,6 @@ remove_sensitive_information() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Only execute the following if the commit:
-#
-#   * does not come from a pull request
-#   * is made to the `master` branch
-
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] ||
-   [ "$TRAVIS_BRANCH" != "master" ]; then
-    exit 0
-fi
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 main () {
     declare -r TMP_DIR="$(mktemp -d XXXXX)"
 
