@@ -300,7 +300,7 @@ const updateLinks = (docFiles) => {
 };
 
 const updateChangelog = async () => {
-    let content = await readFile(`${constants.dirs.ABOUT}/changelog.md`, 'utf8');
+    let content = await readFile(`${constants.dirs.ABOUT}/CHANGELOG.md`, 'utf8');
     const frontMatterRegex = new RegExp(`\r?\n\s*---\r?\n|^\s*---\r?\n`, 'gi'); // eslint-disable-line no-useless-escape
 
     [, , content] = content.split(frontMatterRegex);
