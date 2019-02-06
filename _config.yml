@@ -128,6 +128,9 @@ categories:
   performance:
     description: No one likes to wait while a website loads. Validate that you are using the right compression, cache strategy and more to make your site (re)load faster.
     name: Performance
+  pitfalls:
+    description: Sometimes the web platform works in odd ways, often for good reasons. This can still result in hours spent debugging unexpected behavior. These hints warn you about common gotchas now to save you time later.
+    name: Pitfalls
   security:
     description: Browsers are one of the main vectors for attacks. The web platform has many features that allow you to mitigate the risks. Are you doing everything you can to keep your users safe?
     name: Security
