@@ -183,6 +183,11 @@ li.documentation-card a:hover {
 	width: 3.5rem;
 }
 
+.icon--pitfalls::before {
+	content: url("/images/results-pitfalls.svg");
+	width: 3.5rem;
+}
+
 .icon--categories {
 	position: relative;
     padding-left: 5rem;
