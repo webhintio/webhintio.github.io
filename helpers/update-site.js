@@ -23,7 +23,7 @@ getFiles()
         /*
          * 6. Create categories for hints.
          *
-         * This will create as many file objects to files as categories
+         * This will add as many file objects to files as categories
          * we have for the hints.
          * Also, this will create a file categores.json that will
          * be use to build the index page for the HINTS section and

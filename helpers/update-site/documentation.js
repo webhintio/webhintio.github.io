@@ -84,6 +84,12 @@ const frontMatterToObject = (frontMatter) => {
     return frontmatterObject;
 };
 
+/**
+ * Give a file, return the parsed frontMatter and
+ * the content without the frontMatter section.
+ * If there is no frontMatter in the content, the
+ * property frontMatter will be undefined.
+ */
 const getExistingContent = async (file) => {
     const data = await readFile(file, 'utf-8');
     let currentFrontMatter;
@@ -104,6 +110,11 @@ const getExistingContent = async (file) => {
     };
 };
 
+/**
+ * Create a file object for each documentation file (image/md)
+ * in the folder packages/hint in the hint repository, and return
+ * an array with those files.
+ */
 const getHintFiles = async () => {
     // Solution found in: https://gyandeeps.com/array-reduce-async-await/
     const promise = hintDocumentationPaths.reduce(async (previousPromise, docPath) => {
@@ -140,7 +151,11 @@ const getHintFiles = async () => {
     return data;
 };
 
-const getImageItem = (imagePath, resource) => {
+/**
+ * Create a file object for an image in a resource
+ * documentation.
+ */
+const getImageItemFromResource = (imagePath, resource) => {
     return {
         dest: path.join(constants.dirs.USER_GUIDE, `${resource}s`, 'images', imagePath.substr(imagePath.lastIndexOf('/images/') + '/images/'.length)),
         orig: imagePath,
@@ -148,6 +163,11 @@ const getImageItem = (imagePath, resource) => {
     };
 };
 
+/**
+ * Create a file object for each documentation
+ * file in any resource (hints, formatters, etc.),
+ * and return an array with those files.
+ */
 const getResourcesFiles = async () => {
     const imageFiles = [];
 
@@ -155,7 +175,7 @@ const getResourcesFiles = async () => {
         const images = await globby([`${constants.dirs.HINT_PACKAGES}/${resource}-*/images/**/*`]);
 
         images.forEach((image) => {
-            imageFiles.push(getImageItem(image, resource));
+            imageFiles.push(getImageItemFromResource(image, resource));
         });
     }
 
@@ -234,6 +254,9 @@ const getResourcesFiles = async () => {
     return docFiles.concat(imageFiles);
 };
 
+/**
+ * Get all files for the documentation in the repository.
+ */
 const getFiles = async () => {
     const hintFiles = await getHintFiles();
     const resourceFiles = await getResourcesFiles();
@@ -317,6 +340,11 @@ const getTitle = (content) => {
     return title;
 };
 
+/**
+ * Add or update the frontMatter for all the documentation
+ * files (only .md files).
+ * This method is not used to get the info for 'hints'.
+ */
 const getFileInfo = (file) => {
     const existingFrontMatter = file.frontMatter;
     let relativePath = path.relative(constants.dirs.CONTENT, file.dest);
@@ -359,6 +387,9 @@ const getFileInfo = (file) => {
     return file;
 };
 
+/**
+ * Get the metadata content for a hint given its .md file.
+ */
 const getMeta = async (file) => {
     const dir = path.dirname(file.orig);
     let metaPath;
@@ -380,6 +411,11 @@ const getMeta = async (file) => {
     return meta;
 };
 
+/**
+ * Add or update the frontMatter for all the hints.
+ * Hints are in a separete method because for them,
+ * we can get the information from the metadata.
+ */
 const getHintFileInfo = async (file) => {
     const relativePath = path.relative(path.join(constants.dirs.CONTENT, 'docs'), file.dest);
     const root = 'docs';
@@ -452,6 +488,9 @@ const getHintFileInfo = async (file) => {
     file.frontMatter = Object.assign(newFrontMatter, file.frontMatter);
 };
 
+/**
+ * Get the frontMatter info for all the md files.
+ */
 const getFilesInfo = async (files) => {
     // Hint documentation is going to take the info from the metadata.
     const hintFiles = files.filter((file) => {
@@ -573,6 +612,10 @@ const processHint = (hint, isSummary) => {
     return processedHint;
 };
 
+/**
+ * Get the hints for a category and set a mark for
+ * multi-hints index files.
+ */
 const processCategoryHints = (hints) => {
     const singleHints = hints.filter((hintName) => {
         return !hintName.includes('/');
@@ -608,6 +651,13 @@ const processCategoryHints = (hints) => {
     return processedHints.concat(multiHintsProcessed);
 };
 
+/**
+ * This will add as many file objects to files as categories
+ * we have for the hints.
+ * Also, this will create a file categores.json that will
+ * be use to build the index page for the HINTS section and
+ * an index page for each category.
+ */
 const createHintCategories = (files) => {
     const hintFiles = files.filter((file) => {
         return file.resourceType === 'hint';
@@ -737,26 +787,11 @@ const frontMatterToString = (frontMatterObj) => {
     return `${divider}\n${items}${divider}`;
 };
 
-const build = (files) => {
-    const promises = files.map(async (file) => {
-        try {
-            shell.mkdir('-p', path.dirname(file.dest));
-
-            if (file.type === types.other) {
-                return copy(file.orig, file.dest);
-            }
-
-            const frontMatterString = frontMatterToString(file.frontMatter);
-
-            await writeFile(file.dest, `${frontMatterString ? `${frontMatterString}\n` : ''}${file.content}`, { encoding: 'utf-8' });
-        } catch (e) {
-            console.log(file);
-        }
-    });
-
-    return Promise.all(promises);
-};
-
+/**
+ * Create a file Object for each resource except for hint.
+ * These files will contain an index document with all the item
+ * for that resource.
+ */
 const createResourcesIndexes = (files) => {
     const groups = _.groupBy(files, 'resourceType');
 
@@ -803,6 +838,33 @@ const createResourcesIndexes = (files) => {
             type: types.doc
         });
     });
+};
+
+/**
+ * Takes all the file objects and copy/create the files
+ * in the destination.
+ * * If a file is not type doc, it will be copy directly to file.dest.
+ * * If a file is type doc, it will be created in file.dest, joining the content
+ *   of the frontMatter and the documentation.
+ */
+const build = (files) => {
+    const promises = files.map(async (file) => {
+        try {
+            shell.mkdir('-p', path.dirname(file.dest));
+
+            if (file.type === types.other) {
+                return copy(file.orig, file.dest);
+            }
+
+            const frontMatterString = frontMatterToString(file.frontMatter);
+
+            await writeFile(file.dest, `${frontMatterString ? `${frontMatterString}\n` : ''}${file.content}`, { encoding: 'utf-8' });
+        } catch (e) {
+            console.log(file);
+        }
+    });
+
+    return Promise.all(promises);
 };
 
 module.exports = {
