@@ -15,7 +15,7 @@ const isSectionIndexPage = (page) => {
 };
 
 const isGoodToToC = (page) => {
-    return !isGuideIndexPage(page) && page.tocTitle && page.contentType !== 'hints-category' && page.isMultiHints !== 'true';
+    return !isGuideIndexPage(page) && page.tocTitle && page.contentType !== 'hints-category' && page.contentType !== 'hints-index' && page.isMultiHints !== 'true';
 };
 
 /**
@@ -150,6 +150,6 @@ module.exports = {
         // If the markdown Content should be used.
         const guideIndexes = ['contributor guide', 'user guide'];
 
-        return page.contentType === 'details' || guideIndexes.includes(page.title.toLowerCase());
+        return page.contentType === 'details' || guideIndexes.includes(page.title.toLowerCase()) || page.contentType === 'resource-index';
     }
 };
