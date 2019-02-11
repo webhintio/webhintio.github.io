@@ -25,12 +25,12 @@ getFiles()
          *
          * This will add as many file objects to files as categories
          * we have for the hints.
-         * Also, this will create a file categores.json that will
+         * Also, this will create a file `categories.json` that will
          * be use to build the index page for the HINTS section and
          * an index page for each category.
          *
-         * The layout that will use categories.json is hints-index.ejs
-         * and hints-category.ejs
+         * The layout that will use `categories.json` is `hints-index.ejs`
+         * and `hints-category.ejs`
          */
         createHintCategories(files);
 
