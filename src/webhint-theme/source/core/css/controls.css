@@ -431,7 +431,7 @@ a.feature__cta:hover {
 
 a.docs-button:focus,
 a.feature__cta:focus {
-    border-color: hsla(0, 0%, 100%, 0.5);
+    border-color: hsla(0, 0%, 100%, .5);
     outline: 0;
 }
 
