@@ -21,6 +21,10 @@ a.anchor-top:hover, a.anchor-top:focus {
     text-decoration: none;
 }
 
+a.anchor-top:focus {
+    outline: 1px dashed #4046dd;
+}
+
 a.anchor-top:active {
     background: hsla(237, 69%, 55%, 1);
 }

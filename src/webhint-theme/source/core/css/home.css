@@ -162,6 +162,11 @@ a.home--hero__images-wrap:focus {
     max-width: 30rem;
 }
 
+.home--docs-text a {
+    display: block;
+    color: #fff;
+}
+
 .home--docs-text p {
     font-size: 1.6rem;
     margin-top: 0;
