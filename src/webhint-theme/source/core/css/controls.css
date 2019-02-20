@@ -38,13 +38,16 @@ textarea,
 select {
     width: 100%;
     max-width: 64rem;
-    height: 5rem;
 
-    border: 1px solid hsla(0, 0%, 0%, .6);
+    border: 2px solid hsla(0, 0%, 0%, .6);
 
     padding: .7rem 1rem;
 
     background-color: hsla(0, 0%, 100%, 1);
+}
+
+input {
+    height: 5.3rem;
 }
 
 /* Should be able to change textarea height using rows attribute */
@@ -65,7 +68,7 @@ select:hover {
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: #4700a3;
+    border-color: hsla(0, 0%, 0%, .4);
     background-color: #fff;
 
     /* Safe to remove focus, as very visable border on focus */
@@ -115,7 +118,7 @@ select,
 
 .nav-bar__input input[type="search"] {
     background-color: hsla(0, 0%, 0%, .2);
-    border: 1px solid hsla(0, 0%, 100%, .2);
+    border: 2px solid hsla(0, 0%, 100%, .2);
     color: #fff;
 
     height: 4rem;
@@ -131,7 +134,7 @@ select,
 }
 
 .nav-bar__input input[type=search]:focus {
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     cursor: text;
 }
 
@@ -244,7 +247,7 @@ button,
 a.button {
     min-width: 16rem;
     max-width: 100%;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
 
     /* needed to override Chrome styles */
     border-radius: 0;
@@ -408,8 +411,10 @@ a.feature__cta {
 
     margin-right: 1rem;
     margin-bottom: 1rem;
-    padding: .6rem 1rem;
+    padding: .3rem 1rem;
     border-radius: .3rem;
+
+    border: 2px solid transparent;
 
     color: #fff;
     background-color: #4700a3;
@@ -422,6 +427,12 @@ a.docs-button:hover,
 a.feature__cta:hover {
     text-decoration: none;
     filter: drop-shadow(0 .5rem .5rem hsla(0, 0%, 0%, .3));
+}
+
+a.docs-button:focus,
+a.feature__cta:focus {
+    border-color: hsla(0, 0%, 100%, .5);
+    outline: 0;
 }
 
 /*
