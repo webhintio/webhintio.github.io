@@ -89,7 +89,7 @@
 	width: 48%;
 	margin-top: 0;
 	text-align: center;
-	border: 1px solid #18186d;
+	border: 1px solid #4700a3;
 	cursor: pointer;
 }
 
@@ -104,7 +104,7 @@ a > .documentation-card__main > img {
 }
 
 .documentation-card__title {
-	background-color: #18186d;
+	background-color: #4700a3;
 	color: #fff;
 	padding: 6rem 0 2rem 0;
 	font-size: 2rem;
