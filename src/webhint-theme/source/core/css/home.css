@@ -22,10 +22,6 @@ main {
     color: #404040;
 }
 
-.bg-wrap--blue {
-    background-color: #18186d;
-}
-
 .home-container--section .h1::before {
     border: none;
 }
@@ -244,7 +240,7 @@ input {
 
 /* Home footer is a different color than the rest of the site */
 .footer--home {
-    background-color: #02004f;
+    background-color: hsla(0, 0%, 0%, 0.4);
     border-top: 1px solid #fff;
 }
 

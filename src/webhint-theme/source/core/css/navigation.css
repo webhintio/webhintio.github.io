@@ -265,11 +265,6 @@ button.mobile-search-button {
     text-decoration: none;
 }
 
-.navbar__navitem .edge-wordmark a:hover,
-.navbar__navitem .edge-wordmark a:focus {
-    background-color: #464646;
-}
-
 .nav__navbar > li > a::after {
     display: inline-block;
     content: url("/images/nav-arrow.svg");

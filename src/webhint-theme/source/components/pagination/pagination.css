@@ -45,7 +45,7 @@
 }
 
 .pagination [aria-current="page"] {
-    border: 1px solid #4046dd;
+    border: 1px solid #4700a3;
 }
 
 .pagination__prev a,

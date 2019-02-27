@@ -9,11 +9,11 @@ footer {
 
 .footer {
     background-color: #fff;
-    border-top: 2px solid #2d28a1;
+    border-top: 2px solid #4700a3;
 }
 
 .footer a {
-    color: #292f56;
+    color: #4700a3;
 }
 
 .footer-nav {
@@ -39,7 +39,6 @@ footer {
 .footer-nav__item .category {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
-    color: #2d28a1;
     letter-spacing: .1rem;
     text-transform: uppercase;
 }
