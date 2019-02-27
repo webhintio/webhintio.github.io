@@ -179,6 +179,7 @@ input[type=search]::-moz-placeholder { /* Firefox 18- */
     width: 100%;
     margin-top: .8rem;
     max-width: 74rem;
+    text-transform: uppercase;
 }
 
 @media (min-width: 34.1em) {
@@ -646,20 +647,20 @@ input[type="file"]::-ms-browse:focus {
 
 input[type="file"]:hover::-webkit-file-upload-button,
 input[type="file"]:focus::-webkit-file-upload-button {
-    background-color: #262696;
+    background-color: #4700a3;
 }
 
 input[type="file"]:hover::-ms-browse,
 input[type="file"]:focus::-ms-browse {
-    background-color: #262696;
+    background-color: #4700a3;
 }
 
 input[type="file"]:active::-webkit-file-upload-button,
 input[type="file"]::-webkit-file-upload-button:active {
-    background-color: #262696;
+    background-color: #4700a3;
 }
 
 input[type="file"]::-ms-browse:active {
-    background-color: #262696;
+    background-color: #4700a3;
 }
 
