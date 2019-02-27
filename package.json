@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@hint/configuration-web-recommended": "^6.1.0",
     "@hint/formatter-html": "^3.2.0",
     "algoliasearch": "^3.32.0",
     "applicationinsights": "^1.2.0",
