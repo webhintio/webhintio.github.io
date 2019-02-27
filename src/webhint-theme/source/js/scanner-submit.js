@@ -180,7 +180,7 @@
     };
 
     var updateOverallData = function (category) {
-        var hintsSelector = '#summary-' + category.name + ' .rule-tile__hints';
+        var hintsSelector = '#summary-' + category.name + ' .rule-tile__hints span';
         var passedSelector = '#summary-' + category.name + ' .rule-tile__passed';
         var hints = getHints(category.hints).length;
         var passed = category.passed.length;
