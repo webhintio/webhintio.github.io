@@ -725,9 +725,18 @@ const updateChangelog = async () => {
     [, , content] = content.split(frontMatterRegex);
 
     const parsedChangelog = md2json.parse(content);
+    const changelog = {};
 
-    _.forEach(parsedChangelog, (details) => {
+    _.forEach(parsedChangelog, (details, key) => {
         // Iterate each date.
+        const versionAndDateRegex = /([^\s]+)\s+\(([^)]+)\)/;
+        const [, version, date] = versionAndDateRegex.exec(key);
+
+        changelog[key] = {};
+        changelog[key].version = version;
+        changelog[key].date = date;
+        changelog[key].content = details;
+
         _.forEach(details, (update) => {
             // Iterate each category of update.
 
@@ -751,18 +760,16 @@ const updateChangelog = async () => {
             while (matchArray !== null) {
                 const message = matchArray.pop();
                 const id = matchArray.pop();
-                const associateCommit = associateCommitRegex.exec(message);
 
-                update.details[id] = {
-                    associateCommitId: associateCommit ? associateCommit.pop() : null,
-                    message: message.replace(associateCommitRegex, '')
-                };
+                update.details[id] = { message: message.replace(associateCommitRegex, '') };
 
                 matchArray = commitRegex.exec(raw);
             }
+
+            return update;
         });
     });
-    const yaml = json2yaml.stringify(parsedChangelog);
+    const yaml = json2yaml.stringify(changelog);
     const changelogThemePath = path.join(constants.dirs.CONTENT, '_data/changelog.yml');
 
     await writeFile(changelogThemePath, yaml);

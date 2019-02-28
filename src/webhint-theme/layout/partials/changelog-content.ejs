@@ -13,18 +13,20 @@
         <div class="section">
             <div class="layout layout--sidebar">
                 <% Object.entries(site.data.changelog).forEach(([key, update]) => { %>
-                <div class="module module--secondary"> 
-                    <h2 class="g-title changelog__date"><%= key %></h2>
-                </div>
-                <div class="module module--primary">
-                    <div class="changelog__updates">
-                        <% Object.entries(update).forEach(([category, content]) => { %>
-                            <h3 class="changelog__version">Package - Version</h3>
-                            <div class="changelog__updates--body">
-                                <h4 class="<%= utils.normalizeClassName(category); %>"><%= category %></h4>
-                                <%- content.html %>
-                            </div>
-                        <% }); %>
+                <div class="module module--wrapper">
+                    <div class="module module--secondary"> 
+                        <h2 class="g-title changelog__date"><%= update.date %></h2>
+                    </div>
+                    <div class="module module--primary">
+                        <div class="changelog__updates">
+                            <h3 class="changelog__version">Hint - <%= update.version %></h3>
+                            <% Object.entries(update.content).forEach(([category, content]) => { %>
+                                <div class="changelog__updates--body">
+                                    <h4 class="<%= utils.normalizeClassName(category); %>"><%= category %></h4>
+                                    <%- content.html %>
+                                </div>
+                            <% }); %>
+                        </div>
                     </div>
                 </div>
                 <% }); %>
