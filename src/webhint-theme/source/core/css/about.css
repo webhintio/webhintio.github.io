@@ -53,6 +53,7 @@ h3.changelog__version {
 }
 
 .new-features,
+.initial-release,
 .bug-fixes,
 .breaking-changes {
     position: relative;
@@ -60,6 +61,7 @@ h3.changelog__version {
 }
 
 .bug-fixes::before,
+.initial-release::before,
 .new-features::before,
 .breaking-changes::before {
     display: inline-block;
@@ -73,6 +75,7 @@ h3.changelog__version {
     content: url("/images/bug-fixes-icon.svg");
 }
 
+.initial-release::before,
 .new-features::before {
     content: url("/images/new-features-icon.svg");
 }
@@ -92,12 +95,14 @@ h3.changelog__version {
     }
 
     .new-features,
+    .initial-release,
     .bug-fixes,
     .breaking-changes {
         padding-left: 4.8rem;
     }
 
     .bug-fixes::before,
+    .initial-release::before,
     .new-features::before,
     .breaking-changes::before {
         top: -.2rem;

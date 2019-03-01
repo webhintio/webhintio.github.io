@@ -4,7 +4,6 @@ const { promisify } = require('util');
 
 const _ = require('lodash');
 const globby = require('globby');
-const json2yaml = require('json2yaml');
 const marked = require('marked');
 const md2json = require('md-2-json');
 const normalize = require('normalize-path');
@@ -50,11 +49,6 @@ const hintDocumentationPaths = [
         dest: constants.dirs.ABOUT,
         orig: `${constants.dirs.HINT_PACKAGES}/hint/docs/about`,
         section: 'about'
-    },
-    {
-        dest: constants.dirs.ABOUT,
-        orig: `${constants.dirs.HINT_PACKAGES}/hint/CHANGELOG.md`,
-        section: 'changelog'
     }
 ];
 
@@ -720,59 +714,107 @@ const createHintCategories = (files) => {
 };
 
 const updateChangelog = async () => {
-    let content = await readFile(`${constants.dirs.ABOUT}/CHANGELOG.md`, 'utf8');
+    const files = await globby([`${constants.dirs.HINT_PACKAGES}/*/CHANGELOG.md`]);
 
-    [, , content] = content.split(frontMatterRegex);
+    const changelog = await files.reduce(async (totalPromise, file) => {
+        const total = await totalPromise;
+        const content = await readFile(file, 'utf8');
+        let packageName = file.split('/').slice(-2, -1)[0];
 
-    const parsedChangelog = md2json.parse(content);
-    const changelog = {};
+        if (packageName !== 'hint') {
+            packageName = `@hint/${packageName}`;
+        }
 
-    _.forEach(parsedChangelog, (details, key) => {
-        // Iterate each date.
-        const versionAndDateRegex = /([^\s]+)\s+\(([^)]+)\)/;
-        const [, version, date] = versionAndDateRegex.exec(key);
+        if (!content) {
+            return total;
+        }
 
-        changelog[key] = {};
-        changelog[key].version = version;
-        changelog[key].date = date;
-        changelog[key].content = details;
+        const parsedChangelog = md2json.parse(content);
 
-        _.forEach(details, (update) => {
-            // Iterate each category of update.
+        _.forEach(parsedChangelog, (details, key) => {
+            // Iterate each date.
+            const versionAndDateRegex = /([^\s]+)\s+\(([^)]+)\)/;
+            const [, version, dateString] = versionAndDateRegex.exec(key);
 
-            // First release won't have any changes.
-            if (!update.raw) {
-                return;
+            let item = total[dateString];
+
+            if (!item) {
+                total[dateString] = {
+                    date: new Date(dateString),
+                    dateString,
+                    packages: {}
+                };
+
+                item = total[dateString];
             }
 
-            // Line breaks in `0.1.0` can't be ignored after being parsed in `md2json`.
-            // So `raw` needs to be processed to prevent unexpected line breaks.
-            const raw = update.raw.split(new RegExp('-\\n-|([^.])\\n-')).join('');
-            const commitRegex = /- \[\[`[a-z0-9]+`\]\(https:\/\/github.com\/webhintio\/hint\/commit\/([a-z0-9]+)\)] - (.*)(?:\r?\n)*/g;
-            const associateCommitRegex = / \(see also: \[`#[0-9]+`\]\(https:\/\/github.com\/webhintio\/hint\/issues\/([0-9]+)\)\)/g;
+            let packageContent = item.packages[packageName];
 
-            update.html = marked(raw);
-            update.details = {}; // Changlog item details including `associatedCommitId` and `message`.
+            if (!packageContent) {
+                item.packages[packageName] = {
+                    content: null,
+                    version
+                };
 
-            // Extract changelog item details.
-            let matchArray = commitRegex.exec(raw);
-
-            while (matchArray !== null) {
-                const message = matchArray.pop();
-                const id = matchArray.pop();
-
-                update.details[id] = { message: message.replace(associateCommitRegex, '') };
-
-                matchArray = commitRegex.exec(raw);
+                packageContent = item.packages[packageName];
             }
 
-            return update;
+            packageContent.content = _.map(details, (update, category) => {
+                // Iterate each category of update.
+
+                // First release won't have any changes.
+                if (!update.raw) {
+                    return {
+                        category: 'Initial Release',
+                        html: marked(update),
+                        raw: update
+                    };
+                }
+
+                // Line breaks in `0.1.0` can't be ignored after being parsed in `md2json`.
+                // So `raw` needs to be processed to prevent unexpected line breaks.
+                const raw = update.raw.split(new RegExp('-\\n-|([^.])\\n-')).join('');
+                const commitRegex = /- \[\[`[a-z0-9]+`\]\(https:\/\/github.com\/webhintio\/hint\/commit\/([a-z0-9]+)\)] - (.*)(?:\r?\n)*/g;
+                const associateCommitRegex = / \(see also: \[`#[0-9]+`\]\(https:\/\/github.com\/webhintio\/hint\/issues\/([0-9]+)\)\)/g;
+
+                update.category = category;
+                update.html = marked(raw);
+                update.details = [];
+
+                // Extract changelog item details.
+                let matchArray = commitRegex.exec(raw);
+
+                while (matchArray !== null) {
+                    const message = matchArray.pop();
+                    const id = matchArray.pop();
+                    const associateCommit = associateCommitRegex.exec(message);
+
+                    update.details.push({
+                        associateCommitId: associateCommit ? associateCommit.pop() : null,
+                        id,
+                        message: message.replace(associateCommitRegex, '')
+                    });
+
+                    matchArray = commitRegex.exec(raw);
+                }
+
+                return update;
+            });
+
+            return item;
         });
-    });
-    const yaml = json2yaml.stringify(changelog);
-    const changelogThemePath = path.join(constants.dirs.CONTENT, '_data/changelog.yml');
 
-    await writeFile(changelogThemePath, yaml);
+        return total;
+    }, Promise.resolve({}));
+
+    const sortedChangelog = Object.values(changelog).sort((a, b) => {
+        return b.date.getTime() - a.date.getTime();
+    });
+
+    const stringChangelog = JSON.stringify(sortedChangelog, null, 2);
+    const changelogThemePath = path.join(constants.dirs.CONTENT, '_data/changelog.json');
+
+    await writeFile(changelogThemePath, stringChangelog);
 };
 
 /** Convert an object to frontmatter string. */

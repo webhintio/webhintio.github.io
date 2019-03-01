@@ -120,22 +120,23 @@ module.exports = {
         }
 
         let pages;
+        const threshold = 4;
 
-        if (current <= 5) {
+        if (current <= threshold) {
             pages = firstItems(current, total, pattern);
             context.pages = pages;
 
             return context;
         }
 
-        if (current >= total - 5) {
+        if (current > total - threshold) {
             pages = lastItems(current, total, pattern);
             context.pages = pages;
 
             return context;
         }
 
-        if (current > 5) {
+        if (current > threshold) {
             pages = middlePage(current, total, pattern);
             context.pages = pages;
 

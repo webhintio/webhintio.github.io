@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Changelog v<%= page.title %> | webhint</title>
+    <title>Changelog</title>
     <%- include('partials/metas', { page }); %>
 
     <%- include('partials/styles'); %>
@@ -13,7 +13,7 @@
 <body>
     <%- include('partials/gdpr') %>
     <%- include('partials/header', { navs: site.data.menu }); %>
-    <%- include('partials/changelog-content', { page }); %>
+    <%- include('partials/changelog-content', { changelog, pagination }); %>
     <%- include('partials/footer', { navs: site.data.menu }); %>
     <%- include('partials/scripts', { theme }); %>
 </body>
