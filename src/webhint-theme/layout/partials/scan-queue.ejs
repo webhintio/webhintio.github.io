@@ -18,14 +18,14 @@
                         <p>You can check back later using the permalink below. This is your unique scan result URL so you can return to your results page at any time.</p>
                         <div class="scan-queue__permalink">
                             <p class="uppercase-text">Permalink</p>
-                            <button class="permalink-copy">
-                                <span class='permalink-content'><%= result.permalink %></span> <img src="/images/scan/permalink-icon.svg" />
+                            <button type="button" class="permalink-copy">
+                                <span class='permalink-content'><%= result.permalink %></span> <img src="/images/scan/permalink-icon.svg" alt="copy permalink" />
                             </button>
                         </div>
                         <div class="scan-queue__push-notifications" hidden>
                             <p>You can also enable webhint push notifications to alert you when the scan is complete and your results are ready for viewing.</p>
                             <div class="actions">
-                                <button class="button--red" type="">Enable Push Notifications</button>
+                                <button type="button" class="button--red" type="">Enable Push Notifications</button>
                             </div>
                         </div>
                     </div>
