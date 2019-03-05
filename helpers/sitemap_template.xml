@@ -16,4 +16,9 @@
     <loc>https://webhint.io/search/</loc>
     <priority>0.3</priority>
   </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.io/about/changelog/</loc>
+    <priority>1</priority>
+  </url>
 </urlset>

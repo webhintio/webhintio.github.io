@@ -54,7 +54,8 @@ thead th,
 .scan-overview,
 .docs-button,
 .anchor-top,
-.cta {
+.cta,
+.g-title {
     font-family: "Montserrat", sans-serif;
 }
 
@@ -108,7 +109,7 @@ caption,
 h4,
 .subtitle,
 .subtitle--alt {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 h5,

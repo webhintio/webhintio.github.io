@@ -8,6 +8,7 @@ node_modules/
 src/content-replaced
 src/content/_data/categories.json
 src/content/_data/changelog.yml
+src/content/_data/changelog.json
 src/content/about/
 src/content/docs/contributor-guide/
 src/content/docs/user-guide/

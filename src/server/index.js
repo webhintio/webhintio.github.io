@@ -73,6 +73,7 @@ const commonConfiguration = (app) => {
 const configureRoutes = (app) => {
     require('./routes/scanner.js')(app, appInsightsClient);
     require('./routes/search.js')(app, appInsightsClient);
+    require('./routes/changelog.js')(app);
 };
 
 const configureFallbacks = (app) => {

@@ -30,8 +30,20 @@ a > .about-card__main > img {
 
 /* Changelog */
 
+h2.changelog__date {
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: #4700a3;
+    text-transform: uppercase;
+}
+
+h3.changelog__version {
+    font-weight: 500;
+    margin-bottom: 2.4rem;
+}
+
 .changelog__updates {
-    margin: 2.4rem 0;
+    margin: 0 0 4.8rem 0;
     padding-left: 2.4rem;
     border-left: 3px solid #4700a3;
 }
@@ -41,6 +53,7 @@ a > .about-card__main > img {
 }
 
 .new-features,
+.initial-release,
 .bug-fixes,
 .breaking-changes {
     position: relative;
@@ -48,6 +61,7 @@ a > .about-card__main > img {
 }
 
 .bug-fixes::before,
+.initial-release::before,
 .new-features::before,
 .breaking-changes::before {
     display: inline-block;
@@ -61,6 +75,7 @@ a > .about-card__main > img {
     content: url("/images/bug-fixes-icon.svg");
 }
 
+.initial-release::before,
 .new-features::before {
     content: url("/images/new-features-icon.svg");
 }
@@ -75,13 +90,19 @@ a > .about-card__main > img {
         margin-left: 7rem;
     }
 
+    .changelog__updates--body {
+        margin: 2.4rem 0 0 2.4rem;
+    }
+
     .new-features,
+    .initial-release,
     .bug-fixes,
     .breaking-changes {
         padding-left: 4.8rem;
     }
 
     .bug-fixes::before,
+    .initial-release::before,
     .new-features::before,
     .breaking-changes::before {
         top: -.2rem;

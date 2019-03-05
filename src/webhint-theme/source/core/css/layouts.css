@@ -115,27 +115,33 @@ ol.layout {
 
 @media (min-width: 48em) {
 
-    [class*="layout--sidebar"] > .module {
+    [class*="layout--sidebar"] > .module,
+    [class*="layout--sidebar"] > .module--wrapper > .module {
         margin-top: 0;
     }
 
-    [class*="layout--sidebar"] > .module--secondary {
+    [class*="layout--sidebar"] > .module--secondary,
+    [class*="layout--sidebar"] > .module--wrapper > .module--secondary {
         width: 22rem;
     }
 
-    [class*="layout--sidebar"] > .module--primary {
+    [class*="layout--sidebar"] > .module--primary,
+    [class*="layout--sidebar"] > .module--wrapper > .module--primary {
         width: calc(100% - 26rem);
     }
 
-    .layout--sidebar > .module--primary {
+    .layout--sidebar > .module--primary
+    .layout--sidebar > .module--wrapper > .module--primary {
         float: right;
     }
 
-    .layout--sidebar--alt > .module--primary {
+    .layout--sidebar--alt > .module--primary,
+    .layout--sidebar--alt > .module--wrapper > .module--primary {
         float: left;
     }
 
-    .layout--sidebar--alt > .module--secondary {
+    .layout--sidebar--alt > .module--secondary,
+    .layout--sidebar--alt > .module--wrapper > .module--secondary {
         float: right;
     }
 
@@ -143,11 +149,13 @@ ol.layout {
 
 @media (min-width: 64em) {
 
-    [class*="layout--sidebar"] > .module--secondary {
+    [class*="layout--sidebar"] > .module--secondary
+    [class*="layout--sidebar"] > .module--wrapper > .module--secondary {
         width: 30rem;
     }
 
-    [class*="layout--sidebar"] > .module--primary {
+    [class*="layout--sidebar"] > .module--primary
+    [class*="layout--sidebar"] > .module--wrapper > .module--primary {
         width: calc(100% - 36rem);
     }
 
