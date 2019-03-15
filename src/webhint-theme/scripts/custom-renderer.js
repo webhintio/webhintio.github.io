@@ -1,46 +1,32 @@
 /* global hexo */
+const url = require('url');
 
-const Remarkable = require('remarkable');
-const extLink = require('remarkable-extlink');
+const marked = require('marked');
 const uslug = require('uslug');
 const { stripHTML } = require('hexo-util');
 
-const renderer = function (data) {
-    const remarkable = new Remarkable({
-        breaks: false,
-        highlight(/*str, lang*/) {
-            return '';
-        },
-        html: true,
-        linkify: true,
-        typographer: true
-    });
+marked.setOptions(hexo.config.marked);
 
-    remarkable.use(extLink, { host: 'webhint.io' });
+const renderer = new marked.Renderer();
 
-    remarkable.use((rmkbl) => {
-        rmkbl.renderer.rules.heading_open = function (tokens, idx) { //eslint-disable-line camelcase
-            const content = tokens[idx + 1].content;
-            const id = uslug(content);
-            const level = tokens[idx].hLevel;
+const isExternalLink = (href) => {
+    const linkUrl = new url.URL(href, 'https://webhint.io');
 
-            return `<h${level} id=${id}>`;
-        };
-
-        rmkbl.renderer.rules.heading_close = function (tokens, idx) { //eslint-disable-line camelcase
-            const level = tokens[idx].hLevel;
-            const content = tokens[idx - 1].content;
-            const id = uslug(content);
-
-            return `<a href="#${id}" class="headerlink" title="${stripHTML(content)}"></a></h${level}>`;
-        };
-    });
-
-    /* eslint-enable */
-
-    const remarkableText = remarkable.render(data.text);
-
-    return remarkableText;
+    return linkUrl.host !== 'webhint.io';
 };
 
-hexo.extend.renderer.register('md', 'html', renderer, true);
+renderer.link = (href, title, text) => {
+    return `<a${isExternalLink(href) ? ' target="_blank"' : ''} href="${href}" title="${title}">${text}</a>`;
+};
+
+renderer.heading = (text, level) => {
+    const id = uslug(text);
+
+    return `<h${level} id=${id}>${text}<a href="#${id}" class="headerlink" title="${stripHTML(text)}"></a></h${level}>`;
+};
+
+const hexoRenderer = (data) => {
+    return marked(data.text, { renderer });
+};
+
+hexo.extend.renderer.register('md', 'html', hexoRenderer, true);
