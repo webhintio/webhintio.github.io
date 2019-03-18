@@ -20,7 +20,7 @@ renderer.link = (href, title, text) => {
 };
 
 renderer.heading = (text, level) => {
-    const id = uslug(text);
+    const id = uslug(stripHTML(text));
 
     return `<h${level} id=${id}>${text}<a href="#${id}" class="headerlink" title="${stripHTML(text)}"></a></h${level}>`;
 };
