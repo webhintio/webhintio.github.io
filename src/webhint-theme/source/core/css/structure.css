@@ -103,7 +103,6 @@ hr {
 
 }
 
-/* @TODO: Revert to 56.2em when extensions is removed from header */
 @media (min-width: 58em) {
 
     main > .section:first-child,
