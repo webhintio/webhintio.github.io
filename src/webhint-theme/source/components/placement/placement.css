@@ -1,0 +1,50 @@
+
+/*
+ *	PLACEMENT
+ *	=============================================
+ *	@Dependencies: base.css, color.css, controls.css,
+ *	layouts.css, structure.css, type.css
+ */
+
+.placement {
+	position: relative;
+}
+
+.placement__title {
+	margin-top: 1.2rem;
+	font-weight: 700;
+}
+
+.placement:hover .placement__title {
+	text-decoration: underline;
+}
+
+.placement__text {
+	margin-top: .4rem;
+}
+
+.placement .button--cta {
+	padding-left: 0;
+	text-align: left;
+}
+
+.placement .button--cta,
+.placement .button--cta:hover,
+.placement .button--cta:active {
+	background: transparent;
+	border: 0;
+	color: #0078d7;
+}
+
+.placement .button--cta:hover {
+	text-decoration: underline;
+}
+
+.placement .button--cta::before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	content: "";
+}
