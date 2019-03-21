@@ -45,7 +45,6 @@ thead th,
 .caption--alt,
 .button,
 .button--alt,
-.scan-heading,
 .category,
 .rule-list,
 .rule-title,
@@ -63,33 +62,11 @@ thead th,
 h1,
 h2,
 .headline,
-.heading,
-.scan-heading {
+.heading {
+    max-width: 96rem;
     letter-spacing: -.01em;
     position: relative;
     z-index: 1;
-}
-
-h1,
-h2,
-.headline,
-.heading {
-    max-width: 96rem;
-}
-
-.scan-heading {
-    max-width: 64rem;
-}
-
-.headline::before,
-.heading::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: -.5rem;
-    height: .5rem;
-    width: 5rem;
-    border-top: 4px solid #4700a3;
 }
 
 h1,
@@ -136,8 +113,7 @@ h2,
 }
 
 h3,
-.title,
-.scan-heading {
+.title {
     font-size: 2rem;
 }
 
@@ -213,6 +189,7 @@ blockquote {
 }
 
 /* Maximum line lengths */
+
 details,
 p,
 li {
@@ -221,24 +198,9 @@ li {
 
 /* Override style in subpage generated with markdown */
 
-.module--primary h1::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: -.5rem;
-    height: .5rem;
-    width: 5rem;
-    border-top: 4px solid #4700a3;
-}
-
 .module--primary h1 {
     font-size: 3.4rem;
-    color: #000;
     display: none;
-}
-
-.module--primary h2::before {
-    border: none;
 }
 
 .module--primary h2:nth-child(2) {
