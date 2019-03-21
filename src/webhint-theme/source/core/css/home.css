@@ -73,7 +73,7 @@ a.home--hero__images-wrap:focus {
     text-overflow: ellipsis;
 }
 
-.module .feature {
+.module.feature {
     display: flex;
     align-items: center;
     flex-direction: column;
