@@ -69,7 +69,7 @@
         li.setAttribute('role', 'presentation');
 
         label.setAttribute('for', inputId);
-        label.setAttribute('aria-hidden', 'true');
+        label.setAttribute('hidden', '');
         label.textContent = name;
 
         li.appendChild(input);
