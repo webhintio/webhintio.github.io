@@ -37,7 +37,7 @@
     var hideDisclaimer = function () {
         var ele = document.getElementById('disclaimer');
 
-        ele.setAttribute('aria-hidden', 'true');
+        ele.setAttribute('hidden', '');
     };
 
     var consent = readCookie('consent') === 'on';

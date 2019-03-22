@@ -165,11 +165,11 @@ button.mobile-search-button {
     background-size: 2rem;
 }
 
-[aria-hidden=true] {
+.mobile-close-button {
     display: none;
 }
 
-.mobile-close-button {
+[hidden] {
     display: none;
 }
 

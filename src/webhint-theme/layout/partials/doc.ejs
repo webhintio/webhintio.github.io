@@ -1,4 +1,4 @@
-<%# 
+<%#
     Global variables:
       - page: contain the current page that Hexo is processing.
       - pages: contain all the pages pass as a paremeter from docs.ejs
@@ -43,7 +43,7 @@
                 <ul class="toc-mobile-view">
                     <li>
                         <p role="button" id="mobile-toc" aria-controls="mobile-toc-submenu" aria-expanded="false" aria-haspopup="true" class="toc-mobile-view__button expandable"><%= utils.capitalize(page.section); %></p>
-                        <ul role="group" class="toc-mobile-view__dropdown" id="mobile-toc-submenu" aria-hidden="true">
+                        <ul role="group" class="toc-mobile-view__dropdown" id="mobile-toc-submenu" hidden>
                             <% if (!utils.isGuideIndexPage(page)) { %>
                                 <li class="dropdown__subitem">
                                     <a href="../<% if (!utils.isSectionIndexPage(page)) { %>../<% } %>" class="subitem--single">Getting Started</a>

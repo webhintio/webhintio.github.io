@@ -31,7 +31,7 @@
                         <% if (utils.hasSubPage(nav.id)) { %>aria-controls="submenu-<%= nav.id %>" <% } %>
                         class="navitem__button <% if (nav.id === 'docs' || nav.id === 'about') { %>expandable<% } %>"><%= nav.title %></a>
                         <% if (nav.id === 'docs' || nav.id === 'about') { %>
-                            <ul role="group" id="submenu-<%= nav.id %>" class="navbar__submenu" aria-hidden="true">
+                            <ul role="group" id="submenu-<%= nav.id %>" class="navbar__submenu" hidden>
                                 <% nav.items.forEach((item) => { %>
                                     <li><a href="<%= item.link %>"><%= item.title %></a></li>
                                 <% }); %>

@@ -169,12 +169,12 @@
 
     var toggleExpandMobileMenu = function (evt) {
         var menu = evt.currentTarget.querySelector('#mobile-toc-submenu');
-        var isClosed = menu.getAttribute('aria-hidden') === 'true';
+        var isClosed = menu.hasAttribute('hidden');
 
         if (isClosed) {
-            menu.setAttribute('aria-hidden', 'false');
+            menu.removeAttribute('hidden');
         } else {
-            menu.setAttribute('aria-hidden', 'true');
+            menu.setAttribute('hidden', '');
         }
     };
 
