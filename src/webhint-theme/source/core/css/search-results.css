@@ -30,6 +30,17 @@
  * ---------------------------------------------
  */
 
+.documentation-search {
+    max-width: 64rem;
+    width: 100%;
+    margin-bottom: 1.2rem;
+}
+
+.documentation-search__input {
+    position: relative;
+    margin-top: 2.4rem;
+}
+
 .search-result {
     display: block;
     padding: 2rem 0;
