@@ -62,7 +62,7 @@
     "shelljs": "^0.8.3",
     "stylelint": "^9.10.1",
     "sw-precache": "^5.2.1",
-    "typescript": "^3.3.4000",
+    "typescript": "^3.4.1",
     "uslug": "^1.0.4"
   },
   "hexo": {
