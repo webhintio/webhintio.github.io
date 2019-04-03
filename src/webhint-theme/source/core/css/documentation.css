@@ -66,7 +66,6 @@
 /* LANDING PAGE */
 
 .documentation-search {
-    flex: 1;
     max-width: 64rem;
     width: 100%;
     margin-bottom: 2.4rem;
@@ -74,27 +73,21 @@
 
 .documentation-search__input {
     position: relative;
-    margin-top: 2.4rem;
+    margin-top: 1.2rem;
 }
 
 .documentation {
-	flex: 0;
-	padding-left: 0;
-	max-width: 64rem;
+	max-width: 84rem;
 	width: 100%;
 }
 
 .documentation-card {
 	display: inline-block;
-	width: 48%;
-	margin-top: 0;
+	width: 100%;
+	margin: 0 1.2rem 1.2rem 0;
 	text-align: center;
 	border: 1px solid #4700a3;
 	cursor: pointer;
-}
-
-.documentation-card:first-child {
-	margin-right: 1.2rem;
 }
 
 a > .documentation-card__main > img {
@@ -115,28 +108,24 @@ li.documentation-card a:hover {
 	color: #fff;
 }
 
+@media (max-width: 64em) {
+
+	.documentation-card__title {
+		min-height: 14rem;
+	}
+
+}
+
 @media (min-width: 48em) {
 
 	.documentation-actions {
 		margin-top: 0;
 	}
 
-	.documentation-wrapper {
-		display: flex;
-	}
-
-	.documentation {
-		flex: 1;
-		padding-left: 4.6rem;
-	}
-
 	.documentation > .bare {
+		display: flex;
 		margin-top: 2.4rem;
 	}
-
-}
-
-@media (max-width: 32em) {
 
 	.documentation-card {
 		display: block;
