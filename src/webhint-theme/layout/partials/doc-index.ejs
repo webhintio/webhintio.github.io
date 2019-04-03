@@ -6,29 +6,42 @@
                 <li>Documentation</li>
             </ul>
         </nav>
+        <h1>Documentation</h1>
         <div class="section">
-            <div class="documentation-wrapper">
-                <%- include('search-form'); %>
-                <div class="documentation">
-                    <p class="subtitle">Or browse the documentation by guide</p>
-                    <ul class="bare">
-                        <li class="documentation-card">
-                            <a href="/docs/user-guide/">
-                                <div class="documentation-card__main">
-                                    <img src="/images/user-guide-icon.svg" class="documentation-card__icon" alt="" role="none">
-                                    <p class="documentation-card__title">User Guide</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="documentation-card">
-                            <a href="/docs/contributor-guide/">
-                                <div class="documentation-card__main">
-                                    <img src="/images/dev-guide-icon.svg" class="documentation-card__icon" alt="" role="none">
-                                    <p class="documentation-card__title">Contributor Guide</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+            <div class="layout layout--basic--alt">
+                <div class="module module--primary">
+                    <div class="documentation-wrapper">
+                        <%- include('search-form'); %>
+                        <div class="documentation section">
+                            <p class="subtitle">Or browse the documentation by guide</p>
+                            <ul class="bare">
+                                <li class="documentation-card">
+                                    <a href="/docs/user-guide/">
+                                        <div class="documentation-card__main">
+                                            <img src="/images/user-guide-icon.svg" class="documentation-card__icon" alt="" role="none">
+                                            <p class="documentation-card__title">User Guide</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="documentation-card">
+                                    <a href="/docs/contributor-guide/">
+                                        <div class="documentation-card__main">
+                                            <img src="/images/dev-guide-icon.svg" class="documentation-card__icon" alt="" role="none">
+                                            <p class="documentation-card__title">Contributor Guide</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="documentation-card">
+                                    <a href="/docs/user-guide/hints/">
+                                        <div class="documentation-card__main">
+                                            <img src="/images/rules-icon.svg" class="documentation-card__icon" alt="" role="none">
+                                            <p class="documentation-card__title">Hints</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
