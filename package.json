@@ -7,12 +7,14 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "globby": "^9.2.0",
+    "highlight.js": "^9.15.6",
     "hint": "^4.5.0",
     "js-yaml": "^3.13.0",
     "klaw": "^3.0.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "request": "^2.88.0",
+    "strip-indent": "^2.0.0",
     "xss-filters": "^1.2.7"
   },
   "devDependencies": {

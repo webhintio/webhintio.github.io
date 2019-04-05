@@ -1,7 +1,7 @@
 const constants = require('./update-site/constants');
 const { cloneRepo } = require('./update-site/clonerepo');
 const { copyFormatter } = require('./update-site/formatter');
-const { build, createHintCategories, createResourcesIndexes, getFiles, getFilesInfo, updateChangelog, updateLinks } = require('./update-site/documentation');
+const { build, createHintCategories, createResourcesIndexes, escapeNunjucks, getFiles, getFilesInfo, updateChangelog, updateLinks } = require('./update-site/documentation');
 const { cleanWorkingSpace, remove } = require('./update-site/remove');
 
 // 1. Clean working space.
@@ -50,6 +50,11 @@ getFiles()
     .then((files) => {
         // 8. Update documentation links.
         updateLinks(files);
+
+        return files;
+    })
+    .then((files) => {
+        escapeNunjucks(files);
 
         return files;
     })
