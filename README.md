@@ -16,7 +16,7 @@ features so please ensure you are using Node.js v8.x or higher.
 Clone the project:
 
 ``` bash
-git clone https://github.com/webhintio/hint.git
+git clone https://github.com/webhintio/webhint.io.git
 ```
 
 Install dependencies:
@@ -28,7 +28,7 @@ npm install
 Fetch remote content (e.g. documentation)
 
 ```bash
-npm run update-content
+npm run update-site
 ```
 
 Build the site:
