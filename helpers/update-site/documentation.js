@@ -916,10 +916,28 @@ const build = (files) => {
     return Promise.all(promises);
 };
 
+/*
+ * When we use our own highlight methods, hexojs
+ * can fail if we have any {{ }}
+ * this will be avoid the error.
+ * Anyways, we need to try to avoid {{ }} in the
+ * documentation.
+ */
+const escapeNunjucks = (files) => {
+    files.forEach((file) => {
+        if (file.content) {
+            file.content = file.content.replace(/{{.*?}}/g, (text) => {
+                return `{% raw %}${text}{% endraw %}`;
+            });
+        }
+    });
+};
+
 module.exports = {
     build,
     createHintCategories,
     createResourcesIndexes,
+    escapeNunjucks,
     getFiles,
     getFilesInfo,
     updateChangelog,
