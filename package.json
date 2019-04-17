@@ -14,7 +14,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "request": "^2.88.0",
-    "strip-indent": "^2.0.0",
+    "strip-indent": "^3.0.0",
     "xss-filters": "^1.2.7"
   },
   "devDependencies": {
