@@ -6,6 +6,7 @@
         "stylish"
     ],
     "hints": {
+        "axe": "off",
         "html-checker": "off"
     },
     "ignoredUrls": [
