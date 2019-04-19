@@ -30,7 +30,7 @@ jobs:
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   - bash: |
       az login --service-principal -u $AZURE_SERVICE_PRINCIPAL -p $AZURE_SERVICE_PRINCIPAL_PASSWORD --tenant $AZURE_TENANT
-      az webapp deployment slot swap -g sonarwhal -n sonarwhal --slot staging
+      az webapp deployment slot swap -g webhint-web -n sonarwhal --slot staging
     displayName: 'Swap into production'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     env:
