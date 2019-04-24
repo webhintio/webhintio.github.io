@@ -24,7 +24,7 @@
     "gulp": "^4.0.1",
     "gulp-brotli": "^1.2.1",
     "gulp-changed": "^3.2.0",
-    "gulp-clean-css": "^4.0.0",
+    "gulp-clean-css": "^4.2.0",
     "gulp-cli": "^2.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-debug": "^4.0.0",
