@@ -10,4 +10,9 @@ update_configs:
       - match:
           dependency_type: "production"
           update_type: "all"
+    ignored_updates:
+      - match:
+          dependency_name: "@hint/formatter"
+      - match:
+          dependency_name: "hint"
     version_requirement_updates: "auto"
