@@ -7,7 +7,7 @@
     "ejs": "^2.6.1",
     "express": "^4.17.1",
     "globby": "^9.2.0",
-    "highlight.js": "^9.15.6",
+    "highlight.js": "^9.15.8",
     "hint": "^5.0.2",
     "js-yaml": "^3.13.1",
     "klaw": "^3.0.0",
