@@ -6,7 +6,7 @@
     "body-parser": "^1.19.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
-    "globby": "^9.2.0",
+    "globby": "^10.0.0",
     "highlight.js": "^9.15.8",
     "hint": "^5.0.2",
     "js-yaml": "^3.13.1",
