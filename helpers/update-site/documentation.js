@@ -299,7 +299,8 @@ const getDescription = (content) => {
         return '';
     }
 
-    const processedDescription = descriptionMatch[1].replace(/\r?\n/g, '').replace(/(["])/g, '\\$1');
+    const processedDescription = descriptionMatch[1].replace(/\r?\n/g, ' ').replace(/(["])/g, '\\$1')
+        .trim();
 
     // Line breaks need to be removed first so that `stripMarkdown` works properly.
     // Double quotes need to be escaped so that `hexo` works properly.
@@ -405,6 +406,37 @@ const getMeta = async (file) => {
     return meta;
 };
 
+const getLocalizationFilePath = (file) => {
+    if (file.isMulti) {
+        return path.join(file.orig, '..', '..', 'src', '_locales', 'en', 'messages.json');
+    }
+
+    return path.join(file.orig, '..', 'src', '_locales', 'en', 'messages.json');
+};
+
+const getDescriptionFromLocalization = (file) => {
+    const messagesFilePath = getLocalizationFilePath(file);
+    const messages = require(messagesFilePath);
+
+    if (!file.isMulti) {
+        return messages.description.message;
+    }
+
+    const name = file.name.split('-').reduce((acc, partialName) => {
+        if (!acc) {
+            return partialName;
+        }
+
+        if (!partialName) {
+            return acc;
+        }
+
+        return `${acc}${partialName[0].toUpperCase()}${partialName.substr(1)}`;
+    }, '');
+
+    return messages[`${name}_description`].message;
+};
+
 /**
  * Add or update the frontMatter for all the hints.
  * Hints are in a separete method because for them,
@@ -437,16 +469,29 @@ const getHintFileInfo = async (file) => {
      *
      * e.g.    this is a "description" => this is a \"description\"
      */
-    let description = metaDescription ? metaDescription[1].trim().replace(/\\`/g, '`')
-        .replace(/([^\\])"/g, '$1\\"') : (getPredefinedDescription(file.dest) || getDescription(file.content));
+    let description;
 
-    /*
-     * Remove the character the quotes from the text (' ` ") and the character ',' if it is the last character.
-     * e.g: 'Runs axe-core tests in the target', -> Runs axe-core tests in the target
-     */
-    if (meta) {
-        description = description[description.length - 1] === ',' ? description.substr(1, description.length - 3) : description.substr(1, description.length - 2);
+    if (metaDescription) {
+        description = metaDescription[1].trim().replace(/\\`/g, '`')
+            .replace(/([^\\])"/g, '$1\\"');
+
+        /*
+         * Remove the character the quotes from the text (' ` ") and the character ',' if it is the last character.
+         * e.g: 'Runs axe-core tests in the target', -> Runs axe-core tests in the target
+         */
+        if (!description.startsWith('getMessage')) {
+            description = description[description.length - 1] === ',' ? description.substr(1, description.length - 3) : description.substr(1, description.length - 2);
+        }
+    } else {
+        description = getPredefinedDescription(file.dest) || getDescription(file.content);
     }
+
+    if (description.startsWith('getMessage')) {
+        description = getDescriptionFromLocalization(file).trim()
+            .replace(/\\`/g, '`')
+            .replace(/([^\\])"/g, '$1\\"');
+    }
+
     let baseName = path.basename(relativePath, '.md');
 
     baseName = baseName !== 'index' ? baseName : '';
