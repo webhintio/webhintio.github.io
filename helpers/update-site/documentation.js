@@ -422,19 +422,7 @@ const getDescriptionFromLocalization = (file) => {
         return messages.description.message;
     }
 
-    const name = file.name.split('-').reduce((acc, partialName) => {
-        if (!acc) {
-            return partialName;
-        }
-
-        if (!partialName) {
-            return acc;
-        }
-
-        return `${acc}${partialName[0].toUpperCase()}${partialName.substr(1)}`;
-    }, '');
-
-    return messages[`${name}_description`].message;
+    return messages[`${_.camelCase(file.name)}_description`].message;
 };
 
 /**
@@ -472,8 +460,7 @@ const getHintFileInfo = async (file) => {
     let description;
 
     if (metaDescription) {
-        description = metaDescription[1].trim().replace(/\\`/g, '`')
-            .replace(/([^\\])"/g, '$1\\"');
+        description = metaDescription[1].trim().replace(/\\`/g, '`');
 
         /*
          * Remove the character the quotes from the text (' ` ") and the character ',' if it is the last character.
@@ -488,9 +475,10 @@ const getHintFileInfo = async (file) => {
 
     if (description.startsWith('getMessage')) {
         description = getDescriptionFromLocalization(file).trim()
-            .replace(/\\`/g, '`')
-            .replace(/([^\\])"/g, '$1\\"');
+            .replace(/\\`/g, '`');
     }
+
+    description = description.replace(/([^\\])"/g, '$1\\"');
 
     let baseName = path.basename(relativePath, '.md');
 
