@@ -114,6 +114,11 @@ gulp.task('move:helpers', () => {
         .pipe(gulp.dest(`${dirs.tmp}/helper`));
 });
 
+gulp.task('move:locales', () => {
+    return gulp.src(`${dirs.tmp}/js/scan/_locales/**/*`)
+        .pipe(gulp.dest(`${dirs.tmp}/source/static/scripts/locales`));
+});
+
 gulp.task('optimize:js', () => {
     return gulp.src(`${dirs.tmp}/source/**/*.js`)
         .pipe(plugins.uglify())
@@ -216,7 +221,7 @@ gulp.task('revreplace:formatter', () => {
 
 gulp.task('optimize:templates', () => {
     const htmlminOptions = {
-        caseSensitive: true, // need it because handlebar helpers are case sensitive
+        caseSensitive: true,
         collapseBooleanAttributes: false,
         collapseWhitespace: true,
         minifyCSS: true,
@@ -354,6 +359,7 @@ gulp.task('build', gulp.series(
     'optimize:css',
     'move:static',
     'move:helpers',
+    'move:locales',
     'clean:after',
     'revfiles',
     'revreplace:formatter',
