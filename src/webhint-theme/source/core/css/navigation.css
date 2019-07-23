@@ -100,6 +100,12 @@
     max-width: 17.5rem;
 }
 
+.header-social__container .openjs {
+    height: 2.5rem;
+    width: auto;
+    margin: 0 0.5rem;
+}
+
 .header-social__list {
     margin: 0 0 0 auto;
 }
