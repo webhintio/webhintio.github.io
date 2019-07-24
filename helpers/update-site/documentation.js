@@ -625,6 +625,7 @@ const updateLinks = (files) => {
  */
 const processHint = (hint, isSummary) => {
     const processedHint = {
+        friendlyName: hint.friendlyName,
         /*
          * For packages with multiple hints we have a summary
          * file with how to install and links to all the hints.
@@ -632,8 +633,8 @@ const processHint = (hint, isSummary) => {
          * the hint index page total.
          */
         isSummary: isSummary === true,
-        link: `/docs/user-guide/hints/hint-${hint}/`,
-        name: hint.replace(/^hint-/, '')
+        link: `/docs/user-guide/hints/hint-${hint.name}/`,
+        name: hint.name.replace(/^hint-/, '')
     };
 
     return processedHint;
@@ -644,35 +645,38 @@ const processHint = (hint, isSummary) => {
  * multi-hints index files.
  */
 const processCategoryHints = (hints) => {
-    const singleHints = hints.filter((hintName) => {
-        return !hintName.includes('/');
+    const singleHints = hints.filter((hint) => {
+        return !hint.name.includes('/');
     });
 
     /*
      * Hints with id: package-name/hint-name will be
      * considered part of a package with multiple hints
      */
-    const multiHints = hints.filter((hintName) => {
-        return hintName.includes('/');
+    const multiHints = hints.filter((hint) => {
+        return hint.name.includes('/');
     });
 
     /*
      * Group hints by package name.
      */
-    const packagesName = _.groupBy(multiHints, (hintName) => {
-        return hintName.split('/')[0];
+    const packagesName = _.groupBy(multiHints, (hint) => {
+        return hint.name.split('/')[0];
     });
 
     const processedHints = _.map(singleHints, processHint);
 
-    const multiHintsProcessed = _.reduce(packagesName, (multi, values, key) => {
+    const multiHintsProcessed = _.reduce(packagesName, (multi, hints, key) => {
         // Add an item with the link to the package with multiple hints itself.
-        const partial = processHint(key, true);
+        const partial = processHint({
+            name: key,
+            friendlyName: _.startCase(key)
+        }, true);
 
         multi.push(partial);
 
         // Add an item for each individual hint for a package with multiple hints.
-        return multi.concat(_.map(values, processHint));
+        return multi.concat(_.map(hints, processHint));
     }, []);
 
     return processedHints.concat(multiHintsProcessed);
@@ -701,13 +705,19 @@ const createHintCategories = (files) => {
         if (!acc.has(category)) {
             acc.set(category, {
                 description: config.categories[category].description,
-                hints: [hintName],
+                hints: [{
+                    friendlyName: file.frontMatter.title,
+                    name: hintName
+                }],
                 link: `/docs/user-guide/hints/${category}/`,
                 name: config.categories[category].name,
                 normalizedName: category
             });
         } else {
-            acc.get(category).hints.push(hintName);
+            acc.get(category).hints.push({
+                friendlyName: file.frontMatter.title,
+                name: hintName
+            });
         }
 
         return acc;
