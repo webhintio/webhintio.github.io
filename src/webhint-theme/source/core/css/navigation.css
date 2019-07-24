@@ -100,12 +100,6 @@
     max-width: 17.5rem;
 }
 
-.header-social__container .openjs {
-    height: 2.5rem;
-    width: auto;
-    margin: 0 0.5rem;
-}
-
 .header-social__list {
     margin: 0 0 0 auto;
 }
@@ -119,6 +113,11 @@
 
 .header-social__list li a:focus {
     color: #fff;
+}
+
+.header-openjsf a, .header-openjsf a:visited {
+    color: #fff;
+    text-decoration: underline;
 }
 
 a .github-icon-svg-header,

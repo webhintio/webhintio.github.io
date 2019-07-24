@@ -21,6 +21,7 @@ footer {
     align-items: flex-start;
     flex-wrap: wrap;
     flex-direction: column;
+    position: relative;
 }
 
 @media (min-width: 32em) {
@@ -69,10 +70,24 @@ footer {
     width: 3rem;
 }
 
+.openjsf-logo {
+    height: 3rem;
+}
+
+.footer-openjsf-logo {
+    position: absolute;
+    top: 50px;
+    right: 0px;
+}
+
 a .github-icon-svg,
 a .twitter-icon-svg,
 a .medium-icon-svg {
     fill: #292f56;
+}
+
+a .openjsf-logo-svg {
+    fill: #54565A;
 }
 
 a:hover .github-icon-svg,
@@ -86,6 +101,12 @@ a:hover .medium-icon-svg {
     .social-list,
     .social-list li:first-child {
         margin-left: 0;
+    }
+
+    .footer-openjsf-logo {
+        position: relative;
+        top: unset;
+        right: unset;
     }
 
 }
