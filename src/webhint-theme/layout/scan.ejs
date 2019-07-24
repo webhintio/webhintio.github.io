@@ -24,7 +24,7 @@
     <%- include('partials/header', { navs: site.data.menu }); %>
 
     <% if (result) { %>
-        <%- include('partials/scan-result-container', { result, utils, showQueue }); %>
+        <%- include('partials/scan-result-container', { result, utils, showQueue, getMessage }); %>
     <% } else { %>
         <%- include('partials/scan-form'); %>
     <% } %>
@@ -45,6 +45,14 @@
         <script async src="/components/anchor-top/anchor-top.js"></script>
         <!-- endbuild -->
 
+        <% if (localeFile) { %>
+            <script src="<%= localeFile; %>"></script>
+        <% } %>
+
+        <!-- build:js /static/scripts/i18n.js -->
+        <script src="/js/scan/get-message.js"></script>
+        <!-- endbuild -->
+
         <!-- build:js /static/scripts/partials.js -->
         <script src="/js/partials/scan-result-item.js"></script>
         <script src="/js/partials/category-pass-message.js"></script>
@@ -60,11 +68,10 @@
             <script src="/js/scan/scanner-common.js"></script>
             <!-- endbuild -->
         <% } else { %>
-        <!-- build:js /static/scripts/scanner.js -->
-        <script src="/js/scan/scanner-common.js"></script>
-        <script src="/js/scanner-submit.js"></script>
-        <!-- endbuild -->
-
+            <!-- build:js /static/scripts/scanner.js -->
+            <script src="/js/scan/scanner-common.js"></script>
+            <script src="/js/scanner-submit.js"></script>
+            <!-- endbuild -->
         <% } %>
     <% } %>
 </body>

@@ -1,7 +1,12 @@
+const path = require('path');
+const promisify = require('util').promisify;
+
 const _ = require('lodash');
 const moment = require('moment');
-const promisify = require('util').promisify;
+const globby = require('globby');
 const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}` } }); // eslint-disable-line no-process-env
+const { getMessage: getMessageUtils } = require('@hint/utils').i18n;
+
 const request = promisify(r);
 const urlAudiences = process.env.WEBSITE_DOMAIN; // eslint-disable-line no-process-env
 const webhintUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
@@ -9,9 +14,12 @@ const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; 
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
 const production = process.env.NODE_ENV === 'production'; // eslint-disable-line no-process-env
 const theme = production ? 'webhint-theme-optimized' : 'webhint-theme';
+const hexoDir = path.join(__dirname, '..', '..');
+const rootPath = path.join(__dirname, '..', '..', '..');
 
 const HTMLFormatter = require(`../../${theme}/formatter`).default;
 const formatter = new HTMLFormatter();
+const localesCache = new Map();
 
 const jobStatus = {
     error: 'error',
@@ -19,6 +27,15 @@ const jobStatus = {
     pending: 'pending',
     started: 'started',
     warning: 'warning'
+};
+
+const getMessageByLanguage = (language) => {
+    return (key, substitutions) => {
+        return getMessageUtils(key, '@hint/formatter-html', {
+            language,
+            substitutions
+        });
+    };
 };
 
 const sendRequest = (url) => {
@@ -122,7 +139,75 @@ const processHintResults = async (scanResult) => {
     return result;
 };
 
+const initLocalesCache = () => {
+    const relativeBasePath = production ? '/static/scripts/locales' : '/js/scan/_locales';
+    const basePath = production ? path.join(rootPath, 'dist', relativeBasePath) : path.join(hexoDir, theme, 'source', relativeBasePath);
+
+    const locales = globby.sync(['*/messages{,-*}.js'], { cwd: basePath });
+
+    for (const locale of locales) {
+        const localeSplit = locale.split('/');
+
+        localesCache.set(localeSplit[0], {
+            file: `${relativeBasePath}/${locale}`,
+            language: localeSplit[0]
+        });
+    }
+};
+
+const getLanguagesSorted = (languagesRaw) => {
+    const langAndWeight = [];
+    const langRegex = /([^,;]+)(;q=([^,]*))?/g;
+    let exec = langRegex.exec(languagesRaw);
+
+    while (exec) {
+        const lang = exec[1].trim();
+        const weight = parseFloat(exec[3]) || 1;
+
+        langAndWeight.push({
+            lang,
+            weight
+        });
+
+        exec = langRegex.exec(languagesRaw);
+    }
+
+    const languages = _(langAndWeight)
+        .sortBy('weight')
+        .reverse()
+        .map((item) => {
+            return item.lang;
+        })
+        .value();
+
+    return languages;
+};
+
+const getLocale = (headers) => {
+    const languagesRaw = headers['accept-language'];
+    const languages = getLanguagesSorted(languagesRaw);
+
+    let locale;
+
+    for (const lang of languages) {
+        const cacheValue = localesCache.get(lang);
+
+        if (cacheValue) {
+            locale = cacheValue;
+
+            break;
+        }
+    }
+
+    if (!locale) {
+        locale = localesCache.get('en');
+    }
+
+    return locale;
+};
+
 const configure = (app, appInsightsClient) => {
+    initLocalesCache();
     const reportJobEvent = (scanResult) => {
         if (scanResult.status === jobStatus.started || scanResult.status === jobStatus.pending) {
             return;
@@ -227,7 +312,10 @@ const configure = (app, appInsightsClient) => {
 
         try {
             const result = await processHintResults(scanResult);
+            const locale = getLocale(req.headers);
             const renderOptions = {
+                getMessage: getMessageByLanguage(locale.language),
+                localeFile: locale.file,
                 page: {
                     description: `webhint has identified ${result.errors} errors and ${result.warnings} warnings in ${result.url}`,
                     title: `webhint report for ${result.url}`
@@ -317,7 +405,11 @@ const configure = (app, appInsightsClient) => {
                 }
             });
 
+            const locale = getLocale(req.headers);
+
             return res.render('scan', {
+                getMessage: getMessageByLanguage(locale.language),
+                localeFile: locale.file,
                 page: {
                     description: `scan result of ${requestResult.url}`,
                     title: `webhint report for ${requestResult.url}`
