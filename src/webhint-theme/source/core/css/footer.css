@@ -77,7 +77,7 @@ footer {
 .footer-openjsf-logo {
     position: absolute;
     top: 50px;
-    right: 0px;
+    right: 0;
 }
 
 a .github-icon-svg,
@@ -87,7 +87,7 @@ a .medium-icon-svg {
 }
 
 a .openjsf-logo-svg {
-    fill: #54565A;
+    fill: #54565a;
 }
 
 a:hover .github-icon-svg,
