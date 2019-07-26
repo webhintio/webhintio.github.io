@@ -115,7 +115,7 @@
     color: #fff;
 }
 
-.header-openjsf a, .header-openjsf a:visited {
+.openjsf-header a, .openjsf-header a:visited {
     color: #fff;
     text-decoration: underline;
 }
