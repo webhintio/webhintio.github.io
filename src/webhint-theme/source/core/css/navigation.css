@@ -115,6 +115,11 @@
     color: #fff;
 }
 
+.openjsf-header a, .openjsf-header a:visited {
+    color: #fff;
+    text-decoration: underline;
+}
+
 a .github-icon-svg-header,
 a .medium-icon-svg-header,
 a .twitter-icon-svg-header {

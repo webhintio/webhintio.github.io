@@ -21,9 +21,10 @@ footer {
     align-items: flex-start;
     flex-wrap: wrap;
     flex-direction: column;
+    position: relative;
 }
 
-@media (min-width: 32em) {
+@media (min-width: 45.25em) {
 
     .footer-nav {
         flex-direction: row;
@@ -69,10 +70,24 @@ footer {
     width: 3rem;
 }
 
+.footer-nav__item li.openjsf-icon {
+    display: block;
+    height: 3rem;
+    margin-top: 1rem;
+}
+
+.openjsf-icon svg {
+    height: 100%;
+}
+
 a .github-icon-svg,
 a .twitter-icon-svg,
 a .medium-icon-svg {
     fill: #292f56;
+}
+
+a .openjsf-logo-svg {
+    fill: #54565a;
 }
 
 a:hover .github-icon-svg,
@@ -84,8 +99,15 @@ a:hover .medium-icon-svg {
 @media (max-width: 57.94em) {
 
     .social-list,
-    .social-list li:first-child {
+    .social-list li:first-child,
+    .social-list li:last-child {
         margin-left: 0;
+    }
+
+    .openjsf-icon {
+        position: relative;
+        top: unset;
+        right: unset;
     }
 
 }
