@@ -48,7 +48,7 @@ renderer.code = (code, lang) => {
 };
 
 renderer.link = (href, title, text) => {
-    return `<a${isExternalLink(href) ? ' target="_blank"' : ''} href="${href}" title="${title}">${text}</a>`;
+    return `<a${isExternalLink(href) ? ' target="_blank"' : ''} href="${href}" ${title ? ` title="${title}"` : ''}>${text}</a>`;
 };
 
 renderer.heading = (text, level) => {
