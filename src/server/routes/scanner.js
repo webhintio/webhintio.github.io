@@ -42,11 +42,10 @@ const getMessageByLanguage = (language) => {
 };
 
 const sendRequest = (url) => {
-    const formData = { url };
     const options = {
-        formData,
+        form: { url },
         method: 'POST',
-        url: `${serviceEndpoint}`
+        url: `${serviceEndpoint}/createjob`
     };
 
     return request(options);
@@ -55,7 +54,7 @@ const sendRequest = (url) => {
 const queryResult = async (id, tries) => {
     let response;
     const counts = tries || 0;
-    const result = await request(`${serviceEndpoint}${id}`);
+    const result = await request(`${serviceEndpoint}/jobstatus?id=${id}`);
 
     if (!result.body) {
         throw new Error(`No result found for this url. Please scan again.`);
