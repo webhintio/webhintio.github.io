@@ -130,7 +130,7 @@ ol.layout {
         width: calc(100% - 26rem);
     }
 
-    .layout--sidebar > .module--primary
+    .layout--sidebar > .module--primary,
     .layout--sidebar > .module--wrapper > .module--primary {
         float: right;
     }
@@ -149,12 +149,12 @@ ol.layout {
 
 @media (min-width: 64em) {
 
-    [class*="layout--sidebar"] > .module--secondary
+    [class*="layout--sidebar"] > .module--secondary,
     [class*="layout--sidebar"] > .module--wrapper > .module--secondary {
         width: 30rem;
     }
 
-    [class*="layout--sidebar"] > .module--primary
+    [class*="layout--sidebar"] > .module--primary,
     [class*="layout--sidebar"] > .module--wrapper > .module--primary {
         width: calc(100% - 36rem);
     }
@@ -290,7 +290,7 @@ This strategy forces widths on modules, regardless of number of modules.
         margin-top: 3.2rem;
     }
 
-    .layout--thirds .module:nth-child(-n+2)
+    .layout--thirds .module:nth-child(-n+2),
     .layout--quarters .module:nth-child(-n+2) {
         margin-top: 0;
     }
