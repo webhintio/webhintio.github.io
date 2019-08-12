@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@hint/formatter-html": "^4.1.2",
-    "@hint/utils": "^3.1.1",
+    "@hint/utils": "^3.1.2",
     "algoliasearch": "^3.33.0",
     "applicationinsights": "^1.4.0",
     "body-parser": "^1.19.0",
