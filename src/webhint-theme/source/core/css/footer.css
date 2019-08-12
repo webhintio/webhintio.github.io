@@ -41,7 +41,7 @@ footer {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     letter-spacing: .1rem;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 

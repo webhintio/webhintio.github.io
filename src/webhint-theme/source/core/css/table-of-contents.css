@@ -18,7 +18,7 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     margin-top: 1.6rem;
-    text-transform: uppercase;
+    text-transform: capitalize;
     letter-spacing: .03rem;
     cursor: pointer;
 }
