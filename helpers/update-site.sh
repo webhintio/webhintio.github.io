@@ -23,6 +23,7 @@ prepare_site_dist_dir() {
         helpers
         dist
         package.json
+        package-lock.json
         src
         web.config
     )
