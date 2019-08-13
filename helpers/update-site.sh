@@ -20,6 +20,7 @@ prepare_site_dist_dir() {
     # Move required files to a temp folder
     declare -r files=(
         _config.yml
+        helpers
         dist
         package.json
         src
