@@ -68,6 +68,9 @@
     "typescript": "^3.5.3",
     "uslug": "^1.0.4"
   },
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "hexo": {
     "version": "3.9.0"
   },
