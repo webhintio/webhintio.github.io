@@ -1,6 +1,7 @@
 # Scope the validations to master and PRs to master
 trigger:
   - master
+  - functions/serverless
 pr:
   - master
 
@@ -20,14 +21,20 @@ jobs:
     displayName: 'Test'
   - script: ./helpers/update-site.sh
     displayName: 'Deploy'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/master', 'refs/heads/functions/serverless'))
     env:
       GIT_USER_EMAIL: $(GIT_USER_EMAIL)
       GIT_USER_NAME: $(GIT_USER_NAME)
       GIT_PASSWORD: $(GIT_PASSWORD)
+      GIT_SCANNER_USER: $(GIT_SCANNER_USER)
+      GIT_SCANNER_PASSWORD: $(GIT_SCANNER_PASSWORD)
+      BRANCH: variables['Build.SourceBranch']
   - script: npm run test-staging && node helpers/integration-tests/index.js
     displayName: 'Analyze staging with webhint'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  - script: npm run test-scanner-staging
+    displayName: 'Analyze scanner staging with webhint'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/functions/serverless'))
   - bash: |
       az login --service-principal -u $AZURE_SERVICE_PRINCIPAL -p $AZURE_SERVICE_PRINCIPAL_PASSWORD --tenant $AZURE_TENANT
       az webapp deployment slot swap -g webhint-web -n sonarwhal --slot staging

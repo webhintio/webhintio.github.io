@@ -92,6 +92,7 @@
     "test": "npm run lint && npm run build",
     "test-local": "hint http://localhost:8080 --tracking=off",
     "test-staging": "npx hint https://sonarwhal-staging.azurewebsites.net --tracking=on",
+    "test-scanner-staging": "hint https://sonarwhal-scanner-staging.azurewebsites.net --tracking=on",
     "update-site": "node helpers/update-site.js",
     "postinstall": "node helpers/postinstall.js"
   }
