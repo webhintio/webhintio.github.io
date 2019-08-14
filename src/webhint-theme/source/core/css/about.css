@@ -34,7 +34,7 @@ h2.changelog__date {
     font-size: 2.4rem;
     font-weight: 500;
     color: #4700a3;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 h3.changelog__version {
