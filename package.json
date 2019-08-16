@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@hint/artwork": "^2.2.1",
+    "@hint/configuration-all": "^1.0.2",
     "cross-env": "^5.2.0",
     "eslint": "^6.2.0",
     "gulp": "^4.0.2",
@@ -43,8 +44,7 @@
     "gulp-server-livereload": "^1.9.2",
     "gulp-sri": "^0.3.1",
     "gulp-transform": "^3.0.5",
-    "gulp-typescript": "^5.0.1",
-    "gulp-uglify": "^3.0.2",
+    "gulp-uglify-es": "^1.0.4",
     "gulp-useref": "^3.1.6",
     "gulp-zopfli-node": "^1.0.0",
     "hexo": "^3.9.0",

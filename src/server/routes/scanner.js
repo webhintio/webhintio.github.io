@@ -18,9 +18,7 @@ const hexoDir = path.join(__dirname, '..', '..');
 const rootPath = path.join(__dirname, '..', '..', '..');
 
 const formatterRelativePath = `../../${theme}/formatter`;
-
 const formatterHTMLPath = path.dirname(require.resolve(formatterRelativePath));
-
 const HTMLFormatter = require(formatterRelativePath).default;
 
 const formatter = new HTMLFormatter();

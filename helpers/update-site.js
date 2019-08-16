@@ -1,25 +1,24 @@
-const constants = require('./update-site/constants');
-const { cloneRepo } = require('./update-site/clonerepo');
+const { install } = require('./update-site/install');
 const { copyFormatter } = require('./update-site/formatter');
 const { build, createHintCategories, createResourcesIndexes, escapeNunjucks, getFiles, getFilesInfo, updateChangelog, updateLinks } = require('./update-site/documentation');
-const { cleanWorkingSpace, remove } = require('./update-site/remove');
+const { cleanWorkingSpace } = require('./update-site/remove');
 
 // 1. Clean working space.
 cleanWorkingSpace();
 
-// 2. Clone repository.
-cloneRepo(constants.REPO_URL, constants.dirs.REPOSITORY);
+// 2. Install dependencies.
+console.log('Installing dependencies...');
+install();
 
 // 3. Copy formatter.
 copyFormatter();
 
 // 4. Get files from hint and resources (hints, formatters, etc.).
 getFiles()
-    .then((files) => {
+    .then(async (files) => {
         // 5. Get docs information
-        return getFilesInfo(files);
-    })
-    .then((files) => {
+        getFilesInfo(files);
+
         /*
          * 6. Create categories for hints.
          *
@@ -34,9 +33,6 @@ getFiles()
          */
         createHintCategories(files);
 
-        return files;
-    })
-    .then((files) => {
         /*
          * 7. Create index page for all the resources except hints.
          *
@@ -45,28 +41,15 @@ getFiles()
          */
         createResourcesIndexes(files);
 
-        return files;
-    })
-    .then((files) => {
         // 8. Update documentation links.
         updateLinks(files);
 
-        return files;
-    })
-    .then((files) => {
+        // 9. Escape Nunjucks
         escapeNunjucks(files);
 
-        return files;
-    })
-    .then((files) => {
-        // 9. Build documentation files in dest.
-        return build(files);
-    })
-    .then(() => {
-        // 10. Update Changelog.
-        return updateChangelog();
-    })
-    .then(() => {
-        // 11. Remove repository.
-        remove(constants.dirs.REPOSITORY, '-rf');
+        // 10. Build documentation files in dest.
+        await build(files);
+
+        // 11. Update Changelog.
+        await updateChangelog();
     });

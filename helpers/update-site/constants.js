@@ -1,7 +1,6 @@
 const CONTENT = 'src/content';
 const THEME = 'src/webhint-theme';
 const USER_GUIDE = `${CONTENT}/docs/user-guide`;
-const REPOSITORY = require('../mktemp')();
 
 const dirs = {
     /** About documentation destination directory. */
@@ -15,9 +14,7 @@ const dirs = {
     /** Hints documentation directory. */
     HINTS_DOC: `${USER_GUIDE}/hints`,
     /** Hint repository packages directory. */
-    HINT_PACKAGES: `${REPOSITORY}/packages`,
-    /** Temporal directory to clone the repository. */
-    REPOSITORY,
+    NODE_MODULES: `node_modules`,
     /** Images for the HTML Formatter. */
     SCAN_IMAGES: `${THEME}/source/images/scan`,
     /** EJS partial views compiled for the HTML Formatter. */
@@ -33,8 +30,6 @@ const dirs = {
 };
 
 module.exports = {
-    /** Repository to clone. */
-    REPO_URL: 'https://github.com/webhintio/hint.git',
     /** Directories used to get the documentation from the hint repository. */
     dirs
 };

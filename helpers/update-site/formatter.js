@@ -1,35 +1,44 @@
 const fs = require('fs');
 
+const globby = require('globby');
 const mkdirp = require('mkdirp');
 
 const { copy } = require('./copy');
 const { safeWriteFile } = require('./common');
 const constants = require('./constants');
 
-const FORMATTER_SRC = `${constants.dirs.HINT_PACKAGES}/formatter-html/src`;
+const globbyPattern = 'node_modules/@hint/{,configuration-all/node_modules/@hint/}formatter-html/dist/src';
+const globbyOptions = {
+    cwd: process.cwd(),
+    onlyDirectories: true
+};
 
 const formatterPaths = new Set([
     {
         dest: constants.dirs.SCAN_TEMPLATES,
+        globbyOptions,
         options: '-R',
-        orig: `${FORMATTER_SRC}/views/partials`
+        orig: `${globbyPattern}/views/partials`
     }, {
         dest: constants.dirs.SCAN_IMAGES,
+        globbyOptions,
         options: '-R',
-        orig: `${FORMATTER_SRC}/assets/images/scan`
+        orig: `${globbyPattern}/assets/images/scan`
     }, {
         dest: constants.dirs.SCAN_STYLES,
+        globbyOptions,
         options: '-R',
-        orig: `${FORMATTER_SRC}/assets/styles/scan`
+        orig: `${globbyPattern}/assets/styles/scan`
     }, {
         dest: constants.dirs.SCAN_SCRIPTS,
+        globbyOptions,
         options: '-R',
-        orig: `${FORMATTER_SRC}/assets/js/scan`
+        orig: `${globbyPattern}/assets/js/scan`
     }, {
-        // This file will be compiled during the building process.
-        dest: `${constants.dirs.SCAN_PARTIALS}/utils.ts`,
+        dest: `${constants.dirs.SCAN_PARTIALS}/utils.js`,
+        globbyOptions: { cwd: process.cwd() },
         options: null,
-        orig: `${FORMATTER_SRC}/utils.ts`
+        orig: `${globbyPattern}/utils.js`
     }
 ]);
 
@@ -40,7 +49,9 @@ const formatterPaths = new Set([
 const copyFormatter = () => {
     mkdirp.sync(constants.dirs.SCAN_PARTIALS);
     formatterPaths.forEach((path) => {
-        copy(path.orig, path.dest, path.options);
+        const paths = globby.sync(path.orig, path.globbyOptions);
+
+        copy(paths[0], path.dest, path.options);
     });
 
     /*

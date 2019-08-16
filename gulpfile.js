@@ -121,7 +121,7 @@ gulp.task('move:locales', () => {
 
 gulp.task('optimize:js', () => {
     return gulp.src(`${dirs.tmp}/source/**/*.js`)
-        .pipe(plugins.uglify())
+        .pipe(plugins.uglifyEs.default())
         .pipe(gulp.dest(dirs.tmp));
 });
 
@@ -129,18 +129,6 @@ gulp.task('optimize:css', () => {
     return gulp.src(`${dirs.tmp}/source/**/*.css`)
         .pipe(plugins.cleanCss())
         .pipe(gulp.dest(dirs.tmp));
-});
-
-gulp.task('compile-utils', () => {
-    return gulp.src(`${dirs.src}/source/js/partials/utils.ts`)
-        .pipe(plugins.typescript({ lib: ['dom', 'es2015', 'es5'], module: 'commonjs', removeComments: true, target: 'es5' }))
-        .pipe(gulp.dest(`${dirs.src}/source/js/partials/`));
-});
-
-gulp.task('clean:utils-ts', (done) => {
-    shelljs.rm(`${dirs.src}/source/js/partials/utils.ts`);
-
-    done();
 });
 
 gulp.task('precompile', (cb) => {
@@ -348,8 +336,6 @@ gulp.task('add-sri', () => {
 gulp.task('build', gulp.series(
     'clean:before',
     'copy:formatter',
-    'compile-utils',
-    'clean:utils-ts',
     'precompile',
     'copy:theme',
     'optimize:images',
