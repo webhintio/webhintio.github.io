@@ -17,7 +17,12 @@ const theme = production ? 'webhint-theme-optimized' : 'webhint-theme';
 const hexoDir = path.join(__dirname, '..', '..');
 const rootPath = path.join(__dirname, '..', '..', '..');
 
-const HTMLFormatter = require(`../../${theme}/formatter`).default;
+const formatterRelativePath = `../../${theme}/formatter`;
+
+const formatterHTMLPath = path.dirname(require.resolve(formatterRelativePath));
+
+const HTMLFormatter = require(formatterRelativePath).default;
+
 const formatter = new HTMLFormatter();
 const localesCache = new Map();
 
@@ -31,7 +36,7 @@ const jobStatus = {
 
 const getMessageByLanguage = (language) => {
     return (key, substitutions) => {
-        return getMessageUtils(key, '@hint/formatter-html', {
+        return getMessageUtils(key, formatterHTMLPath, {
             language,
             substitutions
         });
