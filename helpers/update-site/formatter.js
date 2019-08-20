@@ -1,44 +1,35 @@
 const fs = require('fs');
+const path = require('path');
 
-const globby = require('globby');
 const mkdirp = require('mkdirp');
 
 const { copy } = require('./copy');
 const { safeWriteFile } = require('./common');
 const constants = require('./constants');
 
-const globbyPattern = 'node_modules/@hint/{,configuration-all/node_modules/@hint/}formatter-html/dist/src';
-const globbyOptions = {
-    cwd: process.cwd(),
-    onlyDirectories: true
-};
+const basePath = path.resolve(process.cwd(), 'node_modules/@hint/formatter-html/dist/src');
 
 const formatterPaths = new Set([
     {
         dest: constants.dirs.SCAN_TEMPLATES,
-        globbyOptions,
         options: '-R',
-        orig: `${globbyPattern}/views/partials`
+        orig: path.resolve(basePath, 'views/partials')
     }, {
         dest: constants.dirs.SCAN_IMAGES,
-        globbyOptions,
         options: '-R',
-        orig: `${globbyPattern}/assets/images/scan`
+        orig: path.resolve(basePath, 'assets/images/scan')
     }, {
         dest: constants.dirs.SCAN_STYLES,
-        globbyOptions,
         options: '-R',
-        orig: `${globbyPattern}/assets/styles/scan`
+        orig: path.resolve(basePath, 'assets/styles/scan')
     }, {
         dest: constants.dirs.SCAN_SCRIPTS,
-        globbyOptions,
         options: '-R',
-        orig: `${globbyPattern}/assets/js/scan`
+        orig: path.resolve(basePath, 'assets/js/scan')
     }, {
         dest: `${constants.dirs.SCAN_PARTIALS}/utils.js`,
-        globbyOptions: { cwd: process.cwd() },
         options: null,
-        orig: `${globbyPattern}/utils.js`
+        orig: path.resolve(basePath, 'utils.js')
     }
 ]);
 
@@ -48,10 +39,8 @@ const formatterPaths = new Set([
  */
 const copyFormatter = () => {
     mkdirp.sync(constants.dirs.SCAN_PARTIALS);
-    formatterPaths.forEach((path) => {
-        const paths = globby.sync(path.orig, path.globbyOptions);
-
-        copy(paths[0], path.dest, path.options);
+    formatterPaths.forEach((formatterPath) => {
+        copy(formatterPath.orig, formatterPath.dest, formatterPath.options);
     });
 
     /*
