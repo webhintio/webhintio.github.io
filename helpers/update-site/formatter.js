@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const mkdirp = require('mkdirp');
 
@@ -6,30 +7,29 @@ const { copy } = require('./copy');
 const { safeWriteFile } = require('./common');
 const constants = require('./constants');
 
-const FORMATTER_SRC = `${constants.dirs.HINT_PACKAGES}/formatter-html/src`;
+const basePath = path.resolve(process.cwd(), 'node_modules/@hint/formatter-html/dist/src');
 
 const formatterPaths = new Set([
     {
         dest: constants.dirs.SCAN_TEMPLATES,
         options: '-R',
-        orig: `${FORMATTER_SRC}/views/partials`
+        orig: path.resolve(basePath, 'views/partials')
     }, {
         dest: constants.dirs.SCAN_IMAGES,
         options: '-R',
-        orig: `${FORMATTER_SRC}/assets/images/scan`
+        orig: path.resolve(basePath, 'assets/images/scan')
     }, {
         dest: constants.dirs.SCAN_STYLES,
         options: '-R',
-        orig: `${FORMATTER_SRC}/assets/styles/scan`
+        orig: path.resolve(basePath, 'assets/styles/scan')
     }, {
         dest: constants.dirs.SCAN_SCRIPTS,
         options: '-R',
-        orig: `${FORMATTER_SRC}/assets/js/scan`
+        orig: path.resolve(basePath, 'assets/js/scan')
     }, {
-        // This file will be compiled during the building process.
-        dest: `${constants.dirs.SCAN_PARTIALS}/utils.ts`,
+        dest: `${constants.dirs.SCAN_PARTIALS}/utils.js`,
         options: null,
-        orig: `${FORMATTER_SRC}/utils.ts`
+        orig: path.resolve(basePath, 'utils.js')
     }
 ]);
 
@@ -39,8 +39,8 @@ const formatterPaths = new Set([
  */
 const copyFormatter = () => {
     mkdirp.sync(constants.dirs.SCAN_PARTIALS);
-    formatterPaths.forEach((path) => {
-        copy(path.orig, path.dest, path.options);
+    formatterPaths.forEach((formatterPath) => {
+        copy(formatterPath.orig, formatterPath.dest, formatterPath.options);
     });
 
     /*

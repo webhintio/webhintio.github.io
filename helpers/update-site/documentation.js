@@ -11,6 +11,7 @@ const os = require('os');
 const shell = require('shelljs');
 const stripMarkdown = require('remove-markdown');
 const yamlLoader = require('js-yaml');
+const utils = require('@hint/utils');
 
 const constants = require('./constants');
 const { copy } = require('./copy');
@@ -19,6 +20,7 @@ const { setShellJSDefaultConfig } = require('./common');
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
+const i18n = utils.i18n.getMessage;
 const divider = '---';
 const frontMatterRegex = new RegExp(`\r?\n\s*${divider}\r?\n|^\s*${divider}\r?\n`, 'gi'); // eslint-disable-line no-useless-escape
 const configDir = path.resolve(__dirname, '..', '..', '_config.yml');
@@ -37,17 +39,17 @@ const types = {
 const hintDocumentationPaths = [
     {
         dest: constants.dirs.CONTRIBUTOR_GUIDE,
-        orig: `${constants.dirs.HINT_PACKAGES}/hint/docs/contributor-guide`,
+        orig: `${constants.dirs.NODE_MODULES}/hint/docs/contributor-guide`,
         section: 'contributor-guide'
     },
     {
         dest: constants.dirs.USER_GUIDE,
-        orig: `${constants.dirs.HINT_PACKAGES}/hint/docs/user-guide`,
+        orig: `${constants.dirs.NODE_MODULES}/hint/docs/user-guide`,
         section: 'user-guide'
     },
     {
         dest: constants.dirs.ABOUT,
-        orig: `${constants.dirs.HINT_PACKAGES}/hint/docs/about`,
+        orig: `${constants.dirs.NODE_MODULES}/hint/docs/about`,
         section: 'about'
     }
 ];
@@ -166,21 +168,22 @@ const getResourcesFiles = async () => {
     const imageFiles = [];
 
     for (const resource of resources) {
-        const images = await globby([`${constants.dirs.HINT_PACKAGES}/${resource}-*/images/**/*`]);
+        const images = await globby([`${constants.dirs.NODE_MODULES}/@hint/{${resource}-*,configuration-*/node_modules/@hint/${resource}-*}/images/**/*`], { absolute: true });
 
         images.forEach((image) => {
             imageFiles.push(getImageItemFromResource(image, resource));
         });
     }
 
-    const docs = await globby([`${constants.dirs.HINT_PACKAGES}/{${resources.join(',')}}-*/{README.md,docs/*.md}`]);
+    const docs = await globby([`${constants.dirs.NODE_MODULES}/@hint/{${resources.join(',')},configuration-*/node_modules/@hint/{${resources.join(',')}}}-*/{README.md,docs/*.md}`], { absolute: true });
 
     const promises = docs.map(async (doc) => {
         const { content, frontMatter } = await getExistingContent(doc);
 
         const docPathSplitted = doc.split('/').reverse();
         let name;
-        let packageJSONPath;
+        let packagePath;
+        let metaPath;
         let isMulti = false;
 
         // Check if the documenation is in a docs folder or in the root of the resource.
@@ -195,7 +198,8 @@ const getResourcesFiles = async () => {
              * Also, in this case, the path to the package json needs to be calculated differently.
              */
             name = `${docPathSplitted[2]}/${docPathSplitted[0].replace('.md', '')}`;
-            packageJSONPath = path.join(path.dirname(doc), '..', 'package.json');
+            packagePath = path.join(path.dirname(doc), '..');
+            metaPath = path.join(packagePath, 'dist', 'src', 'meta', `${path.basename(doc, '.md')}.js`);
             isMulti = true;
         } else {
             /* If there is no docs folder, then the name is the second component in docPathSplitted.
@@ -204,8 +208,12 @@ const getResourcesFiles = async () => {
              * packages/hint-axe/README.md => hint-axe
              */
             name = docPathSplitted[1];
-            packageJSONPath = path.join(path.dirname(doc), 'package.json');
+            packagePath = path.join(path.dirname(doc));
+            metaPath = path.join(packagePath, 'dist', 'src', 'meta.js');
         }
+
+        const packageJSONPath = path.join(packagePath, 'package.json');
+        const sourcePath = path.join(packagePath, 'dist', 'src');
 
         const docPackage = require(packageJSONPath);
 
@@ -234,9 +242,11 @@ const getResourcesFiles = async () => {
             dest,
             frontMatter,
             isMulti,
+            metaPath,
             name,
             orig: doc,
             resourceType,
+            sourcePath,
             type: types.doc
         };
     });
@@ -385,20 +395,11 @@ const getFileInfo = (file) => {
 /**
  * Get the metadata content for a hint given its .md file.
  */
-const getMeta = async (file) => {
-    const dir = path.dirname(file.orig);
-    let metaPath;
-
-    if (!file.isMulti) {
-        metaPath = path.join(dir, 'src', 'meta.ts');
-    } else {
-        metaPath = path.join(dir, '..', 'src', 'meta', `${path.basename(file.orig, '.md')}.ts`);
-    }
-
+const getMeta = (file) => {
     let meta;
 
     try {
-        meta = await readFile(metaPath, 'utf-8');
+        meta = require(file.metaPath).default;
     } catch (e) {
         meta = null;
     }
@@ -406,23 +407,15 @@ const getMeta = async (file) => {
     return meta;
 };
 
-const getLocalizationFilePath = (file) => {
-    if (file.isMulti) {
-        return path.join(file.orig, '..', '..', 'src', '_locales', 'en', 'messages.json');
-    }
-
-    return path.join(file.orig, '..', 'src', '_locales', 'en', 'messages.json');
-};
-
-const getDescriptionFromLocalization = (file) => {
-    const messagesFilePath = getLocalizationFilePath(file);
-    const messages = require(messagesFilePath);
+const getDescriptionMeta = (meta, file) => {
+    const hintIdSplit = meta.id.split('/');
+    const hintId = file.isMulti ? hintIdSplit[hintIdSplit.length - 1] : meta.id;
 
     if (!file.isMulti) {
-        return messages.description.message;
+        return i18n('description', file.sourcePath);
     }
 
-    return messages[`${_.camelCase(file.name)}_description`].message;
+    return i18n(`${_.camelCase(hintId)}_description`, file.sourcePath);
 };
 
 /**
@@ -430,21 +423,18 @@ const getDescriptionFromLocalization = (file) => {
  * Hints are in a separete method because for them,
  * we can get the information from the metadata.
  */
-const getHintFileInfo = async (file) => {
+const getHintFileInfo = (file) => {
     const relativePath = path.relative(path.join(constants.dirs.CONTENT, 'docs'), file.dest);
     const root = 'docs';
     const isMultiHints = file.isMulti;
-    const meta = await getMeta(file);
+    const meta = getMeta(file);
 
-    const hintNameRegex = /id:\s*'([^']*)'/;
-    const categoryRegex = /category:\s*Category\.([a-z]*)/;
-    const descriptionRegex = /description:\s*([^\n]*)/;
-    /*
-     * If metaDescription is null, that means that the meta file
-     * is the index of a multihints.
-     *
-     */
-    const metaDescription = meta ? meta.match(descriptionRegex) : null;
+    if (meta) {
+        // In multi-hints, the name will change to be hint/subhint.
+        file.name = meta.id;
+        file.category = meta.docs.category;
+    }
+
     /*
      * If the description contains '\`' to scape the character `, we
      * need replace it for the character `, or hexo will not generate
@@ -457,26 +447,11 @@ const getHintFileInfo = async (file) => {
      *
      * e.g.    this is a "description" => this is a \"description\"
      */
-    let description;
-
-    if (metaDescription) {
-        description = metaDescription[1].trim().replace(/\\`/g, '`');
-
-        /*
-         * Remove the character the quotes from the text (' ` ") and the character ',' if it is the last character.
-         * e.g: 'Runs axe-core tests in the target', -> Runs axe-core tests in the target
-         */
-        if (!description.startsWith('getMessage')) {
-            description = description[description.length - 1] === ',' ? description.substr(1, description.length - 3) : description.substr(1, description.length - 2);
-        }
-    } else {
-        description = getPredefinedDescription(file.dest) || getDescription(file.content);
-    }
-
-    if (description.startsWith('getMessage')) {
-        description = getDescriptionFromLocalization(file).trim()
-            .replace(/\\`/g, '`');
-    }
+    let description = meta ?
+        getDescriptionMeta(meta, file)
+            .trim()
+            .replace(/\\`/g, '`') :
+        (getPredefinedDescription(file.dest) || getDescription(file.content));
 
     description = description.replace(/([^\\])"/g, '$1\\"');
 
@@ -506,19 +481,13 @@ const getHintFileInfo = async (file) => {
         tocTitle: tocTitle ? tocTitle.replace(/-/g, ' ') : tocTitle
     };
 
-    if (metaDescription) {
-        // The name should be the same, but just in case.
-        file.name = meta.match(hintNameRegex)[1];
-        file.category = meta.match(categoryRegex)[1];
-    }
-
     file.frontMatter = Object.assign(newFrontMatter, file.frontMatter);
 };
 
 /**
  * Get the frontMatter info for all the md files.
  */
-const getFilesInfo = async (files) => {
+const getFilesInfo = (files) => {
     // Hint documentation is going to take the info from the metadata.
     const hintFiles = files.filter((file) => {
         return file.type !== types.other && file.resourceType === 'hint';
@@ -530,9 +499,7 @@ const getFilesInfo = async (files) => {
 
     noHintFiles.forEach(getFileInfo);
 
-    const promises = hintFiles.map(getHintFileInfo);
-
-    await Promise.all(promises);
+    hintFiles.map(getHintFileInfo);
 
     return files;
 };
@@ -666,17 +633,17 @@ const processCategoryHints = (hints) => {
 
     const processedHints = _.map(singleHints, processHint);
 
-    const multiHintsProcessed = _.reduce(packagesName, (multi, hints, key) => {
+    const multiHintsProcessed = _.reduce(packagesName, (multi, hintsInMulti, key) => {
         // Add an item with the link to the package with multiple hints itself.
         const partial = processHint({
-            name: key,
-            friendlyName: _.startCase(key)
+            friendlyName: _.startCase(key),
+            name: key
         }, true);
 
         multi.push(partial);
 
         // Add an item for each individual hint for a package with multiple hints.
-        return multi.concat(_.map(hints, processHint));
+        return multi.concat(_.map(hintsInMulti, processHint));
     }, []);
 
     return processedHints.concat(multiHintsProcessed);
