@@ -262,7 +262,8 @@ const configure = (app, appInsightsClient) => {
                     description: `Analyze any public website using webhint's online tool`,
                     title: `webhint's online scanner`
                 },
-                result: null
+                result: null,
+                scanUrl: req.query.url
             });
         };
     }
