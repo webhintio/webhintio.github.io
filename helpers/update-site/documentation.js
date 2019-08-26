@@ -724,7 +724,7 @@ const createHintCategories = (files) => {
 };
 
 const updateChangelog = async () => {
-    const files = await globby([`${constants.dirs.HINT_PACKAGES}/*/CHANGELOG.md`]);
+    const files = await globby([`${constants.dirs.NODE_MODULES}/{hint,@hint/{${resources.join(',')},configuration-*/node_modules/@hint/{${resources.join(',')}}}-*}/CHANGELOG.md`]);
 
     const changelog = await files.reduce(async (totalPromise, file) => {
         const total = await totalPromise;
