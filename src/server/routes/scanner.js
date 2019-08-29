@@ -4,7 +4,7 @@ const promisify = require('util').promisify;
 const _ = require('lodash');
 const moment = require('moment');
 const globby = require('globby');
-const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}` } }); // eslint-disable-line no-process-env
+const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}`, 'x-functions-key': `${process.env.FUNCTIONS_KEY}` } }); // eslint-disable-line no-process-env
 const { getMessage: getMessageUtils } = require('@hint/utils').i18n;
 
 const request = promisify(r);
