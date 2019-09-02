@@ -24,7 +24,7 @@
     "@hint/artwork": "^2.2.1",
     "@hint/configuration-all": "^1.0.2",
     "cross-env": "^5.2.1",
-    "eslint": "^6.2.2",
+    "eslint": "^6.3.0",
     "gulp": "^4.0.2",
     "gulp-brotli": "^1.2.2",
     "gulp-changed": "^4.0.1",
