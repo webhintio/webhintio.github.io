@@ -55,6 +55,7 @@ const hintDocumentationPaths = [
 ];
 
 const resources = [
+    'configuration',
     'connector',
     'extension',
     'formatter',
@@ -168,14 +169,14 @@ const getResourcesFiles = async () => {
     const imageFiles = [];
 
     for (const resource of resources) {
-        const images = await globby([`${constants.dirs.NODE_MODULES}/@hint/{${resource}-*,configuration-*/node_modules/@hint/${resource}-*}/images/**/*`], { absolute: true });
+        const images = await globby([`${constants.dirs.NODE_MODULES}/@hint/{${resource}-*,configuration-all/node_modules/@hint/${resource}-*}/images/**/*`], { absolute: true });
 
         images.forEach((image) => {
             imageFiles.push(getImageItemFromResource(image, resource));
         });
     }
 
-    const docs = await globby([`${constants.dirs.NODE_MODULES}/@hint/{${resources.join(',')},configuration-*/node_modules/@hint/{${resources.join(',')}}}-*/{README.md,docs/*.md}`], { absolute: true });
+    const docs = await globby([`${constants.dirs.NODE_MODULES}/@hint/{${resources.join(',')},configuration-all/node_modules/@hint/{${resources.join(',')}}}-*/{README.md,docs/*.md}`], { absolute: true });
 
     const promises = docs.map(async (doc) => {
         const { content, frontMatter } = await getExistingContent(doc);
@@ -724,7 +725,7 @@ const createHintCategories = (files) => {
 };
 
 const updateChangelog = async () => {
-    const files = await globby([`${constants.dirs.HINT_PACKAGES}/*/CHANGELOG.md`]);
+    const files = await globby([`${constants.dirs.NODE_MODULES}/{hint,@hint/{${resources.join(',')},configuration-all/node_modules/@hint/{${resources.join(',')}}}-*}/CHANGELOG.md`]);
 
     const changelog = await files.reduce(async (totalPromise, file) => {
         const total = await totalPromise;
