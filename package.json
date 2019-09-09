@@ -51,7 +51,7 @@
     "hexo-cli": "^2.0.0",
     "hexo-generator-index": "^0.2.1",
     "hexo-generator-sitemap": "^1.2.0",
-    "hexo-generator-tag": "^0.2.0",
+    "hexo-generator-tag": "^1.0.0",
     "hexo-renderer-handlebars": "^2.0.2",
     "hexo-server": "^0.3.2",
     "hexo-util": "^1.0.1",
