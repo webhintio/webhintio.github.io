@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@hint/artwork": "^2.2.1",
-    "@hint/configuration-all": "^1.0.3",
+    "@hint/configuration-all": "^1.0.4",
     "cross-env": "^5.2.1",
     "eslint": "^6.3.0",
     "gulp": "^4.0.2",
