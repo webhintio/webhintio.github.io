@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@hint/formatter-html": "^4.1.4",
+    "@hint/formatter-html": "^4.1.5",
     "@hint/utils": "^4.1.0",
     "algoliasearch": "^3.34.0",
     "applicationinsights": "^1.4.2",
