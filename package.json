@@ -65,7 +65,7 @@
     "remove-markdown": "^0.3.0",
     "stylelint": "^10.1.0",
     "sw-precache": "^5.2.1",
-    "typescript": "^3.6.2",
+    "typescript": "^3.6.3",
     "uslug": "^1.0.4"
   },
   "engines": {
