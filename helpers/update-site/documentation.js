@@ -234,7 +234,7 @@ const getResourcesFiles = async () => {
             name = nameSplitted[nameSplitted.length - 1];
         }
 
-        const resourceType = nameSplitted[0].split('-')[0];
+        const resourceType = name === 'vscode-webhint' ? 'extension' : nameSplitted[0].split('-')[0];
         const dir = path.join(process.cwd(), constants.dirs.USER_GUIDE, `${resourceType}s`, nameSplitted.slice(0, nameSplitted.length - 1).join('/'));
         const dest = `${dir}/${name}.md`;
 
