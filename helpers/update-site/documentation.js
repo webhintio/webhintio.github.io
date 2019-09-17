@@ -63,6 +63,8 @@ const resources = [
     'parser'
 ];
 
+const documentationGlobbyPattern = `${constants.dirs.NODE_MODULES}/{hint,vscode-webhint,@hint/{${resources.join(',')}}-*}`;
+
 const trimAndUnquote = (string) => {
     return string.trim().replace(/^"|"$/, '');
 };
@@ -169,14 +171,14 @@ const getResourcesFiles = async () => {
     const imageFiles = [];
 
     for (const resource of resources) {
-        const images = await globby([`${constants.dirs.NODE_MODULES}/{vscode-webhint,@hint/${resource}-*,@hint/configuration-all/node_modules/{vscode-webhint,@hint/${resource}-*}}/images/**/*`], { absolute: true });
+        const images = await globby([`${documentationGlobbyPattern}/images/**/*`], { absolute: true });
 
         images.forEach((image) => {
             imageFiles.push(getImageItemFromResource(image, resource));
         });
     }
 
-    const docs = await globby([`${constants.dirs.NODE_MODULES}/{vscode-webhint,@hint/{${resources.join(',')}}-*,@hint/configuration-all/node_modules/{vscode-webhint,@hint/{${resources.join(',')}}-*}}/{README.md,docs/*.md}`], { absolute: true });
+    const docs = await globby([`${documentationGlobbyPattern}/{README.md,docs/*.md}`], { absolute: true });
 
     const promises = docs.map(async (doc) => {
         const { content, frontMatter } = await getExistingContent(doc);
@@ -725,7 +727,8 @@ const createHintCategories = (files) => {
 };
 
 const updateChangelog = async () => {
-    const files = await globby([`${constants.dirs.NODE_MODULES}/{hint,vscode-webhint,@hint/{${resources.join(',')},configuration-all/node_modules/{vscode-webhint,@hint/{${resources.join(',')}}}-*}}/CHANGELOG.md`]);
+    /** All packages should be hoisted so no need to look inside `configuration-all` */
+    const files = await globby([`${documentationGlobbyPattern}/CHANGELOG.md`]);
 
     const changelog = await files.reduce(async (totalPromise, file) => {
         const total = await totalPromise;
