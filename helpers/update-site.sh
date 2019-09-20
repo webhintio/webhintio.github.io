@@ -23,7 +23,6 @@ prepare_site_dist_dir() {
         helpers
         dist
         package.json
-        package-lock.json
         src
         web.config
     )
@@ -68,6 +67,13 @@ main () {
 
     prepare_site_dist_dir \
         && update_website
+
+    if [ $? -eq 0 ]
+    then
+        echo "Successfully deployed website"
+    else
+        echo "Could not deploy site" >&2
+    fi
 
     rm -rf "$TMP_DIR"
 }
