@@ -1,64 +1,36 @@
 <div class="bg-wrap-home">
     <main>
         <section class="container home-container--section">
-            <div class="layout layout--halves vertical-align">
-                <div class="module">
+            <div class="layout layout--basic--offset--alt vertical-align">
+                <div class="module module--primary">
                     <h1>Use webhint to improve your website</h1>
-                    <p class="container--section__welcome subtitle">webhint is a linting tool that will help you with your site's accessibility, speed, security and more, by checking your code for best practices and common errors. Use the online scanner or the CLI to start checking your site for errors.</p>
+                    <p class="container--section__welcome subtitle">webhint is a customizable linting tool that helps you improve your site's accessibility, speed, cross-browser compatibility, and more by checking your code for best practices and common errors.</p>
                 </div>
-                <div class="module module-center">
-                    <div class="home--hero">
-                        <div class="home--hero__images">
-                            <a href="#scanner-input" class="home--hero__images-wrap" data-ga-category="homepage" data-ga-action="scanner">
-                                <img src="/images/home-scan-results.svg" alt="" role="presentation">
-                                <p class="cta home--hero__cta">Try the online scanner</p>
-                            </a>
-                        </div>
-                        <div class="home--hero__images">
-                            <a href="#cli-howto" class="home--hero__images-wrap" data-ga-category="homepage" data-ga-action="cli">
-                                <img src="/images/home-cli.svg" alt="" role="presentation">
-                                <p class="cta home--hero__cta">Get started with the CLI</p>
-                            </a>
-                        </div>
-                    </div>
+                <div class="module module--secondary">
+                    <img class="hero-image "src="/images/underwater-flipped.svg" alt="" role="none presentation" />
                 </div>
             </div>
         </section>
         <div class="bg-wrap--white">
             <section class="container home-container--section home-container__features">
-                <h2 class="subheading subheading--home">Why use webhint?</h2>
+                <h2 class="subheading subheading--home">Hints to help you throughout the web development cycle</h2>
                 <div class="layout layout--thirds">
                     <div class="module feature">
-                        <img class="feature__highlight" src="/images/nellie-customizable.svg" alt="" role="presentation" />
-                        <p class="subtitle subtitle--home uppercase-text">Fully customizable</p>
-                        <p class="feature__highlight">
-                            Every site is different. webhint adapts its feedback when you give it more information:
-                            <a href="/docs/user-guide/configuring-webhint/ignoring-domains/">ignore 3rd-party code</a>,
-                            <a href="/docs/user-guide/configuring-webhint/browser-context/">prioritize <em>your</em> users' browsers</a>, and <a href="/docs/user-guide/">control the
-                            results</a> with minimal setup.
-                        </p>
-                        <a class="cta feature__cta" href="/docs/user-guide/hints/" data-ga-category="docs" data-ga-action="user guide" data-ga-label="why">User guide</a>
+                        <!-- need to add image here-->
+                        <img class="" src="" alt="" role="presentation" />
+                        <h3 class="subtitle subtitle--home">Develop</h3>
+                        <p class="feature__highlight">Use the <a href="https://marketplace.visualstudio.com/items?itemName=webhint.vscode-webhint">VS Code extension</a> to get real-time feedback in your IDE when writing code</p>
                     </div>
                     <div class="module feature">
-                        <img class="feature__highlight" src="/images/developer-nellie.svg" alt="" role="presentation" />
-                        <p class="subtitle subtitle--home uppercase-text">Create your own hints</p>
-                        <p class="feature__highlight">
-                            With the help of our <a href="/docs/contributor-guide/">contributor guide</a>, you can
-                            <a href="/docs/contributor-guide/how-to/hint/">create new hints</a> to suit <em>your</em> needs. You can
-                            help webhint help even more people like you by contributing your hints back!
-                        </p>
-                        <a class="cta feature__cta" href="/docs/user-guide/hints/" data-ga-category="docs" data-ga-action="hints" data-ga-label="why">Hint documentation</a>
+                        <img class="" src="/images/webhint_firefox.svg" alt="" role="presentation" />
+                        <h3 class="subtitle subtitle--home">Debug</h3>
+                        <p class="feature__highlight">The <a href="https://webhint.io/docs/user-guide/extensions/extension-browser/">browser extension</a> lets you scan a site from within your browser's DevTools.</p>
+                           
                     </div>
                     <div class="module feature">
-                        <img class="feature__highlight" src="/images/nellie-octocat.svg" alt="" role="presentation" />
-                        <p class="subtitle subtitle--home uppercase-text">Community driven</p>
-                        <p class="feature__highlight">
-                            webhint welcomes anyone who wants to make the web a better place.
-                            Testing, <a href="https://github.com/webhintio/webhint.io/issues">filing issues and feature requests</a>,
-                            <a href="/docs/contributor-guide/getting-started/pull-requests/">contributing code</a>, and improving the documentation
-                            are just the start!
-                        </p>
-                        <a class="cta feature__cta" href="https://github.com/webhintio">webhint GitHub</a>
+                        <img class="" src="/images/developer-nellie.svg" alt="" role="presentation" />
+                        <h3 class="subtitle subtitle--home">Deliver</h3>
+                        <p class="feature__highlight">Use the <a href="https://webhint.io/docs/user-guide/">webhint CLI</a> in your CI/CD pipeline to analyze your site before it goes into production.</p>
                     </div>
                 </div>
             </section>
@@ -66,11 +38,11 @@
         <section class="container home-container--section" id="scanner-input">
             <div class="layout layout--basic--offset--alt">
                 <div class="module module--primary">
-                    <h1 class="headline">Use the online scanner</h1>
-                    <p class="container--section__welcome">Not sure what you want to configure the CLI to check? Use the online scanner for a pre-configured set of rule checks to cover the basics.</p>
+                    <h1 class="headline">Try it</h1>
+                    <p class="container--section__welcome">Use the online scanner for a pre-configured set of rule checks to see what the tools is capable of and how your website is doing.</p>
                     <div class="home-container--input">
                         <form action="/scanner/" method="POST">
-                            <label for="home-scan" class="visually-hidden">Enter your URL here</label>
+                            <label for="home-scan" class="visually-hidden">Type your URL here</label>
                             <div class="input-fix">
                                 <input id="home-scan" type="url" name="url" placeholder="Type your URL here">
                                 <button type="submit" class="button--red" type="submit" data-ga-category="scanner" data-ga-action="start" data-ga-label="homepage">Run Scan</button>
@@ -85,62 +57,27 @@
         </section>
         <div class="bg-wrap--grey">
             <section class="container home-container--section home-container__install" id="cli-howto">
-                <h2 class="subheading subheading--home">Run webhint from your CLI</h2>
+                <h2 class="subheading subheading--home">Make it your own</h2>
                 <div class="layout layout--halves">
                     <div class="module">
-                        <img src="images/hint.gif" alt="webhint cli">
+                        <img class="hero-image" src="/images/nellie-octocat.svg" alt="" role="presentation" />
                     </div>
                     <div class="module">
-                        <p class="install__code">If you want to disable specific hints, further configure others, ignore domains, or more, run webhint from your CLI.</p>
-                        <p class="install__code">To do a quick scan just run:</p>
-                        <div class="code-wrap">
-                            <p>><code>npx hint https://example.com</code></p>
+                        <div class="feature__container">
+                            <h3 class="subtitle subtitle--home">Customize</h3>
+                            <p class="feature__highlight">Every site is different. webhint adapts its feedback when you give it more information: <a href="https://webhint.io/docs/user-guide/configuring-webhint/ignoring-domains/">ignore 3rd-party code</a>, <a href="https://webhint.io/docs/user-guide/configuring-webhint/browser-context/">prioritize your users' browsers</a>, and control the results with minimal setup.</p>
                         </div>
-                        <a class="docs-button" href="/docs/user-guide/" data-ga-category="docs" data-ga-action="user guide" data-ga-label="cli">Get Started</a>
-                        <p class="install__code">The <a href="https://npmjs.com/package/hint"><code>hint</code></a> package has been donated by
-                            <a href="https://twitter.com/nzgb">Nicolás Bevacqua</a>. While you are reading this, make sure to visit
-                            <a href="https://ponyfoo.com/?utm_source=webhint.io">his site</a>!
-                        </p>
+                        <div class="feature__container">
+                            <h3 class="subtitle subtitle--home">Create</h3>
+                            <p class="feature__highlight">With the help of our <a href="https://webhint.io/docs/contributor-guide/">contributor guide</a>, you can <a href="https://webhint.io/docs/contributor-guide/how-to/hint/">create new hints</a> to suit your needs.</p>
+                        </div>
+                        <div class="feature__container">
+                            <h3 class="subtitle subtitle--home">Contribute</h3>
+                            <p class="feature__highlight">webhint welcomes anyone who wants to make the web a better place. <a href="https://github.com/webhintio/hint">Join us on GitHub</a> to file issues and feature requests, contribute code, and improve the documentation!</p>
+                        </div>
                     </div>
                 </div>
             </section>
-        </div>
-        <div class="container home-container--section home-container__documentation">
-            <div class="layout layout--thirds">
-                <div class="module">
-                    <div class="home--docs">
-                        <img src="images/user-guide-icon.svg" class="home--docs-icons" alt="" role="none">
-                        <div class="home--docs-text">
-                            <a href="/docs/user-guide/" data-ga-category="docs" data-ga-action="user guide" data-ga-label="bottom">
-                                <p class="subtitle">User Guide</p>
-                                <p>Get started with configuring the CLI tool on your machine</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="module">
-                    <div class="home--docs">
-                        <img src="images/dev-guide-icon.svg" class="home--docs-icons" alt="" role="none">
-                        <div class="home--docs-text">
-                            <a href="/docs/contributor-guide/" data-ga-category="docs" data-ga-action="contributor guide" data-ga-label="bottom">
-                                <p class="subtitle">Contributor Guide</p>
-                                <p>Find out how to make webhint your tool and use it to it's full potential</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="module">
-                    <div class="home--docs">
-                        <img src="images/rules-icon.svg" class="home--docs-icons" alt="" role="none">
-                        <div class="home--docs-text">
-                            <a href="/docs/user-guide/hints/" data-ga-category="docs" data-ga-action="hints" data-ga-label="bottom">
-                                <p class="subtitle">Hints</p>
-                                <p>Check out the list of hints that webhint currently checks</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 </div>
