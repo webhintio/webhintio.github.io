@@ -39,7 +39,7 @@
     "gulp-sri": "^0.3.1",
     "gulp-transform": "^3.0.5",
     "gulp-uglify-es": "^1.0.4",
-    "gulp-useref": "^3.1.6",
+    "gulp-useref": "^4.0.0",
     "gulp-zopfli-node": "^1.0.0",
     "hexo": "^3.9.0",
     "hexo-cli": "^3.0.0",
