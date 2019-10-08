@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 
-const URLsToVerify = [
+const staticURLsToVerify = [
     'https://sonarwhal-staging.azurewebsites.net/',
-    'https://sonarwhal-staging.azurewebsites.net/scanner/',
+    'http://pudim.com.br/xunda.jpg',
     'https://sonarwhal-staging.azurewebsites.net/search/?q=bla',
     'https://sonarwhal-staging.azurewebsites.net/about/changelog/1',
     'https://sonarwhal-staging.azurewebsites.net/docs/user-guide/hints/'
@@ -24,17 +24,22 @@ const runPuppeteer = async (url) => {
     return response.status();
 };
 
-console.log('⏳ Integration tests are running...');
+const runStaticTests = () => {
+    return new Promise((resolve) => {
+        let errorFound = false;
 
-URLsToVerify.forEach(async (url, index) => {
-    let errorFound = false;
-    const resultStatus = await runPuppeteer(url);
+        staticURLsToVerify.forEach(async (url, index) => {
+            const resultStatus = await runPuppeteer(url);
 
-    if (resultStatus !== 200) {
-        errorFound = true;
-    }
+            if (resultStatus !== 200) {
+                errorFound = true;
+            }
 
-    if (index === URLsToVerify.length - 1 && errorFound) {
-        throw new Error('🚨 Integration test has failed!');
-    }
-});
+            if (index === staticURLsToVerify.length - 1) {
+                resolve(errorFound);
+            }
+        });
+    });
+};
+
+module.exports = { runStaticTests };
