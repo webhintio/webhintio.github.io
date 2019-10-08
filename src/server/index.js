@@ -77,9 +77,9 @@ const configureRoutes = (app) => {
 };
 
 const configureFallbacks = (app) => {
-    if (production) {
-        app.use('/', express.static(path.join(rootPath, 'dist')));
-    } else {
+    app.use('/', express.static(path.join(rootPath, 'dist')));
+
+    if (!production) {
         app.use('/', express.static(path.join(hexoDir, theme, 'source')));
     }
 };

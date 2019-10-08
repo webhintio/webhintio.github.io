@@ -10,9 +10,6 @@ repo](https://github.com/webhintio/hint).
 
 ## Getting started
 
-_**Note:**_ Our builder uses async arrow functions as well as other ES2017
-features so please ensure you are using Node.js v8.x or higher.
-
 Clone the project:
 
 ``` bash
@@ -25,23 +22,22 @@ Install dependencies:
 npm install
 ```
 
-Fetch remote content (e.g. documentation)
-
-```bash
-npm run update-site
-```
-
 Build the site:
 
 ```bash
 npm run build
 ```
 
-Run server:
+The command above will pull all the documentation and generate all the required
+assets. It might take a bit so please be patient.
+
+Run the site:
 
 ```bash
 npm start
 ```
+
+This will start a local web server in port 4000.
 
 To know more about the internals of the site please read the
 [server](architecture/server.md) documentation.
