@@ -8,46 +8,33 @@ const URLsToVerify = [
     'https://sonarwhal-staging.azurewebsites.net/docs/user-guide/hints/'
 ];
 
-puppeteer.launch()
-    .then((browser) => {
-        const responseCollection = new Promise((resolve) => {
-            const responses = new Map();
+const runPuppeteer = async (url) => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    const response = await page.goto(url);
 
-            URLsToVerify.forEach((url, index) => {
-                browser.newPage()
-                    .then((page) => {
-                        page.goto(url)
-                            .then((response) => {
-                                responses.set(url, response.status());
-                            })
-                            .catch((error) => {
-                                responses.set(url, `❌ ${error}`);
-                            })
-                            .finally(() => {
-                                if (index === (URLsToVerify.length - 1)) {
-                                    resolve(responses);
-                                    browser.close();
-                                }
-                            });
-                    })
-                    .catch((err) => {
-                        console.log(`Error on Puppeteer's newPage() function. Info: ${err}`);
-                    });
-            });
-        });
+    console.log(
+        `${
+            response.status() === 200 ? '✅ Success' : '❌ Failure'
+        }! ${url} => Status: ${response.status()}`
+    );
 
-        responseCollection.then((responses) => {
-            for (const [url, response] of responses) {
-                if (response !== 200) {
-                    const error = typeof response === 'number' ? `RESPONSE STATUS => ${response}` : response;
+    await browser.close();
 
-                    throw new Error(`❌ Test failed! A request to the URL ${url} has returned the following error: ${error}`);
-                }
+    return response.status();
+};
 
-                console.log(`✅ Success! ${url} => Status: ${response}`);
-            }
-        });
-    })
-    .catch((err) => {
-        console.log(`Error on launching Puppeteer. Info: ${err}`);
-    });
+console.log('⏳ Integration tests are running...');
+
+URLsToVerify.forEach(async (url, index) => {
+    let errorFound = false;
+    const resultStatus = await runPuppeteer(url);
+
+    if (resultStatus !== 200) {
+        errorFound = true;
+    }
+
+    if (index === URLsToVerify.length - 1 && errorFound) {
+        throw new Error('🚨 Integration test has failed!');
+    }
+});
