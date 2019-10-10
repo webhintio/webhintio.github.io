@@ -4,13 +4,18 @@ const { runScannerTest } = require('./scanner');
 console.log('Integration tests are running...');
 
 const runIntegrationTests = async () => {
-    const errorFound = await Promise.all([
-        runStaticTests(),
-        runScannerTest()
-    ]);
+    let error = false;
+
+    for (const test of [runStaticTests, runScannerTest]) {
+        const errorFound = await test();
+
+        if (errorFound) {
+            error = true;
+        }
+    }
 
     console.log(`${
-        errorFound ?
+        error ?
             '🚨 Integration tests completed with errors.' :
             '🏁 Integration tests completed successfully!'
     }`);
