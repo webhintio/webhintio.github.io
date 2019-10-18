@@ -76,7 +76,7 @@ gulp.task('build:hexo', (done) => {
             return hexo.call('clean');
         })
         .then(() => {
-            hexo.extend.filter.unregister('after_render:html', require('hexo/lib/plugins/filter/meta_generator'));
+            hexo.extend.filter.unregister('after_render:html', require('hexo/lib/plugins/filter/after_render/meta_generator'));
 
             return hexo.call('generate');
         })
@@ -88,7 +88,7 @@ gulp.task('watch:hexo', (done) => {
 
     hexo.init()
         .then(() => {
-            hexo.extend.filter.unregister('after_render:html', require('hexo/lib/plugins/filter/meta_generator'));
+            hexo.extend.filter.unregister('after_render:html', require('hexo/lib/plugins/filter/after_render/meta_generator'));
 
             return hexo.call('generate', { watch: true });
         })
