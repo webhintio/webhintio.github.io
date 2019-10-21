@@ -6,12 +6,18 @@ console.log('Integration tests are running...');
 const runIntegrationTests = async () => {
     let error = false;
 
-    for (const test of [runStaticTests, runScannerTest]) {
-        const errorFound = await test();
+    try {
+        for (const test of [runStaticTests, runScannerTest]) {
+            const errorFound = await test();
 
-        if (errorFound) {
-            error = true;
+            if (errorFound) {
+                error = true;
+            }
         }
+    } catch (err) {
+        error = true;
+
+        console.error(err.message);
     }
 
     console.log(`${
@@ -19,6 +25,8 @@ const runIntegrationTests = async () => {
             '🚨 Integration tests completed with errors.' :
             '🏁 Integration tests completed successfully!'
     }`);
+
+    throw new Error('Integration tests completed with errors.');
 };
 
 runIntegrationTests();
