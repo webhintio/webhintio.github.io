@@ -26,7 +26,12 @@ const runIntegrationTests = async () => {
             '🏁 Integration tests completed successfully!'
     }`);
 
-    throw new Error('Integration tests completed with errors.');
+    if (error) {
+        throw new Error('Integration tests completed with errors.');
+    }
 };
 
-runIntegrationTests();
+runIntegrationTests()
+    .catch((err) => {
+        throw err;
+    });
