@@ -43,7 +43,8 @@ const getMessageByLanguage = (language) => {
 
 const sendRequest = (url) => {
     const options = {
-        form: { url },
+        body: JSON.stringify({ url }),
+        headers: { 'Content-type': 'application/json' },
         method: 'POST',
         url: `${serviceEndpoint}/createjob`
     };
