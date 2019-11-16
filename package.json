@@ -62,7 +62,7 @@
     "puppeteer": "2.0.0",
     "remove-markdown": "^0.3.0",
     "shelljs": "^0.8.3",
-    "stylelint": "^11.0.0",
+    "stylelint": "^12.0.0",
     "sw-precache": "^5.2.1",
     "typescript": "^3.6.3",
     "uslug": "^1.0.4"
