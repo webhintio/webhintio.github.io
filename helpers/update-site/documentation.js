@@ -65,6 +65,20 @@ const resources = [
 
 const documentationGlobbyPattern = `${constants.dirs.NODE_MODULES}/{hint,vscode-webhint,@hint/{${resources.join(',')}}-*}`;
 
+/**
+ * Filters files for packages we do not want to show up in the website.
+ * @param {string[]} files The files to filter out
+ */
+const filterPackages = (files) => {
+    const ignoredPackages = ['configuration-all'];
+
+    return files.filter((file) => {
+        return !ignoredPackages.some((pkgToIgnore) => {
+            return file.includes(pkgToIgnore);
+        });
+    });
+};
+
 const trimAndUnquote = (string) => {
     return string.trim().replace(/^"|"$/, '');
 };
@@ -171,14 +185,16 @@ const getResourcesFiles = async () => {
     const imageFiles = [];
 
     for (const resource of resources) {
-        const images = await globby([`${documentationGlobbyPattern}/images/**/*`], { absolute: true });
+        const allImages = await globby([`${documentationGlobbyPattern}/images/**/*`], { absolute: true });
+        const images = filterPackages(allImages);
 
         images.forEach((image) => {
             imageFiles.push(getImageItemFromResource(image, resource));
         });
     }
 
-    const docs = await globby([`${documentationGlobbyPattern}/{README.md,docs/*.md}`], { absolute: true });
+    const allDocs = await globby([`${documentationGlobbyPattern}/{README.md,docs/*.md}`], { absolute: true });
+    const docs = filterPackages(allDocs);
 
     const promises = docs.map(async (doc) => {
         const { content, frontMatter } = await getExistingContent(doc);
@@ -728,9 +744,10 @@ const createHintCategories = (files) => {
 
 const updateChangelog = async () => {
     /** All packages should be hoisted so no need to look inside `configuration-all` */
-    const files = await globby([`${documentationGlobbyPattern}/CHANGELOG.md`]);
+    const allChangelogs = await globby([`${documentationGlobbyPattern}/CHANGELOG.md`]);
+    const changelogs = filterPackages(allChangelogs);
 
-    const changelog = await files.reduce(async (totalPromise, file) => {
+    const changelog = await changelogs.reduce(async (totalPromise, file) => {
         const total = await totalPromise;
         const content = await readFile(file, 'utf8');
         let packageName = file.split('/').slice(-2, -1)[0];
