@@ -36,31 +36,12 @@ update_website() {
     # Move to temp folder
     cd "$TMP_DIR"
 
-    declare -r masterBranch="refs/heads/master"
-    declare slot=""
-    declare user=""
-    declare password=""
-    declare message=""
-
-    if [ "$masterBranch" == "$BRANCH" ]; then
-        slot="sonarwhal-staging"
-        user=$GIT_USER_NAME
-        password=$GIT_PASSWORD
-        message="Hey server, this content is for you! ***NO_CI***"
-    else
-        slot="sonarwhal-scanner-staging"
-        user=$GIT_SCANNER_USER
-        password=$GIT_SCANNER_PASSWORD
-        message="Hey staging server, this content is for you! ***NO_CI***"
-    fi
-
-
     git config --global user.email "$GIT_USER_EMAIL" \
-        && git config --global user.name "$user" \
+        && git config --global user.name "$GIT_USER_NAME" \
         && git init \
         && git add -A \
-        && git commit --message "$message" \
-        && git push --quiet --force --set-upstream "https://$user:$password@$slot.scm.azurewebsites.net:443/sonarwhal.git" master
+        && git commit --message "Hey server, this content is for you! ***NO_CI***" \
+        && git push --quiet --force --set-upstream "https://$GIT_USER_NAME:$GIT_PASSWORD@sonarwhal-staging.scm.azurewebsites.net:443/sonarwhal.git" master
 }
 
 remove_sensitive_information() {
