@@ -25,6 +25,9 @@ jobs:
       GIT_USER_EMAIL: $(GIT_USER_EMAIL)
       GIT_USER_NAME: $(GIT_USER_NAME)
       GIT_PASSWORD: $(GIT_PASSWORD)
+      GIT_SCANNER_USER: $(GIT_SCANNER_USER)
+      GIT_SCANNER_PASSWORD: $(GIT_SCANNER_PASSWORD)
+      BRANCH: variables['Build.SourceBranch']
   - script: npm run test-staging && node helpers/integration-tests/index.js
     displayName: 'Analyze staging with webhint'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))

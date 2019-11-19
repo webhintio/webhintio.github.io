@@ -4,7 +4,7 @@ const promisify = require('util').promisify;
 const _ = require('lodash');
 const moment = require('moment');
 const globby = require('globby');
-const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}` } }); // eslint-disable-line no-process-env
+const r = require('request').defaults({ headers: { 'x-functions-key': `${process.env.FUNCTIONS_KEY}` } }); // eslint-disable-line no-process-env
 const { getMessage: getMessageUtils } = require('@hint/utils').i18n;
 
 const request = promisify(r);
@@ -42,11 +42,11 @@ const getMessageByLanguage = (language) => {
 };
 
 const sendRequest = (url) => {
-    const formData = { url };
     const options = {
-        formData,
+        body: JSON.stringify({ url }),
+        headers: { 'Content-type': 'application/json' },
         method: 'POST',
-        url: `${serviceEndpoint}`
+        url: `${serviceEndpoint}/createjob`
     };
 
     return request(options);
@@ -55,7 +55,7 @@ const sendRequest = (url) => {
 const queryResult = async (id, tries) => {
     let response;
     const counts = tries || 0;
-    const result = await request(`${serviceEndpoint}${id}`);
+    const result = await request(`${serviceEndpoint}/jobstatus?id=${id}`);
 
     if (!result.body) {
         throw new Error(`No result found for this url. Please scan again.`);
