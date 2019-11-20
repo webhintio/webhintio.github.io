@@ -22,7 +22,7 @@
     "cross-env": "^6.0.0",
     "eslint": "^6.4.0",
     "gulp": "^4.0.2",
-    "gulp-brotli": "^1.2.2",
+    "gulp-brotli": "^2.0.2",
     "gulp-changed": "^4.0.1",
     "gulp-clean-css": "^4.2.0",
     "gulp-cli": "^2.2.0",
