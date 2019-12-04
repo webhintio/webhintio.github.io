@@ -11,7 +11,7 @@ const os = require('os');
 const shell = require('shelljs');
 const stripMarkdown = require('remove-markdown');
 const yamlLoader = require('js-yaml');
-const utils = require('@hint/utils');
+const utils = require('@hint/utils-i18n');
 
 const constants = require('./constants');
 const { copy } = require('./copy');
@@ -20,7 +20,7 @@ const { setShellJSDefaultConfig } = require('./common');
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
-const i18n = utils.i18n.getMessage;
+const i18n = utils.getMessage;
 const divider = '---';
 const frontMatterRegex = new RegExp(`\r?\n\s*${divider}\r?\n|^\s*${divider}\r?\n`, 'gi'); // eslint-disable-line no-useless-escape
 const configDir = path.resolve(__dirname, '..', '..', '_config.yml');

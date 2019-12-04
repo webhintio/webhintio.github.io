@@ -6,9 +6,10 @@
         "stylish"
     ],
     "hints": {
-        "axe/aria": "off",
+        "axe/aria": "warning",
         "html-checker": "off",
-        "ssllabs": "off"
+        "ssllabs": "off",
+        "compat-api/css": "warning"
     },
     "ignoredUrls": [
         {
