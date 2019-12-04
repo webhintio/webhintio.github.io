@@ -33,5 +33,7 @@ const runIntegrationTests = async () => {
 
 runIntegrationTests()
     .catch((err) => {
-        throw err;
+        console.error(err.message);
+        // Unhandled exceptions in promises do not change the exit code for now
+        process.exit(1); //eslint-disable-line
     });
