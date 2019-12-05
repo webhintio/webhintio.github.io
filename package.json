@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "@hint/formatter-html": "^4.1.12",
-    "@hint/utils": "^7.0.0",
+    "@hint/formatter-html": "^4.1.13",
+    "@hint/utils": "^7.0.1",
     "@hint/utils-i18n": "^1.0.0",
     "algoliasearch": "^3.35.1",
     "applicationinsights": "^1.6.0",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@hint/artwork": "^2.2.1",
-    "@hint/configuration-all": "^2.0.2",
+    "@hint/configuration-all": "^2.0.3",
     "cross-env": "^6.0.3",
     "eslint": "^6.7.2",
     "gulp": "^4.0.2",
