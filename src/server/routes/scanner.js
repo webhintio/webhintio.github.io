@@ -105,9 +105,6 @@ const processHintResults = async (scanResult) => {
         version: scanResult.webhintVersion
     });
 
-    result.removeCategory('other');
-    result.removeCategory('development');
-
     result.showError = hints.every((hint) => {
         return hint.messages.length === 1 && hint.messages[0].message === 'Error in webhint analyzing this hint';
     });
@@ -124,6 +121,25 @@ const processHintResults = async (scanResult) => {
             resultHint = resultCategory.addHint(hint.name, hint.status);
         }
     });
+
+    const categoriesToRemove = [];
+
+    for (const category of result.categories) {
+        const passedCount = category.passed ? category.passed.length : 0;
+        const hintsCount = category.hints ? category.hints.length : 0;
+
+        /*
+         * If there is no hints in the category, add the category
+         * to the list of categories to remove.
+         */
+        if (passedCount + hintsCount === 0) {
+            categoriesToRemove.push(category.name.toLowerCase());
+        }
+    }
+
+    for (const category of categoriesToRemove) {
+        result.removeCategory(category);
+    }
 
     result.id = scanResult.id;
     result.permalink = `${webhintUrl}scanner/${scanResult.id}`;
