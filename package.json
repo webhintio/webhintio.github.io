@@ -54,7 +54,7 @@
     "hexo-server": "^1.0.0",
     "hexo-util": "^1.6.1",
     "json2yaml": "^1.1.0",
-    "markdownlint-cli": "^0.21.0",
+    "markdownlint-cli": "^0.22.0",
     "marked": "^0.8.0",
     "md-2-json": "^1.0.6",
     "mkdirp": "^1.0.2",
