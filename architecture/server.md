@@ -66,7 +66,7 @@ The deployment process is fully automated:
    This script will copy the required files for the deployment and push
    them into a local Git on Azure in the staging environment.
 1. The staging environment will be tested with `webhint` to make sure
-   everything is alrigh. If so, the code will get into production after
+   everything is alright. If so, the code will get into production after
    swapping slots in the Azure WebApp.
 
 ## Production configuration

@@ -205,8 +205,6 @@
                 updateAsPass(category);
             }
 
-            filterNewUpdates(category);
-
             category.hintsToUpdate = filterNewUpdates(category);
 
             updateErrorItems(category);

@@ -4,8 +4,8 @@ const promisify = require('util').promisify;
 const _ = require('lodash');
 const moment = require('moment');
 const globby = require('globby');
-const r = require('request').defaults({ headers: { authorization: `Bearer ${process.env.auth}` } }); // eslint-disable-line no-process-env
-const { getMessage: getMessageUtils } = require('@hint/utils').i18n;
+const r = require('request').defaults({ headers: { 'x-functions-key': `${process.env.FUNCTIONS_KEY}` } }); // eslint-disable-line no-process-env
+const { getMessage: getMessageUtils } = require('@hint/utils-i18n');
 
 const request = promisify(r);
 const urlAudiences = process.env.WEBSITE_DOMAIN; // eslint-disable-line no-process-env
@@ -42,11 +42,11 @@ const getMessageByLanguage = (language) => {
 };
 
 const sendRequest = (url) => {
-    const formData = { url };
     const options = {
-        formData,
+        body: JSON.stringify({ url }),
+        headers: { 'Content-type': 'application/json' },
         method: 'POST',
-        url: `${serviceEndpoint}`
+        url: `${serviceEndpoint}/createjob`
     };
 
     return request(options);
@@ -55,7 +55,7 @@ const sendRequest = (url) => {
 const queryResult = async (id, tries) => {
     let response;
     const counts = tries || 0;
-    const result = await request(`${serviceEndpoint}${id}`);
+    const result = await request(`${serviceEndpoint}/jobstatus?id=${id}`);
 
     if (!result.body) {
         throw new Error(`No result found for this url. Please scan again.`);
@@ -105,9 +105,6 @@ const processHintResults = async (scanResult) => {
         version: scanResult.webhintVersion
     });
 
-    result.removeCategory('other');
-    result.removeCategory('development');
-
     result.showError = hints.every((hint) => {
         return hint.messages.length === 1 && hint.messages[0].message === 'Error in webhint analyzing this hint';
     });
@@ -124,6 +121,25 @@ const processHintResults = async (scanResult) => {
             resultHint = resultCategory.addHint(hint.name, hint.status);
         }
     });
+
+    const categoriesToRemove = [];
+
+    for (const category of result.categories) {
+        const passedCount = category.passed ? category.passed.length : 0;
+        const hintsCount = category.hints ? category.hints.length : 0;
+
+        /*
+         * If there is no hints in the category, add the category
+         * to the list of categories to remove.
+         */
+        if (passedCount + hintsCount === 0) {
+            categoriesToRemove.push(category.name.toLowerCase());
+        }
+    }
+
+    for (const category of categoriesToRemove) {
+        result.removeCategory(category);
+    }
 
     result.id = scanResult.id;
     result.permalink = `${webhintUrl}scanner/${scanResult.id}`;

@@ -13,6 +13,10 @@ a {
     text-decoration: none;
 }
 
+p > a {
+    text-decoration: underline;
+}
+
 a:hover {
     text-decoration: underline;
 }

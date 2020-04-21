@@ -27,50 +27,14 @@ main {
     padding-bottom: 4.8rem;
 }
 
-.home--hero {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    flex-wrap: wrap;
+.container--section__welcome {
+    max-width: 70rem;
 }
 
-.home--hero__images {
-    max-width: 27rem;
-    margin-top: 1.2rem;
-    text-align: center;
-}
-
-a.home--hero__images-wrap {
+.hero-image {
     display: block;
-    padding: 1.5rem;
-}
-
-a.home--hero__images-wrap:hover {
-    filter: drop-shadow(0 .5rem .5rem hsla(0, 0%, 0%, .3));
-}
-
-a.home--hero__images-wrap:focus {
-    color: #fff;
-}
-
-.home--hero__cta {
-    display: inline-block;
-    font-size: 1.3rem;
-    font-weight: 500;
-
-    max-width: 100%;
-    margin-top: .6rem;
-    padding: .6rem 1rem;
-    border-radius: .3rem;
-
-    color: #fff;
-    background-color: #d43e2b;
-
-    letter-spacing: .1rem;
-    text-transform: uppercase;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    max-width: 38rem;
+    margin: 0 auto;
 }
 
 .module.feature {
@@ -112,6 +76,15 @@ a.home--hero__images-wrap:focus {
 .home-container__documentation a > p {
     font-weight: 400;
     color: #fff;
+}
+
+.home-container__features .feature__highlight {
+    text-align: center;
+}
+
+
+.feature__container {
+    margin-bottom: 2.4rem;
 }
 
 /* stylelint-disable */
@@ -166,13 +139,14 @@ a.home--hero__images-wrap:focus {
 .subheading--home {
     letter-spacing: .06rem;
     text-transform: none;
+    max-width: 64rem;
+    font-weight: 300;
 }
 
 .subtitle--home {
     position: relative;
     font-weight: 500;
     letter-spacing: .05rem;
-    text-transform: uppercase;
 }
 
 @media (min-width: 33.75em) {
@@ -236,6 +210,6 @@ a .openjsf-icon-svg {
 .module--primary h1 {
     display: block;
     color: #fff;
-    font-size: 4.6rem;
+    font-size: 5.2rem;
     letter-spacing: .03rem;
 }
