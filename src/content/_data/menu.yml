@@ -1,10 +1,10 @@
-- title: Online scanner
+- title: Try
   id: scanner
   link: /scanner/
 
-- title: Extensions
-  id: extensions
-  link: /docs/user-guide/extensions/
+- title: Install
+  id: install
+  link: /docs/user-guide/
   items:
   - id: vs-code
     link: /docs/user-guide/extensions/vscode-webhint/
@@ -12,10 +12,9 @@
   - id: browser
     link: /docs/user-guide/extensions/extension-browser/
     title: Browser extension
-
-- title: CLI
-  id: cli
-  link: /docs/user-guide/
+  - id: cli
+    link: /docs/user-guide/
+    title: CLI
 
 - title: Documentation
   id: docs
