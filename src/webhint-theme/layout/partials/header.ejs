@@ -29,8 +29,8 @@
                     <li class="navbar__navitem">
                         <a role="button" href="<%= nav.link %>" id="<%= nav.id %>" aria-haspopup="true" aria-expanded="false"
                         <% if (utils.hasSubPage(nav.id)) { %>aria-controls="submenu-<%= nav.id %>" <% } %>
-                        class="navitem__button <% if (nav.id === 'docs' || nav.id === 'about') { %>expandable<% } %>"><%= nav.title %></a>
-                        <% if (nav.id === 'docs' || nav.id === 'about') { %>
+                        class="navitem__button <% if (nav.id === 'docs' || nav.id === 'about' || nav.id === 'install') { %>expandable<% } %>"><%= nav.title %></a>
+                        <% if (nav.id === 'docs' || nav.id === 'about' || nav.id === 'install') { %>
                             <ul role="group" id="submenu-<%= nav.id %>" class="navbar__submenu" hidden>
                                 <% nav.items.forEach((item) => { %>
                                     <li><a href="<%= item.link %>"><%= item.title %></a></li>

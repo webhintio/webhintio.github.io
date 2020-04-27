@@ -1,6 +1,20 @@
-- title: Scanner
+- title: Try
   id: scanner
   link: /scanner/
+
+- title: Install
+  id: install
+  link: /docs/user-guide/
+  items:
+  - id: vs-code
+    link: /docs/user-guide/extensions/vscode-webhint/
+    title: VS Code extension
+  - id: browser
+    link: /docs/user-guide/extensions/extension-browser/
+    title: Browser extension
+  - id: cli
+    link: /docs/user-guide/
+    title: CLI
 
 - title: Documentation
   id: docs
@@ -20,6 +34,9 @@
   id: about
   link: /about/
   items:
+  - id: project-charter
+    title: Project Charter
+    link: /about/project_charter/
   - id: faq
     title: FAQ
     link: /about/faq/
@@ -33,6 +50,3 @@
     title: Code of Conduct
     link: https://js.foundation/community/code-of-conduct
 
-- title: GitHub
-  id: github
-  link: https://github.com/webhintio
