@@ -17,7 +17,6 @@
     };
 
     const sendTelemetry = async () => {
-        console.log('sending telemetry...')
         if (sendTimeout) {
             clearTimeout(sendTimeout);
             sendTimeout = null;
@@ -109,7 +108,6 @@
     // Don't count a user as active if telemetry is disabled.
 
     const activity = getUpdatedActivity(storage.getItem(activityKey));
-    console.log(activity);
     if (activity) {
         storage.setItem(activityKey, JSON.stringify(activity));
         trackEvent('online-scanner-activity', activity);
