@@ -2,7 +2,7 @@
 (function () {
     const activityKey = 'webhint-activity';
     const storage = window.localStorage;
-    const telemetryApiEndpoint = '';
+    const telemetryApiEndpoint = 'http://localhost:7071/api/webhint-telemetry-ingress-api';
     let nameKey = '';
     let sendTimeout = null;
     let telemetryQueue = [];
@@ -11,10 +11,18 @@
         defaultProperties: {},
         enabled: false,
         instrumentationKey: '8ef2b55b-2ce9-4c33-a09a-2c3ef605c97d',
-        post: (url, data) => {
-            return Promise.resolve(200);
-        }
     };
+
+    const post = async (url, data) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        });
+        return response;
+    }
 
     const sendTelemetry = async () => {
         if (sendTimeout) {
@@ -24,10 +32,12 @@
         const data = JSON.stringify(telemetryQueue);
         telemetryQueue = [];
         try {
-            const status = await options.post(telemetryApiEndpoint, data);
-            if (status !== 200) {
-                console.warn('Failed to send telemetry: ', status);
-            }
+            post(telemetryApiEndpoint, data)
+                .then(response => {
+                    if (response.status !== 200) {
+                        console.warn('Failed to send telemetry: ', status);
+                    }
+                });
         }
         catch (err) {
             console.warn('Failed to send telemetry: ', err);
@@ -59,14 +69,6 @@
     const trackEvent = async (name, properties) => {
         await track('Event', { name, properties });
     };
-
-    const testAsync = async () => {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve('resolved');
-          }, 2000);
-        });
-      }
 
     const getISODateString = () => {
         const date = new Date(Date.now());
