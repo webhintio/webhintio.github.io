@@ -1,16 +1,14 @@
 "use strict";
 (function () {
     const activityKey = 'webhint-activity';
+    const productKey = 'webhint-online-scanner';
     const storage = window.localStorage;
     const telemetryApiEndpoint = 'http://localhost:7071/api/webhint-telemetry-ingress-api';
-    let nameKey = '';
     let sendTimeout = null;
     let telemetryQueue = [];
     let options = {
         batchDelay: 15000,
         defaultProperties: {},
-        enabled: false,
-        instrumentationKey: '8ef2b55b-2ce9-4c33-a09a-2c3ef605c97d',
     };
 
     const post = async (url, data) => {
@@ -29,7 +27,11 @@
             clearTimeout(sendTimeout);
             sendTimeout = null;
         }
-        const data = JSON.stringify(telemetryQueue);
+        const data = JSON.stringify({
+            product: productKey,
+            data: telemetryQueue
+        });
+
         telemetryQueue = [];
         try {
             post(telemetryApiEndpoint, data)
@@ -45,19 +47,14 @@
     };
 
     const track = async (type, data) => {
-        telemetryQueue.push({
-            data: {
-                baseData: {
-                    name: data.name,
-                    properties: Object.assign(Object.assign({}, options.defaultProperties), data.properties),
-                    ver: 2
-                },
-                baseType: `${type}Data`
-            },
-            iKey: options.instrumentationKey,
-            name: `Microsoft.ApplicationInsights.${nameKey}.${type}`,
-            time: new Date().toISOString()
-        });
+        telemetryQueue.push(
+            {
+                name: data.name,
+                properties: Object.assign(Object.assign({}, options.defaultProperties), data.properties),
+                ver: 2,
+                type: `${type}Data`
+            }
+        );
         if (!options.batchDelay) {
             await sendTelemetry();
         }
