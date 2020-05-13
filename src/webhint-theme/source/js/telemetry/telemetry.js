@@ -3,7 +3,7 @@
     const activityKey = 'webhint-activity';
     const productKey = 'webhint-online-scanner';
     const storage = window.localStorage;
-    const telemetryApiEndpoint = 'https://webhint-telemetry-api-appservice.azurewebsites.net/api/webhint-telemetry-ingress-api';
+    const telemetryApiEndpoint = 'https://webhint-telemetry.azurewebsites.net/api/log';
     let sendTimeout = null;
     let telemetryQueue = [];
     let options = {
