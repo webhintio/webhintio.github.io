@@ -109,6 +109,6 @@
     const activity = getUpdatedActivity(storage.getItem(activityKey));
     if (activity) {
         storage.setItem(activityKey, JSON.stringify(activity));
-        trackEvent('online-scanner-activity', activity);
+        trackEvent('online-activity', activity);
     }
 }());
