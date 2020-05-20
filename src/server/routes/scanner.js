@@ -109,11 +109,14 @@ const processHintResults = async (scanResult) => {
         return hint.messages.length === 1 && hint.messages[0].message === 'Error in webhint analyzing this hint';
     });
 
+    result.hintsCount = 0;
+
     /*
      * Formatter always returns hint status equal to `finished`
      * We need to assign the real status
      */
     hints.forEach((hint) => {
+        result.hintsCount += hint.messages.length;
         const resultCategory = result.getCategoryByName(hint.category);
         let resultHint = resultCategory.getHintByName(hint.name);
 
