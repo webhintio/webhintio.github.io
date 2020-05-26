@@ -22,7 +22,7 @@ const runScannerTest = async () => {
             }! => Status: ${response.status()}`
         );
 
-        return response.status() !== 200;
+        return response.status() === 200;
     } catch (error) {
         console.error('🚨 Something went wrong while executing Puppeteer: ', error);
         await browser.close();

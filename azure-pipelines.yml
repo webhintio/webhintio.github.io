@@ -31,15 +31,15 @@ jobs:
   - script: npm run test-staging && node helpers/integration-tests/index.js
     displayName: 'Analyze staging with webhint'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  - bash: |
-      az login --service-principal -u $AZURE_SERVICE_PRINCIPAL -p $AZURE_SERVICE_PRINCIPAL_PASSWORD --tenant $AZURE_TENANT
-      az webapp deployment slot swap -g webhint-web -n sonarwhal --slot staging
+  - task: AzureAppServiceManage@0
     displayName: 'Swap into production'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    env:
-      AZURE_SERVICE_PRINCIPAL: $(AZURE_SERVICE_PRINCIPAL)
-      AZURE_SERVICE_PRINCIPAL_PASSWORD: $(AZURE_SERVICE_PRINCIPAL_PASSWORD)
-      AZURE_TENANT: $(AZURE_TENANT)
+    inputs:
+      azureSubscription: 'webhint-web'
+      Action: 'Swap Slots'
+      WebAppName: 'sonarwhal'
+      ResourceGroupName: 'webhint-web'
+      SourceSlot: 'staging'
   - bash: |
       curl https://www.google.com/ping?sitemap=https://webhint.io/sitemap.xml
       curl https://www.bing.com/ping?sitemap=https://webhint.io/sitemap.xml

@@ -7,6 +7,13 @@ const staticURLsToVerify = [
     'https://sonarwhal-staging.azurewebsites.net/docs/user-guide/hints/'
 ];
 
+const backOffTime = 5000;
+const maxRetries = 3;
+
+const delay = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+};
+
 const runPuppeteer = async (url) => {
     const browser = await puppeteer.launch();
 
@@ -32,17 +39,23 @@ const runPuppeteer = async (url) => {
 };
 
 const runStaticTests = async () => {
-    let errorFound = false;
+    let success = true;
+    let retryCount = 0;
+    let resultStatus = null;
 
     for (const url of staticURLsToVerify) {
-        const resultStatus = await runPuppeteer(url);
+        resultStatus = await runPuppeteer(url);
 
-        if (resultStatus !== 200) {
-            errorFound = true;
+        while(resultStatus !== 200 && retryCount < maxRetries) {
+            console.log('Test failed, retrying... Attempt #' + (++retryCount));
+            await delay(backOffTime * retryCount);
+            resultStatus = await runPuppeteer(url);
         }
+
+        success = success && resultStatus === 200;
     }
 
-    return errorFound;
+    return success;
 };
 
 module.exports = { runStaticTests };
