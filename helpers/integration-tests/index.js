@@ -8,9 +8,9 @@ const runIntegrationTests = async () => {
 
     try {
         for (const test of [runStaticTests, runScannerTest]) {
-            const errorFound = await test();
+            const success = await test();
 
-            if (errorFound) {
+            if (!success) {
                 error = true;
             }
         }
