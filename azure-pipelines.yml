@@ -20,7 +20,7 @@ jobs:
     displayName: 'Test'
   - script: ./helpers/update-site.sh
     displayName: 'Deploy'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     env:
       GIT_USER_EMAIL: $(GIT_USER_EMAIL)
       GIT_USER_NAME: $(GIT_USER_NAME)
@@ -30,10 +30,10 @@ jobs:
       BRANCH: variables['Build.SourceBranch']
   - script: npm run test-staging && node helpers/integration-tests/index.js
     displayName: 'Analyze staging with webhint'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   - task: AzureAppServiceManage@0
     displayName: 'Swap into production'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     inputs:
       azureSubscription: 'webhint-web'
       Action: 'Swap Slots'
@@ -44,7 +44,7 @@ jobs:
       curl https://www.google.com/ping?sitemap=https://webhint.io/sitemap.xml
       curl https://www.bing.com/ping?sitemap=https://webhint.io/sitemap.xml
     displayName: 'Update sitemaps'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - job: 'Algolia'
   pool:
