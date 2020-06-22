@@ -1,7 +1,9 @@
 # webhint's website
 
 <!-- markdownlint-disable -->
-[![Build Status](https://dev.azure.com/webhint/webhint/_apis/build/status/webhintio.webhint.io?branchName=master)](https://dev.azure.com/webhint/webhint/_build/latest?definitionId=2?branchName=master) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io?ref=badge_shield)
+
+[![Build Status](https://dev.azure.com/webhint/webhint/_apis/build/status/webhintio.webhint.io?branchName=main)](https://dev.azure.com/webhint/webhint/_build/latest?definitionId=2?branchName=main) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebhintio%2Fwebhint.io?ref=badge_shield)
+
 <!-- markdownlint-enable -->
 
 This is the code for [webhint's website](https://webhint.io).
@@ -12,7 +14,7 @@ repo](https://github.com/webhintio/hint).
 
 Clone the project:
 
-``` bash
+```bash
 git clone https://github.com/webhintio/webhint.io.git
 ```
 
@@ -55,5 +57,5 @@ The code is available under the [Apache 2.0 license](LICENSE.txt).
 
 <!-- Link labels -->
 
-[coc]: https://github.com/webhintio/.github/blob/master/CODE_OF_CONDUCT
-[ojs coc]: https://github.com/openjs-foundation/cross-project-council/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/webhintio/.github/blob/main/CODE_OF_CONDUCT
+[ojs coc]: https://github.com/openjs-foundation/cross-project-council/blob/main/CODE_OF_CONDUCT.md

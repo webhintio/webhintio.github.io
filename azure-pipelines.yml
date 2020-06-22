@@ -1,54 +1,54 @@
-# Scope the validations to master and PRs to master
+# Scope the validations to main and PRs to main
 trigger:
-  - master
+  - main
 pr:
-  - master
+  - main
 
-# We have one single job with conditional steps for changes in master
+# We have one single job with conditional steps for changes in main
 jobs:
-- job: 'webhintio'
-  pool:
-    vmImage: 'Ubuntu 16.04'
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-    displayName: 'Install Node.js'
-  - script: npm install
-    displayName: 'Install dependencies'
-  - script: npm test
-    displayName: 'Test'
-  - script: ./helpers/update-site.sh
-    displayName: 'Deploy'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    env:
-      GIT_USER_EMAIL: $(GIT_USER_EMAIL)
-      GIT_USER_NAME: $(GIT_USER_NAME)
-      GIT_PASSWORD: $(GIT_PASSWORD)
-      GIT_SCANNER_USER: $(GIT_SCANNER_USER)
-      GIT_SCANNER_PASSWORD: $(GIT_SCANNER_PASSWORD)
-      BRANCH: variables['Build.SourceBranch']
-  - script: npm run test-staging && node helpers/integration-tests/index.js
-    displayName: 'Analyze staging with webhint'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  - task: AzureAppServiceManage@0
-    displayName: 'Swap into production'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    inputs:
-      azureSubscription: 'webhint-web'
-      Action: 'Swap Slots'
-      WebAppName: 'sonarwhal'
-      ResourceGroupName: 'webhint-web'
-      SourceSlot: 'staging'
-  - bash: |
-      curl https://www.google.com/ping?sitemap=https://webhint.io/sitemap.xml
-      curl https://www.bing.com/ping?sitemap=https://webhint.io/sitemap.xml
-    displayName: 'Update sitemaps'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  - job: "webhintio"
+    pool:
+      vmImage: "Ubuntu 16.04"
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: "Install Node.js"
+      - script: npm install
+        displayName: "Install dependencies"
+      - script: npm test
+        displayName: "Test"
+      - script: ./helpers/update-site.sh
+        displayName: "Deploy"
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+        env:
+          GIT_USER_EMAIL: $(GIT_USER_EMAIL)
+          GIT_USER_NAME: $(GIT_USER_NAME)
+          GIT_PASSWORD: $(GIT_PASSWORD)
+          GIT_SCANNER_USER: $(GIT_SCANNER_USER)
+          GIT_SCANNER_PASSWORD: $(GIT_SCANNER_PASSWORD)
+          BRANCH: variables['Build.SourceBranch']
+      - script: npm run test-staging && node helpers/integration-tests/index.js
+        displayName: "Analyze staging with webhint"
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+      - task: AzureAppServiceManage@0
+        displayName: "Swap into production"
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+        inputs:
+          azureSubscription: "webhint-web"
+          Action: "Swap Slots"
+          WebAppName: "sonarwhal"
+          ResourceGroupName: "webhint-web"
+          SourceSlot: "staging"
+      - bash: |
+          curl https://www.google.com/ping?sitemap=https://webhint.io/sitemap.xml
+          curl https://www.bing.com/ping?sitemap=https://webhint.io/sitemap.xml
+        displayName: "Update sitemaps"
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
-- job: 'Algolia'
-  pool:
-    vmImage: 'Ubuntu 16.04'
-  steps:
-    - script: npm run ci-docsearch-scraper
-  condition: eq(variables['Build.Reason'], 'Schedule')
+  - job: "Algolia"
+    pool:
+      vmImage: "Ubuntu 16.04"
+    steps:
+      - script: npm run ci-docsearch-scraper
+    condition: eq(variables['Build.Reason'], 'Schedule')

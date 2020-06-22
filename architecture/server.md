@@ -18,8 +18,8 @@ does all the required configuration:
 
 ```js
 const configure = (app) => {
-    app.get('/custompath', (req, res) => {
-        res.render('customtemplate');
+    app.get("/custompath", (req, res) => {
+        res.render("customtemplate");
     });
 };
 
@@ -31,8 +31,8 @@ To add a new route, create a new module in that folder and then
 
 ```js
 const configureRoutes = (app) => {
-    require('./routes/scanner.js')(app);
-    require('./routes/search.js')(app);
+    require("./routes/scanner.js")(app);
+    require("./routes/search.js")(app);
 };
 ```
 
@@ -46,9 +46,9 @@ among other static resources.
 
 The content of the live site is updated each time a change is made in the:
 
-* `webhint.io` repository
-* `/docs` directory and/or to the `CHANGELOG.md` file from the `webhint`
-  repository
+-   `webhint.io` repository
+-   `/docs` directory and/or to the `CHANGELOG.md` file from the `webhint`
+    repository
 
 To achieve the latter, `webhint` gets built everytime a build finishes successfully
 in the `hint` repository.
@@ -60,7 +60,7 @@ updated each time there is a deployment.
 
 The deployment process is fully automated:
 
-1. `master` branch build is triggered in [Azure Pipelines][ap] (e.g. by code
+1. `main` branch build is triggered in [Azure Pipelines][ap] (e.g. by code
    or documentation change).
 1. build passes and executes `helpers/update-site.sh`.
    This script will copy the required files for the deployment and push
@@ -76,8 +76,8 @@ IISNode, and `node`.
 
 The way IIS handles the requests is as follows:
 
-* static resources are handled directly by IIS
-* dynamic routes (such as `/search` and `/scanner`) are routed to `node`
+-   static resources are handled directly by IIS
+-   dynamic routes (such as `/search` and `/scanner`) are routed to `node`
 
 This is configured in the `web.config` file in the rules section:
 

@@ -1,9 +1,6 @@
-<%#
-    Global variables:
-      - page: contain the current page that Hexo is processing.
-      - pages: contain all the pages pass as a paremeter from docs.ejs
-%>
-<% const toCItems = utils.getToCItems(pages); %>
+<%# Global variables: - page: contain the current page that Hexo is processing.
+- pages: contain all the pages pass as a paremeter from docs.ejs %> <% const
+toCItems = utils.getToCItems(pages); %>
 <article class="content" aria-labelledby="page-heading">
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
@@ -11,11 +8,16 @@
                 <a href="/">Home</a>
             </li>
             <li>
-                <a href="<%= utils.getTargetPagePath(page, 'docs'); %>">Documentation</a>
+                <a href="<%= utils.getTargetPagePath(page, 'docs'); %>"
+                    >Documentation</a
+                >
             </li>
             <% if (!utils.isGuideIndexPage(page)) { %>
             <li>
-                <a href="<%= utils.getTargetPagePath(page, 'section'); %>" class="guide-category">
+                <a
+                    href="<%= utils.getTargetPagePath(page, 'section'); %>"
+                    class="guide-category"
+                >
                     <%= utils.capitalize(page.section); %>
                 </a>
             </li>
@@ -28,11 +30,18 @@
         <div class="documentation-actions">
             <ul>
                 <li>
-                    <a target="_blank" href="<%= `${theme.webhintRepoRoot}/edit/master/${utils.getEditLink(page.originalFile)}` %>">Edit</a>
-
+                    <a
+                        target="_blank"
+                        href="<%= `${theme.webhintRepoRoot}/edit/main/${utils.getEditLink(page.originalFile)}` %>"
+                        >Edit</a
+                    >
                 </li>
                 <li>
-                    <a target="_blank" href="<%= `${theme.webhintRepoRoot}/issues/new?${utils.getSignalIssueQuery(theme.webhintRoot, page.title, page.permalink)}` %>">Signal Issue</a>
+                    <a
+                        target="_blank"
+                        href="<%= `${theme.webhintRepoRoot}/issues/new?${utils.getSignalIssueQuery(theme.webhintRoot, page.title, page.permalink)}` %>"
+                        >Signal Issue</a
+                    >
                 </li>
             </ul>
         </div>
@@ -42,91 +51,124 @@
             <div class="module module--secondary mobile-view">
                 <ul class="toc-mobile-view">
                     <li>
-                        <p role="button" id="mobile-toc" aria-controls="mobile-toc-submenu" aria-expanded="false" aria-haspopup="true" class="toc-mobile-view__button expandable"><%= utils.capitalize(page.section); %></p>
-                        <ul role="group" class="toc-mobile-view__dropdown" id="mobile-toc-submenu" hidden>
+                        <p
+                            role="button"
+                            id="mobile-toc"
+                            aria-controls="mobile-toc-submenu"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            class="toc-mobile-view__button expandable"
+                        >
+                            <%= utils.capitalize(page.section); %>
+                        </p>
+                        <ul
+                            role="group"
+                            class="toc-mobile-view__dropdown"
+                            id="mobile-toc-submenu"
+                            hidden
+                        >
                             <% if (!utils.isGuideIndexPage(page)) { %>
-                                <li class="dropdown__subitem">
-                                    <a href="../<% if (!utils.isSectionIndexPage(page)) { %>../<% } %>" class="subitem--single">Getting Started</a>
-                                </li>
+                            <li class="dropdown__subitem">
+                                <a
+                                    href="../<% if (!utils.isSectionIndexPage(page)) { %>../<% } %>"
+                                    class="subitem--single"
+                                    >Getting Started</a
+                                >
+                            </li>
                             <% } else { %>
-                                <li class="dropdown__subitem">
-                                    <a href="#" class="subitem--single">Getting Started</a>
-                                </li>
-                            <% } %>
-                            <%# Using subpages as variable name because pages is global %>
-                            <% toCItems.forEach(({title, pages: subpages}) => { %>
-                                <li class="dropdown__subitem">
-                                    <p><%= utils.capitalize(title); %></p>
-                                    <ul>
-                                        <%# Using subpage as variable name because page is global %>
-                                        <% subpages.forEach((subpage) => { %>
-                                            <li class="subitem">
-                                                <a href="<%= utils.sanitize(subpage.permalink); %>"><%= subpage.title %></a>
-                                            </li>
-                                        <% }); %>
-                                    </ul>
-                                </li>
+                            <li class="dropdown__subitem">
+                                <a href="#" class="subitem--single"
+                                    >Getting Started</a
+                                >
+                            </li>
+                            <% } %> <%# Using subpages as variable name because
+                            pages is global %> <% toCItems.forEach(({title,
+                            pages: subpages}) => { %>
+                            <li class="dropdown__subitem">
+                                <p><%= utils.capitalize(title); %></p>
+                                <ul>
+                                    <%# Using subpage as variable name because
+                                    page is global %> <%
+                                    subpages.forEach((subpage) => { %>
+                                    <li class="subitem">
+                                        <a
+                                            href="<%= utils.sanitize(subpage.permalink); %>"
+                                            ><%= subpage.title %></a
+                                        >
+                                    </li>
+                                    <% }); %>
+                                </ul>
+                            </li>
                             <% }); %>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <div class="module module--secondary table-of-contents treeview main-view" role="navigation">
+            <div
+                class="module module--secondary table-of-contents treeview main-view"
+                role="navigation"
+            >
                 <ul role="tree" aria-labelledby="page-heading" tabindex="0">
                     <% toCItems.forEach(({title, pages: subpages}) => { %>
-                        <li role="treeitem" aria-label="subsection" tabindex="0" aria-expanded="<% if (page.tocTitle === title) { %>true<% } else { %>false<% } %>">
-                            <div class="
-                            <% if (utils.isActiveItem(page, title)) { %>
-                                toc-section-title--active
-                            <% } else { %>
-                                toc-section-title
-                            <% } %>">
-                                <span class="text"><%= utils.capitalize(title); %></span>
-                                <span class="icon"></span>
-                            </div>
+                    <li
+                        role="treeitem"
+                        aria-label="subsection"
+                        tabindex="0"
+                        aria-expanded="<% if (page.tocTitle === title) { %>true<% } else { %>false<% } %>"
+                    >
+                        <div
+                            class="<% if (utils.isActiveItem(page, title)) { %> toc-section-title--active <% } else { %> toc-section-title <% } %>"
+                        >
+                            <span class="text"
+                                ><%= utils.capitalize(title); %></span
+                            >
+                            <span class="icon"></span>
+                        </div>
 
-                            <ul role="group">
-                                <% subpages.forEach((subpage) => { %>
-                                    <li role="treeitem" aria-selected="<% if (page.title === subpage.title) { %>true<% } else { %>false<% } %>">
-                                        <div class="
-                                        <% if(page.title === subpage.title) { %>
-                                            toc-subsection-title--active
-                                        <% } else { %>
-                                            toc-subsection-title
-                                        <% } %>"
-                                            aria-current="<% if (page.title === subpage.title) { %>location<% } %>">
-                                            <a class="text" href="<%= utils.sanitize(subpage.permalink) %>" tabindex="<% if(page.tocTitle !== title) { %>-1<% } else { %>0<% } %>">
-                                                <%= subpage.title %>
-                                            </a>
-                                        </div>
-                                    </li>
-                                <% }); %>
-                            </ul>
-                        </li>
+                        <ul role="group">
+                            <% subpages.forEach((subpage) => { %>
+                            <li
+                                role="treeitem"
+                                aria-selected="<% if (page.title === subpage.title) { %>true<% } else { %>false<% } %>"
+                            >
+                                <div
+                                    class="<% if(page.title === subpage.title) { %> toc-subsection-title--active <% } else { %> toc-subsection-title <% } %>"
+                                    aria-current="<% if (page.title === subpage.title) { %>location<% } %>"
+                                >
+                                    <a
+                                        class="text"
+                                        href="<%= utils.sanitize(subpage.permalink) %>"
+                                        tabindex="<% if(page.tocTitle !== title) { %>-1<% } else { %>0<% } %>"
+                                    >
+                                        <%= subpage.title %>
+                                    </a>
+                                </div>
+                            </li>
+                            <% }); %>
+                        </ul>
+                    </li>
                     <% }); %>
                 </ul>
             </div>
             <div class="module module--primary wrap-text">
-                <%#
-                    Here is where the document content is injected in Hexo.
-                    There is three options right now:
-                       - The real content of the md file. (utils.showMdContent(page))
-                       - Categories index. (page.contentType === 'hints-index')
-                       - Hints index for a category. (page.contentType === 'hints-category')
-                %>
-                <% if (utils.showMdContent(page)) { %>
-                    <%- page.content %>
-                <% } else if (page.contentType === 'hints-index') { %>
-                    <%- include('hints-index', { categories: site.data.categories.categories, utils }); %>
-                <% } else if (page.contentType === 'hints-category') { %>
-                    <% site.data.categories.categories.forEach((category) => { %>
-                        <% if (category.name === page.title) { %>
-                            <%- include('hints-category', { category }); %>
-                        <% } %>
-                    <% }); %>
-                <% } %>
+                <%# Here is where the document content is injected in Hexo.
+                There is three options right now: - The real content of the md
+                file. (utils.showMdContent(page)) - Categories index.
+                (page.contentType === 'hints-index') - Hints index for a
+                category. (page.contentType === 'hints-category') %> <% if
+                (utils.showMdContent(page)) { %> <%- page.content %> <% } else
+                if (page.contentType === 'hints-index') { %> <%-
+                include('hints-index', { categories:
+                site.data.categories.categories, utils }); %> <% } else if
+                (page.contentType === 'hints-category') { %> <%
+                site.data.categories.categories.forEach((category) => { %> <% if
+                (category.name === page.title) { %> <%-
+                include('hints-category', { category }); %> <% } %> <% }); %> <%
+                } %>
             </div>
         </div>
-        <a href="#main" class="anchor-top" hidden aria-label="back to top">top</a>
+        <a href="#main" class="anchor-top" hidden aria-label="back to top"
+            >top</a
+        >
     </div>
 </article>
