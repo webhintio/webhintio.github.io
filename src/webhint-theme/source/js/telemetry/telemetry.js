@@ -49,10 +49,12 @@
     const track = async (type, data) => {
         telemetryQueue.push(
             {
-                name: data.name,
-                properties: Object.assign(Object.assign({}, options.defaultProperties), data.properties),
-                ver: 2,
-                type: `${type}Data`
+                data: {
+                    name: data.name,
+                    properties: Object.assign(Object.assign({}, options.defaultProperties), data.properties)
+                },
+                type: `${type}Data`,
+                time: new Date().toISOString()
             }
         );
         if (!options.batchDelay) {
