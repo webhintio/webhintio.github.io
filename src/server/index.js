@@ -78,17 +78,15 @@ const configureRoutes = (app) => {
 };
 
 const trackUrlTelemetry = (req, res, next) => {
-    var props = {
-        url: req.url
-    };
+    const props = { url: req.url };
 
-    if(req.query['source'] !== undefined) {
-        props.source = req.query['source'];
+    if (req.query.source !== void 0) {
+        props.source = req.query.source;
     }
 
     telemetry.trackEvent('online-activity-url', props);
     next();
-}
+};
 
 const configureFallbacks = (app) => {
     app.use(trackUrlTelemetry);
