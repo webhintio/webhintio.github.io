@@ -5,6 +5,7 @@ const express = require('express');
 const yaml = require('js-yaml');
 const appInsights = require('applicationinsights');
 const production = process.env.NODE_ENV === 'production'; // eslint-disable-line no-process-env
+const telemetry = require('@hint/utils-telemetry');
 const theme = production ? 'webhint-theme-optimized' : 'webhint-theme';
 
 const hexoDir = path.join(__dirname, '..');
@@ -76,7 +77,20 @@ const configureRoutes = (app) => {
     require('./routes/changelog.js')(app);
 };
 
+const trackUrlTelemetry = (req, res, next) => {
+    const props = { url: req.url };
+
+    if (req.query.source !== void 0) {
+        props.source = req.query.source;
+    }
+
+    telemetry.trackEvent('online-activity-url', props);
+    next();
+};
+
 const configureFallbacks = (app) => {
+    app.use(trackUrlTelemetry);
+
     app.use('/', express.static(path.join(rootPath, 'dist')));
 
     if (!production) {
