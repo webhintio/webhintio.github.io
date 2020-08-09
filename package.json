@@ -52,7 +52,7 @@
     "hexo-generator-sitemap": "^2.0.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-renderer-handlebars": "^2.0.2",
-    "hexo-server": "^1.0.0",
+    "hexo-server": "^2.0.0",
     "hexo-util": "^2.0.0",
     "json2yaml": "^1.1.0",
     "markdownlint-cli": "^0.23.0",
