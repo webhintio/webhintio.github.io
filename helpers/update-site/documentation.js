@@ -524,16 +524,21 @@ const getFilesInfo = (files) => {
 };
 
 /** Updates the markdown links to other parts of the documentation, i.e.: start with "./" */
-const updateMarkdownlinks = (content, filePath) => {
+const updateMarkdownlinks = (file) => {
+    const content = file.content;
+    const filePath = file.orig || file.dest;
     /**
      * This regex should match the following examples:
      * * [link label]: ./somewhere.md → \s
      * * [link label]:./somewhere.md → :
      * * [link](./somewhere.md)  → \(
+     * * [link](https://github.com/webhintio/hint/blob/HEAD/path-to-file/file.md)
+     * * [link]: https://github.com/webhintio/hint/blob/HEAD/path-to-file/file.md
+     * * [link]:https://github.com/webhintio/hint/blob/HEAD/path-to-file/file.md
      *
      * The \.? allow us to also match "../"
      */
-    const mdLinkRegex = /(\s|:|\()\.?\.\/(\S*?)\.md/gi;
+    const mdLinkRegex = /(]:\s*|]\()(\.?\.\/|https:\/\/github.com\/webhintio\/hint\/blob\/HEAD\/(packages\/)?)(\S*?)\.md/gi;
     const isIndex = filePath.toLowerCase().endsWith('index.md');
     let transformed = content;
     let val;
@@ -564,6 +569,17 @@ const updateMarkdownlinks = (content, filePath) => {
             val[0].replace(/(index|readme)\.md/i, '') :
             val[0].replace('.md', '/');
 
+        /*
+         * An github url is found for a md file.
+         * In this case we need to replace it with the a valid
+         * url in the website.
+         */
+        if (val[2].startsWith('https')) {
+            replacement =
+                `${val[1]}/docs/${file.frontMatter.section}${file.frontMatter.tocTitle ? `/${file.frontMatter.tocTitle.replace(' ', '-')}` : ''}/${val[4].replace('/docs/', '/')}/`;
+
+            transformed = transformed.replace(val[0], replacement);
+        }
         /**
          * If val[0] contains './docs/ then, it is part of a multi-hint hint, so
          * we need to ignore it.
@@ -571,7 +587,7 @@ const updateMarkdownlinks = (content, filePath) => {
          */
         if (!val[0].includes('./docs/')) {
             /**
-             * `val[1] is the first capturing group. It could be "\s", ":", or "("
+             * `val[1] is the first capturing group. It could be "]:\s", "]:", or "]("
              * and it's part of the matched value so we need to add it at the beginning as well. E.g.:
              *
              * * `[events](./events.md)` will match `(./events.md` that needs to be transformed into `(../events/`.
@@ -595,7 +611,7 @@ const updateLinks = (files) => {
             return;
         }
 
-        file.content = updateMarkdownlinks(file.content, file.orig || file.dest);
+        file.content = updateMarkdownlinks(file);
     });
 };
 
