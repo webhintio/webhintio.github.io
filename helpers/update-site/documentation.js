@@ -545,6 +545,35 @@ const updateMarkdownlinks = (file) => {
 
     while ((val = mdLinkRegex.exec(content)) !== null) {
         /**
+         * Values:
+         *
+         * val[0]: Full string matched. E.g:
+         * * - `](./getting-started/architecture.md`
+         * * - `]: ../../user-guide/index.md`
+         * * - `](https://github.com/webhintio/hint/blob/HEAD/packages/hint/docs/user-guide/troubleshoot/summary.md`
+         *
+         * val[1]: First group matched (]:\s*|]\(). E.g:
+         * * - `](`
+         * * - `]: `
+         * * - `](`
+         *
+         * val[2]: Second group matched
+         *   (\.?\.\/|https:\/\/github.com\/webhintio\/hint\/blob\/HEAD\/(packages\/)?)
+         * E.g:
+         * * - `./`
+         * * - `../`
+         * * - `https://github.com/webhintio/hint/blob/HEAD/packages/`
+         *
+         * val[3]: Third group matched (packages\/). E.g:
+         * * - `undefined`
+         * * - `undefined`
+         * * - `packages/`
+         *
+         * val[4]: fourth group matched (\S*?). E.g:
+         * * - getting-started/architecture
+         * * - ../user-guide/index
+         * * - hint/docs/user-guide/troubleshoot/summary
+         *
          * Pages in the live site are `index.html` inside a folder with the name of the original page. E.g.:
          *
          * * `/user-guide/concepts/connectors.md` → `/user-guide/concepts/connectors/
@@ -574,11 +603,17 @@ const updateMarkdownlinks = (file) => {
          * In this case we need to replace it with the a valid
          * url in the website.
          */
-        if (val[2].startsWith('https')) {
-            replacement =
-                `${val[1]}/docs/${file.frontMatter.section}${file.frontMatter.tocTitle ? `/${file.frontMatter.tocTitle.replace(' ', '-')}` : ''}/${val[4].replace('/docs/', '/')}/`;
-
-            transformed = transformed.replace(val[0], replacement);
+        if (val[2].startsWith('https://github.com/')) {
+            /*
+             * Documentation in the package hint has to be parsed in a diferent way
+             * because it already has the folder structure in place.
+             */
+            if (val[4].startsWith('hint/docs/user-guide')) {
+                replacement = `${val[1]}${val[4].substr(4)}`;
+            } else {
+                replacement =
+                    `${val[1]}/docs/${file.frontMatter.section}${file.frontMatter.tocTitle ? `/${file.frontMatter.tocTitle.replace(' ', '-')}` : ''}/${val[4].replace('/docs/', '/')}/`;
+            }
         }
         /**
          * If val[0] contains './docs/ then, it is part of a multi-hint hint, so
