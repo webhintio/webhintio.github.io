@@ -15,7 +15,12 @@ const isSectionIndexPage = (page) => {
 };
 
 const isGoodToToC = (page) => {
-    return !isGuideIndexPage(page) && page.tocTitle && page.contentType !== 'hints-category' && page.contentType !== 'hints-index' && page.isMultiHints !== 'true';
+    return !isGuideIndexPage(page) &&
+        page.tocTitle &&
+        page.contentType !== 'hints-category' &&
+        page.contentType !== 'hints-index' &&
+        page.isMultiHints !== 'true' &&
+        page.title !== 'webhint';
 };
 
 /**
