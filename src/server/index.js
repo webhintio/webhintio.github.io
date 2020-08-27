@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const https = require('https');
 const path = require('path');
 const express = require('express');
 const yaml = require('js-yaml');
@@ -105,6 +106,24 @@ const listen = (app) => {
         console.log(`Server listening on port ${port}.`);
     });
 };
+
+telemetry.initTelemetry({
+    enabled: true,
+    post: (url, data) => {
+        return new Promise((resolve, reject) => {
+            const request = https.request(url, { method: 'POST' }, (response) => {
+                resolve(response.statusCode);
+            });
+
+            request.on('error', (err) => {
+                reject(err);
+            });
+
+            request.write(data);
+            request.end();
+        });
+    }
+});
 
 const server = createServer();
 
