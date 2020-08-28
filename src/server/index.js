@@ -1,12 +1,10 @@
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const https = require('https');
 const path = require('path');
 const express = require('express');
 const yaml = require('js-yaml');
 const appInsights = require('applicationinsights');
 const production = process.env.NODE_ENV === 'production'; // eslint-disable-line no-process-env
-const telemetry = require('@hint/utils-telemetry');
 const theme = production ? 'webhint-theme-optimized' : 'webhint-theme';
 
 const hexoDir = path.join(__dirname, '..');
@@ -85,7 +83,11 @@ const trackUrlTelemetry = (req, res, next) => {
         props.source = req.query.source;
     }
 
-    telemetry.trackEvent('online-activity-url', props);
+    appInsightsClient.trackEvent({
+        name: 'online-activity-url',
+        properties: props
+    });
+
     next();
 };
 
@@ -106,29 +108,6 @@ const listen = (app) => {
         console.log(`Server listening on port ${port}.`);
     });
 };
-
-telemetry.initTelemetry({
-    enabled: true,
-    post: (url, data) => {
-        return new Promise((resolve, reject) => {
-            const request = https.request(url, { method: 'POST' }, (response) => {
-                resolve(response.statusCode);
-            });
-
-            request.on('error', (err) => {
-                reject(err);
-            });
-
-            /*
-             * Don't use request.write or request will be sent chunked.
-             * Chunked requests break in node-based v2 Azure Functions,
-             * which are used to run the webhint telemetry service.
-             * https://github.com/Azure/azure-functions-host/issues/4926
-             */
-            request.end(data);
-        });
-    }
-});
 
 const server = createServer();
 
