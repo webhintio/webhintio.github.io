@@ -76,24 +76,7 @@ const configureRoutes = (app) => {
     require('./routes/changelog.js')(app);
 };
 
-const trackUrlTelemetry = (req, res, next) => {
-    const props = { url: req.url };
-
-    if (req.query.source !== void 0) {
-        props.source = req.query.source;
-    }
-
-    appInsightsClient.trackEvent({
-        name: 'online-activity-url',
-        properties: props
-    });
-
-    next();
-};
-
 const configureFallbacks = (app) => {
-    app.use(trackUrlTelemetry);
-
     app.use('/', express.static(path.join(rootPath, 'dist')));
 
     if (!production) {
