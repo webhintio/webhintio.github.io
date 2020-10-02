@@ -1,4 +1,4 @@
-# webhint's website
+# webhint's website - best for khnowledge purpose
 
 <!-- markdownlint-disable -->
 
