@@ -17,7 +17,7 @@ const dirs = {
     tmp: 'themes/webhint',
     tmpContent: 'src/content-replaced',
     tmpImages: `themes/webhint/**/*.{${imageExtensions}}`,
-    tmpScanImages: `thems/webhint/source/images/scan/*.*`
+    tmpScanImages: `themes/webhint/source/images/scan/*.*`
 };
 
 // ---------------------------------------------------------------------
