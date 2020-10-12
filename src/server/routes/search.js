@@ -3,7 +3,7 @@ const _ = require('lodash');
 const xssFilters = require('xss-filters');
 
 const configure = (app) => {
-    const config = app.locals.theme;
+    const config = app.locals.webhintTheme;
     const client = algoliasearch(config.appId, config.apiKey);
     const index = client.initIndex('webhint');
     const hitsPerPage = 20;
