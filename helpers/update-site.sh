@@ -10,7 +10,6 @@ prepare_site_dist_dir() {
     # Remove unnecesary files for the server
     declare -r unnecessaries=(
             src/content-replaced
-            src/webhint-theme
         )
 
     for unnecessary in "${unnecessaries[@]}"; do
