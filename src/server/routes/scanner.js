@@ -13,7 +13,7 @@ const webhintUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://loc
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
 const underConstruction = process.env.UNDER_CONSTRUCTION; // eslint-disable-line no-process-env
 const production = process.env.NODE_ENV === 'production'; // eslint-disable-line no-process-env
-const theme = production ? 'webhint-theme-optimized' : 'webhint-theme';
+const theme = production ? '../themes/webhint' : 'webhint-theme';
 const hexoDir = path.join(__dirname, '..', '..');
 const rootPath = path.join(__dirname, '..', '..', '..');
 

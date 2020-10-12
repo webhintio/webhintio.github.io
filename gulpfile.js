@@ -14,10 +14,10 @@ const dirs = {
     hint: 'node_modules/@hint',
     originalContent: `src/content`,
     src: 'src/webhint-theme',
-    tmp: 'src/webhint-theme-optimized',
+    tmp: 'themes/webhint',
     tmpContent: 'src/content-replaced',
-    tmpImages: `src/webhint-theme-optimized/**/*.{${imageExtensions}}`,
-    tmpScanImages: `src/webhint-theme-optimized/source/images/scan/*.*`
+    tmpImages: `themes/webhint/**/*.{${imageExtensions}}`,
+    tmpScanImages: `themes/webhint/source/images/scan/*.*`
 };
 
 // ---------------------------------------------------------------------

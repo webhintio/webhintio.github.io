@@ -13,13 +13,13 @@ src/content/_data/changelog.json
 src/content/about/
 src/content/docs/contributor-guide/
 src/content/docs/user-guide/
-src/webhint-theme-optimized/
 src/webhint-theme/formatter
 src/webhint-theme/layout/partials/scan
 src/webhint-theme/source/core/css/scan
 src/webhint-theme/source/images/scan
 src/webhint-theme/source/js/partials
 src/webhint-theme/source/js/scan
+themes/webhint/
 Thumbs.db
 
 # Files copied in during postinstall

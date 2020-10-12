@@ -1,0 +1,6 @@
+webhintRepoRoot: https://github.com/webhintio/hint
+webhintRoot: https://webhint.io
+
+# Algolia
+appId: 0R8E5SPAFP
+apiKey: 2ee58f908e6d720c4f72a9645ce0e857
