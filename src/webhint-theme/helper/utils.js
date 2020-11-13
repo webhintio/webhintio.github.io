@@ -153,7 +153,7 @@ module.exports = {
     },
     showMdContent: (page) => {
         // If the markdown Content should be used.
-        const guideIndexes = ['contributor guide', 'user guide'];
+        const guideIndexes = ['contributor guide', 'get started using webhint'];
 
         return page.contentType === 'details' || guideIndexes.includes(page.title.toLowerCase()) || page.contentType === 'resource-index';
     }
