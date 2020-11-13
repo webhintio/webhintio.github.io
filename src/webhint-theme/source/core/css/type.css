@@ -192,7 +192,8 @@ blockquote {
 
 details,
 p,
-li {
+li,
+table {
     max-width: 64rem;
 }
 

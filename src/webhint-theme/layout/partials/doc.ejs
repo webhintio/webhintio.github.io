@@ -151,20 +151,24 @@ toCItems = utils.getToCItems(pages); %>
                 </ul>
             </div>
             <div class="module module--primary wrap-text">
-                <%# Here is where the document content is injected in Hexo.
-                There is three options right now: - The real content of the md
-                file. (utils.showMdContent(page)) - Categories index.
-                (page.contentType === 'hints-index') - Hints index for a
-                category. (page.contentType === 'hints-category') %> <% if
-                (utils.showMdContent(page)) { %> <%- page.content %> <% } else
-                if (page.contentType === 'hints-index') { %> <%-
-                include('hints-index', { categories:
-                site.data.categories.categories, utils }); %> <% } else if
-                (page.contentType === 'hints-category') { %> <%
-                site.data.categories.categories.forEach((category) => { %> <% if
-                (category.name === page.title) { %> <%-
-                include('hints-category', { category }); %> <% } %> <% }); %> <%
-                } %>
+                <%#
+                    Here is where the document content is injected in Hexo.
+                    There is three options right now:
+                        - The real content of the md file. (utils.showMdContent(page))
+                        - Categories index. (page.contentType === 'hints-index')
+                        - Hints index for a category. (page.contentType === 'hints-category')
+                %>
+                <% if (utils.showMdContent(page)) { %>
+                    <%- page.content %>
+                <% } else if (page.contentType === 'hints-index') { %>
+                    <%- include('hints-index', { categories: site.data.categories.categories, utils }); %>
+                <% } else if (page.contentType === 'hints-category') { %>
+                    <% site.data.categories.categories.forEach((category) => { %>
+                        <% if (category.name === page.title) { %>
+                            <%- include('hints-category', { category }); %>\
+                        <% } %>
+                    <% }); %>
+                <% } %>
             </div>
         </div>
         <a href="#main" class="anchor-top" hidden aria-label="back to top"
