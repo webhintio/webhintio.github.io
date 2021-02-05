@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "@hint/formatter-html": "^4.3.0",
-    "@hint/utils": "^7.0.7",
-    "@hint/utils-i18n": "^1.0.6",
+    "@hint/formatter-html": "^4.3.1",
+    "@hint/utils": "^7.0.8",
+    "@hint/utils-i18n": "^1.0.7",
     "algoliasearch": "^4.0.0",
     "applicationinsights": "^1.6.0",
     "body-parser": "^1.19.0",
@@ -10,7 +10,7 @@
     "express": "^4.17.1",
     "globby": "^11.0.0",
     "highlight.js": "^10.0.0",
-    "hint": "^6.1.1",
+    "hint": "^6.1.2",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@hint/artwork": "^2.2.1",
-    "@hint/configuration-all": "^2.0.9",
+    "@hint/configuration-all": "^2.0.10",
     "cross-env": "^7.0.0",
     "eslint": "^7.0.0",
     "gulp": "^4.0.2",
