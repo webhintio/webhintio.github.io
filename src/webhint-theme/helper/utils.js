@@ -1,7 +1,5 @@
 const pagination = require('./pagination');
 
-const url = require('url');
-
 const isIndexPage = (page) => {
     return page.source.endsWith('index.md');
 };
