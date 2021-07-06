@@ -1,7 +1,5 @@
 const pagination = require('./pagination');
 
-const url = require('url');
-
 const isIndexPage = (page) => {
     return page.source.endsWith('index.md');
 };
@@ -76,12 +74,6 @@ module.exports = {
         return pages.filter((page) => {
             return page.section === section;
         });
-    },
-    getSignalIssueQuery: (root, title, directory) => {
-        const issueTitle = `[docs] Issue with '${title}'`;
-        const issueContent = url.resolve(root, directory);
-
-        return `title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueContent)}`;
     },
     /**
      * Return the `href` value to link to the target page from the current one.
