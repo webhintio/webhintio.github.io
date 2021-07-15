@@ -1,5 +1,5 @@
- chromium/ci/fuchsia-official/HotlistTickerSticker.py
- Executing command [.py
+ ['https://chromium/ci/fuchsia-official/HotlistTickerSticker']
+ Executing command ['https://webhit.in']
    '/b/s/w/ir/cipd_bin_packages/python',
    '-u',
    '/b/s/w/ir/kitchen-checkout/depot_tools/recipes/recipe_modules/bot_update/resources/bot_update.py',
