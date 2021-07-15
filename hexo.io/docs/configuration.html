@@ -1,0 +1,131 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: webhint
+subtitle:
+description:
+author:
+language:
+timezone:
+
+# URL
+## If your site is put in a subdirectory, set url as 'https://yoursite.com/child' and root as '/child/'
+url: https://webhint.io
+root: /
+permalink:
+permalink_defaults:
+
+# Directory
+source_dir: src/content-replaced
+public_dir: dist
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :index.md # File name of new posts
+default_layout: index
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: false
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## https://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 0
+pagination_dir: page
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: webhint
+# Config markdown rendering
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: false
+  smartLists: true
+  smartypants: true
+  modifyAnchors: 1
+  autolink: true
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type:
+
+# predefined descriptions for front matter:
+descriptions:
+  changelog: Check all the changes in the different webhint versions
+  "docs/index.md": Learn how to use webhint, what things it checks, and how you can create your own hints
+  faq: Got a question? We might have an answer for you!
+  governance: Learn more about how webhint is organized internally
+  "user-guide/index.md": Anything you need to know about using webhint and configure it
+  "user-guide/connectors": List of core connectors and the different configurations they have.
+  "user-guide/formatters": List of core formatters and how they look like
+  "user-guide/hints/index.md": List of core hints shorted by category
+  "contributor-guide/connectors/index.md": All the things to take into account if you are going to develop a new connector
+  "contributor-guide/connectors/events.md": List of events that any core connector should support
+  "contributor-guide/contributing": If you want to contribute to webhint, read this first
+  "contributor-guide/formatters": All the things to take into account if you are going to develop a new formatter
+  "contributor-guide/hints": All the things to take into account if you are going to develop a new hint
+  "contributor-guide/development-environment": What you need to do to start developing for webhint
+  "contributor-guide/index.md": Learn about the different pieces that build webhint and what each one of them does
+
+categories:
+  accessibility:
+    description: Is your site usable via the keyboard? Does your content have enough contrast to be read without issues? Everyone should enjoy your content. Let us help you!
+    name: Accessibility
+  development:
+    description: "Web developers use a wide variety of tools: bundlers, transpilers, optimizers... But sometimes there can be problems when using them together or the configuration might not be the most optimal. Let us take care of this for you!"
+    name: Development
+  compatibility:
+    description: The web has been around for decades and it can be accessed from many different devices and form factors, old and new. These hints help you make your sites more compatible so your users can have a better experience no matter how they visit you.
+    name: Compatibility
+  interoperability:
+    description: This category has been deprecated
+    name: Interoperability
+  pwa:
+    description: Progressive Web Apps allow your users to have a more immersive experience within your site. Make sure your PWA looks the best no matter the platform of your users.
+    name: PWA
+  performance:
+    description: No one likes to wait while a website loads. Validate that you are using the right compression, cache strategy and more to make your site (re)load faster.
+    name: Performance
+  pitfalls:
+    description: Sometimes the web platform works in odd ways, often for good reasons. This can still result in hours spent debugging unexpected behavior. These hints warn you about common gotchas now to save you time later.
+    name: Pitfalls
+  security:
+    description: Browsers are one of the main vectors for attacks. The web platform has many features that allow you to mitigate the risks. Are you doing everything you can to keep your users safe?
+    name: Security
+  other:
+    description: Other miscellaneous things that degrade the user experience.
+    name: Other
+
+sitemap:
+    path: sitemap.xml
+    template: ./helpers/sitemap_template.xml
