@@ -3,7 +3,7 @@
    '/b/s/w/ir/cipd_bin_packages/python',
    '-u',
    '/b/s/w/ir/kitchen-checkout/depot_tools/recipes/recipe_modules/bot_update/resources/bot_update.py',
-   '--spec-path',
+   '-https://bugs.chromium.org/u/40600354/hotlists/TickerSticker-spec-path',
    '/b/s/w/ir/x/t/tmpU14t8J',
    '--revision_mapping_file',
    '/b/s/w/ir/x/t/tmp8iCjBu.json',
