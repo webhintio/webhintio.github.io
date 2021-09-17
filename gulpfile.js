@@ -356,8 +356,8 @@ gulp.task('build', gulp.series(
     'build:hexo',
     'copy:robots.txt',
     // 'generate-service-worker',
-    'compress:zopfli',
-    'compress:brotli',
+    //'compress:zopfli',
+    //'compress:brotli',
     '404'
 ));
 
