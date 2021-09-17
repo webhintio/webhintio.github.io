@@ -7,33 +7,12 @@
 <!-- endbuild -->
 <script>
     (function () {
-        var minPreviewWidth;
-
         var search = docsearch({
             apiKey: '<%= theme.apiKey %>', // search-only API key, okay for frontend
             indexName: 'webhint',
             inputSelector: '#search-input',
             appId: '<%= theme.appId %>',
-            debug: false, // set to true if need to debug css
-            handleSelected: function (input, event, suggestion) {
-                // override the default `handleSelected` function
-                if (window.innerWidth < minPreviewWidth) {
-                    event.target.closest('form').submit();
-                } else {
-                    window.location.href = suggestion.url;
-                }
-            }
-        });
-
-        var preview = document.querySelector('.algolia-autocomplete .ds-dropdown-menu');
-
-        minPreviewWidth = parseInt(window.getComputedStyle(preview)['minWidth']);
-
-        search.autocomplete.on('autocomplete:opened', function () {
-            if (document.body.clientWidth < minPreviewWidth) {
-                // hide the preview
-                search.autocomplete.autocomplete.close();
-            }
+            debug: false // set to true if need to debug css
         });
     }());
 </script>
