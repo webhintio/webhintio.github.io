@@ -9,8 +9,8 @@ const Hexo = require('hexo');
 
 const imageExtensions = 'gif,ico,jpg,png,svg';
 const dirs = {
-    dist: 'dist',
-    distCompreseable: 'dist/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}',
+    dist: 'docs',
+    distCompreseable: 'docs/**/*.{css,html,ico,js,svg,txt,xml,webmanifest}',
     hint: 'node_modules/@hint',
     originalContent: `src/content`,
     src: 'src/webhint-theme',
