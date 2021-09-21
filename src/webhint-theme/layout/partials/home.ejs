@@ -4,7 +4,7 @@
             <div class="layout layout--basic--offset--alt vertical-align">
                 <div class="module module--primary">
                     <h1>Use webhint to improve your website</h1>
-                    <p class="container--section__welcome subtitle">webhint is a customizable linting tool that helps you improve your site's accessibility, speed, cross-browser compatibility, and more by checking your code for best practices and common errors.</p>
+                    <p class="container--section__welcome subtitle">webhint helps you improve your site's accessibility, speed, cross-browser compatibility, and more by checking your code for best practices and common errors.</p>
                 </div>
                 <div class="module module--secondary">
                     <img class="hero-image "src="/images/underwater-flipped.svg" alt="" role="presentation" />
@@ -18,18 +18,17 @@
                     <div class="module feature">
                         <img src="/images/webhint_puzzle.svg" alt="" role="presentation" />
                         <h3 class="subtitle subtitle--home">Develop</h3>
-                        <p class="feature__highlight">Use the <a href="https://marketplace.visualstudio.com/items?itemName=webhint.vscode-webhint">VS Code extension</a> to get real-time feedback in your IDE when writing code.</p>
+                        <p class="feature__highlight">Use the <a href="/docs/user-guide/extensions/vscode-webhint/">VS Code extension</a> to get real-time feedback in your IDE when writing code.</p>
                     </div>
                     <div class="module feature">
                         <img src="/images/webhint_firefox.svg" alt="" role="presentation" />
                         <h3 class="subtitle subtitle--home">Debug</h3>
-                        <p class="feature__highlight">The <a href="https://webhint.io/docs/user-guide/extensions/extension-browser/">browser extension</a> lets you scan a site from within your browser's DevTools.</p>
-
+                        <p class="feature__highlight">Test your site from the browser with the <a href="/docs/user-guide/extensions/extension-browser/">DevTools extension</a>. Using Edge? webhint now ships with Edge DevTools!</p>
                     </div>
                     <div class="module feature">
                         <img src="/images/developer-nellie.svg" alt="" role="presentation" />
                         <h3 class="subtitle subtitle--home">Deliver</h3>
-                        <p class="feature__highlight">Use the <a href="https://webhint.io/docs/user-guide/">webhint CLI</a> in your CI/CD pipeline to analyze your site before it goes into production.</p>
+                        <p class="feature__highlight">Use the <a href="/docs/user-guide/">webhint CLI</a> in your CI/CD pipeline to analyze your site before it goes into production.</p>
                     </div>
                 </div>
             </section>
@@ -38,16 +37,9 @@
             <div class="layout layout--basic--offset--alt">
                 <div class="module module--primary">
                     <h1 class="headline">Try it</h1>
-                    <p class="container--section__welcome">Use the online scanner for a pre-configured set of rule checks to see what the tool is capable of and how your website is doing.</p>
-                    <div class="home-container--input">
-                        <form action="/scanner/" method="POST">
-                            <label for="home-scan" class="visually-hidden">Type your URL here</label>
-                            <div class="input-fix">
-                                <input id="home-scan" type="url" name="url" placeholder="Type your URL here">
-                                <button type="submit" class="button--red" type="submit">Run Scan</button>
-                            </div>
-                        </form>
-                    </div>
+                    <div class="code-feature">$ npx hint https://webhint.io</div>
+                    <p class="container--section__welcome">Run this line from your favorite command-line tool to give webhint a spin. Learn more in our <a href="/docs/user-guide/">getting started</a> guide.</p>
+                    
                 </div>
                 <div class="module module--secondary">
                     <img class="scan-image" src="/images/nellie-searching.svg" alt="" role="presentation">
@@ -64,11 +56,11 @@
                     <div class="module">
                         <div class="feature__container">
                             <h3 class="subtitle subtitle--home">Customize</h3>
-                            <p class="feature__highlight">Every site is different. webhint adapts its feedback when you give it more information: <a href="https://webhint.io/docs/user-guide/configuring-webhint/ignoring-domains/">ignore 3rd-party code</a>, <a href="https://webhint.io/docs/user-guide/configuring-webhint/browser-context/">prioritize your users' browsers</a>, and control the results with minimal setup.</p>
+                            <p class="feature__highlight">Every site is different. webhint adapts its feedback when you give it more information: <a href="/docs/user-guide/configuring-webhint/ignoring-domains/">ignore 3rd-party code</a>, <a href="/docs/user-guide/configuring-webhint/browser-context/">prioritize your users' browsers</a>, and control the results with minimal setup.</p>
                         </div>
                         <div class="feature__container">
                             <h3 class="subtitle subtitle--home">Create</h3>
-                            <p class="feature__highlight">With the help of our <a href="https://webhint.io/docs/contributor-guide/">contributor guide</a>, you can <a href="https://webhint.io/docs/contributor-guide/how-to/hint/">create new hints</a> to suit your needs.</p>
+                            <p class="feature__highlight">With the help of our <a href="/docs/contributor-guide/">contributor guide</a>, you can <a href="/docs/contributor-guide/how-to/hint/">create new hints</a> to suit your needs.</p>
                         </div>
                         <div class="feature__container">
                             <h3 class="subtitle subtitle--home">Contribute</h3>
