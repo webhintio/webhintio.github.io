@@ -1,24 +1,19 @@
-- title: Try
-  id: scanner
-  link: /scanner/
-
-- title: Install
+- title: Get webhint
   id: install
   link: /docs/user-guide/
   items:
-  - id: vs-code
-    link: /docs/user-guide/extensions/vscode-webhint/
-    title: VS Code extension
   - id: browser
     link: /docs/user-guide/extensions/extension-browser/
-    title: Browser extension
+    title: In browser DevTools
+  - id: vs-code
+    link: /docs/user-guide/extensions/vscode-webhint/
+    title: In VS Code
   - id: cli
     link: /docs/user-guide/
-    title: CLI
+    title: Standalone CLI
 
 - title: Documentation
   id: docs
-  link: /docs/
   items:
   - id: contributor-guide
     link: /docs/contributor-guide/
