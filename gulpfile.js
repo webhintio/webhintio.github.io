@@ -356,6 +356,7 @@ gulp.task('build', gulp.series(
     'build:hexo',
     'copy:robots.txt',
     // 'generate-service-worker',
+    // TODO: Re-enable pre-compression once supported by GitHub Pages
     //'compress:zopfli',
     //'compress:brotli',
     '404'
