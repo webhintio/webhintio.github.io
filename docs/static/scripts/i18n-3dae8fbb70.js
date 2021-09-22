@@ -1,0 +1,1 @@
+window.getMessage=function(r,n){var e=window.localeStrings&&window.localeStrings[r];return e?function(r,n){if(void 0===n)return r;var e=Array.isArray(n)?n:[n];return r.replace(/(\$(\d+))|(\${2,})/g,(function(r,n,t,i){return void 0!==t?e[parseInt(t,10)-1]:void 0!==i?"".padStart(i.length-1,"$"):r}))}(e.message,n):r};
