@@ -48,7 +48,7 @@ context.evaluate(script);</pre></td></tr></table></figure><figure class="highlig
 
 context.evaluate(script);</pre></td></tr></table></figure><h2 id=ignore-connectors>Ignore connectors<a href="#ignore-connectors" class="headerlink" title="Ignore connectors"></a></h2><p>If your hint does not work properly with certain connectors you can
 use the property <code>ignoreConnectors</code> so it is not run when they are used.</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHint</span> <span class="hljs-keyword">implements</span> IHint &#123;
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123;
         <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;my-hint&#x27;</span>,
         <span class="hljs-attr">ignoredConnectors</span>: [<span class="hljs-string">&#x27;jsdom&#x27;</span>]
@@ -64,7 +64,7 @@ results the guidance is to start the analysis as soon as possible
 and then collect the results as late as possible. This means you
 will have to listen to <code>scan::start</code> and <code>scan::end</code> events respectively.
 The <code>create</code> method of your hint should be similar to the following:</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHint</span> <span class="hljs-keyword">implements</span> IHint &#123;
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123; <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;my-hint&#x27;</span> &#125;
 
     <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext</span>) &#123;
@@ -102,7 +102,7 @@ and not a file, the value will be <code>Internal javascript</code>.</li>
 <p>Here is an example hint that use the parser:</p>
 <figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> eslint <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;eslint&#x27;</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScriptSemiColonHint</span> <span class="hljs-keyword">implements</span> IHint &#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScriptSemiColonHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123;
         <span class="hljs-attr">docs</span>: &#123;
             <span class="hljs-attr">category</span>: <span class="hljs-title class_">Category</span>.<span class="hljs-property">compatibility</span>,

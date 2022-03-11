@@ -6,9 +6,9 @@ receives an array of <code>message</code>s if any issues have been found.</p>
 <p>The following is a basic <code>formatter</code> that <code>.stringify()</code>s the results:</p>
 <!-- eslint-disable require-await -->
 
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JSONFormatter</span> implements IFormatter &#123;
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JSONFormatter</span> implements <span class="hljs-title class_">IFormatter</span> &#123;
     public <span class="hljs-keyword">async</span> <span class="hljs-title function_">format</span>(<span class="hljs-params">messages: Problem[], options: FormatterOptions = &#123;&#125;</span>) &#123;
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable constant_">JSON</span>.<span class="hljs-title function_">stringify</span>(messages, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>));
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(messages, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>));
     &#125;
 &#125;</pre></td></tr></table></figure><!-- eslint-enable require-await -->
 
@@ -32,7 +32,7 @@ receives an array of <code>message</code>s if any issues have been found.</p>
 
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> _ <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;lodash&#x27;</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JSONFormatter</span> implements IFormatter &#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JSONFormatter</span> implements <span class="hljs-title class_">IFormatter</span> &#123;
     <span class="hljs-comment">/** Format the problems grouped by `resource` name and sorted by line and column number */</span>
     public <span class="hljs-keyword">async</span> <span class="hljs-title function_">format</span>(<span class="hljs-params">messages: Problem[], options: FormatterOptions = &#123;&#125;</span>) &#123;
         <span class="hljs-keyword">const</span> resources = _.<span class="hljs-title function_">groupBy</span>(messages, <span class="hljs-string">&#x27;resource&#x27;</span>);
@@ -41,7 +41,7 @@ receives an array of <code>message</code>s if any issues have been found.</p>
             <span class="hljs-keyword">const</span> sortedMessages = _.<span class="hljs-title function_">sortBy</span>(msgs, [<span class="hljs-string">&#x27;location.line&#x27;</span>, <span class="hljs-string">&#x27;location.column&#x27;</span>]);
 
             <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;resource&#125;</span>: <span class="hljs-subst">$&#123;msgs.length&#125;</span> issues`</span>);
-            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable constant_">JSON</span>.<span class="hljs-title function_">stringify</span>(sortedMessages, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>));
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(sortedMessages, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>));
         &#125;);
     &#125;
 &#125;</pre></td></tr></table></figure><!-- eslint-enable require-await -->

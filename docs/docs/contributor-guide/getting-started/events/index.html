@@ -7,7 +7,7 @@ create them, while <code>parser</code>s and <code>hint</code>s consume them. To 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">StyleParse</span> = <span class="hljs-title class_">Event</span> &amp; &#123;
     <span class="hljs-attr">ast</span>: <span class="hljs-title class_">Root</span>;
     <span class="hljs-attr">code</span>: <span class="hljs-built_in">string</span>;
-    <span class="hljs-attr">element</span>: HTMLElement | <span class="hljs-literal">null</span>;
+    <span class="hljs-attr">element</span>: <span class="hljs-title class_">HTMLElement</span> | <span class="hljs-literal">null</span>;
 &#125;;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">StyleEvents</span> = <span class="hljs-title class_">Events</span> &amp; &#123;
@@ -47,13 +47,13 @@ lower cased.</p>
     <span class="hljs-comment">/** The URI of the resource firing this event. */</span>
     <span class="hljs-attr">resource</span>: <span class="hljs-built_in">string</span>;
     <span class="hljs-comment">/** The visited element. */</span>
-    <span class="hljs-attr">element</span>: HTMLElement;
+    <span class="hljs-attr">element</span>: <span class="hljs-title class_">HTMLElement</span>;
 &#125;</pre></td></tr></table></figure><h2 id=fetchendltresource-typegt><code>fetch::end::&lt;resource-type&gt;</code><a href="#fetchendltresource-typegt" class="headerlink" title="fetch::end::&lt;resource-type&gt;"></a></h2><p>Event is emitted <strong>when</strong> the content of a <code>resource</code> (<code>js</code>, <code>css</code>,
 <code>image</code>, etc.) has finished downloading.</p>
 <p><strong>Format:</strong></p>
 <figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">type</span> <span class="hljs-title class_">FetchEnd</span> = &#123;
     <span class="hljs-comment">/** The element that initiated the request. */</span>
-    <span class="hljs-attr">element</span>: HTMLElement;
+    <span class="hljs-attr">element</span>: <span class="hljs-title class_">HTMLElement</span>;
     <span class="hljs-comment">/** The URL of the target */</span>
     <span class="hljs-attr">resource</span>: <span class="hljs-built_in">string</span>;
     <span class="hljs-comment">/** The request made to fetch the target. */</span>
@@ -67,7 +67,7 @@ a <code>resource</code> was encountered.</p>
     <span class="hljs-comment">/** The URL of the target. */</span>
     <span class="hljs-attr">resource</span>: <span class="hljs-built_in">string</span>;
     <span class="hljs-comment">/** The element that initiated the request. */</span>
-    <span class="hljs-attr">element</span>: HTMLElement;
+    <span class="hljs-attr">element</span>: <span class="hljs-title class_">HTMLElement</span>;
     <span class="hljs-comment">/** The error found. */</span>
     <span class="hljs-attr">error</span>: <span class="hljs-built_in">any</span>;
     <span class="hljs-comment">/** The redirects performed for the url. */</span>
@@ -101,7 +101,7 @@ is to be traversed.</p>
 <p><strong>Format:</strong></p>
 <figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">type</span> <span class="hljs-title class_">TraverseDown</span> = &#123;
     <span class="hljs-comment">/** The parent element to be traversed. */</span>
-    <span class="hljs-attr">element</span>: HTMLElement;
+    <span class="hljs-attr">element</span>: <span class="hljs-title class_">HTMLElement</span>;
     <span class="hljs-comment">/** The URL of the target. */</span>
     <span class="hljs-attr">resource</span>: <span class="hljs-built_in">string</span>;
 &#125;</pre></td></tr></table></figure><h2 id=traverseend><code>traverse::end</code><a href="#traverseend" class="headerlink" title="traverse::end"></a></h2><p>Event is emitted <strong>when</strong> the <code>connector</code> has finished traversing
@@ -122,7 +122,7 @@ node that was traversed.</p>
 <p><strong>Format:</strong></p>
 <figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">type</span> <span class="hljs-title class_">TraverseUp</span> = &#123;
     <span class="hljs-comment">/** The parent element that was traversed. */</span>
-    <span class="hljs-attr">element</span>: HTMLElement;
+    <span class="hljs-attr">element</span>: <span class="hljs-title class_">HTMLElement</span>;
     <span class="hljs-comment">/** The URL of the target. */</span>
     <span class="hljs-attr">resource</span>: <span class="hljs-built_in">string</span>;
 &#125;</pre></td></tr></table></figure><h2 id=can-evaluatescript><code>can-evaluate::script</code><a href="#can-evaluatescript" class="headerlink" title="can-evaluate::script"></a></h2><p>Event is emitted <strong>when</strong> the <code>connector</code> is ready to evaluate
