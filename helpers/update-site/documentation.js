@@ -24,7 +24,7 @@ const i18n = utils.getMessage;
 const divider = '---';
 const frontMatterRegex = new RegExp(`\r?\n\s*${divider}\r?\n|^\s*${divider}\r?\n`, 'gi'); // eslint-disable-line no-useless-escape
 const configDir = path.resolve(__dirname, '..', '..', '_config.yml');
-const config = yamlLoader.safeLoad(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
+const config = yamlLoader.load(fs.readFileSync(configDir, 'utf8')); // eslint-disable-line no-sync
 
 setShellJSDefaultConfig(shell);
 
