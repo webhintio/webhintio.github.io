@@ -82,7 +82,7 @@ validateFooter function. As shown in the code below, we have access to the
 footer element in the page and use that for our check - if the HTML doesn’t
 include the target string, we simply file a report by calling <code>context.report</code>
 with the <em>resource</em> (URL), the <em>element</em> (footer), and the <em>error message</em>.</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FooterHint</span> <span class="hljs-keyword">implements</span> IHint &#123;
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FooterHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123;
         <span class="hljs-attr">docs</span>: &#123;
             <span class="hljs-attr">category</span>: <span class="hljs-title class_">Category</span>.<span class="hljs-property">other</span>,
@@ -133,7 +133,7 @@ if this config is not defined, the target string falls back to <code>(c) webhint
 Meanwhile, we also need to specify the JSON schema of the configurable options
 in the <code>meta</code> part of the hint constructor. This helps the hint to decide if a
 config option is valid before using it.</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CopyrightHint</span> <span class="hljs-keyword">implements</span> IHint &#123;
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CopyrightHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123;
         <span class="hljs-attr">docs</span>: &#123;
             <span class="hljs-attr">category</span>: <span class="hljs-title class_">Category</span>.<span class="hljs-property">other</span>,
@@ -158,7 +158,7 @@ config option is valid before using it.</p>
             stringToBeIncluded = (context.<span class="hljs-property">hintOptions</span> &amp;&amp; context.<span class="hljs-property">hintOptions</span>.<span class="hljs-property">stringToBeIncluded</span>) || <span class="hljs-string">`(c) webhint`</span>;
         &#125;;
 
-        <span class="hljs-keyword">const</span> validateFooter = <span class="hljs-keyword">async</span> (<span class="hljs-attr">elementFound</span>: <span class="hljs-title class_">ElementFound</span>) =&gt; &#123; <span class="hljs-comment">/* ... */</span> &#125;;
+        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateFooter</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">elementFound: ElementFound</span>) =&gt; &#123; <span class="hljs-comment">/* ... */</span> &#125;;
 
         <span class="hljs-title function_">loadHintConfigs</span>();
 

@@ -41,10 +41,10 @@ to automatically in the script.</p>
 <h2 id=how-hints-work>How hints work<a href="#how-hints-work" class="headerlink" title="How hints work"></a></h2><p>The following is a basic template for a hint (<code>import</code>s might change
 depending on the hint type):</p>
 <figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Category</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hint/utils-types&#x27;</span>;
-<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">FetchEnd</span>, IHint, <span class="hljs-title class_">HintMetadata</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;hint/dist/src/lib/types&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">FetchEnd</span>, <span class="hljs-title class_">IHint</span>, <span class="hljs-title class_">HintMetadata</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;hint/dist/src/lib/types&#x27;</span>;
 <span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">HintContext</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;hint/dist/src/lib/hint-context&#x27;</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNewHint</span> <span class="hljs-keyword">implements</span> IHint &#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNewHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123;&#125;
 
     <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext</span>) &#123;
