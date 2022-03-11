@@ -3,7 +3,6 @@
 .DS_Store
 .vscode/
 db.json
-package-lock.json
 dist/
 node_modules/
 src/content-replaced
