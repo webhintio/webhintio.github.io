@@ -9,7 +9,7 @@
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "globby": "^11.0.0",
-    "highlight.js": "^11.0.0",
+    "highlight.js": "^11.5.0",
     "hint": "^6.1.10",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.15",
