@@ -44,7 +44,7 @@
     "gulp-transform": "^3.0.5",
     "gulp-uglify-es": "^3.0.0",
     "gulp-useref": "^5.0.0",
-    "hexo": "^6.1.0",
+    "hexo": "^6.2.0",
     "hexo-cli": "^4.3.0",
     "hexo-generator-index": "^2.0.0",
     "hexo-generator-sitemap": "^3.0.1",
