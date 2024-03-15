@@ -3,7 +3,7 @@
     "@hint/formatter-html": "^4.3.15",
     "@hint/utils": "^7.0.22",
     "@hint/utils-i18n": "^1.0.14",
-    "algoliasearch": "^4.13.0",
+    "algoliasearch": "^4.17.1",
     "applicationinsights": "^2.3.3",
     "body-parser": "^1.20.2",
     "ejs": "^3.1.8",
