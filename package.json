@@ -29,7 +29,7 @@
     "gulp-clean-css": "^4.2.0",
     "gulp-cli": "^2.2.0",
     "gulp-concat": "^2.6.1",
-    "gulp-debug": "^4.0.0",
+    "gulp-debug": "^5.0.1",
     "gulp-filter": "^7.0.0",
     "gulp-flatten": "^0.4.0",
     "gulp-htmlmin": "^5.0.0",
