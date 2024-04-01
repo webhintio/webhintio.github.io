@@ -51,7 +51,7 @@
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-handlebars": "^2.0.2",
     "hexo-server": "^3.0.0",
-    "hexo-util": "^3.0.1",
+    "hexo-util": "^3.3.0",
     "json2yaml": "^1.1.0",
     "markdownlint-cli": "^0.34.0",
     "marked": "^2.0.0",
