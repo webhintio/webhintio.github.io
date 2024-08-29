@@ -154,7 +154,7 @@ state, this is the moment to use.</li>
 <p>The file that contains the action needs to be written in JavaScript and export
 an object with an <code>action</code> property with the following signature:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
-    <span class="hljs-attr">action</span>: <span class="hljs-keyword">async</span> (page, options) =&gt; &#123;
+    <span class="hljs-attr">action</span>: <span class="hljs-title function_">async</span> (page, options) =&gt; &#123;
         <span class="hljs-comment">// your actions here</span>
     &#125;
 &#125;;</pre></td></tr></table></figure><p>The parameters the function receives are:</p>
@@ -169,7 +169,7 @@ to the actions you can use <code>options.actionOptions</code> property to do so.
 <h4 id=user-action-examples>User action examples<a href="#user-action-examples" class="headerlink" title="User action examples"></a></h4><p>The connector’s authentication mechanisms rely on the user actions API.
 The following is the code for the Basic HTTP Auth (transpiled to JS):</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
-    <span class="hljs-attr">action</span>: <span class="hljs-keyword">async</span> (page, config) =&gt; &#123;
+    <span class="hljs-attr">action</span>: <span class="hljs-title function_">async</span> (page, config) =&gt; &#123;
         <span class="hljs-keyword">if</span> (!config || !config.<span class="hljs-property">auth</span>) &#123;
             <span class="hljs-keyword">return</span>;
         &#125;
@@ -205,7 +205,7 @@ configured via <code>options.actionsOptions</code>:</p>
     <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
     ...
 <span class="hljs-punctuation">&#125;</span></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
-    <span class="hljs-attr">action</span>: <span class="hljs-keyword">async</span> (page, config) =&gt; &#123;
+    <span class="hljs-attr">action</span>: <span class="hljs-title function_">async</span> (page, config) =&gt; &#123;
         <span class="hljs-keyword">const</span> selector = config.<span class="hljs-property">actionsOptions</span>.<span class="hljs-property">elementId</span>;
 
         <span class="hljs-keyword">await</span> page.<span class="hljs-title function_">click</span>(selector);

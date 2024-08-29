@@ -4,10 +4,10 @@ const promisify = require('util').promisify;
 const _ = require('lodash');
 const moment = require('moment');
 const globby = require('globby');
-const r = require('request').defaults({ headers: { 'x-functions-key': `${process.env.FUNCTIONS_KEY}` } }); // eslint-disable-line no-process-env
+
+const nodeFetch = require('node-fetch');
 const { getMessage: getMessageUtils } = require('@hint/utils-i18n');
 
-const request = promisify(r);
 const urlAudiences = process.env.WEBSITE_DOMAIN; // eslint-disable-line no-process-env
 const webhintUrl = urlAudiences ? `${urlAudiences.split(',')[0]}/` : 'http://localhost:4000/';
 const serviceEndpoint = process.env.SONAR_ENDPOINT || 'http://localhost:3000/'; // eslint-disable-line no-process-env
@@ -48,14 +48,13 @@ const sendRequest = (url) => {
         method: 'POST',
         url: `${serviceEndpoint}/createjob`
     };
-
-    return request(options);
+    return nodeFetch(options);
 };
 
 const queryResult = async (id, tries) => {
     let response;
     const counts = tries || 0;
-    const result = await request(`${serviceEndpoint}/jobstatus?id=${id}`);
+    const result = await nodeFetch(`${serviceEndpoint}/jobstatus?id=${id}`);
 
     if (!result.body) {
         throw new Error(`No result found for this url. Please scan again.`);

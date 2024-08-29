@@ -2,793 +2,793 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/about/contributors/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/about/faq/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/about/governance/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/about/project_charter/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/getting-started/architecture/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/getting-started/development-environment/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/getting-started/events/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/getting-started/pull-requests/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/guides/create-custom-hint/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/common-hint-scenarios/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/configuration/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/connector/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/formatter/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/hint/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/parser/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/test-rules/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/api/using-api/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/configurations/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/connectors/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/formatters/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/hints/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/parsers/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/configuration-accessibility/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/configuration-development/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/configuration-progressive-web-apps/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/configuration-web-recommended/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/browser-context/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/ignoring-domains/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/rules-timeout/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/summary/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/using-relative-resources/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/website-authentication/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/connectors/connector-jsdom/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/connectors/connector-local/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/connectors/connector-puppeteer/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/connectors/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/circleci/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/local-server/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/summary/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/travis-and-azure/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/travisci/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/extensions/extension-browser/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/extensions/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/extensions/vscode-webhint/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-codeframe/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-excel/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-html/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-json/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-stylish/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-summary/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-babel-config/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-button-type/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-compat-api/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-create-element-svg/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-content-type/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-css-prefix-order/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-detect-css-reflows/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-disown-opener/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-doctype/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-highest-available-document-mode/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-html-checker/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-http-cache/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-http-compression/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-https-only/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-image-optimization-cloudinary/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-leading-dot-classlist/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-manifest-app-name/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-manifest-exists/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-manifest-file-extension/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-manifest-is-valid/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-meta-charset-utf-8/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-meta-theme-color/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-meta-viewport/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-minified-js/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-bom/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-broken-links/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-disallowed-headers/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-friendly-error-pages/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-html-only-headers/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-http-redirects/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-inline-styles/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-p3p/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-protocol-relative-urls/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-vulnerable-javascript-libraries/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-performance-budget/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-scoped-svg-styles/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-sri/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-ssllabs/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-strict-transport-security/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-stylesheet-limits/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-validate-set-cookie-header/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-x-content-type-options/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-babel-config/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-css/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-html/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-javascript/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-jsx/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-less/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-manifest/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-package-json/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-sass/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-typescript-config/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-typescript/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-webpack-config/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/server-configurations/apache/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/server-configurations/iis/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/server-configurations/summary/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/troubleshoot/summary/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/accessibility/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/compatibility/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/development/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/pwa/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/performance/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/pitfalls/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/security/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/aria/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/color/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/forms/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/keyboard/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/language/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/name-role-value/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/parsing/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/semantics/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/sensory-and-visual-cues/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/structure/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/tables/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/text-alternatives/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/time-and-media/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-babel-config/is-valid/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-compat-api/css/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-compat-api/html/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-detect-css-reflows/composite/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-detect-css-reflows/layout/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-detect-css-reflows/paint/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/consistent-casing/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/import-helpers/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/is-valid/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/no-comments/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/is-valid/</loc>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/strict/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/target/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/config-exists/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/is-installed/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/is-valid/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/module-esnext-typescript/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
-  </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/no-devtool-in-prod/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>
     <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/modules-false-babel/</loc>
-    <lastmod>2024-08-29T18:08:01.049Z</lastmod>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/no-devtool-in-prod/</loc>
+    <lastmod>2024-08-29T18:56:03.728Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/about/contributors/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/about/faq/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/about/governance/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/about/project_charter/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/getting-started/architecture/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/getting-started/development-environment/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/getting-started/events/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/getting-started/pull-requests/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/guides/create-custom-hint/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/common-hint-scenarios/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/configuration/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/connector/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/formatter/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/hint/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/parser/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/contributor-guide/how-to/test-rules/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/api/using-api/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/configurations/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/connectors/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/formatters/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/hints/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/concepts/parsers/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/configuration-accessibility/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/configuration-development/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/configuration-progressive-web-apps/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configurations/configuration-web-recommended/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/browser-context/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/ignoring-domains/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/rules-timeout/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/summary/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/using-relative-resources/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/configuring-webhint/website-authentication/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/connectors/connector-jsdom/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/connectors/connector-local/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/connectors/connector-puppeteer/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/circleci/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/local-server/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/summary/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/travis-and-azure/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/development-flow-integration/travisci/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/extensions/extension-browser/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/extensions/vscode-webhint/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-codeframe/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-excel/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-html/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-json/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-stylish/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/formatters/formatter-summary/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-axe/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-babel-config/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-button-type/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-compat-api/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-content-type/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-create-element-svg/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-css-prefix-order/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-detect-css-reflows/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-disown-opener/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-doctype/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-highest-available-document-mode/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-html-checker/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-http-cache/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-http-compression/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-https-only/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-image-optimization-cloudinary/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-leading-dot-classlist/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-manifest-app-name/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-manifest-exists/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-manifest-file-extension/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-manifest-is-valid/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-meta-charset-utf-8/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-meta-theme-color/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-meta-viewport/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-minified-js/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-bom/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-broken-links/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-disallowed-headers/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-friendly-error-pages/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-html-only-headers/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-http-redirects/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-inline-styles/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-p3p/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-protocol-relative-urls/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-no-vulnerable-javascript-libraries/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-performance-budget/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-scoped-svg-styles/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-sri/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-ssllabs/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-strict-transport-security/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-stylesheet-limits/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-typescript-config/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-validate-set-cookie-header/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-webpack-config/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint-x-content-type-options/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/hint/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/hints/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-babel-config/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-css/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-html/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-jsx/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-manifest/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-less/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-package-json/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-sass/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/parsers/parser-typescript/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/server-configurations/apache/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/server-configurations/iis/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/server-configurations/summary/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
+  </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <loc>https://webhint.iohttps://webhint.io/docs/user-guide/troubleshoot/summary/</loc>
+    <lastmod>2024-08-29T18:56:03.718Z</lastmod>
   </url>
   <url>
     <changefreq>weekly</changefreq>

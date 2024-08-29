@@ -51,7 +51,7 @@ parser</a>, apply it to your <code>HintContext</code>, and register for
 the <code>parse::end::javascript</code> event.</p>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ScriptEvents</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">`@hint/parser-javascript`</span>;
 
-<span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext&lt;ScriptEvents&gt;</span>) &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">context</span>: <span class="hljs-title class_">HintContext</span>&lt;<span class="hljs-title class_">ScriptEvents</span>&gt;</span>) &#123;
     ...
     context.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;parse::end::javascript&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> &#123;
         ...
@@ -69,7 +69,7 @@ of them to your <code>HintContext</code> using a type intersection (<code>&amp;<
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">StyleEvents</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">`@hint/parser-css`</span>;
 <span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ScriptEvents</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">`@hint/parser-javascript`</span>;
 
-<span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext&lt;StyleEvents &amp; ScriptEvents&gt;</span>) &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">context</span>: <span class="hljs-title class_">HintContext</span>&lt;<span class="hljs-title class_">StyleEvents</span> &amp; <span class="hljs-title class_">ScriptEvents</span>&gt;</span>) &#123;
     ...
     context.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;parse::end::css&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">styleParseEvent</span>) =&gt;</span> &#123;
         ...

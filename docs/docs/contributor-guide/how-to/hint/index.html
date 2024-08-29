@@ -47,14 +47,14 @@ depending on the hint type):</p>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNewHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123;&#125;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext</span>) &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">context</span>: <span class="hljs-title class_">HintContext</span></span>) &#123;
         <span class="hljs-comment">// Your code here.</span>
 
-        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateFetchEnd</span> = (<span class="hljs-params">fetchEnd: FetchEnd</span>) =&gt; &#123;
+        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateFetchEnd</span> = (<span class="hljs-params"><span class="hljs-attr">fetchEnd</span>: <span class="hljs-title class_">FetchEnd</span></span>) =&gt; &#123;
             <span class="hljs-comment">// Code to validate the hint on the event fetch::end.</span>
         &#125;;
 
-        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateElement</span> = (<span class="hljs-params">element: ElementFound</span>) =&gt; &#123;
+        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateElement</span> = (<span class="hljs-params"><span class="hljs-attr">element</span>: <span class="hljs-title class_">ElementFound</span></span>) =&gt; &#123;
             <span class="hljs-comment">// Code to validate the hint on the event element::element-type.</span>
         &#125;;
 
