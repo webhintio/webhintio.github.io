@@ -58,9 +58,9 @@ const commonConfiguration = (app) => {
     const menuDataDir = path.join(hexoDir, 'content/_data/menu.yml');
     const configDataDir = path.join(rootPath, '_config.yml');
     const webhintThemeDir = path.join(hexoDir, theme, '_config.yml');
-    const menuData = yaml.safeLoad(fs.readFileSync(menuDataDir, 'utf8')); // eslint-disable-line no-sync
-    const config = yaml.safeLoad(fs.readFileSync(configDataDir, 'utf8')); // eslint-disable-line no-sync
-    const webhintTheme = yaml.safeLoad(fs.readFileSync(webhintThemeDir, 'utf8')); // eslint-disable-line no-sync
+    const menuData = yaml.load(fs.readFileSync(menuDataDir, 'utf8')); // eslint-disable-line no-sync
+    const config = yaml.load(fs.readFileSync(configDataDir, 'utf8')); // eslint-disable-line no-sync
+    const webhintTheme = yaml.load(fs.readFileSync(webhintThemeDir, 'utf8')); // eslint-disable-line no-sync
 
     app.set('hexoDir', hexoDir);
     app.set('rootPath', rootPath);
