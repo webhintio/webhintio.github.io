@@ -44,14 +44,14 @@
     "gulp-transform": "^3.0.5",
     "gulp-uglify-es": "^3.0.0",
     "gulp-useref": "^5.0.0",
-    "hexo": "^6.3.0",
-    "hexo-cli": "^4.3.0",
-    "hexo-generator-index": "^3.0.0",
+    "hexo": "^7.3.0",
+    "hexo-cli": "^4.3.2",
+    "hexo-generator-index": "^4.0.0",
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-handlebars": "^2.0.2",
     "hexo-server": "^3.0.0",
-    "hexo-util": "^3.0.1",
+    "hexo-util": "^3.3.0",
     "json2yaml": "^1.1.0",
     "markdownlint-cli": "^0.34.0",
     "marked": "^2.0.0",
@@ -68,10 +68,10 @@
     "uslug": "^1.0.4"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=16.0.0"
   },
   "hexo": {
-    "version": "6.3.0"
+    "version": "7.3.0"
   },
   "private": true,
   "scripts": {
