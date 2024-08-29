@@ -9,12 +9,12 @@ standardized behavior takes precedence.</p>
 <h2 id=what-does-the-hint-check>What does the hint check?<a href="#what-does-the-hint-check" class="headerlink" title="What does the hint check?"></a></h2><p>This hint examines CSS files looking for blocks containing both prefixed
 and unprefixed CSS properties or values. The hint then verifies the last
 listed version of a particular property in a block is unprefixed.</p>
-<h3 id=examples-that-trigger-the-hint>Examples that <strong>trigger</strong> the hint<a href="#examples-that-trigger-the-hint" class="headerlink" title="Examples that trigger the hint"></a></h3><figure class="highlight css"><table><tr><td class="code"><pre>appearance: none;
--moz-appearance: none;
--webkit-appearance: none;</pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="code"><pre><span class="hljs-attribute">display</span>: grid;
-<span class="hljs-attribute">display</span>: -ms-grid;</pre></td></tr></table></figure><h3 id=examples-that-pass-the-hint>Examples that <strong>pass</strong> the hint<a href="#examples-that-pass-the-hint" class="headerlink" title="Examples that pass the hint"></a></h3><figure class="highlight css"><table><tr><td class="code"><pre>-moz-appearance: none;
--webkit-appearance: none;
-appearance: none;</pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="code"><pre><span class="hljs-attribute">display</span>: -ms-grid;
+<h3 id=examples-that-trigger-the-hint>Examples that <strong>trigger</strong> the hint<a href="#examples-that-trigger-the-hint" class="headerlink" title="Examples that trigger the hint"></a></h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="hljs-attribute">appearance</span>: none;
+-moz-<span class="hljs-attribute">appearance</span>: none;
+-webkit-<span class="hljs-attribute">appearance</span>: none;</pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="code"><pre><span class="hljs-attribute">display</span>: grid;
+<span class="hljs-attribute">display</span>: -ms-grid;</pre></td></tr></table></figure><h3 id=examples-that-pass-the-hint>Examples that <strong>pass</strong> the hint<a href="#examples-that-pass-the-hint" class="headerlink" title="Examples that pass the hint"></a></h3><figure class="highlight css"><table><tr><td class="code"><pre>-moz-<span class="hljs-attribute">appearance</span>: none;
+-webkit-<span class="hljs-attribute">appearance</span>: none;
+<span class="hljs-attribute">appearance</span>: none;</pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="code"><pre><span class="hljs-attribute">display</span>: -ms-grid;
 <span class="hljs-attribute">display</span>: grid;</pre></td></tr></table></figure><h2 id=how-to-use-this-hint>How to use this hint?<a href="#how-to-use-this-hint" class="headerlink" title="How to use this hint?"></a></h2><p>This package is installed automatically by webhint:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre>npm install hint --save-dev</pre></td></tr></table></figure><p>To use it, activate it via the <a href="https://webhint.io/docs/user-guide/configuring-webhint/summary/" ><code>.hintrc</code></a> configuration file:</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="hljs-punctuation">&#123;</span>

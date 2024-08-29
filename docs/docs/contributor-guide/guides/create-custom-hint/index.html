@@ -93,9 +93,9 @@ with the <em>resource</em> (URL), the <em>element</em> (footer), and the <em>err
         <span class="hljs-attr">scope</span>: <span class="hljs-title class_">HintScope</span>.<span class="hljs-property">any</span>
     &#125;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext</span>) &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">context</span>: <span class="hljs-title class_">HintContext</span></span>) &#123;
         <span class="hljs-keyword">const</span> stringToBeIncluded = <span class="hljs-string">`(c) webhint`</span>;
-        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateFooter</span> = (<span class="hljs-params">elementFound: ElementFound</span>) =&gt; &#123;
+        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateFooter</span> = (<span class="hljs-params"><span class="hljs-attr">elementFound</span>: <span class="hljs-title class_">ElementFound</span></span>) =&gt; &#123;
             <span class="hljs-keyword">const</span> &#123; element, resource &#125; = elementFound;
             <span class="hljs-keyword">const</span> footerHTML = element.<span class="hljs-property">outerHTML</span>;
 
@@ -150,7 +150,7 @@ config option is valid before using it.</p>
         <span class="hljs-attr">scope</span>: <span class="hljs-title class_">HintScope</span>.<span class="hljs-property">any</span>
     &#125;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext</span>) &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">context</span>: <span class="hljs-title class_">HintContext</span></span>) &#123;
         <span class="hljs-keyword">let</span> stringToBeIncluded;
 
         <span class="hljs-keyword">const</span> <span class="hljs-title function_">loadHintConfigs</span> = (<span class="hljs-params"></span>) =&gt; &#123;
@@ -158,7 +158,7 @@ config option is valid before using it.</p>
             stringToBeIncluded = (context.<span class="hljs-property">hintOptions</span> &amp;&amp; context.<span class="hljs-property">hintOptions</span>.<span class="hljs-property">stringToBeIncluded</span>) || <span class="hljs-string">`(c) webhint`</span>;
         &#125;;
 
-        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateFooter</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">elementFound: ElementFound</span>) =&gt; &#123; <span class="hljs-comment">/* ... */</span> &#125;;
+        <span class="hljs-keyword">const</span> <span class="hljs-title function_">validateFooter</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"><span class="hljs-attr">elementFound</span>: <span class="hljs-title class_">ElementFound</span></span>) =&gt; &#123; <span class="hljs-comment">/* ... */</span> &#125;;
 
         <span class="hljs-title function_">loadHintConfigs</span>();
 

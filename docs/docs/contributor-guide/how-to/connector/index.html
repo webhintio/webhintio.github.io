@@ -64,7 +64,7 @@ should implement, see the <a href="../../getting-started/events/" >events page</
     <span class="hljs-comment">/** Download an external resource using ` customHeaders` if needed. */</span>
     <span class="hljs-title function_">fetchContent</span>(<span class="hljs-attr">target</span>: <span class="hljs-variable constant_">URL</span> | <span class="hljs-built_in">string</span>, customHeaders?: <span class="hljs-built_in">object</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">NetworkData</span>&gt;;
     <span class="hljs-comment">/** Evaluates the given JavaScript `code` asynchronously in the target. */</span>
-    evaluate(<span class="hljs-attr">code</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt;;
+    <span class="hljs-title function_">evaluate</span>(<span class="hljs-attr">code</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt;;
     <span class="hljs-comment">/** Finds all the nodes that match the given query. */</span>
     <span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-attr">query</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">HTMLElement</span>[];
 &#125;</pre></td></tr></table></figure><h2 id=how-to-test-a-full-connector>How to test a “full” connector<a href="#how-to-test-a-full-connector" class="headerlink" title="How to test a “full” connector"></a></h2><p>To make sure your connector is a “full” connector, it has to pass the

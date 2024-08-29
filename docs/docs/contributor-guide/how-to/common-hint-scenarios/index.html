@@ -36,17 +36,17 @@ immediate invoked function expression (IIFE).</p>
     return true;
 &#125;())`</span>;
 
-context.evaluate(script);</pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-keyword">const</span> script =
+context.<span class="hljs-title function_">evaluate</span>(script);</pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-keyword">const</span> script =
 <span class="hljs-string">`(function() &#123;
     return Promise.resolve(true);
 &#125;())`</span>;
 
-context.evaluate(script);</pre></td></tr></table></figure><p>The following does not:</p>
+context.<span class="hljs-title function_">evaluate</span>(script);</pre></td></tr></table></figure><p>The following does not:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-keyword">const</span> script = <span class="hljs-string">`return true;`</span>;
 
-context.evaluate(script);</pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-keyword">const</span> script = <span class="hljs-string">`return Promise.resolve(true);`</span>;
+context.<span class="hljs-title function_">evaluate</span>(script);</pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="code"><pre><span class="hljs-keyword">const</span> script = <span class="hljs-string">`return Promise.resolve(true);`</span>;
 
-context.evaluate(script);</pre></td></tr></table></figure><h2 id=ignore-connectors>Ignore connectors<a href="#ignore-connectors" class="headerlink" title="Ignore connectors"></a></h2><p>If your hint does not work properly with certain connectors you can
+context.<span class="hljs-title function_">evaluate</span>(script);</pre></td></tr></table></figure><h2 id=ignore-connectors>Ignore connectors<a href="#ignore-connectors" class="headerlink" title="Ignore connectors"></a></h2><p>If your hint does not work properly with certain connectors you can
 use the property <code>ignoreConnectors</code> so it is not run when they are used.</p>
 <figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123;
@@ -54,7 +54,7 @@ use the property <code>ignoreConnectors</code> so it is not run when they are us
         <span class="hljs-attr">ignoredConnectors</span>: [<span class="hljs-string">&#x27;jsdom&#x27;</span>]
     &#125;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext</span>) &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">context</span>: <span class="hljs-title class_">HintContext</span></span>) &#123;
         <span class="hljs-comment">// Your code here</span>
     &#125;
 &#125;</pre></td></tr></table></figure><h2 id=interact-with-other-services>Interact with other services<a href="#interact-with-other-services" class="headerlink" title="Interact with other services"></a></h2><p>You can develop a hint that integrates with other services. <code>webhint</code>
@@ -67,11 +67,11 @@ The <code>create</code> method of your hint should be similar to the following:<
 <figure class="highlight ts"><table><tr><td class="code"><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IHint</span> &#123;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">HintMetadata</span> = &#123; <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;my-hint&#x27;</span> &#125;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext</span>) &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">context</span>: <span class="hljs-title class_">HintContext</span></span>) &#123;
         <span class="hljs-comment">/** The promise that represents the connection to the online service. */</span>
         <span class="hljs-keyword">let</span> <span class="hljs-attr">promise</span>: <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt;;
 
-        <span class="hljs-keyword">const</span> <span class="hljs-title function_">start</span> = (<span class="hljs-params">data: ScanStartEvent</span>) =&gt; &#123;
+        <span class="hljs-keyword">const</span> <span class="hljs-title function_">start</span> = (<span class="hljs-params"><span class="hljs-attr">data</span>: <span class="hljs-title class_">ScanStartEvent</span></span>) =&gt; &#123;
             <span class="hljs-comment">// Initialize promise to service here but do not return it.</span>
             promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyService</span>();
         &#125;;
@@ -114,12 +114,12 @@ and not a file, the value will be <code>Internal javascript</code>.</li>
         <span class="hljs-attr">worksWithLocalFiles</span>: <span class="hljs-literal">true</span>
     &#125;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">context: HintContext</span>) &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">context</span>: <span class="hljs-title class_">HintContext</span></span>) &#123;
         <span class="hljs-keyword">let</span> validPromise;
         <span class="hljs-keyword">const</span> errorsOnly = context.<span class="hljs-property">hintOptions</span> &amp;&amp; context.<span class="hljs-property">hintOptions</span>[<span class="hljs-string">&#x27;errors-only&#x27;</span>] || <span class="hljs-literal">false</span>;
         <span class="hljs-keyword">let</span> html;
 
-        <span class="hljs-keyword">const</span> <span class="hljs-title function_">onParseJavascript</span> = (<span class="hljs-params">scriptParse: ScriptParse</span>) =&gt; &#123;
+        <span class="hljs-keyword">const</span> <span class="hljs-title function_">onParseJavascript</span> = (<span class="hljs-params"><span class="hljs-attr">scriptParse</span>: <span class="hljs-title class_">ScriptParse</span></span>) =&gt; &#123;
             <span class="hljs-keyword">const</span> results = linter.<span class="hljs-title function_">verify</span>(scriptParse.<span class="hljs-property">sourceCode</span>, &#123; <span class="hljs-attr">hints</span>: &#123; <span class="hljs-attr">semi</span>: <span class="hljs-number">2</span> &#125; &#125;);
 
             <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> result <span class="hljs-keyword">of</span> results) &#123;

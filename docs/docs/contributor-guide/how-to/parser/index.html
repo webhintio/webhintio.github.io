@@ -9,7 +9,7 @@ folder.</p>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomParser</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parser</span> &#123;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">engine: Engine</span>) &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">engine</span>: <span class="hljs-title class_">Engine</span></span>) &#123;
         <span class="hljs-variable language_">super</span>(engine, <span class="hljs-string">&#x27;&lt;parser_name&gt;&#x27;</span>);
 
         <span class="hljs-comment">/*
@@ -19,7 +19,7 @@ folder.</p>
         <span class="hljs-variable language_">this</span>.<span class="hljs-property">engine</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;fetch::end::resource&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">onFetchEnd</span>);
     &#125;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> <span class="hljs-title function_">onFetchEnd</span>(<span class="hljs-params">data: FetchEnd</span>) &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> <span class="hljs-title function_">onFetchEnd</span>(<span class="hljs-params"><span class="hljs-attr">data</span>: <span class="hljs-title class_">FetchEnd</span></span>) &#123;
         <span class="hljs-comment">/*
          * Your magic to detect if the parser understands the content here
          * You probably want to check the contentType first
